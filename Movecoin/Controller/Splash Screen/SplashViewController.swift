@@ -7,23 +7,16 @@
 //
 
 import UIKit
+import AVKit
 
-
-
-class SplashViewController: UIViewController , CAAnimationDelegate {
+class SplashViewController: UIViewController {
     
     // ----------------------------------------------------
     //MARK:- --------- IBOutlets ---------
     // ----------------------------------------------------
    
-    @IBOutlet weak var viewContainer: LKAWaveCircleProgressBar!
-    @IBOutlet weak var imgM: UIImageView!
-    @IBOutlet weak var imgCircle: UIImageView!
-    @IBOutlet weak var imgPlainCircle: UIImageView!
-    
-   
-    var mask: CALayer?
-    var imageView: UIImageView?
+    @IBOutlet weak var viewContainer: UIView!
+  
     
     // ----------------------------------------------------
     //MARK:- --------- Lifecycle Methods ---------
@@ -31,96 +24,48 @@ class SplashViewController: UIViewController , CAAnimationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // logo annimation of wave
-        viewContainer.setProgress(0, animated: true)
-        viewContainer.startWaveRollingAnimation()
-        viewContainer.progressAnimationDuration = 7
-        viewContainer.setProgress(101, animated: true)
-        viewContainer.progressTintColor = UIColor.white.withAlphaComponent(0.3)
-        viewContainer.borderColor = .clear
-
-
-        Timer.scheduledTimer(withTimeInterval: 7, repeats: false) { (timer) in
-            self.viewContainer.stopWaveRollingAnimation()
-           self.moveToViewController()
-
+        playLogoAnimation()
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- Custom Methods ---------
+    // ----------------------------------------------------
+    
+    
+    func playLogoAnimation() {
+        guard let path = Bundle.main.path(forResource: "Blue Conv", ofType:"mp4") else {
+//        guard let path = Bundle.main.path(forResource: "White Conv", ofType:"mp4") else {
+            debugPrint("video.m4v not found")
+            return
         }
+        let playerItem = AVPlayerItem(url: URL(fileURLWithPath: path))
+        let player = AVPlayer(playerItem: playerItem)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.view.bounds
         
+        playerLayer.backgroundColor = UIColor.clear.cgColor
+        viewContainer.backgroundColor = UIColor.clear
+        
+        viewContainer.layer.addSublayer(playerLayer)
+        player.play()
+        player.rate = 1.5
+        Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { (timer) in
+            self.moveToViewController()
+        }
         
     }
     
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//
-//        var frame = self.imgM.frame
-//        frame.origin.x = self.view.center.x - frame.width/2
-//        self.imgM.frame = frame
-//
-////        self.imgCircle.transform = CGAffineTransform(rotationAngle: .pi)
-//        UIView.animate(withDuration: 5, animations: {
-//            self.imgCircle.alpha = 1
-//            self.imgPlainCircle.alpha = 1
-//        }, completion: nil)
-//
-//        UIView.animate(withDuration: 1, animations: {
-//
-//            self.imgM.center = self.view.center
-//        }, completion: { (finish) in
-//
-//            self.imgM.transform = CGAffineTransform.identity.scaledBy(x: 0.05, y: 0.05)
-//            UIView.animate(withDuration: 2.5,
-//                           delay: 0,
-//                           usingSpringWithDamping: 0.2,
-//                           initialSpringVelocity: 2.0,
-//                           options: .allowUserInteraction,
-//                           animations: { [weak self] in
-//                            self?.imgM.transform = .identity
-//                            self?.imgCircle.transform = CGAffineTransform(rotationAngle: .pi)
-//                },completion: { (finish) in
-//
-//
-//                    UIView.animate(withDuration: 0.2, animations: {
-//
-//                        self.imgM.transform = CGAffineTransform.identity.scaledBy(x: 3, y: 3)
-//                        self.imgPlainCircle.transform = CGAffineTransform.identity.scaledBy(x: 3, y: 3)
-//                        self.imgCircle.transform = CGAffineTransform.identity.scaledBy(x: 3, y: 3)
-//
-//                        self.imgCircle.alpha = 0
-//                        self.imgPlainCircle.alpha = 0
-//                        self.imgM.alpha = 0
-//
-//                    }, completion: { (finish) in
-//
-//                        self.moveToViewController()
-//                    })
-//            })
-//        } )
-//    }
-//  
     func moveToViewController(){
-
-        if UserDefaults.standard.value(forKey: kIsLogedIn) != nil {
-           
-            if UserDefaults.standard.value(forKey: kIsLogedIn) as! Bool {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeVC = storyboard.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
-                 self.present(homeVC, animated: false, completion: nil)
-
+        
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.IsLogin) != nil {
+            
+            if UserDefaults.standard.value(forKey: UserDefaultKeys.IsLogin) as! Bool {
+                AppDelegateShared.GoToHome()
             }else {
-                let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                let welcomeVC = storyboard.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
-                self.navigationController?.pushViewController(welcomeVC, animated: false)
+               AppDelegateShared.GoToLogin()
             }
         }else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let homeVC = storyboard.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
-//            self.present(homeVC, animated: false, completion: nil)
-
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            let welcomeVC = storyboard.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
-            self.navigationController?.pushViewController(welcomeVC, animated: false)
+            AppDelegateShared.GoToLogin()
         }
     }
 }

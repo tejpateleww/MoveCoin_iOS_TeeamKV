@@ -24,7 +24,6 @@ class RoundedShadowView : UIView {
         self.layer.shadowOpacity = 0.3
         layer.shadowColor = UIColor.lightGray.cgColor
 
-        
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.lightGray.cgColor
         self.clipsToBounds = true
@@ -37,7 +36,7 @@ class CustomView: UIView {
     
     private var shadowLayer: CAShapeLayer!
     @IBInspectable public var isRounded : Bool = true
-    @IBInspectable public var CornerRadius: CGFloat = 12.0
+    @IBInspectable public var CornerRadiuss: CGFloat = 12.0
     @IBInspectable public var BackColor : UIColor = .white
     
     override func layoutSubviews() {
@@ -45,7 +44,7 @@ class CustomView: UIView {
         
         if shadowLayer == nil {
             shadowLayer = CAShapeLayer()
-            shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: isRounded ? (self.frame.size.height/2) : CornerRadius).cgPath
+            shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: isRounded ? (self.frame.size.height/2) : CornerRadiuss).cgPath
             shadowLayer.fillColor = BackColor.cgColor
             shadowLayer.shadowColor = UIColor(red: 22/255, green: 22/255, blue: 22/255, alpha: 1).cgColor
             shadowLayer.shadowPath = shadowLayer.path
@@ -56,6 +55,6 @@ class CustomView: UIView {
             
 //            layer.insertSublayer(shadowLayer, below: nil) // also works
         }
-        self.backgroundColor = .white
+//        self.backgroundColor = .white
     }
 }

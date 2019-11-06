@@ -9,8 +9,14 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
+    
+    // ----------------------------------------------------
+    // MARK: - IBOutlets 
+    // ----------------------------------------------------
 
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblOr: UILabel!
     
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods
@@ -18,24 +24,46 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.animateView()
+        self.setupFont()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationBarSetUp(isHidden: true)
+    }
+    
+    // ----------------------------------------------------
+    // MARK: - Custom Methods
+    // ----------------------------------------------------
+    
+    func animateView(){
         viewContainer.alpha = 0
         UIView.animate(withDuration: 1) {
             self.viewContainer.alpha = 1
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.navigationBar.isHidden = true
-         self.statusBarSetUp(backColor: .clear, textStyle: UIBarStyle.blackTranslucent)
+    func setupFont(){
+        lblTitle.font = UIFont.bold(ofSize: 38.0)
+        lblOr.font = UIFont.bold(ofSize: 17.0)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        let nav = UINavigationController(rootViewController: self)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = nav
-        
-        
+    // ----------------------------------------------------
+    // MARK: - IBAction Methods
+    // ----------------------------------------------------
+    
+    @IBAction func btnSignInTapped(_ sender: Any) {
+        (sender as! UIButton).bounceAnimationOnCompletion {
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: LoginViewController.className) as! LoginViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    @IBAction func btnSignUpTapped(_ sender: Any) {
+        (sender as! UIButton).bounceAnimationOnCompletion {
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: SignupViewController.className) as! SignupViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

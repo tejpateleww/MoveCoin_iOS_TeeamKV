@@ -9,15 +9,18 @@
 import Foundation
 import UIKit
 
-// enum
 
-enum TabBarOptions : Int {
-    case Store
-    case Wallet
-    case Home
-    case Statistics
-    case Profile
-}
+// Constants
+
+let windowWidth: CGFloat = CGFloat(UIScreen.main.bounds.size.width)
+let windowHeight: CGFloat = CGFloat(UIScreen.main.bounds.size.height)
+let screenHeightDeveloper : Double = 812
+let screenWidthDeveloper : Double = 375
+
+let AppDelegateShared = UIApplication.shared.delegate as! AppDelegate
+
+typealias onCompletion = () -> Void
+
 
 // Colors
 
@@ -30,6 +33,9 @@ let HomeColor : UIColor = hexStringToUIColor(hex: "ff7f9b")
 let StatisticsColor : UIColor = hexStringToUIColor(hex: "a6d15d")
 let ProfileColor : UIColor = hexStringToUIColor(hex: "4c9ee8")
 
+let TransparentColor : UIColor = UIColor.init(white: 1.0, alpha: 0.23)
+
 // Constant Keys
 
+let kAppName = "MoveCoins"
 let kIsLogedIn = "isLogin"

@@ -13,12 +13,12 @@ import UIKit
 // MARK: - Custom Button Style
 // ----------------------------------------------------
 
-enum buttonTheme: Int {
-    case whiteTheme         // 0
-    case blueTheme          // 1
-    case transparentTheme   // 2
-    case whiteBorderTheme   // 3
-    case blueBorderTheme    // 4
+enum buttonTheme: String {
+    case whiteTheme = "whiteTheme"        // 0
+    case blueTheme = "blueTheme"         // 1
+    case transparentTheme = "transparentTheme"  // 2
+    case whiteBorderTheme = "whiteBorderTheme"  // 3
+    case blueBorderTheme = "blueBorderTheme"   // 4
 }
 
 // ----------------------------------------------------
@@ -76,7 +76,7 @@ class ThemeButton: UIButton {
     }
     
     private func transparentTheme() {
-        self.backgroundColor = .init(white: 2.0, alpha: 6.0)
+        self.backgroundColor = .init(white: 1.0, alpha: 0.23)
         self.setTitleColor(.white, for: .normal)
         self.circelButtonStyle()
     }
@@ -99,7 +99,7 @@ class ThemeButton: UIButton {
     
     // Background Color
     @IBInspectable
-    var setTheme: Int {
+    var setTheme: String {
         get {
             return self.theme.rawValue
         }
@@ -113,7 +113,7 @@ class ThemeButton: UIButton {
         self.layer.cornerRadius = self.frame.size.height / 2
 //        self.clipsToBounds = true
         self.layer.masksToBounds = true
-        
+        self.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
     }
     
     
