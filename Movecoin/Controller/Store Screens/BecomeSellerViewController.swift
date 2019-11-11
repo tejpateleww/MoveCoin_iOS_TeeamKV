@@ -38,7 +38,7 @@ class BecomeSellerViewController: UIViewController {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let destination = storyborad.instantiateViewController(withIdentifier: AlertViewController.className) as! AlertViewController
         destination.alertTitle = "Thank You"
-        destination.alertDescription = "Thank you for registering with us, Please check your email and activate your portal and fill additional information so Move Coin can review your application and contact you."
+        destination.alertDescription = "Thank you for registering with us, Please check your email and activate your portal and fill additional information so MoveCoins can review your application and contact you."
         
         destination.modalPresentationStyle = .overCurrentContext
         self.present(destination, animated: true, completion: nil)
