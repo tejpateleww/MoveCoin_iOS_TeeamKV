@@ -265,7 +265,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3t-R3-wyH">
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3t-R3-wyH">
                                                                 <rect key="frame" x="128" y="3" width="26" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="26" id="HBN-m5-SGG"/>
@@ -357,7 +357,7 @@
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -442,7 +442,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="setTheme" value="blueBorderTheme"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <segue destination="ibE-DV-sNJ" kind="show" id="69I-5H-LGC"/>
+                                                            <action selector="btnVerifyTapped:" destination="Ne7-sU-0Bo" eventType="touchUpInside" id="GP3-bY-dTa"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="tq7-Je-iBv">
@@ -528,6 +528,7 @@
                         <outlet property="txtMobile" destination="JYf-yE-LbA" id="upa-Bh-gRX"/>
                         <outlet property="txtNickname" destination="NyZ-uO-5eQ" id="eiy-VK-MEt"/>
                         <outlet property="txtPassword" destination="qJJ-xX-q7D" id="YXj-in-zqU"/>
+                        <outlet property="viewProfile" destination="xsb-3i-rkO" id="NoV-EA-EOS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QvH-Bx-xqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -567,6 +568,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="setTheme" value="whiteBorderTheme"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnVerifyTapped:" destination="ibE-DV-sNJ" eventType="touchUpInside" id="jTM-Lb-vPA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ey-5Y-LRT">
                                         <rect key="frame" x="115" y="393.5" width="90" height="35"/>
@@ -578,6 +582,9 @@
                                         <state key="normal" title="Send Again">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnSendAgainTapped:" destination="ibE-DV-sNJ" eventType="touchUpInside" id="f1S-B6-Jfu"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXi-Xu-lBX" customClass="VKPinCodeView" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="55" y="135" width="210" height="55"/>
@@ -927,6 +934,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="setTheme" value="blueBorderTheme"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="btnSendAction:" destination="9Bf-Fd-Wuq" eventType="touchUpInside" id="n0S-a4-pzh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

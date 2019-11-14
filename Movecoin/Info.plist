@@ -25,9 +25,17 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App needs to access your location</string>
+	<string>App would like to use your current location</string>
 	<key>NSLocationUsageDescription</key>
-	<string>App needs to access your location</string>
+	<string>App would like to use your current location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>App would like to use your current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>App would like to use your current location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App would like to use camera</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>App would like to use photo library</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Cairo-Regular.ttf</string>

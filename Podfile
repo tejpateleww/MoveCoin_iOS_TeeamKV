@@ -12,10 +12,11 @@ pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'Kingfisher'
 
+pod 'NVActivityIndicatorView'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField'
-pod 'TTSegmentedControl'
 
+pod 'TTSegmentedControl'
 pod 'Cosmos'
 pod 'lottie-ios'
 

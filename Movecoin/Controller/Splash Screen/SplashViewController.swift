@@ -14,9 +14,15 @@ class SplashViewController: UIViewController {
     // ----------------------------------------------------
     //MARK:- --------- IBOutlets ---------
     // ----------------------------------------------------
+    
    
     @IBOutlet weak var viewContainer: UIView!
+    
+    // ----------------------------------------------------
+    //MARK:- --------- Variables ---------
+    // ----------------------------------------------------
   
+    var initStatus = false
     
     // ----------------------------------------------------
     //MARK:- --------- Lifecycle Methods ---------
@@ -24,6 +30,7 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        webserviceforAPPInit()
         playLogoAnimation()
     }
     
@@ -50,22 +57,43 @@ class SplashViewController: UIViewController {
         player.play()
         player.rate = 1.5
         Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { (timer) in
-            self.moveToViewController()
+            if self.initStatus {
+                self.moveToViewController()
+            }
         }
-        
     }
     
     func moveToViewController(){
         
-        if UserDefaults.standard.value(forKey: UserDefaultKeys.IsLogin) != nil {
+        if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) != nil {
             
-            if UserDefaults.standard.value(forKey: UserDefaultKeys.IsLogin) as! Bool {
+            if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) as! Bool {
                 AppDelegateShared.GoToHome()
             }else {
                AppDelegateShared.GoToLogin()
             }
         }else {
             AppDelegateShared.GoToLogin()
+        }
+    }
+    
+    func webserviceforAPPInit(){
+        
+//        var loginModelDetails = LoginModel()
+
+        var strParam = String()
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios"
+      
+        UserWebserviceSubclass.initApi(strURL: strParam) { (json, status, res) in
+            print(status)
+            self.initStatus = status
+            if status{
+                
+               
+            }else{
+                
+            }
         }
     }
 }

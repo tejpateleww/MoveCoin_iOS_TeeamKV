@@ -8,6 +8,11 @@
 
 import Foundation
 import CoreImage
+import NVActivityIndicatorView
+
+// ----------------------------------------------------
+//MARK:- --------- Get Class Name Method ---------
+// ----------------------------------------------------
 
 extension NSObject {
     static var className : String {
@@ -16,30 +21,141 @@ extension NSObject {
 }
 
 
-@available(iOS, introduced: 8.0, deprecated: 12.0, message: "Core Image Kernel Language API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)")
-class AlphaFrameFilter: CIFilter {
-  
-    static var kernel: CIColorKernel? = {
-        
-        return CIColorKernel(source: """
-kernel vec4 alphaFrame(__sample s, __sample m) {
-  return vec4( s.rgb, m.r );
-}
-""")
-    }()
+class UtilityClass : NSObject {
     
-    var inputImage: CIImage?
-    var maskImage: CIImage?
+    // ----------------------------------------------------
+    //MARK:- --------- Change DateFormat Methods ---------
+    // ----------------------------------------------------
     
-    override var outputImage: CIImage? {
+    class func changeDateFormateFrom(dateString: String, fromFormat : String = "", withFormat format: String) -> String? {
         
-        let kernel = AlphaFrameFilter.kernel!
-        
-        guard let inputImage = inputImage, let maskImage = maskImage else {
-            return nil
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        if(fromFormat.trimmingCharacters(in: .whitespacesAndNewlines).count != 0){
+            inputFormatter.dateFormat = fromFormat
         }
+        //        2018-08-01 17:34:32
+        if let date = inputFormatter.date(from: dateString){
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = format
+            let str = outputFormatter.string(from: date)
+            return str
+        }
+        return nil
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- Alert Methods ---------
+    // ----------------------------------------------------
+    
+    class func showAlert(Message: String) {
+        let alertController = UIAlertController(title: "", message: Message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(alertAction)
+        AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    class func showAlertWithCompletion(title:String?, Message:String, ButtonTitle:String, Completion:@escaping (() -> ())) {
         
-        let args = [inputImage as AnyObject, maskImage as AnyObject]
-        return kernel.apply(extent: inputImage.extent, arguments: args)
+        let alertController = UIAlertController(title: title , message:Message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle, style: .default) { (UIAlertAction) in
+            Completion()
+        }
+        alertController.addAction(OKAction)
+        AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    class func showAlertWithTwoButtonCompletion(title:String, Message:String,ButtonTitle1:String,ButtonTitle2:String, Completion:@escaping ((Int) -> ())) {
+        
+        let alertController = UIAlertController(title: title , message:Message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle1, style: .default) { (UIAlertAction) in
+            Completion(0)
+        }
+        let CancelAction = UIAlertAction(title: ButtonTitle2, style: .default) { (UIAlertAction) in
+            Completion(1)
+        }
+        alertController.addAction(OKAction)
+        alertController.addAction(CancelAction)
+        AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+    }
+    
+    /// Response may be Any Type
+    class func showAlertOfAPIResponse(param: Any) {
+        
+        if let res = param as? String {
+            UtilityClass.showAlert(Message: res)
+        }
+        else if let resDict = param as? NSDictionary {
+            if let msg = resDict.object(forKey: "message") as? String {
+                UtilityClass.showAlert(Message: msg)
+            }
+            else if let msg = resDict.object(forKey: "msg") as? String {
+                UtilityClass.showAlert(Message: msg)
+            }
+            else if let msg = resDict.object(forKey: "message") as? [String] {
+                UtilityClass.showAlert(Message: msg.first ?? "")
+            }
+        }
+        else if let resAry = param as? NSArray {
+            
+            if let dictIndxZero = resAry.firstObject as? NSDictionary {
+                if let message = dictIndxZero.object(forKey: "message") as? String {
+                    UtilityClass.showAlert(Message: message)
+                }
+                else if let msg = dictIndxZero.object(forKey: "msg") as? String {
+                    UtilityClass.showAlert(Message: msg)
+                }
+                else if let msg = dictIndxZero.object(forKey: "message") as? [String] {
+                    UtilityClass.showAlert(Message: msg.first ?? "")
+                }
+            }
+            else if let msg = resAry as? [String] {
+                UtilityClass.showAlert(Message: msg.first ?? "")
+            }
+        }
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- ActivityIndicator Methods ---------
+    // ----------------------------------------------------
+    
+    class func showHUD() {
+        let activityData = ActivityData()
+        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+    }
+    
+    class func hideHUD() {
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- Location Methods ---------
+    // ----------------------------------------------------
+    
+    class func alertForLocation(currentVC:UIViewController){
+        
+        let alertController = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app", preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success)
+                    
+                    in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        alertController.addAction(settingsAction)
+        
+        alertController.addAction(OKAction)
+        OperationQueue.main.addOperation {
+            currentVC.present(alertController, animated: true,
+                              completion:nil)
+        }
     }
 }

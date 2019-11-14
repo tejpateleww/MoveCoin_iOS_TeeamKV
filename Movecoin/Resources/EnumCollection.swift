@@ -51,14 +51,6 @@ enum SettingsOptions : Int {
     case Language
 }
 
-enum UserDefaultKeys : CaseIterable {
-    static let LoginResponse = "LoginResponse"
-    static let IsLogin = "IsLogin"
-    static let EmailNotification = "EmailNotification"
-    static let SmsNotification = "SmsNotification"
-    static let PushNotification = "PushNotification"
-}
-
 enum FontBook: String {
     
     case Light = "Cairo-Light"
@@ -78,4 +70,26 @@ enum FontBook: String {
     func staticFont(Size:CGFloat) -> UIFont{
         return UIFont(name:self.rawValue,size:Size)!
     }
+}
+
+enum UserDefaultKeys : CaseIterable {
+    static let kIsLogedIn = "isLogin"
+    static let kDeviceToken = "DeviceToken"
+    static let kUserProfile = "userProfile"
+    static let kX_API_KEY = "x-api-key"
+    static let kIsFirstTimeLocationUpdate = "isFirstTimeLocationUpdate"
+    
+    //    static let LoginResponse = "LoginResponse"
+    //    static let IsLogin = "IsLogin"
+    //    static let EmailNotification = "EmailNotification"
+    //    static let SmsNotification = "SmsNotification"
+    //    static let PushNotification = "PushNotification"
+}
+
+enum DateFomateKeys : CaseIterable {
+    static let display = "dd-MM-yyyy"
+    static let api = "yyyy-MM-dd"
+    
+//    let dateFormateToDisplay = "dd-MM-yyyy"
+//    let dateFormateOfApi = "yyyy-MM-dd"
 }

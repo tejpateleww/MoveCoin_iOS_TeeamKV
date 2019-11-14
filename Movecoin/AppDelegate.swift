@@ -8,17 +8,20 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let locationManager = CLLocationManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //GoToHome()
         setupApplication()
         setUpNavigationBar()
+        locationPermission()
         return true
     }
 
@@ -40,6 +43,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
        
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- === Push Notification Methods ======
+    // ----------------------------------------------------
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("APNs device token: \(deviceTokenString)")
+        
+        _ = deviceToken.map({ (data)-> String in
+            return String(format: "%0.2.2hhx", data)
+        })
+        //        let token = toketParts.joined()
+//        Messaging.messaging().apnsToken = deviceToken as Data
     }
 }
 
@@ -65,7 +83,7 @@ extension AppDelegate {
         navigationBarAppearace.barStyle = UIBarStyle.blackTranslucent
         
         navigationBarAppearace.tintColor           = UIColor.white
-        navigationBarAppearace.isTranslucent         = true
+        navigationBarAppearace.isTranslucent       = true
         navigationBarAppearace.shadowImage         = UIImage()
         navigationBarAppearace.backgroundColor     = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
@@ -78,6 +96,32 @@ extension AppDelegate {
             return
         }
         statusBarView.backgroundColor = .clear
+        
+       
+//        UINavigationBar.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).tintColor = .white
+//        UINavigationBar.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).backgroundColor = .black
+        
+    }
+    
+    @objc func locationPermission() {
+        
+        if (CLLocationManager.authorizationStatus() == .denied) || CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .notDetermined {
+            // Ask for Authorisation from the User.
+            self.locationManager.requestAlwaysAuthorization()
+            
+            // For use in foreground
+            self.locationManager.requestWhenInUseAuthorization()
+            //            let alert = UIAlertController(title: AppName.kAPPName, message: "Please enable location from settings", preferredStyle: .alert)
+            //            let enable = UIAlertAction(title: "Enable", style: .default) { (temp) in
+            //
+            //                if let url = URL.init(string: UIApplication.openSettingsURLString) {
+            //                    UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy&path=LOCATION") ?? url, options: [:], completionHandler: nil)
+            //                }
+            //            }
+            //            alert.addAction(enable)
+            //            self.window?.rootViewController?.present(alert, animated: true, completion: nil )
+            //            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
     }
     
     func GoToHome() {
@@ -106,8 +150,12 @@ extension AppDelegate {
 //                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.IsLogin)
 //            }
 //        }
-        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.IsLogin)
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.kIsLogedIn)
         self.GoToLogin()
+    }
+    
+    func GetTopViewController() -> UIViewController {
+        return self.window!.rootViewController!
     }
 }
 

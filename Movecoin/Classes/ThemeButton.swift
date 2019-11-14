@@ -33,8 +33,8 @@ class ThemeButton: UIButton {
     }
     
     var theme : buttonTheme = buttonTheme.whiteTheme  {
-        willSet(newTotalSteps) {
-            switch newTotalSteps {
+        willSet(newValue) {
+            switch newValue {
             case .whiteTheme:
                 whiteTheme()       // 0
             case .blueTheme :

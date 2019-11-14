@@ -7,6 +7,9 @@ PODS:
   - IQKeyboardManagerSwift (6.4.0)
   - Kingfisher (5.7.0)
   - lottie-ios (3.1.2)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
   - SkyFloatingLabelTextField (3.7.0)
   - SwiftyJSON (5.0.0)
   - TTSegmentedControl (0.4.9)
@@ -19,6 +22,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Kingfisher
   - lottie-ios
+  - NVActivityIndicatorView
   - SkyFloatingLabelTextField
   - SwiftyJSON
   - TTSegmentedControl
@@ -32,6 +36,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Kingfisher
     - lottie-ios
+    - NVActivityIndicatorView
     - SkyFloatingLabelTextField
     - SwiftyJSON
     - TTSegmentedControl
@@ -44,10 +49,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   lottie-ios: 49cd85b1f24f61a7708ad7ec76a523ab2d0e3100
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
 
-PODFILE CHECKSUM: 5ecaf7db790394ca9ea672a0a43f0fc942402b6d
+PODFILE CHECKSUM: 0ffd3fd399fedd97c6f24ed6371ea663f3d1d1e9
 
 COCOAPODS: 1.6.1

@@ -65,4 +65,23 @@ extension UIViewController {
         txtField.sizeToFit()
         return txtField.frame.size.width
     }
+    
+    func updateMylocation(){
+        UpdateLocationClass.sharedLocationInstance.UpdateLocationStart()
+        UpdateLocationClass.sharedLocationInstance.UpdatedLocation = { (LocationUpdated) in
+            SingletonClass.SharedInstance.myCurrentLocation = LocationUpdated
+            UpdateLocationClass.sharedLocationInstance.GeneralLocationManager.stopUpdatingLocation()
+        }
+    }
+    
+    func getUserData(){
+        do{
+            SingletonClass.SharedInstance.userData = try UserDefaults.standard.get(objectType: UserData.self, forKey: UserDefaultKeys.kUserProfile)!
+        }catch{
+            UtilityClass.showAlert(Message: error.localizedDescription)
+            return
+        }
+        
+        print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
+    }
 }

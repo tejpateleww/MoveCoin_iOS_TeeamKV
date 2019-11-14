@@ -17,6 +17,8 @@ let windowHeight: CGFloat = CGFloat(UIScreen.main.bounds.size.height)
 let screenHeightDeveloper : Double = 812
 let screenWidthDeveloper : Double = 375
 
+let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+
 let AppDelegateShared = UIApplication.shared.delegate as! AppDelegate
 
 typealias onCompletion = () -> Void
@@ -38,4 +40,11 @@ let TransparentColor : UIColor = UIColor.init(white: 1.0, alpha: 0.23)
 // Constant Keys
 
 let kAppName = "MoveCoins"
-let kIsLogedIn = "isLogin"
+
+// User Defaults Keys
+
+//let kIsLogedIn = "isLogin"
+//let kDeviceToken = "DeviceToken"
+//let kUserProfile = "userProfile"
+//let kX_API_KEY = "x-api-key"
+//let kIsFirstTimeLocationUpdate = "isFirstTimeLocationUpdate"

@@ -43,6 +43,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.setupFont()
         imgLogo.image = UIImage.gifImageWithName("Logo")
+        getUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +94,7 @@ class HomeViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - IBAction Methods
     // ----------------------------------------------------
+    
     @IBAction func btnCoinsTapped(_ sender: Any) {
         let parentVC = self.parent as! TabViewController
         parentVC.delegateWalletCoins = parentVC

@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
     @IBAction func btnLogoutTapped(_ sender: Any) {
         let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?", preferredStyle: .alert)
         let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
-             AppDelegateShared.GoToLogout()
+            self.webserviceForLogout()
         }
         let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
             self.dismiss(animated: true, completion:nil)
@@ -145,6 +145,36 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
             case .Language:
                 break
                 
+            }
+        }
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension SettingsViewController {
+    
+    func webserviceForLogout(){
+        
+        guard let userData = SingletonClass.SharedInstance.userData  else { return }
+        
+        UtilityClass.showHUD()
+        guard let xApiKey = UserDefaults.standard.value(forKey: UserDefaultKeys.kX_API_KEY) else { return }
+        
+        let logout = userData.iD + "/\(xApiKey)"
+        UserWebserviceSubclass.Logout(strURL: logout){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            
+            if status {
+                UserDefaults.standard.set(false, forKey: UserDefaultKeys.kIsLogedIn)
+                SingletonClass.SharedInstance.singletonClear()
+//                self.removeAllSocketFromMemory()
+                AppDelegateShared.GoToLogout()
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }

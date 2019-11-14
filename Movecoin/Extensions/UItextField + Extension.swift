@@ -25,4 +25,10 @@ extension UITextField {
             self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
         }
     }
+    
+    func validatedText(validationType: ValidatorType) throws -> String {
+        let validator = ValidatorClass.validatorFor(type: validationType)
+        return try validator.validated(self.text!)
+    }
 }
+
