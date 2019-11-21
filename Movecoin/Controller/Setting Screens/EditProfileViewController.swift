@@ -34,6 +34,11 @@ class EditProfileViewController: UIViewController {
     var selectedImage : UIImage?
     
     var arrayGender = ["Male","Female"]
+    let feetList = Array(3...9)
+    let inchList = Array(0...11)
+    var numberOfComponents = 1
+    var selectedHeightComponents = [String]()
+    
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods
     // ----------------------------------------------------
@@ -97,6 +102,13 @@ class EditProfileViewController: UIViewController {
             if userData.dateOfBirth != "0000-00-00" {
                 if let dob = UtilityClass.changeDateFormateFrom(dateString: userData.dateOfBirth, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.display) {
                      txtDob.text = dob
+                }
+            }
+            
+            if let height = txtHeight.text {
+                if !height.isBlank {
+                    print(height.components(separatedBy: CharacterSet(charactersIn: "'")))
+                    selectedHeightComponents = height.components(separatedBy: CharacterSet(charactersIn: "'"))
                 }
             }
         }
@@ -207,8 +219,11 @@ extension EditProfileViewController {
 extension EditProfileViewController : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        
         if textField == txtGender {
             textField.inputView = pickerView
+            numberOfComponents = 1
+            
             if textField.text!.isEmpty || textField.text == arrayGender.first {
                 textField.text = arrayGender.first
             } else {
@@ -217,26 +232,103 @@ extension EditProfileViewController : UITextFieldDelegate {
             }
         } else if textField == txtDob {
             textField.inputView = datePickerView
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = DateFomateKeys.display
+            if let strDate = dateFormatter.date(from: txtDob.text!) {
+                datePickerView.date = strDate
+            }
+        } else if textField == txtHeight {
+            textField.inputView = pickerView
+            numberOfComponents = 4
+            if selectedHeightComponents.count > 2 {
+                let ft = (Int(selectedHeightComponents[0]) ?? 3) - 3
+                let inch = Int(selectedHeightComponents[1]) ?? 0
+                pickerView.selectRow(ft, inComponent: 0, animated: false)
+                pickerView.selectRow(inch, inComponent: 2, animated: false)
+            }
+        } else if textField == txtWeight {
+            let weight = textField.text?.replacingOccurrences(of: " kg", with: "")
+            txtWeight.text = weight
         }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == txtDob  {
+           self.handleDatePicker(sender: datePickerView)
+            
+        } else if textField == txtHeight {
+            if let height = txtHeight.text {
+                let feetIndex = pickerView.selectedRow(inComponent: 0)
+                let inchIndex = pickerView.selectedRow(inComponent: 2)
+                txtHeight.text = "\(feetList[feetIndex])'\(inchList[inchIndex])''"
+                if !height.isBlank {
+                    print(height.components(separatedBy: CharacterSet(charactersIn: "'")))
+                    selectedHeightComponents = height.components(separatedBy: CharacterSet(charactersIn: "'"))
+                }
+            }
+        } else if textField == txtWeight {
+            if let weight = txtWeight.text {
+                 txtWeight.text = weight + " kg"
+            }
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txtWeight {
+            if textField.text?.count == 0 && string == "0" {
+                return false
+            }
+        }
+        return true
     }
 }
 
 extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return numberOfComponents
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrayGender.count
+        if numberOfComponents == 1 {
+             return arrayGender.count
+        } else {
+            if component == 0 {
+                return feetList.count
+            }else if component == 2 {
+                return inchList.count
+            }else {
+                return 1
+            }
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return arrayGender[row]
+        if numberOfComponents == 1 {
+             return arrayGender[row]
+        } else {
+            if component == 0 {
+                return "\(feetList[row])"
+            }else if component == 1 {
+                return "ft"
+            }else if component == 2 {
+                return "\(inchList[row])"
+            }else {
+                return "in"
+            }
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtGender.text = arrayGender[row]
+        if numberOfComponents == 1 {
+            txtGender.text = arrayGender[row]
+        } else {
+            let feetIndex = pickerView.selectedRow(inComponent: 0)
+            let inchIndex = pickerView.selectedRow(inComponent: 2)
+            txtHeight.text = "\(feetList[feetIndex])'\(inchList[inchIndex])''"
+        }
     }
 }
 

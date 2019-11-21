@@ -31,7 +31,10 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
-        setDummy()
+        #if targetEnvironment(simulator)
+       setDummy()
+        #endif
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,15 +48,15 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     // ----------------------------------------------------
     
     func setDummy(){
-        txtEmail.text = "rahul@excellentwebworld.com"
+        txtEmail.text = "bhumi.j@excellentwebworld.in"
         txtPassword.text = "123456"
     }
     
     func setupFont(){
         lblTitle.font = UIFont.regular(ofSize: 20)
-        lblAccount.font = UIFont.light(ofSize: 15)
+        lblAccount.font = UIFont.regular(ofSize: 18)
         lblOr.font = UIFont.regular(ofSize: 15)
-        btnSignUp.titleLabel?.font = UIFont.light(ofSize: 20)
+        btnSignUp.titleLabel?.font = UIFont.semiBold(ofSize: 20)
         btnForgotPassword.titleLabel?.font = UIFont.bold(ofSize: 15)
     }
     

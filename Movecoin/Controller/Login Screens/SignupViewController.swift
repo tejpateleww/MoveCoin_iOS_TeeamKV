@@ -32,7 +32,7 @@ class SignupViewController: UIViewController {
     
     private var imagePicker : ImagePickerClass!
     var arrayGender = ["Male","Female"]
-    let pickerView = UIPickerView()
+    lazy var pickerView = UIPickerView()
     var selectedImage : UIImage?
     
     // ----------------------------------------------------
@@ -43,7 +43,9 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.setupFont()
+        #if targetEnvironment(simulator)
         setDummy()
+        #endif
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +55,7 @@ class SignupViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
     }
     
@@ -105,7 +108,10 @@ class SignupViewController: UIViewController {
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let mobileNumber = try txtMobile.validatedText(validationType: ValidatorType.mobileNumber)
             let password = try txtPassword.validatedText(validationType: ValidatorType.password)
-            if txtPassword.text != txtConfirmPassword.text {
+            if txtConfirmPassword.text?.isBlank ?? true {
+                UtilityClass.showAlert(Message: "Please enter confirm password")
+                return
+            }else if txtPassword.text != txtConfirmPassword.text {
                 UtilityClass.showAlert(Message: "Confirm password does not match with password")
                 return
             } else if txtGender.text!.isBlank {
@@ -114,7 +120,7 @@ class SignupViewController: UIViewController {
             }
             let signupModel = SignupModel()
             signupModel.FullName = fullName
-            signupModel.NickName = txtNickname.text!
+            signupModel.NickName = txtNickname.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             signupModel.Phone = mobileNumber
             signupModel.Email = email
             signupModel.Password = password

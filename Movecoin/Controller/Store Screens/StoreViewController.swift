@@ -81,7 +81,6 @@ class StoreViewController: UIViewController {
         tblStoreOffers.dataSource = self
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
-        
     }
     
     func setupFont(){
@@ -91,9 +90,9 @@ class StoreViewController: UIViewController {
     
     func sizeFooterToFit() {
         if let footerView = tblStoreOffers.tableFooterView {
-            footerView.setNeedsLayout()
-            footerView.layoutIfNeeded()
-            
+//            footerView.setNeedsLayout()
+//            footerView.layoutIfNeeded()
+//            
             let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var frame = viewFooter.frame
             frame.size.height = height

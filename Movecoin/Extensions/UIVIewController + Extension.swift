@@ -8,8 +8,15 @@
 
 import Foundation
 import UIKit
+import CoreMotion
 
 extension UIViewController {
+    
+   
+    // ------------------------------------------------------------
+    //MARK:- --------- NavigationBar & StatusBar Methods ---------
+    // -------------------------------------------------------------
+    
     
     func navigationBarSetUp(isHidden:Bool, title: String = "", backroundColor: UIColor = .clear, hidesBackButton: Bool = false) {
         // Hidden
@@ -59,12 +66,20 @@ extension UIViewController {
         }, completion: nil)
     }
     
+    // ----------------------------------------------------
+    //MARK:- --------- TextField Methods ---------
+    // ----------------------------------------------------
+    
     func getWidth(text: String) -> CGFloat{
         let txtField = UITextField(frame: .zero)
         txtField.text = text
         txtField.sizeToFit()
         return txtField.frame.size.width
     }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- Location Methods ---------
+    // ----------------------------------------------------
     
     func updateMylocation(){
         UpdateLocationClass.sharedLocationInstance.UpdateLocationStart()
@@ -73,6 +88,10 @@ extension UIViewController {
             UpdateLocationClass.sharedLocationInstance.GeneralLocationManager.stopUpdatingLocation()
         }
     }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- Get UserData Methods ---------
+    // ----------------------------------------------------
     
     func getUserData(){
         do{
@@ -84,4 +103,20 @@ extension UIViewController {
         
         print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
     }
+    
+//    func getTodaysStepCounts(label: UILabel) {
+//        let pedoMeter = CMPedometer()
+//        pedoMeter.queryPedometerData(from: Date().midnight, to: Date()) { (data, error) in
+//            print("queryPedometerData : ", data ?? 0)
+//            guard let activityData = data else {
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                label.text = activityData.numberOfSteps.stringValue
+//            }
+//            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps
+//        }
+//    }
+    
+    
 }

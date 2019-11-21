@@ -19,8 +19,8 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAvailableBalance: UILabel!
     @IBOutlet weak var lblPurchase: UILabel!
-    
     @IBOutlet var lblPrice: [UILabel]!
+    @IBOutlet weak var viewCardSelect: UIView!
  
     // ----------------------------------------------------
     // MARK: - Variables
@@ -34,6 +34,11 @@ class ConfirmPurchaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
+        setupView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: false)
         self.title =  "Confirm Purchase"
     }
@@ -56,7 +61,19 @@ class ConfirmPurchaseViewController: UIViewController {
         lblTotal.font = UIFont.semiBold(ofSize: 19)
         lblAddress.font = UIFont.semiBold(ofSize: 23)
         lblPurchase.font = UIFont.semiBold(ofSize: 19)
-        lblAvailableBalance.font = UIFont.bold(ofSize: 16)
+        lblAvailableBalance.font = UIFont.bold(ofSize: 18)
+    }
+    
+    func setupView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.cardViewTapped(_:)))
+        viewCardSelect.addGestureRecognizer(tap)
+        viewCardSelect.isUserInteractionEnabled = true
+    }
+    
+    @objc func cardViewTapped(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: CardListViewController.className) as! CardListViewController
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     // ----------------------------------------------------

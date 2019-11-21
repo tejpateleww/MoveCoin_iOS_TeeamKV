@@ -21,7 +21,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - Variables
     // ----------------------------------------------------
-    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Help","Rate this app","Terms and Conditions","Privacy Policy","Support","Language"]
+    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Add Card","Help","Rate this app","Terms and Conditions","Privacy Policy","Support","Language"]
     
     
     // ----------------------------------------------------
@@ -124,6 +124,11 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
+                self.navigationController?.pushViewController(controller, animated: true)
+                break
+                
+            case .AddCard:
+                let controller = storyboard.instantiateViewController(withIdentifier: CardListViewController.className) as! CardListViewController
                 self.navigationController?.pushViewController(controller, animated: true)
                 break
                 

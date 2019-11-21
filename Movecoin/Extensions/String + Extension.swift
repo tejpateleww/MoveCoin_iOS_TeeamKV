@@ -8,6 +8,19 @@
 
 import Foundation
 
+extension Date {
+    var midnight: Date {
+        var cal = Calendar.current
+        cal.timeZone = TimeZone(identifier: "Europe/Paris")!
+        return cal.startOfDay(for: self)
+    }
+    var midday: Date {
+        var cal = Calendar.current
+        cal.timeZone = TimeZone(identifier: "Europe/Paris")!
+        return cal.date(byAdding: .hour, value: 12, to: self.midnight)!
+    }
+}
+
 extension String {
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()

@@ -20,6 +20,9 @@ enum ValidatorType {
     case fullname
     case requiredField(field: String)
     case age
+    
+    case cardHolder
+    case cardNumber
 }
 
 
@@ -41,6 +44,8 @@ class ValidatorClass {
         case .fullname: return FullNameValidator()
         case .requiredField(let fieldName): return RequiredFieldValidator(fieldName)
         case .age: return AgeValidator()
+        case .cardHolder: return CardHolderValidator()
+        case .cardNumber: return CardNumberValidator()
         }
     }
 }
@@ -80,19 +85,17 @@ struct FullNameValidator: ValidatorConvertible {
     func validated(_ value: String) throws -> String {
         
         guard value != "" else {throw ValidationError("Please enter full name")}
-//        guard value.count >= 3 else {
-//            throw ValidationError("Username must contain more than three characters" )
-//        }
-//        guard value.count < 18 else {
-//            throw ValidationError("Username shoudn't conain more than 18 characters" )
-//        }
         
+//        guard value.count < 50 else {
+//            throw ValidationError("Full name shoudn't contain more than 50 characters" )
+//        }
+
         do {
-            if try NSRegularExpression(pattern: "[a-z]{1,18}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Invalid fullname, fullname should not contain numbers or special characters")
+            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+                throw ValidationError("Full name should not contain numbers or special characters")
             }
         } catch {
-            throw ValidationError("Invalid fullname, fullname should not contain numbers or special characters")
+            throw ValidationError("Full name should not contain numbers or special characters")
         }
         return value
     }
@@ -107,15 +110,15 @@ struct UserNameValidator: ValidatorConvertible {
             throw ValidationError("Username must contain more than three characters" )
         }
         guard value.count < 18 else {
-            throw ValidationError("Username shoudn't conain more than 18 characters" )
+            throw ValidationError("Username shoudn't contain more than 18 characters" )
         }
         
         do {
             if try NSRegularExpression(pattern: "^[a-z]{1,18}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Invalid username, username should not contain whitespaces, numbers or special characters")
+                throw ValidationError("Username should not contain whitespaces, numbers or special characters")
             }
         } catch {
-            throw ValidationError("Invalid username, username should not contain whitespaces,  or special characters")
+            throw ValidationError("Username should not contain whitespaces, numbers or special characters")
         }
         return value
     }
@@ -155,6 +158,42 @@ class AgeValidator: ValidatorConvertible {
         guard let age = Int(value) else {throw ValidationError("Age must be a number!")}
         guard value.count < 3 else {throw ValidationError("Invalid age number!")}
         guard age >= 18 else {throw ValidationError("You have to be over 18 years old to user our app :)")}
+        return value
+    }
+}
+
+struct CardHolderValidator: ValidatorConvertible {
+    func validated(_ value: String) throws -> String {
+
+        guard value != "" else {throw ValidationError("Please enter card holder")}
+
+        //        guard value.count < 50 else {
+        //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
+        //        }
+
+        do {
+            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+                throw ValidationError("Card holder should not contain numbers or special characters")
+            }
+        } catch {
+            throw ValidationError("Card holder should not contain numbers or special characters")
+        }
+        return value
+    }
+}
+
+struct CardNumberValidator: ValidatorConvertible {
+    func validated(_ value: String) throws -> String {
+        guard value != "" else {throw ValidationError("Please enter card number")}
+        guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters") }
+
+        //        do {
+        //            if try NSRegularExpression(pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+        //                throw ValidationError("Password must be more than 6 characters, with at least one character and one numeric character")
+        //            }
+        //        } catch {
+        //            throw ValidationError("Password must be more than 6 characters, with at least one character and one numeric character")
+        //        }
         return value
     }
 }

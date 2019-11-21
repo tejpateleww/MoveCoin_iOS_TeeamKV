@@ -19,21 +19,37 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.9</string>
+	<string>1.1.0</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>14a43f19af433e25667bd2c0d03a5aa6e886a728</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>App would like to use camera</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App would like to use your current location</string>
-	<key>NSLocationUsageDescription</key>
 	<string>App would like to use your current location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>App would like to use your current location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>App would like to use your current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App would like to use your current location</string>
-	<key>NSCameraUsageDescription</key>
-	<string>App would like to use camera</string>
+	<key>NSMotionUsageDescription</key>
+	<string>If you don't give access then Steps Count feature will not work</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App would like to use photo library</string>
 	<key>UIAppFonts</key>

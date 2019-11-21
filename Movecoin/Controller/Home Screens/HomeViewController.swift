@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 protocol FlipToMapDelegate {
     func flipToMap()
@@ -28,12 +29,16 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var lblMember: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblTodaysStepCount: UILabel!
     
     // ----------------------------------------------------
     // MARK: - Variables
     // ----------------------------------------------------
     
     var delegateFlip : FlipToMapDelegate!
+    
+    lazy var pedoMeter = CMPedometer()
+    lazy var motionManager = CMMotionManager()
     
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods
@@ -44,6 +49,28 @@ class HomeViewController: UIViewController {
         self.setupFont()
         imgLogo.image = UIImage.gifImageWithName("Logo")
         getUserData()
+        
+        
+        checkPermissionForMotionSensor()
+        getTodaysStepCounts()
+    }
+    
+    func checkPermissionForMotionSensor() {
+        
+        switch CMPedometer.authorizationStatus() {
+        case .authorized :
+            print(" Authotized")
+            self.startCountingSteps()
+
+        case .denied, .restricted :
+            print("Not Authotized")
+
+        case  .notDetermined:
+            print("unknown")
+
+        @unknown default:
+            fatalError()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +116,39 @@ class HomeViewController: UIViewController {
     
     @objc func btnFlipTapped(){
         self.delegateFlip.flipToMap()
+    }
+    
+    func getTodaysStepCounts() {
+        pedoMeter.queryPedometerData(from: Date().midnight, to: Date()) { (data, error) in
+            print("queryPedometerData : ", data ?? 0)
+            guard let activityData = data else {
+                return
+            }
+            DispatchQueue.main.async {
+                self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+            }
+            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps
+        }
+    }
+    
+    func startCountingSteps(){
+        if CMPedometer.isStepCountingAvailable(){
+            pedoMeter.startUpdates(from: Date()) { (data, error) in
+                print(data ?? 0)
+                guard let activityData = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    if let counts = SingletonClass.SharedInstance.todaysStepCount {
+                        let total = counts.intValue + activityData.numberOfSteps.intValue
+                        self.lblTodaysStepCount.text = "\(total)"
+                        print("Total:\(total)")
+                    }else {
+                        self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+                    }
+                }
+            }
+        }
     }
     
     // ----------------------------------------------------

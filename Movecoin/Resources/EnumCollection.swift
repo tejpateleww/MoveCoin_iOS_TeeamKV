@@ -43,6 +43,7 @@ enum SettingsOptions : Int {
     case EditProfile
     case ChangePassword
     case PurchaseHistory
+    case AddCard
     case TermsAndConditions
     case Help
     case RateApp

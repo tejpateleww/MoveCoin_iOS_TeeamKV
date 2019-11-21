@@ -17,12 +17,12 @@ public protocol ImagePickerDelegate: class {
 
 open class ImagePickerClass: NSObject {
 
-    private let pickerController: UIImagePickerController
+    private lazy var pickerController = UIImagePickerController()
     private weak var presentationController: UIViewController?
     private weak var delegate: ImagePickerDelegate?
     private var SelectedTag:Int = 0
     public init(presentationController: UIViewController, delegate: ImagePickerDelegate, allowsEditing : Bool) {
-        self.pickerController = UIImagePickerController()
+//        self.pickerController = UIImagePickerController()
 
         super.init()
         self.pickerController.navigationController?.isNavigationBarHidden = false

@@ -17,6 +17,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblOr: UILabel!
+    @IBOutlet weak var segmentControlLanguage: UISegmentedControl!
     
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods

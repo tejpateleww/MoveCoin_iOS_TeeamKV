@@ -19,7 +19,7 @@ class SingletonClass: NSObject {
    
     var DeviceToken:String = "123123123123123"
     var userData : UserData?
-  
+    var todaysStepCount : NSNumber?
     
     func singletonClear() {
         self.userData = nil

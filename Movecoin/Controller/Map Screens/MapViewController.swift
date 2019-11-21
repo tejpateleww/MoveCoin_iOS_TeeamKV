@@ -39,8 +39,8 @@ class MapViewController: UIViewController {
     var delegateFriendStatus : FriendStatusDelegate!
     var toggleForPopover = false
     
-    let annotation1 = MKPointAnnotation()
-    let annotation2 = MKPointAnnotation()
+    lazy var annotation1 = MKPointAnnotation()
+    lazy var annotation2 = MKPointAnnotation()
 
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods
@@ -60,7 +60,6 @@ class MapViewController: UIViewController {
         self.setUpNavigationItems()
     }
     
-   
     // ----------------------------------------------------
     // MARK: - Custom Methods
     // ----------------------------------------------------

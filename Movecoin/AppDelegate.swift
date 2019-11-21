@@ -9,6 +9,9 @@
 import UIKit
 import IQKeyboardManagerSwift
 import CoreLocation
+import CoreMotion
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,10 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        //GoToHome()
+        
+        let status = CMPedometer.authorizationStatus()
+        print("Permission : ",status.rawValue)
+        
         setupApplication()
         setUpNavigationBar()
         locationPermission()
+        
+        Fabric.with([Crashlytics.self])
         return true
     }
 
@@ -124,14 +132,36 @@ extension AppDelegate {
         }
     }
     
-    func GoToHome() {
+    func GoToPermission() {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
-        let destination = storyborad.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
+        let destination = storyborad.instantiateViewController(withIdentifier: PermissionAlertViewController.className) as! PermissionAlertViewController
         let NavHomeVC = UINavigationController(rootViewController: destination)
         self.window?.rootViewController = NavHomeVC
     }
     
+    func GoToHome() {
+        switch CMPedometer.authorizationStatus() {
+        case .authorized, .notDetermined :
+            let storyborad = UIStoryboard(name: "Main", bundle: nil)
+            let destination = storyborad.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
+            let NavHomeVC = UINavigationController(rootViewController: destination)
+            self.window?.rootViewController = NavHomeVC
+            
+        case .denied, .restricted :
+            AppDelegateShared.GoToPermission()
+            
+        @unknown default:
+            fatalError()
+        }
+    }
+    
     func GoToLogin() {
+        
+//        let storyborad = UIStoryboard(name: "Login", bundle: nil)
+//        let Login = storyborad.instantiateViewController(withIdentifier: OnBoradViewController.className) as! OnBoradViewController
+//        let NavHomeVC = UINavigationController(rootViewController: Login)
+//        //        NavHomeVC.isNavigationBarHidden = true
+//        self.window?.rootViewController = NavHomeVC
         
         let storyborad = UIStoryboard(name: "Login", bundle: nil)
         let Login = storyborad.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController

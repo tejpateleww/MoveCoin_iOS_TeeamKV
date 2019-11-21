@@ -21,8 +21,8 @@ class FriendsViewController: UIViewController {
     // MARK: - Variables
     // ----------------------------------------------------
     
-    var friendsArray : [FriendDetail] = []
-    var friendListType = FriendsList.FollowUnfollow
+    lazy var friendsArray : [FriendDetail] = []
+    lazy var friendListType = FriendsList.FollowUnfollow
     
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods

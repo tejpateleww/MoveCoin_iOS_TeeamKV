@@ -16,6 +16,8 @@ pod 'NVActivityIndicatorView'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField'
 
+pod 'FormTextField'
+
 pod 'TTSegmentedControl'
 pod 'Cosmos'
 pod 'lottie-ios'

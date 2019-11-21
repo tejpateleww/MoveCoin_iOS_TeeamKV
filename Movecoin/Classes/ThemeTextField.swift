@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SkyFloatingLabelTextField
+import FormTextField
 
 class ThemeTextfield : SkyFloatingLabelTextField {
     
@@ -32,3 +33,4 @@ class TextFieldFont : UITextField {
         self.font = FontBook.Regular.of(size: 17)
     }
 }
+

@@ -4,6 +4,7 @@ PODS:
   - Crashlytics (3.13.4):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
+  - FormTextField (3.0.0)
   - IQKeyboardManagerSwift (6.4.0)
   - Kingfisher (5.7.0)
   - lottie-ios (3.1.2)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Cosmos
   - Crashlytics
   - Fabric
+  - FormTextField
   - IQKeyboardManagerSwift
   - Kingfisher
   - lottie-ios
@@ -33,6 +35,7 @@ SPEC REPOS:
     - Cosmos
     - Crashlytics
     - Fabric
+    - FormTextField
     - IQKeyboardManagerSwift
     - Kingfisher
     - lottie-ios
@@ -46,6 +49,7 @@ SPEC CHECKSUMS:
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  FormTextField: fd5dc441ad40ba12d08ef66aeb0453ee9bf55e6d
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   lottie-ios: 49cd85b1f24f61a7708ad7ec76a523ab2d0e3100
@@ -54,6 +58,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
 
-PODFILE CHECKSUM: 0ffd3fd399fedd97c6f24ed6371ea663f3d1d1e9
+PODFILE CHECKSUM: ecd733ef50e20fae7b86dac87d0e42335c68263d
 
 COCOAPODS: 1.6.1

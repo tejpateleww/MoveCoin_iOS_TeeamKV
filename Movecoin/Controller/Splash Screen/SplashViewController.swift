@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import CoreMotion
 
 class SplashViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class SplashViewController: UIViewController {
     // ----------------------------------------------------
   
     var initStatus = false
+    var isAvailable = false
+ 
     
     // ----------------------------------------------------
     //MARK:- --------- Lifecycle Methods ---------
@@ -30,6 +33,7 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+ 
         webserviceforAPPInit()
         playLogoAnimation()
     }
@@ -63,17 +67,26 @@ class SplashViewController: UIViewController {
         }
     }
     
-    func moveToViewController(){
-        
-        if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) != nil {
-            
-            if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) as! Bool {
-                AppDelegateShared.GoToHome()
+    func moveToViewController() {
+      
+        switch CMPedometer.authorizationStatus() {
+        case .authorized, .notDetermined :
+            if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) != nil {
+
+                if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) as! Bool {
+                    AppDelegateShared.GoToHome()
+                }else {
+                    AppDelegateShared.GoToLogin()
+                }
             }else {
-               AppDelegateShared.GoToLogin()
+                AppDelegateShared.GoToLogin()
             }
-        }else {
-            AppDelegateShared.GoToLogin()
+
+        case .denied, .restricted : //, .notDetermined :
+            AppDelegateShared.GoToPermission()
+
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -89,8 +102,7 @@ class SplashViewController: UIViewController {
             print(status)
             self.initStatus = status
             if status{
-                
-               
+             
             }else{
                 
             }
