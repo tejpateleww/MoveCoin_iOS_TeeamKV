@@ -279,6 +279,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
             self.openCamra(id: "2")
         }))
         alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        alert.modalPresentationStyle = .overCurrentContext
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -338,6 +339,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         if id == "1" {
             self.picker.allowsEditing = false
             self.picker.sourceType = .photoLibrary
+            self.picker.modalPresentationStyle = .overCurrentContext
             self.present(self.picker, animated: true, completion: nil)
             
         }else {
@@ -345,6 +347,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
                 self.picker.sourceType = .camera
                 self.picker.allowsEditing = true
                 self.picker.cameraDevice = .front
+                self.picker.modalPresentationStyle = .overCurrentContext
                 self.present(self.picker, animated: true, completion: nil)
             }
         }

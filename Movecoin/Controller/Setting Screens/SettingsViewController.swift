@@ -71,6 +71,7 @@ class SettingsViewController: UIViewController {
         }
         alert.addAction(btnOk)
         alert.addAction(btncancel)
+        alert.modalPresentationStyle = .overCurrentContext
         self.present(alert, animated: true, completion: nil)
     }
 }

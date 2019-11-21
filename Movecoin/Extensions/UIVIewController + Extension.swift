@@ -42,11 +42,14 @@ extension UIViewController {
     }
     
     func statusBarSetUp(backColor: UIColor, textStyle: UIBarStyle = .blackOpaque) {
-       
-        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-            return
+        
+       if let view = UIApplication.shared.statusBarUIView {
+            view.backgroundColor = backColor
         }
-        statusBarView.backgroundColor = backColor
+//        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
+//            return
+//        }
+//        statusBarView.backgroundColor = backColor
 //        self.navigationController?.navigationBar.barStyle = textStyle
     }
     

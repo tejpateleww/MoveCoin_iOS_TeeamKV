@@ -69,8 +69,8 @@ class SplashViewController: UIViewController {
     
     func moveToViewController() {
       
-        switch CMPedometer.authorizationStatus() {
-        case .authorized, .notDetermined :
+//        switch CMPedometer.authorizationStatus() {
+//        case .authorized, .notDetermined :
             if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) != nil {
 
                 if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) as! Bool {
@@ -82,12 +82,12 @@ class SplashViewController: UIViewController {
                 AppDelegateShared.GoToLogin()
             }
 
-        case .denied, .restricted : //, .notDetermined :
-            AppDelegateShared.GoToPermission()
-
-        @unknown default:
-            fatalError()
-        }
+//        case .denied, .restricted : //, .notDetermined :
+//            AppDelegateShared.GoToPermission()
+//
+//        @unknown default:
+//            fatalError()
+//        }
     }
     
     func webserviceforAPPInit(){

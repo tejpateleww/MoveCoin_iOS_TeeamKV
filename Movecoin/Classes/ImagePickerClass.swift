@@ -42,6 +42,7 @@ open class ImagePickerClass: NSObject {
 
         return UIAlertAction(title: title, style: .default) { [unowned self] _ in
             self.pickerController.sourceType = type
+            self.pickerController.modalPresentationStyle = .overCurrentContext
             self.presentationController?.present(self.pickerController, animated: true)
         }
     }
@@ -67,6 +68,7 @@ open class ImagePickerClass: NSObject {
             alertController.popoverPresentationController?.sourceRect = sourceView.bounds
             alertController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
         }
+        alertController.modalPresentationStyle = .overCurrentContext
         self.presentationController?.present(alertController, animated: true)
     }
 
@@ -93,10 +95,10 @@ extension ImagePickerClass: UINavigationControllerDelegate {
     // it's optional - if default navigation bar is not displaying use this
     
     public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-            return
-        }
-        statusBarView.backgroundColor = .black
-        navigationController.navigationBar.backgroundColor = .black
+//        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
+//            return
+//        }
+//        statusBarView.backgroundColor = .black
+//        navigationController.navigationBar.backgroundColor = .black
     }
 }

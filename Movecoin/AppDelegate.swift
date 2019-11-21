@@ -100,10 +100,13 @@ extension AppDelegate {
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
         BarButtonItemAppearance.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
         
-        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-            return
+        if let view = UIApplication.shared.statusBarUIView {
+            view.backgroundColor = .clear
         }
-        statusBarView.backgroundColor = .clear
+//        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
+//            return
+//        }
+//        statusBarView.backgroundColor = .clear
         
        
 //        UINavigationBar.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).tintColor = .white
@@ -140,19 +143,19 @@ extension AppDelegate {
     }
     
     func GoToHome() {
-        switch CMPedometer.authorizationStatus() {
-        case .authorized, .notDetermined :
+//        switch CMPedometer.authorizationStatus() {
+//        case .authorized, .notDetermined :
             let storyborad = UIStoryboard(name: "Main", bundle: nil)
             let destination = storyborad.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
             let NavHomeVC = UINavigationController(rootViewController: destination)
             self.window?.rootViewController = NavHomeVC
             
-        case .denied, .restricted :
-            AppDelegateShared.GoToPermission()
-            
-        @unknown default:
-            fatalError()
-        }
+//        case .denied, .restricted :
+//            AppDelegateShared.GoToPermission()
+//            
+//        @unknown default:
+//            fatalError()
+//        }
     }
     
     func GoToLogin() {
