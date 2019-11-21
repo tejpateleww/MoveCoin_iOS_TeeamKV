@@ -47,7 +47,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Friends", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Friends")
     }
     
     // ----------------------------------------------------

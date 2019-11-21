@@ -33,7 +33,7 @@ class PurchaseHistoryViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Purchase History", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Purchase History")
     }
     
     // ----------------------------------------------------

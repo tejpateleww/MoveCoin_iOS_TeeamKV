@@ -25,13 +25,14 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp()
         self.animateView()
         self.setupFont()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationBarSetUp(isHidden: true)
+        
     }
     
     // ----------------------------------------------------

@@ -87,31 +87,17 @@ extension AppDelegate {
     
     func setUpNavigationBar(){
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.isHidden = true
-        navigationBarAppearace.barStyle = UIBarStyle.blackTranslucent
-        
+        navigationBarAppearace.barStyle = UIBarStyle.blackOpaque
         navigationBarAppearace.tintColor           = UIColor.white
-        navigationBarAppearace.isTranslucent       = true
-        navigationBarAppearace.shadowImage         = UIImage()
-        navigationBarAppearace.backgroundColor     = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        navigationBarAppearace.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        navigationBarAppearace.setBackgroundImage(UIImage(), for: .default)
-        
+
+        // For "Back" text remove from navigationbar
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
         BarButtonItemAppearance.setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000.0, vertical: 0.0), for: .default)
         
-        if let view = UIApplication.shared.statusBarUIView {
-            view.backgroundColor = .clear
-        }
-//        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-//            return
+        // Transparent Statusbar
+//        if let view = UIApplication.shared.statusBarUIView {
+//            view.backgroundColor = .clear
 //        }
-//        statusBarView.backgroundColor = .clear
-        
-       
-//        UINavigationBar.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).tintColor = .white
-//        UINavigationBar.appearance(whenContainedInInstancesOf: [UIImagePickerController.self]).backgroundColor = .black
-        
     }
     
     @objc func locationPermission() {

@@ -31,12 +31,13 @@ class AlertViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: true)
+        
         self.lblTitle.text = alertTitle
         self.lblDescription.text = alertDescription
     }

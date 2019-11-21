@@ -33,7 +33,7 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        navigationBarSetUp()
         webserviceforAPPInit()
         playLogoAnimation()
     }

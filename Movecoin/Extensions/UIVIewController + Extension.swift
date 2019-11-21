@@ -18,42 +18,33 @@ extension UIViewController {
     // -------------------------------------------------------------
     
     
-    func navigationBarSetUp(isHidden:Bool, title: String = "", backroundColor: UIColor = .clear, hidesBackButton: Bool = false) {
-        // Hidden
-        self.navigationController?.navigationBar.isHidden = isHidden
-        // Back Hide
+    func navigationBarSetUp(title: String = "", backroundColor: UIColor = .clear, hidesBackButton: Bool = false) {
+
+        // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
-        
-        if !isHidden {
-            // Title
-            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                  NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
-            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-            self.navigationController?.navigationBar.topItem?.title = title
-//            self.navigationController?.navigationBar.tintColor = .white
+
+        // Title
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                 NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
+                           self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+                           self.navigationController?.navigationBar.topItem?.title = title
             
-            // Background
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.backgroundColor = backroundColor
-            self.navigationController?.navigationBar.isTranslucent = true
-        }
+        // Background
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.backgroundColor = backroundColor
+
         statusBarSetUp(backColor: .clear)
     }
     
-    func statusBarSetUp(backColor: UIColor, textStyle: UIBarStyle = .blackOpaque) {
-        
+    func statusBarSetUp(backColor: UIColor) {
        if let view = UIApplication.shared.statusBarUIView {
             view.backgroundColor = backColor
         }
-//        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-//            return
-//        }
-//        statusBarView.backgroundColor = backColor
-//        self.navigationController?.navigationBar.barStyle = textStyle
     }
     
-    func popViewControllerWithFlipAnimation(){
+    func popViewControllerWithFlipAnimation() {
         UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromLeft, animations: {
             UIView.animate(withDuration: 0.2, animations: {
                 self.navigationController?.popViewController(animated: false)

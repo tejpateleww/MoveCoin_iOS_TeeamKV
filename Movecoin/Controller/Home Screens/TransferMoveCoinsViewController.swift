@@ -37,7 +37,7 @@ class TransferMoveCoinsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Sending MoveCoins", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Sending MoveCoins")
     }
     
     // ----------------------------------------------------

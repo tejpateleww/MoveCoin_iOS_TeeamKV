@@ -34,6 +34,7 @@ class VerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp(title: "Verification Code")
         self.setUpPinView()
         self.setupFont()
         
@@ -45,7 +46,7 @@ class VerificationViewController: UIViewController {
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        navigationBarSetUp(isHidden: false, title: "Verification Code", backroundColor: .clear, hidesBackButton: false)
+        
     }
     
     // ----------------------------------------------------

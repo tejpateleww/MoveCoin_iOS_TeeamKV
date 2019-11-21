@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Settings", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Settings")
     }
     
     // ----------------------------------------------------

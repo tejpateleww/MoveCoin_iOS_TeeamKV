@@ -48,6 +48,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         self.setupView()
     }
@@ -56,7 +57,7 @@ class MapViewController: UIViewController {
         super.viewWillAppear(true)
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
-        navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: true)
+       
         self.setUpNavigationItems()
     }
     

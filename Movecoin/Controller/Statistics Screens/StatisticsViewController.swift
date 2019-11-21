@@ -33,14 +33,9 @@ class StatisticsViewController: UIViewController {
         self.setUpView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationBarSetUp(isHidden: true)
+        navigationBarSetUp()
     }
     
     // ----------------------------------------------------

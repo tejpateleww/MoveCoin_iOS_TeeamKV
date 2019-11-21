@@ -27,7 +27,7 @@ class BecomeSellerViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        navigationBarSetUp(isHidden: false)
+        navigationBarSetUp()
     }
     
     // ----------------------------------------------------

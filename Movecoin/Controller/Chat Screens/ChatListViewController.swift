@@ -34,7 +34,7 @@ class ChatListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setUpNavigationItems()
-        self.navigationBarSetUp(isHidden: false, title: "Chats", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Chats")
     }
     
     // ----------------------------------------------------

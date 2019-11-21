@@ -39,7 +39,7 @@ class ConfirmPurchaseViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: false)
+        navigationBarSetUp()
         self.title =  "Confirm Purchase"
     }
     

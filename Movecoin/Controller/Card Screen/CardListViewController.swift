@@ -42,7 +42,7 @@ class CardListViewController: UIViewController {
         super.viewDidLoad()
         self.initialSetup()
         self.setupFont()
-        navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: false)
+        navigationBarSetUp()
         self.title =  "Card List"
         
         let card1 = CardDetail(name: "HSEB Debit Card", number: "1234 1234 1234 8745", image: "visa-card")

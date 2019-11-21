@@ -36,7 +36,13 @@ class InviteViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Invite", hidesBackButton: false)
+        if btnInvite.isSelected {
+             self.navigationBarSetUp(title: "Invite")
+        }else if btnFriends.isSelected {
+             self.navigationBarSetUp(title: "Find Friend")
+        }else if btnFacebook.isSelected {
+             self.navigationBarSetUp(title: "Facebook")
+        }
     }
     
     // ----------------------------------------------------

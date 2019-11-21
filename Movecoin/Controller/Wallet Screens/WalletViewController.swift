@@ -58,7 +58,7 @@ class WalletViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationBarSetUp(isHidden: true)
+        navigationBarSetUp()
         
         switch walletType {
         case .Coins:
@@ -72,7 +72,7 @@ class WalletViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        navigationBarSetUp(isHidden: false)
+        navigationBarSetUp()
         walletType = .Wallet
     }
     

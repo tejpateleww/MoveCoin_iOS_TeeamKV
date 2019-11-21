@@ -49,20 +49,16 @@ class StoreViewController: UIViewController {
         productArray = [product1,product2,product3,product4,product5]
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-       
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         // Navigation & Status bar setup
-        self.navigationBarSetUp(isHidden: false, title: "Offers For Today", backroundColor: ThemeNavigationColor, hidesBackButton: true)
+        self.navigationBarSetUp(title: "Offers For Today", backroundColor: ThemeNavigationColor, hidesBackButton: true)
         self.statusBarSetUp(backColor: ThemeNavigationColor)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        navigationBarSetUp()
         self.title = ""
     }
     
@@ -90,14 +86,10 @@ class StoreViewController: UIViewController {
     
     func sizeFooterToFit() {
         if let footerView = tblStoreOffers.tableFooterView {
-//            footerView.setNeedsLayout()
-//            footerView.layoutIfNeeded()
-//            
             let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var frame = viewFooter.frame
             frame.size.height = height
             footerView.frame = frame
-            
             tblStoreOffers.tableFooterView = footerView
         }
     }

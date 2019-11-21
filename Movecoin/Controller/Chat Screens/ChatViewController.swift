@@ -117,7 +117,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationBarSetUp(isHidden: false, title: "Mohammed", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Mohammed")
         
         if arrData.count>0 {
             tblVw.reloadData()

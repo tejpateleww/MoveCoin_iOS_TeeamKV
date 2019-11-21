@@ -41,6 +41,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp(hidesBackButton: true)
         self.setupView()
         self.setupFont()
         #if targetEnvironment(simulator)
@@ -50,7 +51,7 @@ class SignupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationBarSetUp(isHidden: true)
+        
         self.updateMylocation()
     }
     

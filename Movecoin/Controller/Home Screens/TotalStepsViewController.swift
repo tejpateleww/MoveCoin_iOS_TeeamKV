@@ -35,7 +35,7 @@ class TotalStepsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Total Steps", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Total Steps")
     }
   
     // ----------------------------------------------------

@@ -52,7 +52,7 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Edit Profile", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Edit Profile")
     }
     
     // ----------------------------------------------------

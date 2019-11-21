@@ -32,7 +32,7 @@ class AccountPrivacyViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(isHidden: false, title: "Account Privacy", hidesBackButton: false)
+        self.navigationBarSetUp(title: "Account Privacy")
     }
     
     // ----------------------------------------------------

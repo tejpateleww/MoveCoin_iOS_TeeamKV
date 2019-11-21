@@ -30,6 +30,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         #if targetEnvironment(simulator)
        setDummy()
@@ -40,7 +41,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.updateMylocation()
-        navigationBarSetUp(isHidden: true)
+        
     }
     
     // ----------------------------------------------------

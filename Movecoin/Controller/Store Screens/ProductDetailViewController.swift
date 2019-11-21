@@ -38,9 +38,9 @@ class ProductDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp()
         self.setUpView()
         self.setupFont()
-        navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: false)
     }
     
     

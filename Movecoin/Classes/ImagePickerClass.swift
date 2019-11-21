@@ -78,7 +78,7 @@ open class ImagePickerClass: NSObject {
     }
 }
 
-extension ImagePickerClass: UIImagePickerControllerDelegate {
+extension ImagePickerClass: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.pickerController(picker, didSelect: nil)
@@ -87,18 +87,5 @@ extension ImagePickerClass: UIImagePickerControllerDelegate {
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImage = info[.originalImage] as! UIImage
         self.pickerController(picker, didSelect: chosenImage)
-    }
-}
-
-extension ImagePickerClass: UINavigationControllerDelegate {
-    
-    // it's optional - if default navigation bar is not displaying use this
-    
-    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-//        guard let statusBarView = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else {
-//            return
-//        }
-//        statusBarView.backgroundColor = .black
-//        navigationController.navigationBar.backgroundColor = .black
     }
 }

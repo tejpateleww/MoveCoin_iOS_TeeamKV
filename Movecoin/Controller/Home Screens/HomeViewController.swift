@@ -75,7 +75,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationBarSetUp(isHidden: false, title: "", backroundColor: .clear, hidesBackButton: true)
+        navigationBarSetUp(hidesBackButton: true)
         setUpNavigationItems()
     }
     
