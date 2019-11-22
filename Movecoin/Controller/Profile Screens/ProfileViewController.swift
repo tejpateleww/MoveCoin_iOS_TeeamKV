@@ -37,15 +37,16 @@ class ProfileViewController: UIViewController {
         setupSegmentedControl()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationBarSetUp(hidesBackButton: true)
-        setUpNavigationItems()
+       
         setupProfileData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+         setUpNavigationItems()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

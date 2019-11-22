@@ -33,8 +33,6 @@ class WalletViewController: UIViewController {
    
     var walletArray : [WalletDetail] = []
     
-//    var delegateWalletCoins : WalletCoinsDelegate!
-    
     var walletType = WalletViewType.Wallet
     
     // ----------------------------------------------------
@@ -58,14 +56,15 @@ class WalletViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationBarSetUp()
+        navigationBarSetUp(hidesBackButton: true)
         
         switch walletType {
         case .Coins:
-            btnBack.isHidden = false
+//            btnBack.isHidden = false
+            let leftBarButton = UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .plain, target: self, action: #selector(btnBackTapped))
+            self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
             break
          case .Wallet:
-            btnBack.isHidden = true
             break
         }
     }
@@ -74,6 +73,8 @@ class WalletViewController: UIViewController {
         super.viewWillDisappear(true)
         navigationBarSetUp()
         walletType = .Wallet
+        self.parent?.navigationItem.leftBarButtonItems?.removeAll()
+        self.parent?.navigationItem.rightBarButtonItems?.removeAll()
     }
     
     // ----------------------------------------------------
@@ -85,10 +86,6 @@ class WalletViewController: UIViewController {
         tblWallet.delegate = self
         tblWallet.dataSource = self
         tblWallet.tableFooterView = UIView.init(frame: CGRect.zero)
-//        tblWallet.rowHeight = UITableView.automaticDimension
-//        tblWallet.estimatedRowHeight = 60
-        
-//        delegateWalletCoins = self
     }
    
     func setupFont(){
@@ -102,7 +99,7 @@ class WalletViewController: UIViewController {
     // MARK: - IBAction Methods
     // ----------------------------------------------------
     
-    @IBAction func btnBackTapped(_ sender: Any) {
+    @objc func btnBackTapped() {
         let parentVC = self.parent as! TabViewController
         parentVC.btnTabTapped(parentVC.btnTabs[TabBarOptions.Home.rawValue])
     }

@@ -35,7 +35,7 @@ extension UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.backgroundColor = backroundColor
 
-        statusBarSetUp(backColor: .clear)
+//        statusBarSetUp(backColor: .clear)
     }
     
     func statusBarSetUp(backColor: UIColor) {

@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.0</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -40,6 +40,12 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>App would like to use camera</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>App would like to use your health records</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>App would like to share health data</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>App would like to use health kit</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>App would like to use your current location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -49,7 +55,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App would like to use your current location</string>
 	<key>NSMotionUsageDescription</key>
-	<string>If you don't give access then Steps Count feature will not work</string>
+	<string>If you don&apos;t give access then Steps Count feature will not work</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App would like to use photo library</string>
 	<key>UIAppFonts</key>
@@ -60,6 +66,12 @@
 		<string>Cairo-Black.ttf</string>
 		<string>Cairo-ExtraLight.ttf</string>
 		<string>Cairo-SemiBold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -80,5 +92,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

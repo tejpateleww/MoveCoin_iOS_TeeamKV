@@ -36,9 +36,9 @@ class HomeViewController: UIViewController {
     // ----------------------------------------------------
     
     var delegateFlip : FlipToMapDelegate!
-    
     lazy var pedoMeter = CMPedometer()
     lazy var motionManager = CMMotionManager()
+    
     
     // ----------------------------------------------------
     // MARK: - Life-cycle Methods
@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
         getUserData()
         
         
-        checkPermissionForMotionSensor()
+//        checkPermissionForMotionSensor()
         getTodaysStepCounts()
     }
     
@@ -127,6 +127,7 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
             }
+            self.startCountingSteps()
             SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps
         }
     }
@@ -150,6 +151,7 @@ class HomeViewController: UIViewController {
             }
         }
     }
+  
     
     // ----------------------------------------------------
     // MARK: - IBAction Methods

@@ -59,6 +59,7 @@ class StoreViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationBarSetUp()
+        self.statusBarSetUp(backColor: .clear)
         self.title = ""
     }
     

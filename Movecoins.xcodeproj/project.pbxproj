@@ -196,6 +196,7 @@
 		468F86CC2350AB1D006DC7D1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		468F86CE2350C0D5006DC7D1 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		468F86D12350C2E4006DC7D1 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		4690AEA92386D41E0030A598 /* Movecoins.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Movecoins.entitlements; sourceTree = "<group>"; };
 		469688DE2371977D00C691A8 /* UIDevice + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice + Extension.swift"; sourceTree = "<group>"; };
 		469C9E0D2341EADD0098AE65 /* UItextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UItextField + Extension.swift"; sourceTree = "<group>"; };
 		46A74035235592A4009C9D81 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
@@ -270,6 +271,7 @@
 		4600A70723278D37004A7A9E = {
 			isa = PBXGroup;
 			children = (
+				4690AEA92386D41E0030A598 /* Movecoins.entitlements */,
 				4600A71223278D37004A7A9E /* Movecoin */,
 				4600A71123278D37004A7A9E /* Products */,
 				DF2F98B8453FADEA93BD8687 /* Pods */,
@@ -1098,7 +1100,9 @@
 			baseConfigurationReference = 22FB7FDCCCC2333B20539610 /* Pods-Movecoins.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
@@ -1120,7 +1124,9 @@
 			baseConfigurationReference = 7E2BDC618FF3EEC01E0811AF /* Pods-Movecoins.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.1.2;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
