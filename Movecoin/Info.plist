@@ -18,6 +18,17 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.app.movecoin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>MoveCoins</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>Fabric</key>
@@ -36,10 +47,21 @@
 	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>MoveCoins</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>App would like to use camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App would like to use your contacts</string>
 	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
 	<string>App would like to use your health records</string>
 	<key>NSHealthShareUsageDescription</key>
@@ -55,7 +77,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App would like to use your current location</string>
 	<key>NSMotionUsageDescription</key>
-	<string>If you don&apos;t give access then Steps Count feature will not work</string>
+	<string>If you don't give access then Steps Count feature will not work</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App would like to use photo library</string>
 	<key>UIAppFonts</key>

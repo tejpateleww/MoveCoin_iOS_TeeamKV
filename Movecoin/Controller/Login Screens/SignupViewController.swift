@@ -11,7 +11,7 @@ import UIKit
 class SignupViewController: UIViewController {
 
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var viewProfile: UIView!
@@ -27,7 +27,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var btnSignIn: UIButton!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     private var imagePicker : ImagePickerClass!
@@ -36,7 +36,7 @@ class SignupViewController: UIViewController {
     var selectedImage : UIImage?
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ class SignupViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupView(){
@@ -147,7 +147,7 @@ class SignupViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBActions Methods
+    // MARK: - --------- IBActions Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnSignInTapped(_ sender: Any) {
@@ -173,7 +173,62 @@ class SignupViewController: UIViewController {
 }
 
 // ----------------------------------------------------
-// MARK: - Webservice Methods
+// MARK: - --------- Textfield Delegate Methods ---------
+// ----------------------------------------------------
+
+extension SignupViewController : UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == txtGender {
+            textField.inputView = pickerView
+            if textField.text!.isEmpty {
+                textField.text = arrayGender.first
+            }
+        }
+    }
+}
+
+// ----------------------------------------------------
+// MARK: - --------- Pickerview Delegate Methods ---------
+// ----------------------------------------------------
+
+extension SignupViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrayGender.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return arrayGender[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        txtGender.text = arrayGender[row]
+    }
+}
+
+// ----------------------------------------------------
+// MARK: - --------- ImagePicker Delegate Methods ---------
+// ----------------------------------------------------
+
+extension SignupViewController :  ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?, SelectedTag: Int) {
+    
+        if(image == nil && SelectedTag == 101){
+            self.imgProfile.image = UIImage(named: "m-logo")
+        }else if image != nil{
+            self.imgProfile.image = image
+        }
+        self.selectedImage = self.imgProfile.image
+    }
+}
+
+// ----------------------------------------------------
+// MARK: - --------- Webservice Methods ---------
 // ----------------------------------------------------
 
 extension SignupViewController {
@@ -199,49 +254,6 @@ extension SignupViewController {
             else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
-        }
-    }
-}
-
-extension SignupViewController : UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == txtGender {
-            textField.inputView = pickerView
-            if textField.text!.isEmpty {
-                textField.text = arrayGender.first
-            }
-        }
-    }
-}
-
-extension SignupViewController : UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return arrayGender.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return arrayGender[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtGender.text = arrayGender[row]
-    }
-}
-
-//MARK:- ImagePicker Delegate Methods
-
-extension SignupViewController :  ImagePickerDelegate {
-    
-    func didSelect(image: UIImage?, SelectedTag: Int) {
-    
-        if image != nil{
-            self.imgProfile.image = image
-            self.selectedImage = image
         }
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class InviteViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -20,13 +20,13 @@ class InviteViewController: UIViewController {
     @IBOutlet weak var btnFacebook: UIButton!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class InviteViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {

@@ -11,7 +11,7 @@ import UIKit
 class WelcomeViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets 
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
     @IBOutlet weak var viewContainer: UIView!
@@ -20,7 +20,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var segmentControlLanguage: UISegmentedControl!
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class WelcomeViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func animateView(){
@@ -52,7 +52,7 @@ class WelcomeViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnSignInTapped(_ sender: Any) {

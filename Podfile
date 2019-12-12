@@ -21,6 +21,7 @@ pod 'FormTextField'
 pod 'TTSegmentedControl'
 pod 'Cosmos'
 pod 'lottie-ios'
+pod 'KDCircularProgress'
 
 
 

@@ -8,27 +8,6 @@
 
 import Foundation
 
-enum FriendsStatus  {
-    case AlreadyFriend
-    case BecomeFriend
-}
-
-enum FriendsList  {
-    case TransferCoins
-    case FollowUnfollow
-    case NewChat
-}
-
-enum WalletViewType  {
-    case Wallet
-    case Coins
-}
-
-enum PurchaseDetailViewType  {
-    case Purchase
-    case History
-}
-
 enum TabBarOptions : Int {
     case Store = 0
     case Wallet
@@ -37,6 +16,40 @@ enum TabBarOptions : Int {
     case Profile
 }
 
+enum Membership : Int {
+    case Silver = 1
+    case Gold
+    case Platinum
+}
+
+enum FriendsStatus : String {
+    case RequestPendding = "Requested"
+    case RecommendedFriend = "Recommended"
+    case NotRegistedFriend = "Not Registered"
+    case AlreadyFriend = "Already Friend"
+}
+
+enum FriendsList  {
+    case TransferCoins
+    case Unfriend
+    case NewChat
+}
+
+
+enum WalletViewType  {
+    case Wallet
+    case Coins
+}
+
+enum CoinsTransferType : String {
+    case Send 
+    case Receive
+}
+
+enum PurchaseDetailViewType  {
+    case Purchase
+    case History
+}
 enum SettingsOptions : Int {
     case Notification = 0
     case AccountPrivacy
@@ -64,10 +77,7 @@ enum FontBook: String {
     func of(size: CGFloat) -> UIFont {
         return UIFont(name:self.rawValue, size:size)!
     }
-//    func manageFont(font : CGFloat) -> CGFloat {
-//        let cal  = windowHeight * font
-//        return CGFloat(cal / CGFloat(screenHeightDeveloper))
-//    }
+
     func staticFont(Size:CGFloat) -> UIFont{
         return UIFont(name:self.rawValue,size:Size)!
     }
@@ -88,8 +98,11 @@ enum UserDefaultKeys : CaseIterable {
 }
 
 enum DateFomateKeys : CaseIterable {
-    static let display = "dd-MM-yyyy"
-    static let api = "yyyy-MM-dd"
+    static let displayDate = "dd-MM-yyyy"
+    static let displayDateTime = "dd-MM-yyyy HH:mm"
+    static let apiDOB = "yyyy-MM-dd"
+    static let api = "yyyy-MM-dd HH:mm:ss"
+    
     
 //    let dateFormateToDisplay = "dd-MM-yyyy"
 //    let dateFormateOfApi = "yyyy-MM-dd"

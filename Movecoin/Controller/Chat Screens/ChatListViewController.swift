@@ -11,19 +11,19 @@ import UIKit
 class ChatListViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblChatList: UITableView!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var friendsArray = ["Muhammad","Mustapha","Kashif","Sarah","Leen","Lashiya","Ayesha","Halum","Sumeya","Muhammad",]
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class ChatListViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -59,6 +59,10 @@ class ChatListViewController: UIViewController {
         self.navigationController?.pushViewController(destination, animated: true)
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
 
 extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
     

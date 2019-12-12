@@ -20,7 +20,7 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var txtConfirmPassword: TextFieldFont!
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {

@@ -8,15 +8,11 @@
 
 import UIKit
 
-struct WalletDetail {
-    var discription : String
-    var amount : String
-}
 
 class WalletViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblWallet: UITableView!
@@ -28,36 +24,30 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var btnTransfer: UIButton!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
    
-    var walletArray : [WalletDetail] = []
-    
+    lazy var currentPage = 1
+    lazy var isFetchingNextPage = false
+    lazy var walletHistory: [WalletData] = []
     var walletType = WalletViewType.Wallet
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
         self.setupFont()
-        
-        let transaction1 = WalletDetail(discription: "Bonus", amount: "+1")
-        let transaction2 = WalletDetail(discription: "Send to Aadam", amount: "-300")
-        let transaction3 = WalletDetail(discription: "Bonus", amount: "+6")
-        let transaction4 = WalletDetail(discription: "Bonus", amount: "+3")
-        let transaction5 = WalletDetail(discription: "Receive from Aafeen", amount: "")
-        let transaction6 = WalletDetail(discription: "Bonus", amount: "+15")
-        let transaction7 = WalletDetail(discription: "Receive from Aafeen", amount: "")
-        walletArray = [transaction1,transaction2,transaction3,transaction4,transaction5,transaction6,transaction7]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationBarSetUp(hidesBackButton: true)
+        webserviceforWalletHistory(refresh: true)
         
+       
         switch walletType {
         case .Coins:
 //            btnBack.isHidden = false
@@ -78,7 +68,7 @@ class WalletViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -95,8 +85,14 @@ class WalletViewController: UIViewController {
         btnSpendCoins.titleLabel?.font = UIFont.bold(ofSize: 17)
     }
     
+    func fetchNextPage() {
+        self.isFetchingNextPage = true
+        currentPage += 1
+        webserviceforWalletHistory()
+    }
+    
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @objc func btnBackTapped() {
@@ -116,6 +112,10 @@ class WalletViewController: UIViewController {
     }
 }
 
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
+
 extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -123,16 +123,62 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletArray.count
+        return walletHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: WalletTableViewCell.className) as! WalletTableViewCell
         cell.selectionStyle = .none
-        cell.walletDetail = walletArray[indexPath.row]
+        cell.walletDetail = walletHistory[indexPath.row]
         return cell
     }
 }
+
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension WalletViewController {
+    
+    func webserviceforWalletHistory(refresh : Bool = false){
+
+            var strParam = String()
+            
+            guard let id = SingletonClass.SharedInstance.userData?.iD else {
+                return
+            }
+           
+            strParam = NetworkEnvironment.baseURL + ApiKey.coinsHistory.rawValue + id + "/\(currentPage)"
+          
+            UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+                print(json)
+            
+                self.isFetchingNextPage = false
+                
+                if status{
+                    let walletModel = WalletResponseModel(fromJson: json)
+                    DispatchQueue.main.async {
+                      if refresh {
+//                            self.refreshControl.endRefreshing()
+                            self.walletHistory = walletModel.walletData
+                        } else {
+                            if walletModel.walletData.count > 0 {
+                                self.walletHistory.append(contentsOf: walletModel.walletData)
+                            }else{
+                                self.isFetchingNextPage = true
+                            }
+                        }
+                        self.tblWallet.reloadData()
+                        self.btnAmount.setTitle(walletModel.coins, for: .normal)
+                    }
+                }else{
+                    UtilityClass.showAlertOfAPIResponse(param: res)
+                }
+            }
+        }
+}
+
 
 //extension WalletViewController : WalletCoinsDelegate {
 //    

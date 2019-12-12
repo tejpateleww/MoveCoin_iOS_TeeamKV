@@ -19,10 +19,15 @@ class SingletonClass: NSObject {
    
     var DeviceToken:String = "123123123123123"
     var userData : UserData?
-    var todaysStepCount : NSNumber?
+    var productType : [Category]?
+    
+//    var todaysStepCount : NSNumber?
+    var todaysStepCount : Int?
+    var lastUpdatedDtae : Date?
     
     func singletonClear() {
         self.userData = nil
+        self.productType = nil
         self.DeviceToken = "1231232131232"
     }
 }

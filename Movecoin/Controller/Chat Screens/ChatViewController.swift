@@ -13,7 +13,7 @@ import IQKeyboardManagerSwift
 class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     // ----------------------------------------------------
-    // MARK: - Outlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
     @IBOutlet weak var vwTitle: UIView!
@@ -40,7 +40,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var arrData = [MessageObject]()
@@ -56,7 +56,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     var isFromSupport = Bool()
     
     // ----------------------------------------------------
-    // MARK: - Life-Cycle Methods
+    // MARK: - --------- Life-Cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -151,7 +151,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupFont(){
@@ -163,11 +163,11 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         let profileView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
         
         let imgview = UIImageView(frame: profileView.frame)
-        imgview.image = UIImage(named: "Photo frame")
+        imgview.image = UIImage(named: "photo-frame")
         imgview.contentMode = .scaleAspectFit
         
         let profile = UIImageView(frame: CGRect(x: 9, y: 4, width: 32, height: 32))
-        profile.image = UIImage(named: "FakeDP.jpeg")
+        profile.image = UIImage(named: "m-logo")
         profile.contentMode = .scaleAspectFill
         profile.cornerRadius = 16
         profile.clipsToBounds = true
@@ -237,7 +237,10 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    //MARK: Button Methods
+    // ----------------------------------------------------
+    //MARK:- --------- IBAction Methods ---------
+    // ----------------------------------------------------
+    
     @IBAction func sendClick(_ sender: UIButton) {
         txtMessage.text = txtMessage.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if isImage || !txtMessage.text!.isEmpty{
@@ -290,7 +293,9 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         self.view.animateConstraintWithDuration()
     }
     
-    // MARK: Send message
+    // ----------------------------------------------------
+    //MARK:- --------- Send Massage Methods ---------
+    // ----------------------------------------------------
     func sendMessage(_ isSender: Bool){
         var objMessage = MessageObject()
         objMessage.strMessage = txtMessage.text!
@@ -369,7 +374,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
    
     // ----------------------------------------------------
-    // MARK: - Socket Methods
+    // MARK: - --------- Socket Methods ---------
     // ----------------------------------------------------
 
     func sendMessageToPassenger(message: String) {
@@ -385,7 +390,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
 //    }
     
     // ----------------------------------------------------
-    // MARK: - Webservice Service
+    // MARK: - --------- Webservice Service ---------
     // ----------------------------------------------------
 
     func webserviceOfChatting(bookingId: String, bookingType: String) {
@@ -552,6 +557,10 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
  */
     
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Methods ---------
+// ----------------------------------------------------
 
 extension ChatViewController: UITableViewDataSource {
     

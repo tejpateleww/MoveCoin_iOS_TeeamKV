@@ -11,7 +11,7 @@ import UIKit
 class StatisticsViewController: UIViewController {
 
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblStatistics: UITableView!
@@ -19,18 +19,21 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-   
+    lazy var currentPage = 1
+    lazy var isFetchingNextPage = false
+    lazy var coinsConvertedList: [CoinsEarn] = []
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
+        webserviceforCoinsConverted(refresh: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +42,7 @@ class StatisticsViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -50,7 +53,17 @@ class StatisticsViewController: UIViewController {
         
         lblTitle.font = UIFont.semiBold(ofSize: 21)
     }
+    
+    func fetchNextPage() {
+        self.isFetchingNextPage = true
+        currentPage += 1
+        webserviceforCoinsConverted()
+    }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
 
 extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource {
     
@@ -59,12 +72,63 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        return coinsConvertedList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsTableViewCell.className) as! StatisticsTableViewCell
         cell.selectionStyle = .none
+        cell.coinsEarnModel = coinsConvertedList[indexPath.row]
         return cell
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (((scrollView.contentOffset.y + scrollView.frame.size.height) > scrollView.contentSize.height ) && !isFetchingNextPage){
+            self.fetchNextPage()
+        }
+    }
+}
+
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension StatisticsViewController {
+    
+    func webserviceforCoinsConverted(refresh : Bool = false){
+
+            var strParam = String()
+            
+            guard let id = SingletonClass.SharedInstance.userData?.iD else {
+                return
+            }
+           
+            strParam = NetworkEnvironment.baseURL + ApiKey.coinsEarning.rawValue + id + "/\(currentPage)"
+          
+            UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+                print(json)
+                
+                self.isFetchingNextPage = false
+                
+                if status{
+                    let coinsModel = CoinsEarnResponseModel(fromJson: json)
+                    DispatchQueue.main.async {
+                      if refresh {
+//                            self.refreshControl.endRefreshing()
+                            self.coinsConvertedList = coinsModel.coinsData
+                        } else {
+                            if coinsModel.coinsData.count > 0 {
+                                self.coinsConvertedList.append(contentsOf: coinsModel.coinsData)
+                            }else{
+                                self.isFetchingNextPage = true
+                            }
+                        }
+                        self.tblStatistics.reloadData()
+                    }
+                }else{
+                    UtilityClass.showAlertOfAPIResponse(param: res)
+                }
+            }
+        }
 }

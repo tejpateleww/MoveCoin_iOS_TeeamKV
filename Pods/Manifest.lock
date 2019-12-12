@@ -6,6 +6,7 @@ PODS:
   - Fabric (1.10.2)
   - FormTextField (3.0.0)
   - IQKeyboardManagerSwift (6.4.0)
+  - KDCircularProgress (1.5.4)
   - Kingfisher (5.7.0)
   - lottie-ios (3.1.2)
   - NVActivityIndicatorView (4.8.0):
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - Fabric
   - FormTextField
   - IQKeyboardManagerSwift
+  - KDCircularProgress
   - Kingfisher
   - lottie-ios
   - NVActivityIndicatorView
@@ -37,6 +39,7 @@ SPEC REPOS:
     - Fabric
     - FormTextField
     - IQKeyboardManagerSwift
+    - KDCircularProgress
     - Kingfisher
     - lottie-ios
     - NVActivityIndicatorView
@@ -51,6 +54,7 @@ SPEC CHECKSUMS:
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FormTextField: fd5dc441ad40ba12d08ef66aeb0453ee9bf55e6d
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
+  KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   lottie-ios: 49cd85b1f24f61a7708ad7ec76a523ab2d0e3100
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
@@ -58,6 +62,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
 
-PODFILE CHECKSUM: ecd733ef50e20fae7b86dac87d0e42335c68263d
+PODFILE CHECKSUM: 2b63cf40b3e51bbd40b8b04848f4f972d062b80c
 
 COCOAPODS: 1.6.1

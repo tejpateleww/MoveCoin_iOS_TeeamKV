@@ -13,6 +13,24 @@ class StatisticsTableViewCell: UITableViewCell {
     @IBOutlet weak var lblSteps: UILabel!
     @IBOutlet weak var lblPoints: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
+    
+    var coinsEarnModel: CoinsEarn? {
+        didSet{
+            if let data = coinsEarnModel {
+                self.lblPoints.text = data.coins
+                if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate){
+                    self.lblSteps.text = data.steps + " steps. " + dateStr
+                }
+                
+              
+                // For Image
+                 if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
+                    self.imgProfile.kf.indicatorType = .activity
+                    self.imgProfile.kf.setImage(with: url)
+                }
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

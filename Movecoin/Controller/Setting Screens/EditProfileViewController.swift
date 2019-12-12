@@ -25,14 +25,15 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var txtWeight: ThemeTextfield!
     
     // ----------------------------------------------------
-    //MARK:- --------- Lifecycle Methods ---------
+    //MARK:- --------- Variables ---------
     // ----------------------------------------------------
     
     private var imagePicker : ImagePickerClass!
-    let pickerView = UIPickerView()
-    let datePickerView = UIDatePicker()
     var selectedImage : UIImage?
     
+    let pickerView = UIPickerView()
+    let datePickerView = UIDatePicker()
+
     var arrayGender = ["Male","Female"]
     let feetList = Array(3...9)
     let inchList = Array(0...11)
@@ -40,7 +41,7 @@ class EditProfileViewController: UIViewController {
     var selectedHeightComponents = [String]()
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Lifecycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -86,7 +87,7 @@ class EditProfileViewController: UIViewController {
     
     @objc func handleDatePicker(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DateFomateKeys.display
+        dateFormatter.dateFormat = DateFomateKeys.displayDate
         txtDob.text = dateFormatter.string(from: sender.date)
     }
     
@@ -100,7 +101,7 @@ class EditProfileViewController: UIViewController {
             txtHeight.text = userData.height
             txtWeight.text = userData.weight
             if userData.dateOfBirth != "0000-00-00" {
-                if let dob = UtilityClass.changeDateFormateFrom(dateString: userData.dateOfBirth, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.display) {
+                if let dob = UtilityClass.changeDateFormateFrom(dateString: userData.dateOfBirth, fromFormat: DateFomateKeys.apiDOB, withFormat: DateFomateKeys.displayDate) {
                      txtDob.text = dob
                 }
             }
@@ -113,23 +114,9 @@ class EditProfileViewController: UIViewController {
             }
         }
     
-        if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
+        if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "" ) {
             imgProfilePicture.kf.indicatorType = .activity
-            imgProfilePicture.kf.setImage(
-                with: url,
-                placeholder: UIImage(named: "user"),
-                options: [
-                    .cacheOriginalImage
-                ])
-            {
-                result in
-                switch result {
-                case .success(let value):
-                    print("Task done for: \(value.source.url?.absoluteString ?? "")")
-                case .failure(let error):
-                    print("Job failed: \(error.localizedDescription)")
-                }
-            }
+            imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
         }
     }
     
@@ -146,7 +133,7 @@ class EditProfileViewController: UIViewController {
             editModel.Gender = txtGender.text!
             editModel.Height = txtHeight.text ?? ""
             editModel.Weight = txtWeight.text ?? ""
-            if let dob = UtilityClass.changeDateFormateFrom(dateString: txtDob.text ?? "", fromFormat: DateFomateKeys.display, withFormat: DateFomateKeys.api) {
+            if let dob = UtilityClass.changeDateFormateFrom(dateString: txtDob.text ?? "", fromFormat: DateFomateKeys.displayDate, withFormat: DateFomateKeys.apiDOB) {
                 editModel.DateOfBirth = dob
             }
             editModel.DeviceType = "ios"
@@ -184,37 +171,8 @@ class EditProfileViewController: UIViewController {
 }
 
 // ----------------------------------------------------
-// MARK: - Webservice Methods
+//MARK:- --------- Textfield Delegate Methods ---------
 // ----------------------------------------------------
-
-extension EditProfileViewController {
-    
-    func webserviceCallForEditProfile(editProfileDic: EditProfileModel){
-        
-        UtilityClass.showHUD()
-        
-        UserWebserviceSubclass.editProfile(editProfileModel: editProfileDic, image: selectedImage){ (json, status, res) in
-            
-            UtilityClass.hideHUD()
-            
-            if status{
-                 let loginResponseModel = LoginResponseModel(fromJson: json)
-                do{
-                    try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
-                }catch{
-                    UtilityClass.showAlert(Message: error.localizedDescription)
-                }
-                self.getUserData()
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
-                    self.navigationController?.popViewController(animated: true)
-                })
-            }
-            else{
-                UtilityClass.showAlertOfAPIResponse(param: res)
-            }
-        }
-    }
-}
 
 extension EditProfileViewController : UITextFieldDelegate {
     
@@ -234,7 +192,7 @@ extension EditProfileViewController : UITextFieldDelegate {
             textField.inputView = datePickerView
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = DateFomateKeys.display
+            dateFormatter.dateFormat = DateFomateKeys.displayDate
             if let strDate = dateFormatter.date(from: txtDob.text!) {
                 datePickerView.date = strDate
             }
@@ -285,6 +243,10 @@ extension EditProfileViewController : UITextFieldDelegate {
     }
 }
 
+// ----------------------------------------------------
+//MARK:- --------- PickerView Methods ---------
+// ----------------------------------------------------
+
 extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -332,15 +294,52 @@ extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSour
     }
 }
 
-//MARK:- ImagePicker Delegate Methods
+// ----------------------------------------------------
+//MARK:- --------- ImagePicker Delegate Methods ---------
+// ----------------------------------------------------
 
 extension EditProfileViewController :  ImagePickerDelegate {
     
     func didSelect(image: UIImage?, SelectedTag: Int) {
         
-        if image != nil{
+        if(image == nil && SelectedTag == 101){
+            self.imgProfilePicture.image = UIImage(named: "m-logo")//UIImage.init(named: "imgPetPlaceholder")
+        }else if image != nil{
             self.imgProfilePicture.image = image
-            self.selectedImage = image
+        }
+        self.selectedImage = self.imgProfilePicture.image
+    }
+}
+
+// ----------------------------------------------------
+// MARK: - --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension EditProfileViewController {
+    
+    func webserviceCallForEditProfile(editProfileDic: EditProfileModel){
+        
+        UtilityClass.showHUD()
+        
+        UserWebserviceSubclass.editProfile(editProfileModel: editProfileDic, image: selectedImage){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            
+            if status{
+                 let loginResponseModel = LoginResponseModel(fromJson: json)
+                do{
+                    try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
+                }catch{
+                    UtilityClass.showAlert(Message: error.localizedDescription)
+                }
+                self.getUserData()
+                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+            else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
         }
     }
 }

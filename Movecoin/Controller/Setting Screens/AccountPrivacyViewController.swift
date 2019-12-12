@@ -11,18 +11,18 @@ import UIKit
 class AccountPrivacyViewController: UIViewController {
 
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblPrivacy: UITableView!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
    
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class AccountPrivacyViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -48,6 +48,10 @@ class AccountPrivacyViewController: UIViewController {
         tblPrivacy.tableFooterView = UIView.init(frame: CGRect.zero)
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
 
 extension AccountPrivacyViewController : UITableViewDelegate, UITableViewDataSource{
     

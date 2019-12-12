@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ValidatorConvertible {
-    func validated(_ value: String) throws -> String
+    func validated(_ value: String, _ txtFieldName: String) throws -> String
 }
 
 enum ValidatorType {
@@ -23,6 +23,8 @@ enum ValidatorType {
     
     case cardHolder
     case cardNumber
+    case expDate
+    case cvv
 }
 
 
@@ -46,19 +48,22 @@ class ValidatorClass {
         case .age: return AgeValidator()
         case .cardHolder: return CardHolderValidator()
         case .cardNumber: return CardNumberValidator()
+        case .expDate: return ExpDateValidator()
+        case .cvv: return CvvValidator()
         }
     }
 }
 
 struct EmailValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter email address")}
+    
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         do {
             if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Invalid email")
+                throw ValidationError("Invalid " + txtFieldName)
             }
         } catch {
-            throw ValidationError("Invalid email address")
+            throw ValidationError("Invalid " + txtFieldName)
         }
         return value
     }
@@ -66,8 +71,8 @@ struct EmailValidator: ValidatorConvertible {
 
 
 struct PasswordValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter password")}
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         guard value.count >= 6 else { throw ValidationError("Password must have at least 6 characters") }
         
 //        do {
@@ -82,9 +87,9 @@ struct PasswordValidator: ValidatorConvertible {
 }
 
 struct FullNameValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter full name")}
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         
 //        guard value.count < 50 else {
 //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
@@ -103,9 +108,9 @@ struct FullNameValidator: ValidatorConvertible {
 
 
 struct UserNameValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter username")}
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         guard value.count >= 3 else {
             throw ValidationError("Username must contain more than three characters" )
         }
@@ -125,11 +130,11 @@ struct UserNameValidator: ValidatorConvertible {
 }
 
 struct MobileNumberValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter mobile number")}
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         guard value.count >= 10 && value.count < 11 else {
-            throw ValidationError("Please enter valid mobile number" )
+            throw ValidationError("Please enter valid " + txtFieldName)
         }
        
         return value
@@ -144,16 +149,16 @@ struct RequiredFieldValidator: ValidatorConvertible {
         fieldName = field
     }
     
-    func validated(_ value: String) throws -> String {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard !value.isEmpty else {
-            throw ValidationError("Required field " + fieldName)
+            throw ValidationError("Please enter " + fieldName)
         }
         return value
     }
 }
 
 class AgeValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard value.count > 0 else {throw ValidationError("Age is required")}
         guard let age = Int(value) else {throw ValidationError("Age must be a number!")}
         guard value.count < 3 else {throw ValidationError("Invalid age number!")}
@@ -163,9 +168,9 @@ class AgeValidator: ValidatorConvertible {
 }
 
 struct CardHolderValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
 
-        guard value != "" else {throw ValidationError("Please enter card holder")}
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
 
         //        guard value.count < 50 else {
         //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
@@ -183,17 +188,56 @@ struct CardHolderValidator: ValidatorConvertible {
 }
 
 struct CardNumberValidator: ValidatorConvertible {
-    func validated(_ value: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter card number")}
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters") }
 
-        //        do {
-        //            if try NSRegularExpression(pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-        //                throw ValidationError("Password must be more than 6 characters, with at least one character and one numeric character")
-        //            }
-        //        } catch {
-        //            throw ValidationError("Password must be more than 6 characters, with at least one character and one numeric character")
-        //        }
         return value
+    }
+}
+
+struct CvvValidator: ValidatorConvertible {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard value.count >= 3 && value.count < 4 else { throw ValidationError("Cvv must have 3 digits") }
+        return value
+    }
+}
+
+struct ExpDateValidator: ValidatorConvertible {
+    func validated(_ value: String, _ txtFieldName: String) throws -> String {
+        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard expDateValidation(dateStr: value) else { throw ValidationError("Invalid expiry date") }
+        return value
+    }
+    
+    func expDateValidation(dateStr:String) -> Bool {
+
+        let currentYear = Calendar.current.component(.year, from: Date()) % 100   // This will give you current year (i.e. if 2019 then it will be 19)
+        let currentMonth = Calendar.current.component(.month, from: Date()) // This will give you current month (i.e if June then it will be 6)
+
+        let enterdYr = Int(dateStr.suffix(2)) ?? 0   // get last two digit from entered string as year
+        let enterdMonth = Int(dateStr.prefix(2)) ?? 0  // get first two digit from entered string as month
+        print(dateStr) // This is MM/YY Entered by user
+
+        if enterdYr > currentYear{
+            if (1 ... 12).contains(enterdMonth){
+                return true
+            } else{
+                return false
+            }
+        } else  if currentYear == enterdYr {
+            if enterdMonth >= currentMonth{
+                if (1 ... 12).contains(enterdMonth) {
+                    return true
+                } else{
+                    return false
+                }
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
     }
 }

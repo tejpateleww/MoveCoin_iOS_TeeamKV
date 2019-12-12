@@ -8,18 +8,6 @@
 
 import Foundation
 
-extension Date {
-    var midnight: Date {
-        var cal = Calendar.current
-        cal.timeZone = TimeZone(identifier: "Europe/Paris")!
-        return cal.startOfDay(for: self)
-    }
-    var midday: Date {
-        var cal = Calendar.current
-        cal.timeZone = TimeZone(identifier: "Europe/Paris")!
-        return cal.date(byAdding: .hour, value: 12, to: self.midnight)!
-    }
-}
 
 extension String {
     func capitalizingFirstLetter() -> String {
@@ -34,6 +22,27 @@ extension String {
         get {
             let trimmed = trimmingCharacters(in: CharacterSet.whitespaces)
             return trimmed.isEmpty
+        }
+    }
+    
+    var html2Attributed: NSAttributedString? {
+        do {
+            guard let data = data(using: String.Encoding.utf8) else {
+                return nil
+            }
+            
+            let attribute = try NSMutableAttributedString(data: data,
+                                          options: [.documentType: NSAttributedString.DocumentType.html,
+                                                    .characterEncoding: String.Encoding.utf8.rawValue],
+                                          documentAttributes: nil)
+
+            let range = (attribute.string as NSString).range(of: attribute.string)
+            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white ,range: range)
+//            attribute.addAttribute(NSAttributedString.Key.font, value: UIFont.bold(ofSize: 16) ,range: range)
+            return attribute
+        } catch {
+            print("error: ", error)
+            return nil
         }
     }
     
@@ -75,5 +84,52 @@ extension String {
         }
         
         return nil;
+    }
+    
+    func grouping(every groupSize: String.IndexDistance, with separator: Character) -> String {
+        let cleanedUpCopy = replacingOccurrences(of: String(separator), with: "")
+        return String(cleanedUpCopy.enumerated().map() {
+            $0.offset % groupSize == 0 ? [separator, $0.element] : [$0.element]
+            }.joined().dropFirst())
+    }
+    
+    func localToUTC(fromFormate: String, toFormate: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = fromFormate
+        dateFormatter.calendar = NSCalendar.current
+        dateFormatter.timeZone = TimeZone.current
+
+        guard let dt = dateFormatter.date(from: self) else { return "" }
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = toFormate
+        
+       return dateFormatter.string(from: dt)
+    }
+
+    func UTCToLocal(fromFormate: String, toFormate: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = fromFormate
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+        guard let dt = dateFormatter.date(from: self) else { return "" }
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = toFormate
+
+        return dateFormatter.string(from: dt)
+    }
+}
+
+extension Array {
+    func unique<T:Hashable>(map: ((Element) -> (T)))  -> [Element] {
+        var set = Set<T>() //the unique list kept in a Set for fast retrieval
+        var arrayOrdered = [Element]() //keeping the unique list of elements but ordered
+        for value in self {
+            if !set.contains(map(value)) {
+                set.insert(map(value))
+                arrayOrdered.append(value)
+            }
+        }
+
+        return arrayOrdered
     }
 }

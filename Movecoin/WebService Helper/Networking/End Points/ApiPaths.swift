@@ -14,10 +14,9 @@ enum NetworkEnvironment: String {
     
 //    case liveBaseUrl = "https://www.peppea.com/panel/api/customer_api/"
     
-    case developmentBaseUrl = "http://15.206.43.169/api/"
-    
-
-    case imageURL = "http://15.206.43.169/assets/images/"
+    case developmentBaseUrl = "https://www.movecoins.net/admin/api/"
+    case imageURL = "https://www.movecoins.net/admin/"
+    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
     
     static var baseURL : String{
         return NetworkEnvironment.environment.rawValue
@@ -25,6 +24,10 @@ enum NetworkEnvironment: String {
     
     static var baseImageURL : String{
         return NetworkEnvironment.imageURL.rawValue
+    }
+    
+    static var baseGalleryURL : String{
+        return NetworkEnvironment.galleryURL.rawValue
     }
     
     static var headers : [String:String]
@@ -69,4 +72,24 @@ enum ApiKey: String{
     case changePassword = "user/change_password"
     case forgotPassword = "user/forgot_password"
     case profileUpdate = "user/profile_update"
+    case userDetails = "user/detail_user"
+    case updateSteps = "User/update_steps/"
+    case stepsHistory = "User/steps_history/"
+    case coinsEarning = "User/coins_earning_history/"
+    case addCard = "User/add_new_card"
+    case cardList = "user/cards/"
+    case removeCard = "user/remove_card/"
+    
+    case productsList = "Products/product_list"
+    case productDetails = "Products/product_detail"
+    
+    case inviteFriends = "Friends/friends_invite"
+    case friendRequest = "Friends/friend_request"
+    case actionOnFriendRequest = "Friends/action_on_friend_request"
+    case unfriend = "Friends/unfriend"
+    case coinsHistory = "Friends/coins_history/"
+    case friendList = "Friends/list_friend"
+    case transferCoins = "Friends/coins_transfer" 
+    
+    case addSeller = "Seller/add_seller"
 }

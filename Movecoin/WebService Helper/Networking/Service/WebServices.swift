@@ -75,7 +75,13 @@ class WebService{
                     //  LoaderClass.hideActivityIndicator()
                     if let error = response.result.error {
                         print("Error = \(error.localizedDescription)")
-                        completion(JSON(), false, error.localizedDescription)
+                        
+                        if error.localizedDescription == "Response status code was unacceptable: 403."{
+                            AppDelegateShared.GoToLogout()
+                            completion(JSON(), false, "Your session is expired")
+                        }else{
+                             completion(JSON(), false, error.localizedDescription)
+                        }
 //                        AlertMessage.showMessageForError(error.localizedDescription)
                     }
                 }
@@ -205,9 +211,6 @@ class WebService{
             }
         }
     }
-    
-    
-    
 }
 
 extension Encodable {
@@ -222,6 +225,16 @@ extension Encodable {
     var dictionary: [String: Any]? {
         guard let data = try? JSONEncoder().encode(self) else { return nil }
         return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: Any]
+    }
+    
+    var dictionaryJSON: [[String: Any]]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [[String: Any]] }
+    }
+    
+    var asDictionaryArray: [[String: Any]]? {
+        guard let data = try? JSONEncoder().encode(self) else { return nil }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [[String: Any]] }
     }
 }
 

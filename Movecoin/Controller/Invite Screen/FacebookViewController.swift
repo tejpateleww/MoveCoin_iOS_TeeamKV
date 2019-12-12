@@ -11,7 +11,7 @@ import UIKit
 class FacebookViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -19,13 +19,13 @@ class FacebookViewController: UIViewController {
     @IBOutlet weak var lblDescription: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {

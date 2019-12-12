@@ -8,17 +8,10 @@
 
 import UIKit
 
-struct ProductDetail {
-    var discount : String
-    var price : String
-    var name : String
-    var image : String
-}
-
 class StoreViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
     @IBOutlet weak var tblStoreOffers: UITableView!
@@ -28,25 +21,25 @@ class StoreViewController: UIViewController {
     @IBOutlet weak var lblDescription: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var productArray : [ProductDetail] = []
+    
+    var productArray : [ProductDetails] = []
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(webserviceForProductList), for: .valueChanged)
+        refreshControl.tintColor = .white
+        return refreshControl
+    }()
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
         self.setupFont()
-        
-        let product1 = ProductDetail(discount: "30", price: "20.55", name: "Xiaomi-Mi-9", image: "1.jpg")
-        let product2 = ProductDetail(discount: "30", price: "10.55", name: "Apple Airpods", image: "3.jpg")
-        let product3 = ProductDetail(discount: "25", price: "9.95", name: "Sony Headphone", image: "headphone.jpg")
-        let product4 = ProductDetail(discount: "12", price: "8.65", name: "Bluetooth-Speaker", image: "bluetooth-speaker.jpg")
-        let product5 = ProductDetail(discount: "10", price: "5.98", name: "JBL Handsfree", image: "2.jpg")
-        productArray = [product1,product2,product3,product4,product5]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,6 +47,7 @@ class StoreViewController: UIViewController {
         // Navigation & Status bar setup
         self.navigationBarSetUp(title: "Offers For Today", backroundColor: ThemeNavigationColor, hidesBackButton: true)
         self.statusBarSetUp(backColor: ThemeNavigationColor)
+         webserviceForProductList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +63,7 @@ class StoreViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -78,6 +72,7 @@ class StoreViewController: UIViewController {
         tblStoreOffers.dataSource = self
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
+        tblStoreOffers.addSubview(refreshControl)
     }
     
     func setupFont(){
@@ -96,6 +91,11 @@ class StoreViewController: UIViewController {
     }
 }
 
+// ----------------------------------------------------
+//MARK:- --------- Tableview Methods ---------
+// ----------------------------------------------------
+
+
 extension StoreViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,12 +105,42 @@ extension StoreViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.className) as! StoreTableViewCell
         cell.selectionStyle = .none
-        cell.productDetail = productArray[indexPath.row]
+        cell.product = productArray[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
+        let product = productArray[indexPath.row]
+        controller.productID = product.iD
         self.parent?.navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension StoreViewController {
+    
+    @objc func webserviceForProductList(){
+        
+        let productsURL = NetworkEnvironment.baseURL + ApiKey.productsList.rawValue
+    
+        ProductWebserviceSubclass.productsList(strURL: productsURL){ (json, status, res) in
+             print(json)
+            
+            if status {
+                let responseModel = ProductsResponseModel(fromJson: json)
+                if responseModel.productsList.count > 0  {
+                    self.refreshControl.endRefreshing()
+                    self.productArray = responseModel.productsList
+                    self.tblStoreOffers.reloadData()
+                }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
     }
 }

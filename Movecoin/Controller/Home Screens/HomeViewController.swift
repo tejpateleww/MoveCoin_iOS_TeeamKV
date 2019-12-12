@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreMotion
+import HealthKit
 
 protocol FlipToMapDelegate {
     func flipToMap()
@@ -16,7 +17,7 @@ protocol FlipToMapDelegate {
 class HomeViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var imgLogo: UIImageView!
@@ -32,44 +33,39 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblTodaysStepCount: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var delegateFlip : FlipToMapDelegate!
     lazy var pedoMeter = CMPedometer()
     lazy var motionManager = CMMotionManager()
+    let healthStore = HKHealthStore()
     
+    var userData = SingletonClass.SharedInstance.userData
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
-        imgLogo.image = UIImage.gifImageWithName("Logo")
-        getUserData()
-        
-        
+//        getUserData()
+      
 //        checkPermissionForMotionSensor()
-        getTodaysStepCounts()
-    }
-    
-    func checkPermissionForMotionSensor() {
-        
-        switch CMPedometer.authorizationStatus() {
-        case .authorized :
-            print(" Authotized")
-            self.startCountingSteps()
-
-        case .denied, .restricted :
-            print("Not Authotized")
-
-        case  .notDetermined:
-            print("unknown")
-
-        @unknown default:
-            fatalError()
+//        getTodaysStepCounts()
+        if checkAuthorization() {
+            getTodaysSteps { (steps) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.lblTodaysStepCount.text = String(Int(steps))
+                    SingletonClass.SharedInstance.todaysStepCount = Int(steps)
+                   
+                    if Int(steps) > 0 {
+                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+                    }
+                    self.startCountingSteps()
+                }
+            }
         }
     }
     
@@ -77,6 +73,12 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(true)
         navigationBarSetUp(hidesBackButton: true)
         setUpNavigationItems()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        webserviceForUserDetails()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,7 +88,7 @@ class HomeViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupFont(){
@@ -110,6 +112,71 @@ class HomeViewController: UIViewController {
         self.parent?.navigationItem.setRightBarButtonItems([rightBarButton], animated: true)
     }
     
+    func setupHomeData(){
+        if let user = userData {
+            lblCoins.text = user.coins
+            lblFriends.text = user.friends
+            lblInviteFriends.text = user.inviteFriends
+            lblTotalSteps.text = user.steps
+            
+            let membership = Membership(rawValue: Int(user.memberType) ?? 1)
+            switch membership {
+            case .Silver:
+                imgLogo.image = UIImage.gifImageWithName("Silver-package")
+            case .Gold:
+                imgLogo.image = UIImage.gifImageWithName("Gold-package")
+            case .Platinum:
+                imgLogo.image = UIImage.gifImageWithName("Platinum-package")
+            case .none:
+                return
+            }
+        }
+    }
+    
+    func checkAuthorization() -> Bool
+    {
+      // Default to assuming that we're authorized
+      var isEnabled = true
+
+      // Do we have access to HealthKit on this device?
+      if HKHealthStore.isHealthDataAvailable()
+      {
+        // We have to request each data type explicitly
+      
+        let steps = NSSet(object: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) ?? 0)
+
+        // Now we can request authorization for step count data
+        
+        healthStore.requestAuthorization(toShare: nil, read: steps as? Set<HKObjectType>) { (success, error) -> Void in
+          isEnabled = success
+        }
+      }
+      else
+      {
+        isEnabled = false
+      }
+
+      return isEnabled
+    }
+    
+    func checkPermissionForMotionSensor() {
+        
+        switch CMPedometer.authorizationStatus() {
+        case .authorized :
+            print(" Authotized")
+            self.startCountingSteps()
+
+        case .denied, .restricted :
+            print("Not Authotized")
+
+        case  .notDetermined:
+            print("unknown")
+
+        @unknown default:
+            fatalError()
+        }
+    }
+    
     @objc func btnUpgradeTapped(){
 
     }
@@ -126,9 +193,10 @@ class HomeViewController: UIViewController {
             }
             DispatchQueue.main.async {
                 self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+                self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0")
             }
             self.startCountingSteps()
-            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps
+            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.intValue
         }
     }
     
@@ -141,20 +209,37 @@ class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     if let counts = SingletonClass.SharedInstance.todaysStepCount {
-                        let total = counts.intValue + activityData.numberOfSteps.intValue
+                         let total = counts + activityData.numberOfSteps.intValue
                         self.lblTodaysStepCount.text = "\(total)"
                         print("Total:\(total)")
                     }else {
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                     }
+                    self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0")
                 }
             }
         }
     }
-  
+    
+   func getTodaysSteps(completion: @escaping (Double) -> Void) {
+       let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+
+       let now = Date()
+       let startOfDay = Calendar.current.startOfDay(for: now)
+       let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+
+       let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+           guard let result = result, let sum = result.sumQuantity() else {
+               completion(0.0)
+               return
+           }
+           completion(sum.doubleValue(for: HKUnit.count()))
+       }
+       healthStore.execute(query)
+   }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnCoinsTapped(_ sender: Any) {
@@ -164,4 +249,66 @@ class HomeViewController: UIViewController {
 //        parentVC.btnTabTapped(parentVC.btnTabs[TabBarOptions.Wallet.rawValue])
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension HomeViewController {
+    
+    func webserviceForUserDetails(){
+        
+//        UtilityClass.showHUD()
+        
+        let requestModel = UserDetailModel()
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        requestModel.UserID = id
+        
+        UserWebserviceSubclass.userDetails(userDetailModel: requestModel){ (json, status, res) in
+           
+//            UtilityClass.hideHUD()
+            
+            if status {
+                let responseModel = LoginResponseModel(fromJson: json)
+                do{
+                    try UserDefaults.standard.set(object: responseModel.data, forKey: UserDefaultKeys.kUserProfile)
+                    SingletonClass.SharedInstance.userData = responseModel.data
+                    self.userData = responseModel.data
+                    self.setupHomeData()
+                }catch{
+                    UtilityClass.showAlert(Message: error.localizedDescription)
+                }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceforUpdateStepsCount(stepsCount : String){
+
+        var strParam = String()
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)"
+      
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(status)
+            
+            if status{
+               DispatchQueue.main.async {
+                    self.lblTotalSteps.text = json["steps"].stringValue
+//                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
+                }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+}
+
 

@@ -21,7 +21,7 @@ protocol FriendStatusDelegate {
 class MapViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var mapView: MKMapView!
@@ -32,7 +32,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var delegateFlipToHome : FlipToHomeDelegate!
@@ -43,7 +43,7 @@ class MapViewController: UIViewController {
     lazy var annotation2 = MKPointAnnotation()
 
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -62,7 +62,7 @@ class MapViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     
@@ -109,6 +109,10 @@ class MapViewController: UIViewController {
     }
 }
 
+// ----------------------------------------------------
+//MARK:- --------- MapView Delegate Methods ---------
+// ----------------------------------------------------
+
 extension MapViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
@@ -119,7 +123,7 @@ extension MapViewController : MKMapViewDelegate {
             if annotation.latitude == annotation1.coordinate.latitude && annotation.longitude == annotation1.coordinate.longitude {
                 self.delegateFriendStatus.checkFriendStatus(status: FriendsStatus.AlreadyFriend)
             }else{
-                self.delegateFriendStatus.checkFriendStatus(status: FriendsStatus.BecomeFriend)
+                self.delegateFriendStatus.checkFriendStatus(status: FriendsStatus.RecommendedFriend)
             }
         }
     }

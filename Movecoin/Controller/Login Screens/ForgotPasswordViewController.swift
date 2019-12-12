@@ -11,14 +11,14 @@ import UIKit
 class ForgotPasswordViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func validate() {
@@ -56,7 +56,7 @@ class ForgotPasswordViewController: UIViewController {
 }
 
 // ----------------------------------------------------
-// MARK: - Webservice Methods
+// MARK: - --------- Webservice Methods ---------
 // ----------------------------------------------------
 
 extension ForgotPasswordViewController {

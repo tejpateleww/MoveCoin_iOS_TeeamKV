@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FriendCellDelegate : class {
+    func didPressButton(_ cell: FriendTableViewCell)
+}
+
 class FriendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgPhoto: UIImageView!
@@ -16,13 +20,23 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var btnOutlet: UIButton!
     @IBOutlet weak var btnNext: UIButton!
     
-    var listType = FriendsList.FollowUnfollow
+    var listType = FriendsList.Unfriend
+    var cellDelegate: FriendCellDelegate?
     
-    var friendDetail: FriendDetail? {
+    var friendDetail: FriendsData? {
         didSet{
             if let detail = friendDetail {
-                self.lblName.text = detail.name.capitalizingFirstLetter()
-                self.lblNumber.text = detail.number
+                self.lblName.text = detail.fullName.capitalizingFirstLetter()
+                self.lblNumber.text = detail.nickName
+                // For Image
+                if detail.profilePicture.isBlank{
+                    return
+                }
+                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
+                if let url = URL(string: urlStr) {
+                    self.imgPhoto.kf.indicatorType = .activity
+                    self.imgPhoto.kf.setImage(with: url)
+                }
             }
         }
     }
@@ -48,7 +62,7 @@ class FriendTableViewCell: UITableViewCell {
             btnNext.isHidden = false
             break
         default:
-            btnOutlet.setTitle("Unfollow", for: .normal)
+            btnOutlet.setTitle("Unfriend", for: .normal)
             btnNext.isHidden = true
             break
         }
@@ -56,27 +70,9 @@ class FriendTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
 
     @IBAction func btnAction(_ sender: Any) {
-        
-        switch listType {
-            
-        case .TransferCoins:
-            print("Send")
-            guard let parentVC = self.parentContainerViewController() else { return }
-            let destination = parentVC.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
-            (parentVC as! FriendsViewController).navigationController?.pushViewController(destination, animated: true)
-            break
-            
-        case .NewChat:
-            print("NewChat")
-            break
-            
-        default:
-            print("Unfollow")
-            break
-        }
+        cellDelegate?.didPressButton(self)
     }
 }

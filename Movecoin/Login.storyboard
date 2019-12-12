@@ -8,8 +8,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Cairo-Regular.ttf">
-            <string>Cairo-Regular</string>
+        <array key="Cairo-SemiBold.ttf">
+            <string>Cairo-SemiBold</string>
         </array>
         <array key="Nunito-Bold.ttf">
             <string>Nunito-Bold</string>
@@ -91,7 +91,7 @@
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </segmentedControl>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="NiA-ua-gym">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash Screen Logo" translatesAutoresizingMaskIntoConstraints="NO" id="NiA-ua-gym">
                                         <rect key="frame" x="20" y="128.5" width="110" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="NiA-ua-gym" secondAttribute="height" multiplier="1:1" id="7XE-Hl-bjt"/>
@@ -231,67 +231,6 @@
             </objects>
             <point key="canvasLocation" x="-306" y="841"/>
         </scene>
-        <!--PageVC-->
-        <scene sceneID="a8E-wd-lM6">
-            <objects>
-                <viewController storyboardIdentifier="PageVC" id="LRi-Qf-eKN" customClass="PageVC" customModule="Movecoins" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bWQ-cc-Bh9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcU-1N-5OH">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG" translatesAutoresizingMaskIntoConstraints="NO" id="hg0-EK-97b">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="1Nk-eM-dta">
-                                        <rect key="frame" x="85.5" y="224.5" width="149.5" height="119"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oaq-JB-RiG">
-                                                <rect key="frame" x="0.0" y="0.0" width="149.5" height="47"/>
-                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="25"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJC-lg-pSH">
-                                                <rect key="frame" x="0.0" y="72" width="149.5" height="47"/>
-                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="25"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="119" id="9bO-UL-MUF"/>
-                                            <constraint firstAttribute="width" constant="149.5" id="qlH-tX-z6P"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="hg0-EK-97b" secondAttribute="trailing" id="JI4-Vn-zA8"/>
-                                    <constraint firstItem="hg0-EK-97b" firstAttribute="leading" secondItem="TcU-1N-5OH" secondAttribute="leading" id="R17-RX-5ns"/>
-                                    <constraint firstItem="1Nk-eM-dta" firstAttribute="centerY" secondItem="TcU-1N-5OH" secondAttribute="centerY" id="Wna-C6-dKJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="hg0-EK-97b" secondAttribute="bottom" id="a1x-zc-q1c"/>
-                                    <constraint firstItem="1Nk-eM-dta" firstAttribute="centerX" secondItem="TcU-1N-5OH" secondAttribute="centerX" id="hiD-UW-9oO"/>
-                                    <constraint firstItem="hg0-EK-97b" firstAttribute="top" secondItem="TcU-1N-5OH" secondAttribute="top" id="sLi-Wr-Zqr"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="TcU-1N-5OH" secondAttribute="bottom" id="Lxc-Vq-Byr"/>
-                            <constraint firstAttribute="trailing" secondItem="TcU-1N-5OH" secondAttribute="trailing" id="bPy-JD-lAP"/>
-                            <constraint firstItem="TcU-1N-5OH" firstAttribute="top" secondItem="bWQ-cc-Bh9" secondAttribute="top" id="juY-di-kNN"/>
-                            <constraint firstItem="TcU-1N-5OH" firstAttribute="leading" secondItem="bWQ-cc-Bh9" secondAttribute="leading" id="yA3-rO-wyB"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="SFG-62-9dr"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uTW-8x-glF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2751" y="-711"/>
-        </scene>
         <!--Signup View Controller-->
         <scene sceneID="OyO-Nl-iBF">
             <objects>
@@ -318,10 +257,10 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsb-3i-rkO" userLabel="Profile View">
                                                         <rect key="frame" x="75" y="80" width="170" height="145"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo frame" translatesAutoresizingMaskIntoConstraints="NO" id="38n-SW-NBi">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo-frame" translatesAutoresizingMaskIntoConstraints="NO" id="38n-SW-NBi">
                                                                 <rect key="frame" x="16" y="8" width="138" height="128"/>
                                                             </imageView>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="LOB-39-1fv">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="m-logo" translatesAutoresizingMaskIntoConstraints="NO" id="LOB-39-1fv">
                                                                 <rect key="frame" x="34" y="21" width="102" height="102"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -330,12 +269,12 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3t-R3-wyH">
-                                                                <rect key="frame" x="128" y="3" width="26" height="25"/>
+                                                                <rect key="frame" x="107" y="8" width="35" height="35"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="26" id="HBN-m5-SGG"/>
-                                                                    <constraint firstAttribute="height" constant="25" id="NjS-Sa-mLA"/>
+                                                                    <constraint firstAttribute="width" constant="35" id="HBN-m5-SGG"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="NjS-Sa-mLA"/>
                                                                 </constraints>
-                                                                <state key="normal" image="plus-icon"/>
+                                                                <state key="normal" image="plus-2"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -343,15 +282,15 @@
                                                             <constraint firstItem="38n-SW-NBi" firstAttribute="top" secondItem="xsb-3i-rkO" secondAttribute="top" constant="8" id="3rm-Yn-2Zf"/>
                                                             <constraint firstAttribute="trailing" secondItem="38n-SW-NBi" secondAttribute="trailing" constant="16" id="3xC-as-eXM"/>
                                                             <constraint firstItem="LOB-39-1fv" firstAttribute="trailing" secondItem="38n-SW-NBi" secondAttribute="trailing" constant="-18" id="6TD-Ht-fhF"/>
+                                                            <constraint firstItem="b3t-R3-wyH" firstAttribute="top" secondItem="38n-SW-NBi" secondAttribute="top" id="6r6-OJ-3rH"/>
                                                             <constraint firstItem="LOB-39-1fv" firstAttribute="bottom" secondItem="38n-SW-NBi" secondAttribute="bottom" constant="-13" id="Fv3-kf-hUX"/>
+                                                            <constraint firstItem="b3t-R3-wyH" firstAttribute="trailing" secondItem="38n-SW-NBi" secondAttribute="trailing" constant="-12" id="GEg-4v-5JW"/>
                                                             <constraint firstAttribute="height" constant="145" id="KDK-QY-rC7"/>
                                                             <constraint firstItem="LOB-39-1fv" firstAttribute="top" secondItem="38n-SW-NBi" secondAttribute="top" constant="13" id="Kgl-sf-QW0"/>
                                                             <constraint firstItem="38n-SW-NBi" firstAttribute="leading" secondItem="xsb-3i-rkO" secondAttribute="leading" constant="16" id="QS4-r5-d3W"/>
                                                             <constraint firstAttribute="width" constant="170" id="c5h-RL-GPU"/>
-                                                            <constraint firstItem="b3t-R3-wyH" firstAttribute="top" secondItem="38n-SW-NBi" secondAttribute="top" constant="-5" id="gSP-uD-ftt"/>
                                                             <constraint firstAttribute="bottom" secondItem="38n-SW-NBi" secondAttribute="bottom" constant="9" id="kJh-Gn-qxE"/>
                                                             <constraint firstItem="LOB-39-1fv" firstAttribute="leading" secondItem="38n-SW-NBi" secondAttribute="leading" constant="18" id="v3x-LM-ag3"/>
-                                                            <constraint firstItem="b3t-R3-wyH" firstAttribute="trailing" secondItem="38n-SW-NBi" secondAttribute="trailing" id="wkV-0q-Mkz"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hET-WD-U5f">
@@ -362,6 +301,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="blU-as-vZM" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
@@ -380,6 +320,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NyZ-uO-5eQ" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
@@ -398,6 +339,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hrb-AG-fDj" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                                     </textField>
@@ -416,6 +358,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JYf-yE-LbA" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                                     </textField>
@@ -434,6 +377,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qJJ-xX-q7D" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
@@ -452,6 +396,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hjv-Ja-K1Y" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
@@ -470,6 +415,7 @@
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-3b-W8i" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
@@ -715,7 +661,7 @@
                                                             <constraint firstAttribute="height" constant="266" id="OhD-MN-apd"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MYf-c8-bsM">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash Screen Logo" translatesAutoresizingMaskIntoConstraints="NO" id="MYf-c8-bsM">
                                                         <rect key="frame" x="95" y="68" width="130" height="130"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="130" id="TZB-Zr-DAq"/>
@@ -743,6 +689,7 @@
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3vE-cE-1ec" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="12" y="10" width="270" height="30"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                                             </textField>
@@ -761,6 +708,7 @@
                                                                         <subviews>
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SbW-hY-ecm" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                                <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                             </textField>
@@ -941,7 +889,7 @@
                                             <constraint firstAttribute="height" constant="266" id="vJR-Hx-rXR"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="J00-op-wXK">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash Screen Logo" translatesAutoresizingMaskIntoConstraints="NO" id="J00-op-wXK">
                                         <rect key="frame" x="95" y="68" width="130" height="130"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="130" id="KLi-Br-ck3"/>
@@ -962,6 +910,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KD0-1E-fuO" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                 <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
@@ -1056,35 +1005,43 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Yb-cK-rel">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG" translatesAutoresizingMaskIntoConstraints="NO" id="llV-eR-pYu">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG" translatesAutoresizingMaskIntoConstraints="NO" id="llV-eR-pYu">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xG2-r0-Dph">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-yw-8an">
-                                                <rect key="frame" x="245" y="494" width="40" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="20"/>
-                                                <state key="normal" title="Next">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
-                                        </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="s98-rX-Dgq">
-                                        <rect key="frame" x="140.5" y="501" width="39" height="37"/>
+                                        <rect key="frame" x="140.5" y="491" width="39" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="39" id="aCQ-tl-JSy"/>
                                             <constraint firstAttribute="height" constant="37" id="jr6-q4-LJt"/>
                                         </constraints>
+                                        <color key="pageIndicatorTintColor" red="0.14901960784313725" green="0.58039215686274503" blue="0.69019607843137254" alpha="0.60999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <color key="currentPageIndicatorTintColor" red="0.14901960784313725" green="0.58039215686274503" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     </pageControl>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-yw-8an">
+                                        <rect key="frame" x="235" y="488" width="70" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="d1c-3q-jr1"/>
+                                            <constraint firstAttribute="width" constant="70" id="m0N-s1-zOW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Cairo-SemiBold" family="Cairo" pointSize="18"/>
+                                        <state key="normal" title="Skip &gt;&gt;">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnSkipTapped:" destination="zIq-b3-aKQ" eventType="touchUpInside" id="WxL-gW-eaO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="s98-rX-Dgq" secondAttribute="bottom" constant="30" id="0sS-S1-bBZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="s98-rX-Dgq" secondAttribute="bottom" constant="40" id="0sS-S1-bBZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xuw-yw-8an" secondAttribute="bottom" constant="30" id="5Yd-d3-hHx"/>
                                     <constraint firstAttribute="trailing" secondItem="xG2-r0-Dph" secondAttribute="trailing" id="ANw-vO-qI6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xuw-yw-8an" secondAttribute="trailing" constant="15" id="FC2-8g-m3w"/>
                                     <constraint firstItem="xG2-r0-Dph" firstAttribute="leading" secondItem="9Yb-cK-rel" secondAttribute="leading" id="NTY-dR-GIw"/>
                                     <constraint firstAttribute="bottom" secondItem="llV-eR-pYu" secondAttribute="bottom" id="P8G-pY-HNL"/>
                                     <constraint firstItem="s98-rX-Dgq" firstAttribute="centerX" secondItem="9Yb-cK-rel" secondAttribute="centerX" id="QCY-Ch-Rhj"/>
@@ -1106,6 +1063,8 @@
                         <viewLayoutGuide key="safeArea" id="GVC-MO-gHV"/>
                     </view>
                     <connections>
+                        <outlet property="btnSkip" destination="Xuw-yw-8an" id="vnX-uD-qYd"/>
+                        <outlet property="pageControl" destination="s98-rX-Dgq" id="gOb-Dx-6Qy"/>
                         <outlet property="viewContainer" destination="xG2-r0-Dph" id="CLZ-0s-ged"/>
                     </connections>
                 </viewController>
@@ -1116,13 +1075,13 @@
     </scenes>
     <resources>
         <image name="Facebook-icon" width="42" height="42"/>
-        <image name="Logo" width="169" height="169"/>
-        <image name="Photo frame" width="116" height="116"/>
+        <image name="Splash Screen Logo" width="169" height="169"/>
         <image name="SplashBG" width="375" height="812"/>
         <image name="TopBG" width="375" height="266"/>
         <image name="Twitter icon" width="42" height="42"/>
         <image name="bg-register" width="375" height="146"/>
-        <image name="plus-icon" width="170" height="170"/>
-        <image name="user" width="170" height="170"/>
+        <image name="m-logo" width="137" height="137"/>
+        <image name="photo-frame" width="116" height="116"/>
+        <image name="plus-2" width="52" height="52"/>
     </resources>
 </document>

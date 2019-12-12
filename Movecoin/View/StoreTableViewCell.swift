@@ -7,32 +7,66 @@
 //
 
 import UIKit
+import Kingfisher
 
 class StoreTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblDiscount: UILabel!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblCoins: UILabel!
     @IBOutlet weak var imgProduct: UIImageView!
-    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var discountView: UIView!
     
-    var productDetail: ProductDetail? {
+    @IBOutlet weak var lblOutOfStock: UILabel!
+    @IBOutlet weak var viewOutOfStock: UIView!
+    
+    var product: ProductDetails? {
         didSet{
-            if let detail = productDetail {
-                self.lblDiscount.text = detail.discount + "% Off"
-                self.lblProductName.text = detail.name
-                self.lblPrice.text = detail.price
-                self.imgProduct.image = UIImage(named: detail.image)
+            if let data = product {
+                self.lblProductName.text = data.name
+                self.lblPrice.text = "$" + data.price
+                self.lblCoins.text = data.coins
+                if data.discount == "0" {
+                    discountView.isHidden = true
+                } else {
+                    discountView.isHidden = false
+                     self.lblDiscount.text = data.discount + "% Off"
+                }
+                if data.status == "Out Stock" {
+                    viewOutOfStock.isHidden = false
+                }else{
+                    viewOutOfStock.isHidden = true
+                }
+                
+                // For Image
+                let productsURL = NetworkEnvironment.baseImageURL + data.productImage
+                if let url = URL(string: productsURL) {
+                    self.imgProduct.kf.indicatorType = .activity
+                    self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+//                    self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"), options: nil) { result in
+//                        switch result
+//                        {
+//                        case .success(let value):
+//                            print(value)
+//                           
+//                        case .failure(let error):
+//                            print("The error for image is \(error.localizedDescription)")
+//                        }
+//                    }
+                }
             }
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        view.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
-        lblPrice.font = UIFont.regular(ofSize: 15)
+        discountView.transform = CGAffineTransform(rotationAngle: CGFloat(Double(-45) * .pi/180))
+        lblCoins.font = UIFont.regular(ofSize: 15)
         lblDiscount.font = UIFont.semiBold(ofSize: 13)
         lblProductName.font = UIFont.semiBold(ofSize: 18)
+        lblPrice.font = UIFont.semiBold(ofSize: 18)
+        lblOutOfStock.font = UIFont.bold(ofSize: 28)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

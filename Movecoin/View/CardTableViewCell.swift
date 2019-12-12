@@ -8,18 +8,20 @@
 
 import UIKit
 
+
 class CardTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgCard: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblnumber: UILabel!
     
-    var cardDetail: CardDetail? {
+    var cardDetail: Card? {
         didSet{
             if let detail = cardDetail {
-                self.lblName.text = detail.name
-                self.lblnumber.text = "XXXX XXXX XXXX " + String(detail.number.suffix(4))
-                self.imgCard.image = UIImage(named: detail.image)
+                self.lblName.text = detail.alias
+                self.lblnumber.text =  detail.cardNum // "XXXX XXXX XXXX " + String(detail.cardNum.suffix(4))
+                let type = detail.type.lowercased()
+                self.imgCard.image = UIImage(named: type)
             }
         }
     }

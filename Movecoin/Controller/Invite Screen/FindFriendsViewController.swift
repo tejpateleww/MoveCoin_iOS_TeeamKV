@@ -7,49 +7,51 @@
 //
 
 import UIKit
+import Contacts
+import MessageUI
 
-struct FriendDetail {
-    var name : String
-    var number : String
+class FriendsTableData {
+    var Section : String!
+    var Rows : [Any]!
+    
+    init(section:String, rows:[Any]){
+        self.Section = section
+        self.Rows = rows
+    }
 }
 
 class FindFriendsViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblFriends: UITableView!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var friendsArray : [FriendDetail] = []
+    lazy var contactsArray : [PhoneModel] = []
+    lazy var notRegisteredContacts : [PhoneModel] = []
+    lazy var registeredContacts : [Registered] = []
+    var responseModel : InviteFriendsResponseModel?
+    let store = CNContactStore()
+    lazy var tableData : [FriendsTableData] = []
     
+    lazy var composeVC = MFMessageComposeViewController()
+
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        
-        let friend1 = FriendDetail(name: "Muhammad", number: "+971 6584 69584")
-        let friend2 = FriendDetail(name: "Mustapha", number: "+971 6584 69584")
-        let friend3 = FriendDetail(name: "Kashif", number: "+971 6584 69584")
-        let friend4 = FriendDetail(name: "Sarah", number: "+971 6584 69584")
-        let friend5 = FriendDetail(name: "Leen", number: "+971 6584 69584")
-        let friend6 = FriendDetail(name: "Lashiya", number: "+971 6584 69584")
-        let friend7 = FriendDetail(name: "Ayesha", number: "+971 6584 69584")
-        let friend8 = FriendDetail(name: "Halum", number: "+971 6584 69584")
-        let friend9 = FriendDetail(name: "Sumeya", number: "+971 6584 69584")
-        let friend10 = FriendDetail(name: "Muhammad", number: "+971 6584 69584")
-        friendsArray = [friend1,friend2,friend3,friend4,friend5,friend6,friend7,friend8,friend9,friend10]
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -57,23 +59,282 @@ class FindFriendsViewController: UIViewController {
         tblFriends.delegate = self
         tblFriends.dataSource = self
         tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
+        accessContacts()
     }
+    
+    func accessContacts(){
+        let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
+        if authorizationStatus == .notDetermined {
+
+            store.requestAccess(for: .contacts) { [weak self] didAuthorize,
+            error in
+                if didAuthorize {
+                    self?.retrieveContacts(from: self!.store)
+                }
+            }
+        } else if authorizationStatus == .authorized {
+            retrieveContacts(from: store)
+        }
+    }
+    
+    func retrieveContacts(from store: CNContactStore) {
+   
+      let keysToFetch = [CNContactGivenNameKey as CNKeyDescriptor,
+                         CNContactPhoneNumbersKey as CNKeyDescriptor]
+       let request = CNContactFetchRequest(keysToFetch: keysToFetch)
+        do {
+            try store.enumerateContacts(with: request){
+                    (contact, stop) in
+                // Array containing all unified contacts from everywhere
+               
+                for phoneNumber in contact.phoneNumbers {
+                    let number = phoneNumber.value
+                    let digits = number.stringValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                    if digits.count >= 9 {
+                        let phone = PhoneModel(name: contact.givenName, number: String(digits.suffix(10)))
+                        self.contactsArray.append(phone)
+                    }
+                }
+            }
+            if contactsArray.count >= 1 {
+                webserviceForInviteFriends(dic: contactsArray)
+            }
+        } catch {
+            print("unable to fetch contacts")
+        }
+    }
+    
+//    @objc func btnInviteTapped(_ sender: UIButton){
+//
+//        if (sender.titleLabel?.text == "+ Invite") {
+//            composeVC.messageComposeDelegate = self
+//
+//             let number = notRegisteredContacts[sender.tag].number
+//             composeVC.recipients = [number]
+//             composeVC.body = "Check out this app \(kAppName), referral code - " + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
+//
+//            // Present the view controller modally.
+//            if MFMessageComposeViewController.canSendText() {
+//                self.present(composeVC, animated: true, completion: nil)
+//            }
+//        }
+//    }
+//
+//     @objc func btnFollowTapped(_ sender: UIButton){
+//
+//        if (sender.titleLabel?.text == "Add Friend") {
+//            print("Add Friend")
+//            if let recevierID = registeredContacts[sender.tag].iD {
+//                 webserviceForAddFriends(id: recevierID)
+//            }
+//        }
+//    }
+//
+//    @objc func btnRejectTapped(_ sender: UIButton){
+//
+//           if (sender.titleLabel?.text == "Reject") {
+//               print("Reject")
+//                if let data = tableData.first?.Rows[sender.tag] as? Request {
+//                    webserviceForAcceptReject(requestID: data.iD, action: sender.titleLabel!.text!)
+//                }
+//           }
+//       }
+    
+    @objc func btnAcceptTapped(_ sender: UIButton){
+           
+           if (sender.titleLabel?.text == "Accept") {
+               print("Accept")
+                if let data = tableData.first?.Rows[sender.tag] as? Request {
+                    webserviceForAcceptReject(requestID: data.iD, action: sender.titleLabel!.text!)
+                }
+           }
+       }
 }
 
-extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource {
+// ----------------------------------------------------
+//MARK:- --------- TableView Methods ---------
+// ----------------------------------------------------
+
+extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource, InviteFriendCellDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tableData.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendsArray.count
+        let sectionData = tableData[section]
+        return sectionData.Rows.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionData = tableData[section]
+        return sectionData.Section
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendTableViewCell.className) as! FindFriendTableViewCell
         cell.selectionStyle = .none
-        cell.friendDetail = friendsArray[indexPath.row]
+        cell.cellDelegate = self
+        
+        let sectionData = tableData[indexPath.section]
+        cell.type = FriendsStatus.init(rawValue: sectionData.Section)
+       
+        switch cell.type {
+        case .RequestPendding:
+            if let requestData = sectionData.Rows[indexPath.row] as? Request {
+                cell.requested = requestData
+                if requestData.receiverID == SingletonClass.SharedInstance.userData?.iD {
+//                    cell.btnInvite.tag = indexPath.row
+//                    cell.btnInvite.addTarget(self, action: #selector(self.btnRejectTapped(_:)), for: .touchUpInside)
+                    cell.btnAccept.tag = indexPath.row
+                    cell.btnAccept.addTarget(self, action: #selector(self.btnAcceptTapped(_:)), for: .touchUpInside)
+                }
+            }
+            
+        case .RecommendedFriend:
+            cell.registeredFriend = registeredContacts[indexPath.row]
+//            cell.btnInvite.tag = indexPath.row
+//            cell.btnInvite.addTarget(self, action: #selector(self.btnFollowTapped(_:)), for: .touchUpInside)
+            
+        case .NotRegistedFriend:
+           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
+//           cell.btnInvite.tag = indexPath.row
+//           cell.btnInvite.addTarget(self, action: #selector(self.btnInviteTapped(_:)), for: .touchUpInside)
+            
+        default:
+            break
+        }
         return cell
+    }
+    
+    func didPressButton(_ cell: FindFriendTableViewCell) {
+        switch cell.type {
+        case .RequestPendding:
+            if let id = cell.requested?.iD {
+                webserviceForAcceptReject(requestID: id)
+            }
+            
+        case .RecommendedFriend:
+            if let recevierID = cell.registeredFriend?.iD {
+                webserviceForAddFriends(id: recevierID)
+           }
+            
+        case .NotRegistedFriend:
+            
+           composeVC.messageComposeDelegate = self
+           guard let number = cell.notRegisteredFriend?.number else { return }
+           composeVC.recipients = [number]
+           composeVC.body = "Check out this app \(kAppName), referral code - " + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
+           // Present the view controller modally.
+           if MFMessageComposeViewController.canSendText() {
+               self.present(composeVC, animated: true, completion: nil)
+           }
+            
+        default:
+            break
+        }
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Messagae Delegate Methods ---------
+// ----------------------------------------------------
+
+extension FindFriendsViewController : MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        composeVC.dismiss(animated: true, completion: nil)
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension FindFriendsViewController {
+    
+    func webserviceForInviteFriends(dic : [PhoneModel]){
+        
+        // JSON String for Sending Contacts
+        var JSONstring = String()
+        if let contactsDic = dic.asDictionaryArray {
+            if let JSONData = try?  JSONSerialization.data(withJSONObject: contactsDic, options: []), let JSONText = String(data: JSONData, encoding: String.Encoding.utf8) {
+                        JSONstring = JSONText
+            }
+        }
+        let requestModel = InviteFriendsModel()
+        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.Phone = JSONstring
+
+        FriendsWebserviceSubclass.inviteFriends(inviteFrinedsModel: requestModel){ (json, status, res) in
+            
+            if status {
+                self.tableData.removeAll()
+                self.responseModel = InviteFriendsResponseModel(fromJson: json)
+                
+                if let requestedArray = self.responseModel?.requests, requestedArray.count > 0 {
+                    let arr = requestedArray.sorted(by: <)
+                    let requestedDic = FriendsTableData(section: "Requested", rows: arr)
+                    self.tableData.append(requestedDic)
+                }
+                if let registeredArray = self.responseModel?.registered, registeredArray.count > 0 {
+                    self.registeredContacts = registeredArray.sorted(by: <)
+                    let registeredDic = FriendsTableData(section: "Recommended", rows: self.registeredContacts)
+                    self.tableData.append(registeredDic)
+                }
+                if let notRegisteredArray = self.responseModel?.notRegistered, notRegisteredArray.count > 0 {
+                    let numbers = notRegisteredArray.compactMap({$0.phone})
+                    let inviteArray = self.contactsArray.filter({numbers.contains($0.number)})
+                    self.notRegisteredContacts = (inviteArray.unique(map: ({$0.name}))).sorted(by: <)
+                    let notRegisteredDic = FriendsTableData(section: "Not Registered", rows: self.notRegisteredContacts)
+                    self.tableData.append(notRegisteredDic)
+                }
+                self.tblFriends.reloadData()
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForAddFriends(id : String){
+        
+        let requestModel = FriendRequestModel()
+        requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.ReceiverID = id
+
+        FriendsWebserviceSubclass.friendRequest(frinedRequestModel: requestModel){ (json, status, res) in
+            
+            if status {
+                self.retrieveContacts(from: self.store)
+                UtilityClass.showAlert(Message: json["message"].stringValue)
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForAcceptReject(requestID: String, action: String = "Reject"){
+        
+        let requestModel = ActionOnFriendRequestModel()
+        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.RequestID = requestID
+        requestModel.Action = action
+
+        FriendsWebserviceSubclass.actionOnFriendRequest(actionFrinedRequestModel: requestModel){ (json, status, res) in
+            
+            if status {
+                self.retrieveContacts(from: self.store)
+                UtilityClass.showAlert(Message: json["message"].stringValue)
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
     }
 }

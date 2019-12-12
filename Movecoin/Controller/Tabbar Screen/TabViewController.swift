@@ -15,7 +15,7 @@ protocol WalletCoinsDelegate {
 class TabViewController: UIViewController {
   
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var viewContainer: UIView!
@@ -32,7 +32,7 @@ class TabViewController: UIViewController {
     @IBOutlet weak var lblProfile: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var arrayTabColors = [StoreColor, WalletColor, HomeColor, StatisticsColor, ProfileColor]
@@ -54,7 +54,7 @@ class TabViewController: UIViewController {
     
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -65,19 +65,11 @@ class TabViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        var index = 0
-//        for _ in viewGradients {
-//            self.setColorOfView(index: index)
-//            index += 1
-//        }
-//        viewControllers = [storeVC, walletVC, homeVC, statisticsVC, profileVC]
-//        self.btnTabTapped(btnTabs![selectedIndex])
     }
     
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupView(){
@@ -126,7 +118,7 @@ class TabViewController: UIViewController {
     }
     
     //----------------------------------------------------
-    // MARK: - Button Action Methods
+    // MARK: - --------- Button Action Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnTabTapped(_ sender: Any) {
@@ -168,6 +160,10 @@ class TabViewController: UIViewController {
         }
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Custom Delegate Methods ---------
+// ----------------------------------------------------
 
 extension TabViewController : FlipToMapDelegate, FlipToHomeDelegate, WalletCoinsDelegate {
     

@@ -11,7 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblSettings: UITableView!
@@ -19,13 +19,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var lblVersion: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Add Card","Help","Rate this app","Terms and Conditions","Privacy Policy","Support","Language"]
     
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
@@ -40,7 +40,7 @@ class SettingsViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -58,7 +58,7 @@ class SettingsViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnLogoutTapped(_ sender: Any) {
@@ -75,6 +75,10 @@ class SettingsViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
 
 extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
     

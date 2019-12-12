@@ -144,18 +144,17 @@ extension AppDelegate {
 //        }
     }
     
+    func GoToOnBoard(){
+        let storyborad = UIStoryboard(name: "Login", bundle: nil)
+        let Login = storyborad.instantiateViewController(withIdentifier: OnBoradViewController.className) as! OnBoradViewController
+        let NavHomeVC = UINavigationController(rootViewController: Login)
+        self.window?.rootViewController = NavHomeVC
+    }
+    
     func GoToLogin() {
-        
-//        let storyborad = UIStoryboard(name: "Login", bundle: nil)
-//        let Login = storyborad.instantiateViewController(withIdentifier: OnBoradViewController.className) as! OnBoradViewController
-//        let NavHomeVC = UINavigationController(rootViewController: Login)
-//        //        NavHomeVC.isNavigationBarHidden = true
-//        self.window?.rootViewController = NavHomeVC
-        
         let storyborad = UIStoryboard(name: "Login", bundle: nil)
         let Login = storyborad.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
         let NavHomeVC = UINavigationController(rootViewController: Login)
-//        NavHomeVC.isNavigationBarHidden = true
         self.window?.rootViewController = NavHomeVC
     }
     
@@ -169,7 +168,7 @@ extension AppDelegate {
 //                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.IsLogin)
 //            }
 //        }
-        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.kIsLogedIn)
+//        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.kIsLogedIn)
         self.GoToLogin()
     }
     

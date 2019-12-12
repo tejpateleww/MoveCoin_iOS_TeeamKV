@@ -84,7 +84,7 @@ extension UIViewController {
     }
     
     // ----------------------------------------------------
-    //MARK:- --------- Get UserData Methods ---------
+    //MARK:- --------- Get UserData Method ---------
     // ----------------------------------------------------
     
     func getUserData(){
@@ -94,23 +94,21 @@ extension UIViewController {
             UtilityClass.showAlert(Message: error.localizedDescription)
             return
         }
-        
         print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
     }
     
-//    func getTodaysStepCounts(label: UILabel) {
-//        let pedoMeter = CMPedometer()
-//        pedoMeter.queryPedometerData(from: Date().midnight, to: Date()) { (data, error) in
-//            print("queryPedometerData : ", data ?? 0)
-//            guard let activityData = data else {
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                label.text = activityData.numberOfSteps.stringValue
-//            }
-//            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps
-//        }
-//    }
+    // ----------------------------------------------------
+    //MARK:- --------- Gradient Method ---------
+    // ----------------------------------------------------
     
-    
+    func setGradientColorOfView(view: UIView, startColor : UIColor, endColor: UIColor) {
+        view.layoutIfNeeded()
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        let startColor = startColor.withAlphaComponent(0.15)
+        let endColor = endColor.withAlphaComponent(0)
+        gradient.colors = [startColor.cgColor, endColor.cgColor]
+        view.layer.insertSublayer(gradient, at: 0)
+        view.layoutIfNeeded()
+    }
 }

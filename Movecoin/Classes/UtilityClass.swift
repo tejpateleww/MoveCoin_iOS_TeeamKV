@@ -27,20 +27,21 @@ class UtilityClass : NSObject {
     //MARK:- --------- Change DateFormat Methods ---------
     // ----------------------------------------------------
     
-    class func changeDateFormateFrom(dateString: String, fromFormat : String = "", withFormat format: String) -> String? {
+    class func changeDateFormateFrom(dateString: String, fromFormat : String , withFormat format: String) -> String? {
         
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if(fromFormat.trimmingCharacters(in: .whitespacesAndNewlines).count != 0){
             inputFormatter.dateFormat = fromFormat
         }
-        //        2018-08-01 17:34:32
+//        let UTC = dateString.localToUTC(fromFormate:fromFormat, toFormate: fromFormat)
         if let date = inputFormatter.date(from: dateString){
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = format
             let str = outputFormatter.string(from: date)
+//            return str.UTCToLocal(fromFormate: format, toFormate: format)
             return str
         }
+        
         return nil
     }
     

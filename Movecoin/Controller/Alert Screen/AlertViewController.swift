@@ -8,27 +8,31 @@
 
 import UIKit
 
+public protocol AlertDelegate: class {
+    func okHandler()
+}
+
 class AlertViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var alertTitle : String?
     var alertDescription : String?
-    
+    var delegate: AlertDelegate?
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBarSetUp(hidesBackButton: true)
@@ -43,7 +47,7 @@ class AlertViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupFont(){
@@ -52,10 +56,11 @@ class AlertViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
    
     @IBAction func btnOkTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion:nil)
+        self.delegate?.okHandler()
     }
 }

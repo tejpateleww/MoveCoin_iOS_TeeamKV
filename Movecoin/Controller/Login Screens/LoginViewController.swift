@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController, CAAnimationDelegate {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var imgTop: UIImageView!
@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setDummy(){
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnSignUpTapped(_ sender: Any) {
@@ -118,7 +118,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
 }
 
 // ----------------------------------------------------
-// MARK: - Webservice Methods
+// MARK: - --------- Webservice Methods ---------
 // ----------------------------------------------------
 
 extension LoginViewController {

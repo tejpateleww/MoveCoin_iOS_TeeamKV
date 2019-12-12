@@ -14,11 +14,24 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     
-    var walletDetail: WalletDetail? {
+    var walletDetail: WalletData? {
         didSet{
             if let detail = walletDetail {
-                self.lblDiscription.text = detail.discription
-                self.lblAmount.text = detail.amount
+                self.lblDiscription.text = detail.descriptionField
+                
+                if let dateStr = UtilityClass.changeDateFormateFrom(dateString: detail.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate){
+                    self.lblDate.text = dateStr
+                }
+                
+                let type = CoinsTransferType.init(rawValue: detail.type)
+                switch type {
+                case .Send:
+                    self.lblAmount.text = "-" + detail.coins
+                case .Receive:
+                    self.lblAmount.text = "+" + detail.coins
+                case .none:
+                    return
+                }
             }
         }
     }

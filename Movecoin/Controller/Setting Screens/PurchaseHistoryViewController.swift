@@ -11,19 +11,19 @@ import UIKit
 class PurchaseHistoryViewController: UIViewController {
 
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblPurchaseHistory: UITableView!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
    
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class PurchaseHistoryViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -47,6 +47,10 @@ class PurchaseHistoryViewController: UIViewController {
         self.tblPurchaseHistory.tableFooterView = UIView.init(frame: CGRect.zero)
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
 
 extension PurchaseHistoryViewController : UITableViewDelegate, UITableViewDataSource {
     

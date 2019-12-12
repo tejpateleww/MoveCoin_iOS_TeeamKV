@@ -11,7 +11,7 @@ import UIKit
 class PopoverViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var imgProfile: UIImageView!
@@ -28,7 +28,7 @@ class PopoverViewController: UIViewController {
     @IBOutlet weak var btnSendFriendRequest: ThemeButton!
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class PopoverViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupFont(){
@@ -64,7 +64,7 @@ class PopoverViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnChatTapped(_ sender: Any) {
@@ -89,6 +89,10 @@ class PopoverViewController: UIViewController {
     }
 }
 
+// ----------------------------------------------------
+//MARK:- --------- Custom Delegate Methods ---------
+// ----------------------------------------------------
+
 extension PopoverViewController : FriendStatusDelegate {
     func checkFriendStatus(status: FriendsStatus) {
         switch status {
@@ -97,13 +101,15 @@ extension PopoverViewController : FriendStatusDelegate {
             stackButtons.isHidden = false
             stackInfo.isHidden = false
             lblLastSeen.isHidden = false
-            break
-        case .BecomeFriend:
+            
+        case .RecommendedFriend:
             btnSendFriendRequest.isHidden = false
             stackButtons.isHidden = true
             stackInfo.isHidden = true
             lblLastSeen.isHidden = true
-            break
+           
+        default :
+            return
         }
     }
 }

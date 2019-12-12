@@ -7,33 +7,41 @@
 //
 
 import UIKit
+import Cosmos
 
 class ProductDetailViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var viewBottom: UIView!
+    @IBOutlet weak var viewRating: CosmosView!
+    @IBOutlet weak var viewShadow: UIView!
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStore: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblBuy: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var btnBuy: UIButton!
+    @IBOutlet weak var stackView: UIStackView!
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var thisWidth:CGFloat = 0
-    let imgArray = ["airpods.jpg","airpods1.jpg","airpods2.jpg"]
+    var productID: String?
+    var thisWidth: CGFloat = 0
+    
+    var imgArray : [String] = []
     var viewType : PurchaseDetailViewType = .Purchase
+    var product : ProductDetails!
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
@@ -41,11 +49,18 @@ class ProductDetailViewController: UIViewController {
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
+        guard productID != nil else { return }
+        webserviceForProductDetails()
+    }
+   
+    override func viewDidLayoutSubviews() {
+        super.viewDidAppear(true)
+         setGradientColorOfView(view: viewShadow, startColor: UIColor.black, endColor: UIColor.clear)
     }
     
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -54,6 +69,7 @@ class ProductDetailViewController: UIViewController {
         collectionView.dataSource = self
         
         pageControl.hidesForSinglePage = true
+        pageControl.isUserInteractionEnabled = false
         
         switch viewType {
         case .History:
@@ -73,18 +89,50 @@ class ProductDetailViewController: UIViewController {
         lblStore.font = UIFont.regular(ofSize: 14)
     }
     
+    func setupProductData(){
+        // For Images
+        imgArray = self.product.gallery.components(separatedBy: ",")
+        pageControl.numberOfPages = imgArray.count
+        collectionView.reloadData()
+        
+        // For Data
+        if let rating = product.avgRatings {
+            viewRating.rating = Double(rating) ?? 0
+        }
+       
+//        lblDescription.attributedText = product.descriptionField.html2Attributed
+        lblDescription.text = product.descriptionField
+        lblStore.text = "Store : " + product.store
+        if product.discount != "0" {
+             lblTitle.text = product.name + " with \(product.discount!)% Discount"
+        }else {
+            lblTitle.text = product.name
+        }
+        
+        if product.status == "Out Stock" {
+            stackView.isHidden = true
+            btnBuy.isEnabled = false
+            btnBuy.backgroundColor = .lightText
+            btnBuy.setTitle("Out of Stock", for: .normal)
+        }else{
+             lblPrice.text = product.coins
+        }
+    }
+    
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
+    // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnPurchaseTapped(_ sender: Any) {
-//        let storyborad = UIStoryboard(name: "Main", bundle: nil)
-//        let destination = storyborad.instantiateViewController(withIdentifier: AlertViewController.className) as! AlertViewController
-//        destination.alertTitle = "Insufficient Balance"
-//        destination.alertDescription = "Your current balance is too low to purchase 50% off Mous - Protective phone cases. Don't want to wait? invite Friends and Family to earn faster!"
-//        add(destination, frame: self.view.frame)
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: ConfirmPurchaseViewController.className) as! ConfirmPurchaseViewController
+        controller.product = product
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- CollectionView Methods ---------
+// ----------------------------------------------------
 
 extension ProductDetailViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -98,7 +146,7 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCollectionViewCell.className, for: indexPath) as! ProductDetailCollectionViewCell
-        cell.imgProduct.image = UIImage(named: imgArray[indexPath.section])
+        cell.productImage = imgArray[indexPath.section]
         return cell
     }
     
@@ -110,6 +158,34 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
         thisWidth = windowWidth
         return CGSize(width: thisWidth, height: collectionView.frame.height)
     }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension ProductDetailViewController {
     
+    func webserviceForProductDetails(){
+        
+        UtilityClass.showHUD()
+        
+        let requestModel = ProductDetailModel()
+        requestModel.ProductID = productID ?? ""
     
+        ProductWebserviceSubclass.productDetails(productDetailModel: requestModel){ (json, status, res) in
+          
+            UtilityClass.hideHUD()
+            
+            if status {
+                let responseModel = ProductDetailResponseModel(fromJson: json)
+                if let data = responseModel.data {
+                    self.product = data
+                    self.setupProductData()
+                }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
 }

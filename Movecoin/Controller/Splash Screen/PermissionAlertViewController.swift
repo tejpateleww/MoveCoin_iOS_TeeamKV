@@ -11,18 +11,18 @@ import UIKit
 class PermissionAlertViewController: UIViewController {
 
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     // ----------------------------------------------------
-    // MARK: - ViewController Lifecycle Methods
+    // MARK: - --------- ViewController Lifecycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class PermissionAlertViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func initialSetup(){

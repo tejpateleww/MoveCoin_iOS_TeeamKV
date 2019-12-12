@@ -35,7 +35,7 @@ open class ImagePickerClass: NSObject {
         self.pickerController.mediaTypes = ["public.image"]
     }
 
-    private func action(for type: UIImagePickerController.SourceType, title: String) -> UIAlertAction? {
+    private func action(for type: UIImagePickerController.SourceType, title: String, tag : Int) -> UIAlertAction? {
         guard UIImagePickerController.isSourceTypeAvailable(type) else {
             return nil
         }
@@ -51,15 +51,19 @@ open class ImagePickerClass: NSObject {
         self.SelectedTag = sourceView.tag
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        if let action = self.action(for: .camera, title: "Take photo") {
+        if let action = self.action(for: .camera, title: "Take photo", tag: self.SelectedTag) {
             alertController.addAction(action)
         }
-        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") {
+        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll", tag: self.SelectedTag) {
             alertController.addAction(action)
         }
-        if let action = self.action(for: .photoLibrary, title: "Photo library") {
+        if let action = self.action(for: .photoLibrary, title: "Photo library", tag: self.SelectedTag) {
             alertController.addAction(action)
         }
+        
+        alertController.addAction(UIAlertAction(title: "Remove Photo", style: .destructive, handler: { (action) in
+            self.delegate?.didSelect(image: nil, SelectedTag:101)
+        }))
 
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 

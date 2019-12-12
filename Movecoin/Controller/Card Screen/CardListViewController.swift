@@ -8,16 +8,15 @@
 
 import UIKit
 
-struct CardDetail {
-    var name : String
-    var number : String
-    var image : String
+protocol CardDelegate {
+    func setCardDetails(value: Card)
 }
+
 
 class CardListViewController: UIViewController {
 
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblCardList: UITableView!
@@ -29,13 +28,15 @@ class CardListViewController: UIViewController {
     @IBOutlet weak var txtCVV: ThemeTextfield!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: ----------  Variables ---------
     // ----------------------------------------------------
     
-     var cardArray : [CardDetail] = []
+    lazy var cardArray : [Card] = []
+    let expiryDatePicker = MonthYearPickerView()
+    var delegate:CardDelegate?
     
     // ----------------------------------------------------
-    // MARK: - ViewController Lifecycle Methods
+    // MARK: ----------  ViewController Lifecycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -43,13 +44,8 @@ class CardListViewController: UIViewController {
         self.initialSetup()
         self.setupFont()
         navigationBarSetUp()
+        webserviceCallForCardList()
         self.title =  "Card List"
-        
-        let card1 = CardDetail(name: "HSEB Debit Card", number: "1234 1234 1234 8745", image: "visa-card")
-        let card2 = CardDetail(name: "HSEB Debit Card", number: "1234 1234 1234 8745", image: "master-card")
-        let card3 = CardDetail(name: "HSEB Debit Card", number: "1234 1234 1234 8745", image: "discover-card")
-        let card4 = CardDetail(name: "HSEB Debit Card", number: "1234 1234 1234 8745", image: "visa-card")
-        cardArray = [card1,card2,card3,card4]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +58,7 @@ class CardListViewController: UIViewController {
   
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func initialSetup(){
@@ -71,8 +67,11 @@ class CardListViewController: UIViewController {
         
         txtCardNumber.delegate = self
         txtExpDate.delegate = self
-        txtCVV.delegate = self
-//        txtCardNumber.addTarget(self, action: #selector(reformatAsCardNumber(_:)), forControlEvents: .EditingChanged)
+        
+        expiryDatePicker.onDateSelected = { (month: Int, year: Int) in
+            let string = String(format: "%02d/%d", month, year % 100)
+            self.txtExpDate.text = string
+        }
     }
     
     func setupFont(){
@@ -81,14 +80,24 @@ class CardListViewController: UIViewController {
         txtCardNumber.font = UIFont.regular(ofSize: 17)
         txtCardHolder.font = UIFont.regular(ofSize: 17)
         txtCVV.font = UIFont.regular(ofSize: 17)
-        
     }
     
     func validate() {
         do {
             let cardHolder = try txtCardHolder.validatedText(validationType: ValidatorType.cardHolder)
             let cardNumber = try txtCardNumber.validatedText(validationType: ValidatorType.cardNumber)
-         
+            let expDate = try txtExpDate.validatedText(validationType: ValidatorType.expDate)
+            let cvv = try txtCVV.validatedText(validationType: ValidatorType.cvv)
+            
+            let requestModel = AddCardModel()
+            requestModel.Name = cardHolder
+            requestModel.CardNo = cardNumber
+            requestModel.Expiry = expDate
+            requestModel.Cvv = cvv
+            requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+            
+            webserviceCallForAddCard(cardModel: requestModel)
+            
         } catch(let error) {
             UtilityClass.showAlert(Message: (error as! ValidationError).message)
         }
@@ -99,9 +108,13 @@ class CardListViewController: UIViewController {
     // ----------------------------------------------------
 
     @IBAction func btnAddCardTapped(_ sender: Any) {
-//        self.validate()
+        self.validate()
     }
 }
+
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
 
 extension CardListViewController : UITableViewDelegate, UITableViewDataSource {
     
@@ -119,6 +132,26 @@ extension CardListViewController : UITableViewDelegate, UITableViewDataSource {
         cell.cardDetail = cardArray[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.setCardDetails(value: cardArray[indexPath.row])
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "Are you sure you want to delete the card?", ButtonTitle1: "OK", ButtonTitle2: "Cancel") { (data) in
+                if data == 0 {
+                    let data = self.cardArray[indexPath.row]
+                    self.webserviceCallForDeleteCard(cardID: data.id)
+                }
+            }
+        }
+    }
 }
 
 // ----------------------------------------------------
@@ -127,9 +160,13 @@ extension CardListViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension CardListViewController : UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == txtExpDate{
+            textField.inputView = expiryDatePicker
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print(range)
-        print(textField.text?.count)
         
         if string == ""{
             return true
@@ -144,56 +181,95 @@ extension CardListViewController : UITextFieldDelegate {
             }
             textField.text = currentText.grouping(every: 4, with: " ")
             return false
-            
-        } else if textField == txtExpDate {
-            if ((range.location >= 5) || (textField.text?.count ?? 0 >= 5) ){
-                return false
-            }
-            textField.text = currentText.grouping(every: 2, with: "/")
-            return false
+ 
         } else if textField == txtCVV {
             if (range.location >= 3) {
                 return false
             }
         }
-
         return true
-        
-//        if string == ""{
-//            return true
-//        }
-//
-//        if (textField.text?.count ?? 0 >= 19) {
-//            return false
-//        }
-//
-//        if (range.location >= 19) {
-//            return false
-//        }
-//
-//        if range.length == 1 {
-////            if (range.location == 5 || range.location == 10 || range.location == 15) {
-//                let text = textField.text ?? ""
-////                textField.text = text.substring(to: text.index(before: text.endIndex))
-//                let index = text.index(before: text.endIndex)
-//                textField.text = String(text.suffix(from: index))
-////            }
-//            return true
-//        }
-//
-//        if (range.location == 4 || range.location == 9 || range.location == 14) {
-//            textField.text = String(format: "%@ ", textField.text ?? "")
-//        }
-//
-//        return true
     }
 }
 
-extension String {
-    func grouping(every groupSize: String.IndexDistance, with separator: Character) -> String {
-        let cleanedUpCopy = replacingOccurrences(of: String(separator), with: "")
-        return String(cleanedUpCopy.enumerated().map() {
-            $0.offset % groupSize == 0 ? [separator, $0.element] : [$0.element]
-            }.joined().dropFirst())
+// ----------------------------------------------------
+// MARK: - --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension CardListViewController {
+    
+    func webserviceCallForAddCard(cardModel: AddCardModel){
+        
+        UtilityClass.showHUD()
+        
+        UserWebserviceSubclass.addCard(addCardModel: cardModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            
+            if status{
+                let cardResponseModel = AddCardResponseModel(fromJson: json)
+                UtilityClass.showAlert(Message: cardResponseModel.message)
+                self.cardArray = cardResponseModel.cards
+                DispatchQueue.main.async {
+                    self.tblCardList.reloadData()
+                }
+            }
+            else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceCallForCardList(){
+        
+        var strParam = String()
+        UtilityClass.showHUD()
+                    
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+                   
+        strParam = NetworkEnvironment.baseURL + ApiKey.cardList.rawValue + id
+                  
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+           
+            UtilityClass.hideHUD()
+        
+            if status{
+                let cardResponseModel = CardListResponseModel(fromJson: json)
+                self.cardArray = cardResponseModel.cards
+                DispatchQueue.main.async {
+                    self.tblCardList.reloadData()
+                }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceCallForDeleteCard(cardID: String){
+        
+        var strParam = String()
+        UtilityClass.showHUD()
+                    
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+                   
+        strParam = NetworkEnvironment.baseURL + ApiKey.removeCard.rawValue + id + "/\(cardID)"
+                  
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+           
+            UtilityClass.hideHUD()
+        
+            if status{
+                let cardResponseModel = CardListResponseModel(fromJson: json)
+                self.cardArray = cardResponseModel.cards
+                DispatchQueue.main.async {
+                    self.tblCardList.reloadData()
+                }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
     }
 }

@@ -8,41 +8,38 @@
 
 import UIKit
 
+struct FriendDetail {
+    var name : String
+    var number : String
+}
+
 class FriendsViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var tblFriends: UITableView!
     @IBOutlet weak var txtSearch: UITextField!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    lazy var friendsArray : [FriendDetail] = []
-    lazy var friendListType = FriendsList.FollowUnfollow
-    
+    lazy var search : String = ""
+    lazy var friendsArray : [FriendsData] = []
+    lazy var searchArray : [FriendsData] = []
+    lazy var friendListType = FriendsList.Unfriend
+    lazy var isTyping: Bool = false
+   
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
-        
-        let friend1 = FriendDetail(name: "Muhammad", number: "@mohammad362")
-        let friend2 = FriendDetail(name: "Mustapha", number: "@mustapha5412")
-        let friend3 = FriendDetail(name: "Muhammad", number: "@mohammad362")
-        let friend4 = FriendDetail(name: "Mustapha", number: "@mustapha5412")
-        let friend5 = FriendDetail(name: "Muhammad", number: "@mohammad362")
-        let friend6 = FriendDetail(name: "Mustapha", number: "@mustapha5412")
-        let friend7 = FriendDetail(name: "Muhammad", number: "@mohammad362")
-        let friend8 = FriendDetail(name: "Mustapha", number: "@mustapha5412")
-        let friend9 = FriendDetail(name: "Muhammad", number: "@mohammad362")
-        let friend10 = FriendDetail(name: "Mustapha", number: "@mustapha5412")
-        friendsArray = [friend1,friend2,friend3,friend4,friend5,friend6,friend7,friend8,friend9,friend10]
+        webserviceForFriendsList(isLoading: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,7 +48,7 @@ class FriendsViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpView(){
@@ -62,37 +59,125 @@ class FriendsViewController: UIViewController {
         
         txtSearch.font = UIFont.regular(ofSize: 15)
     }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- UItextfield Action Methods ---------
+    // ----------------------------------------------------
+    
+    @IBAction func txtSearchEditingChangedAction(_ sender: UITextField) {
+        
+        isTyping = (sender.text?.isEmpty ?? false) ? false : true
+        searchArray = friendsArray.filter{ $0.fullName.lowercased().contains(sender.text?.lowercased() ?? "") }
+        tblFriends.reloadData()
+    }
 }
 
-extension FriendsViewController : UITableViewDelegate, UITableViewDataSource {
+// ----------------------------------------------------
+//MARK:- --------- Tableview Delegate Methods ---------
+// ----------------------------------------------------
+
+extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, FriendCellDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendsArray.count
+        return isTyping ? searchArray.count : friendsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendTableViewCell.className) as! FriendTableViewCell
         cell.selectionStyle = .none
         cell.listType = friendListType
-        cell.friendDetail = friendsArray[indexPath.row]
+        cell.cellDelegate = self
+        cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let type = friendListType
+       switch friendListType {
+            case .NewChat:
+                let chatStoryboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+                let destination = chatStoryboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+                self.navigationController?.pushViewController(destination, animated: true)
+                   
+            default:
+                return
+        }
+       
+    }
+    
+    func didPressButton(_ cell: FriendTableViewCell) {
+        print(cell.listType)
         
-        switch type {
-        case .NewChat:
-            let chatStoryboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
-            let destination = chatStoryboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
-            self.navigationController?.pushViewController(destination, animated: true)
-            break
-        default:
-            return
+        switch cell.listType {
+                   
+            case .TransferCoins:
+                print("Send")
+                let destination = self.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
+                destination.receiverData = cell.friendDetail
+                self.navigationController?.pushViewController(destination, animated: true)
+                   
+            case .Unfriend:
+            webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
+            
+            case .NewChat:
+                print("NewChat")
+        }
+    }
+}
+
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension FriendsViewController {
+    
+    func webserviceForFriendsList(isLoading: Bool){
+        
+        if isLoading {
+            UtilityClass.showHUD()
+        }
+            
+        let requestModel = FriendListModel()
+        requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
+    
+        FriendsWebserviceSubclass.friendsList(frinedListModel: requestModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+                let responseModel = FriendsResponseModel(fromJson: json)
+                if responseModel.friendList.count > 0  {
+                    self.friendsArray = responseModel.friendList
+                    self.searchArray = self.friendsArray
+                    self.tblFriends.reloadData()
+                }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForUnfriend(id: String){
+        
+        UtilityClass.showHUD()
+               
+        let requestModel = UnfriendModel()
+        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.FriendID = id
+    
+        FriendsWebserviceSubclass.unfriend(unfrinedModel: requestModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+                UtilityClass.showAlert(Message: json["message"].stringValue)
+                self.webserviceForFriendsList(isLoading: false)
+                
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
         }
     }
 }

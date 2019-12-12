@@ -11,7 +11,7 @@ import UIKit
 class VerificationViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var firstPinView: VKPinCodeView!
@@ -29,7 +29,7 @@ class VerificationViewController: UIViewController {
     var isOTPverified = false
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class VerificationViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setUpPinView(){
@@ -104,7 +104,7 @@ class VerificationViewController: UIViewController {
     }
 }
 // ----------------------------------------------------
-// MARK: - Webservice Methods
+// MARK: - --------- Webservice Methods ---------
 // ----------------------------------------------------
 
 extension VerificationViewController {
@@ -126,6 +126,7 @@ extension VerificationViewController {
                 }catch{
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }
+                self.getUserData()
                 AppDelegateShared.GoToHome()
             }
             else{

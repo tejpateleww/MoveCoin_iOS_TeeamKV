@@ -13,12 +13,13 @@ import Kingfisher
 class ProfileViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
     @IBOutlet weak var segmentedControl: TTSegmentedControl!
     @IBOutlet weak var btnMyFriends: UIButton!
     @IBOutlet weak var imgProfilePicture: UIImageView!
+    @IBOutlet weak var viewProfile: UIView!
     
     @IBOutlet var lblTitle: [UILabel]!
     @IBOutlet weak var lblMemberSince: UILabel!
@@ -27,13 +28,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var lblAverage: UILabel!
     @IBOutlet weak var lblAverageSteps: UILabel!
     
+    
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    //MARK:- --------- Variables ---------
+    // ----------------------------------------------------
+    
+    private var imagePicker : ImagePickerClass!
+    var selectedImage : UIImage?
+    
+    // ----------------------------------------------------
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
+        self.setupView()
         setupSegmentedControl()
     }
     
@@ -57,7 +67,7 @@ class ProfileViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupSegmentedControl(){
@@ -78,6 +88,13 @@ class ProfileViewController: UIViewController {
         lblTotalMoveCoins.font = UIFont.bold(ofSize: 13)
         lblAverage.font = UIFont.semiBold(ofSize: 13)
         lblMemberSince.font = UIFont.regular(ofSize: 12)
+    }
+    
+    func setupView(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.profileViewTapped(_:)))
+        viewProfile.addGestureRecognizer(tap)
+        viewProfile.isUserInteractionEnabled = true
+        self.imagePicker = ImagePickerClass(presentationController: self, delegate: self, allowsEditing: false)
     }
     
     func setUpNavigationItems(){
@@ -106,22 +123,9 @@ class ProfileViewController: UIViewController {
         }
         if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
             imgProfilePicture.kf.indicatorType = .activity
-            imgProfilePicture.kf.setImage(
-                with: url,
-                placeholder: UIImage(named: "user"),
-                options: [
-                    .cacheOriginalImage
-                ])
-            {
-                result in
-                switch result {
-                case .success(let value):
-                    print("Task done for: \(value.source.url?.absoluteString ?? "")")
-                case .failure(let error):
-                    print("Job failed: \(error.localizedDescription)")
-                }
-            }
+            imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
         }
+        btnMyFriends.setTitle("My Friends - \(SingletonClass.SharedInstance.userData?.friends ?? "0")", for: .normal)
     }
     
     @objc func btnChatTapped(){
@@ -132,5 +136,63 @@ class ProfileViewController: UIViewController {
     @objc func btnSettingTapped(){
         let destination = self.storyboard?.instantiateViewController(withIdentifier: SettingsViewController.className) as! SettingsViewController
         self.parent?.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    @objc func profileViewTapped(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        self.imagePicker.present(from: imgProfilePicture)
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- ImagePicker Delegate Methods ---------
+// ----------------------------------------------------
+
+extension ProfileViewController :  ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?, SelectedTag: Int) {
+        
+        if(image == nil && SelectedTag == 101){
+            self.imgProfilePicture.image = UIImage(named: "m-logo")//UIImage.init(named: "imgPetPlaceholder")
+        }else if image != nil{
+            self.imgProfilePicture.image = image
+        }else{
+            return
+        }
+        self.selectedImage = self.imgProfilePicture.image
+        webserviceCallForEditProfile()
+    }
+}
+
+// ----------------------------------------------------
+// MARK: - --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension ProfileViewController {
+    
+    func webserviceCallForEditProfile(){
+        
+        UtilityClass.showHUD()
+        let editModel = EditProfileModel()
+        editModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+
+        UserWebserviceSubclass.editProfile(editProfileModel: editModel, image: selectedImage){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            
+            if status{
+                 let loginResponseModel = LoginResponseModel(fromJson: json)
+                do{
+                    try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
+                }catch{
+                    UtilityClass.showAlert(Message: error.localizedDescription)
+                }
+                self.getUserData()
+                UtilityClass.showAlert(Message: json["message"].stringValue)
+            }
+            else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
     }
 }

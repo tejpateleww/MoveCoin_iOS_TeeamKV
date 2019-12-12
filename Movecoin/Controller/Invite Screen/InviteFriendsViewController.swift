@@ -12,7 +12,7 @@ import Lottie
 class InviteFriendsViewController: UIViewController {
     
     // ----------------------------------------------------
-    // MARK: - IBOutlets
+    // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
     @IBOutlet weak var lblTitle: UILabel!
@@ -23,19 +23,20 @@ class InviteFriendsViewController: UIViewController {
     @IBOutlet weak var viewBoxAnimation: UIView!
     
     // ----------------------------------------------------
-    // MARK: - Variables
+    // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
     var animationView = AnimationView(name: "happy-birthday")
     
     // ----------------------------------------------------
-    // MARK: - Life-cycle Methods
+    // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
         viewReferralCode.addDashedBorder()
+        lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,21 +44,9 @@ class InviteFriendsViewController: UIViewController {
         self.animate()
     }
     
+
     // ----------------------------------------------------
-    // MARK: - IBAction Methods
-    // ----------------------------------------------------
-    
-    @IBAction func btnInviteFriendsTapped(_ sender: Any) {
-        let text = lblReferral.text
-        let image = UIImage(named: "Logo")
-        let url = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
-        
-        let vc = UIActivityViewController(activityItems: [text!, image!, url!], applicationActivities: [])
-        present(vc, animated: true)
-    }
-    
-    // ----------------------------------------------------
-    // MARK: - Custom Methods
+    // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
     func setupFont(){
@@ -82,4 +71,28 @@ class InviteFriendsViewController: UIViewController {
             self.animate()
         }
     }
+    
+    // ----------------------------------------------------
+        // MARK: - --------- IBAction Methods ---------
+        // ----------------------------------------------------
+        
+        @IBAction func btnInviteFriendsTapped(_ sender: Any) {
+            
+    //        if let reviewURL = URL(string: "itms-apps://itunes.apple.com/us/app/apple-store/1483785971?mt=8"), UIApplication.shared.canOpenURL(reviewURL) {
+    //             if #available(iOS 10.0, *) {
+    //               UIApplication.shared.open(reviewURL, options: [:]
+    //        , completionHandler: nil)
+    //             } else {
+    //               UIApplication.shared.openURL(reviewURL)
+    //             }
+    //        }
+            
+            let text = "Check out this app \(kAppName), referral code - " + (lblReferral.text ?? "")
+            let image = UIImage(named: "AppIcon")
+            let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
+
+                       let vc = UIActivityViewController(activityItems: [text, image ?? UIImage(), url!], applicationActivities: [])
+            present(vc, animated: true)
+        }
+        
 }

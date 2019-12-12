@@ -75,11 +75,13 @@ class SplashViewController: UIViewController {
 
                 if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) as! Bool {
                     AppDelegateShared.GoToHome()
+                    getUserData()
                 }else {
                     AppDelegateShared.GoToLogin()
                 }
             }else {
-                AppDelegateShared.GoToLogin()
+//                AppDelegateShared.GoToLogin()
+                AppDelegateShared.GoToOnBoard()
             }
 
 //        case .denied, .restricted : //, .notDetermined :
@@ -91,20 +93,19 @@ class SplashViewController: UIViewController {
     }
     
     func webserviceforAPPInit(){
-        
-//        var loginModelDetails = LoginModel()
 
         var strParam = String()
         
         strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios"
       
-        UserWebserviceSubclass.initApi(strURL: strParam) { (json, status, res) in
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(status)
             self.initStatus = status
             if status{
-             
+                 let initResponseModel = InitResponse(fromJson: json)
+                SingletonClass.SharedInstance.productType = initResponseModel.category
             }else{
-                
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
