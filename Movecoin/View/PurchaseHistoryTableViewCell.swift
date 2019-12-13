@@ -15,15 +15,28 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     
-//    var friendDetail: FriendDetail? {
-//        didSet{
-//            if let detail = friendDetail {
-//                self.lblName.text = detail.name.capitalizingFirstLetter()
-//                self.lblId.text = detail.number
-//
-//            }
-//        }
-//    }
+    var orderDetail: Order? {
+        didSet{
+            if let detail = orderDetail {
+                
+                self.lblPrice.text = detail.coins
+                
+                if detail.discount != "0" {
+                    self.lblTitle.text = detail.productName.capitalizingFirstLetter() + " with \(detail.discount!)% Discount"
+                }else {
+                    self.lblTitle.text = detail.productName.capitalizingFirstLetter()
+                }
+                if let dateStr = UtilityClass.changeDateFormateFrom(dateString: detail.orderDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
+                     self.lblDate.text =  dateStr
+                }
+                let productsURL = NetworkEnvironment.baseImageURL + detail.productImage
+                if let url = URL(string: productsURL) {
+                    self.imgPhoto.kf.indicatorType = .activity
+                    self.imgPhoto.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+                }
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

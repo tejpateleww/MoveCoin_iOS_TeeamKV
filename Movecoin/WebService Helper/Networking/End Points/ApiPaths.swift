@@ -92,4 +92,7 @@ enum ApiKey: String{
     case transferCoins = "Friends/coins_transfer" 
     
     case addSeller = "Seller/add_seller"
+    
+    case placeOrder = "order/place_order"
+    case purchaseHistory = "Order/purchase_history"
 }

@@ -19,8 +19,8 @@ class TotalStepsTableViewCell: UITableViewCell {
                 if let data = stepModel {
                     self.lblSteps.text = data.steps
                     
-                    if let dob = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
-                         self.lblDate.text =  dob
+                    if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
+                         self.lblDate.text =  dateStr
                     }
                   
                     // For Image

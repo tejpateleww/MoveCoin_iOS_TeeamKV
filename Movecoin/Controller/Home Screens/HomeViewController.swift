@@ -9,6 +9,7 @@
 import UIKit
 import CoreMotion
 import HealthKit
+import KDCircularProgress
 
 protocol FlipToMapDelegate {
     func flipToMap()
@@ -31,6 +32,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblMember: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblTodaysStepCount: UILabel!
+    @IBOutlet weak var circularProgress: KDCircularProgress!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -50,30 +52,22 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
+//        animateCircle()
+        healthKitData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 3, completion: nil)
+        }
+        
 //        getUserData()
       
 //        checkPermissionForMotionSensor()
 //        getTodaysStepCounts()
-        if checkAuthorization() {
-            getTodaysSteps { (steps) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.lblTodaysStepCount.text = String(Int(steps))
-                    SingletonClass.SharedInstance.todaysStepCount = Int(steps)
-                   
-                    if Int(steps) > 0 {
-                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
-                    }
-                    self.startCountingSteps()
-                }
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationBarSetUp(hidesBackButton: true)
         setUpNavigationItems()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +106,25 @@ class HomeViewController: UIViewController {
         self.parent?.navigationItem.setRightBarButtonItems([rightBarButton], animated: true)
     }
     
+    func animateCircle(){
+        circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 5) { completed in
+            if completed {
+                print("Completed")
+            } else {
+                print("Interrupted")
+            }
+        }
+    }
+    
+    @objc func btnUpgradeTapped(){
+
+    }
+    
+    @objc func btnFlipTapped(){
+        self.delegateFlip.flipToMap()
+    }
+    
+    
     func setupHomeData(){
         if let user = userData {
             lblCoins.text = user.coins
@@ -129,6 +142,22 @@ class HomeViewController: UIViewController {
                 imgLogo.image = UIImage.gifImageWithName("Platinum-package")
             case .none:
                 return
+            }
+        }
+    }
+    
+    func healthKitData(){
+        if checkAuthorization() {
+            getTodaysSteps { (steps) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.lblTodaysStepCount.text = String(Int(steps))
+                    SingletonClass.SharedInstance.todaysStepCount = Int(steps)
+                   
+                    if Int(steps) > 0 {
+                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+                    }
+                    self.startCountingSteps()
+                }
             }
         }
     }
@@ -177,13 +206,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @objc func btnUpgradeTapped(){
-
-    }
-    
-    @objc func btnFlipTapped(){
-        self.delegateFlip.flipToMap()
-    }
     
     func getTodaysStepCounts() {
         pedoMeter.queryPedometerData(from: Date().midnight, to: Date()) { (data, error) in

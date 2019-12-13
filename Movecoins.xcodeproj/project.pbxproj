@@ -69,6 +69,10 @@
 		463BF57E234F018A0022C465 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF57D234F018A0022C465 /* ProductDetailCollectionViewCell.swift */; };
 		463BF580234F0FA50022C465 /* ConfirmPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF57F234F0FA50022C465 /* ConfirmPurchaseViewController.swift */; };
 		463BF583234F42E80022C465 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF582234F42E80022C465 /* AlertViewController.swift */; };
+		463CAC4323A365120040493E /* PlaceOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463CAC4223A365120040493E /* PlaceOrder.swift */; };
+		463CAC4523A371610040493E /* PurchaseHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463CAC4423A371610040493E /* PurchaseHistory.swift */; };
+		463CAC4923A3765A0040493E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463CAC4723A376580040493E /* Order.swift */; };
+		463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463CAC4823A376590040493E /* PurchaseHistoryResponseModel.swift */; };
 		464F49362398EF3200D803D6 /* StepsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F49342398EF3200D803D6 /* StepsData.swift */; };
 		464F49372398EF3200D803D6 /* StepsHistoryResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F49352398EF3200D803D6 /* StepsHistoryResponseModel.swift */; };
 		46515526236AA2970079627A /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46515525236AA2970079627A /* EnumCollection.swift */; };
@@ -219,6 +223,10 @@
 		463BF57D234F018A0022C465 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		463BF57F234F0FA50022C465 /* ConfirmPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPurchaseViewController.swift; sourceTree = "<group>"; };
 		463BF582234F42E80022C465 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		463CAC4223A365120040493E /* PlaceOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrder.swift; sourceTree = "<group>"; };
+		463CAC4423A371610040493E /* PurchaseHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistory.swift; sourceTree = "<group>"; };
+		463CAC4723A376580040493E /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		463CAC4823A376590040493E /* PurchaseHistoryResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryResponseModel.swift; sourceTree = "<group>"; };
 		464F49342398EF3200D803D6 /* StepsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsData.swift; sourceTree = "<group>"; };
 		464F49352398EF3200D803D6 /* StepsHistoryResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryResponseModel.swift; sourceTree = "<group>"; };
 		46515525236AA2970079627A /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -590,6 +598,8 @@
 				46AECDBA239A85480097806B /* TransferCoinsModel.swift */,
 				466762B6238BE27D003136BC /* ProductDetailModel.swift */,
 				469057B223967CBB000D192E /* BecomeSeller.swift */,
+				463CAC4223A365120040493E /* PlaceOrder.swift */,
+				463CAC4423A371610040493E /* PurchaseHistory.swift */,
 				46C9C4EE23A116380042341B /* AddCardModel.swift */,
 				46E468F1237D1CA70068701E /* EditProfile.swift */,
 				46B2E441237A7C2800540D27 /* ChangePassword.swift */,
@@ -601,6 +611,7 @@
 		461DC253237930BB0092AC82 /* Response Models */ = {
 			isa = PBXGroup;
 			children = (
+				463CAC4623A376400040493E /* Purchase History */,
 				46FA2C7E23A122B0000A3B9B /* Cards */,
 				460C04A4239A3E2900D674D7 /* Friend List */,
 				460C049F239A294600D674D7 /* Wallet History */,
@@ -633,6 +644,15 @@
 				463BF582234F42E80022C465 /* AlertViewController.swift */,
 			);
 			path = "Alert Screen";
+			sourceTree = "<group>";
+		};
+		463CAC4623A376400040493E /* Purchase History */ = {
+			isa = PBXGroup;
+			children = (
+				463CAC4723A376580040493E /* Order.swift */,
+				463CAC4823A376590040493E /* PurchaseHistoryResponseModel.swift */,
+			);
+			path = "Purchase History";
 			sourceTree = "<group>";
 		};
 		464F49332398EF1E00D803D6 /* Steps History */ = {
@@ -1063,6 +1083,7 @@
 				461DC26523793AB90092AC82 /* Logout.swift in Sources */,
 				46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */,
 				461EC3FB236C05BC00114759 /* UIFont + Extension.swift in Sources */,
+				463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */,
 				46814385238E624500D5A297 /* PhoneContactsClass.swift in Sources */,
 				46D96068238B9BB10026B96D /* ProductDetails.swift in Sources */,
 				46230A9823797EEA0012D9A1 /* SingletonClass.swift in Sources */,
@@ -1100,7 +1121,9 @@
 				46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */,
 				46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */,
 				46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */,
+				463CAC4523A371610040493E /* PurchaseHistory.swift in Sources */,
 				4613804823292E52007C3FA4 /* UIVIewController + Extension.swift in Sources */,
+				463CAC4923A3765A0040493E /* Order.swift in Sources */,
 				469057B12396717E000D192E /* InitResponse.swift in Sources */,
 				4661BB4F2351B98F00DC41E0 /* BecomeSellerViewController.swift in Sources */,
 				468F86CF2350C0D5006DC7D1 /* ChatListViewController.swift in Sources */,
@@ -1129,6 +1152,7 @@
 				4631E9AD2327D1870088B49F /* WelcomeViewController.swift in Sources */,
 				468F86C82350976C006DC7D1 /* FriendTableViewCell.swift in Sources */,
 				4661BB512351C59800DC41E0 /* MapViewController.swift in Sources */,
+				463CAC4323A365120040493E /* PlaceOrder.swift in Sources */,
 				466762B7238BE27D003136BC /* ProductDetailModel.swift in Sources */,
 				463BF583234F42E80022C465 /* AlertViewController.swift in Sources */,
 				46E468F7237D86E40068701E /* CardTableViewCell.swift in Sources */,

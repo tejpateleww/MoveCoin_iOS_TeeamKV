@@ -132,3 +132,16 @@ class SellerWebserviceSubclass
         WebService.shared.requestMethod(api: .addSeller, httpMethod: .post, parameters: params, completion: completion)
     }
 }
+
+class OrderWebserviceSubclass
+{
+    class func placeOrder( orderModel : PlaceOrder  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = orderModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .placeOrder, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func purchaseHistory( purchaseHistoryModel : PurchaseHistory  ,completion: @escaping CompletionResponse ) {
+        let  params = purchaseHistoryModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .purchaseHistory, httpMethod: .post, parameters: params, completion: completion)
+    }
+}

@@ -40,6 +40,7 @@ class ConfirmPurchaseViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
+    lazy var card = Card()
     var product : ProductDetails!
     let userData = SingletonClass.SharedInstance.userData
     
@@ -126,6 +127,23 @@ class ConfirmPurchaseViewController: UIViewController {
                     UtilityClass.showAlert(Message: "Please select card")
                     return
                 }
+                
+                let requestModel = PlaceOrder()
+                requestModel.name = name
+                requestModel.phone = number
+                requestModel.email = email
+                requestModel.address1 = address1
+                requestModel.address2 = address2
+                requestModel.country = country
+                requestModel.state = state
+                requestModel.city = city
+                requestModel.zip = zipcode
+                requestModel.card_id = card.id
+                requestModel.product_id = product.iD
+                requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+                
+                webserviceCallForPlaceOrder(model: requestModel)
+                
             } catch(let error) {
                 UtilityClass.showAlert(Message: (error as! ValidationError).message)
             }
@@ -164,12 +182,49 @@ class ConfirmPurchaseViewController: UIViewController {
     }
 }
 
+// ----------------------------------------------------
+// MARK: - --------- CardDelegate Methods ---------
+// ----------------------------------------------------
+
 extension ConfirmPurchaseViewController : CardDelegate {
     
     func setCardDetails(value: Card) {
+        card = value
         txtCard.text = value.cardNum
         imgCardIcon.isHidden = false
         let type = value.type.lowercased()
         imgCardIcon.image = UIImage(named: "\(type)-white")
+    }
+}
+
+// ----------------------------------------------------
+// MARK: - --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension ConfirmPurchaseViewController  {
+    
+    func webserviceCallForPlaceOrder(model: PlaceOrder){
+        
+        UtilityClass.showHUD()
+       
+        OrderWebserviceSubclass.placeOrder(orderModel: model){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            print(json)
+           
+            if status{
+              
+                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+            else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func okHandler() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
