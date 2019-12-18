@@ -119,6 +119,8 @@
 		469688DF2371977D00C691A8 /* UIDevice + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469688DE2371977D00C691A8 /* UIDevice + Extension.swift */; };
 		469C9E0E2341EADD0098AE65 /* UItextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C9E0D2341EADD0098AE65 /* UItextField + Extension.swift */; };
 		46A74036235592A4009C9D81 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A74035235592A4009C9D81 /* PopoverViewController.swift */; };
+		46A76A3D23AA2E4E009F5427 /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A76A3C23AA2E4E009F5427 /* SendMessage.swift */; };
+		46A76A4023AA3BBB009F5427 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A76A3F23AA3BBB009F5427 /* MessageData.swift */; };
 		46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECDB8239A56F00097806B /* FriendListModel.swift */; };
 		46AECDBB239A85480097806B /* TransferCoinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECDBA239A85480097806B /* TransferCoinsModel.swift */; };
 		46B2E442237A7C2800540D27 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B2E441237A7C2800540D27 /* ChangePassword.swift */; };
@@ -278,6 +280,8 @@
 		469688DE2371977D00C691A8 /* UIDevice + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice + Extension.swift"; sourceTree = "<group>"; };
 		469C9E0D2341EADD0098AE65 /* UItextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UItextField + Extension.swift"; sourceTree = "<group>"; };
 		46A74035235592A4009C9D81 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		46A76A3C23AA2E4E009F5427 /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
+		46A76A3F23AA3BBB009F5427 /* MessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		46AECDB8239A56F00097806B /* FriendListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListModel.swift; sourceTree = "<group>"; };
 		46AECDBA239A85480097806B /* TransferCoinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCoinsModel.swift; sourceTree = "<group>"; };
 		46B2E441237A7C2800540D27 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
@@ -611,6 +615,7 @@
 				463CAC4223A365120040493E /* PlaceOrder.swift */,
 				463CAC4423A371610040493E /* PurchaseHistory.swift */,
 				46C9C4EE23A116380042341B /* AddCardModel.swift */,
+				46A76A3C23AA2E4E009F5427 /* SendMessage.swift */,
 				46E468F1237D1CA70068701E /* EditProfile.swift */,
 				46B2E441237A7C2800540D27 /* ChangePassword.swift */,
 				461DC26423793AB90092AC82 /* Logout.swift */,
@@ -621,6 +626,7 @@
 		461DC253237930BB0092AC82 /* Response Models */ = {
 			isa = PBXGroup;
 			children = (
+				46A76A3E23AA3BAE009F5427 /* Chat */,
 				463CAC4623A376400040493E /* Purchase History */,
 				46FA2C7E23A122B0000A3B9B /* Cards */,
 				460C04A4239A3E2900D674D7 /* Friend List */,
@@ -799,6 +805,14 @@
 				46A74035235592A4009C9D81 /* PopoverViewController.swift */,
 			);
 			path = "Map Screens";
+			sourceTree = "<group>";
+		};
+		46A76A3E23AA3BAE009F5427 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				46A76A3F23AA3BBB009F5427 /* MessageData.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		46BE9FDC23462D88009EC217 /* Wallet Screens */ = {
@@ -1161,6 +1175,7 @@
 				46FA2C8023A122DD000A3B9B /* Card.swift in Sources */,
 				46138044232906C7007C3FA4 /* SignupViewController.swift in Sources */,
 				461DC25B237936F60092AC82 /* WebServices.swift in Sources */,
+				46A76A3D23AA2E4E009F5427 /* SendMessage.swift in Sources */,
 				46C9132C2330EA110068C788 /* WaveLayer.m in Sources */,
 				4631E9982327AD820088B49F /* UIColor + Extension.swift in Sources */,
 				46B2E444237AC9F800540D27 /* ImagePickerClass.swift in Sources */,
@@ -1204,6 +1219,7 @@
 				461DC269237942CD0092AC82 /* UserDefaults + Extensions.swift in Sources */,
 				4605D26A2391066100316AB3 /* IntroPageVC.swift in Sources */,
 				46F88CAB23570587003E24CC /* PurchaseHistoryTableViewCell.swift in Sources */,
+				46A76A4023AA3BBB009F5427 /* MessageData.swift in Sources */,
 				4616EF1A232A57CF00B138A3 /* UIView + Extension.swift in Sources */,
 				468F86CA23509CC9006DC7D1 /* FriendsViewController.swift in Sources */,
 				461DC26723793B690092AC82 /* Signup.swift in Sources */,

@@ -119,6 +119,11 @@ class FriendsWebserviceSubclass
         WebService.shared.requestMethod(api: .friendList, httpMethod: .post, parameters: params, completion: completion)
     }
     
+    class func sendMessage( sendMessageModel : SendMessage  ,completion: @escaping CompletionResponse ) {
+        let  params = sendMessageModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .sendMessage, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
     class func transferCoins( transferCoinModel : TransferCoinsModel  ,completion: @escaping CompletionResponse ) {
         let  params = transferCoinModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .transferCoins, httpMethod: .post, parameters: params, completion: completion)

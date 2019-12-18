@@ -15,21 +15,15 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
-
+    
     @IBOutlet weak var vwTitle: UIView!
     @IBOutlet weak var btnInfo: UIBarButtonItem!
     
     @IBOutlet weak var btnBack: UIBarButtonItem!
     @IBOutlet weak var tblVw: UITableView!
     @IBOutlet weak var txtMessage: UITextField!
-    @IBOutlet weak var btnEmergency: UIButton!
-    @IBOutlet weak var vwSelectedImage: UIView!
-    @IBOutlet weak var vwEmergency: UIView!
-    @IBOutlet weak var imgVWSelectedImage: UIImageView!
     
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
-    @IBOutlet weak var conVwEmergencyMessageHeight: NSLayoutConstraint!
-    @IBOutlet weak var conVwImageHeight: NSLayoutConstraint!
     
     @IBOutlet weak var imgPassenger: UIImageView!
     
@@ -43,68 +37,21 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var arrData = [MessageObject]()
-    var isEmergency = false
-    var isImage = false
-    let picker = UIImagePickerController()
-    
-    var strBookingId = String()
-    var strBookingType = String()
-    
-//    let socket = (UIApplication.shared.delegate as! AppDelegate).socketManagerIO!
-    
-    var isFromSupport = Bool()
-    
+    var arrData = [MessageData]()
+
     // ----------------------------------------------------
     // MARK: - --------- Life-Cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
         setUpNavigationItems()
         
         self.imgPassenger.isHidden = true
         self.lblName.isHidden = false
-        
-//        NotificationCenter.default.removeObserver(self, name: NotificationgetResponseOfChatting, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadNewData), name: NotificationgetResponseOfChatting, object: nil)
-        
-        
-//        Singletons.sharedInstance.strChatingNowBookingId = strBookingId
-        
-        //        self.title = "Richard Hindricks,MD"
-        //        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //        self.setProfileImageOnBarButton()
-        self.picker.delegate = self
-        
-                for i in 1...50 {
-                    var obj = MessageObject()
-                    obj.strMessage = i%3 == 0 ? "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu" : "Lorem Ipsum is simply dummy text"
-                    obj.isSender = i%2 == 0 ? false : true
-                    obj.isImage = i%3  == 0 ? true : false
-                    obj.date = "12:30 PM"
-        
-                    arrData.append(obj)
-                }
-        
-        if strBookingType == "Book Later" || strBookingType == "book later" || strBookingType == "BookLater" || strBookingType == "AdvanceBooking" {
-            strBookingType = "AdvanceBooking"
-        }
-        else {
-            strBookingType = "Booking"
-        }
-        
-        if isFromSupport {
-//            webserviceOfChattingForSupport(driverId: Singletons.sharedInstance.strDriverID)
-//            self.lblPassengerName.text = "Chat Support"
-        }
-        else {
-            webserviceOfChatting(bookingId: strBookingId, bookingType: strBookingType)
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,7 +59,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         setupKeyboard(false)
         self.hideKeyboard()
         self.registerForKeyboardNotifications()
-//        Singletons.sharedInstance.isChatingPresented = true
+        //        Singletons.sharedInstance.isChatingPresented = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -132,7 +79,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         self.deregisterFromKeyboardNotifications()
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.enable = true
-//        Singletons.sharedInstance.isChatingPresented = false
+        //        Singletons.sharedInstance.isChatingPresented = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -178,25 +125,14 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         let item = UIBarButtonItem(customView: profileView)
         self.navigationItem.setRightBarButton(item, animated: true)
     }
-
+    
     
     @objc func reloadNewData() {
-        
-        if strBookingId.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            
-//            if Singletons.sharedInstance.ChattingMessages.type?.lowercased() == "dispatcher" {
-                 tempReload()
-//           }
-//        }
-//        else {
-//            if strBookingId == Singletons.sharedInstance.ChattingMessages.bookingId {
-//                 tempReload()
-//            }
-        }
+        tempReload()
     }
     
     func tempReload() {
-//        arrData.append(Singletons.sharedInstance.ChattingMessages)
+        //        arrData.append(Singletons.sharedInstance.ChattingMessages)
         let indexPath = IndexPath.init(row: arrData.count-1, section: 0)
         
         tblVw.insertRows(at: [indexPath], with: .bottom)
@@ -220,14 +156,16 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
             conVwMessageBottom.constant = keyboardSize!.height
         }
         self.view.animateConstraintWithDuration()
-        let path = IndexPath.init(row: arrData.count-1, section: 0)
-        tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+        if arrData.count > 0 {
+            let path = IndexPath.init(row: arrData.count-1, section: 0)
+            tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+        }
     }
     
     @objc func keyboardWillBeHidden(notification: NSNotification){
         conVwMessageBottom.constant = 0
         self.view.animateConstraintWithDuration()
-       
+        
     }
     
     func deregisterFromKeyboardNotifications(){
@@ -243,319 +181,51 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     @IBAction func sendClick(_ sender: UIButton) {
         txtMessage.text = txtMessage.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if isImage || !txtMessage.text!.isEmpty{
-             self.sendMessage(true)
-            /*
-            let alert = UIAlertController(title: "Pick N GO", message: "Select User", preferredStyle: .actionSheet)
-            let firstAction = UIAlertAction(title: "Sender", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-                self.sendMessage(true)
-            })
-            let secondAction = UIAlertAction(title: "Receiver", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-                self.sendMessage(false)
-                print("You pressed button two")
-                
-            })
-            alert.addAction(firstAction)
-            alert.addAction(secondAction)
-            present(alert, animated: true) {() -> Void in }
-             */
+        if !txtMessage.text!.isEmpty {
+            self.sendMessage(message: txtMessage.text!)
         }
-        
-    }
-    
-    @IBAction func emergencyClick(_ sender: UIButton) {
-        //        btnEmergency.isSelected = !btnEmergency.isSelected
-        
-        isEmergency = !isEmergency
-        
-        conVwEmergencyMessageHeight.constant = isEmergency ? 40 : 0
-        
-        self.view.animateConstraintWithDuration()
-    }
-    
-    @IBAction func cameraClick(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle:.actionSheet)
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (action) in
-            self.openCamra(id: "1")
-        }))
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
-            self.openCamra(id: "2")
-        }))
-        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
-        alert.modalPresentationStyle = .overCurrentContext
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction func deleteImageClick(_ sender: Any) {
-        imgVWSelectedImage.image = nil
-        isImage = false
-        conVwImageHeight.constant = 0
-        self.view.animateConstraintWithDuration()
     }
     
     // ----------------------------------------------------
     //MARK:- --------- Send Massage Methods ---------
     // ----------------------------------------------------
-    func sendMessage(_ isSender: Bool){
-        var objMessage = MessageObject()
-        objMessage.strMessage = txtMessage.text!
-        objMessage.isSender = isSender
-        objMessage.isEmergency = isEmergency
-        objMessage.isImage = isImage
-        if objMessage.isImage {
-            objMessage.imgMessage = imgVWSelectedImage.image!
-        }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let timeString = formatter.string(from: Date())
-
-        objMessage.date = timeString
-        arrData.append(objMessage)
-        let indexPath = IndexPath.init(row: arrData.count-1, section: 0)
+    
+    func sendMessage(message:String){
         
-        tblVw.insertRows(at: [indexPath], with: .bottom)
-        let path = IndexPath.init(row: arrData.count-1, section: 0)
-        tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+        let requestModel = SendMessage()
+        requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.ReceiverID = "3"
+        requestModel.Message = message
         
-        if isFromSupport {
-//            sendMessageToSupport(message: txtMessage.text!)
-        }
-        else {
+        FriendsWebserviceSubclass.sendMessage(sendMessageModel: requestModel){ (json, status, res) in
             
-            sendMessageToPassenger(message: txtMessage.text!)
-            
+            if status {
+                let dataJson = json["data"]
+                if !dataJson.isEmpty{
+                    let obj = MessageData(fromJson: dataJson)
+                    self.arrData.append(obj)
+                }
+                
+                if self.arrData.count > 0 {
+                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
+                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
+                    let path = IndexPath.init(row: self.arrData.count - 1, section: 0)
+                    self.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+                    self.resetAll()
+                }
+                
+            }
         }
-        
-        self.resetAll()
     }
     
     func resetAll() {
         txtMessage.text = ""
-        isImage = false
-        isEmergency = false
-        imgVWSelectedImage.image = nil
-        conVwImageHeight.constant = 0
-        conVwEmergencyMessageHeight.constant = 0
-        //        btnEmergency.isSelected = false
         self.view.animateConstraintWithDuration()
     }
     
-    func openCamra(id : String){
-        if id == "1" {
-            self.picker.allowsEditing = false
-            self.picker.sourceType = .photoLibrary
-            self.picker.modalPresentationStyle = .overCurrentContext
-            self.present(self.picker, animated: true, completion: nil)
-            
-        }else {
-            if UIImagePickerController.isSourceTypeAvailable(.camera)  {
-                self.picker.sourceType = .camera
-                self.picker.allowsEditing = true
-                self.picker.cameraDevice = .front
-                self.picker.modalPresentationStyle = .overCurrentContext
-                self.present(self.picker, animated: true, completion: nil)
-            }
-        }
-    }
-    
-//    @IBAction func backClick(_ sender: Any) {
-//        if (isModal()) {
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//        else {
-//            self.navigationController?.popViewController(animated: true)
-//        }
-//    }
-    
     @IBAction func profileClick(_ sender: Any) {
         self.performSegue(withIdentifier: "segueProfileDetail", sender: nil)
-        
     }
-    
-   
-    // ----------------------------------------------------
-    // MARK: - --------- Socket Methods ---------
-    // ----------------------------------------------------
-
-    func sendMessageToPassenger(message: String) {
-        
-        let myJSON = ["BookingId": strBookingId, "Type": strBookingType, "Sender": "Driver", "Message": message] as [String : Any]
-//        socket.emit(socketApiKeys.kSendMessage, with: [myJSON])
-    }
-    
-//    func sendMessageToSupport(message: String) {
-//
-//        let myJSON = ["SenderId": Singletons.sharedInstance.strDriverID, "Sender": "Driver", "Message": message] as [String : Any]
-//        socket.emit(socketApiKeys.kSupport, with: [myJSON])
-//    }
-    
-    // ----------------------------------------------------
-    // MARK: - --------- Webservice Service ---------
-    // ----------------------------------------------------
-
-    func webserviceOfChatting(bookingId: String, bookingType: String) {
-        
-//        BookingId/BookingType
-//        if bookingId != "" && bookingType != "" {
-//            let param = "\(bookingId)/\(bookingType)"
-        
-//            webserviceForChattingwithPassenger(param as AnyObject) { (result, status) in
-//
-//                if status {
-//                    print(result)
-//
-//                    var aryMessages = [[String:Any]]()
-//                    var objMessage = MessageObject()
-//
-//                    if let res = result as? [String:Any] {
-//                        if let passenger = res["passenger"] as? [[String:Any]] {
-//                            if passenger.count != 0 {
-//                                if let img = passenger.first?["Image"] as? String {
-//
-//                                    if img != "" {
-//                                        self.imgPassenger.isHidden = false
-//                                        let imageUrl = WebserviceURLs.kImageBaseURL + img
-//                                        self.imgPassenger.sd_setImage(with: URL(string: imageUrl), completed: nil)
-//                                    }
-//                                }
-//                                if let name = passenger.first?["Fullname"] as? String {
-//
-//                                    if name != "" {
-//                                        self.lblPassengerName.isHidden = false
-//                                        self.lblPassengerName.text = name
-//                                        self.title = name
-//
-//                                        self.setNavBarWithBack(Title: name, IsNeedRightButton: false)
-//
-//                                    }
-//                                }
-//                            }
-//                        }
-//
-//                        if let message = res["message"] as? [[String:Any]] {
-//                            if message.count != 0 {
-//                                aryMessages = message
-//                            }
-//                        }
-//
-//                        if aryMessages.count != 0 {
-//
-//                            for (_, value) in aryMessages.enumerated() {
-//
-//                                objMessage.strMessage = value["Message"] as! String
-//                                objMessage.isEmergency = false
-//                                objMessage.isImage = false
-//
-//                                if value["SenderId"] as! String == Singletons.sharedInstance.strDriverID {
-//                                    objMessage.isSender = true
-//                                }
-//                                else {
-//                                    objMessage.isSender = false
-//                                }
-//
-//                                objMessage.id = value["Id"] as? String
-//                                objMessage.bookingId = value["BookingId"] as? String
-//                                objMessage.type = value["Type"] as? String
-//                                objMessage.senderId = value["SenderId"] as? String
-//                                objMessage.sender = value["Sender"] as? String
-//                                objMessage.receiverId = value["ReceiverId"] as? String
-//                                objMessage.message = value["Message"] as? String
-//                                objMessage.date = value["Date"] as? String
-//
-//                                self.arrData.append(objMessage)
-//
-//                            }
-//                            self.tblVw.reloadData()
-//                        }
-//                    }
-//                }
-//                else {
-//                    UtilityClass.showAlertOfAPIResponse(param: result, vc: self)
-//                }
-//            }
-//        }
-//        else {
-//            UtilityClass.showAlert(appName.kAPPName, message: "Booking Id is missing please go back and reselect", vc: self)
-//        }
-        
-    }
-    
- /*
-    func webserviceOfChattingForSupport(driverId: String) {
-     
-        webserviceForChattingwithSupport(driverId as AnyObject) { (result, status) in
-            
-            if status {
-                print(result)
-                
-                var aryMessages = [[String:Any]]()
-                var objMessage = MessageObject()
-                
-                if let res = result as? [String:Any] {
-                    if let passenger = res["passenger"] as? [[String:Any]] {
-                        if passenger.count != 0 {
-                            if let img = passenger.first?["Image"] as? String {
-                                
-                                if img != "" {
-                                    self.imgPassenger.isHidden = false
-                                    let imageUrl = WebserviceURLs.kImageBaseURL + img
-                                    self.imgPassenger.sd_setImage(with: URL(string: imageUrl), completed: nil)
-                                }
-                            }
-                            if let name = passenger.first?["Fullname"] as? String {
-                                
-                                if name != "" {
-                                    self.lblPassengerName.isHidden = false
-                                    self.lblPassengerName.text = name
-                                }
-                            }
-                        }
-                    }
-                    
-                    if let message = res["message"] as? [[String:Any]] {
-                        if message.count != 0 {
-                            aryMessages = message
-                        }
-                    }
-                    
-                    if aryMessages.count != 0 {
-                        
-                        for (_, value) in aryMessages.enumerated() {
-                            
-                            objMessage.strMessage = value["Message"] as! String
-                            objMessage.isEmergency = false
-                            objMessage.isImage = false
-                            
-                            if value["SenderId"] as! String == Singletons.sharedInstance.strDriverID {
-                                objMessage.isSender = true
-                            }
-                            else {
-                                objMessage.isSender = false
-                            }
-                            
-                            objMessage.id = value["Id"] as? String
-                            objMessage.bookingId = value["BookingId"] as? String
-                            objMessage.type = value["Type"] as? String
-                            objMessage.senderId = value["SenderId"] as? String
-                            objMessage.sender = value["Sender"] as? String
-                            objMessage.receiverId = value["ReceiverId"] as? String
-                            objMessage.message = value["Message"] as? String
-                            objMessage.date = value["Date"] as? String
-                            
-                            self.arrData.append(objMessage)
-                            
-                        }
-                        self.tblVw.reloadData()
-                    }
-                }
-            }
-            else {
-                UtilityClass.showAlertOfAPIResponse(param: result, vc: self)
-            }
-        }
-    }
- */
-    
 }
 
 // ----------------------------------------------------
@@ -575,55 +245,31 @@ extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let obj = arrData[indexPath.row]
-        let strIdentifier = obj.isSender ? "SenderCell" : "RecieverCell"
+      
+        let strIdentifier = obj.senderID == SingletonClass.SharedInstance.userData?.iD ? "SenderCell" : "RecieverCell"
         
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifier, for: indexPath) as! MessageCell
-        cell.lblMessage.text = obj.strMessage
-        
-        
-//        cell.con_ImgHeight.constant = obj.isImage ? (windowWidth * 171.5)/414.0 : 0
-        cell.lblMessage.isHidden = obj.strMessage.isEmpty ? true : false
+        cell.lblMessage.text = obj.message
+        cell.lblMessage.isHidden = obj.message.isEmpty ? true : false
         cell.lblTime.text = obj.date
         cell.lblReadStatus.isHidden = true
-        
-//        cell.con_vwEmergencyHeight.constant = obj.isEmergency ? 30 : 0
         
         cell.lblMessage.textColor = UIColor.white
         cell.lblTime.textColor = UIColor.white
         cell.lblReadStatus.textColor = UIColor.white
         
-        if obj.isEmergency {
-//            cell.vwChatBg.backgroundColor = GlobalConstant.Color.cellEmergencyBgColor
-//            cell.lblMessage.textColor = GlobalConstant.Color.AppTitleTextColor
-//            cell.lblTime.textColor = GlobalConstant.Color.AppSubTitleTextColor
-//            cell.lblReadStatus.textColor = GlobalConstant.Color.AppSubTitleTextColor
-        }
-        else {
-            if obj.isSender {
-                cell.vwChatBg.backgroundColor = TransparentColor
-                cell.lblMessage.textColor = UIColor.white
-                cell.lblTime.textColor = UIColor.white
-                cell.lblReadStatus.textColor = UIColor.white
-            } else {
-//                cell.vwChatBg.backgroundColor = GlobalConstant.Color.cellSenderBgColor
-//                cell.lblMessage.textColor = GlobalConstant.Color.AppTitleTextColor
-//                cell.lblTime.textColor = GlobalConstant.Color.AppSubTitleTextColor
-//                cell.lblReadStatus.textColor = GlobalConstant.Color.AppSubTitleTextColor
-            }
-        }
         
-        if obj.isImage {
-            cell.imgVwPhoto.image = obj.imgMessage
+        if obj.senderID == SingletonClass.SharedInstance.userData?.iD {
+            cell.vwChatBg.backgroundColor = TransparentColor
+            cell.lblMessage.textColor = UIColor.white
+            cell.lblTime.textColor = UIColor.white
+            cell.lblReadStatus.textColor = UIColor.white
+        } else {
+            //                cell.vwChatBg.backgroundColor = GlobalConstant.Color.cellSenderBgColor
+            //                cell.lblMessage.textColor = GlobalConstant.Color.AppTitleTextColor
+            //                cell.lblTime.textColor = GlobalConstant.Color.AppSubTitleTextColor
+            //                cell.lblReadStatus.textColor = GlobalConstant.Color.AppSubTitleTextColor
         }
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.00, execute: {
-//            if obj.isSender == true {
-//                cell.vwChatBg.roundCorners([.bottomLeft,.topLeft,.topRight], radius: 15.0)
-//            } else {
-//                cell.vwChatBg.roundCorners([.bottomRight,.topLeft,.topRight], radius: 15.0)
-//            }
-//
-//        })
         
         cell.selectionStyle = .none
         return cell
@@ -631,32 +277,12 @@ extension ChatViewController: UITableViewDataSource {
     
 }
 
-extension ChatViewController : UIImagePickerControllerDelegate {
-    //MARK: - Imagepicker Delegates
-   /*
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        //        let data = UIImageJPEGRepresentation(chosenImage, 0.7)
-        imgVWSelectedImage.image = chosenImage
-        isImage = true
-        conVwImageHeight.constant = 50
-        self.view.animateConstraintWithDuration()
-        dismiss(animated: true) {
-            
-        }
-        
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        
-        dismiss(animated: true, completion: nil)
-    }
-    */
-}
+// ----------------------------------------------------
+//MARK:- --------- Cell and Structure Methods ---------
+// ----------------------------------------------------
 
-//MARK: Table Methods
 class MessageCell: UITableViewCell {
+    
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblReadStatus: UILabel!
     @IBOutlet weak var lblTime: UILabel!
@@ -691,6 +317,10 @@ struct MessageObject  {
     var date : String?
 }
 
+// ----------------------------------------------------
+//MARK:- --------- UIView extention ---------
+// ----------------------------------------------------
+
 extension UIView {
     //For layout change animation
     func animateConstraintWithDuration(duration: TimeInterval = 0.5) {
@@ -707,12 +337,17 @@ extension UIView {
 }
 
 func setupKeyboard(_ enable: Bool) {
-//    IQKeyboardManager.sharedManager().enable = enable
-//    IQKeyboardManager.sharedManager().enableAutoToolbar = enable
-//    IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder = !enable
+    //    IQKeyboardManager.sharedManager().enable = enable
+    //    IQKeyboardManager.sharedManager().enableAutoToolbar = enable
+    //    IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder = !enable
     
     //    IQKeyboardManager.sharedManager().previousNextDisplayMode = .alwaysShow
 }
+
+// ----------------------------------------------------
+//MARK:- --------- UIViewcontroller extention ---------
+// ----------------------------------------------------
+
 extension UIViewController {
     
     func hideKeyboard()
