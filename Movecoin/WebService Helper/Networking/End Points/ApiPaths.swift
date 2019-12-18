@@ -79,6 +79,8 @@ enum ApiKey: String{
     case addCard = "User/add_new_card"
     case cardList = "user/cards/"
     case removeCard = "user/remove_card/"
+    case notification = "user/notification/"
+    case accountPrivacy = "user/account_privacy/"
     
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"

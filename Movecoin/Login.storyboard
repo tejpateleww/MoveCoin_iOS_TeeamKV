@@ -246,7 +246,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nza-cL-D3l" userLabel="SubView" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="885"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="945"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-register" translatesAutoresizingMaskIntoConstraints="NO" id="33d-lT-puP">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
@@ -294,7 +294,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hET-WD-U5f">
-                                                        <rect key="frame" x="15" y="245" width="290" height="410"/>
+                                                        <rect key="frame" x="15" y="245" width="290" height="470"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4O-3J-PQG" customClass="RoundedShadowView" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
@@ -429,10 +429,29 @@
                                                                     <constraint firstAttribute="height" constant="50" id="yFW-my-eZg"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wey-wb-jAn" customClass="RoundedShadowView" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="420" width="290" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Referral code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wWW-bP-g8a" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                        <rect key="frame" x="12" y="10" width="270" height="30"/>
+                                                                        <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="wWW-bP-g8a" secondAttribute="trailing" constant="8" id="Huj-YV-4wv"/>
+                                                                    <constraint firstItem="wWW-bP-g8a" firstAttribute="leading" secondItem="Wey-wb-jAn" secondAttribute="leading" constant="12" id="b86-9u-R8O"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="wWW-bP-g8a" secondAttribute="bottom" constant="10" id="cuB-6G-kRn"/>
+                                                                    <constraint firstItem="wWW-bP-g8a" firstAttribute="top" secondItem="Wey-wb-jAn" secondAttribute="top" constant="10" id="lRH-Bp-Tfz"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="sOL-uy-2pk"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Nu-Vh-Mrp" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="60" y="710" width="200" height="38"/>
+                                                        <rect key="frame" x="60" y="770" width="200" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="0Cg-Z0-Z0D"/>
                                                             <constraint firstAttribute="height" constant="38" id="HH1-5A-IuV"/>
@@ -449,7 +468,7 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="tq7-Je-iBv">
-                                                        <rect key="frame" x="43.5" y="768" width="233.5" height="31"/>
+                                                        <rect key="frame" x="43.5" y="828" width="233.5" height="31"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0J0-Vx-42f">
                                                                 <rect key="frame" x="0.0" y="0.0" width="175.5" height="31"/>
@@ -531,6 +550,7 @@
                         <outlet property="txtMobile" destination="JYf-yE-LbA" id="upa-Bh-gRX"/>
                         <outlet property="txtNickname" destination="NyZ-uO-5eQ" id="eiy-VK-MEt"/>
                         <outlet property="txtPassword" destination="qJJ-xX-q7D" id="YXj-in-zqU"/>
+                        <outlet property="txtReferral" destination="wWW-bP-g8a" id="DCU-GJ-xkd"/>
                         <outlet property="viewProfile" destination="xsb-3i-rkO" id="NoV-EA-EOS"/>
                     </connections>
                 </viewController>

@@ -79,9 +79,6 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
             loginModel.Longitude = "72.5181843"
             #endif
             loginModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
-//            if let token = UserDefaults.standard.object(forKey: UserDefaultKeys.kDeviceToken) as? String{
-//                loginModel.DeviceToken =  token
-//            }
             webserviceCallForLogin(loginDic: loginModel)
         } catch(let error) {
             UtilityClass.showAlert(Message: (error as! ValidationError).message)
@@ -112,7 +109,6 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
         (sender as! UIButton).bounceAnimationOnCompletion {
 //            UserDefaults.standard.set(true, forKey: UserDefaultKeys.IsLogin)
 //            AppDelegateShared.GoToHome()
-            
         }
     }
 }

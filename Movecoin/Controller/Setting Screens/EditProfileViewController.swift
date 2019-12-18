@@ -147,9 +147,6 @@ class EditProfileViewController: UIViewController {
             editModel.Longitude = "72.5181843"
             #endif
             editModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
-//            if let token = UserDefaults.standard.object(forKey: UserDefaultKeys.kDeviceToken) as? String{
-//                editModel.DeviceToken =  token
-//            }
             webserviceCallForEditProfile(editProfileDic: editModel)
         } catch(let error) {
             UtilityClass.showAlert(Message: (error as! ValidationError).message)

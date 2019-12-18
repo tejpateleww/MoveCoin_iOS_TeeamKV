@@ -87,6 +87,12 @@ class PopoverViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func btnAddFriendTapped(_ sender: Any) {
+//        if let recevierID = cell.registeredFriend?.iD {
+            webserviceForAddFriends(id: "10")
+//        }
+    }
 }
 
 // ----------------------------------------------------
@@ -110,6 +116,31 @@ extension PopoverViewController : FriendStatusDelegate {
            
         default :
             return
+        }
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension PopoverViewController {
+    
+    func webserviceForAddFriends(id : String){
+        
+        let requestModel = FriendRequestModel()
+        requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.ReceiverID = id
+
+        FriendsWebserviceSubclass.friendRequest(frinedRequestModel: requestModel){ (json, status, res) in
+            
+            if status {
+                UtilityClass.showAlert(Message: json["message"].stringValue)
+                self.btnSendFriendRequest.setTitle("Requested", for: .normal)
+                self.btnSendFriendRequest.isUserInteractionEnabled = false
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
         }
     }
 }

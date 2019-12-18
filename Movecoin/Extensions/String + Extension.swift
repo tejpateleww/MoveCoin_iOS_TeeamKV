@@ -129,7 +129,6 @@ extension Array {
                 arrayOrdered.append(value)
             }
         }
-
         return arrayOrdered
     }
 }

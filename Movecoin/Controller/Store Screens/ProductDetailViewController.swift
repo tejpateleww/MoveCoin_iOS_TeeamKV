@@ -71,6 +71,8 @@ class ProductDetailViewController: UIViewController {
         pageControl.hidesForSinglePage = true
         pageControl.isUserInteractionEnabled = false
         
+        viewShadow.isUserInteractionEnabled = false
+        
         switch viewType {
         case .History:
             viewBottom.isHidden = true
@@ -157,6 +159,12 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         thisWidth = windowWidth
         return CGSize(width: thisWidth, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: ImagesViewController.className) as! ImagesViewController
+        controller.imageArray = imgArray
+        self.present(controller, animated: true, completion: nil)
     }
 }
 

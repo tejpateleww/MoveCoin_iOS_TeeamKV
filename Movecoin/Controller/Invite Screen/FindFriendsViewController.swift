@@ -80,6 +80,7 @@ class FindFriendsViewController: UIViewController {
     func retrieveContacts(from store: CNContactStore) {
    
       let keysToFetch = [CNContactGivenNameKey as CNKeyDescriptor,
+                         CNContactFamilyNameKey as CNKeyDescriptor,
                          CNContactPhoneNumbersKey as CNKeyDescriptor]
        let request = CNContactFetchRequest(keysToFetch: keysToFetch)
         do {
@@ -91,7 +92,8 @@ class FindFriendsViewController: UIViewController {
                     let number = phoneNumber.value
                     let digits = number.stringValue.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
                     if digits.count >= 9 {
-                        let phone = PhoneModel(name: contact.givenName, number: String(digits.suffix(10)))
+                        let name = contact.givenName + " " + contact.familyName
+                        let phone = PhoneModel(name: name.trimmingCharacters(in: .whitespacesAndNewlines), number: String(digits)) //.suffix(10)))
                         self.contactsArray.append(phone)
                     }
                 }
@@ -103,42 +105,6 @@ class FindFriendsViewController: UIViewController {
             print("unable to fetch contacts")
         }
     }
-    
-//    @objc func btnInviteTapped(_ sender: UIButton){
-//
-//        if (sender.titleLabel?.text == "+ Invite") {
-//            composeVC.messageComposeDelegate = self
-//
-//             let number = notRegisteredContacts[sender.tag].number
-//             composeVC.recipients = [number]
-//             composeVC.body = "Check out this app \(kAppName), referral code - " + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
-//
-//            // Present the view controller modally.
-//            if MFMessageComposeViewController.canSendText() {
-//                self.present(composeVC, animated: true, completion: nil)
-//            }
-//        }
-//    }
-//
-//     @objc func btnFollowTapped(_ sender: UIButton){
-//
-//        if (sender.titleLabel?.text == "Add Friend") {
-//            print("Add Friend")
-//            if let recevierID = registeredContacts[sender.tag].iD {
-//                 webserviceForAddFriends(id: recevierID)
-//            }
-//        }
-//    }
-//
-//    @objc func btnRejectTapped(_ sender: UIButton){
-//
-//           if (sender.titleLabel?.text == "Reject") {
-//               print("Reject")
-//                if let data = tableData.first?.Rows[sender.tag] as? Request {
-//                    webserviceForAcceptReject(requestID: data.iD, action: sender.titleLabel!.text!)
-//                }
-//           }
-//       }
     
     @objc func btnAcceptTapped(_ sender: UIButton){
            
@@ -192,8 +158,6 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
             if let requestData = sectionData.Rows[indexPath.row] as? Request {
                 cell.requested = requestData
                 if requestData.receiverID == SingletonClass.SharedInstance.userData?.iD {
-//                    cell.btnInvite.tag = indexPath.row
-//                    cell.btnInvite.addTarget(self, action: #selector(self.btnRejectTapped(_:)), for: .touchUpInside)
                     cell.btnAccept.tag = indexPath.row
                     cell.btnAccept.addTarget(self, action: #selector(self.btnAcceptTapped(_:)), for: .touchUpInside)
                 }
@@ -201,13 +165,9 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
             
         case .RecommendedFriend:
             cell.registeredFriend = registeredContacts[indexPath.row]
-//            cell.btnInvite.tag = indexPath.row
-//            cell.btnInvite.addTarget(self, action: #selector(self.btnFollowTapped(_:)), for: .touchUpInside)
             
         case .NotRegistedFriend:
            cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
-//           cell.btnInvite.tag = indexPath.row
-//           cell.btnInvite.addTarget(self, action: #selector(self.btnInviteTapped(_:)), for: .touchUpInside)
             
         default:
             break
@@ -225,7 +185,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         case .RecommendedFriend:
             if let recevierID = cell.registeredFriend?.iD {
                 webserviceForAddFriends(id: recevierID)
-           }
+            }
             
         case .NotRegistedFriend:
             
@@ -235,6 +195,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
            composeVC.body = "Check out this app \(kAppName), referral code - " + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
            // Present the view controller modally.
            if MFMessageComposeViewController.canSendText() {
+                composeVC.navigationBar.tintColor = .black
                self.present(composeVC, animated: true, completion: nil)
            }
             

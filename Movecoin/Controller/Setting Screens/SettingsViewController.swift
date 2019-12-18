@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
@@ -48,13 +48,17 @@ class SettingsViewController: UIViewController {
         tblSettings.delegate = self
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
-       
-//        btnLogout.setAttributedTitle(btnLogout.attributedString(), for: .normal)
+        
+        //        btnLogout.setAttributedTitle(btnLogout.attributedString(), for: .normal)
     }
     
     func setupFont(){
         btnLogout.titleLabel?.font = UIFont.light(ofSize: 20)
         lblVersion.font = UIFont.regular(ofSize: 20)
+    }
+    
+    @objc func switchChanged(mySwitch: UISwitch) {
+       webserviceforNotification()
     }
     
     // ----------------------------------------------------
@@ -98,61 +102,45 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
             cell.switchToggle.isHidden = true
             cell.btnArrow.isHidden = false
         } else{
+            cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+            cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
+            cell.switchToggle.backgroundColor = .gray
             cell.switchToggle.isHidden = false
             cell.btnArrow.isHidden = true
+            if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+                cell.switchToggle.isOn = notificationStatus == "0" ? false : true
+            }
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    
+        
         if let option = SettingsOptions(rawValue: indexPath.row) {
             switch option {
-            case .Notification:
-                break
                 
             case .AccountPrivacy:
                 let controller = storyboard.instantiateViewController(withIdentifier: AccountPrivacyViewController.className) as! AccountPrivacyViewController
                 self.navigationController?.pushViewController(controller, animated: true)
-                break
                 
             case .EditProfile:
                 let controller = storyboard.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
                 self.navigationController?.pushViewController(controller, animated: true)
-                break
                 
             case .ChangePassword:
                 let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
                 self.navigationController?.pushViewController(controller, animated: true)
-                break
                 
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
                 self.navigationController?.pushViewController(controller, animated: true)
-                break
                 
             case .AddCard:
                 let controller = storyboard.instantiateViewController(withIdentifier: CardListViewController.className) as! CardListViewController
                 self.navigationController?.pushViewController(controller, animated: true)
-                break
                 
-            case .Help:
-                break
-                
-            case .RateApp:
-                break
-                
-            case .TermsAndConditions:
-                break
-                
-            case .PrivacyPolicy:
-                break
-                
-            case . Support:
-                break
-                
-            case .Language:
+            default :
                 break
                 
             }
@@ -181,9 +169,40 @@ extension SettingsViewController {
             if status {
                 UserDefaults.standard.set(false, forKey: UserDefaultKeys.kIsLogedIn)
                 SingletonClass.SharedInstance.singletonClear()
-//                self.removeAllSocketFromMemory()
+                //                self.removeAllSocketFromMemory()
                 AppDelegateShared.GoToLogout()
             } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceforNotification(){
+        
+        UtilityClass.showHUD()
+        
+        var strParam = String()
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        strParam = NetworkEnvironment.baseURL + ApiKey.notification.rawValue + id
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(status)
+            
+            UtilityClass.hideHUD()
+            
+            if status{
+                if let userData = SingletonClass.SharedInstance.userData {
+                    userData.notification = json["notification"].stringValue
+                    do{
+                        try UserDefaults.standard.set(object: userData, forKey: UserDefaultKeys.kUserProfile)
+                        SingletonClass.SharedInstance.userData = userData
+                    }catch{
+                        UtilityClass.showAlert(Message: error.localizedDescription)
+                    }
+                }
+            }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }

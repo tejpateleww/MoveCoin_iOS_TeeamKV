@@ -125,7 +125,7 @@ class ProfileViewController: UIViewController {
             imgProfilePicture.kf.indicatorType = .activity
             imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
         }
-        btnMyFriends.setTitle("My Friends - \(SingletonClass.SharedInstance.userData?.friends ?? "0")", for: .normal)
+        btnMyFriends.setTitle("My Friends (\(SingletonClass.SharedInstance.userData?.friends ?? "0"))", for: .normal)
     }
     
     @objc func btnChatTapped(){

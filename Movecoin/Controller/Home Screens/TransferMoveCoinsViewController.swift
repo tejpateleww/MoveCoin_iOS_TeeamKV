@@ -23,7 +23,7 @@ class TransferMoveCoinsViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var receiverData : FriendsData!
+    var receiverData : FriendsData?
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -33,6 +33,9 @@ class TransferMoveCoinsViewController: UIViewController {
         super.viewDidLoad()
         self.setupFont()
         txtAmount.delegate = self
+        if let name = receiverData?.fullName {
+             lblName.text = "To \(name)"
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

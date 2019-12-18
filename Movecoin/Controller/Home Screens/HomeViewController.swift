@@ -146,6 +146,10 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // ----------------------------------------------------
+    // MARK: - --------- Steps Count Methods ---------
+    // ----------------------------------------------------
+    
     func healthKitData(){
         if checkAuthorization() {
             getTodaysSteps { (steps) in
@@ -224,6 +228,12 @@ class HomeViewController: UIViewController {
     
     func startCountingSteps(){
         if CMPedometer.isStepCountingAvailable(){
+            if CMPedometer.isFloorCountingAvailable(){
+                print("Yes")
+            }else{
+                print("No")
+            }
+           
             pedoMeter.startUpdates(from: Date()) { (data, error) in
                 print(data ?? 0)
                 guard let activityData = data else {

@@ -7,6 +7,8 @@ target 'Movecoins' do
 
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'Firebase'
+pod 'Firebase/Messaging'
 
 pod 'SwiftyJSON'
 pod 'Alamofire'

@@ -101,7 +101,7 @@ class ConfirmPurchaseViewController: UIViewController {
             }
         }
         if let user = userData {
-            lblAvailableBalance.text = "Now Available balance - \(user.coins ?? "0")"
+            lblAvailableBalance.text = user.coins ?? "0"
         }
     }
     

@@ -23,6 +23,7 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtGender: UITextField!
+    @IBOutlet weak var txtReferral: UITextField!
     @IBOutlet weak var lblAccount: UILabel!
     @IBOutlet weak var btnSignIn: UIButton!
     
@@ -102,17 +103,13 @@ class SignupViewController: UIViewController {
     func validate() {
         do {
             let fullName = try txtFullName.validatedText(validationType: ValidatorType.fullname)
-            if txtNickname.text!.isBlank {
-                UtilityClass.showAlert(Message: "Please enter nickname")
-                return
-            }
+            let nickName = try txtNickname.validatedText(validationType: ValidatorType.requiredField(field: txtNickname.placeholder!))
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let mobileNumber = try txtMobile.validatedText(validationType: ValidatorType.mobileNumber)
             let password = try txtPassword.validatedText(validationType: ValidatorType.password)
-            if txtConfirmPassword.text?.isBlank ?? true {
-                UtilityClass.showAlert(Message: "Please enter confirm password")
-                return
-            }else if txtPassword.text != txtConfirmPassword.text {
+            _ = try txtConfirmPassword.validatedText(validationType: ValidatorType.requiredField(field: txtConfirmPassword.placeholder!))
+
+            if txtPassword.text != txtConfirmPassword.text {
                 UtilityClass.showAlert(Message: "Confirm password does not match with password")
                 return
             } else if txtGender.text!.isBlank {
@@ -121,11 +118,12 @@ class SignupViewController: UIViewController {
             }
             let signupModel = SignupModel()
             signupModel.FullName = fullName
-            signupModel.NickName = txtNickname.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            signupModel.NickName = nickName
             signupModel.Phone = mobileNumber
             signupModel.Email = email
             signupModel.Password = password
             signupModel.Gender = txtGender.text!
+            signupModel.ReferralCode = txtReferral.text!
             signupModel.DeviceType = "ios"
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 signupModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
@@ -137,9 +135,6 @@ class SignupViewController: UIViewController {
             signupModel.Longitude = "72.5181843"
             #endif
             signupModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
-//            if let token = UserDefaults.standard.object(forKey: UserDefaultKeys.kDeviceToken) as? String{
-//                signupModel.DeviceToken =  token
-//            }
             webserviceCallForOTP(signupDic: signupModel)
         } catch(let error) {
             UtilityClass.showAlert(Message: (error as! ValidationError).message)

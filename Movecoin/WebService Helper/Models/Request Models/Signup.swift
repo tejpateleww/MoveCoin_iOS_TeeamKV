@@ -21,5 +21,5 @@ class SignupModel : RequestModel {
     var DeviceType : String = ""
     var Phone : String = ""
     var Gender : String = ""
-//  var ReferralCode : UIImage = UIImage()
+    var ReferralCode : String = ""
 }

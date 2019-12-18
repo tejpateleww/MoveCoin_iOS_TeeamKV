@@ -40,11 +40,3 @@ let TransparentColor : UIColor = UIColor.init(white: 1.0, alpha: 0.23)
 // Constant Keys
 
 let kAppName = "MoveCoins"
-
-// User Defaults Keys
-
-//let kIsLogedIn = "isLogin"
-//let kDeviceToken = "DeviceToken"
-//let kUserProfile = "userProfile"
-//let kX_API_KEY = "x-api-key"
-//let kIsFirstTimeLocationUpdate = "isFirstTimeLocationUpdate"

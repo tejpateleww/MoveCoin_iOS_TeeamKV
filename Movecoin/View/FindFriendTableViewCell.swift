@@ -53,7 +53,7 @@ class FindFriendTableViewCell: UITableViewCell {
             btnAccept.isHidden = true
             btnInvite.setTitle("+ Invite", for: .normal)
             if let detail = notRegisteredFriend {
-                self.lblName.text = detail.name.capitalizingFirstLetter()
+                self.lblName.text = detail.name.trimmingCharacters(in: .whitespacesAndNewlines).capitalizingFirstLetter()
                 self.lblNumber.text = detail.number
                 if lblName.text?.isBlank ?? true { return }
                 self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
@@ -67,7 +67,11 @@ class FindFriendTableViewCell: UITableViewCell {
             btnInvite.setTitle("Add Friend", for: .normal)
             btnInvite.titleLabel?.font = UIFont.regular(ofSize: 12)
             if let detail = registeredFriend {
-                self.lblName.text = detail.fullName.capitalizingFirstLetter()
+                if detail.fullName != "" {
+                    self.lblName.text = detail.fullName.capitalizingFirstLetter()
+                } else {
+                     self.lblName.text = detail.nickName.capitalizingFirstLetter()
+                }
                 self.lblNumber.text = detail.phone
                 if lblName.text?.isBlank ?? true { return }
                 self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))

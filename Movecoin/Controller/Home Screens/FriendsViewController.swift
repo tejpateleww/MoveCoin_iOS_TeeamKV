@@ -149,11 +149,11 @@ extension FriendsViewController {
             UtilityClass.hideHUD()
             if status {
                 let responseModel = FriendsResponseModel(fromJson: json)
-                if responseModel.friendList.count > 0  {
+//                if responseModel.friendList.count > 0  {
                     self.friendsArray = responseModel.friendList
                     self.searchArray = self.friendsArray
                     self.tblFriends.reloadData()
-                }
+ //               }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

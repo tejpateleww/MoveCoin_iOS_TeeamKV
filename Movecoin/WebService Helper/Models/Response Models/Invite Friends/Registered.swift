@@ -13,6 +13,7 @@ class Registered : Codable, Comparable {
     var iD : String!
     var isFriend : Int!
     var phone : String!
+    var nickName : String!
     
     init(){
         
@@ -37,6 +38,7 @@ class Registered : Codable, Comparable {
         iD = json["ID"].stringValue
         isFriend = json["is_friend"].intValue
         phone = json["Phone"].stringValue
+        nickName = json["NickName"].stringValue
 	}
 
 	/**
@@ -57,6 +59,9 @@ class Registered : Codable, Comparable {
         if phone != nil{
         	dictionary["Phone"] = phone
         }
+        if nickName != nil{
+            dictionary["NickName"] = nickName
+        }
 		return dictionary
 	}
 
@@ -70,6 +75,7 @@ class Registered : Codable, Comparable {
 		iD = aDecoder.decodeObject(forKey: "ID") as? String
 		isFriend = aDecoder.decodeObject(forKey: "is_friend") as? Int
 		phone = aDecoder.decodeObject(forKey: "Phone") as? String
+        nickName = aDecoder.decodeObject(forKey: "NickName") as? String
 	}
 
     /**
@@ -90,7 +96,9 @@ class Registered : Codable, Comparable {
 		if phone != nil{
 			aCoder.encode(phone, forKey: "Phone")
 		}
-
+        if nickName != nil{
+            aCoder.encode(phone, forKey: "NickName")
+        }
 	}
 
 }
