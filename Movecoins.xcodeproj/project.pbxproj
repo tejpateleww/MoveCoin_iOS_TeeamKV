@@ -135,6 +135,8 @@
 		46C9C4EF23A116380042341B /* AddCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9C4EE23A116380042341B /* AddCardModel.swift */; };
 		46D96067238B9BB10026B96D /* ProductsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D96065238B9BB10026B96D /* ProductsResponseModel.swift */; };
 		46D96068238B9BB10026B96D /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D96066238B9BB10026B96D /* ProductDetails.swift */; };
+		46DDCA0023AB463F00FFAF91 /* ChatHistoryResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC9FF23AB463F00FFAF91 /* ChatHistoryResponseModel.swift */; };
+		46DDCA0223AB486000FFAF91 /* ChatHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDCA0123AB486000FFAF91 /* ChatHistoryModel.swift */; };
 		46DF729523504B2F005005B1 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF729423504B2F005005B1 /* InviteViewController.swift */; };
 		46DF72972350601F005005B1 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF72962350601F005005B1 /* InviteFriendsViewController.swift */; };
 		46DF729923506042005005B1 /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DF729823506042005005B1 /* FindFriendsViewController.swift */; };
@@ -152,6 +154,9 @@
 		46EA8792234B14C20082C694 /* TotalStepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EA8791234B14C20082C694 /* TotalStepsTableViewCell.swift */; };
 		46ECAEBB232A6E3200FCD029 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ECAEBA232A6E3200FCD029 /* StoreViewController.swift */; };
 		46ECAEBD232A756F00FCD029 /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ECAEBC232A756F00FCD029 /* StoreTableViewCell.swift */; };
+		46F5461D23AA515C00251A20 /* ChatListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5461B23AA515C00251A20 /* ChatListResponseModel.swift */; };
+		46F5461E23AA515C00251A20 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5461C23AA515C00251A20 /* ChatList.swift */; };
+		46F5462023AA546800251A20 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5461F23AA546800251A20 /* ChatListModel.swift */; };
 		46F88CA72356F855003E24CC /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F88CA62356F855003E24CC /* UIButton + Extension.swift */; };
 		46F88CA923570408003E24CC /* PurchaseHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F88CA823570408003E24CC /* PurchaseHistoryViewController.swift */; };
 		46F88CAB23570587003E24CC /* PurchaseHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F88CAA23570587003E24CC /* PurchaseHistoryTableViewCell.swift */; };
@@ -307,6 +312,8 @@
 		46C9C4EE23A116380042341B /* AddCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardModel.swift; sourceTree = "<group>"; };
 		46D96065238B9BB10026B96D /* ProductsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsResponseModel.swift; sourceTree = "<group>"; };
 		46D96066238B9BB10026B96D /* ProductDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
+		46DDC9FF23AB463F00FFAF91 /* ChatHistoryResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHistoryResponseModel.swift; sourceTree = "<group>"; };
+		46DDCA0123AB486000FFAF91 /* ChatHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryModel.swift; sourceTree = "<group>"; };
 		46DF729423504B2F005005B1 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		46DF72962350601F005005B1 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		46DF729823506042005005B1 /* FindFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsViewController.swift; sourceTree = "<group>"; };
@@ -324,6 +331,9 @@
 		46EA8791234B14C20082C694 /* TotalStepsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalStepsTableViewCell.swift; sourceTree = "<group>"; };
 		46ECAEBA232A6E3200FCD029 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		46ECAEBC232A756F00FCD029 /* StoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
+		46F5461B23AA515C00251A20 /* ChatListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListResponseModel.swift; sourceTree = "<group>"; };
+		46F5461C23AA515C00251A20 /* ChatList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
+		46F5461F23AA546800251A20 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		46F88CA62356F855003E24CC /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		46F88CA823570408003E24CC /* PurchaseHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewController.swift; sourceTree = "<group>"; };
 		46F88CAA23570587003E24CC /* PurchaseHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -615,6 +625,8 @@
 				463CAC4223A365120040493E /* PlaceOrder.swift */,
 				463CAC4423A371610040493E /* PurchaseHistory.swift */,
 				46C9C4EE23A116380042341B /* AddCardModel.swift */,
+				46F5461F23AA546800251A20 /* ChatListModel.swift */,
+				46DDCA0123AB486000FFAF91 /* ChatHistoryModel.swift */,
 				46A76A3C23AA2E4E009F5427 /* SendMessage.swift */,
 				46E468F1237D1CA70068701E /* EditProfile.swift */,
 				46B2E441237A7C2800540D27 /* ChangePassword.swift */,
@@ -810,7 +822,10 @@
 		46A76A3E23AA3BAE009F5427 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				46F5461C23AA515C00251A20 /* ChatList.swift */,
+				46F5461B23AA515C00251A20 /* ChatListResponseModel.swift */,
 				46A76A3F23AA3BBB009F5427 /* MessageData.swift */,
+				46DDC9FF23AB463F00FFAF91 /* ChatHistoryResponseModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1160,6 +1175,7 @@
 				469057B323967CBB000D192E /* BecomeSeller.swift in Sources */,
 				461DC26B237965D00092AC82 /* ValidatorClass.swift in Sources */,
 				46E468F5237D7A430068701E /* CardListViewController.swift in Sources */,
+				46F5461D23AA515C00251A20 /* ChatListResponseModel.swift in Sources */,
 				46EA8792234B14C20082C694 /* TotalStepsTableViewCell.swift in Sources */,
 				46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */,
 				46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */,
@@ -1175,6 +1191,7 @@
 				46FA2C8023A122DD000A3B9B /* Card.swift in Sources */,
 				46138044232906C7007C3FA4 /* SignupViewController.swift in Sources */,
 				461DC25B237936F60092AC82 /* WebServices.swift in Sources */,
+				46DDCA0223AB486000FFAF91 /* ChatHistoryModel.swift in Sources */,
 				46A76A3D23AA2E4E009F5427 /* SendMessage.swift in Sources */,
 				46C9132C2330EA110068C788 /* WaveLayer.m in Sources */,
 				4631E9982327AD820088B49F /* UIColor + Extension.swift in Sources */,
@@ -1186,6 +1203,8 @@
 				46ECAEBB232A6E3200FCD029 /* StoreViewController.swift in Sources */,
 				4652AF5D239F6EEE00B2E775 /* FriendRequestModel.swift in Sources */,
 				465CF18F23696D3B0069D4DE /* iOSDevCenters+GIF.swift in Sources */,
+				46F5461E23AA515C00251A20 /* ChatList.swift in Sources */,
+				46F5462023AA546800251A20 /* ChatListModel.swift in Sources */,
 				4600A71423278D37004A7A9E /* AppDelegate.swift in Sources */,
 				469688DF2371977D00C691A8 /* UIDevice + Extension.swift in Sources */,
 				469C9E0E2341EADD0098AE65 /* UItextField + Extension.swift in Sources */,
@@ -1198,6 +1217,7 @@
 				4661BB512351C59800DC41E0 /* MapViewController.swift in Sources */,
 				463CAC4323A365120040493E /* PlaceOrder.swift in Sources */,
 				466762B7238BE27D003136BC /* ProductDetailModel.swift in Sources */,
+				46DDCA0023AB463F00FFAF91 /* ChatHistoryResponseModel.swift in Sources */,
 				463BF583234F42E80022C465 /* AlertViewController.swift in Sources */,
 				46E468F7237D86E40068701E /* CardTableViewCell.swift in Sources */,
 				465E3509237BBF9C0023366C /* OTPverify.swift in Sources */,

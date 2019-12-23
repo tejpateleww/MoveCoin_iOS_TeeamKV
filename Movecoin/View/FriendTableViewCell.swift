@@ -32,8 +32,8 @@ class FriendTableViewCell: UITableViewCell {
                 if detail.profilePicture.isBlank{
                     return
                 }
-                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
-                if let url = URL(string: urlStr) {
+//                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
+                if let url = URL(string: detail.profilePicture) {
                     self.imgPhoto.kf.indicatorType = .activity
                     self.imgPhoto.kf.setImage(with: url)
                 }

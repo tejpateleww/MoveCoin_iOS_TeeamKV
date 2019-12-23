@@ -38,9 +38,7 @@ class FindFriendsViewController: UIViewController {
     var responseModel : InviteFriendsResponseModel?
     let store = CNContactStore()
     lazy var tableData : [FriendsTableData] = []
-    
-    lazy var composeVC = MFMessageComposeViewController()
-
+   
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -188,14 +186,13 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
             }
             
         case .NotRegistedFriend:
-            
+            let composeVC = MFMessageComposeViewController()
            composeVC.messageComposeDelegate = self
            guard let number = cell.notRegisteredFriend?.number else { return }
            composeVC.recipients = [number]
            composeVC.body = "Check out this app \(kAppName), referral code - " + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
            // Present the view controller modally.
            if MFMessageComposeViewController.canSendText() {
-                composeVC.navigationBar.tintColor = .black
                self.present(composeVC, animated: true, completion: nil)
            }
             
@@ -211,7 +208,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
 
 extension FindFriendsViewController : MFMessageComposeViewControllerDelegate {
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        composeVC.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

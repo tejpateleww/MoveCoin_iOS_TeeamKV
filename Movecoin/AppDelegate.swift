@@ -49,6 +49,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         
+        if (((AppDelegateShared.window?.rootViewController as? UINavigationController)?.topViewController as? ChatViewController) != nil) {
+            let vc = (AppDelegateShared.window?.rootViewController as? UINavigationController)?.topViewController as! ChatViewController
+            vc.webserviceForChatHistory(isLoading: false)
+        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -232,44 +236,133 @@ extension AppDelegate {
         print(#function, response)
         //            singletoneClass.shared.notificationCounter += 1
         
+        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
         
-        let state = UIApplication.shared.applicationState
-        if state == .inactive {
-            // background
+        print("USER INFo : ",userInfo)
+        print("KEY : ",key)
+        
+        if userInfo["gcm.notification.type"] as! String == "chat" {
+            
+            if let response = userInfo["gcm.notification.response_arr"] as? String {
+                let jsonData = response.data(using: .utf8)!
+                let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                
+                if let dic = dictionary  as? [String: Any]{
+                    print(dic)
+                    
+                    if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+                        if let vc : ChatViewController = (vc as? ChatViewController) {
+                            
+                            if let senderID = dic["SenderID"] as? String {
+                                if senderID == vc.userData["id"] {
+                                    let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
+                                    print(chat)
+                                    vc.arrData.append(chat)
+                                    let indexPath = IndexPath.init(row: vc.arrData.count-1, section: 0)
+                                    vc.tblVw.insertRows(at: [indexPath], with: .bottom)
+                                    let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
+                                    vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+                                } else {
+                                    
+                                    if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
+                                        vc.navigationController?.popViewController(animated: false)
+                                        chatListVC.ChatFromNotification(dict: dic)
+                                    }
+                                }
+                            }
+                        } else {
+                            if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
+                               
+                                for controller in vc.navigationController?.viewControllers ?? [] {
+                                    if(controller.isKind(of: ChatListViewController.self)) {
+                                        vc.navigationController?.popToViewController(controller as! ChatListViewController, animated: true)
+                                        break
+                                      }
+                                }
+                                chatListVC.ChatFromNotification(dict: dic)
+                            } else {
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: ChatListViewController.className) as! ChatListViewController
+                                vc.navigationController?.pushViewController(controller, animated: false)
+                                controller.ChatFromNotification(dict: dic)
+                            }
+                        }
+                    }
+                } else {
+                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+                    completionHandler()
+                }
+            }
         }
         
-        print("USER INFo : ",userInfo)
-        print("KEY : ",key)
+        
+        func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+            
+            print(#function, notification.request.content.userInfo)
+            
+            let content = notification.request.content
+            let userInfo = notification.request.content.userInfo
+            let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
+            
+            print("USER INFo : ",userInfo)
+            print("KEY : ",key)
+            
+            if userInfo["gcm.notification.type"] as! String == "chat" {
+                
+                if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+                    if let vc : ChatViewController = (vc as? ChatViewController) {
+                        
+                        if let response = userInfo["gcm.notification.response_arr"] as? String {
+                            let jsonData = response.data(using: .utf8)!
+                            let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                            
+                            if let dic = dictionary  as? [String: Any]{
+                                print(dic)
+                                
+                                if let senderID = dic["SenderID"] as? String {
+                                    if senderID == vc.userData["id"] {
+                                        let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
+                                        print(chat)
+                                        vc.arrData.append(chat)
+                                        let indexPath = IndexPath.init(row: vc.arrData.count-1, section: 0)
+                                        vc.tblVw.insertRows(at: [indexPath], with: .bottom)
+                                        let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
+                                        vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+                                    } else{
+                                        NotificationCenter.default.post(name: NotificationBadges, object: content)
+                                        completionHandler([.alert, .sound])
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        NotificationCenter.default.post(name: NotificationBadges, object: content)
+                        completionHandler([.alert, .sound])
+                    }
+                } else {
+                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+                    completionHandler([.alert, .sound])
+                }
+            }
+        }
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        print(#function, notification.request.content.userInfo)
-        //        completionHandler([.alert])
-        //            singletoneClass.shared.notificationCounter += 1
-        let userInfo = notification.request.content.userInfo
-        let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
-        
-        print("USER INFo : ",userInfo)
-        print("KEY : ",key)
-    }
-}
-
-// ----------------------------------------------------
-//MARK:- === Firebase Methods ======
-// ----------------------------------------------------
-
-func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-    print(remoteMessage)
-}
-
-func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-    print("Firebase registration token: \(fcmToken)")
+    // ----------------------------------------------------
+    //MARK:- === Firebase Methods ======
+    // ----------------------------------------------------
     
-    SingletonClass.SharedInstance.DeviceToken = fcmToken
-    UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
-    //    let dataDict:[String: String] = ["token": fcmToken]
-    //    NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print(remoteMessage)
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        SingletonClass.SharedInstance.DeviceToken = fcmToken
+        UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
+        //    let dataDict:[String: String] = ["token": fcmToken]
+        //    NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    }
 }

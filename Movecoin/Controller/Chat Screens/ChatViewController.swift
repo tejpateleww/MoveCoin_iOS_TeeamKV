@@ -38,6 +38,8 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     
     var arrData = [MessageData]()
+    
+    var userData : [String : String]!
 
     // ----------------------------------------------------
     // MARK: - --------- Life-Cycle Methods ---------
@@ -49,6 +51,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
         setUpNavigationItems()
+        webserviceForChatHistory(isLoading: true)
         
         self.imgPassenger.isHidden = true
         self.lblName.isHidden = false
@@ -64,7 +67,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationBarSetUp(title: "Mohammed")
+        self.navigationBarSetUp(title: userData["fullname"] ?? "")
         
         if arrData.count>0 {
             tblVw.reloadData()
@@ -119,6 +122,11 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         profile.cornerRadius = 16
         profile.clipsToBounds = true
         
+        if let url = URL(string: userData["profilePicture"] ?? "") {
+            profile.kf.indicatorType = .activity
+            profile.kf.setImage(with: url)
+        }
+        
         profileView.addSubview(imgview)
         profileView.addSubview(profile)
         
@@ -126,16 +134,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         self.navigationItem.setRightBarButton(item, animated: true)
     }
     
-    
-    @objc func reloadNewData() {
-        tempReload()
-    }
-    
-    func tempReload() {
-        //        arrData.append(Singletons.sharedInstance.ChattingMessages)
-        let indexPath = IndexPath.init(row: arrData.count-1, section: 0)
-        
-        tblVw.insertRows(at: [indexPath], with: .bottom)
+    func scrollToBottom() {
         let path = IndexPath.init(row: arrData.count-1, section: 0)
         tblVw.scrollToRow(at: path, at: .bottom, animated: true)
     }
@@ -157,8 +156,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         }
         self.view.animateConstraintWithDuration()
         if arrData.count > 0 {
-            let path = IndexPath.init(row: arrData.count-1, section: 0)
-            tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+           scrollToBottom()
         }
     }
     
@@ -175,6 +173,12 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    func resetAll() {
+        txtMessage.text = ""
+        self.view.animateConstraintWithDuration()
+    }
+    
+    
     // ----------------------------------------------------
     //MARK:- --------- IBAction Methods ---------
     // ----------------------------------------------------
@@ -184,43 +188,6 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         if !txtMessage.text!.isEmpty {
             self.sendMessage(message: txtMessage.text!)
         }
-    }
-    
-    // ----------------------------------------------------
-    //MARK:- --------- Send Massage Methods ---------
-    // ----------------------------------------------------
-    
-    func sendMessage(message:String){
-        
-        let requestModel = SendMessage()
-        requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
-        requestModel.ReceiverID = "3"
-        requestModel.Message = message
-        
-        FriendsWebserviceSubclass.sendMessage(sendMessageModel: requestModel){ (json, status, res) in
-            
-            if status {
-                let dataJson = json["data"]
-                if !dataJson.isEmpty{
-                    let obj = MessageData(fromJson: dataJson)
-                    self.arrData.append(obj)
-                }
-                
-                if self.arrData.count > 0 {
-                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
-                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
-                    let path = IndexPath.init(row: self.arrData.count - 1, section: 0)
-                    self.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
-                    self.resetAll()
-                }
-                
-            }
-        }
-    }
-    
-    func resetAll() {
-        txtMessage.text = ""
-        self.view.animateConstraintWithDuration()
     }
     
     @IBAction func profileClick(_ sender: Any) {
@@ -274,7 +241,62 @@ extension ChatViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension ChatViewController {
     
+    func sendMessage(message:String){
+        
+        let requestModel = SendMessage()
+        requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.ReceiverID = userData["id"] ?? ""
+        requestModel.Message = message
+        
+        FriendsWebserviceSubclass.sendMessage(sendMessageModel: requestModel){ (json, status, res) in
+            
+            if status {
+                let dataJson = json["data"]
+                if !dataJson.isEmpty{
+                    let obj = MessageData(fromJson: dataJson)
+                    self.arrData.append(obj)
+                }
+                
+                if self.arrData.count > 0 {
+                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
+                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
+                    self.scrollToBottom()
+                    self.resetAll()
+                }
+            }
+        }
+    }
+    
+    func webserviceForChatHistory(isLoading : Bool){
+        if isLoading {
+            UtilityClass.showHUD()
+        }
+        
+        let requestModel = ChatHistoryModel()
+        requestModel.sender_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.receiver_id = userData["id"] ?? ""
+    
+        FriendsWebserviceSubclass.chatHistory(chatHistoryModel: requestModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+                let responseModel = ChatHistoryResponseModel(fromJson: json)
+                if responseModel.chatHistory.count > 0  {
+                    self.arrData = responseModel.chatHistory
+                    self.tblVw.reloadData()
+                    self.scrollToBottom()
+                }
+            }
+        }
+    }
 }
 
 // ----------------------------------------------------

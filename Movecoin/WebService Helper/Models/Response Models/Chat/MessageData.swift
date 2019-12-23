@@ -21,6 +21,16 @@ class MessageData : Codable {
         
     }
     
+    init(ReceiverID : String, Message : String, SenderNickname : String, SenderName : String, SenderID : String, Date : String, ChatId : String) {
+        self.chatId = ChatId
+        self.date = Date
+        self.message = Message
+        self.receiverID = ReceiverID
+        self.senderName = SenderID
+        self.senderNickname = SenderNickname
+        self.senderID = SenderID
+    }
+    
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
