@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var lblMember: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    
     @IBOutlet weak var lblTodaysStepCount: UILabel!
     @IBOutlet weak var circularProgress: KDCircularProgress!
     
@@ -153,7 +154,7 @@ class HomeViewController: UIViewController {
     func healthKitData(){
         if checkAuthorization() {
             getTodaysSteps { (steps) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     self.lblTodaysStepCount.text = String(Int(steps))
                     SingletonClass.SharedInstance.todaysStepCount = Int(steps)
                    

@@ -11,6 +11,7 @@ class StepsHistoryResponseModel : Codable{
     
     var stepsDataList : [StepsData]!
     var status : Bool!
+    var totalStepsCount : String!
     
     init(){
         
@@ -31,6 +32,7 @@ class StepsHistoryResponseModel : Codable{
             stepsDataList.append(value)
         }
         status = json["status"].boolValue
+        totalStepsCount = json["total_steps_count"].stringValue
 	}
     
     
@@ -51,6 +53,9 @@ class StepsHistoryResponseModel : Codable{
         if status != nil{
         	dictionary["status"] = status
         }
+        if totalStepsCount != nil{
+            dictionary["total_steps_count"] = totalStepsCount
+        }
 		return dictionary
 	}
 
@@ -62,6 +67,7 @@ class StepsHistoryResponseModel : Codable{
 	{
 		stepsDataList = aDecoder.decodeObject(forKey: "data") as? [StepsData]
 		status = aDecoder.decodeObject(forKey: "status") as? Bool
+        totalStepsCount = aDecoder.decodeObject(forKey: "total_steps_count") as? String
 	}
 
     /**
@@ -76,6 +82,9 @@ class StepsHistoryResponseModel : Codable{
 		if status != nil{
 			aCoder.encode(status, forKey: "status")
 		}
+        if totalStepsCount != nil{
+            aCoder.encode(totalStepsCount, forKey: "total_steps_count")
+        }
 
 	}
 

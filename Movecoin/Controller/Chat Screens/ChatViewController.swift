@@ -186,6 +186,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     @IBAction func sendClick(_ sender: UIButton) {
         txtMessage.text = txtMessage.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if !txtMessage.text!.isEmpty {
+            self.btnSend.isUserInteractionEnabled = false
             self.sendMessage(message: txtMessage.text!)
         }
     }
@@ -231,13 +232,7 @@ extension ChatViewController: UITableViewDataSource {
             cell.lblMessage.textColor = UIColor.white
             cell.lblTime.textColor = UIColor.white
             cell.lblReadStatus.textColor = UIColor.white
-        } else {
-            //                cell.vwChatBg.backgroundColor = GlobalConstant.Color.cellSenderBgColor
-            //                cell.lblMessage.textColor = GlobalConstant.Color.AppTitleTextColor
-            //                cell.lblTime.textColor = GlobalConstant.Color.AppSubTitleTextColor
-            //                cell.lblReadStatus.textColor = GlobalConstant.Color.AppSubTitleTextColor
         }
-        
         cell.selectionStyle = .none
         return cell
     }
@@ -258,6 +253,7 @@ extension ChatViewController {
         
         FriendsWebserviceSubclass.sendMessage(sendMessageModel: requestModel){ (json, status, res) in
             
+            self.btnSend.isUserInteractionEnabled = true
             if status {
                 let dataJson = json["data"]
                 if !dataJson.isEmpty{
@@ -283,7 +279,7 @@ extension ChatViewController {
         let requestModel = ChatHistoryModel()
         requestModel.sender_id = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.receiver_id = userData["id"] ?? ""
-    
+        
         FriendsWebserviceSubclass.chatHistory(chatHistoryModel: requestModel){ (json, status, res) in
             
             UtilityClass.hideHUD()

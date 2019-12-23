@@ -60,7 +60,6 @@ class TotalStepsViewController: UIViewController {
         tblTotalSteps.tableFooterView = UIView.init(frame: CGRect.zero)
         
         lblTotalSteps.font = UIFont.semiBold(ofSize: 24)
-        lblTotalSteps.text = SingletonClass.SharedInstance.userData?.steps
     }
     
     @objc func refreshSteps(){
@@ -129,6 +128,7 @@ extension TotalStepsViewController {
                 if status{
                     let stepsResponseModel = StepsHistoryResponseModel(fromJson: json)
                     DispatchQueue.main.async {
+                        self.lblTotalSteps.text = stepsResponseModel.totalStepsCount
                       if refresh {
 //                            self.refreshControl.endRefreshing()
                             self.stepsHistoryList = stepsResponseModel.stepsDataList
