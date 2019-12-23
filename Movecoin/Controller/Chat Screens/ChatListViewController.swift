@@ -123,9 +123,7 @@ extension ChatListViewController {
                     self.friendsArray = responseModel.chatList
                     self.tblChatList.reloadData()
                 }
-            } else {
-                UtilityClass.showAlertOfAPIResponse(param: res)
-            }
+            } 
         }
     }
 }

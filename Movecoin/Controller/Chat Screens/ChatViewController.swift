@@ -15,21 +15,12 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
-    
-    @IBOutlet weak var vwTitle: UIView!
-    @IBOutlet weak var btnInfo: UIBarButtonItem!
-    
-    @IBOutlet weak var btnBack: UIBarButtonItem!
+
     @IBOutlet weak var tblVw: UITableView!
     @IBOutlet weak var txtMessage: UITextField!
     
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
-    
-    @IBOutlet weak var imgPassenger: UIImageView!
-    
-    @IBOutlet weak var constraintHeightOfNavigationBar: NSLayoutConstraint!
-    @IBOutlet weak var lblName: UILabel!
-    
+
     @IBOutlet weak var btnSend: UIButton!
     
     
@@ -50,11 +41,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
-        setUpNavigationItems()
         webserviceForChatHistory(isLoading: true)
-        
-        self.imgPassenger.isHidden = true
-        self.lblName.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,12 +49,12 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         setupKeyboard(false)
         self.hideKeyboard()
         self.registerForKeyboardNotifications()
-        //        Singletons.sharedInstance.isChatingPresented = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationBarSetUp(title: userData["fullname"] ?? "")
+        setUpNavigationItems()
         
         if arrData.count>0 {
             tblVw.reloadData()
@@ -82,14 +69,11 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         self.deregisterFromKeyboardNotifications()
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.enable = true
-        //        Singletons.sharedInstance.isChatingPresented = false
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        imgPassenger.layer.cornerRadius = imgPassenger.frame.height / 2
-        imgPassenger.layer.masksToBounds = true
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.view.frame.size.height))
         txtMessage.leftView = paddingView
         txtMessage.leftViewMode = .always
@@ -105,31 +89,28 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     
     func setupFont(){
-        lblName.font = UIFont.bold(ofSize: 17)
         txtMessage.font = UIFont.regular(ofSize: 15)
     }
     
     func setUpNavigationItems(){
-        let profileView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        
+        let profileView = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         
         let imgview = UIImageView(frame: profileView.frame)
         imgview.image = UIImage(named: "photo-frame")
         imgview.contentMode = .scaleAspectFit
         
-        let profile = UIImageView(frame: CGRect(x: 9, y: 4, width: 32, height: 32))
+        let profile = UIImageView(frame: CGRect(x: 5, y: 5, width: 34, height: 34))
         profile.image = UIImage(named: "m-logo")
         profile.contentMode = .scaleAspectFill
-        profile.cornerRadius = 16
+        profile.cornerRadius = 17
         profile.clipsToBounds = true
         
-        if let url = URL(string: userData["profilePicture"] ?? "") {
-            profile.kf.indicatorType = .activity
-            profile.kf.setImage(with: url)
+        profile.kf.setImage(with: URL(string: userData["profilePicture"] ?? ""), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
+            
         }
-        
         profileView.addSubview(imgview)
         profileView.addSubview(profile)
-        
         let item = UIBarButtonItem(customView: profileView)
         self.navigationItem.setRightBarButton(item, animated: true)
     }
