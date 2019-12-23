@@ -100,6 +100,9 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
             case .NewChat:
                 let chatStoryboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
                 let destination = chatStoryboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+                let data = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
+                let dic : [String : String] = ["id" : data.iD, "fullname" : data.fullName, "profilePicture" : data.profilePicture]
+                destination.userData = dic
                 self.navigationController?.pushViewController(destination, animated: true)
                    
             default:

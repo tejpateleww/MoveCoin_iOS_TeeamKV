@@ -100,6 +100,7 @@ enum UserDefaultKeys : CaseIterable {
 enum DateFomateKeys : CaseIterable {
     static let displayDate = "dd-MM-yyyy"
     static let displayDateTime = "dd-MM-yyyy HH:mm"
+    static let displayFullDate = "dd-MMM-yyyy HH:mm"
     static let apiDOB = "yyyy-MM-dd"
     static let api = "yyyy-MM-dd HH:mm:ss"
     

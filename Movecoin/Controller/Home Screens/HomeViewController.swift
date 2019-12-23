@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var lblMember: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    
     @IBOutlet weak var lblTodaysStepCount: UILabel!
     @IBOutlet weak var circularProgress: KDCircularProgress!
     
@@ -65,18 +66,18 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         navigationBarSetUp(hidesBackButton: true)
         setUpNavigationItems()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         webserviceForUserDetails()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
     }
@@ -153,7 +154,7 @@ class HomeViewController: UIViewController {
     func healthKitData(){
         if checkAuthorization() {
             getTodaysSteps { (steps) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     self.lblTodaysStepCount.text = String(Int(steps))
                     SingletonClass.SharedInstance.todaysStepCount = Int(steps)
                    

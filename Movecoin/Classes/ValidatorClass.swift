@@ -170,7 +170,7 @@ class AgeValidator: ValidatorConvertible {
 struct CardHolderValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
 
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter card holder name")}
 
         //        guard value.count < 50 else {
         //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
@@ -199,14 +199,14 @@ struct CardNumberValidator: ValidatorConvertible {
 struct CvvValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
-        guard value.count >= 3 && value.count < 4 else { throw ValidationError("Cvv must have 3 digits") }
+        guard value.count >= 3 && value.count < 5 else { throw ValidationError("Please enter valid CVV number") }
         return value
     }
 }
 
 struct ExpDateValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter expiry date")}
         guard expDateValidation(dateStr: value) else { throw ValidationError("Invalid expiry date") }
         return value
     }

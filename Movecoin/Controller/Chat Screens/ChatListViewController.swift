@@ -20,7 +20,7 @@ class ChatListViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var friendsArray = ["Muhammad","Mustapha","Kashif","Sarah","Leen","Lashiya","Ayesha","Halum","Sumeya","Muhammad",]
+    lazy var friendsArray = [ChatList]()
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -29,10 +29,11 @@ class ChatListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        webserviceForChatList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         setUpNavigationItems()
         self.navigationBarSetUp(title: "Chats")
     }
@@ -77,14 +78,53 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.className) as! ChatListTableViewCell
         cell.selectionStyle = .none
-//        cell.friendDetail = friendsArray[indexPath.row]
+        cell.friendDetail = friendsArray[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+        let data = friendsArray[indexPath.row]
+        let dic : [String : String] = ["id" : data.iD, "fullname" : data.fullName, "profilePicture" : data.profilePicture]
+        controller.userData = dic
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func ChatFromNotification(dict: [String:Any]) {
+        let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+        let controller = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+        let data = dict
+        let dic : [String : String] = ["id" : data["SenderID"] as? String ?? "", "fullname" : data["sender_name"] as? String ?? "", "profilePicture" : ""]
+        controller.userData = dic
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension ChatListViewController {
+    
+    func webserviceForChatList(){
+        
+        UtilityClass.showHUD()
+         
+        let requestModel = ChatListModel()
+        requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+    
+        FriendsWebserviceSubclass.chatList(chatListModel: requestModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+                let responseModel = ChatListResponseModel(fromJson: json)
+                if responseModel.chatList.count > 0  {
+                    self.friendsArray = responseModel.chatList
+                    self.tblChatList.reloadData()
+                }
+            } 
+        }
     }
 }
 

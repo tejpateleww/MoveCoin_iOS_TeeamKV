@@ -68,14 +68,14 @@ class PopoverViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnChatTapped(_ sender: Any) {
-        if let parent = self.parent as? MapViewController {
-            print(parent.parent!)
-            if let parentVC = parent.parent as? TabViewController {
-                let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
-                let destination = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
-                parentVC.navigationController?.pushViewController(destination, animated: true)
-            }
-        }
+//        if let parent = self.parent as? MapViewController {
+//            print(parent.parent!)
+//            if let parentVC = parent.parent as? TabViewController {
+//                let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+//                let destination = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+//                parentVC.navigationController?.pushViewController(destination, animated: true)
+//            }
+//        }
     }
     
     @IBAction func btntransferTapped(_ sender: Any) {

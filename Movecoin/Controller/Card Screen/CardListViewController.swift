@@ -67,6 +67,7 @@ class CardListViewController: UIViewController {
         
         txtCardNumber.delegate = self
         txtExpDate.delegate = self
+        txtCVV.delegate = self
         
         expiryDatePicker.onDateSelected = { (month: Int, year: Int) in
             let string = String(format: "%02d/%d", month, year % 100)
@@ -183,7 +184,7 @@ extension CardListViewController : UITextFieldDelegate {
             return false
  
         } else if textField == txtCVV {
-            if (range.location >= 3) {
+            if (range.location >= 4) {
                 return false
             }
         }

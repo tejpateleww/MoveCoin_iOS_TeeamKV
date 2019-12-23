@@ -48,6 +48,7 @@ class IntroPageVC: UIViewController {
         func initialSetup(){
             let imageview = UIImageView(frame: self.view.frame)
             imageview.image = UIImage(named: image)
+            imageview.contentMode = .scaleAspectFill
             self.view.addSubview(imageview)
             
             // For Request Permission

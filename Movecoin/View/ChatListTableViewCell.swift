@@ -14,11 +14,17 @@ class ChatListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblId: UILabel!
     
-    var friendDetail: FriendDetail? {
+    var friendDetail: ChatList? {
         didSet{
             if let detail = friendDetail {
-                self.lblName.text = detail.name.capitalizingFirstLetter()
-                self.lblId.text = detail.number
+                self.lblName.text = detail.fullName.capitalizingFirstLetter()
+                self.lblId.text = UtilityClass.changeDateFormateFrom(dateString: detail.lastMessageDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayFullDate)
+                // For Image
+//                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
+                 if let url = URL(string: detail.profilePicture) {
+                     self.imgPhoto.kf.indicatorType = .activity
+                     self.imgPhoto.kf.setImage(with: url)
+                 }
             }
         }
     }

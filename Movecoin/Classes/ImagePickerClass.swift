@@ -77,8 +77,8 @@ open class ImagePickerClass: NSObject {
     }
 
     private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
-        controller.dismiss(animated: true, completion: nil)
         self.delegate?.didSelect(image: image, SelectedTag: self.SelectedTag)
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -92,4 +92,5 @@ extension ImagePickerClass: UIImagePickerControllerDelegate, UINavigationControl
         let chosenImage = info[.originalImage] as! UIImage
         self.pickerController(picker, didSelect: chosenImage)
     }
+    
 }
