@@ -48,6 +48,11 @@ class FindFriendsViewController: UIViewController {
         setUpView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        accessContacts()
+    }
+    
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
@@ -57,7 +62,6 @@ class FindFriendsViewController: UIViewController {
         tblFriends.delegate = self
         tblFriends.dataSource = self
         tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
-        accessContacts()
     }
     
     func accessContacts(){
@@ -296,3 +300,4 @@ extension FindFriendsViewController {
         }
     }
 }
+

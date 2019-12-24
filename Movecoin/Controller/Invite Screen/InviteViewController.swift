@@ -23,7 +23,7 @@ class InviteViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    
+    lazy var isFromNotification : Bool = false
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -31,11 +31,30 @@ class InviteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+       
+        if isFromNotification {
+            btnFiendFriendsTapped(btnFriends as Any)
+            for controller in self.children {
+                if controller.isKind(of: FindFriendsViewController.self) {
+                    (controller as! FindFriendsViewController).accessContacts()
+                }
+            }
+        } else{
+             loadThePage(sender: btnInvite)
+        }
+    }
+    
+    // ----------------------------------------------------
+    // MARK: - --------- Custom Methods ---------
+    // ----------------------------------------------------
+    
+    func loadThePage(sender : UIButton){
+        sender.isSelected = true
         if btnInvite.isSelected {
              self.navigationBarSetUp(title: "Invite")
         }else if btnFriends.isSelected {
@@ -73,3 +92,4 @@ class InviteViewController: UIViewController {
         btnFacebook.isSelected = true
     }
 }
+

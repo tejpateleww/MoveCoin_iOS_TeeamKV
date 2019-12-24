@@ -28,7 +28,6 @@ class SingletonClass: NSObject {
     func singletonClear() {
         self.userData = nil
         self.productType = nil
-        self.DeviceToken = "1231232131232"
     }
 }
 

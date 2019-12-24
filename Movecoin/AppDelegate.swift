@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         configureNotification()
         Fabric.with([Crashlytics.self])
         
-        
         return true
     }
     
@@ -163,6 +162,31 @@ extension AppDelegate {
     
     func GetTopViewController() -> UIViewController {
         return self.window!.rootViewController!
+    }
+    
+    func loadFriendsRequest(){
+        if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+            if let vc : InviteViewController = (vc as? InviteViewController) {
+                vc.isFromNotification = true
+            }else {
+                if let inviteVC = vc.navigationController?.hasViewController(ofKind: InviteViewController.self) as? InviteViewController {
+                    
+                    for controller in vc.navigationController?.viewControllers ?? [] {
+                        if(controller.isKind(of: InviteViewController.self)) {
+                            let inviteController = controller as! InviteViewController
+                            vc.navigationController?.popToViewController(inviteController, animated: true)
+                            break
+                        }
+                    }
+                     inviteVC.isFromNotification = true
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: InviteViewController.className) as! InviteViewController
+                    controller.isFromNotification = true
+                    vc.navigationController?.pushViewController(controller, animated: false)
+                }
+            }
+        }
     }
 }
 
@@ -296,6 +320,8 @@ extension AppDelegate {
                     completionHandler()
                 }
             }
+        } else if userInfo["gcm.notification.type"] as! String == "friend_request" {
+            loadFriendsRequest()
         }
     }
     
@@ -333,20 +359,23 @@ extension AppDelegate {
                                     let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
                                     vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
                                 } else{
-                                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+//                                    NotificationCenter.default.post(name: NotificationBadges, object: content)
                                     completionHandler([.alert, .sound])
                                 }
                             }
                         }
                     }
                 } else {
-                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+//                    NotificationCenter.default.post(name: NotificationBadges, object: content)
                     completionHandler([.alert, .sound])
                 }
             } else {
-                NotificationCenter.default.post(name: NotificationBadges, object: content)
+//                NotificationCenter.default.post(name: NotificationBadges, object: content)
                 completionHandler([.alert, .sound])
             }
+        } else if userInfo["gcm.notification.type"] as! String == "friend_request" {
+            loadFriendsRequest()
+            completionHandler([.alert, .sound])
         }
     }
     

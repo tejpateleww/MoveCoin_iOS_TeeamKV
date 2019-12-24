@@ -29,13 +29,13 @@ class ChatListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        webserviceForChatList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUpNavigationItems()
         self.navigationBarSetUp(title: "Chats")
+        webserviceForChatList()
     }
     
     // ----------------------------------------------------
@@ -109,14 +109,14 @@ extension ChatListViewController {
     
     func webserviceForChatList(){
         
-        UtilityClass.showHUD()
+//        UtilityClass.showHUD()
          
         let requestModel = ChatListModel()
         requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
     
         FriendsWebserviceSubclass.chatList(chatListModel: requestModel){ (json, status, res) in
             
-            UtilityClass.hideHUD()
+//            UtilityClass.hideHUD()
             if status {
                 let responseModel = ChatListResponseModel(fromJson: json)
                 if responseModel.chatList.count > 0  {
