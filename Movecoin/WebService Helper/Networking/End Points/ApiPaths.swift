@@ -98,6 +98,8 @@ enum ApiKey: String{
     
     case addSeller = "Seller/add_seller"
     
-    case placeOrder = "order/place_order"
+//    case placeOrder = "order/place_order"
+    case placeOrder = "order/add_order"
+    
     case purchaseHistory = "Order/purchase_history"
 }

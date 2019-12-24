@@ -39,10 +39,10 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    
-    lazy var card = Card()
+
     var product : ProductDetails!
     let userData = SingletonClass.SharedInstance.userData
+    lazy var orderDetails = PlaceOrder()
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -124,25 +124,23 @@ class ConfirmPurchaseViewController: UIViewController {
                 let city = try txtCity.validatedText(validationType: ValidatorType.requiredField(field: txtCity.placeholder!))
                 let zipcode = try txtZipCode.validatedText(validationType: ValidatorType.requiredField(field: txtZipCode.placeholder!))
                 if txtCard.text!.isBlank {
-                    UtilityClass.showAlert(Message: "Please select card")
+                    UtilityClass.showAlert(Message: "Please enter card details")
                     return
                 }
                 
-                let requestModel = PlaceOrder()
-                requestModel.name = name
-                requestModel.phone = number
-                requestModel.email = email
-                requestModel.address1 = address1
-                requestModel.address2 = address2
-                requestModel.country = country
-                requestModel.state = state
-                requestModel.city = city
-                requestModel.zip = zipcode
-                requestModel.card_id = card.id
-                requestModel.product_id = product.iD
-                requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+                orderDetails.name = name
+                orderDetails.phone = number
+                orderDetails.email = email
+                orderDetails.address1 = address1
+                orderDetails.address2 = address2
+                orderDetails.country = country
+                orderDetails.state = state
+                orderDetails.city = city
+                orderDetails.zip = zipcode
+                orderDetails.product_id = product.iD
+                orderDetails.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
                 
-                webserviceCallForPlaceOrder(model: requestModel)
+                webserviceCallForPlaceOrder(model: orderDetails)
                 
             } catch(let error) {
                 UtilityClass.showAlert(Message: (error as! ValidationError).message)
@@ -188,12 +186,10 @@ class ConfirmPurchaseViewController: UIViewController {
 
 extension ConfirmPurchaseViewController : CardDelegate {
     
-    func setCardDetails(value: Card) {
-        card = value
-        txtCard.text = value.cardNum
-        imgCardIcon.isHidden = false
-        let type = value.type.lowercased()
-        imgCardIcon.image = UIImage(named: "\(type)-white")
+    func setCardDetails(value: PlaceOrder) {
+        orderDetails = value
+        let cardNo = String("XXXX XXXX XXXX \(value.card_cvv_no.suffix(4))")
+        txtCard.text = cardNo
     }
 }
 
