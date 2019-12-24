@@ -42,4 +42,4 @@ let TransparentColor : UIColor = UIColor.init(white: 1.0, alpha: 0.23)
 let kAppName = "MoveCoins"
 
 
-let NotificationBadges = NSNotification.Name(rawValue:"NotificationBadges")
+let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")

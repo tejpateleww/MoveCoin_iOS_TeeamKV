@@ -178,7 +178,7 @@ extension AppDelegate {
                             break
                         }
                     }
-                     inviteVC.isFromNotification = true
+                    inviteVC.isFromNotification = true
                 } else {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: InviteViewController.className) as! InviteViewController
@@ -187,6 +187,16 @@ extension AppDelegate {
                 }
             }
         }
+    }
+    
+    @objc func loadChatVC(){
+        let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+        let userinfo = SingletonClass.SharedInstance.userInfo
+        controller.receiverID = userinfo?["SenderID"] as? String
+        print(self.window?.rootViewController)
+        
+        (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
     }
 }
 
@@ -229,37 +239,9 @@ extension AppDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("APNs registration failed: \(error)")
     }
-    /*
-     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-     
-     print(#function, userInfo)
-     
-     Messaging.messaging().appDidReceiveMessage(userInfo)
-     //        let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
-     
-     if(application.applicationState == .background) {
-     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-     let navController = self.window?.rootViewController as? UINavigationController
-     let notificationController: UIViewController? = navController?.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
-     navController?.present(notificationController ?? UIViewController(), animated: true, completion: {
-     })
-     }
-     }
-     else{
-     let data = ((userInfo["aps"]! as! [String : AnyObject])["alert"]!) as! [String : AnyObject]
-     
-     print("data : ",data)
-     
-     //            let alert = UIAlertController(title: AppNAME.localized, message: data["title"] as? String, preferredStyle: UIAlertController.Style.alert)
-     
-     //vc will be the view controller on which you will present your alert as you cannot use self because this method is static.
-     }
-     Messaging.messaging().appDidReceiveMessage(userInfo)
-     }
-     */
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
         print(#function, response)
-        //            singletoneClass.shared.notificationCounter += 1
         
         let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
@@ -267,6 +249,7 @@ extension AppDelegate {
         
         print("USER INFo : ",userInfo)
         print("KEY : ",key)
+        
         
         if userInfo["gcm.notification.type"] as! String == "chat" {
             
@@ -277,20 +260,16 @@ extension AppDelegate {
                 if let dic = dictionary  as? [String: Any]{
                     print(dic)
                     
+                    let state = UIApplication.shared.applicationState
+                 
                     if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+                        
                         if let vc : ChatViewController = (vc as? ChatViewController) {
                             
                             if let senderID = dic["SenderID"] as? String {
-                                if senderID == vc.userData["id"] {
-                                    let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
-                                    print(chat)
-                                    vc.arrData.append(chat)
-                                    let indexPath = IndexPath.init(row: vc.arrData.count-1, section: 0)
-                                    vc.tblVw.insertRows(at: [indexPath], with: .bottom)
-                                    let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
-                                    vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
+                                if senderID == vc.receiverID {
+                                    vc.webserviceForChatHistory(isLoading: false)
                                 } else {
-                                    
                                     if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
                                         vc.navigationController?.popViewController(animated: false)
                                         chatListVC.ChatFromNotification(dict: dic)
@@ -308,15 +287,22 @@ extension AppDelegate {
                                 }
                                 chatListVC.ChatFromNotification(dict: dic)
                             } else {
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let controller = storyboard.instantiateViewController(withIdentifier: ChatListViewController.className) as! ChatListViewController
-                                vc.navigationController?.pushViewController(controller, animated: false)
-                                controller.ChatFromNotification(dict: dic)
+                                if state == .inactive {
+                                    NotificationCenter.default.addObserver(self, selector: #selector(loadChatVC), name: NotificationSetHomeVC, object: nil)
+                                    SingletonClass.SharedInstance.userInfo = dic
+                                }
+                                if !vc.isKind(of: SplashViewController.self) {
+                                    
+                                    let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+                                    let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+                                    controller.receiverID = dic["SenderID"] as? String
+                                    vc.navigationController?.pushViewController(controller, animated: false)
+                                }
                             }
                         }
                     }
+                    //                    }
                 } else {
-                    NotificationCenter.default.post(name: NotificationBadges, object: content)
                     completionHandler()
                 }
             }
@@ -350,7 +336,7 @@ extension AppDelegate {
                             print(dic)
                             
                             if let senderID = dic["SenderID"] as? String {
-                                if senderID == vc.userData["id"] {
+                                if senderID == vc.receiverID {
                                     let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
                                     print(chat)
                                     vc.arrData.append(chat)
@@ -359,18 +345,18 @@ extension AppDelegate {
                                     let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
                                     vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
                                 } else{
-//                                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+                                    //                                    NotificationCenter.default.post(name: NotificationBadges, object: content)
                                     completionHandler([.alert, .sound])
                                 }
                             }
                         }
                     }
                 } else {
-//                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+                    //                    NotificationCenter.default.post(name: NotificationBadges, object: content)
                     completionHandler([.alert, .sound])
                 }
             } else {
-//                NotificationCenter.default.post(name: NotificationBadges, object: content)
+                //                NotificationCenter.default.post(name: NotificationBadges, object: content)
                 completionHandler([.alert, .sound])
             }
         } else if userInfo["gcm.notification.type"] as! String == "friend_request" {

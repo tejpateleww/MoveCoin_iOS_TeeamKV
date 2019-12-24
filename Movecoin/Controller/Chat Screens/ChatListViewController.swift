@@ -86,17 +86,14 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
         let data = friendsArray[indexPath.row]
-        let dic : [String : String] = ["id" : data.iD, "fullname" : data.fullName, "profilePicture" : data.profilePicture]
-        controller.userData = dic
+        controller.receiverID = data.iD
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func ChatFromNotification(dict: [String:Any]) {
         let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
-        let data = dict
-        let dic : [String : String] = ["id" : data["SenderID"] as? String ?? "", "fullname" : data["sender_name"] as? String ?? "", "profilePicture" : ""]
-        controller.userData = dic
+        controller.receiverID = dict["SenderID"] as? String
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

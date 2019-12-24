@@ -29,8 +29,9 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     
     var arrData = [MessageData]()
-    
-    var userData : [String : String]!
+    var receiverID : String?
+    lazy var profileImg = UIImageView(image: UIImage(named: "m-logo"))
+//    var userData : [String : String]!
 
     // ----------------------------------------------------
     // MARK: - --------- Life-Cycle Methods ---------
@@ -53,7 +54,6 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationBarSetUp(title: userData["fullname"] ?? "")
         setUpNavigationItems()
         
         if arrData.count>0 {
@@ -100,17 +100,13 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         imgview.image = UIImage(named: "photo-frame")
         imgview.contentMode = .scaleAspectFit
         
-        let profile = UIImageView(frame: CGRect(x: 5, y: 5, width: 34, height: 34))
-        profile.image = UIImage(named: "m-logo")
-        profile.contentMode = .scaleAspectFill
-        profile.cornerRadius = 17
-        profile.clipsToBounds = true
+        profileImg.frame = CGRect(x: 5, y: 5, width: 34, height: 34)
+        profileImg.contentMode = .scaleAspectFill
+        profileImg.cornerRadius = 17
+        profileImg.clipsToBounds = true
         
-        profile.kf.setImage(with: URL(string: userData["profilePicture"] ?? ""), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
-            
-        }
         profileView.addSubview(imgview)
-        profileView.addSubview(profile)
+        profileView.addSubview(profileImg)
         let item = UIBarButtonItem(customView: profileView)
         self.navigationItem.setRightBarButton(item, animated: true)
     }
@@ -229,7 +225,7 @@ extension ChatViewController {
         
         let requestModel = SendMessage()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
-        requestModel.ReceiverID = userData["id"] ?? ""
+        requestModel.ReceiverID = receiverID ?? ""
         requestModel.Message = message
         
         FriendsWebserviceSubclass.sendMessage(sendMessageModel: requestModel){ (json, status, res) in
@@ -259,13 +255,18 @@ extension ChatViewController {
         
         let requestModel = ChatHistoryModel()
         requestModel.sender_id = SingletonClass.SharedInstance.userData?.iD ?? ""
-        requestModel.receiver_id = userData["id"] ?? ""
+        requestModel.receiver_id = receiverID ?? ""
         
         FriendsWebserviceSubclass.chatHistory(chatHistoryModel: requestModel){ (json, status, res) in
             
             UtilityClass.hideHUD()
             if status {
                 let responseModel = ChatHistoryResponseModel(fromJson: json)
+               
+                self.navigationBarSetUp(title: responseModel.receiverArr.fullName ?? "")
+                self.profileImg.kf.setImage(with: URL(string: responseModel.receiverArr.profilePicture ?? ""), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
+                           
+                       }
                 if responseModel.chatHistory.count > 0  {
                     self.arrData = responseModel.chatHistory
                     self.tblVw.reloadData()

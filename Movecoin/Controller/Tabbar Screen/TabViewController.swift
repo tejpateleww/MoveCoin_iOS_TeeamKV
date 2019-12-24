@@ -61,6 +61,9 @@ class TabViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.setupFont()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+            NotificationCenter.default.post(name: NotificationSetHomeVC, object: nil)
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
