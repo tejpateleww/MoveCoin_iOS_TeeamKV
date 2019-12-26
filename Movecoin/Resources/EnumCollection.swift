@@ -35,6 +35,11 @@ enum FriendsList  {
     case NewChat
 }
 
+enum BarChartTitles : Int {
+    case Today = 0
+    case Weekly
+    case Monthly
+}
 
 enum WalletViewType  {
     case Wallet
@@ -56,12 +61,12 @@ enum SettingsOptions : Int {
     case EditProfile
     case ChangePassword
     case PurchaseHistory
-    case AddCard
-    case TermsAndConditions
+//    case AddCard
     case Help
     case RateApp
+    case TermsAndConditions
     case PrivacyPolicy
-    case Support
+//    case Support
     case Language
 }
 

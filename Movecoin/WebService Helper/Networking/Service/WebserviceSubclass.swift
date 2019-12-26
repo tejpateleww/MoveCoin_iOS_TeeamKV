@@ -52,6 +52,11 @@ class UserWebserviceSubclass
         let  params : [String:String] = ChangePasswordModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .changePassword, httpMethod: .post, parameters: params, completion: completion)
     }
+    
+    class func profileData( profileDataModel : ProfileData  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = profileDataModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .profileData, httpMethod: .post, parameters: params, completion: completion)
+    }
 
     class func editProfile( editProfileModel : EditProfileModel, image: UIImage?, imageParamName: String? = "ProfilePicture", completion: @escaping CompletionResponse ) {
         let  params : [String:String] = editProfileModel.generatPostParams() as! [String : String]

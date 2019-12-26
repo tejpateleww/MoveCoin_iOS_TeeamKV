@@ -60,7 +60,7 @@ class SplashViewController: UIViewController {
         viewContainer.layer.addSublayer(playerLayer)
         player.play()
         player.rate = 1.5
-        Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { (timer) in
+        Timer.scheduledTimer(withTimeInterval: 4.5, repeats: false) { (timer) in
             if self.initStatus {
                 self.moveToViewController()
             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class SettingsViewController: UIViewController {
     
@@ -21,7 +22,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Help","Rate this app","Terms and Conditions","Privacy Policy","Support","Language"]
+    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Help/Support","Rate this app","Terms and Conditions","Privacy Policy","Language"]
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -134,6 +135,9 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
                 self.navigationController?.pushViewController(controller, animated: true)
+                
+            case .RateApp:
+                SKStoreReviewController.requestReview()
                 
             default :
                 break

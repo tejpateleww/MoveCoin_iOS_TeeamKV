@@ -71,6 +71,7 @@ enum ApiKey: String{
     case register = "user/register"
     case changePassword = "user/change_password"
     case forgotPassword = "user/forgot_password"
+    case profileData = "user/profile_data"
     case profileUpdate = "user/profile_update"
     case userDetails = "user/detail_user"
     case updateSteps = "User/update_steps/"
