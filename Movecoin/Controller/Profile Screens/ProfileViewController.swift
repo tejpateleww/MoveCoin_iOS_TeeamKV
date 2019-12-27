@@ -230,7 +230,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setupProfileData(){
-        if let since = UtilityClass.changeDateFormateFrom(dateString: SingletonClass.SharedInstance.userData?.createdDate ?? "", fromFormat: "", withFormat: "MMM dd, yyyy") {
+        if let since = UtilityClass.changeDateFormateFrom(dateString: SingletonClass.SharedInstance.userData?.createdDate ?? "", fromFormat: DateFomateKeys.api, withFormat: "MMM dd, yyyy") {
             lblMemberSince.text = "Member since \(since)"
         }
         if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {

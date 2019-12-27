@@ -13,6 +13,7 @@ pod 'Firebase/Messaging'
 pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'Kingfisher'
+pod 'Socket.IO-Client-Swift'
 
 pod 'NVActivityIndicatorView'
 pod 'IQKeyboardManagerSwift'

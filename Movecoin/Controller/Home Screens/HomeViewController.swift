@@ -69,6 +69,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationBarSetUp(hidesBackButton: true)
         setUpNavigationItems()
+        self.updateMylocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -229,11 +230,6 @@ class HomeViewController: UIViewController {
     
     func startCountingSteps(){
         if CMPedometer.isStepCountingAvailable(){
-            if CMPedometer.isFloorCountingAvailable(){
-                print("Yes")
-            }else{
-                print("No")
-            }
            
             pedoMeter.startUpdates(from: Date()) { (data, error) in
                 print(data ?? 0)

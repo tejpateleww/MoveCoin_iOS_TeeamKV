@@ -63,6 +63,17 @@ enum NetworkEnvironment: String {
     }
 }
 
+struct SocketApiKeys {
+    
+    static let kSocketBaseURL = "http://www.movecoins.net:8080/"
+    static let kConnectUser = "connect_user"
+    static let kUpdateUserLocation = "update_user_location"
+    
+    static let KUserId = "user_id"
+    static let kLat = "lat"
+    static let kLng = "lng"
+}
+
 enum ApiKey: String{
     case Init = "user/init/"
     case login = "user/login"
@@ -86,6 +97,8 @@ enum ApiKey: String{
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"
     
+    case nearByUsers = "friends/nearbyuser"
+    case nearByUsersDetail = "friends/nearbyuser_details"
     case inviteFriends = "Friends/friends_invite"
     case friendRequest = "Friends/friend_request"
     case actionOnFriendRequest = "Friends/action_on_friend_request"

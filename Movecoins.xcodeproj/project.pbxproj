@@ -92,6 +92,13 @@
 		463CAC4923A3765A0040493E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463CAC4723A376580040493E /* Order.swift */; };
 		463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463CAC4823A376590040493E /* PurchaseHistoryResponseModel.swift */; };
 		4643665723A4BA4F0020D741 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4643665623A4BA4F0020D741 /* ImagesViewController.swift */; };
+		464AE07223B4932F00826BA7 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07123B4932F00826BA7 /* SocketIOManager.swift */; };
+		464AE07423B49B3300826BA7 /* SocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07323B49B3300826BA7 /* SocketProtocol.swift */; };
+		464AE07623B49DAA00826BA7 /* SocketCallExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07523B49DAA00826BA7 /* SocketCallExtension.swift */; };
+		464AE07823B4BBBD00826BA7 /* NearByUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07723B4BBBD00826BA7 /* NearByUserModel.swift */; };
+		464AE07C23B4BF4500826BA7 /* NearByUsersResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07A23B4BF4500826BA7 /* NearByUsersResponseModel.swift */; };
+		464AE07D23B4BF4500826BA7 /* Nearbyuser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07B23B4BF4500826BA7 /* Nearbyuser.swift */; };
+		464AE07F23B4C81A00826BA7 /* NearByUserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464AE07E23B4C81A00826BA7 /* NearByUserDetailModel.swift */; };
 		464F49362398EF3200D803D6 /* StepsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F49342398EF3200D803D6 /* StepsData.swift */; };
 		464F49372398EF3200D803D6 /* StepsHistoryResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F49352398EF3200D803D6 /* StepsHistoryResponseModel.swift */; };
 		46515526236AA2970079627A /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46515525236AA2970079627A /* EnumCollection.swift */; };
@@ -138,6 +145,9 @@
 		46A74036235592A4009C9D81 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A74035235592A4009C9D81 /* PopoverViewController.swift */; };
 		46A76A3D23AA2E4E009F5427 /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A76A3C23AA2E4E009F5427 /* SendMessage.swift */; };
 		46A76A4023AA3BBB009F5427 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A76A3F23AA3BBB009F5427 /* MessageData.swift */; };
+		46AB0D7B23B5C9B90085AC4C /* NearByUserDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB0D7923B5C9B80085AC4C /* NearByUserDetailResponseModel.swift */; };
+		46AB0D7C23B5C9B90085AC4C /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB0D7A23B5C9B90085AC4C /* UserDetail.swift */; };
+		46AB0D7E23B612FD0085AC4C /* PinMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AB0D7D23B612FD0085AC4C /* PinMarker.swift */; };
 		46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECDB8239A56F00097806B /* FriendListModel.swift */; };
 		46AECDBB239A85480097806B /* TransferCoinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECDBA239A85480097806B /* TransferCoinsModel.swift */; };
 		46B2E442237A7C2800540D27 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B2E441237A7C2800540D27 /* ChangePassword.swift */; };
@@ -274,6 +284,13 @@
 		463CAC4723A376580040493E /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		463CAC4823A376590040493E /* PurchaseHistoryResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryResponseModel.swift; sourceTree = "<group>"; };
 		4643665623A4BA4F0020D741 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		464AE07123B4932F00826BA7 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		464AE07323B49B3300826BA7 /* SocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketProtocol.swift; sourceTree = "<group>"; };
+		464AE07523B49DAA00826BA7 /* SocketCallExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketCallExtension.swift; sourceTree = "<group>"; };
+		464AE07723B4BBBD00826BA7 /* NearByUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUserModel.swift; sourceTree = "<group>"; };
+		464AE07A23B4BF4500826BA7 /* NearByUsersResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByUsersResponseModel.swift; sourceTree = "<group>"; };
+		464AE07B23B4BF4500826BA7 /* Nearbyuser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nearbyuser.swift; sourceTree = "<group>"; };
+		464AE07E23B4C81A00826BA7 /* NearByUserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByUserDetailModel.swift; sourceTree = "<group>"; };
 		464F49342398EF3200D803D6 /* StepsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsData.swift; sourceTree = "<group>"; };
 		464F49352398EF3200D803D6 /* StepsHistoryResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsHistoryResponseModel.swift; sourceTree = "<group>"; };
 		46515525236AA2970079627A /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -321,6 +338,9 @@
 		46A74035235592A4009C9D81 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		46A76A3C23AA2E4E009F5427 /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
 		46A76A3F23AA3BBB009F5427 /* MessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
+		46AB0D7923B5C9B80085AC4C /* NearByUserDetailResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByUserDetailResponseModel.swift; sourceTree = "<group>"; };
+		46AB0D7A23B5C9B90085AC4C /* UserDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
+		46AB0D7D23B612FD0085AC4C /* PinMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinMarker.swift; sourceTree = "<group>"; };
 		46AECDB8239A56F00097806B /* FriendListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListModel.swift; sourceTree = "<group>"; };
 		46AECDBA239A85480097806B /* TransferCoinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCoinsModel.swift; sourceTree = "<group>"; };
 		46B2E441237A7C2800540D27 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
@@ -522,6 +542,9 @@
 				46B2E443237AC9F800540D27 /* ImagePickerClass.swift */,
 				466853DA2391393F00019DF1 /* UserPermissionClass.swift */,
 				46374658239E7443008A3EE7 /* FriendsClass.swift */,
+				464AE07123B4932F00826BA7 /* SocketIOManager.swift */,
+				464AE07323B49B3300826BA7 /* SocketProtocol.swift */,
+				46AB0D7D23B612FD0085AC4C /* PinMarker.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -649,6 +672,8 @@
 				465E3508237BBF9C0023366C /* OTPverify.swift */,
 				461DC26023793A5A0092AC82 /* ForgotPassword.swift */,
 				466D4356238D4424004B9712 /* UserDetailModel.swift */,
+				464AE07723B4BBBD00826BA7 /* NearByUserModel.swift */,
+				464AE07E23B4C81A00826BA7 /* NearByUserDetailModel.swift */,
 				46814386238E8EE800D5A297 /* InviteFriendsModel.swift */,
 				4652AF5C239F6EEE00B2E775 /* FriendRequestModel.swift */,
 				46C9C4EA23A0D36E0042341B /* UnfriendModel.swift */,
@@ -674,6 +699,7 @@
 		461DC253237930BB0092AC82 /* Response Models */ = {
 			isa = PBXGroup;
 			children = (
+				464AE07923B4BCBA00826BA7 /* NearByUsers */,
 				462D24E723B32F670050C3F0 /* Profile Data */,
 				46A76A3E23AA3BAE009F5427 /* Chat */,
 				463CAC4623A376400040493E /* Purchase History */,
@@ -758,6 +784,17 @@
 			path = "Purchase History";
 			sourceTree = "<group>";
 		};
+		464AE07923B4BCBA00826BA7 /* NearByUsers */ = {
+			isa = PBXGroup;
+			children = (
+				464AE07A23B4BF4500826BA7 /* NearByUsersResponseModel.swift */,
+				464AE07B23B4BF4500826BA7 /* Nearbyuser.swift */,
+				46AB0D7923B5C9B80085AC4C /* NearByUserDetailResponseModel.swift */,
+				46AB0D7A23B5C9B90085AC4C /* UserDetail.swift */,
+			);
+			path = NearByUsers;
+			sourceTree = "<group>";
+		};
 		464F49332398EF1E00D803D6 /* Steps History */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,6 +820,7 @@
 			isa = PBXGroup;
 			children = (
 				46FD51D6232F92B200182B86 /* TabViewController.swift */,
+				464AE07523B49DAA00826BA7 /* SocketCallExtension.swift */,
 			);
 			path = "Tabbar Screen";
 			sourceTree = "<group>";
@@ -1160,6 +1198,8 @@
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TTSegmentedControl/TTSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -1179,6 +1219,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -1211,6 +1253,7 @@
 				463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */,
 				46814385238E624500D5A297 /* PhoneContactsClass.swift in Sources */,
 				46D96068238B9BB10026B96D /* ProductDetails.swift in Sources */,
+				464AE07D23B4BF4500826BA7 /* Nearbyuser.swift in Sources */,
 				4628D8FD23A7810C0061D77D /* ZoomingScrollView.swift in Sources */,
 				462D24DD23B32F310050C3F0 /* CALayerExtension.swift in Sources */,
 				462D24E623B32F310050C3F0 /* BeautifulBarChartPresenter.swift in Sources */,
@@ -1222,6 +1265,7 @@
 				4600A71623278D37004A7A9E /* HomeViewController.swift in Sources */,
 				46FA2C8423A1278B000A3B9B /* CardListResponseModel.swift in Sources */,
 				460C04A3239A295600D674D7 /* WalletData.swift in Sources */,
+				46AB0D7B23B5C9B90085AC4C /* NearByUserDetailResponseModel.swift in Sources */,
 				4670146D23487FD000556CBB /* StatisticsTableViewCell.swift in Sources */,
 				4628D8FC23A7810C0061D77D /* PagingScrollView.swift in Sources */,
 				46E69BF2238FC5E500685EB8 /* Registered.swift in Sources */,
@@ -1229,6 +1273,7 @@
 				460C04AC239A3FF900D674D7 /* FriendsData.swift in Sources */,
 				4616EF14232A146F00B138A3 /* VKLabel.swift in Sources */,
 				46E69BF1238FC5E500685EB8 /* InviteFriendsResponseModel.swift in Sources */,
+				46AB0D7C23B5C9B90085AC4C /* UserDetail.swift in Sources */,
 				468F86D22350C2E4006DC7D1 /* ChatListTableViewCell.swift in Sources */,
 				46F88CA72356F855003E24CC /* UIButton + Extension.swift in Sources */,
 				467014642348629400556CBB /* WalletTableViewCell.swift in Sources */,
@@ -1238,8 +1283,10 @@
 				461DC257237931740092AC82 /* ApiPaths.swift in Sources */,
 				466D4357238D4424004B9712 /* UserDetailModel.swift in Sources */,
 				46EA878F234B132A0082C694 /* TotalStepsViewController.swift in Sources */,
+				464AE07423B49B3300826BA7 /* SocketProtocol.swift in Sources */,
 				46DF729D23506849005005B1 /* FindFriendTableViewCell.swift in Sources */,
 				4658FB5723B237D40014F7F2 /* ReceiverArr.swift in Sources */,
+				464AE07823B4BBBD00826BA7 /* NearByUserModel.swift in Sources */,
 				463BF57E234F018A0022C465 /* ProductDetailCollectionViewCell.swift in Sources */,
 				461DC26323793A8E0092AC82 /* Login.swift in Sources */,
 				462D24EE23B32F7F0050C3F0 /* profileDataWeekStepsCount.swift in Sources */,
@@ -1254,12 +1301,14 @@
 				46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */,
 				46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */,
 				462D24DF23B32F310050C3F0 /* UIBezierPathExtension.swift in Sources */,
+				464AE07F23B4C81A00826BA7 /* NearByUserDetailModel.swift in Sources */,
 				462D24DE23B32F310050C3F0 /* BasicBarChartPresenter.swift in Sources */,
 				462D24E023B32F310050C3F0 /* BasicBarChart.swift in Sources */,
 				46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */,
 				463CAC4523A371610040493E /* PurchaseHistory.swift in Sources */,
 				4613804823292E52007C3FA4 /* UIVIewController + Extension.swift in Sources */,
 				463CAC4923A3765A0040493E /* Order.swift in Sources */,
+				464AE07223B4932F00826BA7 /* SocketIOManager.swift in Sources */,
 				469057B12396717E000D192E /* InitResponse.swift in Sources */,
 				4661BB4F2351B98F00DC41E0 /* BecomeSellerViewController.swift in Sources */,
 				468F86CF2350C0D5006DC7D1 /* ChatListViewController.swift in Sources */,
@@ -1291,7 +1340,9 @@
 				468F86CD2350AB1D006DC7D1 /* SettingsViewController.swift in Sources */,
 				4652AF5F239F9C4200B2E775 /* ActionOnFriendRequestModel.swift in Sources */,
 				46374659239E7443008A3EE7 /* FriendsClass.swift in Sources */,
+				464AE07623B49DAA00826BA7 /* SocketCallExtension.swift in Sources */,
 				4631E9AD2327D1870088B49F /* WelcomeViewController.swift in Sources */,
+				464AE07C23B4BF4500826BA7 /* NearByUsersResponseModel.swift in Sources */,
 				468F86C82350976C006DC7D1 /* FriendTableViewCell.swift in Sources */,
 				4661BB512351C59800DC41E0 /* MapViewController.swift in Sources */,
 				463CAC4323A365120040493E /* PlaceOrder.swift in Sources */,
@@ -1310,6 +1361,7 @@
 				463BF580234F0FA50022C465 /* ConfirmPurchaseViewController.swift in Sources */,
 				4661BB4D2351B30E00DC41E0 /* ChangePasswordViewController.swift in Sources */,
 				460F3218234DDF9800B67313 /* ThemeTextField.swift in Sources */,
+				46AB0D7E23B612FD0085AC4C /* PinMarker.swift in Sources */,
 				4661BB472351995000DC41E0 /* SettingsTableViewCell.swift in Sources */,
 				46515526236AA2970079627A /* EnumCollection.swift in Sources */,
 				465ECE612330DB1B004FE65E /* SplashViewController.swift in Sources */,

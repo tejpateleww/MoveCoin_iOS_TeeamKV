@@ -53,12 +53,12 @@ class IntroPageVC: UIViewController {
             
             // For Request Permission
             
-//            if image == "intro-1"{
-//                userPermission.permissions = [.camera, .contacts, .motion, .notification]
-//                for type in userPermission.permissions {
-//                    userPermission.requestForPermission(type: type)
-//                }
-//            }
+            if image == "intro-1"{
+                userPermission.permissions = [.camera, .contacts, .motion]
+                for type in userPermission.permissions {
+                    userPermission.requestForPermission(type: type)
+                }
+            }
         }
 
 }

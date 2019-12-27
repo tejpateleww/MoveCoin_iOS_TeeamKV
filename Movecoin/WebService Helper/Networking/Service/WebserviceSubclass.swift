@@ -99,6 +99,16 @@ class ProductWebserviceSubclass
 
 class FriendsWebserviceSubclass
 {
+    class func nearByUsers( nearByUsersModel : NearByUserModel  ,completion: @escaping CompletionResponse ) {
+        let  params = nearByUsersModel.generatPostParams()
+        WebService.shared.requestMethod(api: .nearByUsers, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func nearByUsersDetails( nearByUsersDetailsModel : NearByUserDetailModel  ,completion: @escaping CompletionResponse ) {
+        let  params = nearByUsersDetailsModel.generatPostParams()
+        WebService.shared.requestMethod(api: .nearByUsersDetail, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
     class func inviteFriends( inviteFrinedsModel : InviteFriendsModel  ,completion: @escaping CompletionResponse ) {
         let  params = inviteFrinedsModel.generatPostParams()
         WebService.shared.requestMethod(api: .inviteFriends, httpMethod: .post, parameters: params, completion: completion)

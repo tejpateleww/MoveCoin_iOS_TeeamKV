@@ -52,6 +52,8 @@ class TabViewController: UIViewController {
     
     var delegateWalletCoins : WalletCoinsDelegate!
     
+    var timer : Timer!
+    
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -61,13 +63,13 @@ class TabViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.setupFont()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-            NotificationCenter.default.post(name: NotificationSetHomeVC, object: nil)
-//        }
+        self.SocketOnMethods()
+        NotificationCenter.default.post(name: NotificationSetHomeVC, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        startTimer()
     }
     
     
@@ -118,6 +120,20 @@ class TabViewController: UIViewController {
         mapVC.willMove(toParent: nil)
         mapVC.view.removeFromSuperview()
         mapVC.removeFromParent()
+    }
+    
+    func startTimer() {
+        if(timer == nil){
+            timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { (timer) in
+                print(timer)
+                if  SocketIOManager.shared.socket.status == .connected {
+                    if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
+                        self.emitSocket_UpdateLocation(latitute: myLocation.coordinate.latitude, long: myLocation.coordinate.longitude)
+                        print("lat \(myLocation.coordinate.latitude) , long : \(myLocation.coordinate.longitude)")
+                    }
+                }
+            })
+        }
     }
     
     //----------------------------------------------------

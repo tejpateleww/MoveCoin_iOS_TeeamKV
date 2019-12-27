@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Cairo-Bold.ttf">
+            <string>Cairo-Bold</string>
+        </array>
         <array key="Cairo-Regular.ttf">
             <string>Cairo-Regular</string>
         </array>
@@ -46,10 +49,10 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21c-8M-9xt">
-                                                <rect key="frame" x="78.5" y="0.0" width="218" height="40"/>
+                                                <rect key="frame" x="123" y="0.0" width="129" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-jv-o5N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="40"/>
                                                         <state key="normal" image="logo-unselect"/>
                                                         <state key="selected" image="logo-select"/>
                                                         <connections>
@@ -57,7 +60,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-Vt-KIr">
-                                                        <rect key="frame" x="88" y="0.0" width="48" height="40"/>
+                                                        <rect key="frame" x="54" y="0.0" width="24" height="40"/>
                                                         <state key="normal" image="call-unselect"/>
                                                         <state key="selected" image="call-select"/>
                                                         <connections>
@@ -65,7 +68,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDP-j7-div">
-                                                        <rect key="frame" x="156" y="0.0" width="62" height="40"/>
+                                                        <rect key="frame" x="98" y="0.0" width="31" height="40"/>
                                                         <state key="normal" image="facebook-unselect"/>
                                                         <state key="selected" image="facebook-select"/>
                                                         <connections>
@@ -193,13 +196,13 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="31"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tBg-c5-N9K">
-                                                <rect key="frame" x="134.5" y="-11.5" width="106" height="54"/>
+                                                <rect key="frame" x="146" y="-11.5" width="83" height="54"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total-steps-icon" translatesAutoresizingMaskIntoConstraints="NO" id="AlL-FB-UB4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="54"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="23" height="54"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Few-Qk-8p1">
-                                                        <rect key="frame" x="56" y="0.0" width="50" height="54"/>
+                                                        <rect key="frame" x="33" y="0.0" width="50" height="54"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="24"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -414,6 +417,12 @@
                                             <constraint firstAttribute="trailing" secondItem="ZdL-U1-FJv" secondAttribute="trailing" constant="15" id="hYv-ZS-ig3"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't connect with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldR-Yf-DeQ">
+                                        <rect key="frame" x="20" y="267.5" width="335" height="112.5"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="udL-Ex-3MD">
                                         <rect key="frame" x="0.0" y="59" width="375" height="583"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -551,7 +560,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="ldR-Yf-DeQ" firstAttribute="centerY" secondItem="kvm-Qw-k1Z" secondAttribute="centerY" id="2Tk-a8-58Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="ldR-Yf-DeQ" secondAttribute="trailing" constant="20" id="47Y-0J-hud"/>
                                     <constraint firstItem="udL-Ex-3MD" firstAttribute="top" secondItem="QeL-Zw-WMg" secondAttribute="bottom" constant="5" id="FWb-pW-oMR"/>
+                                    <constraint firstItem="ldR-Yf-DeQ" firstAttribute="leading" secondItem="kvm-Qw-k1Z" secondAttribute="leading" constant="20" id="ML1-HA-DK9"/>
                                     <constraint firstAttribute="bottom" secondItem="udL-Ex-3MD" secondAttribute="bottom" constant="5" id="dPP-oR-4zd"/>
                                     <constraint firstItem="QeL-Zw-WMg" firstAttribute="top" secondItem="kvm-Qw-k1Z" secondAttribute="topMargin" id="e3Y-hz-Te1"/>
                                     <constraint firstItem="udL-Ex-3MD" firstAttribute="leading" secondItem="kvm-Qw-k1Z" secondAttribute="leading" id="g24-7m-9jS"/>
@@ -575,6 +587,7 @@
                         <viewLayoutGuide key="safeArea" id="7Il-bU-ofo"/>
                     </view>
                     <connections>
+                        <outlet property="lblNoDataFound" destination="ldR-Yf-DeQ" id="Jjb-WN-sEp"/>
                         <outlet property="tblFriends" destination="udL-Ex-3MD" id="c19-wp-Tx8"/>
                         <outlet property="txtSearch" destination="DrP-Oh-xeM" id="TeG-09-Ss2"/>
                     </connections>
@@ -631,7 +644,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total-steps-icon" translatesAutoresizingMaskIntoConstraints="NO" id="G0m-ex-MQU">
-                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
+                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="3"/>
@@ -683,7 +696,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coins-icon" translatesAutoresizingMaskIntoConstraints="NO" id="0Jf-VB-DsP">
-                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
+                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="315-Mw-MU8">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31.5"/>
@@ -735,7 +748,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite-friend-icon" translatesAutoresizingMaskIntoConstraints="NO" id="dC0-AG-uqy">
-                                                                <rect key="frame" x="62" y="0.0" width="44" height="31"/>
+                                                                <rect key="frame" x="73" y="0.0" width="22" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmA-KU-yOj">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31"/>
@@ -782,7 +795,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend-icon" translatesAutoresizingMaskIntoConstraints="NO" id="tCc-xS-IrP">
-                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
+                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKo-IP-2hB">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31"/>
@@ -2454,19 +2467,19 @@
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Cg-vW-sms">
-                                                                <rect key="frame" x="115.5" y="8" width="104" height="34"/>
+                                                                <rect key="frame" x="116.5" y="14" width="102.5" height="22.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEB-at-6nk">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="33.5" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-blue-small" translatesAutoresizingMaskIntoConstraints="NO" id="724-71-5G1">
-                                                                        <rect key="frame" x="35" y="0.0" width="34" height="34"/>
+                                                                        <rect key="frame" x="34.5" y="0.0" width="33.5" height="22.5"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mde-pj-hEL">
-                                                                        <rect key="frame" x="70" y="0.0" width="34" height="34"/>
+                                                                        <rect key="frame" x="69" y="0.0" width="33.5" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
@@ -3104,16 +3117,16 @@
                                                                         </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNO-Vq-5Eb">
-                                                                        <rect key="frame" x="62.5" y="14" width="80" height="22.5"/>
+                                                                        <rect key="frame" x="71" y="14" width="80" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-blue-small" translatesAutoresizingMaskIntoConstraints="NO" id="kSa-Iv-0Dh">
-                                                                        <rect key="frame" x="150.5" y="8" width="34" height="34"/>
+                                                                        <rect key="frame" x="159" y="16.5" width="17" height="17"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOW-tC-tbh">
-                                                                        <rect key="frame" x="189.5" y="14" width="52.5" height="22.5"/>
+                                                                        <rect key="frame" x="181" y="14" width="61" height="22.5"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
@@ -3258,7 +3271,7 @@
                                                                         <constraint firstAttribute="height" constant="18" id="IAn-2x-LTy"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-bm-OeW">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-bm-OeW">
                                                                     <rect key="frame" x="33" y="10" width="85" height="22"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="22" id="t7l-sg-lUw"/>
@@ -3269,6 +3282,9 @@
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-300" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="th9-ph-5fg">
                                                                     <rect key="frame" x="300" y="10" width="35" height="20"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="35" id="RxI-0f-H1U"/>
+                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -3630,7 +3646,7 @@
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG" translatesAutoresizingMaskIntoConstraints="NO" id="ZkC-Hy-ZnH">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member since Augest 5,2019" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CK-JM-gjV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member since" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CK-JM-gjV">
                                         <rect key="frame" x="30" y="-15" width="315" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3685,10 +3701,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fn-Hm-6Hj" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="120" y="29" width="157" height="38"/>
+                                                                <rect key="frame" x="120" y="29" width="137" height="38"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOj-6p-8YF">
-                                                                        <rect key="frame" x="10" y="0.0" width="137" height="38"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="117" height="38"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="18"/>
                                                                         <state key="normal" title="My Friends - 0">
                                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4096,14 +4112,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite-image" translatesAutoresizingMaskIntoConstraints="NO" id="mWa-C6-Cu3">
-                                <rect key="frame" x="10" y="0.0" width="355" height="546"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="273"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3e-qc-dFo">
-                                <rect key="frame" x="10" y="0.0" width="355" height="546"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="273"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="oWG-Ye-Y10">
-                                <rect key="frame" x="20" y="541" width="335" height="73"/>
+                                <rect key="frame" x="20" y="268" width="335" height="73"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-1z-J9Z">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
@@ -4123,7 +4139,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-yJ-9wD">
-                                <rect key="frame" x="20" y="636" width="335" height="76"/>
+                                <rect key="frame" x="20" y="363" width="335" height="76"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlU-6Q-BCU">
                                         <rect key="frame" x="94.5" y="0.0" width="146.5" height="21"/>
@@ -4154,7 +4170,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4B-MF-TUa" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
-                                <rect key="frame" x="48" y="737" width="279" height="45"/>
+                                <rect key="frame" x="48" y="464" width="279" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Qlc-ki-DSM"/>
                                 </constraints>
@@ -5005,7 +5021,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-dwon" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-bH-4fe">
-                                                                        <rect key="frame" x="289" y="5" width="36" height="40"/>
+                                                                        <rect key="frame" x="307" y="5" width="18" height="40"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5112,7 +5128,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-bg" translatesAutoresizingMaskIntoConstraints="NO" id="mHO-PA-3Bw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375.00000000000006" height="200"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pre-q3-CoH">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
@@ -5155,7 +5171,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SJy-3W-Xd5">
                                                 <rect key="frame" x="98" y="10" width="184" height="55"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zayed AI Nahyan" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHA-fL-aqy">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHA-fL-aqy">
                                                         <rect key="frame" x="0.0" y="0.0" width="184" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="X1g-4m-sk4"/>
@@ -5164,7 +5180,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last seen 12:30 pm" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMe-UJ-GJc">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMe-UJ-GJc">
                                                         <rect key="frame" x="0.0" y="24" width="184" height="15.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15.5" id="e1G-Ah-1ot"/>
@@ -5173,7 +5189,7 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Since June 2015" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9g-wu-7Js">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9g-wu-7Js">
                                                         <rect key="frame" x="0.0" y="39.5" width="184" height="15.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15.5" id="k9J-cC-heQ"/>
@@ -5197,7 +5213,7 @@
                                                                     <constraint firstAttribute="width" constant="22" id="JQO-sw-InG"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:15" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSA-CE-DK9">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSA-CE-DK9">
                                                                 <rect key="frame" x="1" y="33" width="36" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="7iM-O8-edv"/>
@@ -5227,7 +5243,7 @@
                                                                     <constraint firstAttribute="height" constant="26" id="LHe-1X-Pdo"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlE-Fy-rU8">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlE-Fy-rU8">
                                                                 <rect key="frame" x="1" y="33" width="36" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="JyG-g0-z12"/>
@@ -5718,7 +5734,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo wallet" translatesAutoresizingMaskIntoConstraints="NO" id="GUy-Vy-ib3">
-                                                                        <rect key="frame" x="140.5" y="-16.5" width="30" height="80"/>
+                                                                        <rect key="frame" x="140.5" y="3.5" width="30" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="j13-1V-awS"/>
                                                                         </constraints>

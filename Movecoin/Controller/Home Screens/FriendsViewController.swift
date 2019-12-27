@@ -21,6 +21,7 @@ class FriendsViewController: UIViewController {
     
     @IBOutlet weak var tblFriends: UITableView!
     @IBOutlet weak var txtSearch: UITextField!
+    @IBOutlet weak var lblNoDataFound: UILabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -40,6 +41,7 @@ class FriendsViewController: UIViewController {
         super.viewDidLoad()
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
+        lblNoDataFound.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,6 +71,12 @@ class FriendsViewController: UIViewController {
         isTyping = (sender.text?.isEmpty ?? false) ? false : true
         searchArray = friendsArray.filter{ $0.fullName.lowercased().contains(sender.text?.lowercased() ?? "") }
         tblFriends.reloadData()
+        let isZero = isTyping ? searchArray.count == 0 : friendsArray.count == 0
+        if isZero {
+            lblNoDataFound.isHidden = false
+        }else{
+            lblNoDataFound.isHidden = true
+        }
     }
 }
 
@@ -152,11 +160,16 @@ extension FriendsViewController {
             UtilityClass.hideHUD()
             if status {
                 let responseModel = FriendsResponseModel(fromJson: json)
-//                if responseModel.friendList.count > 0  {
+                if responseModel.friendList.count == 0  {
+                    self.tblFriends.isHidden = true
+                    self.lblNoDataFound.isHidden = false
+                }else{
+                    self.tblFriends.isHidden = false
+                    self.lblNoDataFound.isHidden = true
                     self.friendsArray = responseModel.friendList
                     self.searchArray = self.friendsArray
                     self.tblFriends.reloadData()
- //               }
+                }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

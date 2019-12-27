@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class PopoverViewController: UIViewController {
     
@@ -28,6 +29,13 @@ class PopoverViewController: UIViewController {
     @IBOutlet weak var btnSendFriendRequest: ThemeButton!
     
     // ----------------------------------------------------
+    //MARK:- --------- Variables ---------
+    // ----------------------------------------------------
+    
+    var userData : UserDetail!
+    var annotationView : MKAnnotationView!
+    
+    // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
@@ -38,15 +46,18 @@ class PopoverViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        btnSendFriendRequest.isHidden = true
+        stackButtons.isHidden = true
+        stackInfo.isHidden = true
+        
         if let parent = self.parent as? MapViewController {
             parent.delegateFriendStatus = self
         }
     }
     
-    @IBAction func btnCloseTapped(_ sender: Any) {
-        if let parent = self.parent as? MapViewController {
-            parent.toggleHandler(isOn: false)
-        }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        btnCloseTapped(UIButton.self)
     }
     
     // ----------------------------------------------------
@@ -63,19 +74,63 @@ class PopoverViewController: UIViewController {
         lblTotalSteps.font = UIFont.regular(ofSize: 12)
     }
     
+    func setupUserData(){
+        btnSendFriendRequest.isUserInteractionEnabled = true
+        
+        lblName.text = userData.fullName
+        lblMemberSince.text = "Member Since " + userData.memberSince
+//        let productsURL = NetworkEnvironment.baseImageURL + userData.profilePicture
+        if let url = URL(string: userData.profilePicture) {
+            self.imgProfile.kf.indicatorType = .activity
+            self.imgProfile.kf.setImage(with: url, placeholder: imgProfile.image)
+        }
+        
+        if userData.isFriend == 1 {
+            // Friend
+            btnSendFriendRequest.isHidden = true
+            stackButtons.isHidden = false
+            stackInfo.isHidden = false
+            lblLastSeen.isHidden = false
+            
+            lblLastSeen.text = "Last seen " + userData.lastSeen
+            lblTotalSteps.text = userData.steps
+            
+        } else {
+            // Not Friend
+            btnSendFriendRequest.isHidden = false
+            stackButtons.isHidden = true
+            stackInfo.isHidden = true
+            lblLastSeen.isHidden = true
+            if userData.isFriend == 0 {
+                btnSendFriendRequest.setTitle("Requested", for: .normal)
+                btnSendFriendRequest.isUserInteractionEnabled = false
+            }else {
+                btnSendFriendRequest.setTitle("Add Friend", for: .normal)
+            }
+        }
+    }
+    
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
+    @IBAction func btnCloseTapped(_ sender: Any) {
+        if let parent = self.parent as? MapViewController {
+            parent.toggleHandler(isOn: false, user: nil, annotationView: nil)
+//            parent.mapView(parent.mapView, didDeselect: annotationView)
+        }
+    }
+    
     @IBAction func btnChatTapped(_ sender: Any) {
-//        if let parent = self.parent as? MapViewController {
-//            print(parent.parent!)
-//            if let parentVC = parent.parent as? TabViewController {
-//                let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
-//                let destination = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
-//                parentVC.navigationController?.pushViewController(destination, animated: true)
-//            }
-//        }
+        if let parent = self.parent as? MapViewController {
+            print(parent.parent!)
+            if let parentVC = parent.parent as? TabViewController {
+                let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+                let destination = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+                destination.receiverID = userData.iD
+                parentVC.navigationController?.pushViewController(destination, animated: true)
+            }
+        }
     }
     
     @IBAction func btntransferTapped(_ sender: Any) {
@@ -83,6 +138,7 @@ class PopoverViewController: UIViewController {
             print(parent.parent!)
            if let parentVC = parent.parent as? TabViewController {
                 let destination = parentVC.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
+//            destination.receiverData
                 parentVC.navigationController?.pushViewController(destination, animated: true)
             }
         }
@@ -90,7 +146,7 @@ class PopoverViewController: UIViewController {
     
     @IBAction func btnAddFriendTapped(_ sender: Any) {
 //        if let recevierID = cell.registeredFriend?.iD {
-            webserviceForAddFriends(id: "10")
+            webserviceForAddFriends()
 //        }
     }
 }
@@ -100,7 +156,9 @@ class PopoverViewController: UIViewController {
 // ----------------------------------------------------
 
 extension PopoverViewController : FriendStatusDelegate {
+    
     func checkFriendStatus(status: FriendsStatus) {
+        
         switch status {
         case .AlreadyFriend:
             btnSendFriendRequest.isHidden = true
@@ -126,14 +184,33 @@ extension PopoverViewController : FriendStatusDelegate {
 
 extension PopoverViewController {
     
-    func webserviceForAddFriends(id : String){
+    func webserviceForNearByUserDetails(user : Nearbyuser){
         
+        let requestModel = NearByUserDetailModel()
+        requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.friend_id = user.userID
+
+        FriendsWebserviceSubclass.nearByUsersDetails(nearByUsersDetailsModel: requestModel){ (json, status, res) in
+            
+            if status {
+                let responseModel = NearByUserDetailResponseModel(fromJson: json)
+                self.userData = responseModel.userDetail
+                self.setupUserData()
+                
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForAddFriends(){
+        UtilityClass.showHUD()
         let requestModel = FriendRequestModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
-        requestModel.ReceiverID = id
+        requestModel.ReceiverID = userData.iD
 
         FriendsWebserviceSubclass.friendRequest(frinedRequestModel: requestModel){ (json, status, res) in
-            
+            UtilityClass.hideHUD()
             if status {
                 UtilityClass.showAlert(Message: json["message"].stringValue)
                 self.btnSendFriendRequest.setTitle("Requested", for: .normal)

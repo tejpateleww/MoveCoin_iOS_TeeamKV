@@ -17,7 +17,6 @@ protocol FriendStatusDelegate {
     func checkFriendStatus(status: FriendsStatus)
 }
 
-
 class MapViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -39,8 +38,7 @@ class MapViewController: UIViewController {
     var delegateFriendStatus : FriendStatusDelegate!
     var toggleForPopover = false
     
-    lazy var annotation1 = MKPointAnnotation()
-    lazy var annotation2 = MKPointAnnotation()
+    lazy var nearByUsersArray = [Nearbyuser]()
 
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -48,7 +46,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         navigationBarSetUp(hidesBackButton: true)
+        navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         self.setupView()
     }
@@ -57,8 +55,15 @@ class MapViewController: UIViewController {
         super.viewWillAppear(true)
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
-       
+        if let counts = SingletonClass.SharedInstance.todaysStepCount {
+             let total = counts //+ activityData.numberOfSteps.intValue
+             lblSteps.text = "\(total)"
+            print("Total:\(total)")
+        }else {
+//             lblSteps.text = activityData.numberOfSteps.stringValue
+        }
         self.setUpNavigationItems()
+        webserviceForNearByUsers()
     }
     
     // ----------------------------------------------------
@@ -74,12 +79,7 @@ class MapViewController: UIViewController {
     func setupView(){
         bottomConstraint.constant = containerView.frame.height
         mapView.delegate = self
-        
-        // add pin on the Map
-        annotation1.coordinate = CLLocationCoordinate2D(latitude: 23.072567, longitude: 72.516277)
-        annotation2.coordinate = CLLocationCoordinate2D(latitude: 23.075514, longitude: 72.526177)
-        mapView.addAnnotations([annotation1,annotation2])
-        mapView.showAnnotations(mapView.annotations, animated: true)
+        mapView.register(PinMarkerView.self, forAnnotationViewWithReuseIdentifier: "marker")
     }
     
     func setUpNavigationItems(){
@@ -92,20 +92,52 @@ class MapViewController: UIViewController {
         self.delegateFlipToHome.flipToHome()
     }
     
-    func toggleHandler(isOn : Bool){
+    func toggleHandler(isOn : Bool, user : Nearbyuser?, annotationView : MKAnnotationView?){
         if isOn {
+            for child in self.children{
+                if child.isKind(of: PopoverViewController.self) {
+                    if let dic = user {
+                        (child as! PopoverViewController).annotationView = annotationView
+                        (child as! PopoverViewController).webserviceForNearByUserDetails(user: dic)
+                    }
+                    break
+                }
+            }
             self.bottomConstraint.constant = 0
-
             UIView.animate(withDuration: 0.5) {
                  self.view.layoutIfNeeded()
             }
         } else{
+            
             self.bottomConstraint.constant = self.containerView.frame.height
-
             UIView.animate(withDuration: 0.5) {
                 self.view.layoutIfNeeded()
             }
         }
+    }
+    
+    func reloadMapView(){
+       
+        let allAnnotations = mapView.annotations
+        mapView.removeAnnotations(allAnnotations)
+         
+         var artView = [PinMarker]()
+        nearByUsersArray.forEach{
+             artView.append(PinMarker(data: $0))
+         }
+         mapView.addAnnotations(artView)
+        
+//        var annotationsArray = [MKPointAnnotation]()
+//        for user in nearByUsersArray {
+//            let annotation = MKPointAnnotation()
+//            annotation.title = "\(user.fullName ?? "")"
+//            let lat = CLLocationDegrees(floatLiteral: Double(user.latitude)!)
+//            let lng = CLLocationDegrees(floatLiteral: Double(user.longitude)!)
+//            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+//            annotationsArray.append(annotation)
+//        }
+//        mapView.addAnnotations(annotationsArray)
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
 }
 
@@ -115,24 +147,67 @@ class MapViewController: UIViewController {
 
 extension MapViewController : MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? PinMarker else { return nil }
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+        return view
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
-        if let annotation = view.annotation?.coordinate {
+       
+        if let annotation = view.annotation as? PinMarker {
             print("Annotation: \(annotation)")
             toggleForPopover = !toggleForPopover
-            toggleHandler(isOn: toggleForPopover)
-            if annotation.latitude == annotation1.coordinate.latitude && annotation.longitude == annotation1.coordinate.longitude {
-                self.delegateFriendStatus.checkFriendStatus(status: FriendsStatus.AlreadyFriend)
-            }else{
-                self.delegateFriendStatus.checkFriendStatus(status: FriendsStatus.RecommendedFriend)
-            }
+            let arr = nearByUsersArray.filter{$0.userID == annotation.id}
+            print(arr)
+            toggleHandler(isOn: toggleForPopover, user: arr.first, annotationView: view)
         }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if let annotation = view.annotation?.coordinate {
+        if let annotation = view.annotation as? PinMarker {
             print("Annotation: \(annotation)")
             toggleForPopover = !toggleForPopover
-            toggleHandler(isOn: toggleForPopover)
+            toggleHandler(isOn: toggleForPopover, user: nil, annotationView: view)
+        }
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Webservice Methods ---------
+// ----------------------------------------------------
+
+extension MapViewController {
+    
+    func webserviceForNearByUsers(){
+    
+        guard let id = SingletonClass.SharedInstance.userData?.iD, let myLocation = SingletonClass.SharedInstance.myCurrentLocation else {
+            return
+        }
+        UtilityClass.showHUD()
+        let requestModel = NearByUserModel()
+        requestModel.user_id = id
+        requestModel.latitude = "\(String(describing: myLocation.coordinate.latitude))"
+        requestModel.longitude = "\(String(describing: myLocation.coordinate.longitude))"
+        
+        FriendsWebserviceSubclass.nearByUsers(nearByUsersModel: requestModel){ (json, status, res) in
+           
+            UtilityClass.hideHUD()
+            if status {
+                let responseModel = NearByUsersResponseModel(fromJson: json)
+                self.nearByUsersArray = responseModel.nearbyuser
+                self.reloadMapView()
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
         }
     }
 }

@@ -92,6 +92,9 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.8.0)
   - Protobuf (3.11.1)
   - SkyFloatingLabelTextField (3.7.0)
+  - Socket.IO-Client-Swift (15.2.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.1)
   - SwiftyJSON (5.0.0)
   - TTSegmentedControl (0.4.9)
 
@@ -109,6 +112,7 @@ DEPENDENCIES:
   - lottie-ios
   - NVActivityIndicatorView
   - SkyFloatingLabelTextField
+  - Socket.IO-Client-Swift
   - SwiftyJSON
   - TTSegmentedControl
 
@@ -139,6 +143,8 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - Protobuf
     - SkyFloatingLabelTextField
+    - Socket.IO-Client-Swift
+    - Starscream
     - SwiftyJSON
     - TTSegmentedControl
 
@@ -168,9 +174,11 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   Protobuf: 20d79da7f20b5928b80043b05080b816e802659e
   SkyFloatingLabelTextField: 4b46db0ab1ccde0919cded29c656e6b4805eda04
+  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
 
-PODFILE CHECKSUM: b361b08c110ef00d5160d1045e30a2a5873a79bd
+PODFILE CHECKSUM: d7b18dc1517419b2b9ff2a0671b09944823841d4
 
 COCOAPODS: 1.6.1

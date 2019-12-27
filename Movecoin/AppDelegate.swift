@@ -8,11 +8,12 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-import CoreLocation
-import CoreMotion
 import Fabric
 import Crashlytics
 import Firebase
+import SocketIO
+import CoreLocation
+import CoreMotion
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
@@ -28,6 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         print("Permission : ",status.rawValue)
         
+        // For Background Task
+        var bgTask = UIBackgroundTaskIdentifier(rawValue: 0)
+        bgTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+            UIApplication.shared.endBackgroundTask(bgTask)
+        })
+       
         setupApplication()
         setUpNavigationBar()
         locationPermission()
@@ -43,7 +50,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
+        print("App is in Background mode")
+        SocketIOManager.shared.establishConnection()
+        SocketIOManager.shared.socket.on(clientEvent: .connect) { (data, ack) in
+            
+            print ("socket connected")
+        }
+        print(SocketIOManager.shared.isSocketOn)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -55,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+       
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -194,10 +207,32 @@ extension AppDelegate {
         let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
         let userinfo = SingletonClass.SharedInstance.userInfo
         controller.receiverID = userinfo?["SenderID"] as? String
-        print(self.window?.rootViewController)
-        
         (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
     }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Socket Methods ---------
+// ----------------------------------------------------
+
+extension AppDelegate {
+    
+    // Socket On Connect User
+       func onSocketConnectUser() {
+           SocketIOManager.shared.socketCall(for: SocketApiKeys.kConnectUser) { (json) in
+               print(json)
+               
+           }
+       }
+       
+       // Socket Emit Connect user
+       func emitSocket_UserConnect(){
+           let param = [
+            SocketApiKeys.KUserId : SingletonClass.SharedInstance.userData?.iD ?? "" as Any
+               ] as [String : Any]
+           SocketIOManager.shared.socketEmit(for: SocketApiKeys.kConnectUser, with: param)
+       }
+       
 }
 
 // ----------------------------------------------------
@@ -243,7 +278,7 @@ extension AppDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
         print(#function, response)
         
-        let content = response.notification.request.content
+//        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
         
@@ -316,7 +351,7 @@ extension AppDelegate {
         
         print(#function, notification.request.content.userInfo)
         
-        let content = notification.request.content
+//        let content = notification.request.content
         let userInfo = notification.request.content.userInfo
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
         

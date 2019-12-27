@@ -19,11 +19,12 @@ enum Permission : Int, CaseIterable{
     case camera = 0
     case photoLibrary = 1
     case mediaLibrary = 2
-    case contacts = 3
+    case notification = 3
     case locationAlwaysAndWhenInUse = 4
     case locationWhenInUse = 5
-    case motion = 6
-    case notification = 7
+    case contacts = 6
+    case motion = 7
+    case healthKit = 8
 }
 
 
@@ -55,6 +56,9 @@ open class UserPermission : NSObject {
             
         case .motion:
             requestMotionPermission()
+            
+        case .healthKit:
+            requestHealthKitPermission()
             
         default:
             return
@@ -88,7 +92,7 @@ open class UserPermission : NSObject {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
                 DispatchQueue.main.async {
-                    print("Notification Permsssion : ",granted, error?.localizedDescription)
+                    print("Notification Permsssion : ",granted, error?.localizedDescription ?? "error")
                 }
             }
         } else {
@@ -102,7 +106,7 @@ open class UserPermission : NSObject {
             let store = CNContactStore()
             store.requestAccess(for: .contacts, completionHandler: { (granted, error) in
                 DispatchQueue.main.async {
-                     print("Contacts Permsssion : ",granted, error?.localizedDescription)
+                     print("Contacts Permsssion : ",granted, error?.localizedDescription ?? "error")
                 }
             })
         } else {
@@ -110,7 +114,7 @@ open class UserPermission : NSObject {
             ABAddressBookRequestAccessWithCompletion(addressBookRef) {
                 (granted: Bool, error: CFError?) in
                 DispatchQueue.main.async() {
-                    print("Contacts Permsssion : ",granted, error?.localizedDescription)
+                    print("Contacts Permsssion : ",granted, error?.localizedDescription ?? "error")
                 }
             }
         }
@@ -121,7 +125,17 @@ open class UserPermission : NSObject {
                let today = Date()
                
                manager.queryActivityStarting(from: today, to: today, to: OperationQueue.main, withHandler: { (activities: [CMMotionActivity]?, error: Error?) -> () in
-                    print("Motion Permsssion : ", error?.localizedDescription)
+                    print("Motion Permsssion : ", error?.localizedDescription ?? "error")
+                   manager.stopActivityUpdates()
+               })
+    }
+    
+    func requestHealthKitPermission() {
+        let manager = CMMotionActivityManager()
+               let today = Date()
+               
+               manager.queryActivityStarting(from: today, to: today, to: OperationQueue.main, withHandler: { (activities: [CMMotionActivity]?, error: Error?) -> () in
+                    print("Motion Permsssion : ", error?.localizedDescription ?? "error")
                    manager.stopActivityUpdates()
                })
     }
