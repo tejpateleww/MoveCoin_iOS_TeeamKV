@@ -14,6 +14,7 @@ import UserNotifications
 import Contacts
 import AddressBook
 import CoreMotion
+import HealthKit
 
 enum Permission : Int, CaseIterable{
     case camera = 0
@@ -131,12 +132,12 @@ open class UserPermission : NSObject {
     }
     
     func requestHealthKitPermission() {
-        let manager = CMMotionActivityManager()
-               let today = Date()
-               
-               manager.queryActivityStarting(from: today, to: today, to: OperationQueue.main, withHandler: { (activities: [CMMotionActivity]?, error: Error?) -> () in
-                    print("Motion Permsssion : ", error?.localizedDescription ?? "error")
-                   manager.stopActivityUpdates()
-               })
+       let healthStore = HKHealthStore()
+       if HKHealthStore.isHealthDataAvailable() {
+         let steps = NSSet(object: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) ?? 0)
+         healthStore.requestAuthorization(toShare: nil, read: steps as? Set<HKObjectType>) { (success, error) -> Void in
+         
+         }
+       }
     }
 }

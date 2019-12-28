@@ -76,16 +76,11 @@ class PinMarkerView: MKMarkerAnnotationView {
                     
                     DispatchQueue.global().async {
                         let img =  UIImage(named: "logo-select")
-                        let asd = self.resizeImage(image: value.image, targetSize: CGSize(width: 34, height: 34))
-                        
                         DispatchQueue.main.async {
                            
-                            self.glyphImage = img //self.resizeImage(image: value.image, targetSize: CGSize(width: 10, height: 10))
-                            
+                            self.glyphImage = img //self.resizeImage(image: value.image, targetSize: CGSize(width: 30, height: 10))
                         }
                     }
-                    
-                    
                 case .failure(let error):
                     print("The error for image is \(error.localizedDescription)")
                 }
