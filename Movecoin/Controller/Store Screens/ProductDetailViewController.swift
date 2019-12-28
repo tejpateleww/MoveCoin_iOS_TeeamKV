@@ -93,7 +93,8 @@ class ProductDetailViewController: UIViewController {
     
     func setupProductData(){
         // For Images
-        imgArray = self.product.gallery.components(separatedBy: ",")
+//        imgArray = self.product.gallery.components(separatedBy: ",")
+        imgArray = self.product.gallaries
         pageControl.numberOfPages = imgArray.count
         collectionView.reloadData()
         

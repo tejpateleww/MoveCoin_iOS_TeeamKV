@@ -39,6 +39,8 @@ class MapViewController: UIViewController {
     var toggleForPopover = false
     
     lazy var nearByUsersArray = [Nearbyuser]()
+    
+    var nearByuserTimer : Timer!
 
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -64,6 +66,12 @@ class MapViewController: UIViewController {
         }
         self.setUpNavigationItems()
         webserviceForNearByUsers()
+        startTimer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        nearByuserTimer.invalidate()
     }
     
     // ----------------------------------------------------
@@ -90,6 +98,17 @@ class MapViewController: UIViewController {
     
     @objc func btnFlipTapped(){
         self.delegateFlipToHome.flipToHome()
+    }
+    
+    func startTimer() {
+        if(nearByuserTimer == nil){
+            nearByuserTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { (timer) in
+                print(timer)
+                if SocketIOManager.shared.socket.status == .connected {
+                  self.webserviceForNearByUsers()
+                }
+            })
+        }
     }
     
     func toggleHandler(isOn : Bool, user : Nearbyuser?, annotationView : MKAnnotationView?){
@@ -192,7 +211,7 @@ extension MapViewController {
         guard let id = SingletonClass.SharedInstance.userData?.iD, let myLocation = SingletonClass.SharedInstance.myCurrentLocation else {
             return
         }
-        UtilityClass.showHUD()
+//        UtilityClass.showHUD()
         let requestModel = NearByUserModel()
         requestModel.user_id = id
         requestModel.latitude = "\(String(describing: myLocation.coordinate.latitude))"
@@ -200,7 +219,7 @@ extension MapViewController {
         
         FriendsWebserviceSubclass.nearByUsers(nearByUsersModel: requestModel){ (json, status, res) in
            
-            UtilityClass.hideHUD()
+//            UtilityClass.hideHUD()
             if status {
                 let responseModel = NearByUsersResponseModel(fromJson: json)
                 self.nearByUsersArray = responseModel.nearbyuser

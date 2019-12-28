@@ -138,7 +138,8 @@ class PopoverViewController: UIViewController {
             print(parent.parent!)
            if let parentVC = parent.parent as? TabViewController {
                 let destination = parentVC.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
-//            destination.receiverData
+                destination.receiverID = userData.iD
+                destination.receiverName = userData.fullName
                 parentVC.navigationController?.pushViewController(destination, animated: true)
             }
         }

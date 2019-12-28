@@ -1002,7 +1002,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="yh9-DP-KX7">
                                         <rect key="frame" x="69" y="10" width="96" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="676-gN-C46">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="676-gN-C46">
                                                 <rect key="frame" x="0.0" y="0.0" width="96" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="HtY-a3-7vJ"/>
@@ -2011,7 +2011,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MET-Sg-WPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5196" y="1046"/>
+            <point key="canvasLocation" x="5078" y="1738"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fFc-xl-WtA">
+            <objects>
+                <viewController id="41U-o4-3dK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eN6-At-eiY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KvU-AJ-Gla"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bJD-Sg-o01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5773" y="1741"/>
         </scene>
         <!--Store View Controller-->
         <scene sceneID="LYc-Li-bO3">
@@ -4702,7 +4717,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H77-iB-EV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5878" y="1046"/>
+            <point key="canvasLocation" x="3060" y="1738"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="RX0-AF-ZSL">
@@ -4879,7 +4894,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGs-cR-Rlj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6284" y="340"/>
+            <point key="canvasLocation" x="4414" y="1738"/>
         </scene>
         <!--Become Seller View Controller-->
         <scene sceneID="GaS-Vc-Tpl">
@@ -5213,7 +5228,7 @@
                                                                     <constraint firstAttribute="width" constant="22" id="JQO-sw-InG"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSA-CE-DK9">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSA-CE-DK9">
                                                                 <rect key="frame" x="1" y="33" width="36" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="7iM-O8-edv"/>
@@ -5683,7 +5698,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5r-MF-gyN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6546" y="1046"/>
+            <point key="canvasLocation" x="3726" y="1738"/>
         </scene>
         <!--Transfer Move Coins View Controller-->
         <scene sceneID="MRe-Jj-m3D">

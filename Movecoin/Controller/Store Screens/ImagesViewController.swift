@@ -56,8 +56,8 @@ class ImagesViewController: UIViewController, PagingScrollViewDelegate, PagingSc
         guard let zoomingView = view as? ZoomingScrollView else { return }
         guard let zoomContentView = zoomingView.targetView as? ZoomContentView else { return }
     
-        let productsURL = NetworkEnvironment.baseGalleryURL + imageArray[index]
-        if let url = URL(string: productsURL) {
+//        let productsURL = NetworkEnvironment.baseGalleryURL + imageArray[index]
+        if let url = URL(string: imageArray[index]) {
             zoomContentView.kf.indicatorType = .activity
             zoomContentView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
         }

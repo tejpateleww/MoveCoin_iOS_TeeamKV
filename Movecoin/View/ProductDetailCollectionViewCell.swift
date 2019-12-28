@@ -16,8 +16,8 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         didSet{
             if let data = productImage {
                 // For Image
-                let productsURL = NetworkEnvironment.baseGalleryURL + data
-                if let url = URL(string: productsURL) {
+//                let productsURL = NetworkEnvironment.baseGalleryURL + data
+                if let url = URL(string: data) {
                     self.imgProduct.kf.indicatorType = .activity
                     self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
                 }

@@ -127,7 +127,8 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
             case .TransferCoins:
                 print("Send")
                 let destination = self.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
-                destination.receiverData = cell.friendDetail
+                destination.receiverID = cell.friendDetail?.iD
+                destination.receiverName = cell.friendDetail?.fullName
                 self.navigationController?.pushViewController(destination, animated: true)
                    
             case .Unfriend:

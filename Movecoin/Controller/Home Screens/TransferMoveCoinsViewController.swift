@@ -23,7 +23,9 @@ class TransferMoveCoinsViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var receiverData : FriendsData?
+//    var receiverData : FriendsData?
+    var receiverName : String?
+    var receiverID : String?
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -33,7 +35,7 @@ class TransferMoveCoinsViewController: UIViewController {
         super.viewDidLoad()
         self.setupFont()
         txtAmount.delegate = self
-        if let name = receiverData?.fullName {
+        if let name = receiverName {
              lblName.text = "To \(name)"
         }
     }
@@ -66,7 +68,7 @@ class TransferMoveCoinsViewController: UIViewController {
         } else if (amount > 0){
             let requestModel = TransferCoinsModel()
             requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
-            requestModel.ReceiverID = receiverData?.iD ?? ""
+            requestModel.ReceiverID = receiverID ?? ""
             requestModel.Coins = txtAmount.text ?? ""
             requestModel.Message = txtMessage.text ?? ""
             webserviceForTransferCoins(dic: requestModel)

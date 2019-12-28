@@ -7,17 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8942311D-DA30-4F27-B74B-C7C6707C0219"
+            uuid = "53A2C015-95D0-46F9-AEE9-B3C65630ACB7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/Classes/PinMarker.swift"
+            filePath = "Movecoin/Controller/Map Screens/MapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "annotation"
-            landmarkType = "24">
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "viewDidDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA4E8CA4-6810-4AC9-A60E-A4D41C74A7F0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Map Screens/MapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "startTimer()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA4E8CA4-6810-4AC9-A60E-A4D41C74A7F0 - feff4294901de11"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movecoins.MapViewController.startTimer() -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww090/Desktop/moveCoin/Movecoin/Controller/Map%20Screens/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "FA4E8CA4-6810-4AC9-A60E-A4D41C74A7F0 - 2bd7675cf72f98f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSTimer) -&gt; () in Movecoins.MapViewController.startTimer() -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww090/Desktop/moveCoin/Movecoin/Controller/Map%20Screens/MapViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

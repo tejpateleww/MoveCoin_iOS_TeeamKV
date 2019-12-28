@@ -63,28 +63,25 @@ class PinMarkerView: MKMarkerAnnotationView {
         willSet {
             guard let pin = newValue as? PinMarker else { return }
             markerTintColor = pin.tintColor
-            // self.glyphImage = #imageLiteral(resourceName: "Setting")
-//            self.glyphImage = UIImage(named: "logo-select")
+            self.glyphImage = UIImage(named: "logo-select")
+//            self.animatesWhenAdded = true
           
-            let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-            imgView.contentMode = .scaleAspectFit
-            imgView.kf.setImage(with: URL(string: pin.image), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
-                switch result
-                {
-                case .success(let value):
-                    print(value)
-                    
-                    DispatchQueue.global().async {
-                        let img =  UIImage(named: "logo-select")
-                        DispatchQueue.main.async {
-                           
-                            self.glyphImage = img //self.resizeImage(image: value.image, targetSize: CGSize(width: 30, height: 10))
-                        }
-                    }
-                case .failure(let error):
-                    print("The error for image is \(error.localizedDescription)")
-                }
-            }
+//            let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
+//            imgView.kf.setImage(with: URL(string: pin.image), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
+//                switch result
+//                {
+//                case .success(let value):
+//                    print(value)
+//
+//                    DispatchQueue.global().async {
+//                        DispatchQueue.main.async {
+//                            self.glyphImage = self.resizeImage(image: value.image, targetSize: CGSize(width: 30, height: 30))
+//                        }
+//                    }
+//                case .failure(let error):
+//                    print("The error for image is \(error.localizedDescription)")
+//                }
+//            }
         }
     }
 }
