@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Help/Support","Rate this app","Terms and Conditions","Privacy Policy","Language"]
+    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Help/Support","Terms and Conditions","Privacy Policy","Language","Rate this app"]
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -68,6 +68,7 @@ class SettingsViewController: UIViewController {
     @IBAction func btnLogoutTapped(_ sender: Any) {
         let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?", preferredStyle: .alert)
         let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
+            SocketIOManager.shared.closeConnection()
             self.webserviceForLogout()
         }
         let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
@@ -134,6 +135,21 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
+                self.navigationController?.pushViewController(controller, animated: true)
+                
+            case .Help:
+                let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
+                controller.documentType = DocumentType(rawValue: "Help")
+                self.navigationController?.pushViewController(controller, animated: true)
+                
+            case .TermsAndConditions:
+                let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
+                controller.documentType = DocumentType(rawValue: "Terms And Conditions")
+                self.navigationController?.pushViewController(controller, animated: true)
+                
+            case .PrivacyPolicy:
+                let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
+                controller.documentType = DocumentType(rawValue: "Privacy Policy")
                 self.navigationController?.pushViewController(controller, animated: true)
                 
             case .RateApp:

@@ -14,6 +14,7 @@ import Firebase
 import SocketIO
 import CoreLocation
 import CoreMotion
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
@@ -34,14 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         bgTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
             UIApplication.shared.endBackgroundTask(bgTask)
         })
-       
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         setupApplication()
         setUpNavigationBar()
         locationPermission()
         
         configureNotification()
         Fabric.with([Crashlytics.self])
-        
+      
         return true
     }
     
@@ -74,6 +75,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func applicationWillTerminate(_ application: UIApplication) {
         
     }
+    
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+        let handled = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        // Add any custom logic here.
+        return handled
+    }
+
 }
 
 // ----------------------------------------------------
@@ -109,16 +118,6 @@ extension AppDelegate {
             
             // For use in foreground
             self.locationManager.requestWhenInUseAuthorization()
-            //            let alert = UIAlertController(title: AppName.kAPPName, message: "Please enable location from settings", preferredStyle: .alert)
-            //            let enable = UIAlertAction(title: "Enable", style: .default) { (temp) in
-            //
-            //                if let url = URL.init(string: UIApplication.openSettingsURLString) {
-            //                    UIApplication.shared.open(URL(string: "App-Prefs:root=Privacy&path=LOCATION") ?? url, options: [:], completionHandler: nil)
-            //                }
-            //            }
-            //            alert.addAction(enable)
-            //            self.window?.rootViewController?.present(alert, animated: true, completion: nil )
-            //            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
     

@@ -28,11 +28,7 @@ class WelcomeViewController: UIViewController {
         navigationBarSetUp()
         self.animateView()
         self.setupFont()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
     }
     
     // ----------------------------------------------------

@@ -26,7 +26,7 @@ pod 'Cosmos'
 pod 'lottie-ios'
 pod 'KDCircularProgress'
 
-
+pod 'FBSDKLoginKit'
 
   # Pods for Movecoin
 end

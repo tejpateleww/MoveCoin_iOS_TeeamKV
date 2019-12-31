@@ -238,11 +238,13 @@ class HomeViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     if let counts = SingletonClass.SharedInstance.todaysStepCount {
-                         let total = counts + activityData.numberOfSteps.intValue
+                        let total = counts + activityData.numberOfSteps.intValue
                         self.lblTodaysStepCount.text = "\(total)"
+                        SingletonClass.SharedInstance.todaysStepCount = total
                         print("Total:\(total)")
                     }else {
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+                        SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.intValue
                     }
                     self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0")
                 }

@@ -35,6 +35,7 @@ class SignupViewController: UIViewController {
     var arrayGender = ["Male","Female"]
     lazy var pickerView = UIPickerView()
     var selectedImage : UIImage?
+    var userSocialData : UserSocialData?
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -52,8 +53,15 @@ class SignupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         self.updateMylocation()
+        if let socialData = userSocialData {
+            txtEmail.text = socialData.userEmail
+            txtFullName.text = socialData.fullName
+            if let url = URL(string: socialData.Profile ) {
+                imgProfile.kf.indicatorType = .activity
+                imgProfile.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -242,7 +250,7 @@ extension SignupViewController {
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: VerificationViewController.className) as! VerificationViewController
                     controller.signupModel = signupDic
                     controller.otp = json["otp"].stringValue
-                    controller.imgProfilePicture = self.selectedImage
+                    controller.imgProfilePicture = self.imgProfile.image  //self.selectedImage
                     self.navigationController?.pushViewController(controller, animated: true)
                 })
             }

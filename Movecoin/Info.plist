@@ -21,11 +21,9 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleURLName</key>
-			<string>com.app.movecoin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>MoveCoins</string>
+				<string>fb2367540940223580</string>
 			</array>
 		</dict>
 	</array>
@@ -45,11 +43,18 @@
 			</dict>
 		</array>
 	</dict>
+	<key>FacebookAppID</key>
+	<string>2367540940223580</string>
+	<key>FacebookDisplayName</key>
+	<string>MoveCoins</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>MoveCoins</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

@@ -43,6 +43,11 @@ class UserWebserviceSubclass
         WebService.shared.requestMethod(api: .login, httpMethod: .post, parameters: params, completion: completion)
     }
     
+    class func socialModel( socialModel : SocialLoginModel  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = socialModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .socialMedia, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
     class func forgotPassword( ForgotPasswordModel : ForgotPassword  ,completion: @escaping CompletionResponse ) {
         let  params : [String:String] = ForgotPasswordModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .forgotPassword, httpMethod: .post, parameters: params, completion: completion)

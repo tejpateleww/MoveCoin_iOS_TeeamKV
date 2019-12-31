@@ -11,11 +11,11 @@ import Contacts
 import MessageUI
 
 class FriendsTableData {
-    var Section : String!
+    var SectionTitle : String!
     var Rows : [Any]!
     
     init(section:String, rows:[Any]){
-        self.Section = section
+        self.SectionTitle = section
         self.Rows = rows
     }
 }
@@ -27,6 +27,7 @@ class FindFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet weak var tblFriends: UITableView!
+    @IBOutlet weak var txtSearch: UITextField!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -38,7 +39,10 @@ class FindFriendsViewController: UIViewController {
     var responseModel : InviteFriendsResponseModel?
     let store = CNContactStore()
     lazy var tableData : [FriendsTableData] = []
-   
+    
+    lazy var isTyping: Bool = false
+    lazy var searchArray : [FriendsTableData] = []
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -108,15 +112,44 @@ class FindFriendsViewController: UIViewController {
         }
     }
     
+    // ----------------------------------------------------
+    //MARK:- --------- Button Action Method ---------
+    // ----------------------------------------------------
+    
     @objc func btnAcceptTapped(_ sender: UIButton){
-           
-           if (sender.titleLabel?.text == "Accept") {
-               print("Accept")
-                if let data = tableData.first?.Rows[sender.tag] as? Request {
-                    webserviceForAcceptReject(requestID: data.iD, action: sender.titleLabel!.text!)
-                }
-           }
-       }
+        
+        if (sender.titleLabel?.text == "Accept") {
+            print("Accept")
+            if let data = tableData.first?.Rows[sender.tag] as? Request {
+                webserviceForAcceptReject(requestID: data.iD, action: sender.titleLabel!.text!)
+            }
+        }
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- TextDidChange Method ---------
+    // ----------------------------------------------------
+    
+    @IBAction func txtSearchEditingChangedAction(_ sender: UITextField) {
+        
+        isTyping = (sender.text?.isEmpty ?? false) ? false : true
+        searchArray.removeAll()
+        
+        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(sender.text?.lowercased() ?? "")}
+        let reco = (tableData.filter{$0.SectionTitle == "Recommended"}.first?.Rows as? [Registered])?.filter{$0.fullName.lowercased().contains(sender.text?.lowercased() ?? "") || $0.nickName.lowercased().contains(sender.text?.lowercased() ?? "")}
+        let notReq = (tableData.filter{$0.SectionTitle == "Not Registered"}.first?.Rows as? [PhoneModel])?.filter{$0.name.lowercased().contains(sender.text?.lowercased() ?? "") }
+        
+        if let data = req, data.count != 0 {
+            searchArray.append(FriendsTableData(section: "Requested", rows: data))
+        }
+        if let data = reco, data.count != 0 {
+            searchArray.append(FriendsTableData(section: "Recommended", rows: data))
+        }
+        if let data = notReq, data.count != 0 {
+            searchArray.append(FriendsTableData(section: "Not Registered", rows: data))
+        }
+        tblFriends.reloadData()
+    }
 }
 
 // ----------------------------------------------------
@@ -130,17 +163,21 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return tableData.count
+        return isTyping ? searchArray.count : tableData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionData = tableData[section]
+//        let sectionData = tableData[section]
+//        return sectionData.Rows.count
+        let sectionData = isTyping ? searchArray[section] : tableData[section]
         return sectionData.Rows.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionData = tableData[section]
-        return sectionData.Section
+//        let sectionData = tableData[section]
+//        return sectionData.SectionTitle
+        let sectionData = isTyping ? searchArray[section] : tableData[section]
+        return sectionData.SectionTitle
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -152,8 +189,10 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         cell.selectionStyle = .none
         cell.cellDelegate = self
         
-        let sectionData = tableData[indexPath.section]
-        cell.type = FriendsStatus.init(rawValue: sectionData.Section)
+//        let sectionData = tableData[indexPath.section]
+//        cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
+        let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
+        cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
        
         switch cell.type {
         case .RequestPendding:
@@ -166,10 +205,12 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
             }
             
         case .RecommendedFriend:
-            cell.registeredFriend = registeredContacts[indexPath.row]
+//            cell.registeredFriend = registeredContacts[indexPath.row]
+            cell.registeredFriend = isTyping ? searchArray[indexPath.section].Rows[indexPath.row] as! Registered : registeredContacts[indexPath.row]
             
         case .NotRegistedFriend:
-           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
+//           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
+            cell.notRegisteredFriend = isTyping ? searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : notRegisteredContacts[indexPath.row]
             
         default:
             break

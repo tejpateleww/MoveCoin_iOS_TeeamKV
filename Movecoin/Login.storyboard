@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJi-0l-PKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="-710"/>
+            <point key="canvasLocation" x="414" y="140"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="zbA-j7-nOC">
@@ -804,10 +804,16 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27R-4K-xrg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                                                                         <state key="normal" image="Twitter icon"/>
+                                                                        <connections>
+                                                                            <action selector="btnTwitterTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="Idf-Zc-fal"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-10-Hf6">
                                                                         <rect key="frame" x="62" y="0.0" width="42" height="42"/>
                                                                         <state key="normal" image="Facebook-icon"/>
+                                                                        <connections>
+                                                                            <action selector="btnFBTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="hmQ-Vm-POe"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
@@ -1012,7 +1018,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F5Y-Ya-8g8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="-710"/>
+            <point key="canvasLocation" x="-308" y="140"/>
         </scene>
         <!--On Borad View Controller-->
         <scene sceneID="WjP-0W-z6M">
@@ -1090,7 +1096,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUF-yr-J39" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2059" y="-711"/>
+            <point key="canvasLocation" x="1161" y="139"/>
         </scene>
     </scenes>
     <resources>

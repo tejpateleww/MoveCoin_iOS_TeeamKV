@@ -77,6 +77,7 @@ struct SocketApiKeys {
 enum ApiKey: String{
     case Init = "user/init/"
     case login = "user/login"
+    case socialMedia = "user/social_login"
     case logout = "user/logout/"
     case otp = "user/register_otp"
     case register = "user/register"
@@ -93,6 +94,7 @@ enum ApiKey: String{
     case removeCard = "user/remove_card/"
     case notification = "user/notification/"
     case accountPrivacy = "user/account_privacy/"
+    case policyHelpTerm = "user/policy_help_terms"
     
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"

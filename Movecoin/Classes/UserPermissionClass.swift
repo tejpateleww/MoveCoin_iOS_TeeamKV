@@ -15,23 +15,23 @@ import Contacts
 import AddressBook
 import CoreMotion
 import HealthKit
+import CoreLocation
 
 enum Permission : Int, CaseIterable{
     case camera = 0
     case photoLibrary = 1
     case mediaLibrary = 2
     case notification = 3
-    case locationAlwaysAndWhenInUse = 4
-    case locationWhenInUse = 5
-    case contacts = 6
-    case motion = 7
-    case healthKit = 8
+    case locationPermission = 4
+    case contacts = 5
+    case motion = 6
+    case healthKit = 7
 }
 
 
 open class UserPermission : NSObject {
     
-    lazy var permissionType : Permission = Permission.locationAlwaysAndWhenInUse
+    lazy var permissionType : Permission = Permission.locationPermission
     lazy var permissions : [Permission] = []
     
     public override init() {
@@ -46,7 +46,7 @@ open class UserPermission : NSObject {
         case .photoLibrary:
             requestPhotoLibraryPermission()
             
-        case .locationAlwaysAndWhenInUse:
+        case .locationPermission:
             requestLocationPermission()
             
         case .notification:
@@ -85,7 +85,15 @@ open class UserPermission : NSObject {
     }
     
     func requestLocationPermission(){
-        let status = CLLocationManager.authorizationStatus()
+        let locationManager = CLLocationManager()
+//        let status = CLLocationManager.authorizationStatus()
+        if (CLLocationManager.authorizationStatus() == .denied) || CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .notDetermined {
+            // Ask for Authorisation from the User.
+            locationManager.requestAlwaysAuthorization()
+            
+            // For use in foreground
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     func requestNotificationPermission() {

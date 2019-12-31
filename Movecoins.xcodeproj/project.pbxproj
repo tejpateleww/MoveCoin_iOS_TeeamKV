@@ -142,6 +142,7 @@
 		469057B323967CBB000D192E /* BecomeSeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469057B223967CBB000D192E /* BecomeSeller.swift */; };
 		469688DF2371977D00C691A8 /* UIDevice + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469688DE2371977D00C691A8 /* UIDevice + Extension.swift */; };
 		469C9E0E2341EADD0098AE65 /* UItextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469C9E0D2341EADD0098AE65 /* UItextField + Extension.swift */; };
+		46A4CCD723BA0AFC007B00BA /* SocialLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A4CCD623BA0AFC007B00BA /* SocialLoginModel.swift */; };
 		46A74036235592A4009C9D81 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A74035235592A4009C9D81 /* PopoverViewController.swift */; };
 		46A76A3D23AA2E4E009F5427 /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A76A3C23AA2E4E009F5427 /* SendMessage.swift */; };
 		46A76A4023AA3BBB009F5427 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A76A3F23AA3BBB009F5427 /* MessageData.swift */; };
@@ -184,6 +185,8 @@
 		46F5461D23AA515C00251A20 /* ChatListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5461B23AA515C00251A20 /* ChatListResponseModel.swift */; };
 		46F5461E23AA515C00251A20 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5461C23AA515C00251A20 /* ChatList.swift */; };
 		46F5462023AA546800251A20 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5461F23AA546800251A20 /* ChatListModel.swift */; };
+		46F717AB23B9CD1000A26DAB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F717AA23B9CD1000A26DAB /* WebViewController.swift */; };
+		46F717AF23B9D35000A26DAB /* PolicyHelpTermsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F717AE23B9D35000A26DAB /* PolicyHelpTermsClass.swift */; };
 		46F88CA72356F855003E24CC /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F88CA62356F855003E24CC /* UIButton + Extension.swift */; };
 		46F88CA923570408003E24CC /* PurchaseHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F88CA823570408003E24CC /* PurchaseHistoryViewController.swift */; };
 		46F88CAB23570587003E24CC /* PurchaseHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F88CAA23570587003E24CC /* PurchaseHistoryTableViewCell.swift */; };
@@ -335,6 +338,7 @@
 		4690AEA92386D41E0030A598 /* Movecoins.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Movecoins.entitlements; sourceTree = "<group>"; };
 		469688DE2371977D00C691A8 /* UIDevice + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice + Extension.swift"; sourceTree = "<group>"; };
 		469C9E0D2341EADD0098AE65 /* UItextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UItextField + Extension.swift"; sourceTree = "<group>"; };
+		46A4CCD623BA0AFC007B00BA /* SocialLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginModel.swift; sourceTree = "<group>"; };
 		46A74035235592A4009C9D81 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		46A76A3C23AA2E4E009F5427 /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
 		46A76A3F23AA3BBB009F5427 /* MessageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
@@ -388,6 +392,8 @@
 		46F5461B23AA515C00251A20 /* ChatListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListResponseModel.swift; sourceTree = "<group>"; };
 		46F5461C23AA515C00251A20 /* ChatList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		46F5461F23AA546800251A20 /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
+		46F717AA23B9CD1000A26DAB /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		46F717AE23B9D35000A26DAB /* PolicyHelpTermsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolicyHelpTermsClass.swift; sourceTree = "<group>"; };
 		46F88CA62356F855003E24CC /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		46F88CA823570408003E24CC /* PurchaseHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryViewController.swift; sourceTree = "<group>"; };
 		46F88CAA23570587003E24CC /* PurchaseHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -668,6 +674,7 @@
 			children = (
 				461DC25E237939820092AC82 /* RequestModel.swift */,
 				461DC26223793A8E0092AC82 /* Login.swift */,
+				46A4CCD623BA0AFC007B00BA /* SocialLoginModel.swift */,
 				461DC26623793B690092AC82 /* Signup.swift */,
 				465E3508237BBF9C0023366C /* OTPverify.swift */,
 				461DC26023793A5A0092AC82 /* ForgotPassword.swift */,
@@ -699,19 +706,20 @@
 		461DC253237930BB0092AC82 /* Response Models */ = {
 			isa = PBXGroup;
 			children = (
+				46F717AE23B9D35000A26DAB /* PolicyHelpTermsClass.swift */,
+				469057AD2396715A000D192E /* Init */,
+				46D96063238B9ADD0026B96D /* Login */,
 				464AE07923B4BCBA00826BA7 /* NearByUsers */,
 				462D24E723B32F670050C3F0 /* Profile Data */,
 				46A76A3E23AA3BAE009F5427 /* Chat */,
 				463CAC4623A376400040493E /* Purchase History */,
 				46FA2C7E23A122B0000A3B9B /* Cards */,
 				460C04A4239A3E2900D674D7 /* Friend List */,
+				46D96064238B9AF20026B96D /* Products List */,
 				460C049F239A294600D674D7 /* Wallet History */,
 				460C049A239A100E00D674D7 /* Coins Earning */,
 				464F49332398EF1E00D803D6 /* Steps History */,
-				469057AD2396715A000D192E /* Init */,
-				46D96063238B9ADD0026B96D /* Login */,
 				46E69BED238FC54C00685EB8 /* Invite Friends */,
-				46D96064238B9AF20026B96D /* Products List */,
 			);
 			path = "Response Models";
 			sourceTree = "<group>";
@@ -880,6 +888,7 @@
 				467676A0235ED4E60076157B /* EditProfileViewController.swift */,
 				4661BB4C2351B30E00DC41E0 /* ChangePasswordViewController.swift */,
 				46F88CA823570408003E24CC /* PurchaseHistoryViewController.swift */,
+				46F717AA23B9CD1000A26DAB /* WebViewController.swift */,
 			);
 			path = "Setting Screens";
 			sourceTree = "<group>";
@@ -1190,6 +1199,8 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Movecoins/Pods-Movecoins-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FormTextField/FormTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -1211,6 +1222,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FormTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -1249,6 +1262,7 @@
 				466762B5238BE06E003136BC /* ProductDetailResponseModel.swift in Sources */,
 				461DC26523793AB90092AC82 /* Logout.swift in Sources */,
 				46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */,
+				46F717AB23B9CD1000A26DAB /* WebViewController.swift in Sources */,
 				461EC3FB236C05BC00114759 /* UIFont + Extension.swift in Sources */,
 				463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */,
 				46814385238E624500D5A297 /* PhoneContactsClass.swift in Sources */,
@@ -1293,6 +1307,7 @@
 				46A74036235592A4009C9D81 /* PopoverViewController.swift in Sources */,
 				46C9C4EF23A116380042341B /* AddCardModel.swift in Sources */,
 				46FD51D7232F92B200182B86 /* TabViewController.swift in Sources */,
+				46A4CCD723BA0AFC007B00BA /* SocialLoginModel.swift in Sources */,
 				469057B323967CBB000D192E /* BecomeSeller.swift in Sources */,
 				461DC26B237965D00092AC82 /* ValidatorClass.swift in Sources */,
 				46E468F5237D7A430068701E /* CardListViewController.swift in Sources */,
@@ -1402,6 +1417,7 @@
 				46AECDBB239A85480097806B /* TransferCoinsModel.swift in Sources */,
 				46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */,
 				4631E9962327A5040088B49F /* Constants.swift in Sources */,
+				46F717AF23B9D35000A26DAB /* PolicyHelpTermsClass.swift in Sources */,
 				460C04A2239A295600D674D7 /* WalletResponseModel.swift in Sources */,
 				462D24F123B32FF40050C3F0 /* ProfileData.swift in Sources */,
 				46ECAEBD232A756F00FCD029 /* StoreTableViewCell.swift in Sources */,
@@ -1486,6 +1502,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1540,6 +1557,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1554,7 +1572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.6;
+				CURRENT_PROJECT_VERSION = 1.1.7;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
@@ -1578,7 +1596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.6;
+				CURRENT_PROJECT_VERSION = 1.1.7;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

@@ -7,6 +7,16 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+
+
+struct UserSocialData {
+    var userId: String
+    var fullName: String
+    var userEmail: String
+    var socialType: String
+    var Profile : String
+}
 
 class LoginViewController: UIViewController, CAAnimationDelegate {
     
@@ -25,6 +35,12 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     
     
     // ----------------------------------------------------
+    //MARK:- --------- Variables ---------
+    // ----------------------------------------------------
+    
+     var userSocialData: UserSocialData?
+    
+    // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
@@ -35,7 +51,6 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
         #if targetEnvironment(simulator)
        setDummy()
         #endif
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,13 +116,96 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
         if UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
              self.validate()
         } else {
-//            UtilityClass.showAlertWithCompletion(title: kAppName, Message: "would like to access your location, please enable location permission to move forward", ButtonTitle: "OK", Completion: {})
             UtilityClass.alertForLocation(currentVC: self)
         }
        
         (sender as! UIButton).bounceAnimationOnCompletion {
 //            UserDefaults.standard.set(true, forKey: UserDefaultKeys.IsLogin)
 //            AppDelegateShared.GoToHome()
+        }
+    }
+    
+    @IBAction func btnFBTapped(_ sender: Any) {
+    
+        if !WebService.shared.isConnected {
+            UtilityClass.showAlert(Message: "Please check your internet")
+            return
+        }
+        
+        let login = LoginManager()
+//        login.loginBehavior = .browser
+//        UIApplication.shared.statusBarStyle = .default
+        login.logOut()
+        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
+            
+            if error != nil {
+                //                UIApplication.shared.statusBarStyle = .lightContent
+            }
+            else if (result?.isCancelled)! {
+                //                UIApplication.shared.statusBarStyle = .lightContent
+            }else {
+                if (result?.grantedPermissions.contains("email"))! {
+                    //                    UIApplication.shared.statusBarStyle = .lightContent
+                    self.getFBUserData()
+                }else {
+                    print("you don't have permission")
+                }
+            }
+        }
+    }
+    
+    @IBAction func btnTwitterTapped(_ sender: Any) {
+           
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- Social Media Methods ---------
+// ----------------------------------------------------
+
+extension LoginViewController {
+    
+    func getFBUserData() {
+       
+        var parameters = [AnyHashable: Any]()
+        parameters["fields"] = "first_name, last_name, email,id, picture.type(large)"
+        
+        GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
+            if error == nil {
+                print("\(#function) \(result!)")
+                let dictData = result as! [String : AnyObject]
+                let strFirstName = String(describing: dictData["first_name"]!)
+                let strLastName = String(describing: dictData["last_name"]!)
+                let strEmail = String(describing: dictData["email"]!)
+                let strUserId = String(describing: dictData["id"]!)
+                
+                let profile = ((dictData["picture"] as! [String:AnyObject])["data"]  as! [String:AnyObject])["url"] as! String
+                print(profile)
+//                let profileUrl = "http://graph.facebook.com/519887295486608/picture?type=large"
+                
+                self.userSocialData = UserSocialData(userId:strUserId, fullName: "\(strFirstName) \(strLastName)", userEmail: strEmail, socialType: "facebook", Profile:profile)
+                
+                let socialModel = SocialLoginModel()
+                socialModel.SocialID = strUserId
+                socialModel.Username = strEmail
+                socialModel.SocialType = "facebook"
+                socialModel.DeviceType = "ios"
+                if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
+                    socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
+                    socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+                }
+                #if targetEnvironment(simulator)
+                // 23.0732727,72.5181843
+                socialModel.Latitude = "23.0732727"
+                socialModel.Longitude = "72.5181843"
+                #endif
+//                socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
+                
+                self.webserviceCallForSocialLogin(socialModel: socialModel)
+            }
+            else{
+                print(error?.localizedDescription)
+            }
         }
     }
 }
@@ -142,6 +240,48 @@ extension LoginViewController {
             }
             else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceCallForSocialLogin(socialModel : SocialLoginModel) {
+        
+          UtilityClass.showHUD()
+        
+           UserWebserviceSubclass.socialModel(socialModel: socialModel) { (json, status, res) in
+               
+               UtilityClass.hideHUD()
+               print(json)
+            
+            if status{
+                let loginResponseModel = LoginResponseModel(fromJson: json)
+                UserDefaults.standard.set(loginResponseModel.xApiKey, forKey: UserDefaultKeys.kX_API_KEY)
+                UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsLogedIn)
+               
+                do{
+                    try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
+                    SingletonClass.SharedInstance.userData = loginResponseModel.data
+                }catch{
+                    UtilityClass.showAlert(Message: error.localizedDescription)
+                }
+                AppDelegateShared.GoToHome()
+            }
+            else{
+                if ((self.navigationController?.hasViewController(ofKind: SignupViewController.self)) != nil) {
+                    for controller in self.navigationController?.viewControllers ?? [] {
+                        if(controller.isKind(of: SignupViewController.self)) {
+                            let signup = controller as! SignupViewController
+                            signup.userSocialData = self.userSocialData
+                            self.popViewControllerWithFlipAnimation()
+                            break
+                        }
+                    }
+                }else{
+                    let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                    let signupController = loginStoryboard.instantiateViewController(withIdentifier: SignupViewController.className) as! SignupViewController
+                    signupController.userSocialData = self.userSocialData
+                    self.pushViewControllerWithFlipAnimation(viewController: signupController)
+                }
             }
         }
     }

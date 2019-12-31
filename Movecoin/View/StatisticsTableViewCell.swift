@@ -26,7 +26,7 @@ class StatisticsTableViewCell: UITableViewCell {
                 // For Image
                  if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
                     self.imgProfile.kf.indicatorType = .activity
-                    self.imgProfile.kf.setImage(with: url)
+                    self.imgProfile.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
                 }
             }
         }

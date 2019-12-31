@@ -43,3 +43,5 @@ let kAppName = "MoveCoins"
 
 
 let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")
+
+

@@ -71,19 +71,22 @@ class SplashViewController: UIViewController {
       
 //        switch CMPedometer.authorizationStatus() {
 //        case .authorized, .notDetermined :
-            if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) != nil {
+            if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
 
-                if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) as! Bool {
+                if loggedIn as! Bool {
                     AppDelegateShared.GoToHome()
                     getUserData()
                 }else {
                     AppDelegateShared.GoToLogin()
                 }
-            }else {
-//                AppDelegateShared.GoToLogin()
-                AppDelegateShared.GoToOnBoard()
+            } else if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsOnBoardLaunched) == nil {
+//                if (isOnBoardLaunched as! Bool) == false {
+                    AppDelegateShared.GoToOnBoard()
+//                }
+            } else {
+                AppDelegateShared.GoToLogin()
             }
-
+    
 //        case .denied, .restricted : //, .notDetermined :
 //            AppDelegateShared.GoToPermission()
 //

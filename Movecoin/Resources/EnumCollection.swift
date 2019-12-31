@@ -63,11 +63,16 @@ enum SettingsOptions : Int {
     case PurchaseHistory
 //    case AddCard
     case Help
-    case RateApp
     case TermsAndConditions
     case PrivacyPolicy
-//    case Support
     case Language
+    case RateApp
+}
+
+enum DocumentType : String {
+    case TermsAndCondition = "Terms And Conditions"
+    case PrivacyPolicy = "Privacy Policy"
+    case Help = "Help"
 }
 
 enum FontBook: String {
@@ -89,6 +94,7 @@ enum FontBook: String {
 }
 
 enum UserDefaultKeys : CaseIterable {
+    static let kIsOnBoardLaunched = "isOnBoardLaunched"
     static let kIsLogedIn = "isLogin"
     static let kDeviceToken = "DeviceToken"
     static let kUserProfile = "userProfile"
