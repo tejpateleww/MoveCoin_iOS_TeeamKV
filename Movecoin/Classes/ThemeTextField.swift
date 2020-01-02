@@ -26,11 +26,52 @@ class ThemeTextfield : SkyFloatingLabelTextField {
     }
 }
 
+class DropDownThemeTextfield : SkyFloatingLabelTextField {
+    
+    override func awakeFromNib() {
+        self.selectedTitleColor = .white
+        self.selectedLineColor = TransparentColor
+        self.font = FontBook.Regular.of(size: 20.0)
+        self.placeholderColor = .white
+        self.tintColor = .white
+        self.textColor = .init(white: 1.0, alpha: 0.7)
+        self.lineColor = TransparentColor
+        self.titleColor = .white
+        self.titleFormatter = { $0 }
+    }
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        UIMenuController.shared.isMenuVisible = false
+        
+        if action == #selector(UIResponderStandardEditActions.paste(_:)) {
+            return false
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+}
+
 class TextFieldFont : UITextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
+    }
+}
+
+class DropDownTextField : UITextField {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.font = FontBook.Regular.of(size: 17)
+    }
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        UIMenuController.shared.isMenuVisible = false
+        
+        if action == #selector(UIResponderStandardEditActions.paste(_:)) {
+            return false
+        }
+        return super.canPerformAction(action, withSender: sender)
     }
 }
 

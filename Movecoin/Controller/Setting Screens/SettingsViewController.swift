@@ -68,7 +68,6 @@ class SettingsViewController: UIViewController {
     @IBAction func btnLogoutTapped(_ sender: Any) {
         let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?", preferredStyle: .alert)
         let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
-            SocketIOManager.shared.closeConnection()
             self.webserviceForLogout()
         }
         let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
@@ -213,6 +212,7 @@ extension SettingsViewController {
                     do{
                         try UserDefaults.standard.set(object: userData, forKey: UserDefaultKeys.kUserProfile)
                         SingletonClass.SharedInstance.userData = userData
+                        AppDelegateShared.notificationEnableDisable(notification: userData.notification ?? "0")
                     }catch{
                         UtilityClass.showAlert(Message: error.localizedDescription)
                     }

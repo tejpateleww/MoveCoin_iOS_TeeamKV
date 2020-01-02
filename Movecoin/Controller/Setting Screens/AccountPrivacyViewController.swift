@@ -103,6 +103,7 @@ extension AccountPrivacyViewController {
                     do{
                         try UserDefaults.standard.set(object: userData, forKey: UserDefaultKeys.kUserProfile)
                         SingletonClass.SharedInstance.userData = userData
+                        AppDelegateShared.notificationEnableDisable(notification: userData.notification ?? "0")
                     }catch{
                         UtilityClass.showAlert(Message: error.localizedDescription)
                     }

@@ -308,6 +308,7 @@ extension HomeViewController {
                     SingletonClass.SharedInstance.userData = responseModel.data
                     self.userData = responseModel.data
                     self.setupHomeData()
+                    AppDelegateShared.notificationEnableDisable(notification: self.userData?.notification ?? "0")
                 }catch{
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }

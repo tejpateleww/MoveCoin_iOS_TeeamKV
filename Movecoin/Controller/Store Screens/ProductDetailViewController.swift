@@ -21,6 +21,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var viewRating: CosmosView!
     @IBOutlet weak var viewShadow: UIView!
     
+    @IBOutlet weak var txtvwDescription: UITextView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStore: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
@@ -88,6 +89,7 @@ class ProductDetailViewController: UIViewController {
         lblPrice.font = UIFont.semiBold(ofSize: 19)
         lblTitle.font = UIFont.bold(ofSize: 26)
         lblDescription.font = UIFont.bold(ofSize: 16)
+        txtvwDescription.font = UIFont.bold(ofSize: 16)
         lblStore.font = UIFont.regular(ofSize: 14)
     }
     
@@ -104,7 +106,12 @@ class ProductDetailViewController: UIViewController {
         }
        
 //        lblDescription.attributedText = product.descriptionField.html2Attributed
-        lblDescription.text = product.descriptionField
+//        lblDescription.text = product.descriptionField
+        txtvwDescription.text = product.descriptionField
+        txtvwDescription.translatesAutoresizingMaskIntoConstraints = true
+        txtvwDescription.sizeToFit()
+        txtvwDescription.isScrollEnabled = false
+        
         lblStore.text = "Store : " + product.store
         if product.discount != "0" {
              lblTitle.text = product.name + " with \(product.discount!)% Discount"

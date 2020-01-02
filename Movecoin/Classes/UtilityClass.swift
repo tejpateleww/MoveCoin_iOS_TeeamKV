@@ -38,8 +38,8 @@ class UtilityClass : NSObject {
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = format
             let str = outputFormatter.string(from: date)
-//            return str.UTCToLocal(fromFormate: format, toFormate: format)
-            return str
+            return str.UTCToLocal(fromFormate: format, toFormate: format)
+//            return str
         }
         
         return nil

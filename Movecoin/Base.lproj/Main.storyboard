@@ -2456,13 +2456,24 @@
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
+                                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="x8l-ey-0QH">
+                                                                                <rect key="frame" x="10" y="15" width="355" height="284"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                                            </textView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstItem="MB6-AU-5gI" firstAttribute="top" secondItem="dG0-Ep-X2G" secondAttribute="top" constant="15" id="2Vp-U4-SaS"/>
-                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="208" id="Wsd-WJ-MfN"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="x8l-ey-0QH" secondAttribute="bottom" priority="250" id="aFD-CL-Diu"/>
                                                                             <constraint firstAttribute="bottom" secondItem="MB6-AU-5gI" secondAttribute="bottom" priority="250" id="fqi-5y-34H"/>
                                                                             <constraint firstItem="MB6-AU-5gI" firstAttribute="leading" secondItem="dG0-Ep-X2G" secondAttribute="leading" constant="10" id="gjh-CK-mz0"/>
+                                                                            <constraint firstItem="x8l-ey-0QH" firstAttribute="leading" secondItem="dG0-Ep-X2G" secondAttribute="leading" constant="10" id="mA6-Zt-p0g"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="x8l-ey-0QH" secondAttribute="trailing" constant="10" id="mAv-WD-mXE"/>
+                                                                            <constraint firstItem="x8l-ey-0QH" firstAttribute="top" secondItem="dG0-Ep-X2G" secondAttribute="top" constant="15" id="sQ5-fI-fcQ"/>
                                                                             <constraint firstAttribute="trailing" secondItem="MB6-AU-5gI" secondAttribute="trailing" constant="10" id="ytC-fh-Ce6"/>
                                                                         </constraints>
                                                                     </view>
@@ -2591,6 +2602,7 @@
                         <outlet property="lblTitle" destination="xjo-jb-t51" id="v06-uS-RXJ"/>
                         <outlet property="pageControl" destination="1A9-mx-YZI" id="3Hy-HW-i97"/>
                         <outlet property="stackView" destination="9Cg-vW-sms" id="YTs-j6-2wY"/>
+                        <outlet property="txtvwDescription" destination="x8l-ey-0QH" id="rDA-ZT-3Ro"/>
                         <outlet property="viewBottom" destination="MnZ-CK-4rS" id="eCS-uT-aav"/>
                         <outlet property="viewRating" destination="8q8-fB-Rts" id="68w-Zd-rrr"/>
                         <outlet property="viewShadow" destination="yuu-W5-EyA" id="q1p-hl-qJz"/>
@@ -5101,7 +5113,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C33-D6-j9d" customClass="RoundedShadowView" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="300" width="345" height="50"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type Of Products" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xEE-PT-G93" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type Of Products" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xEE-PT-G93" customClass="DropDownTextField" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="308" height="30"/>
                                                                         <color key="tintColor" red="0.11372549019607843" green="0.12549019607843137" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
@@ -5632,7 +5644,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-BC-6yE" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-BC-6yE" customClass="DropDownThemeTextfield" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="140" width="335" height="45"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -5653,7 +5665,7 @@
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                                     </textField>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date Of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZG-nc-vAT" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date Of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZG-nc-vAT" customClass="DropDownThemeTextfield" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="172.5" y="0.0" width="162.5" height="45"/>
                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -169,6 +169,7 @@ extension AppDelegate {
         //            }
         //        }
         //        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.kIsLogedIn)
+        SocketIOManager.shared.closeConnection()
         self.GoToLogin()
     }
     
@@ -207,6 +208,14 @@ extension AppDelegate {
         let userinfo = SingletonClass.SharedInstance.userInfo
         controller.receiverID = userinfo?["SenderID"] as? String
         (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
+    }
+    
+    func notificationEnableDisable(notification : String){
+        if notification == "0" {
+            UIApplication.shared.unregisterForRemoteNotifications()
+        } else {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
 }
 
@@ -256,7 +265,25 @@ extension AppDelegate {
         notificationCenter.delegate = self
         notificationCenter.requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
         
+        // Push Notification
         UIApplication.shared.registerForRemoteNotifications()
+        
+        //Local Notification for everyday at 9 am
+        let content = UNMutableNotificationContent()
+        content.title = "Local Notification"
+//        content.subtitle = "This will appear in bold, on it's own line, below the title."
+        content.body = "Don't forget to walk everyday and earn \(kAppName)"
+
+        var dateComponents = DateComponents()
+        dateComponents.hour = 9
+        dateComponents.minute = 00
+//        let triggerInputForEverydayRepeat = Calendar.current.dateComponents([.day], from: Date())
+        let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: kLocalNotificationIdentifier, content: content, trigger: trigger)
+        let unc = UNUserNotificationCenter.current()
+        unc.add(request, withCompletionHandler: { (error) in
+            print(error?.localizedDescription ?? "")
+        })
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -276,6 +303,10 @@ extension AppDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
         print(#function, response)
+        
+        if response.notification.request.identifier == kLocalNotificationIdentifier {
+            return
+        }
         
 //        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
@@ -350,6 +381,11 @@ extension AppDelegate {
         
         print(#function, notification.request.content.userInfo)
         
+        if notification.request.identifier == kLocalNotificationIdentifier {
+            completionHandler([.alert, .sound])
+            return
+        }
+        
 //        let content = notification.request.content
         let userInfo = notification.request.content.userInfo
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
@@ -371,6 +407,7 @@ extension AppDelegate {
                             
                             if let senderID = dic["SenderID"] as? String {
                                 if senderID == vc.receiverID {
+
                                     let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
                                     print(chat)
                                     vc.arrData.append(chat)

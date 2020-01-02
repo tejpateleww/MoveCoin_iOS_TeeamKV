@@ -190,19 +190,18 @@ extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let obj = arrData[indexPath.row]
-      
         let strIdentifier = obj.senderID == SingletonClass.SharedInstance.userData?.iD ? "SenderCell" : "RecieverCell"
-        
+    
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifier, for: indexPath) as! MessageCell
         cell.lblMessage.text = obj.message
         cell.lblMessage.isHidden = obj.message.isEmpty ? true : false
-        cell.lblTime.text = obj.date
+        if let chatDate = UtilityClass.changeDateFormateFrom(dateString: obj.date, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
+             cell.lblTime.text = chatDate
+        }
         cell.lblReadStatus.isHidden = true
-        
         cell.lblMessage.textColor = UIColor.white
         cell.lblTime.textColor = UIColor.white
         cell.lblReadStatus.textColor = UIColor.white
-        
         
         if obj.senderID == SingletonClass.SharedInstance.userData?.iD {
             cell.vwChatBg.backgroundColor = TransparentColor
@@ -237,7 +236,6 @@ extension ChatViewController {
                     let obj = MessageData(fromJson: dataJson)
                     self.arrData.append(obj)
                 }
-                
                 if self.arrData.count > 0 {
                     let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
                     self.tblVw.insertRows(at: [indexPath], with: .bottom)

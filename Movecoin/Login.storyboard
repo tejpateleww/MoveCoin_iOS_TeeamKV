@@ -413,7 +413,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srt-ff-Yws" customClass="RoundedShadowView" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="360" width="290" height="50"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-3b-W8i" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-3b-W8i" customClass="DropDownTextField" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
                                                                         <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>

@@ -97,38 +97,38 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
 extension StatisticsViewController {
     
     func webserviceforCoinsConverted(refresh : Bool = false){
-
-            var strParam = String()
+        
+        var strParam = String()
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.coinsEarning.rawValue + id + "/\(currentPage)"
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(json)
             
-            guard let id = SingletonClass.SharedInstance.userData?.iD else {
-                return
-            }
-           
-            strParam = NetworkEnvironment.baseURL + ApiKey.coinsEarning.rawValue + id + "/\(currentPage)"
-          
-            UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
-                print(json)
-                
-                self.isFetchingNextPage = false
-                
-                if status{
-                    let coinsModel = CoinsEarnResponseModel(fromJson: json)
-                    DispatchQueue.main.async {
-                      if refresh {
-//                            self.refreshControl.endRefreshing()
-                            self.coinsConvertedList = coinsModel.coinsData
-                        } else {
-                            if coinsModel.coinsData.count > 0 {
-                                self.coinsConvertedList.append(contentsOf: coinsModel.coinsData)
-                            }else{
-                                self.isFetchingNextPage = true
-                            }
+            self.isFetchingNextPage = false
+            
+            if status{
+                let coinsModel = CoinsEarnResponseModel(fromJson: json)
+                DispatchQueue.main.async {
+                    if refresh {
+                        //                            self.refreshControl.endRefreshing()
+                        self.coinsConvertedList = coinsModel.coinsData
+                    } else {
+                        if coinsModel.coinsData.count > 0 {
+                            self.coinsConvertedList.append(contentsOf: coinsModel.coinsData)
+                        }else{
+                            self.isFetchingNextPage = true
                         }
-                        self.tblStatistics.reloadData()
                     }
-                }else{
-                    UtilityClass.showAlertOfAPIResponse(param: res)
+                    self.tblStatistics.reloadData()
                 }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
+    }
 }

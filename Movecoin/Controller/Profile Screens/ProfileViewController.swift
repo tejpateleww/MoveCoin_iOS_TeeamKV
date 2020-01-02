@@ -122,7 +122,12 @@ class ProfileViewController: UIViewController {
                 let currentDate = formatter2.date(from: item.day)
                 let currentDay = formatter.string(from: currentDate ?? Date())
                 let steps = Int(item.totalSteps ?? "0")
-                let height: Float = Float(Float(steps ?? 0)/Float(maxValue))
+                let height: Float
+                if maxValue == 0 {
+                    height = 0
+                } else {
+                    height = Float(Float(steps ?? 0)/Float(maxValue))
+                }
                 
                 self.dataEntries.append(DataEntry(color: UIColor.white, height: height, textValue: "", title: currentDay))
             }
@@ -162,8 +167,13 @@ class ProfileViewController: UIViewController {
                 if filterItems?.count != 0 {
                     
                     let steps = Int(filterItems?.first?.totalSteps ?? "0")
-                    let height: Float = Float(Float(steps ?? 0)/Float(maxValue))
-                    
+                    let height: Float
+                    if maxValue == 0 {
+                        height = 0
+                    } else {
+                        height = Float(Float(steps ?? 0)/Float(maxValue))
+                    }
+                     
                     let tempDate = formatter2.date(from: filterItems?.first?.datePartition ?? "")
                     let currentMonth = formatterMonth.string(from: tempDate ?? Date())
                     
