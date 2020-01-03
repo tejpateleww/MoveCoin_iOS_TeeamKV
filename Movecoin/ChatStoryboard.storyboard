@@ -318,7 +318,6 @@
                         <outlet property="conVwMessageBottom" destination="6WG-JZ-ggU" id="Mt5-Bv-Ja3"/>
                         <outlet property="tblVw" destination="gab-hT-F0c" id="TkU-3p-g2a"/>
                         <outlet property="txtView" destination="ZXx-sg-xnv" id="wm5-Jk-kaJ"/>
-                        <outlet property="viewMessage" destination="i5w-5A-1cw" id="zcK-gG-8Mj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ddJ-iT-kGL" userLabel="First Responder" sceneMemberID="firstResponder"/>

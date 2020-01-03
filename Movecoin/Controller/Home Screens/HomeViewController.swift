@@ -53,16 +53,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
-//        animateCircle()
         healthKitData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 3, completion: nil)
         }
-        
-//        getUserData()
-      
-//        checkPermissionForMotionSensor()
-//        getTodaysStepCounts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +120,6 @@ class HomeViewController: UIViewController {
         self.delegateFlip.flipToMap()
     }
     
-    
     func setupHomeData(){
         if let user = userData {
             lblCoins.text = user.coins
@@ -157,8 +150,8 @@ class HomeViewController: UIViewController {
             getTodaysSteps { (steps) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     self.lblTodaysStepCount.text = String(Int(steps))
-                    SingletonClass.SharedInstance.todaysStepCount = Int(steps)
-                   
+                    SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
+                    SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     if Int(steps) > 0 {
                          self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
                     }
@@ -211,23 +204,7 @@ class HomeViewController: UIViewController {
             fatalError()
         }
     }
-    
-    
-    func getTodaysStepCounts() {
-        pedoMeter.queryPedometerData(from: Date().midnight, to: Date()) { (data, error) in
-            print("queryPedometerData : ", data ?? 0)
-            guard let activityData = data else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
-                self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0")
-            }
-            self.startCountingSteps()
-            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.intValue
-        }
-    }
-    
+   
     func startCountingSteps(){
         if CMPedometer.isStepCountingAvailable(){
            
@@ -237,14 +214,14 @@ class HomeViewController: UIViewController {
                     return
                 }
                 DispatchQueue.main.async {
-                    if let counts = SingletonClass.SharedInstance.todaysStepCount {
+                    if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
                         let total = counts + activityData.numberOfSteps.intValue
                         self.lblTodaysStepCount.text = "\(total)"
-                        SingletonClass.SharedInstance.todaysStepCount = total
+                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                         print("Total:\(total)")
                     }else {
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
-                        SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.intValue
+                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     }
                     self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0")
                 }

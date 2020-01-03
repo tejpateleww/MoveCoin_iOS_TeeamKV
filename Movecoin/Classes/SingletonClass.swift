@@ -23,7 +23,8 @@ class SingletonClass: NSObject {
     var userInfo : [String: Any]?
     
 //    var todaysStepCount : NSNumber?
-    var todaysStepCount : Int?
+    var todaysStepCountInitial : Int?
+    var todaysStepCount : String?
     var lastUpdatedDtae : Date?
     
     func singletonClear() {

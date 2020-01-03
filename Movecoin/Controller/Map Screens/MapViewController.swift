@@ -57,13 +57,8 @@ class MapViewController: UIViewController {
         super.viewWillAppear(true)
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
-        if let counts = SingletonClass.SharedInstance.todaysStepCount {
-             let total = counts //+ activityData.numberOfSteps.intValue
-             lblSteps.text = "\(total)"
-            print("Total:\(total)")
-        }else {
-//             lblSteps.text = activityData.numberOfSteps.stringValue
-        }
+      
+        lblSteps.text = SingletonClass.SharedInstance.todaysStepCount ?? "0"
         self.setUpNavigationItems()
         webserviceForNearByUsers()
         startTimer()
@@ -224,8 +219,6 @@ extension MapViewController {
                 let responseModel = NearByUsersResponseModel(fromJson: json)
                 self.nearByUsersArray = responseModel.nearbyuser
                 self.reloadMapView()
-            } else {
-                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
