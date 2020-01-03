@@ -8,18 +8,18 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import GrowingTextView
 
-
-class ChatViewController: UIViewController ,UINavigationControllerDelegate {
+class ChatViewController: UIViewController ,UINavigationControllerDelegate, GrowingTextViewDelegate {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
     @IBOutlet weak var tblVw: UITableView!
-    @IBOutlet weak var txtMessage: UITextField!
-    
+    @IBOutlet weak var txtView: GrowingTextView!
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewConstraintHeight: NSLayoutConstraint!
 
     @IBOutlet weak var btnSend: UIButton!
     
@@ -31,7 +31,6 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     var arrData = [MessageData]()
     var receiverID : String?
     lazy var profileImg = UIImageView(image: UIImage(named: "m-logo"))
-//    var userData : [String : String]!
 
     // ----------------------------------------------------
     // MARK: - --------- Life-Cycle Methods ---------
@@ -39,6 +38,11 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txtView.delegate = self
+        txtView.minHeight = 35.0
+        txtView.maxHeight = 120.0
+        txtView.placeholder = "Message"
         
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
@@ -56,7 +60,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         super.viewDidAppear(animated)
         setUpNavigationItems()
         
-        if arrData.count>0 {
+        if arrData.count > 0 {
             tblVw.reloadData()
             let indexPath = IndexPath.init(row: arrData.count-1, section: 0)
             tblVw.scrollToRow(at: indexPath, at: .bottom, animated: true)
@@ -71,14 +75,6 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
         IQKeyboardManager.shared.enable = true
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.view.frame.size.height))
-        txtMessage.leftView = paddingView
-        txtMessage.leftViewMode = .always
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,7 +85,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     
     func setupFont(){
-        txtMessage.font = UIFont.regular(ofSize: 15)
+        txtView.font = UIFont.regular(ofSize: 15)
     }
     
     func setUpNavigationItems(){
@@ -124,7 +120,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     
     @objc func keyboardWasShown(notification: NSNotification){
         //Need to calculate keyboard exact size due to Apple suggestions
-        var info = notification.userInfo!
+        let info = notification.userInfo!
         let keyboardSize = (info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size
         if #available(iOS 11.0, *) {
             conVwMessageBottom.constant = keyboardSize!.height - view.safeAreaInsets.bottom
@@ -151,7 +147,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     }
     
     func resetAll() {
-        txtMessage.text = ""
+        txtView.text = ""
         self.view.animateConstraintWithDuration()
     }
     
@@ -161,17 +157,29 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate {
     // ----------------------------------------------------
     
     @IBAction func sendClick(_ sender: UIButton) {
-        txtMessage.text = txtMessage.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !txtMessage.text!.isEmpty {
+        txtView.text = txtView.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !txtView.text!.isEmpty {
             self.btnSend.isUserInteractionEnabled = false
-            self.sendMessage(message: txtMessage.text!)
+            self.sendMessage(message: txtView.text!)
         }
     }
     
     @IBAction func profileClick(_ sender: Any) {
         self.performSegue(withIdentifier: "segueProfileDetail", sender: nil)
     }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- UITextView Delegate Methods ---------
+    // ----------------------------------------------------
+    
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+       UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+            self.bottomViewConstraintHeight.constant = height + 12
+       }
+    }
 }
+
 
 // ----------------------------------------------------
 //MARK:- --------- Tableview Methods ---------

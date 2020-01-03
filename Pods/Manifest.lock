@@ -88,6 +88,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.3.2):
     - GoogleUtilities/Logger
+  - GrowingTextView (0.7.1)
   - IQKeyboardManagerSwift (6.4.0)
   - KDCircularProgress (1.5.4)
   - Kingfisher (5.7.0)
@@ -117,6 +118,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Messaging
   - FormTextField
+  - GrowingTextView
   - IQKeyboardManagerSwift
   - KDCircularProgress
   - Kingfisher
@@ -148,6 +150,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - GrowingTextView
     - IQKeyboardManagerSwift
     - KDCircularProgress
     - Kingfisher
@@ -181,6 +184,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
   GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
+  GrowingTextView: 6dff7eedf2fc93f8378d20d456782afd0267b0cc
   IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
   KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
@@ -194,6 +198,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
 
-PODFILE CHECKSUM: b56339c4039a53de70517973a6749322257c8a84
+PODFILE CHECKSUM: efb67aadb2f2f3262f0aaa575a06eed35b4374a9
 
 COCOAPODS: 1.6.1
