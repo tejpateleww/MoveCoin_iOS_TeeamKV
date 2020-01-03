@@ -54,7 +54,7 @@ class IntroPageVC: UIViewController {
             // For Request Permission
             
             if image == "intro-1" {
-                userPermission.permissions = [.camera, .locationPermission, .motion, .healthKit]
+                userPermission.permissions = [.camera, .motion, .healthKit]
                 for type in userPermission.permissions {
                     userPermission.requestForPermission(type: type)
                 }

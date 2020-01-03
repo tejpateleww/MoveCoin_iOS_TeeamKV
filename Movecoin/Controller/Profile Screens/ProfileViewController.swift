@@ -49,7 +49,6 @@ class ProfileViewController: UIViewController {
         self.setupFont()
         self.setupView()
         setupSegmentedControl()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +62,7 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setUpNavigationItems()
+        setupSegmentedControl()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
