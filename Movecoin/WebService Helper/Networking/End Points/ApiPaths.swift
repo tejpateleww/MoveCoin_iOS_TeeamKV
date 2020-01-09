@@ -78,6 +78,7 @@ enum ApiKey: String{
     case Init = "user/init/"
     case login = "user/login"
     case socialMedia = "user/social_login"
+    case appleDetails = "user/apple_details"
     case logout = "user/logout/"
     case otp = "user/register_otp"
     case register = "user/register"
@@ -116,6 +117,5 @@ enum ApiKey: String{
     
 //    case placeOrder = "order/place_order"
     case placeOrder = "order/add_order"
-    
     case purchaseHistory = "Order/purchase_history"
 }

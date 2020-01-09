@@ -1,15 +1,15 @@
 //
-//  WeekStepsCount.swift
+//  YearlyStepsCount.swift
 //  Model Generated using http://www.jsoncafe.com/ 
-//  Created on December 23, 2019
+//  Created on January 7, 2020
 
 import Foundation
 import SwiftyJSON
 
 
-class profileDataWeekStepsCount : NSObject, NSCoding{
+class YearlyStepsCount : NSObject, NSCoding{
 
-    var day : String!
+    var datePartition : String!
     var totalSteps : String!
 
 	/**
@@ -19,7 +19,7 @@ class profileDataWeekStepsCount : NSObject, NSCoding{
 		if json.isEmpty{
 			return
 		}
-        day = json["date"].stringValue
+        datePartition = json["date_partition"].stringValue
         totalSteps = json["total_steps"].stringValue
 	}
 
@@ -29,8 +29,8 @@ class profileDataWeekStepsCount : NSObject, NSCoding{
 	func toDictionary() -> [String:Any]
 	{
 		var dictionary = [String:Any]()
-        if day != nil{
-        	dictionary["date"] = day
+        if datePartition != nil{
+        	dictionary["date_partition"] = datePartition
         }
         if totalSteps != nil{
         	dictionary["total_steps"] = totalSteps
@@ -44,7 +44,7 @@ class profileDataWeekStepsCount : NSObject, NSCoding{
     */
     @objc required init(coder aDecoder: NSCoder)
 	{
-		day = aDecoder.decodeObject(forKey: "date") as? String
+		datePartition = aDecoder.decodeObject(forKey: "date_partition") as? String
 		totalSteps = aDecoder.decodeObject(forKey: "total_steps") as? String
 	}
 
@@ -54,8 +54,8 @@ class profileDataWeekStepsCount : NSObject, NSCoding{
     */
     func encode(with aCoder: NSCoder)
 	{
-		if day != nil{
-			aCoder.encode(day, forKey: "date")
+		if datePartition != nil{
+			aCoder.encode(datePartition, forKey: "date_partition")
 		}
 		if totalSteps != nil{
 			aCoder.encode(totalSteps, forKey: "total_steps")

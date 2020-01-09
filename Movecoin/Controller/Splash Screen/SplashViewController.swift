@@ -68,31 +68,22 @@ class SplashViewController: UIViewController {
     }
     
     func moveToViewController() {
-      
-//        switch CMPedometer.authorizationStatus() {
-//        case .authorized, .notDetermined :
-            if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
-
-                if loggedIn as! Bool {
-                    AppDelegateShared.GoToHome()
-                    getUserData()
-                }else {
-                    AppDelegateShared.GoToLogin()
-                }
-            } else if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsOnBoardLaunched) == nil {
-//                if (isOnBoardLaunched as! Bool) == false {
-                    AppDelegateShared.GoToOnBoard()
-//                }
-            } else {
+    
+        if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
+            
+            if loggedIn as! Bool {
+                AppDelegateShared.GoToHome()
+                getUserData()
+            }else {
                 AppDelegateShared.GoToLogin()
             }
-    
-//        case .denied, .restricted : //, .notDetermined :
-//            AppDelegateShared.GoToPermission()
-//
-//        @unknown default:
-//            fatalError()
-//        }
+        } else if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsOnBoardLaunched) == nil {
+            //                if (isOnBoardLaunched as! Bool) == false {
+            AppDelegateShared.GoToOnBoard()
+            //                }
+        } else {
+            AppDelegateShared.GoToLogin()
+        }
     }
     
     func webserviceforAPPInit(){

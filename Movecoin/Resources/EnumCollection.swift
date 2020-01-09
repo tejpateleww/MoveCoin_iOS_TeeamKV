@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum StepsPermission : String {
+    case HealthKit = "HeakthKit"
+    case MotionAndFitness = "MotionAndFitness"
+}
+
 enum TabBarOptions : Int {
     case Store = 0
     case Wallet
@@ -36,9 +41,9 @@ enum FriendsList  {
 }
 
 enum BarChartTitles : Int {
-    case Today = 0
-    case Weekly
+    case Weekly = 0
     case Monthly
+    case Yearly
 }
 
 enum WalletViewType  {

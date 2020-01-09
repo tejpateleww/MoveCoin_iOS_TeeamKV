@@ -125,11 +125,11 @@ class TabViewController: UIViewController {
     func startTimer() {
         if(timer == nil){
             timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { (timer) in
-                print(timer)
+//                print(timer)
                 if  SocketIOManager.shared.socket.status == .connected {
                     if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                         self.emitSocket_UpdateLocation(latitute: myLocation.coordinate.latitude, long: myLocation.coordinate.longitude)
-                        print("lat \(myLocation.coordinate.latitude) , long : \(myLocation.coordinate.longitude)")
+//                        print("lat \(myLocation.coordinate.latitude) , long : \(myLocation.coordinate.longitude)")
                     }
                 }
             })

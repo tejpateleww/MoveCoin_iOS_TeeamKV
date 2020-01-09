@@ -15,6 +15,7 @@ import SocketIO
 import CoreLocation
 import CoreMotion
 import FBSDKCoreKit
+import HealthKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
@@ -42,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         configureNotification()
         Fabric.with([Crashlytics.self])
-      
+        
         return true
     }
     
@@ -69,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-       
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -77,12 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-
+        
         let handled = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         // Add any custom logic here.
         return handled
     }
-
+    
 }
 
 // ----------------------------------------------------
@@ -121,26 +122,37 @@ extension AppDelegate {
         }
     }
     
-    func GoToPermission() {
+    func GoToPermission(type : StepsPermission) {
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let destination = storyborad.instantiateViewController(withIdentifier: PermissionAlertViewController.className) as! PermissionAlertViewController
+        destination.stepsPermissionType = type
         let NavHomeVC = UINavigationController(rootViewController: destination)
         self.window?.rootViewController = NavHomeVC
     }
     
     func GoToHome() {
-        //        switch CMPedometer.authorizationStatus() {
-        //        case .authorized, .notDetermined :
+        //        let healthStore = HKHealthStore()
+        //
+        //        guard let type = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else { return  }
+        //        let authorizationStatus = healthStore.authorizationStatus(for: type)
+        //
+        //
+        //        if (HKHealthStore().authorizationStatus(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!) != .sharingAuthorized) {
+        //            AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "HeakthKit")!)
+        //        } else {
+        //            switch CMPedometer.authorizationStatus() {
+        //            case .authorized, .notDetermined :
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let destination = storyborad.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
         let NavHomeVC = UINavigationController(rootViewController: destination)
         self.window?.rootViewController = NavHomeVC
-        
-        //        case .denied, .restricted :
-        //            AppDelegateShared.GoToPermission()
         //
-        //        @unknown default:
-        //            fatalError()
+        //            case .denied, .restricted :
+        //                AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "MotionAndFitness")!)
+        //
+        //            @unknown default:
+        //                fatalError()
+        //            }
         //        }
     }
     
@@ -156,6 +168,16 @@ extension AppDelegate {
         let Login = storyborad.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
         let NavHomeVC = UINavigationController(rootViewController: Login)
         self.window?.rootViewController = NavHomeVC
+        
+        //        let healthStore = HKHealthStore()
+        //        guard let type = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else { return  }
+        //        let authorizationStatus = healthStore.authorizationStatus(for: type)
+        //
+        //
+        //        if (HKHealthStore().authorizationStatus(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!) != .sharingAuthorized) {
+        //            AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "HeakthKit")!)
+        //        } else {
+        //        }
     }
     
     func GoToLogout() {
@@ -226,21 +248,21 @@ extension AppDelegate {
 extension AppDelegate {
     
     // Socket On Connect User
-       func onSocketConnectUser() {
-           SocketIOManager.shared.socketCall(for: SocketApiKeys.kConnectUser) { (json) in
-               print(json)
-               
-           }
-       }
-       
-       // Socket Emit Connect user
-       func emitSocket_UserConnect(){
-           let param = [
+    func onSocketConnectUser() {
+        SocketIOManager.shared.socketCall(for: SocketApiKeys.kConnectUser) { (json) in
+            print(json)
+            
+        }
+    }
+    
+    // Socket Emit Connect user
+    func emitSocket_UserConnect(){
+        let param = [
             SocketApiKeys.KUserId : SingletonClass.SharedInstance.userData?.iD ?? "" as Any
-               ] as [String : Any]
-           SocketIOManager.shared.socketEmit(for: SocketApiKeys.kConnectUser, with: param)
-       }
-       
+            ] as [String : Any]
+        SocketIOManager.shared.socketEmit(for: SocketApiKeys.kConnectUser, with: param)
+    }
+    
 }
 
 // ----------------------------------------------------
@@ -271,13 +293,13 @@ extension AppDelegate {
         //Local Notification for everyday at 9 am
         let content = UNMutableNotificationContent()
         content.title = "Local Notification"
-//        content.subtitle = "This will appear in bold, on it's own line, below the title."
+        //        content.subtitle = "This will appear in bold, on it's own line, below the title."
         content.body = "Don't forget to walk everyday and earn \(kAppName)"
-
+        
         var dateComponents = DateComponents()
         dateComponents.hour = 9
         dateComponents.minute = 00
-//        let triggerInputForEverydayRepeat = Calendar.current.dateComponents([.day], from: Date())
+        //        let triggerInputForEverydayRepeat = Calendar.current.dateComponents([.day], from: Date())
         let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: kLocalNotificationIdentifier, content: content, trigger: trigger)
         let unc = UNUserNotificationCenter.current()
@@ -308,7 +330,7 @@ extension AppDelegate {
             return
         }
         
-//        let content = response.notification.request.content
+        //        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
         
@@ -326,7 +348,7 @@ extension AppDelegate {
                     print(dic)
                     
                     let state = UIApplication.shared.applicationState
-                 
+                    
                     if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
                         
                         if let vc : ChatViewController = (vc as? ChatViewController) {
@@ -386,7 +408,7 @@ extension AppDelegate {
             return
         }
         
-//        let content = notification.request.content
+        //        let content = notification.request.content
         let userInfo = notification.request.content.userInfo
         let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
         
@@ -407,7 +429,7 @@ extension AppDelegate {
                             
                             if let senderID = dic["SenderID"] as? String {
                                 if senderID == vc.receiverID {
-
+                                    
                                     let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
                                     print(chat)
                                     vc.arrData.append(chat)

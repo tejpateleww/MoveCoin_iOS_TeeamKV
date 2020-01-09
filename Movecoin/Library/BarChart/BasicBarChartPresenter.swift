@@ -24,7 +24,7 @@ class BasicBarChartPresenter {
     
     var dataEntries: [DataEntry] = []
     
-    init(barWidth: CGFloat = 20, space: CGFloat = 20) {
+    init(barWidth: CGFloat = 10, space: CGFloat = 20) {
         self.barWidth = barWidth
         self.space = space
     }

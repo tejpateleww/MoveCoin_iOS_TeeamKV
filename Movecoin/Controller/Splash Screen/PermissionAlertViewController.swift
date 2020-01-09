@@ -21,6 +21,8 @@ class PermissionAlertViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
+    var stepsPermissionType : StepsPermission!
+    
     // ----------------------------------------------------
     // MARK: - --------- ViewController Lifecycle Methods ---------
     // ----------------------------------------------------
@@ -28,23 +30,29 @@ class PermissionAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialSetup()
+        self.navigationBarSetUp(hidesBackButton: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
+  
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
-    func initialSetup(){
+    func initialSetup() {
         lblTitle.font = UIFont.bold(ofSize: 22)
         lblDescription.font = UIFont.regular(ofSize: 18)
+        
+        switch stepsPermissionType {
+        case .HealthKit:
+            lblDescription.text = "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches."
+        case .MotionAndFitness:
+            lblDescription.text = "To start please let me see the total steps your phone detects."
+        default:
+            return
+        }
     }
     
     // ----------------------------------------------------
@@ -52,16 +60,30 @@ class PermissionAlertViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnAllowTapped(_ sender: Any) {
-        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-            return
-        }
         
-        if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl, completionHandler: { (success)
-                
-                in
-                print("Settings opened: \(success)") // Prints true
-            })
+        switch stepsPermissionType {
+        case .HealthKit:
+            guard let healthKitUrl = URL(string: "x-apple-health://") else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(healthKitUrl) {
+                UIApplication.shared.open(healthKitUrl, completionHandler: { (success) in
+                    print("HealthKit opened: \(success)") // Prints true
+                })
+            }
+        case .MotionAndFitness :
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        case .none:
+            return
         }
     }
 }

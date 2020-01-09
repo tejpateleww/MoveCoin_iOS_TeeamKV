@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import AuthenticationServices
 
 
 struct UserSocialData {
@@ -157,6 +158,66 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     @IBAction func btnTwitterTapped(_ sender: Any) {
            
     }
+    
+    @IBAction func btnAppleTapped(_ sender: Any) {
+        if #available(iOS 13.0, *) {
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+            
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        }
+    }
+}
+
+// -----------------------------------------------------------------
+//MARK:- --------- ASAuthorizationController Delegate Methods ---------
+// -----------------------------------------------------------------
+
+extension LoginViewController : ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+    
+    //For present window
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    // ASAuthorizationControllerDelegate function for authorization failed
+  @available(iOS 13.0, *)
+     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+         print(error.localizedDescription)
+     }
+     
+     @available(iOS 13.0, *)
+     // ASAuthorizationControllerDelegate function for successful authorization
+     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+             let appleId = appleIDCredential.user
+             let appleUserFirstName = appleIDCredential.fullName?.givenName
+             let appleUserLastName = appleIDCredential.fullName?.familyName
+             let appleUserEmail = appleIDCredential.email
+             print(appleId, appleUserFirstName ?? "", appleUserLastName ?? "", appleUserEmail ?? "")
+            
+            let appleModel = AppleDetailsModel()
+            appleModel.apple_id = appleId
+            appleModel.email = appleUserEmail ?? ""
+            appleModel.first_name = appleUserFirstName ?? ""
+            appleModel.last_name = appleUserLastName ?? ""
+            
+            self.webserviceCallForAppleLogin(appleModel: appleModel)
+             
+//             self.checkAppleId(credentials: appleIDCredential)
+         }
+         else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+             let appleUsername = passwordCredential.user
+             let applePassword = passwordCredential.password
+             
+             print(appleUsername, applePassword)
+         }
+     }
 }
 
 // ----------------------------------------------------
@@ -204,7 +265,7 @@ extension LoginViewController {
                 self.webserviceCallForSocialLogin(socialModel: socialModel)
             }
             else{
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "")
             }
         }
     }
@@ -223,8 +284,7 @@ extension LoginViewController {
         UserWebserviceSubclass.login(loginModel: loginDic) { (json, status, res) in
             
             UtilityClass.hideHUD()
-            print(json)
-            
+           
             if status{
                 let loginResponseModel = LoginResponseModel(fromJson: json)
                 UserDefaults.standard.set(loginResponseModel.xApiKey, forKey: UserDefaultKeys.kX_API_KEY)
@@ -251,8 +311,7 @@ extension LoginViewController {
         
            UserWebserviceSubclass.socialModel(socialModel: socialModel) { (json, status, res) in
                
-               UtilityClass.hideHUD()
-               print(json)
+            UtilityClass.hideHUD()
             
             if status{
                 let loginResponseModel = LoginResponseModel(fromJson: json)
@@ -284,6 +343,40 @@ extension LoginViewController {
                     signupController.userSocialData = self.userSocialData
                     self.pushViewControllerWithFlipAnimation(viewController: signupController)
                 }
+            }
+        }
+    }
+    
+    func webserviceCallForAppleLogin(appleModel : AppleDetailsModel) {
+        
+        UtilityClass.showHUD()
+        
+        UserWebserviceSubclass.appleLogin(appleModel: appleModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+           
+            if status{
+                
+                let responseModel = AppleLoginResponseModel(fromJson: json)
+            
+                let socialModel = SocialLoginModel()
+                socialModel.SocialID = responseModel.message.appleId
+                socialModel.Username = responseModel.message.email
+                socialModel.SocialType = "apple"
+                socialModel.DeviceType = "ios"
+                if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
+                    socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
+                    socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+                }
+                #if targetEnvironment(simulator)
+                // 23.0732727,72.5181843
+                socialModel.Latitude = "23.0732727"
+                socialModel.Longitude = "72.5181843"
+                #endif
+                
+                self.userSocialData = UserSocialData(userId:responseModel.message.appleId, fullName: "\(responseModel.message.firstName ?? "") \(responseModel.message.lastName ?? "")", userEmail: responseModel.message.email, socialType: "apple", Profile:"")
+                
+                self.webserviceCallForSocialLogin(socialModel: socialModel)
             }
         }
     }

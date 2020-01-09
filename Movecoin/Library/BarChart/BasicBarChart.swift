@@ -9,9 +9,10 @@
 import UIKit
 
 enum BasicBarChartTime {
-    case Today
+//    case Today
     case Week
     case Month
+    case Year
 }
 
 
@@ -44,7 +45,7 @@ class BasicBarChart: UIView {
         }
     }
     
-    func updateDataEntries(dataEntries: [DataEntry], animated: Bool, time: BasicBarChartTime = .Today) {
+    func updateDataEntries(dataEntries: [DataEntry], animated: Bool, time: BasicBarChartTime = .Week) {
         self.animated = animated
         self.presenter.dataEntries = dataEntries
         self.layoutIfNeeded()
@@ -53,9 +54,9 @@ class BasicBarChart: UIView {
             self.presenter.space = (self.frame.width - CGFloat((dataEntries.count * 8)))/(CGFloat(dataEntries.count)) // time == .Month ? CGFloat(5) : (self.frame.width - CGFloat((dataEntries.count * 8)))/(CGFloat(dataEntries.count)) // CGFloat(40)
         }
         
-        if time == .Today {
-            self.presenter.space = 0 // self.frame.width
-        }
+//        if time == .Today {
+//            self.presenter.space = 0 // self.frame.width
+//        }
                
         self.barEntries = self.presenter.computeBarEntries(viewHeight: self.frame.height)
 //        self.barEntries = self.presenter.computeBarEntries(viewHeight: self.frame.height, spaceChecked: CGFloat(self.frame.width)/CGFloat(dataEntries.count * 5))
@@ -85,7 +86,7 @@ class BasicBarChart: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.updateDataEntries(dataEntries: presenter.dataEntries, animated: false, time: .Today)
+        self.updateDataEntries(dataEntries: presenter.dataEntries, animated: false, time: .Week)
     }
     
     private func showEntry(index: Int, entry: BasicBarEntry, animated: Bool, oldEntry: BasicBarEntry?) {

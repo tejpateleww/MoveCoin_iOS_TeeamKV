@@ -76,6 +76,8 @@ class WalletViewController: UIViewController {
         tblWallet.delegate = self
         tblWallet.dataSource = self
         tblWallet.tableFooterView = UIView.init(frame: CGRect.zero)
+        tblWallet.estimatedRowHeight = 65
+        tblWallet.rowHeight = UITableView.automaticDimension
     }
    
     func setupFont(){
@@ -119,7 +121,7 @@ class WalletViewController: UIViewController {
 extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

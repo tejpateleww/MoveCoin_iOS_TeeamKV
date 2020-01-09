@@ -164,17 +164,15 @@ class HomeViewController: UIViewController {
     func checkAuthorization() -> Bool
     {
       // Default to assuming that we're authorized
-      var isEnabled = true
+        var isEnabled = true
 
       // Do we have access to HealthKit on this device?
       if HKHealthStore.isHealthDataAvailable()
       {
         // We have to request each data type explicitly
-      
         let steps = NSSet(object: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) ?? 0)
 
         // Now we can request authorization for step count data
-        
         healthStore.requestAuthorization(toShare: nil, read: steps as? Set<HKObjectType>) { (success, error) -> Void in
           isEnabled = success
         }
@@ -185,24 +183,6 @@ class HomeViewController: UIViewController {
       }
 
       return isEnabled
-    }
-    
-    func checkPermissionForMotionSensor() {
-        
-        switch CMPedometer.authorizationStatus() {
-        case .authorized :
-            print(" Authotized")
-            self.startCountingSteps()
-
-        case .denied, .restricted :
-            print("Not Authotized")
-
-        case  .notDetermined:
-            print("unknown")
-
-        @unknown default:
-            fatalError()
-        }
     }
    
     func startCountingSteps(){

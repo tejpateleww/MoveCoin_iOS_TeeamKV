@@ -1,16 +1,20 @@
 //
-//  MonthStepsCount.swift
+//  AppleLoginResponseModel.swift
 //  Model Generated using http://www.jsoncafe.com/ 
-//  Created on December 23, 2019
+//  Created on January 6, 2020
 
 import Foundation
 import SwiftyJSON
 
 
-class profileDataMonthStepsCount : NSObject, NSCoding{
+class AppleLoginResponseModel : Codable {
 
-    var datePartition : String!
-    var totalSteps : String!
+    var message : Message!
+    var status : Bool!
+    
+    init(){
+        
+    }
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -19,8 +23,11 @@ class profileDataMonthStepsCount : NSObject, NSCoding{
 		if json.isEmpty{
 			return
 		}
-        datePartition = json["date"].stringValue
-        totalSteps = json["total_steps"].stringValue
+        let messageJson = json["message"]
+        if !messageJson.isEmpty{
+            message = Message(fromJson: messageJson)
+        }
+        status = json["status"].boolValue
 	}
 
 	/**
@@ -29,11 +36,11 @@ class profileDataMonthStepsCount : NSObject, NSCoding{
 	func toDictionary() -> [String:Any]
 	{
 		var dictionary = [String:Any]()
-        if datePartition != nil{
-        	dictionary["date"] = datePartition
+        if message != nil{
+        	dictionary["message"] = message.toDictionary()
         }
-        if totalSteps != nil{
-        	dictionary["total_steps"] = totalSteps
+        if status != nil{
+        	dictionary["status"] = status
         }
 		return dictionary
 	}
@@ -44,8 +51,8 @@ class profileDataMonthStepsCount : NSObject, NSCoding{
     */
     @objc required init(coder aDecoder: NSCoder)
 	{
-		datePartition = aDecoder.decodeObject(forKey: "date") as? String
-		totalSteps = aDecoder.decodeObject(forKey: "total_steps") as? String
+		message = aDecoder.decodeObject(forKey: "message") as? Message
+		status = aDecoder.decodeObject(forKey: "status") as? Bool
 	}
 
     /**
@@ -54,11 +61,11 @@ class profileDataMonthStepsCount : NSObject, NSCoding{
     */
     func encode(with aCoder: NSCoder)
 	{
-		if datePartition != nil{
-			aCoder.encode(datePartition, forKey: "date")
+		if message != nil{
+			aCoder.encode(message, forKey: "message")
 		}
-		if totalSteps != nil{
-			aCoder.encode(totalSteps, forKey: "total_steps")
+		if status != nil{
+			aCoder.encode(status, forKey: "status")
 		}
 
 	}

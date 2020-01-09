@@ -42,14 +42,14 @@ extension TabViewController {
     // Socket On Connect User
        func onSocketConnectUser() {
            SocketIOManager.shared.socketCall(for: SocketApiKeys.kConnectUser) { (json) in
-               print(json)
+//               print(json)
            }
        }
        
        //     // Socket On Update location
        func onSocketUpdatelocation(){
            SocketIOManager.shared.socketCall(for: SocketApiKeys.kUpdateUserLocation) { (json) in
-               print(json)
+//               print(json)
            }
        }
     
@@ -71,7 +71,5 @@ extension TabViewController {
             
             ] as [String : Any]
         SocketIOManager.shared.socketEmit(for: SocketApiKeys.kUpdateUserLocation, with: param)
-        
     }
-    
 }

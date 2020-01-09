@@ -13,7 +13,6 @@ class SocialLoginModel : RequestModel {
 //    var ProfilePicture : String = ""
     var Latitude : String = ""
     var Longitude : String = ""
-//    var DeviceToken : String = ""
     var DeviceType : String = ""
     var SocialType : String = ""
     var SocialID : String = ""

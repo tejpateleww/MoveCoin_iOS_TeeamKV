@@ -13,6 +13,7 @@ class ChatHistoryResponseModel : Codable {
     var message : String!
     var status : Bool!
     var receiverArr : ReceiverArr!
+    var isFriend : Int!
     
     init() {
         
@@ -37,6 +38,7 @@ class ChatHistoryResponseModel : Codable {
         if !receiverArrJson.isEmpty{
             receiverArr = ReceiverArr(fromJson: receiverArrJson)
         }
+        isFriend = json["is_friend"].intValue
     }
     
     /**
@@ -61,6 +63,9 @@ class ChatHistoryResponseModel : Codable {
         if receiverArr != nil{
             dictionary["receiverArr"] = receiverArr.toDictionary()
         }
+        if isFriend != nil{
+            dictionary["is_friend"] = isFriend
+        }
         return dictionary
     }
     
@@ -74,6 +79,7 @@ class ChatHistoryResponseModel : Codable {
         message = aDecoder.decodeObject(forKey: "message") as? String
         status = aDecoder.decodeObject(forKey: "status") as? Bool
         receiverArr = aDecoder.decodeObject(forKey: "receiver_arr") as? ReceiverArr
+        isFriend = aDecoder.decodeObject(forKey: "is_friend") as? Int
     }
     
     /**
@@ -93,6 +99,9 @@ class ChatHistoryResponseModel : Codable {
         }
         if receiverArr != nil{
             aCoder.encode(receiverArr, forKey: "receiver_arr")
+        }
+        if isFriend != nil{
+            aCoder.encode(isFriend, forKey: "is_friend")
         }
     }
     

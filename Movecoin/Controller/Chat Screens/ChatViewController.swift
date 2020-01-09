@@ -271,8 +271,10 @@ extension ChatViewController {
                
                 self.navigationBarSetUp(title: responseModel.receiverArr.fullName ?? "")
                 self.profileImg.kf.setImage(with: URL(string: responseModel.receiverArr.profilePicture ?? ""), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
-                           
-                       }
+                }
+                if responseModel.isFriend == 0 {
+                    self.bottomViewConstraintHeight.constant = 0
+                }
                 if responseModel.chatHistory.count > 0  {
                     self.arrData = responseModel.chatHistory
                     self.tblVw.reloadData()

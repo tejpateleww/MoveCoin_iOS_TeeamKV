@@ -22,35 +22,47 @@ extension Date {
     }
     
     var yesterday: Date {
-           return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
-       }
-       var tomorrow: Date {
-           return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
-       }
-       var dayAfterTomorrow: Date {
-           return Calendar.current.date(byAdding: .day, value: 2, to: toDay)!
-       }
-       var dayBeforeYesterday: Date {
-           return Calendar.current.date(byAdding: .day, value: -2, to: toDay)!
-       }
-       var toDay: Date {
-           return Date()
-       }
-       var noon: Date {
-           return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
-       }
-       var month: Int {
-           return Calendar.current.component(.month,  from: self)
-       }
-       var isLastDayOfMonth: Bool {
-           return tomorrow.month != month
-       }
-       
-       var oneHourLater: Date {
-           return Calendar.current.date(byAdding: .hour, value: 1, to: toDay)!
-       }
-       
-       var oneHourBefore: Date {
-           return Calendar.current.date(byAdding: .hour, value: -1, to: toDay)!
-       }
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    var tomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+    }
+    var dayAfterTomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 2, to: toDay)!
+    }
+    var dayBeforeYesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -2, to: toDay)!
+    }
+    var toDay: Date {
+        return Date()
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    var month: Int {
+        return Calendar.current.component(.month,  from: self)
+    }
+    var isLastDayOfMonth: Bool {
+        return tomorrow.month != month
+    }
+    
+    var oneHourLater: Date {
+        return Calendar.current.date(byAdding: .hour, value: 1, to: toDay)!
+    }
+    
+    var oneHourBefore: Date {
+        return Calendar.current.date(byAdding: .hour, value: -1, to: toDay)!
+    }
+    
+    func getFormattedDate(dateFormate: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz" // This formate is input formated .
+        let str = dateFormatter.string(from: self)
+        
+        let formateDate = dateFormatter.date(from:str)!
+        dateFormatter.dateFormat = dateFormate // Output Formated
+        
+        print ("Print :\(dateFormatter.string(from: formateDate))")
+        return dateFormatter.string(from: formateDate)
+    }
 }
