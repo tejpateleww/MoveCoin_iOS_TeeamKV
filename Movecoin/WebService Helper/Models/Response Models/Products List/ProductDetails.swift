@@ -14,6 +14,8 @@ class ProductDetails : Codable{
     var coins : String!
     var createdDate : String!
     var deletedDate : String!
+    var deliveryCharge : String!
+    var deliveryChargePurchaseLimit : String!
     var descriptionField : String!
     var discount : String!
     var gallaries : [String]!
@@ -46,6 +48,8 @@ class ProductDetails : Codable{
         coins = json["Coins"].stringValue
         createdDate = json["CreatedDate"].stringValue
         deletedDate = json["DeletedDate"].stringValue
+        deliveryCharge = json["delivery_charge"].stringValue
+        deliveryChargePurchaseLimit = json["delivery_charge_purchase_limit"].stringValue
         descriptionField = json["Description"].stringValue
         discount = json["Discount"].stringValue
         gallaries = [String]()
@@ -87,6 +91,12 @@ class ProductDetails : Codable{
         }
         if deletedDate != nil{
             dictionary["DeletedDate"] = deletedDate
+        }
+        if deliveryCharge != nil{
+            dictionary["delivery_charge"] = deliveryCharge
+        }
+        if deliveryChargePurchaseLimit != nil{
+            dictionary["delivery_charge_purchase_limit"] = deliveryChargePurchaseLimit
         }
         if descriptionField != nil{
             dictionary["Description"] = descriptionField
@@ -147,6 +157,8 @@ class ProductDetails : Codable{
         coins = aDecoder.decodeObject(forKey: "Coins") as? String
         createdDate = aDecoder.decodeObject(forKey: "CreatedDate") as? String
         deletedDate = aDecoder.decodeObject(forKey: "DeletedDate") as? String
+        deliveryCharge = aDecoder.decodeObject(forKey: "delivery_charge") as? String
+        deliveryChargePurchaseLimit = aDecoder.decodeObject(forKey: "delivery_charge_purchase_limit") as? String
         descriptionField = aDecoder.decodeObject(forKey: "Description") as? String
         discount = aDecoder.decodeObject(forKey: "Discount") as? String
         gallaries = aDecoder.decodeObject(forKey: "gallaries") as? [String]
@@ -184,6 +196,12 @@ class ProductDetails : Codable{
         }
         if deletedDate != nil{
             aCoder.encode(deletedDate, forKey: "DeletedDate")
+        }
+        if deliveryCharge != nil{
+            aCoder.encode(deliveryCharge, forKey: "delivery_charge")
+        }
+        if deliveryChargePurchaseLimit != nil{
+            aCoder.encode(deliveryChargePurchaseLimit, forKey: "delivery_charge_purchase_limit")
         }
         if descriptionField != nil{
             aCoder.encode(descriptionField, forKey: "Description")

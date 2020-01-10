@@ -293,7 +293,7 @@ extension LoginViewController {
                 do{
                     try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
                     SingletonClass.SharedInstance.userData = loginResponseModel.data
-                    AppDelegateShared.notificationEnableDisable(notification: SingletonClass.SharedInstance.userData?.notification ?? "0")
+//                    AppDelegateShared.notificationEnableDisable(notification: SingletonClass.SharedInstance.userData?.notification ?? "0")
                 }catch{
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }

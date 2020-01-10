@@ -7,12 +7,16 @@ import Foundation
 import SwiftyJSON
 
 
-class Category : NSObject, NSCoding{
+class Category : Codable {
 
     var categoryName : String!
     var createdDate : String!
     var iD : String!
     var updatedDate : String!
+    
+    init(){
+        
+    }
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values

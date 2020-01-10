@@ -82,6 +82,7 @@ class MapViewController: UIViewController {
     func setupView(){
         bottomConstraint.constant = containerView.frame.height
         mapView.delegate = self
+        mapView.showsUserLocation = true
         mapView.register(PinMarkerView.self, forAnnotationViewWithReuseIdentifier: "marker")
     }
     
@@ -152,6 +153,23 @@ class MapViewController: UIViewController {
 //        }
 //        mapView.addAnnotations(annotationsArray)
         mapView.showAnnotations(mapView.annotations, animated: true)
+    }
+    
+    func zoomInLocation(_ location: CLLocation) {
+            let coordinateSpan = MKCoordinateSpan(latitudeDelta: 0.0012, longitudeDelta: 0.0012)
+            let coordinateRegion = MKCoordinateRegion(center: location.coordinate, span: coordinateSpan)
+            mapView.centerCoordinate = location.coordinate
+            mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    // ----------------------------------------------------
+    //MARK:- --------- IBAction Methods ---------
+    // ----------------------------------------------------
+    
+    @IBAction func btnNavigateToUser(_ sender: Any) {
+        if let myLocation = SingletonClass.SharedInstance.myCurrentLocation {
+             zoomInLocation(myLocation)
+        }
     }
 }
 

@@ -14,15 +14,20 @@ class ConfirmPurchaseViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
-    @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAvailableBalance: UILabel!
     @IBOutlet weak var lblPurchase: UILabel!
+    @IBOutlet weak var lblTitleAvailableBalance: UILabel!
+    @IBOutlet weak var lblTitlePayableAmount: UILabel!
+    @IBOutlet weak var lblPayableAmount: UILabel!
     @IBOutlet var lblPrice: [UILabel]!
+    
+    @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var viewCardSelect: UIView!
- 
+    @IBOutlet weak var viewPayableAmount: UIStackView!
+    
     @IBOutlet weak var txtName: TextFieldFont!
     @IBOutlet weak var txtNumber: TextFieldFont!
     @IBOutlet weak var txtEmail: TextFieldFont!
@@ -35,6 +40,7 @@ class ConfirmPurchaseViewController: UIViewController {
     
     @IBOutlet weak var imgCardIcon: UIImageView!
     @IBOutlet weak var txtCard: TextFieldFont!
+    @IBOutlet weak var txtMoveCoins: TextFieldFont!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -80,6 +86,9 @@ class ConfirmPurchaseViewController: UIViewController {
         lblAddress.font = UIFont.semiBold(ofSize: 23)
         lblPurchase.font = UIFont.semiBold(ofSize: 19)
         lblAvailableBalance.font = UIFont.bold(ofSize: 18)
+        lblTitleAvailableBalance.font = UIFont.semiBold(ofSize: 17)
+        lblTitlePayableAmount.font = UIFont.semiBold(ofSize: 17)
+        lblPayableAmount.font = UIFont.semiBold(ofSize: 17)
     }
     
     func setupView() {
@@ -87,6 +96,7 @@ class ConfirmPurchaseViewController: UIViewController {
         viewCardSelect.addGestureRecognizer(tap)
         viewCardSelect.isUserInteractionEnabled = true
         imgCardIcon.isHidden = true
+        txtMoveCoins.delegate = self
     }
     
     func setupProductData() {
@@ -123,6 +133,7 @@ class ConfirmPurchaseViewController: UIViewController {
                 let state = try txtState.validatedText(validationType: ValidatorType.requiredField(field: txtState.placeholder!))
                 let city = try txtCity.validatedText(validationType: ValidatorType.requiredField(field: txtCity.placeholder!))
                 let zipcode = try txtZipCode.validatedText(validationType: ValidatorType.requiredField(field: txtZipCode.placeholder!))
+                let moveCoins = try txtMoveCoins.validatedText(validationType: ValidatorType.requiredField(field: txtMoveCoins.placeholder!))
                 if txtCard.text!.isBlank {
                     UtilityClass.showAlert(Message: "Please enter card details")
                     return
@@ -139,6 +150,7 @@ class ConfirmPurchaseViewController: UIViewController {
                 orderDetails.zip = zipcode
                 orderDetails.product_id = product.iD
                 orderDetails.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+                orderDetails.user_redeemed_coins = moveCoins
                 
                 webserviceCallForPlaceOrder(model: orderDetails)
                 
@@ -151,17 +163,17 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnPurchaseTapped(_ sender: Any) {
-        var productCoins = 0.0
+        var coinsRequired = 0.0
         var availableCoins = 0.0
         
-        if let coins = product.coins {
-            productCoins = Double(coins)!
+        if let coins = SingletonClass.SharedInstance.coinsDiscountRelation?.coins {
+            coinsRequired = Double(coins)!
         }
         if let coins = userData?.coins{
             availableCoins = Double(coins)!
         }
-        
-        if availableCoins < productCoins {
+
+        if availableCoins < coinsRequired {
             var msg = ""
             if let discount = product.discount, discount != "0" {
                 msg = "Your current balance is too low to purchase \(discount)% off \(product.name!). Don't want to wait? invite Friends and Family to earn faster!"
@@ -176,6 +188,55 @@ class ConfirmPurchaseViewController: UIViewController {
         }else{
             print("Purchase")
             validate()
+        }
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- TextField Delegate Methods ---------
+// ----------------------------------------------------
+
+extension ConfirmPurchaseViewController : UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == txtMoveCoins {
+           viewPayableAmount.isHidden = true
+            if txtMoveCoins.text != "" {
+                var enteredCoins = 0.0
+                var productCoins = 0.0
+                var coinsRequired = 0.0
+                       
+                if let coins = SingletonClass.SharedInstance.coinsDiscountRelation?.coins {
+                    coinsRequired = Double(coins)!
+                }
+                if let coins = product.coins {
+                    productCoins = Double(coins)!
+                }
+                if let coins = txtMoveCoins.text {
+                    enteredCoins = Double(coins)!
+                }
+                if enteredCoins < coinsRequired {
+                    UtilityClass.showAlert(Message: "You need to spend atleast \(Int(coinsRequired)) MoveCoins")
+                    txtMoveCoins.text = ""
+                } else if enteredCoins > productCoins {
+                    UtilityClass.showAlert(Message: "You can not spend more than \(Int(productCoins)) MoveCoins")
+                    txtMoveCoins.text = ""
+                } else{
+                    var finalPrice = 0.0
+                    var productPrice = 0.0
+                    var percentage = 0.0
+                           
+                    if let coins = product.price {
+                        productPrice = Double(coins)!
+                    }
+                    if let percentageStr = SingletonClass.SharedInstance.coinsDiscountRelation?.percentageDiscount{
+                        percentage = Double(percentageStr)!
+                    }
+                    finalPrice = productPrice - ((enteredCoins * percentage) / coinsRequired)
+                    lblPayableAmount.text = String(finalPrice)
+                    viewPayableAmount.isHidden = false
+                }
+            }
         }
     }
 }

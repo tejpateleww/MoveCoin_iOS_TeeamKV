@@ -48,7 +48,7 @@ class SettingsViewController: UIViewController {
         tblSettings.delegate = self
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
-        
+       
         //        btnLogout.setAttributedTitle(btnLogout.attributedString(), for: .normal)
     }
     

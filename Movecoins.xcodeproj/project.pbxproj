@@ -84,6 +84,7 @@
 		4638ECEA2369CB0200B1F967 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE42369CB0100B1F967 /* Cairo-Black.ttf */; };
 		4638ECEB2369CB0200B1F967 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE52369CB0200B1F967 /* Cairo-Light.ttf */; };
 		4638ECEC2369CB0200B1F967 /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE62369CB0200B1F967 /* Cairo-ExtraLight.ttf */; };
+		46395D0F23C6FAD100E89598 /* CoinsDiscountRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46395D0E23C6FAD000E89598 /* CoinsDiscountRelation.swift */; };
 		463BF57E234F018A0022C465 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF57D234F018A0022C465 /* ProductDetailCollectionViewCell.swift */; };
 		463BF580234F0FA50022C465 /* ConfirmPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF57F234F0FA50022C465 /* ConfirmPurchaseViewController.swift */; };
 		463BF583234F42E80022C465 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF582234F42E80022C465 /* AlertViewController.swift */; };
@@ -283,6 +284,7 @@
 		4638ECE42369CB0100B1F967 /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
 		4638ECE52369CB0200B1F967 /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
 		4638ECE62369CB0200B1F967 /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
+		46395D0E23C6FAD000E89598 /* CoinsDiscountRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinsDiscountRelation.swift; sourceTree = "<group>"; };
 		463BF57D234F018A0022C465 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		463BF57F234F0FA50022C465 /* ConfirmPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPurchaseViewController.swift; sourceTree = "<group>"; };
 		463BF582234F42E80022C465 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -915,8 +917,9 @@
 		469057AD2396715A000D192E /* Init */ = {
 			isa = PBXGroup;
 			children = (
-				469057AE2396717E000D192E /* Category.swift */,
 				469057AF2396717E000D192E /* InitResponse.swift */,
+				469057AE2396717E000D192E /* Category.swift */,
+				46395D0E23C6FAD000E89598 /* CoinsDiscountRelation.swift */,
 			);
 			path = Init;
 			sourceTree = "<group>";
@@ -1434,6 +1437,7 @@
 				460C049E239A13AF00D674D7 /* CoinsEarnResponseModel.swift in Sources */,
 				46AECDBB239A85480097806B /* TransferCoinsModel.swift in Sources */,
 				46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */,
+				46395D0F23C6FAD100E89598 /* CoinsDiscountRelation.swift in Sources */,
 				4631E9962327A5040088B49F /* Constants.swift in Sources */,
 				46F717AF23B9D35000A26DAB /* PolicyHelpTermsClass.swift in Sources */,
 				460C04A2239A295600D674D7 /* WalletResponseModel.swift in Sources */,

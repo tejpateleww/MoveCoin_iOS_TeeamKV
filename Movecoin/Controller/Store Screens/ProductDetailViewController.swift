@@ -24,9 +24,10 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var txtvwDescription: UITextView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStore: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblBuy: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblDeliveryCharge: UILabel!
+    @IBOutlet weak var lblBuy: UILabel!
+    @IBOutlet weak var lblCoins: UILabel!
     @IBOutlet weak var btnBuy: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     
@@ -86,9 +87,10 @@ class ProductDetailViewController: UIViewController {
     
     func setupFont(){
         lblBuy.font = UIFont.semiBold(ofSize: 19)
-        lblPrice.font = UIFont.semiBold(ofSize: 19)
+        lblCoins.font = UIFont.semiBold(ofSize: 19)
+        lblPrice.font = UIFont.semiBold(ofSize: 20)
         lblTitle.font = UIFont.bold(ofSize: 26)
-        lblDescription.font = UIFont.bold(ofSize: 16)
+//        lblDescription.font = UIFont.bold(ofSize: 16)
         txtvwDescription.font = UIFont.bold(ofSize: 16)
         lblStore.font = UIFont.regular(ofSize: 14)
     }
@@ -112,11 +114,30 @@ class ProductDetailViewController: UIViewController {
         txtvwDescription.sizeToFit()
         txtvwDescription.isScrollEnabled = false
         
+        lblPrice.text = "$\(product.price!) inclusive tax"
+        
         lblStore.text = "Store : " + product.store
         if product.discount != "0" {
              lblTitle.text = product.name + " with \(product.discount!)% Discount"
         }else {
             lblTitle.text = product.name
+        }
+
+        var productPrice = 0
+        var chargeLimit = 0
+        
+        if let charge = product.price {
+            productPrice = Int(charge)!
+        }
+        if let charge = product.deliveryChargePurchaseLimit {
+            chargeLimit = Int(charge)!
+        }
+        
+        if productPrice < chargeLimit {
+            lblDeliveryCharge.isHidden = false
+            lblDeliveryCharge.text = "Delivery Charge : " + product.deliveryCharge
+        } else {
+            lblDeliveryCharge.isHidden = true
         }
         
         if product.status == "Out Stock" {
@@ -125,7 +146,7 @@ class ProductDetailViewController: UIViewController {
             btnBuy.backgroundColor = .lightText
             btnBuy.setTitle("Out of Stock", for: .normal)
         }else{
-             lblPrice.text = product.coins
+             lblCoins.text = product.coins
         }
     }
     

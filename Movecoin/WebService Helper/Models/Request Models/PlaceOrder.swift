@@ -26,5 +26,6 @@ class PlaceOrder : RequestModel {
     var card_no : String = ""
     var card_expiry_date : String = ""
     var card_cvv_no : String = ""
+    var user_redeemed_coins : String = ""
     
 }

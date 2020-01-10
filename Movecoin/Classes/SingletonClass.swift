@@ -20,6 +20,7 @@ class SingletonClass: NSObject {
     var DeviceToken :String = "123123123123123"
     var userData : UserData?
     var productType : [Category]?
+    var coinsDiscountRelation : CoinsDiscountRelation?
     var userInfo : [String: Any]?
     
 //    var todaysStepCount : NSNumber?

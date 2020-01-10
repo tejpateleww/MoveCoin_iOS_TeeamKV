@@ -98,6 +98,7 @@ class SplashViewController: UIViewController {
             if status{
                  let initResponseModel = InitResponse(fromJson: json)
                 SingletonClass.SharedInstance.productType = initResponseModel.category
+                SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
