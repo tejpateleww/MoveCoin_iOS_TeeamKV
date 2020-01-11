@@ -142,8 +142,8 @@ open class UserPermission : NSObject {
     func requestHealthKitPermission() {
         let healthStore = HKHealthStore()
         if HKHealthStore.isHealthDataAvailable() {
-            let steps = NSSet(object: HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) ?? 0)
-            healthStore.requestAuthorization(toShare: [], read: steps as? Set<HKObjectType>) { (success, error) -> Void in
+            let steps : HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
+            healthStore.requestAuthorization(toShare: [], read: [steps]) { (success, error) -> Void in
                 if success {
                     print("success")
                 } else {

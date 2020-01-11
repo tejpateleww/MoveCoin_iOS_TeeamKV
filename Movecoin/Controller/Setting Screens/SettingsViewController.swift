@@ -48,7 +48,27 @@ class SettingsViewController: UIViewController {
         tblSettings.delegate = self
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
-       
+        
+ /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
+            switch setttings.authorizationStatus{
+            case .denied:
+                print("setting has been disabled")
+                if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+                    if notificationStatus == "1" {
+                        self.webserviceforNotification()
+                    }
+                }
+            case .notDetermined:
+                print("something vital went wrong here")
+            case .provisional:
+                print("provisional")
+            case .authorized:
+                print("setting has been authorized")
+            @unknown default:
+                return
+            }
+        }
+  */
         //        btnLogout.setAttributedTitle(btnLogout.attributedString(), for: .normal)
     }
     
@@ -213,6 +233,10 @@ extension SettingsViewController {
                         try UserDefaults.standard.set(object: userData, forKey: UserDefaultKeys.kUserProfile)
                         SingletonClass.SharedInstance.userData = userData
                         AppDelegateShared.notificationEnableDisable(notification: userData.notification ?? "0")
+                        DispatchQueue.main.async {
+                            self.tblSettings.reloadData()
+//                            self.tblSettings.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+                        }
                     }catch{
                         UtilityClass.showAlert(Message: error.localizedDescription)
                     }

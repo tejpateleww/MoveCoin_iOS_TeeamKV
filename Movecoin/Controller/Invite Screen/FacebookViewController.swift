@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class FacebookViewController: UIViewController {
     
@@ -31,5 +33,8 @@ class FacebookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lblDescription.font = UIFont.regular(ofSize: 15)
+        
+//        let graphRequest = FBSDKGraphRequest(graphPath: "/100045623749915/friends", parameters: params)
+//        let connection = FBSDKGraphRequestConnection()
     }
 }

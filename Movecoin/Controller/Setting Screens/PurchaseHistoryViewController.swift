@@ -100,8 +100,6 @@ extension PurchaseHistoryViewController {
                     self.purchaseHistory = responseModel.data
                     self.tblPurchaseHistory.reloadData()
                 }
-            } else {
-                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }

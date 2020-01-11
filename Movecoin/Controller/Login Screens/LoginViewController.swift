@@ -33,6 +33,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     @IBOutlet weak var lblAccount: UILabel!
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var lblOr: UILabel!
+    @IBOutlet weak var viewAppleLogin: UIView!
+    @IBOutlet weak var appleSigninBtnHeightConstraint: NSLayoutConstraint!
     
     
     // ----------------------------------------------------
@@ -49,6 +51,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
         super.viewDidLoad()
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
+        setupSOAppleSignIn()
+        
         #if targetEnvironment(simulator)
        setDummy()
         #endif
@@ -100,6 +104,20 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
         }
     }
     
+    func setupSOAppleSignIn() {
+        if #available(iOS 13.0, *) {
+            let authorizationButton = ASAuthorizationAppleIDButton()
+            authorizationButton.frame = self.viewAppleLogin.bounds//CGRect(x: 0, y: 0, width: 200, height: 40)
+//            authorizationButton.center = self.viewAppleLogin.center
+            authorizationButton.addTarget(self, action: #selector(actionHandleAppleSignin), for: .touchUpInside)
+            self.viewAppleLogin.addSubview(authorizationButton)
+            
+        } else {
+            // Fallback on earlier versions
+            appleSigninBtnHeightConstraint.constant = 0
+        }
+    }
+    
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
@@ -136,8 +154,11 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
         let login = LoginManager()
 //        login.loginBehavior = .browser
 //        UIApplication.shared.statusBarStyle = .default
+        
+       
+        
         login.logOut()
-        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
+        login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
             
             if error != nil {
                 //                UIApplication.shared.statusBarStyle = .lightContent
@@ -159,7 +180,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
            
     }
     
-    @IBAction func btnAppleTapped(_ sender: Any) {
+    @IBAction func actionHandleAppleSignin(_ sender: Any) {
         if #available(iOS 13.0, *) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
@@ -229,10 +250,11 @@ extension LoginViewController {
     func getFBUserData() {
        
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email,id, picture.type(large)"
+        parameters["fields"] = "first_name, last_name, email, id, picture.type(large)"
         
         GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
             if error == nil {
+                
                 print("\(#function) \(result!)")
                 let dictData = result as! [String : AnyObject]
                 let strFirstName = String(describing: dictData["first_name"]!)
@@ -261,6 +283,11 @@ extension LoginViewController {
                 socialModel.Longitude = "72.5181843"
                 #endif
 //                socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
+//
+//                let request = GraphRequest(graphPath: "/\(strUserId)/friends", parameters: [:], httpMethod: HTTPMethod(rawValue: "GET"))
+//                request.start(completionHandler: { connection1, result1, error1 in
+//                    print(result1)
+//                })
                 
                 self.webserviceCallForSocialLogin(socialModel: socialModel)
             }

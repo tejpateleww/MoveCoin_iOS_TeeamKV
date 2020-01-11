@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController {
         
         navigationBarSetUp(hidesBackButton: true)
         webserviceForProfileData()
-//        setupProfileData()
+        //        setupProfileData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,76 +84,76 @@ class ProfileViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-           for lbl in lblTitle {
-               lbl.font = UIFont.bold(ofSize: 13)
-           }
-           btnMyFriends.titleLabel?.font = UIFont.bold(ofSize: 18)
-           lblTotalSteps.font = UIFont.bold(ofSize: 13)
-           lblAverageSteps.font = UIFont.bold(ofSize: 13)
-           lblTotalMoveCoins.font = UIFont.bold(ofSize: 13)
-           lblAverage.font = UIFont.semiBold(ofSize: 13)
-           lblMemberSince.font = UIFont.regular(ofSize: 12)
-       }
-       
-       func setupView(){
-           let tap = UITapGestureRecognizer(target: self, action: #selector(self.profileViewTapped(_:)))
-           viewProfile.addGestureRecognizer(tap)
-           viewProfile.isUserInteractionEnabled = true
-           self.imagePicker = ImagePickerClass(presentationController: self, delegate: self, allowsEditing: false)
-       }
-       
-       func setUpNavigationItems(){
-           let leftBarButton = UIBarButtonItem(image: UIImage(named: "chat"), style: .plain, target: self, action: #selector(btnChatTapped))
-           self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
-           
-           let rightBarButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(btnSettingTapped))
-           self.parent?.navigationItem.rightBarButtonItems = [rightBarButton]
-           
-           // Multiline Title
-           
-           let upperTitle = NSMutableAttributedString(string: SingletonClass.SharedInstance.userData?.nickName ?? "", attributes: [NSAttributedString.Key.font: FontBook.Bold.of(size: 22.0), NSAttributedString.Key.foregroundColor: UIColor.white])
-           //        let lowerTitle = NSMutableAttributedString(string: "\nMember since Augest 5,2019", attributes: [NSAttributedString.Key.font: FontBook.Regular.of(size: 12.0) , NSAttributedString.Key.foregroundColor: UIColor.white])
-           //        upperTitle.append(lowerTitle)
-           
-           let label1 = UILabel(frame: CGRect(x: 0, y: 0, width: 500, height:50))
-           label1.numberOfLines = 0
-           label1.textAlignment = .center
-           label1.attributedText = upperTitle  //assign it to attributedText instead of text
-           self.parent?.navigationItem.titleView = label1
-       }
-       
-       func setupProfileData(){
-           if let since = UtilityClass.changeDateFormateFrom(dateString: SingletonClass.SharedInstance.userData?.createdDate ?? "", fromFormat: DateFomateKeys.api, withFormat: "MMM dd, yyyy") {
-               lblMemberSince.text = "Member since \(since)"
-           }
-           if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
-               imgProfilePicture.kf.indicatorType = .activity
-               imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
-           }
-           btnMyFriends.setTitle("My Friends (\(profileModel?.data.friends ?? "0"))", for: .normal)
-           
-           lblTotalMoveCoins.text = profileModel?.data.totalCoins
-           lblTotalSteps.text = profileModel?.data.totalStepsCount
-           
-           segmentedControl.selectItemAt(index: BarChartTitles.Weekly.rawValue, animated: true)
-           self.setUpBarChat(index: BarChartTitles.Weekly.rawValue)
-       }
-       
-       @objc func btnChatTapped(){
-           let destination = self.storyboard?.instantiateViewController(withIdentifier: ChatListViewController.className) as! ChatListViewController
-           self.parent?.navigationController?.pushViewController(destination, animated: true)
-       }
-       
-       @objc func btnSettingTapped(){
-           let destination = self.storyboard?.instantiateViewController(withIdentifier: SettingsViewController.className) as! SettingsViewController
-           self.parent?.navigationController?.pushViewController(destination, animated: true)
-       }
-       
-       @objc func profileViewTapped(_ sender: UITapGestureRecognizer) {
-           self.view.endEditing(true)
-           self.imagePicker.present(from: imgProfilePicture)
-       }
-       
+        for lbl in lblTitle {
+            lbl.font = UIFont.bold(ofSize: 13)
+        }
+        btnMyFriends.titleLabel?.font = UIFont.bold(ofSize: 18)
+        lblTotalSteps.font = UIFont.bold(ofSize: 13)
+        lblAverageSteps.font = UIFont.bold(ofSize: 13)
+        lblTotalMoveCoins.font = UIFont.bold(ofSize: 13)
+        lblAverage.font = UIFont.semiBold(ofSize: 13)
+        lblMemberSince.font = UIFont.regular(ofSize: 12)
+    }
+    
+    func setupView(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.profileViewTapped(_:)))
+        viewProfile.addGestureRecognizer(tap)
+        viewProfile.isUserInteractionEnabled = true
+        self.imagePicker = ImagePickerClass(presentationController: self, delegate: self, allowsEditing: false)
+    }
+    
+    func setUpNavigationItems(){
+        let leftBarButton = UIBarButtonItem(image: UIImage(named: "chat"), style: .plain, target: self, action: #selector(btnChatTapped))
+        self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
+        
+        let rightBarButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(btnSettingTapped))
+        self.parent?.navigationItem.rightBarButtonItems = [rightBarButton]
+        
+        // Multiline Title
+        
+        let upperTitle = NSMutableAttributedString(string: SingletonClass.SharedInstance.userData?.nickName ?? "", attributes: [NSAttributedString.Key.font: FontBook.Bold.of(size: 22.0), NSAttributedString.Key.foregroundColor: UIColor.white])
+        //        let lowerTitle = NSMutableAttributedString(string: "\nMember since Augest 5,2019", attributes: [NSAttributedString.Key.font: FontBook.Regular.of(size: 12.0) , NSAttributedString.Key.foregroundColor: UIColor.white])
+        //        upperTitle.append(lowerTitle)
+        
+        let label1 = UILabel(frame: CGRect(x: 0, y: 0, width: 500, height:50))
+        label1.numberOfLines = 0
+        label1.textAlignment = .center
+        label1.attributedText = upperTitle  //assign it to attributedText instead of text
+        self.parent?.navigationItem.titleView = label1
+    }
+    
+    func setupProfileData(){
+        if let since = UtilityClass.changeDateFormateFrom(dateString: SingletonClass.SharedInstance.userData?.createdDate ?? "", fromFormat: DateFomateKeys.api, withFormat: "MMM dd, yyyy") {
+            lblMemberSince.text = "Member since \(since)"
+        }
+        if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
+            imgProfilePicture.kf.indicatorType = .activity
+            imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
+        }
+        btnMyFriends.setTitle("My Friends (\(profileModel?.data.friends ?? "0"))", for: .normal)
+        
+        lblTotalMoveCoins.text = profileModel?.data.totalCoins
+        lblTotalSteps.text = profileModel?.data.totalStepsConverted
+        
+        segmentedControl.selectItemAt(index: BarChartTitles.Weekly.rawValue, animated: true)
+        self.setUpBarChat(index: BarChartTitles.Weekly.rawValue)
+    }
+    
+    @objc func btnChatTapped(){
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: ChatListViewController.className) as! ChatListViewController
+        self.parent?.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    @objc func btnSettingTapped(){
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: SettingsViewController.className) as! SettingsViewController
+        self.parent?.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    @objc func profileViewTapped(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+        self.imagePicker.present(from: imgProfilePicture)
+    }
+    
     
     func setupSegmentedControl(){
         segmentedControl.allowChangeThumbWidth = false
@@ -170,7 +170,7 @@ class ProfileViewController: UIViewController {
         
         let type = BarChartTitles.init(rawValue: index)
         switch type {
-
+            
         case .Weekly:
             self.lblAverage.text = "Average per week"
             self.lblAverageSteps.text = self.profileModel?.data.avarageWeekStepsCount
@@ -204,22 +204,22 @@ class ProfileViewController: UIViewController {
                 self.dataEntries.append(DataEntry(color: UIColor.white, height: height, textValue: "", title: currentDay))
             }
             self.viewBarDetails.updateDataEntries(dataEntries: self.dataEntries, animated: false, time: .Week)
-
-/*
-            var interval = DateComponents()
-            interval.day = 1
-            var anchorComponents = Calendar.current.dateComponents([.weekday], from: Date())
-            anchorComponents.weekday = 1
-//            let addComponent = Calendar.Component.weekOfYear
             
-            getHealthKitData(interval: interval, anchorComponents: anchorComponents, addComponentValue: -6){
-                print("Final Count : ",self.stepsDataEntry.count)
-                DispatchQueue.main.async {
-                    self.healthKitDataWeekSetup()
-                }
-            }
- */
-
+            /*
+             var interval = DateComponents()
+             interval.day = 1
+             var anchorComponents = Calendar.current.dateComponents([.weekday], from: Date())
+             anchorComponents.weekday = 1
+             //            let addComponent = Calendar.Component.weekOfYear
+             
+             getHealthKitData(interval: interval, anchorComponents: anchorComponents, addComponentValue: -6){
+             print("Final Count : ",self.stepsDataEntry.count)
+             DispatchQueue.main.async {
+             self.healthKitDataWeekSetup()
+             }
+             }
+             */
+            
         case .Monthly:
             self.lblAverage.text = "Average per month"
             self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
@@ -279,23 +279,23 @@ class ProfileViewController: UIViewController {
                 }
             }
             self.viewBarDetails.updateDataEntries(dataEntries: self.dataEntries, animated: false, time: .Month)
-
-/*
-            var interval = DateComponents()
-            interval.day = 1
-            var anchorComponents = Calendar.current.dateComponents([ .month], from: Date())
-            anchorComponents.month = 1
-//            let addComponent = Calendar.Component.month
             
-            getHealthKitData(interval: interval, anchorComponents: anchorComponents, addComponentValue: -29){
-                print("Final Count : ",self.stepsDataEntry.count)
-                DispatchQueue.main.async {
-                    self.healthKitDataMonthSetup()
-                }
-            }
-*/
+            /*
+             var interval = DateComponents()
+             interval.day = 1
+             var anchorComponents = Calendar.current.dateComponents([ .month], from: Date())
+             anchorComponents.month = 1
+             //            let addComponent = Calendar.Component.month
+             
+             getHealthKitData(interval: interval, anchorComponents: anchorComponents, addComponentValue: -29){
+             print("Final Count : ",self.stepsDataEntry.count)
+             DispatchQueue.main.async {
+             self.healthKitDataMonthSetup()
+             }
+             }
+             */
         case .Yearly:
-           
+            
             self.lblAverage.text = "Average per year"
             self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
             self.dataEntries.removeAll()
@@ -317,7 +317,7 @@ class ProfileViewController: UIViewController {
                 
                 let currentDate = formatter2.date(from: item.datePartition)
                 let month = formatterMonth.string(from: currentDate ?? Date())
-//                let month = formatterMonth.string(from: item.totalSteps)
+                //                let month = formatterMonth.string(from: item.totalSteps)
                 let steps = Int(item.totalSteps ?? "0")
                 let height: Float
                 
@@ -327,32 +327,32 @@ class ProfileViewController: UIViewController {
                     height = Float(Float(steps ?? 0)/Float(maxValue))
                 }
                 
-//                let currentYear = formatterYear.string(from: item.datePartition)
+                //                let currentYear = formatterYear.string(from: item.datePartition)
                 
-//                if year != currentYear {
-//                    year = currentYear
-//                    isYearChange = true
-//                }
+                //                if year != currentYear {
+                //                    year = currentYear
+                //                    isYearChange = true
+                //                }
                 var title = String()
                 title = String(month.prefix(1))
                 
                 self.dataEntries.append(DataEntry(color: UIColor.white, height: height, textValue: "", title: title))
             }
             self.viewBarDetails.updateDataEntries(dataEntries: self.dataEntries, animated: false, time: .Year)
-/*
-            var interval = DateComponents()
-            interval.month = 1
-            var anchorComponents = Calendar.current.dateComponents([.year], from: Date())
-            anchorComponents.year = 1
-//            let addComponent = Calendar.Component.year
-            
-            getHealthKitData(interval: interval, anchorComponents: anchorComponents, addComponentValue: -364){
-                print("Final Count : ",self.stepsDataEntry.count)
-                DispatchQueue.main.async {
-                    self.healthKitDataYearSetup()
-                }
-            }
- */
+            /*
+             var interval = DateComponents()
+             interval.month = 1
+             var anchorComponents = Calendar.current.dateComponents([.year], from: Date())
+             anchorComponents.year = 1
+             //            let addComponent = Calendar.Component.year
+             
+             getHealthKitData(interval: interval, anchorComponents: anchorComponents, addComponentValue: -364){
+             print("Final Count : ",self.stepsDataEntry.count)
+             DispatchQueue.main.async {
+             self.healthKitDataYearSetup()
+             }
+             }
+             */
         case .none:
             return
         }
@@ -362,7 +362,7 @@ class ProfileViewController: UIViewController {
         
         let healthStore = HKHealthStore()
         let calendar = Calendar.current
-       
+        
         guard let anchorDate = calendar.date(from: anchorComponents) else {
             fatalError("*** unable to create a valid date from the given components ***")
         }
@@ -393,7 +393,7 @@ class ProfileViewController: UIViewController {
             }
             
             self.stepsDataEntry.removeAll()
- 
+            
             print("startDate : \(startDate)")
             print("endDate : \(endDate)")
             
@@ -414,19 +414,19 @@ class ProfileViewController: UIViewController {
         healthStore.execute(query)
     }
     
-     func healthKitDataWeekSetup() {
-            
+    func healthKitDataWeekSetup() {
+        
         self.lblAverage.text = "Average per week"
         self.lblAverageSteps.text = self.profileModel?.data.avarageWeekStepsCount
         self.dataEntries.removeAll()
         
         let maxValue = stepsDataEntry.map{Float($0.stepsCount)}.max() ?? 0
-    
+        
         for item in stepsDataEntry {
             
             let formatter = DateFormatter()
             formatter.dateFormat = "dd"
-           
+            
             let currentDay = formatter.string(from: item.stepsDate)
             print("Current Day : \(currentDay)")
             let steps = Float(item.stepsCount)
@@ -473,9 +473,9 @@ class ProfileViewController: UIViewController {
             
             let itemMonth = formatterMonth.string(from: item.stepsDate)
             
-//            if isMonthChange {
-//                formatterDay.dateFormat = "d MMM"
-//            }
+            //            if isMonthChange {
+            //                formatterDay.dateFormat = "d MMM"
+            //            }
             
             self.dataEntries.append(DataEntry(color: UIColor.white, height: height, textValue: "", title: formatterDay.string(from: item.stepsDate)))
             
@@ -493,7 +493,7 @@ class ProfileViewController: UIViewController {
         self.dataEntries.removeAll()
         
         let maxValue = stepsDataEntry.map{Float($0.stepsCount)}.max() ?? 0 //  .map{$0.first?.totalSteps}.max() ?? 0
-      
+        
         var year = String()
         var isYearChange = Bool()
         

@@ -104,7 +104,7 @@ extension AppDelegate {
     func setUpNavigationBar(){
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.barStyle = UIBarStyle.blackOpaque
-        navigationBarAppearace.tintColor           = UIColor.white
+        navigationBarAppearace.tintColor = UIColor.white
         
         // For "Back" text remove from navigationbar
         let BarButtonItemAppearance = UIBarButtonItem.appearance()
@@ -164,20 +164,21 @@ extension AppDelegate {
     }
     
     func GoToLogin() {
+       
         let storyborad = UIStoryboard(name: "Login", bundle: nil)
         let Login = storyborad.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
         let NavHomeVC = UINavigationController(rootViewController: Login)
         self.window?.rootViewController = NavHomeVC
         
-        //        let healthStore = HKHealthStore()
-        //        guard let type = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else { return  }
-        //        let authorizationStatus = healthStore.authorizationStatus(for: type)
-        //
-        //
-        //        if (HKHealthStore().authorizationStatus(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!) != .sharingAuthorized) {
-        //            AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "HeakthKit")!)
-        //        } else {
-        //        }
+//                let healthStore = HKHealthStore()
+//                guard let type = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else { return  }
+//                let authorizationStatus = healthStore.authorizationStatus(for: type)
+//
+//
+//                if (HKHealthStore().authorizationStatus(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!) != .sharingAuthorized) {
+//                    AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "HeakthKit")!)
+//                } else {
+//                }
     }
     
     func GoToLogout() {
@@ -231,7 +232,7 @@ extension AppDelegate {
         controller.receiverID = userinfo?["SenderID"] as? String
         (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
     }
-    
+   
     func notificationEnableDisable(notification : String){
         if notification == "0" {
             UIApplication.shared.unregisterForRemoteNotifications()
@@ -292,8 +293,7 @@ extension AppDelegate {
         
         //Local Notification for everyday at 9 am
         let content = UNMutableNotificationContent()
-        content.title = "Local Notification"
-        //        content.subtitle = "This will appear in bold, on it's own line, below the title."
+        content.title = kAppName
         content.body = "Don't forget to walk everyday and earn \(kAppName)"
         
         var dateComponents = DateComponents()

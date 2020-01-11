@@ -60,11 +60,12 @@ open class ImagePickerClass: NSObject {
         if let action = self.action(for: .photoLibrary, title: "Photo library", tag: self.SelectedTag) {
             alertController.addAction(action)
         }
-        
-        alertController.addAction(UIAlertAction(title: "Remove Photo", style: .destructive, handler: { (action) in
-            self.delegate?.didSelect(image: nil, SelectedTag:101)
-        }))
-
+        let isDefaultImage = ((sourceView as! UIImageView).image?.isEqual(UIImage(named: "m-logo")))!
+        if (!isDefaultImage) {
+            alertController.addAction(UIAlertAction(title: "Remove Photo", style: .destructive, handler: { (action) in
+                self.delegate?.didSelect(image: nil, SelectedTag:101)
+            }))
+        }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         if UIDevice.current.userInterfaceIdiom == .pad {

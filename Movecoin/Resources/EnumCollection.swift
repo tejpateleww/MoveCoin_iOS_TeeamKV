@@ -54,6 +54,7 @@ enum WalletViewType  {
 enum CoinsTransferType : String {
     case Send 
     case Receive
+    case Redeem
 }
 
 enum PurchaseDetailViewType  {

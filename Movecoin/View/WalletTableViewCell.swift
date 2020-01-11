@@ -25,7 +25,7 @@ class WalletTableViewCell: UITableViewCell {
                 
                 let type = CoinsTransferType.init(rawValue: detail.type)
                 switch type {
-                case .Send:
+                case .Send, .Redeem:
                     self.lblAmount.text = "-" + detail.coins
                 case .Receive:
                     self.lblAmount.text = "+" + detail.coins

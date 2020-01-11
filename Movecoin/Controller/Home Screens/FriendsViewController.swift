@@ -105,11 +105,10 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        switch friendListType {
-            case .NewChat:
+       case .NewChat, .Unfriend:
                 let chatStoryboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
                 let destination = chatStoryboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
                 let data = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
-//                let dic : [String : String] = ["id" : data.iD, "fullname" : data.fullName, "profilePicture" : data.profilePicture]
                 destination.receiverID = data.iD
                 self.navigationController?.pushViewController(destination, animated: true)
                    
@@ -132,7 +131,18 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
                 self.navigationController?.pushViewController(destination, animated: true)
                    
             case .Unfriend:
-            webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
+                print("Unfriend")
+                let alert = UIAlertController(title: kAppName, message: "Are you sure want to remove \(cell.friendDetail?.fullName ?? "") as your friend?", preferredStyle: .alert)
+                let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
+                }
+                let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
+                    self.dismiss(animated: true, completion:nil)
+                }
+                alert.addAction(btnOk)
+                alert.addAction(btncancel)
+                alert.modalPresentationStyle = .overCurrentContext
+                self.present(alert, animated: true, completion: nil)
             
             case .NewChat:
                 print("NewChat")

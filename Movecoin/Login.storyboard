@@ -673,7 +673,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJW-ml-xxW">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="758.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="813.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopBG" translatesAutoresizingMaskIntoConstraints="NO" id="8Rf-8a-WnS">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="266"/>
@@ -689,7 +689,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-vR-sQr" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
-                                                        <rect key="frame" x="0.0" y="266" width="320" height="492.5"/>
+                                                        <rect key="frame" x="0.0" y="266" width="320" height="547.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-uD-i5x">
                                                                 <rect key="frame" x="15" y="20" width="207.5" height="25.5"/>
@@ -798,25 +798,26 @@
                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVl-P1-oeR">
+                                                                <rect key="frame" x="40" y="415.5" width="240" height="40"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="4dY-z1-Ib2"/>
+                                                                    <constraint firstAttribute="width" constant="240" id="skD-3O-9gl"/>
+                                                                </constraints>
+                                                            </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2g9-dO-nLa">
-                                                                <rect key="frame" x="77" y="420.5" width="166" height="42"/>
+                                                                <rect key="frame" x="108" y="475.5" width="104" height="42"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27R-4K-xrg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
-                                                                        <state key="normal" image="Apple-icon"/>
-                                                                        <connections>
-                                                                            <action selector="btnAppleTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="VQg-yW-mb4"/>
-                                                                        </connections>
-                                                                    </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdQ-0Z-aG4">
-                                                                        <rect key="frame" x="62" y="0.0" width="42" height="42"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                                                                         <state key="normal" image="Twitter icon"/>
                                                                         <connections>
                                                                             <action selector="btnTwitterTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="G2t-fY-J8i"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-10-Hf6">
-                                                                        <rect key="frame" x="124" y="0.0" width="42" height="42"/>
+                                                                        <rect key="frame" x="62" y="0.0" width="42" height="42"/>
                                                                         <state key="normal" image="Facebook-icon"/>
                                                                         <connections>
                                                                             <action selector="btnFBTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="hmQ-Vm-POe"/>
@@ -827,12 +828,15 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="bVl-P1-oeR" firstAttribute="top" secondItem="zrU-ae-ouH" secondAttribute="bottom" constant="15" id="10S-Wc-Hvj"/>
                                                             <constraint firstItem="yCf-Cb-2Yg" firstAttribute="top" secondItem="Jgk-uD-i5x" secondAttribute="bottom" constant="20" id="2Ia-Pt-CKa"/>
+                                                            <constraint firstItem="2g9-dO-nLa" firstAttribute="top" secondItem="bVl-P1-oeR" secondAttribute="bottom" constant="20" id="4iN-wq-ZVb"/>
                                                             <constraint firstItem="5Jg-B2-PZN" firstAttribute="centerX" secondItem="nxT-vR-sQr" secondAttribute="centerX" id="4mn-XC-OyL"/>
                                                             <constraint firstItem="RbN-o9-jTh" firstAttribute="top" secondItem="5Jg-B2-PZN" secondAttribute="bottom" constant="30" id="AQd-TY-fP5"/>
                                                             <constraint firstItem="5Jg-B2-PZN" firstAttribute="top" secondItem="VgU-Pp-0OX" secondAttribute="bottom" constant="30" id="B7k-We-c4M"/>
                                                             <constraint firstItem="zrU-ae-ouH" firstAttribute="top" secondItem="RbN-o9-jTh" secondAttribute="bottom" constant="20" id="DNP-xn-jIm"/>
                                                             <constraint firstAttribute="trailing" secondItem="yCf-Cb-2Yg" secondAttribute="trailing" constant="15" id="GeD-9z-Yzz"/>
+                                                            <constraint firstItem="bVl-P1-oeR" firstAttribute="centerX" secondItem="nxT-vR-sQr" secondAttribute="centerX" id="HDm-gT-Sn3"/>
                                                             <constraint firstItem="Jgk-uD-i5x" firstAttribute="leading" secondItem="nxT-vR-sQr" secondAttribute="leading" constant="15" id="JAg-DO-5Fv"/>
                                                             <constraint firstItem="VgU-Pp-0OX" firstAttribute="trailing" secondItem="yCf-Cb-2Yg" secondAttribute="trailing" id="JHF-M3-gT3"/>
                                                             <constraint firstItem="2g9-dO-nLa" firstAttribute="centerX" secondItem="nxT-vR-sQr" secondAttribute="centerX" id="NmZ-cP-K2Y"/>
@@ -840,7 +844,6 @@
                                                             <constraint firstItem="zrU-ae-ouH" firstAttribute="centerX" secondItem="nxT-vR-sQr" secondAttribute="centerX" id="U6g-Co-EF5"/>
                                                             <constraint firstItem="yCf-Cb-2Yg" firstAttribute="leading" secondItem="nxT-vR-sQr" secondAttribute="leading" constant="15" id="guZ-Dr-ee0"/>
                                                             <constraint firstItem="VgU-Pp-0OX" firstAttribute="top" secondItem="yCf-Cb-2Yg" secondAttribute="bottom" constant="8" id="gzl-ei-y9i"/>
-                                                            <constraint firstItem="2g9-dO-nLa" firstAttribute="top" secondItem="zrU-ae-ouH" secondAttribute="bottom" constant="20" id="isl-o6-62B"/>
                                                             <constraint firstItem="RbN-o9-jTh" firstAttribute="centerX" secondItem="nxT-vR-sQr" secondAttribute="centerX" id="xes-yy-K9B"/>
                                                             <constraint firstAttribute="bottom" secondItem="2g9-dO-nLa" secondAttribute="bottom" constant="30" id="z4l-kD-ATN"/>
                                                         </constraints>
@@ -891,6 +894,7 @@
                         <viewLayoutGuide key="safeArea" id="AtV-Gq-xQT"/>
                     </view>
                     <connections>
+                        <outlet property="appleSigninBtnHeightConstraint" destination="4dY-z1-Ib2" id="DIX-Cj-9Nu"/>
                         <outlet property="btnForgotPassword" destination="VgU-Pp-0OX" id="H1c-Pp-HH6"/>
                         <outlet property="btnSignUp" destination="oP7-I6-0xM" id="xWv-ws-cDj"/>
                         <outlet property="imgTop" destination="8Rf-8a-WnS" id="nsf-Dv-y7E"/>
@@ -899,11 +903,12 @@
                         <outlet property="lblTitle" destination="Jgk-uD-i5x" id="B9Z-yQ-Qi3"/>
                         <outlet property="txtEmail" destination="3vE-cE-1ec" id="NDe-PK-8pJ"/>
                         <outlet property="txtPassword" destination="SbW-hY-ecm" id="2F6-o0-NmQ"/>
+                        <outlet property="viewAppleLogin" destination="bVl-P1-oeR" id="cKi-ga-z8X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNr-9d-HL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="414" y="840"/>
+            <point key="canvasLocation" x="412.5" y="839.78873239436621"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="yZU-re-5Cj">
@@ -1107,7 +1112,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Apple-icon" width="42" height="42"/>
         <image name="Facebook-icon" width="42" height="42"/>
         <image name="Splash Screen Logo" width="169" height="169"/>
         <image name="SplashBG" width="375" height="812"/>
