@@ -9,7 +9,8 @@
 import UIKit
 import FBSDKLoginKit
 import AuthenticationServices
-
+import TwitterKit
+import TwitterCore
 
 struct UserSocialData {
     var userId: String
@@ -19,7 +20,7 @@ struct UserSocialData {
     var Profile : String
 }
 
-class LoginViewController: UIViewController, CAAnimationDelegate {
+class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerViewControllerDelegate  {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
@@ -145,18 +146,12 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     }
     
     @IBAction func btnFBTapped(_ sender: Any) {
-    
+        
         if !WebService.shared.isConnected {
             UtilityClass.showAlert(Message: "Please check your internet")
             return
         }
-        
         let login = LoginManager()
-//        login.loginBehavior = .browser
-//        UIApplication.shared.statusBarStyle = .default
-        
-       
-        
         login.logOut()
         login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
             
@@ -177,7 +172,32 @@ class LoginViewController: UIViewController, CAAnimationDelegate {
     }
     
     @IBAction func btnTwitterTapped(_ sender: Any) {
-           
+        
+        TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+            if (session != nil) {
+                print("signed in as \(session?.userName ?? "")");
+                self.userSocialData = UserSocialData(userId:session?.userID ?? "", fullName: "", userEmail: session?.userName ?? "", socialType: "twitter", Profile:"")
+                
+                let socialModel = SocialLoginModel()
+                socialModel.SocialID = session?.userID ?? ""
+                socialModel.Username = session?.userName ?? ""
+                socialModel.SocialType = "twitter"
+                socialModel.DeviceType = "ios"
+                if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
+                    socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
+                    socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+                }
+                #if targetEnvironment(simulator)
+                // 23.0732727,72.5181843
+                socialModel.Latitude = "23.0732727"
+                socialModel.Longitude = "72.5181843"
+                #endif
+
+                self.webserviceCallForSocialLogin(socialModel: socialModel)
+            } else {
+                print("error: \(error?.localizedDescription ?? "")");
+            }
+        })
     }
     
     @IBAction func actionHandleAppleSignin(_ sender: Any) {
@@ -282,13 +302,7 @@ extension LoginViewController {
                 socialModel.Latitude = "23.0732727"
                 socialModel.Longitude = "72.5181843"
                 #endif
-//                socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
-//
-//                let request = GraphRequest(graphPath: "/\(strUserId)/friends", parameters: [:], httpMethod: HTTPMethod(rawValue: "GET"))
-//                request.start(completionHandler: { connection1, result1, error1 in
-//                    print(result1)
-//                })
-                
+
                 self.webserviceCallForSocialLogin(socialModel: socialModel)
             }
             else{

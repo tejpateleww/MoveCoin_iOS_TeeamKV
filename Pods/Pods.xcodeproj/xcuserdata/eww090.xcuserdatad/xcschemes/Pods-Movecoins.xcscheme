@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0E564CBBEE51B7835F093D027DA2A0F3"
+               BlueprintIdentifier = "8AE0C423B5FA48F6ADBC04223C903B0C"
                BuildableName = "Pods_Movecoins.framework"
                BlueprintName = "Pods-Movecoins"
                ReferencedContainer = "container:Pods.xcodeproj">

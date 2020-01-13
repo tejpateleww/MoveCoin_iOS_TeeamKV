@@ -108,6 +108,9 @@ PODS:
   - Starscream (3.1.1)
   - SwiftyJSON (5.0.0)
   - TTSegmentedControl (0.4.9)
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -128,6 +131,7 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift
   - SwiftyJSON
   - TTSegmentedControl
+  - TwitterKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -163,6 +167,8 @@ SPEC REPOS:
     - Starscream
     - SwiftyJSON
     - TTSegmentedControl
+    - TwitterCore
+    - TwitterKit
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -197,7 +203,9 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: efb67aadb2f2f3262f0aaa575a06eed35b4374a9
+PODFILE CHECKSUM: 0f509f4c9569d4d6c0e12a6a2045839686a4eb9b
 
 COCOAPODS: 1.6.1

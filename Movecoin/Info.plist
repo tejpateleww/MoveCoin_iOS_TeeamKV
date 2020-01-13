@@ -23,7 +23,13 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb2367540940223580</string>
+				<string>twitterkit-MOCMQEYul9oCmCmYDXk8Q7nVN</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb2613332645452408</string>
 			</array>
 		</dict>
 	</array>
@@ -44,7 +50,7 @@
 		</array>
 	</dict>
 	<key>FacebookAppID</key>
-	<string>2367540940223580</string>
+	<string>2613332645452408</string>
 	<key>FacebookDisplayName</key>
 	<string>MoveCoins</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -55,6 +61,8 @@
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>twitter</string>
+		<string>twitterauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -82,7 +90,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App would like to use your current location</string>
 	<key>NSMotionUsageDescription</key>
-	<string>If you don't give access then Steps Count feature will not work</string>
+	<string>If you don&apos;t give access then Steps Count feature will not work</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App would like to use photo library</string>
 	<key>UIAppFonts</key>

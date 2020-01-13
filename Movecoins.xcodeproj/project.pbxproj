@@ -134,6 +134,7 @@
 		46729B4623C32B920086F91F /* AppleLoginResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46729B4423C32B910086F91F /* AppleLoginResponseModel.swift */; };
 		46729B4723C32B920086F91F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46729B4523C32B910086F91F /* Message.swift */; };
 		467676A1235ED4E60076157B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467676A0235ED4E60076157B /* EditProfileViewController.swift */; };
+		4676E14023CC48610052A4A0 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4676E13F23CC48610052A4A0 /* SafariServices.framework */; };
 		46814385238E624500D5A297 /* PhoneContactsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46814384238E624500D5A297 /* PhoneContactsClass.swift */; };
 		46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46814386238E8EE800D5A297 /* InviteFriendsModel.swift */; };
 		468F86C82350976C006DC7D1 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468F86C72350976C006DC7D1 /* FriendTableViewCell.swift */; };
@@ -334,6 +335,7 @@
 		46729B4423C32B910086F91F /* AppleLoginResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleLoginResponseModel.swift; sourceTree = "<group>"; };
 		46729B4523C32B910086F91F /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		467676A0235ED4E60076157B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		4676E13F23CC48610052A4A0 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		46814384238E624500D5A297 /* PhoneContactsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneContactsClass.swift; sourceTree = "<group>"; };
 		46814386238E8EE800D5A297 /* InviteFriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsModel.swift; sourceTree = "<group>"; };
 		468F86C72350976C006DC7D1 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 			files = (
 				0EF3D5C9C8DF26B946A43506 /* Pods_Movecoins.framework in Frameworks */,
 				462CE32C2397F326006BB690 /* HealthKit.framework in Frameworks */,
+				4676E14023CC48610052A4A0 /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +440,7 @@
 		28D254C20CB1D48D8A390266 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4676E13F23CC48610052A4A0 /* SafariServices.framework */,
 				462CE32B2397F326006BB690 /* HealthKit.framework */,
 				46C913222330E0EA0068C788 /* FillableLoaders.framework */,
 				46C913192330E0BD0068C788 /* FillableLoaders */,
@@ -1092,6 +1096,7 @@
 				4600A70E23278D37004A7A9E /* Resources */,
 				D1F5A5CA12B133217CF010DB /* [CP] Embed Pods Frameworks */,
 				46F16A59237EBC6400A378C8 /* Run Script */,
+				306E4DE23B5696DCC505DF90 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1163,6 +1168,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		306E4DE23B5696DCC505DF90 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Movecoins/Pods-Movecoins-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movecoins/Pods-Movecoins-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		46F16A59237EBC6400A378C8 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1229,6 +1256,8 @@
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TTSegmentedControl/TTSegmentedControl.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -1253,6 +1282,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);

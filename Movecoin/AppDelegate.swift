@@ -16,6 +16,7 @@ import CoreLocation
 import CoreMotion
 import FBSDKCoreKit
 import HealthKit
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
@@ -27,8 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let status = CMPedometer.authorizationStatus()
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "MOCMQEYul9oCmCmYDXk8Q7nVN", consumerSecret: "Nv7qw5isiL2TrRQgQafRkJieHSbJyPnNTttaHVPKu4zEQBeXzX")
         
+        let status = CMPedometer.authorizationStatus()
         print("Permission : ",status.rawValue)
         
         // For Background Task
@@ -81,7 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         let handled = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         // Add any custom logic here.
-        return handled
+        
+        let access = TWTRTwitter.sharedInstance().application(application, open: url, options: options)
+       
+        return access
     }
     
 }

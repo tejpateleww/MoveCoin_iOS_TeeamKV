@@ -28,6 +28,7 @@ pod 'lottie-ios'
 pod 'KDCircularProgress'
 
 pod 'FBSDKLoginKit'
+pod 'TwitterKit'
 
   # Pods for Movecoin
 end
