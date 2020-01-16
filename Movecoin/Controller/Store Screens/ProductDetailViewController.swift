@@ -114,13 +114,19 @@ class ProductDetailViewController: UIViewController {
         txtvwDescription.sizeToFit()
         txtvwDescription.isScrollEnabled = false
         
-        lblPrice.text = "$\(product.price!) inclusive tax"
-        
+        lblTitle.text = product.name
         lblStore.text = "Store : " + product.store
+        
         if product.discount != "0" {
-             lblTitle.text = product.name + " with \(product.discount!)% Discount"
+//             lblTitle.text = product.name + " with \(product.discount!)% Discount"
+            let priceText = "$\(product.price ?? "") $\(product.totalPrice ?? "") inclusive tax"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
+            let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(product.price ?? "")")
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString1.length))
+            self.lblPrice.attributedText = attributeString
         }else {
-            lblTitle.text = product.name
+//            lblTitle.text = product.name
+            lblPrice.text = "$\(product.price!) inclusive tax"
         }
 
         var productPrice = 0

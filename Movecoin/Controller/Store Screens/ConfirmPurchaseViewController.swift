@@ -15,7 +15,7 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet weak var lblProductName: UILabel!
-    @IBOutlet weak var lblTotal: UILabel!
+//    @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAvailableBalance: UILabel!
     @IBOutlet weak var lblPurchase: UILabel!
@@ -82,7 +82,7 @@ class ConfirmPurchaseViewController: UIViewController {
             lblProductName.font = UIFont.semiBold(ofSize: 24)
         }
         
-        lblTotal.font = UIFont.semiBold(ofSize: 19)
+//        lblTotal.font = UIFont.semiBold(ofSize: 19)
         lblAddress.font = UIFont.semiBold(ofSize: 23)
         lblPurchase.font = UIFont.semiBold(ofSize: 19)
         lblAvailableBalance.font = UIFont.bold(ofSize: 18)
@@ -138,7 +138,6 @@ class ConfirmPurchaseViewController: UIViewController {
                     UtilityClass.showAlert(Message: "Please enter card details")
                     return
                 }
-                
                 orderDetails.name = name
                 orderDetails.phone = number
                 orderDetails.email = email
@@ -252,7 +251,7 @@ extension ConfirmPurchaseViewController : CardDelegate {
     
     func setCardDetails(value: PlaceOrder) {
         orderDetails = value
-        let cardNo = String("XXXX XXXX XXXX \(value.card_cvv_no.suffix(4))")
+        let cardNo = String("XXXX XXXX XXXX \(value.card_no.suffix(4))")
         txtCard.text = cardNo
     }
 }

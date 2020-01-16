@@ -23,6 +23,7 @@ class ThemeTextfield : SkyFloatingLabelTextField {
         self.lineColor = TransparentColor
         self.titleColor = .white
         self.titleFormatter = { $0 }
+        self.undoManager?.removeAllActions()
     }
 }
 
@@ -55,6 +56,7 @@ class TextFieldFont : UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
+        self.undoManager?.removeAllActions()
     }
 }
 

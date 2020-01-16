@@ -20,7 +20,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     @IBOutlet weak var txtView: GrowingTextView!
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
     @IBOutlet weak var bottomViewConstraintHeight: NSLayoutConstraint!
-
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var btnSend: UIButton!
     
     
@@ -43,6 +43,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
         txtView.minHeight = 35.0
         txtView.maxHeight = 120.0
         txtView.placeholder = "Message"
+        txtView.undoManager?.removeAllActions()
         
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
@@ -274,6 +275,9 @@ extension ChatViewController {
                 }
                 if responseModel.isFriend == 0 {
                     self.bottomViewConstraintHeight.constant = 0
+                    self.bottomView.isHidden = true
+                }else{
+                    self.bottomView.isHidden = false
                 }
                 if responseModel.chatHistory.count > 0  {
                     self.arrData = responseModel.chatHistory

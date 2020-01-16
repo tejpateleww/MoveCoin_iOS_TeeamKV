@@ -70,7 +70,9 @@ class InviteViewController: UIViewController {
     
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {
         self.title = "Invite"
-        scrollView.setContentOffset(CGPoint(x: 0.0, y: scrollView.frame.minY), animated: true)
+        DispatchQueue.main.async {
+            self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
+        }
         btnInvite.isSelected = true
         btnFriends.isSelected = false
         btnFacebook.isSelected = false

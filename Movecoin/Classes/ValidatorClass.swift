@@ -151,7 +151,11 @@ struct RequiredFieldValidator: ValidatorConvertible {
     
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard !value.isEmpty else {
-            throw ValidationError("Please enter " + txtFieldName)
+            if txtFieldName.contains("enter"){
+                throw ValidationError("Please " + txtFieldName)
+            }else{
+                throw ValidationError("Please enter " + txtFieldName)
+            }
         }
         return value
     }

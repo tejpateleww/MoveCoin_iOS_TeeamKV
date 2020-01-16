@@ -90,7 +90,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App would like to use your current location</string>
 	<key>NSMotionUsageDescription</key>
-	<string>If you don&apos;t give access then Steps Count feature will not work</string>
+	<string>If you don't give access then Steps Count feature will not work</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>App would like to use photo library</string>
 	<key>UIAppFonts</key>
