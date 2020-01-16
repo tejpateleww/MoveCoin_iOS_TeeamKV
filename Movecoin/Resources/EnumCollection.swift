@@ -65,7 +65,7 @@ enum SettingsOptions : Int {
     case Notification = 0
     case AccountPrivacy
     case EditProfile
-    case ChangePassword
+//    case ChangePassword
     case PurchaseHistory
 //    case AddCard
     case Help

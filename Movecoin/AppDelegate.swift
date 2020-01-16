@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         let access = TWTRTwitter.sharedInstance().application(application, open: url, options: options)
        
-        return access
+        return true
     }
     
 }

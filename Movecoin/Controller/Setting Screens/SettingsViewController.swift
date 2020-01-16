@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var settingsArray = ["Notification","Account Privacy","Edit Profile","Change Password","Purchase History","Help/Support","Terms and Conditions","Privacy Policy","Language","Rate this app"]
+    var settingsArray = ["Notification","Account Privacy","Edit Profile","Purchase History","Help/Support","Terms and Conditions","Privacy Policy","Language","Rate this app"]
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -148,9 +148,9 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 let controller = storyboard.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
                 self.navigationController?.pushViewController(controller, animated: true)
                 
-            case .ChangePassword:
-                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
-                self.navigationController?.pushViewController(controller, animated: true)
+//            case .ChangePassword:
+//                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
+//                self.navigationController?.pushViewController(controller, animated: true)
                 
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController

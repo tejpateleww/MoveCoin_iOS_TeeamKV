@@ -223,16 +223,19 @@ extension ConfirmPurchaseViewController : UITextFieldDelegate {
                     txtMoveCoins.text = ""
                 } else{
                     var finalPrice = 0.0
+                    var discount = 0.0
                     var productPrice = 0.0
                     var percentage = 0.0
                            
-                    if let coins = product.price {
+                    if let coins = product.totalPrice {
                         productPrice = Double(coins)!
                     }
-                    if let percentageStr = SingletonClass.SharedInstance.coinsDiscountRelation?.percentageDiscount{
-                        percentage = Double(percentageStr)!
+                    if let ratioStr = SingletonClass.SharedInstance.coinsDiscountRelation?.percentageDiscount{
+                        let ratio = Double(ratioStr)!
+                       percentage = (((enteredCoins * ratio) / coinsRequired) / 100)
                     }
-                    finalPrice = productPrice - ((enteredCoins * percentage) / coinsRequired)
+                    discount = productPrice * percentage
+                    finalPrice = productPrice - discount
                     lblPayableAmount.text = String(finalPrice)
                     viewPayableAmount.isHidden = false
                 }

@@ -27,17 +27,19 @@ class StoreTableViewCell: UITableViewCell {
                 self.lblProductName.text = data.name
                 self.lblCoins.text = data.coins
                 var priceText = "$\(data.price ?? "")"
+                
+                discountView.isHidden = true
                 if data.discount == "0" {
-                    discountView.isHidden = true
+//                    discountView.isHidden = true
                     self.lblPrice.text = priceText
                 } else {
-                    discountView.isHidden = false
-                    self.lblDiscount.text = data.discount + "% Off"
-//                    priceText = "$\(data.price ?? "") $\(data.totalPrice ?? "")"
-//                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
-//                    let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(data.price ?? "")")
-//                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString1.length))
-//                    self.lblPrice.attributedText = attributeString
+//                    discountView.isHidden = false
+//                    self.lblDiscount.text = data.discount + "% Off"
+                    priceText = "$\(data.price ?? "") $\(data.totalPrice ?? "")"
+                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
+                    let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(data.price ?? "")")
+                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString1.length))
+                    self.lblPrice.attributedText = attributeString
                 }
                 
                 
