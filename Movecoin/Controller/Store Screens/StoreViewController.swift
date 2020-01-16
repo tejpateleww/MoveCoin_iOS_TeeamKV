@@ -129,8 +129,7 @@ extension StoreViewController {
         let productsURL = NetworkEnvironment.baseURL + ApiKey.productsList.rawValue
     
         ProductWebserviceSubclass.productsList(strURL: productsURL){ (json, status, res) in
-             print(json)
-            
+            print(json)
             if status {
                 let responseModel = ProductsResponseModel(fromJson: json)
                 if responseModel.productsList.count > 0  {

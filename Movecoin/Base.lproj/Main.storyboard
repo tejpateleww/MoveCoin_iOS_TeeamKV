@@ -2721,10 +2721,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJo-qx-uQK" userLabel="Top View">
-                                        <rect key="frame" x="0.0" y="8" width="375" height="659"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="651"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdA-wV-y3Y">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="659"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="651"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCr-8W-Yw9" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
                                                         <rect key="frame" x="0.0" y="2" width="375" height="761"/>
@@ -3348,7 +3348,7 @@
                                     <constraint firstAttribute="bottom" secondItem="NON-ut-XVr" secondAttribute="bottom" id="L7B-np-2sj"/>
                                     <constraint firstItem="NON-ut-XVr" firstAttribute="top" secondItem="jL5-KA-vGz" secondAttribute="top" id="jGi-5f-Gie"/>
                                     <constraint firstItem="IJo-qx-uQK" firstAttribute="top" secondItem="jL5-KA-vGz" secondAttribute="topMargin" id="sKJ-at-uew"/>
-                                    <constraint firstAttribute="bottom" secondItem="IJo-qx-uQK" secondAttribute="bottom" id="zno-i9-eNc"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="IJo-qx-uQK" secondAttribute="bottom" id="zno-i9-eNc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -5334,7 +5334,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-bg" translatesAutoresizingMaskIntoConstraints="NO" id="mHO-PA-3Bw">
-                                        <rect key="frame" x="0.0" y="0.0" width="375.00000000000006" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pre-q3-CoH">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>

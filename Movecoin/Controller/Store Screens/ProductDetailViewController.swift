@@ -52,6 +52,10 @@ class ProductDetailViewController: UIViewController {
         self.setUpView()
         self.setupFont()
         guard productID != nil else { return }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         webserviceForProductDetails()
     }
    
