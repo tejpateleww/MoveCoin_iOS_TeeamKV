@@ -22,7 +22,7 @@ class PinMarker: NSObject, MKAnnotation {
         
         let latitude = Double(data.latitude) ?? 0
         let longitude = Double(data.longitude) ?? 0
-        self.title = data.fullName
+        self.title = data.nickName
         self.id = data.userID
         self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.image = data.profilePicture

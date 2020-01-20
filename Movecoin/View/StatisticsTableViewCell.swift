@@ -21,8 +21,6 @@ class StatisticsTableViewCell: UITableViewCell {
                 if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate){
                     self.lblSteps.text = data.steps + " steps. " + dateStr
                 }
-                
-              
                 // For Image
                  if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
                     self.imgProfile.kf.indicatorType = .activity

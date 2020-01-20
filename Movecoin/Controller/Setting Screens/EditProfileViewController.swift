@@ -104,18 +104,17 @@ class EditProfileViewController: UIViewController {
             txtWeight.text = userData.weight
             if userData.dateOfBirth != "0000-00-00" {
                 if let dob = UtilityClass.changeDateFormateFrom(dateString: userData.dateOfBirth, fromFormat: DateFomateKeys.apiDOB, withFormat: DateFomateKeys.displayDate) {
-                     txtDob.text = dob
+                    txtDob.text = dob
                 }
             }
             
             if let height = txtHeight.text {
                 if !height.isBlank {
-                    print(height.components(separatedBy: CharacterSet(charactersIn: "'")))
                     selectedHeightComponents = height.components(separatedBy: CharacterSet(charactersIn: "'"))
                 }
             }
         }
-    
+        
         if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "" ) {
             imgProfilePicture.kf.indicatorType = .activity
             imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
@@ -198,14 +197,16 @@ extension EditProfileViewController : UITextFieldDelegate {
                 datePickerView.date = strDate
             }
         } else if textField == txtHeight {
-            textField.inputView = pickerView
-            numberOfComponents = 4
-            if selectedHeightComponents.count > 2 {
-                let ft = (Int(selectedHeightComponents[0]) ?? 3) - 3
-                let inch = Int(selectedHeightComponents[1]) ?? 0
-                pickerView.selectRow(ft, inComponent: 0, animated: false)
-                pickerView.selectRow(inch, inComponent: 2, animated: false)
-            }
+//            textField.inputView = pickerView
+//            numberOfComponents = 4
+//            if selectedHeightComponents.count > 2 {
+//                let ft = (Int(selectedHeightComponents[0]) ?? 3) - 3
+//                let inch = Int(selectedHeightComponents[1]) ?? 0
+//                pickerView.selectRow(ft, inComponent: 0, animated: false)
+//                pickerView.selectRow(inch, inComponent: 2, animated: false)
+//            }
+            let height = textField.text?.replacingOccurrences(of: " cm", with: "")
+            txtHeight.text = height
         } else if textField == txtWeight {
             let weight = textField.text?.replacingOccurrences(of: " kg", with: "")
             txtWeight.text = weight
@@ -217,14 +218,17 @@ extension EditProfileViewController : UITextFieldDelegate {
            self.handleDatePicker(sender: datePickerView)
             
         } else if textField == txtHeight {
+//            if let height = txtHeight.text {
+//                let feetIndex = pickerView.selectedRow(inComponent: 0)
+//                let inchIndex = pickerView.selectedRow(inComponent: 2)
+//                txtHeight.text = "\(feetList[feetIndex])'\(inchList[inchIndex])''"
+//                if !height.isBlank {
+//                    print(height.components(separatedBy: CharacterSet(charactersIn: "'")))
+//                    selectedHeightComponents = height.components(separatedBy: CharacterSet(charactersIn: "'"))
+//                }
+//            }
             if let height = txtHeight.text {
-                let feetIndex = pickerView.selectedRow(inComponent: 0)
-                let inchIndex = pickerView.selectedRow(inComponent: 2)
-                txtHeight.text = "\(feetList[feetIndex])'\(inchList[inchIndex])''"
-                if !height.isBlank {
-                    print(height.components(separatedBy: CharacterSet(charactersIn: "'")))
-                    selectedHeightComponents = height.components(separatedBy: CharacterSet(charactersIn: "'"))
-                }
+                txtHeight.text = height + " cm"
             }
         } else if textField == txtWeight {
             if let weight = txtWeight.text {
@@ -236,6 +240,10 @@ extension EditProfileViewController : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == txtWeight {
+            if textField.text?.count == 0 && string == "0" {
+                return false
+            }
+        } else if textField == txtHeight {
             if textField.text?.count == 0 && string == "0" {
                 return false
             }
@@ -305,10 +313,11 @@ extension EditProfileViewController :  ImagePickerDelegate {
         
         if(image == nil && SelectedTag == 101){
             self.imgProfilePicture.image = UIImage(named: "m-logo")//UIImage.init(named: "imgPetPlaceholder")
+            self.selectedImage = nil
         }else if image != nil{
             self.imgProfilePicture.image = image
+            self.selectedImage = self.imgProfilePicture.image
         }
-        self.selectedImage = self.imgProfilePicture.image
     }
 }
 

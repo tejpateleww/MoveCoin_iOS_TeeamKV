@@ -20,12 +20,13 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
             if let detail = orderDetail {
                 
                 self.lblPrice.text = detail.coins
+                self.lblTitle.text = detail.productName.capitalizingFirstLetter()
                 
-                if detail.discount != "0" {
-                    self.lblTitle.text = detail.productName.capitalizingFirstLetter() + " with \(detail.discount!)% Discount"
-                }else {
-                    self.lblTitle.text = detail.productName.capitalizingFirstLetter()
-                }
+//                if detail.discount != "0" {
+//                    self.lblTitle.text = detail.productName.capitalizingFirstLetter() + " with \(detail.discount!)% Discount"
+//                }else {
+//                    self.lblTitle.text = detail.productName.capitalizingFirstLetter()
+//                }
                 if let dateStr = UtilityClass.changeDateFormateFrom(dateString: detail.orderDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
                      self.lblDate.text =  dateStr
                 }

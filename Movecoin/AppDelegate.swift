@@ -230,6 +230,14 @@ extension AppDelegate {
         }
     }
     
+    func loadWallet(){
+        if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+            if let vc : TabViewController = (vc as? TabViewController) {
+                vc.btnTabTapped(vc.btnTabs[TabBarOptions.Wallet.rawValue])
+            }
+        }
+    }
+    
     @objc func loadChatVC(){
         let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
@@ -400,6 +408,8 @@ extension AppDelegate {
             }
         } else if userInfo["gcm.notification.type"] as! String == "friend_request" {
             loadFriendsRequest()
+        } else if userInfo["gcm.notification.type"] as! String == "coins_transfer" {
+            loadWallet()
         }
     }
     
@@ -459,6 +469,9 @@ extension AppDelegate {
             }
         } else if userInfo["gcm.notification.type"] as! String == "friend_request" {
             loadFriendsRequest()
+            completionHandler([.alert, .sound])
+        }else if userInfo["gcm.notification.type"] as! String == "coins_transfer" {
+            loadWallet()
             completionHandler([.alert, .sound])
         }
     }

@@ -129,6 +129,8 @@ class ProfileViewController: UIViewController {
         if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
             imgProfilePicture.kf.indicatorType = .activity
             imgProfilePicture.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
+        }else {
+            imgProfilePicture.image = UIImage(named: "m-logo")
         }
         btnMyFriends.setTitle("My Friends (\(profileModel?.data.friends ?? "0"))", for: .normal)
         
@@ -563,12 +565,13 @@ extension ProfileViewController :  ImagePickerDelegate {
         
         if(image == nil && SelectedTag == 101){
             self.imgProfilePicture.image = UIImage(named: "m-logo")//UIImage.init(named: "imgPetPlaceholder")
+            self.selectedImage = nil
         }else if image != nil{
             self.imgProfilePicture.image = image
+            self.selectedImage = self.imgProfilePicture.image
         }else{
             return
         }
-        self.selectedImage = self.imgProfilePicture.image
         webserviceCallForEditProfile()
     }
 }

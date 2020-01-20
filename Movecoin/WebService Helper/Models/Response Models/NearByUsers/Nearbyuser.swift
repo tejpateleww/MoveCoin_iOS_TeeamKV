@@ -11,6 +11,7 @@ class Nearbyuser : Codable {
 
     var distance : String!
     var fullName : String!
+    var nickName : String!
     var latitude : String!
     var longitude : String!
     var profilePicture : String!
@@ -29,6 +30,7 @@ class Nearbyuser : Codable {
         }
         distance = json["distance"].stringValue
         fullName = json["FullName"].stringValue
+        nickName = json["NickName"].stringValue
         latitude = json["Latitude"].stringValue
         longitude = json["Longitude"].stringValue
         profilePicture = json["ProfilePicture"].stringValue
@@ -46,6 +48,9 @@ class Nearbyuser : Codable {
         }
         if fullName != nil{
             dictionary["FullName"] = fullName
+        }
+        if nickName != nil{
+            dictionary["NickName"] = nickName
         }
         if latitude != nil{
             dictionary["Latitude"] = latitude
@@ -70,6 +75,7 @@ class Nearbyuser : Codable {
     {
         distance = aDecoder.decodeObject(forKey: "distance") as? String
         fullName = aDecoder.decodeObject(forKey: "FullName") as? String
+        nickName = aDecoder.decodeObject(forKey: "NickName") as? String
         latitude = aDecoder.decodeObject(forKey: "Latitude") as? String
         longitude = aDecoder.decodeObject(forKey: "Longitude") as? String
         profilePicture = aDecoder.decodeObject(forKey: "ProfilePicture") as? String
@@ -87,6 +93,9 @@ class Nearbyuser : Codable {
         }
         if fullName != nil{
             aCoder.encode(fullName, forKey: "FullName")
+        }
+        if nickName != nil{
+            aCoder.encode(nickName, forKey: "NickName")
         }
         if latitude != nil{
             aCoder.encode(latitude, forKey: "Latitude")

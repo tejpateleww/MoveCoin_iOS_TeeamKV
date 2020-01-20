@@ -66,8 +66,9 @@ class MapViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        nearByuserTimer.invalidate()
+        stopTimer()
     }
+
     
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
@@ -105,6 +106,10 @@ class MapViewController: UIViewController {
                 }
             })
         }
+    }
+    func stopTimer(){
+        nearByuserTimer.invalidate()
+        nearByuserTimer = nil
     }
     
     func toggleHandler(isOn : Bool, user : Nearbyuser?, annotationView : MKAnnotationView?){

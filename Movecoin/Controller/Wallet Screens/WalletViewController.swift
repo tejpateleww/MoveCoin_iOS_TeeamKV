@@ -47,7 +47,6 @@ class WalletViewController: UIViewController {
         navigationBarSetUp(hidesBackButton: true)
         webserviceforWalletHistory(refresh: true)
         
-       
         switch walletType {
         case .Coins:
 //            btnBack.isHidden = false

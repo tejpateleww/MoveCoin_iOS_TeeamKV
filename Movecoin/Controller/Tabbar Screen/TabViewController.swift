@@ -216,6 +216,7 @@ extension TabViewController : FlipToMapDelegate, FlipToHomeDelegate, WalletCoins
         UIView.transition(with: viewContainer, duration: 1.0, options: .transitionFlipFromLeft, animations: {
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
+                self.mapVC.stopTimer()
                 self.mapVC.willMove(toParent: nil)
                 self.mapVC.view.removeFromSuperview()
                 self.mapVC.removeFromParent()

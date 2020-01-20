@@ -15,8 +15,8 @@ class StatisticsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet weak var tblStatistics: UITableView!
-    
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblNoDataFound: UILabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -50,7 +50,7 @@ class StatisticsViewController: UIViewController {
         tblStatistics.delegate = self
         tblStatistics.dataSource = self
         tblStatistics.tableFooterView = UIView.init(frame: CGRect.zero)
-        
+        lblNoDataFound.isHidden = true
         lblTitle.font = UIFont.semiBold(ofSize: 21)
     }
     
@@ -123,6 +123,11 @@ extension StatisticsViewController {
                         }else{
                             self.isFetchingNextPage = true
                         }
+                    }
+                    if self.coinsConvertedList.count > 0 {
+                        self.lblNoDataFound.isHidden =  true
+                    }else{
+                        self.lblNoDataFound.isHidden =  false
                     }
                     self.tblStatistics.reloadData()
                 }

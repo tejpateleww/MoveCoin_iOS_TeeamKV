@@ -67,9 +67,9 @@ class FriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func txtSearchEditingChangedAction(_ sender: UITextField) {
-        
-        isTyping = (sender.text?.isEmpty ?? false) ? false : true
-        searchArray = friendsArray.filter{ $0.fullName.lowercased().contains(sender.text?.lowercased() ?? "") }
+        let enteredText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        isTyping = (enteredText?.isEmpty ?? false) ? false : true
+        searchArray = friendsArray.filter{ $0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
         tblFriends.reloadData()
         let isZero = isTyping ? searchArray.count == 0 : friendsArray.count == 0
         if isZero {

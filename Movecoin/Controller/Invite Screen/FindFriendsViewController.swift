@@ -131,13 +131,13 @@ class FindFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func txtSearchEditingChangedAction(_ sender: UITextField) {
-        
-        isTyping = (sender.text?.isEmpty ?? false) ? false : true
+        let enteredText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        isTyping = (enteredText?.isEmpty ?? false) ? false : true
         searchArray.removeAll()
         
-        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(sender.text?.lowercased() ?? "")}
-        let reco = (tableData.filter{$0.SectionTitle == "Recommended"}.first?.Rows as? [Registered])?.filter{$0.fullName.lowercased().contains(sender.text?.lowercased() ?? "") || $0.nickName.lowercased().contains(sender.text?.lowercased() ?? "")}
-        let notReq = (tableData.filter{$0.SectionTitle == "Not Registered"}.first?.Rows as? [PhoneModel])?.filter{$0.name.lowercased().contains(sender.text?.lowercased() ?? "") }
+        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "")}
+        let reco = (tableData.filter{$0.SectionTitle == "Recommended"}.first?.Rows as? [Registered])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
+        let notReq = (tableData.filter{$0.SectionTitle == "Not Registered"}.first?.Rows as? [PhoneModel])?.filter{$0.name.lowercased().contains(enteredText?.lowercased() ?? "") }
         
         if let data = req, data.count != 0 {
             searchArray.append(FriendsTableData(section: "Requested", rows: data))

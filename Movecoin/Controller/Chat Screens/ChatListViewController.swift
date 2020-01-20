@@ -15,6 +15,7 @@ class ChatListViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet weak var tblChatList: UITableView!
+    @IBOutlet weak var lblNoDataFound: UILabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -47,6 +48,7 @@ class ChatListViewController: UIViewController {
         self.tblChatList.delegate = self
         self.tblChatList.dataSource = self
         self.tblChatList.tableFooterView = UIView.init(frame: CGRect.zero)
+        lblNoDataFound.isHidden = true
     }
     
     func setUpNavigationItems(){
@@ -119,6 +121,9 @@ extension ChatListViewController {
                 if responseModel.chatList.count > 0  {
                     self.friendsArray = responseModel.chatList
                     self.tblChatList.reloadData()
+                    self.lblNoDataFound.isHidden = true
+                }else{
+                    self.lblNoDataFound.isHidden = false
                 }
             } 
         }
