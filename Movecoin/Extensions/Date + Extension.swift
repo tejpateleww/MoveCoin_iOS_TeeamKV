@@ -56,6 +56,7 @@ extension Date {
     
     func getFormattedDate(dateFormate: String) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz" // This formate is input formated .
         let str = dateFormatter.string(from: self)
         

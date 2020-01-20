@@ -87,6 +87,8 @@ class EditProfileViewController: UIViewController {
     
     @objc func handleDatePicker(sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
         dateFormatter.dateFormat = DateFomateKeys.displayDate
         txtDob.text = dateFormatter.string(from: sender.date)
     }
@@ -189,6 +191,8 @@ extension EditProfileViewController : UITextFieldDelegate {
             textField.inputView = datePickerView
             
             let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
             dateFormatter.dateFormat = DateFomateKeys.displayDate
             if let strDate = dateFormatter.date(from: txtDob.text!) {
                 datePickerView.date = strDate

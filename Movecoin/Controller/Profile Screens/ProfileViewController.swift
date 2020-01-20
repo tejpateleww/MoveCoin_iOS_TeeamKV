@@ -179,7 +179,8 @@ class ProfileViewController: UIViewController {
             let maxValue = self.profileModel?.data.weekStepsCount.map{Int($0.totalSteps!) ?? 0}.max() ?? 0
             //                let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = .current
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+
             dateFormatter.dateFormat = "yyyy-MM-dd"
             //                let lastWeekDateString = dateFormatter.string(from: lastWeekDate)
             
@@ -188,8 +189,12 @@ class ProfileViewController: UIViewController {
             for item in self.profileModel?.data.weekStepsCount ?? [] {
                 
                 let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+
                 formatter.dateFormat = "d"
                 let formatter2 = DateFormatter()
+                formatter2.locale = Locale(identifier: "en_US_POSIX")
+
                 formatter2.dateFormat = "yyyy-MM-dd"
                 
                 let currentDate = formatter2.date(from: item.day)
@@ -228,6 +233,7 @@ class ProfileViewController: UIViewController {
             let maxValue = self.profileModel?.data.monthStepsCount.map{Int($0.totalSteps!) ?? 0}.max() ?? 0
             
             let formatter2 = DateFormatter()
+            formatter2.locale = Locale(identifier: "en_US_POSIX")
             formatter2.dateFormat = "yyyy-MM-dd"
             
             let aryData = Array(0...29).sorted(by: {$0 > $1})
@@ -237,9 +243,13 @@ class ProfileViewController: UIViewController {
             
             for i in aryData {
                 let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+
                 formatter.dateFormat = "d"
                 
                 let formatterMonth = DateFormatter()
+                formatterMonth.locale = Locale(identifier: "en_US_POSIX")
+
                 formatterMonth.dateFormat = "MM"
                 
                 var date = Date()
@@ -306,13 +316,17 @@ class ProfileViewController: UIViewController {
             var isYearChange = Bool()
             
             let formatter2 = DateFormatter()
+            formatter2.locale = Locale(identifier: "en_US_POSIX")
             formatter2.dateFormat = "yyyy-MM-dd"
             
             for item in self.profileModel?.data.yearlyStepsCount ?? [] {
                 let formatterYear = DateFormatter()
+                formatterYear.locale = Locale(identifier: "en_US_POSIX")
                 formatterYear.dateFormat = "yyyy"
                 
                 let formatterMonth = DateFormatter()
+                formatterMonth.locale = Locale(identifier: "en_US_POSIX")
+
                 formatterMonth.dateFormat = "MMM"
                 
                 let currentDate = formatter2.date(from: item.datePartition)
@@ -425,6 +439,8 @@ class ProfileViewController: UIViewController {
         for item in stepsDataEntry {
             
             let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+
             formatter.dateFormat = "dd"
             
             let currentDay = formatter.string(from: item.stepsDate)
@@ -452,9 +468,13 @@ class ProfileViewController: UIViewController {
         let maxValue = stepsDataEntry.map{Float($0.stepsCount)}.max() ?? 0 //  .map{$0.first?.totalSteps}.max() ?? 0
         
         let formatterDay = DateFormatter()
+        formatterDay.locale = Locale(identifier: "en_US_POSIX")
+
         formatterDay.dateFormat = "d"
         
         let formatterMonth = DateFormatter()
+        formatterMonth.locale = Locale(identifier: "en_US_POSIX")
+
         formatterMonth.dateFormat = "MM"
         
         let currentMonth = formatterMonth.string(from: Date())
@@ -499,9 +519,13 @@ class ProfileViewController: UIViewController {
         
         for item in stepsDataEntry {
             let formatterYear = DateFormatter()
+            formatterYear.locale = Locale(identifier: "en_US_POSIX")
+
             formatterYear.dateFormat = "yyyy"
             
             let formatterMonth = DateFormatter()
+            formatterMonth.locale = Locale(identifier: "en_US_POSIX")
+
             formatterMonth.dateFormat = "MMM"
             
             let month = formatterMonth.string(from: item.stepsDate)

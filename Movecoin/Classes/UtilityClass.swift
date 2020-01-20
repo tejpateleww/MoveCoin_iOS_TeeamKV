@@ -30,12 +30,14 @@ class UtilityClass : NSObject {
     class func changeDateFormateFrom(dateString: String, fromFormat : String , withFormat format: String) -> String? {
         
         let inputFormatter = DateFormatter()
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
         if(fromFormat.trimmingCharacters(in: .whitespacesAndNewlines).count != 0){
             inputFormatter.dateFormat = fromFormat
         }
 //        let UTC = dateString.localToUTC(fromFormate:fromFormat, toFormate: fromFormat)
         if let date = inputFormatter.date(from: dateString){
             let outputFormatter = DateFormatter()
+            outputFormatter.locale = Locale(identifier: "en_US_POSIX")
             outputFormatter.dateFormat = format
             let str = outputFormatter.string(from: date)
             return str.UTCToLocal(fromFormate: format, toFormate: format)

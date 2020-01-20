@@ -1625,7 +1625,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.9;
+				CURRENT_PROJECT_VERSION = 1.2.2;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
@@ -1636,7 +1636,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.movecoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/eww090/Documents/Bhumi/Projects/Movecoin/Movecoin/Resources/Movecoin-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Movecoin/Resources/Movecoin-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1649,7 +1649,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.9;
+				CURRENT_PROJECT_VERSION = 1.2.2;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1659,7 +1659,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.movecoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/eww090/Documents/Bhumi/Projects/Movecoin/Movecoin/Resources/Movecoin-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Movecoin/Resources/Movecoin-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

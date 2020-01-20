@@ -95,6 +95,7 @@ extension String {
     
     func localToUTC(fromFormate: String, toFormate: String) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = fromFormate
         dateFormatter.calendar = NSCalendar.current
         dateFormatter.timeZone = TimeZone.current
@@ -108,6 +109,7 @@ extension String {
 
     func UTCToLocal(fromFormate: String, toFormate: String) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = fromFormate
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 
