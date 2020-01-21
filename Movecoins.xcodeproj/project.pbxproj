@@ -14,6 +14,7 @@
 		4600A71B23278D38004A7A9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4600A71A23278D38004A7A9E /* Assets.xcassets */; };
 		4600A71E23278D38004A7A9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4600A71C23278D38004A7A9E /* LaunchScreen.storyboard */; };
 		4600A72C23278FD5004A7A9E /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4600A72B23278FD5004A7A9E /* Login.storyboard */; };
+		4603C1F923D70F5600A11BB4 /* UIBarButtonItem + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603C1F823D70F5600A11BB4 /* UIBarButtonItem + Extension.swift */; };
 		4605D26A2391066100316AB3 /* IntroPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4605D2692391066100316AB3 /* IntroPageVC.swift */; };
 		460C049C239A10A800D674D7 /* CoinsEarn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460C049B239A10A800D674D7 /* CoinsEarn.swift */; };
 		460C049E239A13AF00D674D7 /* CoinsEarnResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460C049D239A13AE00D674D7 /* CoinsEarnResponseModel.swift */; };
@@ -215,6 +216,7 @@
 		4600A71D23278D38004A7A9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4600A71F23278D38004A7A9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4600A72B23278FD5004A7A9E /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4603C1F823D70F5600A11BB4 /* UIBarButtonItem + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem + Extension.swift"; sourceTree = "<group>"; };
 		4605D2692391066100316AB3 /* IntroPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageVC.swift; sourceTree = "<group>"; };
 		460C049B239A10A800D674D7 /* CoinsEarn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinsEarn.swift; sourceTree = "<group>"; };
 		460C049D239A13AE00D674D7 /* CoinsEarnResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinsEarnResponseModel.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				4616EF19232A57CF00B138A3 /* UIView + Extension.swift */,
 				469C9E0D2341EADD0098AE65 /* UItextField + Extension.swift */,
 				46F88CA62356F855003E24CC /* UIButton + Extension.swift */,
+				4603C1F823D70F5600A11BB4 /* UIBarButtonItem + Extension.swift */,
 				461EC3FA236C05BC00114759 /* UIFont + Extension.swift */,
 				46DF729E23506A10005005B1 /* String + Extension.swift */,
 				461DC268237942CD0092AC82 /* UserDefaults + Extensions.swift */,
@@ -1452,6 +1455,7 @@
 				4670146223485D4B00556CBB /* TransparentView.swift in Sources */,
 				46C9C4EB23A0D36E0042341B /* UnfriendModel.swift in Sources */,
 				46E4640E235F078100539942 /* TransferMoveCoinsViewController.swift in Sources */,
+				4603C1F923D70F5600A11BB4 /* UIBarButtonItem + Extension.swift in Sources */,
 				46230A9C2379862B0012D9A1 /* UpdateLocationClass.swift in Sources */,
 				46B2E442237A7C2800540D27 /* ChangePassword.swift in Sources */,
 				46C9C4ED23A10D820042341B /* MonthYearPickerView.swift in Sources */,
@@ -1625,7 +1629,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.3;
+				CURRENT_PROJECT_VERSION = 1.2.4;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
@@ -1649,7 +1653,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.3;
+				CURRENT_PROJECT_VERSION = 1.2.4;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

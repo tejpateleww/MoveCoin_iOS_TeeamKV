@@ -19,6 +19,7 @@ class Request : Codable, Comparable {
     var senderID : String!
     var status : String!
     var userName : String!
+    var nickName : String!
     
     init(){
         
@@ -49,6 +50,7 @@ class Request : Codable, Comparable {
         senderID = json["SenderID"].stringValue
         status = json["Status"].stringValue
         userName = json["UserName"].stringValue
+        nickName = json["NickName"].stringValue
 	}
 
 	/**
@@ -87,6 +89,9 @@ class Request : Codable, Comparable {
         if userName != nil{
         	dictionary["UserName"] = userName
         }
+        if nickName != nil{
+            dictionary["NickName"] = nickName
+        }
 		return dictionary
 	}
 
@@ -106,6 +111,7 @@ class Request : Codable, Comparable {
 		senderID = aDecoder.decodeObject(forKey: "SenderID") as? String
 		status = aDecoder.decodeObject(forKey: "Status") as? String
 		userName = aDecoder.decodeObject(forKey: "UserName") as? String
+        nickName = aDecoder.decodeObject(forKey: "NickName") as? String
 	}
 
     /**
@@ -144,7 +150,8 @@ class Request : Codable, Comparable {
 		if userName != nil{
 			aCoder.encode(userName, forKey: "UserName")
 		}
-
+        if nickName != nil{
+            aCoder.encode(nickName, forKey: "NickName")
+        }
 	}
-
 }

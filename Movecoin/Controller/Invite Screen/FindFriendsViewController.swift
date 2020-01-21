@@ -135,8 +135,10 @@ class FindFriendsViewController: UIViewController {
         isTyping = (enteredText?.isEmpty ?? false) ? false : true
         searchArray.removeAll()
         
-        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "")}
+        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
+        
         let reco = (tableData.filter{$0.SectionTitle == "Recommended"}.first?.Rows as? [Registered])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
+        
         let notReq = (tableData.filter{$0.SectionTitle == "Not Registered"}.first?.Rows as? [PhoneModel])?.filter{$0.name.lowercased().contains(enteredText?.lowercased() ?? "") }
         
         if let data = req, data.count != 0 {
@@ -159,7 +161,15 @@ class FindFriendsViewController: UIViewController {
 extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource, InviteFriendCellDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+       
+        let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
+        let type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
+        switch type {
+        case .RecommendedFriend, .RequestPendding:
+            return 65
+        default:
+            return 55
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

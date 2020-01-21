@@ -11,6 +11,7 @@ import UIKit
 class WalletTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblDiscription: UILabel!
+    @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     
@@ -18,6 +19,8 @@ class WalletTableViewCell: UITableViewCell {
         didSet{
             if let detail = walletDetail {
                 self.lblDiscription.text = detail.descriptionField
+                self.lblMessage.text = detail.message
+                self.lblMessage.isHidden = detail.message.isBlank ? true : false
                 
                 if let dateStr = UtilityClass.changeDateFormateFrom(dateString: detail.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate){
                     self.lblDate.text = dateStr
@@ -41,6 +44,7 @@ class WalletTableViewCell: UITableViewCell {
         lblAmount.font = UIFont.regular(ofSize: 17)
         lblDiscription.font = UIFont.regular(ofSize: 17)
         lblDate.font = UIFont.light(ofSize: 11)
+        lblMessage.font = UIFont.regular(ofSize: 13)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

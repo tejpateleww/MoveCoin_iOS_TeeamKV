@@ -47,6 +47,9 @@ class ProfileViewController: UIViewController {
     lazy var dataEntries: [DataEntry] = []
     lazy var stepsDataEntry: [StepsCountDataEntry] = []
     
+    let leftBarButton = BadgeBarButtonItem()
+    var btnChat = UIButton(frame: CGRect(x: 0, y: 0, width: 18, height: 16))
+ 
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -103,7 +106,11 @@ class ProfileViewController: UIViewController {
     }
     
     func setUpNavigationItems(){
-        let leftBarButton = UIBarButtonItem(image: UIImage(named: "chat"), style: .plain, target: self, action: #selector(btnChatTapped))
+      
+        btnChat.setBackgroundImage(UIImage(named: "chat"), for: .normal)
+        btnChat.addTarget(self, action: #selector(btnChatTapped), for: .touchUpInside)
+        leftBarButton.customView = btnChat
+//        let leftBarButton = UIBarButtonItem(image: UIImage(named: "chat"), style: .plain, target: self, action: #selector(btnChatTapped))
         self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
         
         let rightBarButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(btnSettingTapped))
@@ -139,6 +146,8 @@ class ProfileViewController: UIViewController {
         
         segmentedControl.selectItemAt(index: BarChartTitles.Weekly.rawValue, animated: true)
         self.setUpBarChat(index: BarChartTitles.Weekly.rawValue)
+        
+        leftBarButton.numberOfBages = Int(profileModel?.data.unreadMsgCount ?? "0") ?? 0
     }
     
     @objc func btnChatTapped(){
@@ -309,7 +318,7 @@ class ProfileViewController: UIViewController {
         case .Yearly:
             
             self.lblAverage.text = "Average per year"
-            self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
+            self.lblAverageSteps.text = self.profileModel?.data.avarageYearlyStepsCount
             self.dataEntries.removeAll()
             
             let maxValue = self.profileModel?.data.yearlyStepsCount.map{Int($0.totalSteps!) ?? 0}.max() ?? 0

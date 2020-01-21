@@ -16,6 +16,7 @@ class FindFriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblFirstCharacter: UILabel!
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblNickName: UILabel!
     @IBOutlet weak var lblNumber: UILabel!
     @IBOutlet weak var btnInvite: UIButton!
     @IBOutlet weak var btnAccept: UIButton!
@@ -30,6 +31,13 @@ class FindFriendTableViewCell: UITableViewCell {
             if let detail = requested {
                 self.lblName.text = detail.fullName.capitalizingFirstLetter()
                 self.lblNumber.text = detail.phone
+                
+                if detail.nickName.isBlank {
+                    lblNickName.isHidden = true
+                }else{
+                    lblNickName.isHidden = false
+                    self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
+                }
                 if lblName.text?.isBlank ?? true { return }
                 if lblName.text != "" {
                     self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
@@ -51,6 +59,7 @@ class FindFriendTableViewCell: UITableViewCell {
     var notRegisteredFriend: PhoneModel? {
         didSet{
             btnAccept.isHidden = true
+            lblNickName.isHidden = true
             btnInvite.setTitle("+ Invite", for: .normal)
             if let detail = notRegisteredFriend {
                 self.lblName.text = detail.name.trimmingCharacters(in: .whitespacesAndNewlines).capitalizingFirstLetter()
@@ -63,7 +72,7 @@ class FindFriendTableViewCell: UITableViewCell {
     
     var registeredFriend: Registered? {
         didSet{
-             btnAccept.isHidden = true
+            btnAccept.isHidden = true
             btnInvite.setTitle("Add Friend", for: .normal)
             btnInvite.titleLabel?.font = UIFont.regular(ofSize: 12)
             if let detail = registeredFriend {
@@ -71,6 +80,12 @@ class FindFriendTableViewCell: UITableViewCell {
                     self.lblName.text = detail.fullName.capitalizingFirstLetter()
                 } else {
                      self.lblName.text = detail.nickName.capitalizingFirstLetter()
+                }
+                if detail.nickName.isBlank {
+                    lblNickName.isHidden = true
+                }else{
+                    lblNickName.isHidden = false
+                    self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
                 }
                 self.lblNumber.text = detail.phone
                 if lblName.text?.isBlank ?? true { return }
@@ -82,6 +97,7 @@ class FindFriendTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         lblName.font = UIFont.semiBold(ofSize: 18)
+        lblNickName.font = UIFont.regular(ofSize: 12)
         lblNumber.font = UIFont.regular(ofSize: 13)
         lblFirstCharacter.font = UIFont.light(ofSize: 24)
         btnInvite.titleLabel?.font = UIFont.regular(ofSize: 13)

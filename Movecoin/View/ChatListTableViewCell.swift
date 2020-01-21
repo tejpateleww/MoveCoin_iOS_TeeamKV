@@ -13,6 +13,7 @@ class ChatListTableViewCell: UITableViewCell {
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblId: UILabel!
+    @IBOutlet weak var btnBadge: UIButton!
     
     var friendDetail: ChatList? {
         didSet{
@@ -25,6 +26,12 @@ class ChatListTableViewCell: UITableViewCell {
                      self.imgPhoto.kf.indicatorType = .activity
                      self.imgPhoto.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
                  }
+                if detail.unreadMsgCount != "0" {
+                    btnBadge.isHidden = false
+                    btnBadge.setTitle(detail.unreadMsgCount, for: .normal)
+                } else{
+                    btnBadge.isHidden = true
+                }
             }
         }
     }
@@ -32,7 +39,9 @@ class ChatListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         lblName.font = UIFont.semiBold(ofSize: 15)
-        lblId.font = UIFont.regular(ofSize: 10)
+        lblId.font = UIFont.regular(ofSize: 12)
+        btnBadge.titleLabel?.font = UIFont.regular(ofSize: 10)
+        btnBadge.cornerRadius = btnBadge.frame.height / 2
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

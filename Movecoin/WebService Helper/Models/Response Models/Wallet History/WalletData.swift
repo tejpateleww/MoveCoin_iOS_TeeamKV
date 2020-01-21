@@ -16,6 +16,7 @@ class WalletData : Codable {
     var orderID : String!
     var type : String!
     var userID : String!
+    var message : String!
     
     init(){
         
@@ -35,6 +36,7 @@ class WalletData : Codable {
         orderID = json["OrderID"].stringValue
         type = json["Type"].stringValue
         userID = json["UserID"].stringValue
+        message = json["message"].stringValue
 	}
 
 	/**
@@ -64,6 +66,9 @@ class WalletData : Codable {
         if userID != nil{
         	dictionary["UserID"] = userID
         }
+        if message != nil{
+            dictionary["message"] = message
+        }
 		return dictionary
 	}
 
@@ -80,6 +85,7 @@ class WalletData : Codable {
 		orderID = aDecoder.decodeObject(forKey: "OrderID") as? String
 		type = aDecoder.decodeObject(forKey: "Type") as? String
 		userID = aDecoder.decodeObject(forKey: "UserID") as? String
+        message = aDecoder.decodeObject(forKey: "message") as? String
 	}
 
     /**
@@ -109,7 +115,8 @@ class WalletData : Codable {
 		if userID != nil{
 			aCoder.encode(userID, forKey: "UserID")
 		}
-
+        if message != nil{
+            aCoder.encode(userID, forKey: "message")
+        }
 	}
-
 }
