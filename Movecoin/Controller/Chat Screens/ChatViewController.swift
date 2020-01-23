@@ -15,7 +15,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
-
+    
     @IBOutlet weak var tblVw: UITableView!
     @IBOutlet weak var txtView: GrowingTextView!
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
@@ -31,7 +31,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     var arrData = [MessageData]()
     var receiverID : String?
     lazy var profileImg = UIImageView(image: UIImage(named: "m-logo"))
-
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-Cycle Methods ---------
     // ----------------------------------------------------
@@ -130,7 +130,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
         }
         self.view.animateConstraintWithDuration()
         if arrData.count > 0 {
-           scrollToBottom()
+            scrollToBottom()
         }
     }
     
@@ -170,14 +170,14 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     }
     
     // ----------------------------------------------------
-    //MARK:- --------- UITextView Delegate Methods ---------
+    //MARK:- --------- GrowingTextView Delegate Methods ---------
     // ----------------------------------------------------
     
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-       UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
             self.bottomViewConstraintHeight.constant = height + 12
-       }
+        }
     }
 }
 
@@ -200,64 +200,35 @@ extension ChatViewController: UITableViewDataSource {
         
         let obj = arrData[indexPath.row]
         let strIdentifier = obj.senderID == SingletonClass.SharedInstance.userData?.iD ? "SenderCell" : "RecieverCell"
-    
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifier, for: indexPath) as! MessageCell
-        cell.lblMessage.text = obj.message
-        cell.lblMessage.isHidden = obj.message.isEmpty ? true : false
+        cell.txtvwMessage.text = obj.message
+        self.textViewSize(textView: cell.txtvwMessage)
+        cell.txtvwMessage.translatesAutoresizingMaskIntoConstraints = true
+        cell.txtvwMessage.sizeThatFits(cell.txtvwMessage.frame.size)
+        cell.txtvwMessage.isHidden = obj.message.isEmpty ? true : false
         if let chatDate = UtilityClass.changeDateFormateFrom(dateString: obj.date, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
-             cell.lblTime.text = chatDate
+            cell.lblTime.text = chatDate
         }
         cell.lblReadStatus.isHidden = true
-        cell.lblMessage.textColor = UIColor.white
+        cell.txtvwMessage.textColor = UIColor.white
         cell.lblTime.textColor = UIColor.white
         cell.lblReadStatus.textColor = UIColor.white
         
         if obj.senderID == SingletonClass.SharedInstance.userData?.iD {
             cell.vwChatBg.backgroundColor = TransparentColor
-            cell.lblMessage.textColor = UIColor.white
+            cell.txtvwMessage.textColor = UIColor.white
             cell.lblTime.textColor = UIColor.white
             cell.lblReadStatus.textColor = UIColor.white
         }
         cell.selectionStyle = .none
         return cell
     }
-}
-
-class TapAndCopyLabel: UILabel {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        //1.Here i am Adding UILongPressGestureRecognizer by which copy popup will Appears
-        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
-        self.addGestureRecognizer(gestureRecognizer)
-        self.isUserInteractionEnabled = true
-    }
-
-    // MARK: - UIGestureRecognizer
-    @objc func handleLongPressGesture(_ recognizer: UIGestureRecognizer) {
-        guard recognizer.state == .recognized else { return }
-
-        if let recognizerView = recognizer.view,
-            let recognizerSuperView = recognizerView.superview, recognizerView.becomeFirstResponder()
-        {
-            let menuController = UIMenuController.shared
-            menuController.setTargetRect(recognizerView.frame, in: recognizerSuperView)
-            menuController.setMenuVisible(true, animated:true)
-        }
-    }
-    //2.Returns a Boolean value indicating whether this object can become the first responder
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-    //3.Here we are enabling copy action
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return (action == #selector(UIResponderStandardEditActions.copy(_:)))
-
-    }
-    // MARK: - UIResponderStandardEditActions
-    override func copy(_ sender: Any?) {
-        //4.copy current Text to the paste board
-        UIPasteboard.general.string = text
+    
+    func textViewSize(textView : GrowingTextView) {
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
     }
 }
 
@@ -273,13 +244,13 @@ extension ChatViewController {
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = receiverID ?? ""
         requestModel.Message = message
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let currentTime = dateFormatter.string(from: Date()).localToUTC(fromFormate: DateFomateKeys.api, toFormate: DateFomateKeys.api)
         let obj = MessageData(ReceiverID: requestModel.ReceiverID, Message: requestModel.Message, SenderNickname: SingletonClass.SharedInstance.userData?.nickName ?? "", SenderName: SingletonClass.SharedInstance.userData?.fullName ?? "", SenderID: requestModel.SenderID, Date: currentTime, ChatId: "")
         self.arrData.append(obj)
-
+        
         if self.arrData.count > 0 {
             let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
             self.tblVw.insertRows(at: [indexPath], with: .bottom)
@@ -290,17 +261,17 @@ extension ChatViewController {
             
             self.btnSend.isUserInteractionEnabled = true
             if status {
-//                let dataJson = json["data"]
-//                if !dataJson.isEmpty{
-//                    let obj = MessageData(fromJson: dataJson)
-//                    self.arrData.append(obj)
-//                }
-//                if self.arrData.count > 0 {
-//                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
-//                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
-//                    self.scrollToBottom()
-//                    self.resetAll()
-//                }
+                //                let dataJson = json["data"]
+                //                if !dataJson.isEmpty{
+                //                    let obj = MessageData(fromJson: dataJson)
+                //                    self.arrData.append(obj)
+                //                }
+                //                if self.arrData.count > 0 {
+                //                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
+                //                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
+                //                    self.scrollToBottom()
+                //                    self.resetAll()
+                //                }
             }
         }
     }
@@ -319,7 +290,7 @@ extension ChatViewController {
             UtilityClass.hideHUD()
             if status {
                 let responseModel = ChatHistoryResponseModel(fromJson: json)
-               
+                
                 self.navigationBarSetUp(title: responseModel.receiverArr.fullName ?? "")
                 self.profileImg.kf.setImage(with: URL(string: responseModel.receiverArr.profilePicture ?? ""), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
                 }
@@ -343,9 +314,9 @@ extension ChatViewController {
 //MARK:- --------- Cell and Structure Methods ---------
 // ----------------------------------------------------
 
-class MessageCell: UITableViewCell {
+class MessageCell: UITableViewCell, GrowingTextViewDelegate {
     
-    @IBOutlet weak var lblMessage: TapAndCopyLabel!
+    @IBOutlet weak var txtvwMessage: GrowingTextView!
     @IBOutlet weak var lblReadStatus: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var vwChatBg: UIView!
@@ -357,7 +328,7 @@ class MessageCell: UITableViewCell {
         super.layoutSubviews()
         lblTime.font = UIFont.light(ofSize: 10)
         lblReadStatus.font = UIFont.light(ofSize: 10)
-        lblMessage.font = UIFont.regular(ofSize: 15)
+        txtvwMessage.font = UIFont.regular(ofSize: 15)
     }
 }
 
@@ -430,17 +401,17 @@ extension UIViewController {
 
 extension Date {
     static func localToUTC(date:String, fromFormat: String, toFormat: String,strTimeZone : String) -> String {
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = fromFormat
         dateFormatter.calendar = NSCalendar.current
         dateFormatter.timeZone = TimeZone.current
-
+        
         let dt = dateFormatter.date(from: date)
         dateFormatter.timeZone = TimeZone(identifier: strTimeZone)
         dateFormatter.dateFormat = toFormat
-
+        
         return dateFormatter.string(from: dt!)
     }
 }
