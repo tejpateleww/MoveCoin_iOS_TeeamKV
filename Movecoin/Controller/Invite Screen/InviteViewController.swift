@@ -49,6 +49,12 @@ class InviteViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        self.view.contentOffset = self.scrollView.contentOffset;
+        self.scrollView.contentOffset = CGPoint.zero;
+    }
+    
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
@@ -63,6 +69,12 @@ class InviteViewController: UIViewController {
              self.navigationBarSetUp(title: "Facebook")
         }
     }
+    func scrollToPage(page: Int) {
+        var frame: CGRect = self.scrollView.frame
+        frame.origin.x = (windowWidth) * CGFloat(page)
+        frame.origin.y = 0
+        self.scrollView.scrollRectToVisible(frame, animated: true)
+    }
     
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
@@ -70,9 +82,11 @@ class InviteViewController: UIViewController {
     
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {
         self.title = "Invite"
-        DispatchQueue.main.async {
-            self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
-        }
+//        scrollToPage(page: 0)
+        print("setContentOffset : \(scrollView.contentOffset)")
+        self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
+        self.scrollView.scrollRectToVisible(CGRect(), animated: true)
+        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = true
         btnFriends.isSelected = false
         btnFacebook.isSelected = false
@@ -80,7 +94,10 @@ class InviteViewController: UIViewController {
     
     @IBAction func btnFiendFriendsTapped(_ sender: Any) {
         self.title = "Find Friend"
+//        scrollToPage(page: 1)
+        print("setContentOffset : \(scrollView.contentOffset)")
         scrollView.setContentOffset(CGPoint(x: windowWidth, y: scrollView.frame.minY), animated: true)
+        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = true
         btnFacebook.isSelected = false
@@ -88,7 +105,10 @@ class InviteViewController: UIViewController {
     
     @IBAction func btnFacebookTapped(_ sender: Any) {
         self.title = "Facebook"
+//        scrollToPage(page: 2)
+        print("setContentOffset : \(scrollView.contentOffset)")
         scrollView.setContentOffset(CGPoint(x: (windowWidth*2), y: scrollView.frame.minY), animated: true)
+        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = false
         btnFacebook.isSelected = true
