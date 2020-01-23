@@ -223,6 +223,44 @@ extension ChatViewController: UITableViewDataSource {
     }
 }
 
+class TapAndCopyLabel: UILabel {
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //1.Here i am Adding UILongPressGestureRecognizer by which copy popup will Appears
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(_:)))
+        self.addGestureRecognizer(gestureRecognizer)
+        self.isUserInteractionEnabled = true
+    }
+
+    // MARK: - UIGestureRecognizer
+    @objc func handleLongPressGesture(_ recognizer: UIGestureRecognizer) {
+        guard recognizer.state == .recognized else { return }
+
+        if let recognizerView = recognizer.view,
+            let recognizerSuperView = recognizerView.superview, recognizerView.becomeFirstResponder()
+        {
+            let menuController = UIMenuController.shared
+            menuController.setTargetRect(recognizerView.frame, in: recognizerSuperView)
+            menuController.setMenuVisible(true, animated:true)
+        }
+    }
+    //2.Returns a Boolean value indicating whether this object can become the first responder
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    //3.Here we are enabling copy action
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        return (action == #selector(UIResponderStandardEditActions.copy(_:)))
+
+    }
+    // MARK: - UIResponderStandardEditActions
+    override func copy(_ sender: Any?) {
+        //4.copy current Text to the paste board
+        UIPasteboard.general.string = text
+    }
+}
+
 // ----------------------------------------------------
 //MARK:- --------- Webservice Methods ---------
 // ----------------------------------------------------
@@ -235,22 +273,34 @@ extension ChatViewController {
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = receiverID ?? ""
         requestModel.Message = message
-        
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let currentTime = dateFormatter.string(from: Date()).localToUTC(fromFormate: DateFomateKeys.api, toFormate: DateFomateKeys.api)
+        let obj = MessageData(ReceiverID: requestModel.ReceiverID, Message: requestModel.Message, SenderNickname: SingletonClass.SharedInstance.userData?.nickName ?? "", SenderName: SingletonClass.SharedInstance.userData?.fullName ?? "", SenderID: requestModel.SenderID, Date: currentTime, ChatId: "")
+        self.arrData.append(obj)
+
+        if self.arrData.count > 0 {
+            let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
+            self.tblVw.insertRows(at: [indexPath], with: .bottom)
+            self.scrollToBottom()
+            self.resetAll()
+        }
         FriendsWebserviceSubclass.sendMessage(sendMessageModel: requestModel){ (json, status, res) in
             
             self.btnSend.isUserInteractionEnabled = true
             if status {
-                let dataJson = json["data"]
-                if !dataJson.isEmpty{
-                    let obj = MessageData(fromJson: dataJson)
-                    self.arrData.append(obj)
-                }
-                if self.arrData.count > 0 {
-                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
-                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
-                    self.scrollToBottom()
-                    self.resetAll()
-                }
+//                let dataJson = json["data"]
+//                if !dataJson.isEmpty{
+//                    let obj = MessageData(fromJson: dataJson)
+//                    self.arrData.append(obj)
+//                }
+//                if self.arrData.count > 0 {
+//                    let indexPath = IndexPath.init(row: self.arrData.count - 1, section: 0)
+//                    self.tblVw.insertRows(at: [indexPath], with: .bottom)
+//                    self.scrollToBottom()
+//                    self.resetAll()
+//                }
             }
         }
     }
@@ -295,7 +345,7 @@ extension ChatViewController {
 
 class MessageCell: UITableViewCell {
     
-    @IBOutlet weak var lblMessage: UILabel!
+    @IBOutlet weak var lblMessage: TapAndCopyLabel!
     @IBOutlet weak var lblReadStatus: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var vwChatBg: UIView!
@@ -374,5 +424,23 @@ extension UIViewController {
     @objc func dismissKeyboard()
     {
         view.endEditing(true)
+    }
+}
+
+
+extension Date {
+    static func localToUTC(date:String, fromFormat: String, toFormat: String,strTimeZone : String) -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = fromFormat
+        dateFormatter.calendar = NSCalendar.current
+        dateFormatter.timeZone = TimeZone.current
+
+        let dt = dateFormatter.date(from: date)
+        dateFormatter.timeZone = TimeZone(identifier: strTimeZone)
+        dateFormatter.dateFormat = toFormat
+
+        return dateFormatter.string(from: dt!)
     }
 }

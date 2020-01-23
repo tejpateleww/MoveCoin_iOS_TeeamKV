@@ -41,6 +41,8 @@ class UtilityClass : NSObject {
             outputFormatter.dateFormat = format
             let str = outputFormatter.string(from: date)
             return str.UTCToLocal(fromFormate: format, toFormate: format)
+
+            //Date.localToUTC(date: str, fromFormat: DateFomateKeys.displayDateTime, toFormat: format, strTimeZone: "Asia/Riyadh")
 //            return str
         }
         

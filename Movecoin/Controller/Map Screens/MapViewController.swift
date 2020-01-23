@@ -108,7 +108,7 @@ class MapViewController: UIViewController {
         }
     }
     func stopTimer(){
-        nearByuserTimer.invalidate()
+        nearByuserTimer?.invalidate()
         nearByuserTimer = nil
     }
     
@@ -241,6 +241,11 @@ extension MapViewController {
             if status {
                 let responseModel = NearByUsersResponseModel(fromJson: json)
                 self.nearByUsersArray = responseModel.nearbyuser
+                self.reloadMapView()
+            }
+            else
+            {
+                self.nearByUsersArray.removeAll()
                 self.reloadMapView()
             }
         }
