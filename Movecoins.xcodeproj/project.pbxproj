@@ -33,6 +33,8 @@
 		4616EF16232A146F00B138A3 /* VKPinCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616EF13232A146F00B138A3 /* VKPinCodeView.swift */; };
 		4616EF18232A289700B138A3 /* UINavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616EF17232A289700B138A3 /* UINavigationController + Extension.swift */; };
 		4616EF1A232A57CF00B138A3 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4616EF19232A57CF00B138A3 /* UIView + Extension.swift */; };
+		461CBAA323DABB4700292CD2 /* CreditCardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461CBAA123DABB4700292CD2 /* CreditCardValidator.swift */; };
+		461CBAA423DABB4700292CD2 /* CreditCardValidationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461CBAA223DABB4700292CD2 /* CreditCardValidationType.swift */; };
 		461D5B5A232B57CF007CB670 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461D5B59232B57CF007CB670 /* ProductDetailViewController.swift */; };
 		461DC2552379315D0092AC82 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC2542379315D0092AC82 /* Parameters.swift */; };
 		461DC257237931740092AC82 /* ApiPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC256237931740092AC82 /* ApiPaths.swift */; };
@@ -235,6 +237,8 @@
 		4616EF13232A146F00B138A3 /* VKPinCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKPinCodeView.swift; sourceTree = "<group>"; };
 		4616EF17232A289700B138A3 /* UINavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extension.swift"; sourceTree = "<group>"; };
 		4616EF19232A57CF00B138A3 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		461CBAA123DABB4700292CD2 /* CreditCardValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardValidator.swift; sourceTree = "<group>"; };
+		461CBAA223DABB4700292CD2 /* CreditCardValidationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCardValidationType.swift; sourceTree = "<group>"; };
 		461D5B59232B57CF007CB670 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		461DC2542379315D0092AC82 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		461DC256237931740092AC82 /* ApiPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPaths.swift; sourceTree = "<group>"; };
@@ -626,6 +630,7 @@
 				4628D8F923A780EB0061D77D /* PhotoViewer */,
 				46C913272330EA110068C788 /* LKAWaveCircleProgressBar */,
 				4616EF10232A145000B138A3 /* VKPinCodeView */,
+				461CBAA023DABB4700292CD2 /* CreditCardValidator */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -638,6 +643,15 @@
 				4616EF13232A146F00B138A3 /* VKPinCodeView.swift */,
 			);
 			path = VKPinCodeView;
+			sourceTree = "<group>";
+		};
+		461CBAA023DABB4700292CD2 /* CreditCardValidator */ = {
+			isa = PBXGroup;
+			children = (
+				461CBAA123DABB4700292CD2 /* CreditCardValidator.swift */,
+				461CBAA223DABB4700292CD2 /* CreditCardValidationType.swift */,
+			);
+			path = CreditCardValidator;
 			sourceTree = "<group>";
 		};
 		461DC24D23792DF40092AC82 /* WebService Helper */ = {
@@ -1381,6 +1395,7 @@
 				46729B3F23C2FA0F0086F91F /* AppleDetailsModel.swift in Sources */,
 				468F86CF2350C0D5006DC7D1 /* ChatListViewController.swift in Sources */,
 				466DBF0D23856F1400FD60A4 /* OnBoradViewController.swift in Sources */,
+				461CBAA323DABB4700292CD2 /* CreditCardValidator.swift in Sources */,
 				46DF729F23506A10005005B1 /* String + Extension.swift in Sources */,
 				46FA2C8023A122DD000A3B9B /* Card.swift in Sources */,
 				46138044232906C7007C3FA4 /* SignupViewController.swift in Sources */,
@@ -1474,6 +1489,7 @@
 				46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */,
 				46395D0F23C6FAD100E89598 /* CoinsDiscountRelation.swift in Sources */,
 				4631E9962327A5040088B49F /* Constants.swift in Sources */,
+				461CBAA423DABB4700292CD2 /* CreditCardValidationType.swift in Sources */,
 				46F717AF23B9D35000A26DAB /* PolicyHelpTermsClass.swift in Sources */,
 				460C04A2239A295600D674D7 /* WalletResponseModel.swift in Sources */,
 				462D24F123B32FF40050C3F0 /* ProfileData.swift in Sources */,

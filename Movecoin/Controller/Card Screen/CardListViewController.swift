@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 protocol CardDelegate {
     func setCardDetails(value: PlaceOrder)
 }
@@ -77,7 +78,7 @@ class CardListViewController: UIViewController {
         txtCardHolder.font = UIFont.regular(ofSize: 17)
         txtCVV.font = UIFont.regular(ofSize: 17)
     }
-    
+         
     func validate() {
         do {
             let cardHolder = try txtCardHolder.validatedText(validationType: ValidatorType.cardHolder)

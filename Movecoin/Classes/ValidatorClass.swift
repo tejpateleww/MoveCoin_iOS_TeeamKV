@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 protocol ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String
 }
@@ -195,6 +196,8 @@ struct CardNumberValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
         guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters") }
+        let v = CreditCardValidator()
+        guard v.validate(string: value) else { throw ValidationError("Card number is invalid") }
 
         return value
     }

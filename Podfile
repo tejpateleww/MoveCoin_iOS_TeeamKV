@@ -18,8 +18,8 @@ pod 'Socket.IO-Client-Swift'
 pod 'NVActivityIndicatorView'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField'
-pod 'GrowingTextView'
 
+pod 'GrowingTextView'
 pod 'FormTextField'
 
 pod 'TTSegmentedControl'
