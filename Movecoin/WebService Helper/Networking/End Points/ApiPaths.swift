@@ -111,6 +111,7 @@ enum ApiKey: String{
     case transferCoins = "Friends/coins_transfer"
     case sendMessage = "Friends/send_message/"
     case chatList = "friends/chat_list"
+    case chatClear = "friends/clear_chat"
     case chatHistory = "friends/old_chat_history"
     
     case addSeller = "Seller/add_seller"

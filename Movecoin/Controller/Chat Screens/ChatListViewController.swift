@@ -92,6 +92,27 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let alert = UIAlertController(title: kAppName, message: "Are you sure you want to delete the chat?", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
+                let data = self.friendsArray[indexPath.row]
+                self.webserviceForDeleteChat(friendID: data.iD)
+            }
+            let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
+                self.dismiss(animated: true, completion:nil)
+            }
+            alert.addAction(btnOk)
+            alert.addAction(btncancel)
+            alert.modalPresentationStyle = .overCurrentContext
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func ChatFromNotification(dict: [String:Any]) {
         let storyBoard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
         let controller = storyBoard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
@@ -108,14 +129,11 @@ extension ChatListViewController {
     
     func webserviceForChatList(){
         
-//        UtilityClass.showHUD()
-         
-        let requestModel = ChatListModel()
+    let requestModel = ChatListModel()
         requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
     
         FriendsWebserviceSubclass.chatList(chatListModel: requestModel){ (json, status, res) in
-            
-//            UtilityClass.hideHUD()
+
             if status {
                 let responseModel = ChatListResponseModel(fromJson: json)
                 if responseModel.chatList.count > 0  {
@@ -126,6 +144,28 @@ extension ChatListViewController {
                     self.lblNoDataFound.isHidden = false
                 }
             } 
+        }
+    }
+    
+    func webserviceForDeleteChat(friendID : String){
+        let requestModel = ChatClearModel()
+        requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.friend_id = friendID
+        
+        UtilityClass.showHUD()
+        FriendsWebserviceSubclass.chatClear(chatClearModel: requestModel){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+                let responseModel = ChatListResponseModel(fromJson: json)
+                if responseModel.chatList.count > 0  {
+                    self.friendsArray = responseModel.chatList
+                    self.tblChatList.reloadData()
+                    self.lblNoDataFound.isHidden = true
+                }else{
+                    self.lblNoDataFound.isHidden = false
+                }
+            }
         }
     }
 }

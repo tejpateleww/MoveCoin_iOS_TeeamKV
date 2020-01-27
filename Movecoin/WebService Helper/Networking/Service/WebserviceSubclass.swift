@@ -149,6 +149,11 @@ class FriendsWebserviceSubclass
         WebService.shared.requestMethod(api: .chatList, httpMethod: .post, parameters: params, completion: completion)
     }
     
+    class func chatClear( chatClearModel : ChatClearModel  ,completion: @escaping CompletionResponse ) {
+        let  params = chatClearModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .chatClear, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
     class func chatHistory( chatHistoryModel : ChatHistoryModel  ,completion: @escaping CompletionResponse ) {
         let  params = chatHistoryModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .chatHistory, httpMethod: .post, parameters: params, completion: completion)

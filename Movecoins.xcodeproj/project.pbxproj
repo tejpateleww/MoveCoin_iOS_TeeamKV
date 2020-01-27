@@ -170,6 +170,7 @@
 		46C9C4EB23A0D36E0042341B /* UnfriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9C4EA23A0D36E0042341B /* UnfriendModel.swift */; };
 		46C9C4ED23A10D820042341B /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9C4EC23A10D820042341B /* MonthYearPickerView.swift */; };
 		46C9C4EF23A116380042341B /* AddCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9C4EE23A116380042341B /* AddCardModel.swift */; };
+		46D2569D23DEBF7300C50B77 /* ChatClearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D2569C23DEBF7300C50B77 /* ChatClearModel.swift */; };
 		46D96067238B9BB10026B96D /* ProductsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D96065238B9BB10026B96D /* ProductsResponseModel.swift */; };
 		46D96068238B9BB10026B96D /* ProductDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D96066238B9BB10026B96D /* ProductDetails.swift */; };
 		46DDCA0023AB463F00FFAF91 /* ChatHistoryResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDC9FF23AB463F00FFAF91 /* ChatHistoryResponseModel.swift */; };
@@ -386,6 +387,7 @@
 		46C9C4EA23A0D36E0042341B /* UnfriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfriendModel.swift; sourceTree = "<group>"; };
 		46C9C4EC23A10D820042341B /* MonthYearPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
 		46C9C4EE23A116380042341B /* AddCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardModel.swift; sourceTree = "<group>"; };
+		46D2569C23DEBF7300C50B77 /* ChatClearModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatClearModel.swift; sourceTree = "<group>"; };
 		46D96065238B9BB10026B96D /* ProductsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsResponseModel.swift; sourceTree = "<group>"; };
 		46D96066238B9BB10026B96D /* ProductDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetails.swift; sourceTree = "<group>"; };
 		46DDC9FF23AB463F00FFAF91 /* ChatHistoryResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHistoryResponseModel.swift; sourceTree = "<group>"; };
@@ -726,6 +728,7 @@
 				46C9C4EE23A116380042341B /* AddCardModel.swift */,
 				46F5461F23AA546800251A20 /* ChatListModel.swift */,
 				46DDCA0123AB486000FFAF91 /* ChatHistoryModel.swift */,
+				46D2569C23DEBF7300C50B77 /* ChatClearModel.swift */,
 				46A76A3C23AA2E4E009F5427 /* SendMessage.swift */,
 				462D24F023B32FF40050C3F0 /* ProfileData.swift */,
 				46E468F1237D1CA70068701E /* EditProfile.swift */,
@@ -1479,6 +1482,7 @@
 				46E69BF3238FC5E500685EB8 /* NotRegistered.swift in Sources */,
 				46BC1B4723C471A500AAABE1 /* YearlyStepsCount.swift in Sources */,
 				466853DB2391393F00019DF1 /* UserPermissionClass.swift in Sources */,
+				46D2569D23DEBF7300C50B77 /* ChatClearModel.swift in Sources */,
 				46D96067238B9BB10026B96D /* ProductsResponseModel.swift in Sources */,
 				4616EF18232A289700B138A3 /* UINavigationController + Extension.swift in Sources */,
 				462D24E523B32F310050C3F0 /* BasicBarEntry.swift in Sources */,
