@@ -158,9 +158,9 @@ extension ChatListViewController {
             UtilityClass.hideHUD()
             if status {
                 let responseModel = ChatListResponseModel(fromJson: json)
+                self.friendsArray = responseModel.chatList
+                self.tblChatList.reloadData()
                 if responseModel.chatList.count > 0  {
-                    self.friendsArray = responseModel.chatList
-                    self.tblChatList.reloadData()
                     self.lblNoDataFound.isHidden = true
                 }else{
                     self.lblNoDataFound.isHidden = false

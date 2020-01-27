@@ -22,4 +22,6 @@ class SignupModel : RequestModel {
     var Phone : String = ""
     var Gender : String = ""
     var ReferralCode : String = ""
+    var SocialID : String = ""
+    var SocialType : String = ""
 }

@@ -133,6 +133,8 @@ class SignupViewController: UIViewController {
             signupModel.Gender = txtGender.text!
             signupModel.ReferralCode = txtReferral.text!
             signupModel.DeviceType = "ios"
+            signupModel.SocialID = userSocialData?.userId ?? ""
+            signupModel.SocialType = userSocialData?.socialType ?? ""
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 signupModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 signupModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"

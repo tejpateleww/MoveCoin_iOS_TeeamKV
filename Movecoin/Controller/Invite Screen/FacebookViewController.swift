@@ -41,7 +41,7 @@ class FacebookViewController: UIViewController {
     func getFBUserData() {
         
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email, id, picture.type(large)"
+        parameters["fields"] = "first_name, last_name, email, id, user_friends"
         
         GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
             if error == nil {
@@ -78,7 +78,7 @@ class FacebookViewController: UIViewController {
             let login = LoginManager()
             login.logOut()
             login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
-                
+        
                 if error != nil {
                     //                UIApplication.shared.statusBarStyle = .lightContent
                 }
@@ -96,7 +96,7 @@ class FacebookViewController: UIViewController {
         }else {
             print("Already FB Connected")
             var parameters = [AnyHashable: Any]()
-            parameters["fields"] = "first_name, last_name, email, id, picture.type(large)"
+            parameters["fields"] = "first_name, last_name, email, id, user_friends"
             
             let id = SingletonClass.SharedInstance.userData?.socialID ?? ""
             let request = GraphRequest(graphPath: "/\(id)/friends", parameters: parameters as! [String : Any], httpMethod: HTTPMethod(rawValue: "GET"))

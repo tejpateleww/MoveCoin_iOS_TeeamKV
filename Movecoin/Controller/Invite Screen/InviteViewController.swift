@@ -45,14 +45,18 @@ class InviteViewController: UIViewController {
                 }
             }
         } else{
-             loadThePage(sender: btnInvite)
+            if !btnFacebook.isSelected {
+                loadThePage(sender: btnInvite)
+            }
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 //        self.view.contentOffset = self.scrollView.contentOffset;
-        self.scrollView.contentOffset = CGPoint.zero;
+        if !btnFacebook.isSelected {
+            self.scrollView.contentOffset = CGPoint.zero
+        }
     }
     
     // ----------------------------------------------------
