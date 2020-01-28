@@ -108,8 +108,10 @@ class MapViewController: UIViewController {
         }
     }
     func stopTimer(){
-        nearByuserTimer?.invalidate()
-        nearByuserTimer = nil
+        if nearByuserTimer != nil {
+            nearByuserTimer?.invalidate()
+            nearByuserTimer = nil
+        }
     }
     
     func toggleHandler(isOn : Bool, user : Nearbyuser?, annotationView : MKAnnotationView?){

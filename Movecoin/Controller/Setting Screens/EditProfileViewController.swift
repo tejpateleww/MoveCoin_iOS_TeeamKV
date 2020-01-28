@@ -30,6 +30,7 @@ class EditProfileViewController: UIViewController {
     
     private var imagePicker : ImagePickerClass!
     var selectedImage : UIImage?
+    var isRemovePhoto = false
     
     let pickerView = UIPickerView()
     let datePickerView = UIDatePicker()
@@ -134,6 +135,9 @@ class EditProfileViewController: UIViewController {
             editModel.Gender = txtGender.text!
             editModel.Height = txtHeight.text ?? ""
             editModel.Weight = txtWeight.text ?? ""
+            if isRemovePhoto {
+                editModel.remove_photo = 1
+            }
             if let dob = UtilityClass.changeDateFormateFrom(dateString: txtDob.text ?? "", fromFormat: DateFomateKeys.displayDate, withFormat: DateFomateKeys.apiDOB) {
                 editModel.DateOfBirth = dob
             }
@@ -314,7 +318,9 @@ extension EditProfileViewController :  ImagePickerDelegate {
         if(image == nil && SelectedTag == 101){
             self.imgProfilePicture.image = UIImage(named: "m-logo")//UIImage.init(named: "imgPetPlaceholder")
             self.selectedImage = nil
-        }else if image != nil{
+            isRemovePhoto = true
+            
+        } else if image != nil {
             self.imgProfilePicture.image = image
             self.selectedImage = self.imgProfilePicture.image
         }

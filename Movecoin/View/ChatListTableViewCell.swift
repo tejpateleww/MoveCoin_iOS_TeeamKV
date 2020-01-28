@@ -21,11 +21,13 @@ class ChatListTableViewCell: UITableViewCell {
                 self.lblName.text = detail.nickName.capitalizingFirstLetter()
                 self.lblId.text = UtilityClass.changeDateFormateFrom(dateString: detail.lastMessageDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayFullDate)
                 // For Image
-//                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
-                 if let url = URL(string: detail.profilePicture) {
-                     self.imgPhoto.kf.indicatorType = .activity
-                     self.imgPhoto.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
-                 }
+                //                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
+                if let url = URL(string: detail.profilePicture) {
+                    self.imgPhoto.kf.indicatorType = .activity
+                    self.imgPhoto.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
+                } else if detail.profilePicture == "" {
+                    self.imgPhoto.image = UIImage(named: "m-logo")
+                }
                 if detail.unreadMsgCount != "0" {
                     btnBadge.isHidden = false
                     btnBadge.setTitle(detail.unreadMsgCount, for: .normal)
@@ -46,6 +48,5 @@ class ChatListTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
     }
 }

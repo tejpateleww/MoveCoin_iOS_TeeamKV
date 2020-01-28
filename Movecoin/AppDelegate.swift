@@ -434,8 +434,8 @@ extension AppDelegate {
             
             if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
                 if let vc : ChatViewController = (vc as? ChatViewController) {
-                    
-                    if let response = userInfo["gcm.notification.response_arr"] as? String {
+                    vc.webserviceForChatHistory(isLoading: false)
+             /*       if let response = userInfo["gcm.notification.response_arr"] as? String {
                         let jsonData = response.data(using: .utf8)!
                         let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
                         
@@ -453,14 +453,20 @@ extension AppDelegate {
                                     let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
                                     vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
                                 } else{
-                                    //                                    NotificationCenter.default.post(name: NotificationBadges, object: content)
                                     completionHandler([.alert, .sound])
                                 }
                             }
                         }
+                    } */
+                } else if let vc : ChatListViewController = (vc as? ChatListViewController) {
+                    completionHandler([.alert, .sound])
+                    vc.webserviceForChatList()
+                } else if let vc : TabViewController = (vc as? TabViewController) {
+                    completionHandler([.alert, .sound])
+                    if vc.selectedIndex == TabBarOptions.Profile.rawValue {
+                        vc.btnTabTapped(vc.btnTabs![vc.selectedIndex])
                     }
-                } else {
-                    //                    NotificationCenter.default.post(name: NotificationBadges, object: content)
+                }else {
                     completionHandler([.alert, .sound])
                 }
             } else {

@@ -23,4 +23,5 @@ class EditProfileModel : RequestModel {
     var DateOfBirth : String = ""
     var Height : String = ""
     var Weight : String = ""
+    var remove_photo : Int = 0
 }

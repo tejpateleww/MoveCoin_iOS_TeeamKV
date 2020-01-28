@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController {
     
     private var imagePicker : ImagePickerClass!
     var selectedImage : UIImage?
+    var isRemovePhoto = false
+    
     var profileModel: profileDataResponseModel?
     lazy var dataEntries: [DataEntry] = []
     lazy var stepsDataEntry: [StepsCountDataEntry] = []
@@ -571,10 +573,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController :  ImagePickerDelegate {
     
     func didSelect(image: UIImage?, SelectedTag: Int) {
-        
+        isRemovePhoto = false
         if(image == nil && SelectedTag == 101){
             self.imgProfilePicture.image = UIImage(named: "m-logo")//UIImage.init(named: "imgPetPlaceholder")
             self.selectedImage = nil
+            isRemovePhoto = true
         }else if image != nil{
             self.imgProfilePicture.image = image
             self.selectedImage = self.imgProfilePicture.image
@@ -610,7 +613,9 @@ extension ProfileViewController {
         UtilityClass.showHUD()
         let editModel = EditProfileModel()
         editModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
-        
+        if isRemovePhoto {
+            editModel.remove_photo = 1
+        }
         UserWebserviceSubclass.editProfile(editProfileModel: editModel, image: selectedImage){ (json, status, res) in
             
             UtilityClass.hideHUD()
