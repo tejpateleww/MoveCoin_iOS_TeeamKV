@@ -167,7 +167,7 @@ class AgeValidator: ValidatorConvertible {
         guard value.count > 0 else {throw ValidationError("Age is required")}
         guard let age = Int(value) else {throw ValidationError("Age must be a number!")}
         guard value.count < 3 else {throw ValidationError("Invalid age number!")}
-        guard age >= 18 else {throw ValidationError("You have to be over 18 years old to user our app :)")}
+        guard age >= 18 else {throw ValidationError("You have to be over 18 years old to user our app")}
         return value
     }
 }

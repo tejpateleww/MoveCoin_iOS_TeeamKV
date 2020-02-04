@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VerificationViewController: UIViewController {
+class VerificationViewController: MirroringViewController {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
@@ -34,7 +34,7 @@ class VerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarSetUp(title: "Verification Code")
+        
         self.setUpPinView()
         self.setupFont()
         
@@ -46,7 +46,7 @@ class VerificationViewController: UIViewController {
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        navigationBarSetUp(title: "Verification Code")
     }
     
     // ----------------------------------------------------

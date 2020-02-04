@@ -30,6 +30,8 @@ class ThemeButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.circelButtonStyle()
+        self.titleLabel?.textAlignment = .center
+//         whiteTheme()
     }
     
     var theme : buttonTheme = buttonTheme.whiteTheme  {
@@ -49,15 +51,15 @@ class ThemeButton: UIButton {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        whiteTheme()
-    }
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        whiteTheme()
+//    }
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        whiteTheme()
-    }
+//    required public init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        whiteTheme()
+//    }
     
     override open func prepareForInterfaceBuilder() {
         whiteTheme()
@@ -115,6 +117,4 @@ class ThemeButton: UIButton {
         self.layer.masksToBounds = true
         self.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
     }
-    
-    
 }

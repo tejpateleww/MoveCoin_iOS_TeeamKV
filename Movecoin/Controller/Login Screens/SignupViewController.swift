@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignupViewController: UIViewController {
+class SignupViewController: MirroringViewController {
 
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
@@ -67,6 +67,11 @@ class SignupViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        shouldLocalize = false
     }
     
     // ----------------------------------------------------

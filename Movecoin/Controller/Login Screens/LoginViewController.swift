@@ -20,7 +20,7 @@ struct UserSocialData {
     var Profile : String
 }
 
-class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerViewControllerDelegate  {
+class LoginViewController: MirroringViewController, CAAnimationDelegate, TWTRComposerViewControllerDelegate  {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
@@ -37,7 +37,6 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
     @IBOutlet weak var viewAppleLogin: UIView!
     @IBOutlet weak var appleSigninBtnHeightConstraint: NSLayoutConstraint!
     
-    
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
     // ----------------------------------------------------
@@ -53,6 +52,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         setupSOAppleSignIn()
+        
         
         #if targetEnvironment(simulator)
        setDummy()
@@ -153,7 +153,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
         }
         let login = LoginManager()
         login.logOut()
-        login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
+        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
             
             if error != nil {
                 //                UIApplication.shared.statusBarStyle = .lightContent
@@ -212,6 +212,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
             authorizationController.performRequests()
         }
     }
+    
+    
 }
 
 // -----------------------------------------------------------------

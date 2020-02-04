@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgotPasswordViewController: UIViewController {
+class ForgotPasswordViewController: MirroringViewController {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------

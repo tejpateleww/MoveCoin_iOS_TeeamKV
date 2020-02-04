@@ -99,7 +99,8 @@ extension AppDelegate {
     
     func setupApplication(){
         IQKeyboardManager.shared.enable = true
-        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let controller = loginStoryboard.instantiateViewController(withIdentifier: SplashViewController.className) as? SplashViewController
         let nav = UINavigationController(rootViewController: controller!)
@@ -498,5 +499,243 @@ extension AppDelegate {
         UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
         //    let dataDict:[String: String] = ["token": fcmToken]
         //    NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- === Localization  ======
+// ----------------------------------------------------
+
+extension String {
+    var localized: String {
+
+        let lang = UserDefaults.standard.string(forKey: "i18n_language")
+        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
+}
+
+//i18n_language = sw
+
+// ----------------------------------------------------------
+// ----------------------------------------------------------
+
+let LCLBaseBundle = "Base"
+let secondLanguage = "ar-AE" // "sw"
+var count = 0
+var shouldLocalize = true
+extension UILabel {
+
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        if(shouldLocalize == true)
+        {
+            if self.text != nil {
+                //            count = count + 1
+                self.text =  self.text?.localized
+                //            print("The count is \(count)")
+            }
+        }
+    }
+}
+
+/// Internal current language key
+let LCLCurrentLanguageKey = "LCLCurrentLanguageKey"
+
+/// Default language. English. If English is unavailable defaults to base localization.
+let LCLDefaultLanguage = "en"
+
+/// Base bundle as fallback.
+//let LCLBaseBundle = "Base"
+
+/// Name for language change notification
+public let LCLLanguageChangeNotification = "LCLLanguageChangeNotification"
+
+// MARK: Localization Syntax
+/**
+ Swift 1.x friendly localization syntax, replaces NSLocalizedString
+ - Parameter string: Key to be localized.
+ - Returns: The localized string.
+ */
+public func Localized(_ string: String) -> String {
+    return string.localized1()
+}
+
+/**
+ Swift 1.x friendly localization syntax with format arguments, replaces String(format:NSLocalizedString)
+ - Parameter string: Key to be localized.
+ - Returns: The formatted localized string with arguments.
+ */
+public func Localized(_ string: String, arguments: CVarArg...) -> String {
+    return String(format: string.localized1(), arguments: arguments)
+}
+
+/**
+ Swift 1.x friendly plural localization syntax with a format argument
+ 
+ - parameter string:   String to be formatted
+ - parameter argument: Argument to determine pluralisation
+ 
+ - returns: Pluralized localized string.
+ */
+public func LocalizedPlural(_ string: String, argument: CVarArg) -> String {
+    return string.localizedPlural(argument)
+}
+
+
+public extension String {
+    /**
+     Swift 2 friendly localization syntax, replaces NSLocalizedString
+     - Returns: The localized string.
+     */
+    func localized1() -> String {
+        if let path = Bundle.main.path(forResource: Localize.currentLanguage(), ofType: "lproj"), let bundle = Bundle(path: path) {
+//            print("Path: \(path)")
+            return bundle.localizedString(forKey: self, value: nil, table: nil)
+        }
+        else if let path = Bundle.main.path(forResource: LCLBaseBundle, ofType: "lproj"), let bundle = Bundle(path: path) {
+            return bundle.localizedString(forKey: self, value: nil, table: nil)
+        }
+        return self
+    }
+    
+    
+    /**
+     Swift 2 friendly localization syntax with format arguments, replaces String(format:NSLocalizedString)
+     - Returns: The formatted localized string with arguments.
+     */
+    func localizedFormat(_ arguments: CVarArg...) -> String {
+        return String(format: localized1(), arguments: arguments)
+    }
+    
+    /**
+     Swift 2 friendly plural localization syntax with a format argument
+     
+     - parameter argument: Argument to determine pluralisation
+     
+     - returns: Pluralized localized string.
+     */
+    func localizedPlural(_ argument: CVarArg) -> String {
+        return NSString.localizedStringWithFormat(localized1() as NSString, argument) as String
+    }
+}
+
+
+
+// MARK: Language Setting Functions
+
+open class Localize: NSObject {
+    
+    /**
+     List available languages
+     - Returns: Array of available languages.
+     */
+    open class func availableLanguages(_ excludeBase: Bool = false) -> [String] {
+        var availableLanguages = Bundle.main.localizations
+        // If excludeBase = true, don't include "Base" in available languages
+        if let indexOfBase = availableLanguages.index(of: "Base"), excludeBase == true {
+            availableLanguages.remove(at: indexOfBase)
+        }
+        return availableLanguages
+    }
+    
+    /**
+     Current language
+     - Returns: The current language. String.
+     */
+    open class func currentLanguage() -> String {
+        if let currentLanguage = UserDefaults.standard.object(forKey: "i18n_language") as? String {
+//            print("currentLanguage: \(currentLanguage)")
+            return currentLanguage
+        }
+        return defaultLanguage()
+    }
+    
+    /**
+     Change the current language
+     - Parameter language: Desired language.
+     */
+    open class func setCurrentLanguage(_ language: String) {
+        
+        let selectedLanguage = availableLanguages().contains(language) ? language : defaultLanguage()
+        if (selectedLanguage != currentLanguage()){
+            UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
+            UserDefaults.standard.synchronize()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
+        }
+    }
+    
+    /**
+     Default language
+     - Returns: The app's default language. String.
+     */
+    open class func defaultLanguage() -> String {
+        var defaultLanguage: String = String()
+        guard let preferredLanguage = Bundle.main.preferredLocalizations.first else {
+            return LCLDefaultLanguage
+        }
+        let availableLanguages: [String] = self.availableLanguages()
+        if (availableLanguages.contains(preferredLanguage)) {
+            defaultLanguage = preferredLanguage
+        }
+        else {
+            defaultLanguage = LCLDefaultLanguage
+        }
+        return defaultLanguage
+    }
+    
+    /**
+     Resets the current language to the default
+     */
+    open class func resetCurrentLanguageToDefault() {
+        setCurrentLanguage(self.defaultLanguage())
+    }
+    
+    /**
+     Get the current language's display name for a language.
+     - Parameter language: Desired language.
+     - Returns: The localized string.
+     */
+    open class func displayNameForLanguage(_ language: String) -> String {
+        let locale : Locale = Locale(identifier: currentLanguage())
+        if let displayName = (locale as NSLocale).displayName(forKey: NSLocale.Key.languageCode, value: language) {
+            return displayName
+        }
+        return String()
+    }
+}
+
+
+func localizeString(stringToLocalize:String) -> String
+{
+    // Get the corresponding bundle path.
+    let selectedLanguage = Localize.currentLanguage()
+    let path = Bundle.main.path(forResource: selectedLanguage, ofType: "lproj")
+    
+    // Get the corresponding localized string.
+    let languageBundle = Bundle(path: path!)
+    return languageBundle!.localizedString(forKey: stringToLocalize, value: "", table: nil)
+}
+
+func localizeUI(parentView:UIView)
+{
+    for view:UIView in parentView.subviews
+    {
+        if let potentialButton = view as? UIButton
+        {
+            if let titleString = potentialButton.titleLabel?.text {
+                potentialButton.setTitle(localizeString(stringToLocalize: titleString), for: .normal)
+            }
+        }
+            
+        else if let potentialLabel = view as? UILabel
+        {
+            if potentialLabel.text != nil {
+                potentialLabel.text = localizeString(stringToLocalize: potentialLabel.text!)
+            }
+        }
+        
+        localizeUI(parentView: view)
     }
 }

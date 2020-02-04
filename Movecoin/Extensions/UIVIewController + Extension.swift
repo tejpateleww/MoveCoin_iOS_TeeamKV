@@ -19,6 +19,9 @@ extension UIViewController {
     
     
     func navigationBarSetUp(title: String = "", backroundColor: UIColor = .clear, hidesBackButton: Bool = false) {
+        if L102Language.currentAppleLanguage() == "ar" {
+            UIView.appearance().semanticContentAttribute = .forceLeftToRight
+        }
 
         // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
@@ -45,19 +48,19 @@ extension UIViewController {
     }
     
     func popViewControllerWithFlipAnimation() {
-        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromLeft, animations: {
-            UIView.animate(withDuration: 0.2, animations: {
+//        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromLeft, animations: {
+//            UIView.animate(withDuration: 0.2, animations: {
                 self.navigationController?.popViewController(animated: false)
-            })
-        }, completion: nil)
+//            })
+//        }, completion: nil)
     }
     
     func pushViewControllerWithFlipAnimation(viewController : UIViewController){
-        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromRight, animations: {
-            UIView.animate(withDuration: 0.2, animations: {
+//        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromRight, animations: {
+//            UIView.animate(withDuration: 0.2, animations: {
                 self.navigationController?.pushViewController(viewController, animated: false)
-            })
-        }, completion: nil)
+//            })
+//        }, completion: nil)
     }
     
     // ----------------------------------------------------
