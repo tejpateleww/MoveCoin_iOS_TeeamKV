@@ -106,7 +106,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MJD-Mb-yBz">
                                         <rect key="frame" x="0.0" y="385" width="320" height="155"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXg-Bh-NFf" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXg-Bh-NFf" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="200" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="LuP-2a-IUe"/>
@@ -162,7 +162,7 @@
                                                     <constraint firstItem="Unv-Og-xoR" firstAttribute="top" secondItem="pI7-Pv-xHn" secondAttribute="top" constant="6" id="qN8-lo-WlN"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTT-oI-axB" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTT-oI-axB" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="110" width="200" height="45"/>
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -225,6 +225,7 @@
                         <outlet property="lblTitle" destination="Md8-f0-8uW" id="2eP-aa-79y"/>
                         <outlet property="segmentControlLanguage" destination="Bbv-tU-v35" id="xKF-ez-IF5"/>
                         <outlet property="viewContainer" destination="3vg-jG-5eB" id="4cd-Kl-rgG"/>
+                        <outlet property="viewParent" destination="lsL-sp-I6P" id="UQx-YK-izY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxP-sA-lUL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -551,6 +552,7 @@
                         <outlet property="txtNickname" destination="NyZ-uO-5eQ" id="eiy-VK-MEt"/>
                         <outlet property="txtPassword" destination="qJJ-xX-q7D" id="YXj-in-zqU"/>
                         <outlet property="txtReferral" destination="wWW-bP-g8a" id="DCU-GJ-xkd"/>
+                        <outlet property="viewParent" destination="c67-gV-rsZ" id="qAZ-0Q-2PK"/>
                         <outlet property="viewProfile" destination="xsb-3i-rkO" id="NoV-EA-EOS"/>
                     </connections>
                 </viewController>
@@ -652,6 +654,7 @@
                         <outlet property="btnSendAgian" destination="7Ey-5Y-LRT" id="oM1-Gp-aD3"/>
                         <outlet property="firstPinView" destination="nXi-Xu-lBX" id="QWS-SI-Xff"/>
                         <outlet property="lblDescription" destination="3WQ-i7-sKa" id="3me-3B-MOb"/>
+                        <outlet property="viewParent" destination="rEv-Ma-vsn" id="iG6-R3-ztl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55l-8i-9yZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -752,7 +755,7 @@
                                                                     <segue destination="9Bf-Fd-Wuq" kind="show" id="XSF-Xj-45k"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jg-B2-PZN" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jg-B2-PZN" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="60" y="257.5" width="200" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="200" id="yhI-rz-Fc9"/>
@@ -902,6 +905,7 @@
                         <outlet property="txtEmail" destination="3vE-cE-1ec" id="NDe-PK-8pJ"/>
                         <outlet property="txtPassword" destination="SbW-hY-ecm" id="2F6-o0-NmQ"/>
                         <outlet property="viewAppleLogin" destination="bVl-P1-oeR" id="cKi-ga-z8X"/>
+                        <outlet property="viewParent" destination="oOy-gg-OYb" id="yMP-4C-7yc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNr-9d-HL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -960,7 +964,7 @@
                                             <constraint firstAttribute="trailing" secondItem="KD0-1E-fuO" secondAttribute="trailing" constant="8" id="kak-Uh-R1T"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gq-Sg-gnz" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gq-Sg-gnz" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="60" y="431.5" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="8K4-0d-oiX"/>
@@ -1007,6 +1011,7 @@
                     <connections>
                         <outlet property="lblTitle" destination="zv1-8f-ao0" id="jkN-3P-aSd"/>
                         <outlet property="txtEmail" destination="KD0-1E-fuO" id="cQZ-fo-0u5"/>
+                        <outlet property="viewParent" destination="LEJ-Ei-A1Z" id="BRr-Te-Guy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpE-Lt-ARu" userLabel="First Responder" sceneMemberID="firstResponder"/>

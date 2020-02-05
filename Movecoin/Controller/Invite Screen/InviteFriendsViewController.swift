@@ -15,6 +15,7 @@ class InviteFriendsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblCode: UILabel!
@@ -35,6 +36,7 @@ class InviteFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
+        localizeUI(parentView: self.viewParent)
         viewReferralCode.addDashedBorder()
         lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
     }
@@ -87,7 +89,7 @@ class InviteFriendsViewController: UIViewController {
     //             }
     //        }
             
-            let text = "Check out this app \(kAppName), referral code - " + (lblReferral.text ?? "")
+            let text = "Check out this app ".localized + kAppName + ", referral code - ".localized + (lblReferral.text ?? "")
             let image = UIImage(named: "AppIcon")
             let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
 

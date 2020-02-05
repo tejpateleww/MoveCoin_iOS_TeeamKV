@@ -14,6 +14,7 @@ class ChangePasswordViewController: UIViewController {
     //MARK:- --------- IBOutlets  ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtCurrentPassword: TextFieldFont!
     @IBOutlet weak var txtNewPassword: TextFieldFont!
@@ -25,6 +26,7 @@ class ChangePasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         lblTitle.font = UIFont.semiBold(ofSize: 21)
     }
     
@@ -41,7 +43,7 @@ class ChangePasswordViewController: UIViewController {
     {
         if(model.OldPassword.isBlank)
         {
-            return (false,"Please enter current password")
+            return (false,"Please enter current password".localized)
         }
 //        else if(txtCurrentPassword.text!.count < 6)
 //        {
@@ -49,15 +51,15 @@ class ChangePasswordViewController: UIViewController {
 //        }
         else if(model.NewPassword.isBlank)
         {
-            return (false,"Please enter new password")
+            return (false,"Please enter new password".localized)
         }
         else if(txtNewPassword.text!.count < 6)
         {
-            return (false,"New Password length should be  minimum 6 character")
+            return (false,"New Password length should be  minimum 6 character".localized)
         }
         else if(txtConfirmPassword.text!.isBlank)
         {
-            return (false,"Please enter confirm password")
+            return (false,"Please enter confirm password".localized)
         }
 //        else if(txtConfirmPassword.text!.count < 6)
 //        {
@@ -65,7 +67,7 @@ class ChangePasswordViewController: UIViewController {
 //        }
         else if(txtNewPassword.text! != txtConfirmPassword.text!)
         {
-            return (false,"Confirm password does not match with new password")
+            return (false,"Confirm password does not match with new password".localized)
         }
         return (true,"")
     }

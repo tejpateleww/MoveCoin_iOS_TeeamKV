@@ -15,6 +15,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var webView: WKWebView!
     
     // ----------------------------------------------------
@@ -29,6 +30,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.initialSetup()
         webserviceforPolicyHelpTerm()
     }

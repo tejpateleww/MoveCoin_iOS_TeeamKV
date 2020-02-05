@@ -16,6 +16,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblVw: UITableView!
     @IBOutlet weak var txtView: GrowingTextView!
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
@@ -38,11 +39,12 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         
         txtView.delegate = self
         txtView.minHeight = 35.0
         txtView.maxHeight = 120.0
-        txtView.placeholder = "Message"
+        txtView.placeholder = "Message".localized
         txtView.undoManager?.removeAllActions()
         
         IQKeyboardManager.shared.enableAutoToolbar = false
@@ -222,6 +224,7 @@ extension ChatViewController: UITableViewDataSource {
             cell.lblReadStatus.textColor = UIColor.white
         }
         cell.selectionStyle = .none
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     

@@ -8,13 +8,15 @@
 
 import UIKit
 
-class VerificationViewController: MirroringViewController {
+class VerificationViewController: UIViewController {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var firstPinView: VKPinCodeView!
+    
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var btnSendAgian: UIButton!
     
@@ -34,14 +36,9 @@ class VerificationViewController: MirroringViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setUpPinView()
         self.setupFont()
-        
-        firstPinView.onCodeDidChange = { (pin) in
-            print("onCodeDidChange : ", pin)
-            self.enteredOTP = pin
-        }
+        localizeUI(parentView: self.viewParent)
     }
   
     override func viewDidAppear(_ animated: Bool) {
@@ -66,6 +63,10 @@ class VerificationViewController: MirroringViewController {
         
         firstPinView.setStyle(underline)
         firstPinView.validator = validator(_:)
+        firstPinView.onCodeDidChange = { (pin) in
+            print("onCodeDidChange : ", pin)
+            self.enteredOTP = pin
+        }
     }
     
     func setupFont(){

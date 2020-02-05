@@ -15,6 +15,7 @@ class WalletViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblWallet: UITableView!
     @IBOutlet weak var btnBack: UIButton!
     
@@ -38,6 +39,7 @@ class WalletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -66,6 +68,15 @@ class WalletViewController: UIViewController {
         self.parent?.navigationItem.rightBarButtonItems?.removeAll()
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if Localize.currentLanguage() == Languages.Arabic.rawValue {
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+        }
+    }
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
@@ -131,6 +142,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WalletTableViewCell.className) as! WalletTableViewCell
         cell.selectionStyle = .none
         cell.walletDetail = walletHistory[indexPath.row]
+        localizeUI(parentView: cell.contentView)
         return cell
     }
 }

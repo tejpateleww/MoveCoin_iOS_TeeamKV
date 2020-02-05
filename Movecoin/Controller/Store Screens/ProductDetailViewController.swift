@@ -15,6 +15,7 @@ class ProductDetailViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var viewBottom: UIView!
@@ -49,6 +50,7 @@ class ProductDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp()
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
         guard productID != nil else { return }
@@ -119,18 +121,18 @@ class ProductDetailViewController: UIViewController {
         txtvwDescription.isScrollEnabled = false
         
         lblTitle.text = product.name
-        lblStore.text = "Store : " + product.store
+        lblStore.text = "Store : ".localized + product.store
         
         if product.discount != "0" {
 //             lblTitle.text = product.name + " with \(product.discount!)% Discount"
-            let priceText = "$\(product.price ?? "") $\(product.totalPrice ?? "") inclusive tax"
+            let priceText = "$\(product.price ?? "") $\(product.totalPrice ?? "")" + " inclusive tax".localized
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
             let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(product.price ?? "")")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString1.length))
             self.lblPrice.attributedText = attributeString
         }else {
 //            lblTitle.text = product.name
-            lblPrice.text = "$\(product.price!) inclusive tax"
+            lblPrice.text = "$\(product.price!)" + " inclusive tax".localized
         }
 
         var productPrice = 0
@@ -145,7 +147,7 @@ class ProductDetailViewController: UIViewController {
         
         if productPrice < chargeLimit {
             lblDeliveryCharge.isHidden = false
-            lblDeliveryCharge.text = "Delivery Charge : " + product.deliveryCharge
+            lblDeliveryCharge.text = "Delivery Charge : ".localized + product.deliveryCharge
         } else {
             lblDeliveryCharge.isHidden = true
         }
@@ -154,7 +156,7 @@ class ProductDetailViewController: UIViewController {
             stackView.isHidden = true
             btnBuy.isEnabled = false
             btnBuy.backgroundColor = .lightText
-            btnBuy.setTitle("Out of Stock", for: .normal)
+            btnBuy.setTitle("Out of Stock".localized, for: .normal)
         }else{
              lblCoins.text = product.coins
         }
@@ -188,6 +190,7 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCollectionViewCell.className, for: indexPath) as! ProductDetailCollectionViewCell
         cell.productImage = imgArray[indexPath.section]
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     

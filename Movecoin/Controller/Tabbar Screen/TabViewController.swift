@@ -18,6 +18,7 @@ class TabViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var viewTabbar: UIView!
     
@@ -61,6 +62,7 @@ class TabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupView()
         self.setupFont()
         self.SocketOnMethods()

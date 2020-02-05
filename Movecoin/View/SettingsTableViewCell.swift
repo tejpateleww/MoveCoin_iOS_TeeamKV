@@ -16,7 +16,7 @@ class SettingsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-       lblTitle.font = UIFont.regular(ofSize: 17)
+        lblTitle.font = UIFont.regular(ofSize: 17)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -92,53 +92,63 @@
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKq-Mj-r4j">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                                                 <subviews>
-                                                    <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6p-Qf-1pg">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFr-Yj-ud9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1125" height="589"/>
+                                                        <subviews>
+                                                            <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6p-Qf-1pg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <connections>
+                                                                    <segue destination="R6U-n7-QDg" kind="embed" id="EVy-jE-Dus"/>
+                                                                </connections>
+                                                            </containerView>
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTL-UW-xeZ">
+                                                                <rect key="frame" x="375" y="0.0" width="375" height="589"/>
+                                                                <connections>
+                                                                    <segue destination="XmR-RG-SPi" kind="embed" id="Y9H-xy-GYz"/>
+                                                                </connections>
+                                                            </containerView>
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2J-QJ-F0a">
+                                                                <rect key="frame" x="750" y="0.0" width="375" height="589"/>
+                                                                <connections>
+                                                                    <segue destination="fFB-Ed-6c5" kind="embed" id="3gZ-ZO-ibx"/>
+                                                                </connections>
+                                                            </containerView>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <connections>
-                                                            <segue destination="R6U-n7-QDg" kind="embed" id="EVy-jE-Dus"/>
-                                                        </connections>
-                                                    </containerView>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTL-UW-xeZ">
-                                                        <rect key="frame" x="375" y="0.0" width="375" height="589"/>
-                                                        <connections>
-                                                            <segue destination="XmR-RG-SPi" kind="embed" id="Y9H-xy-GYz"/>
-                                                        </connections>
-                                                    </containerView>
-                                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2J-QJ-F0a">
-                                                        <rect key="frame" x="750" y="0.0" width="375" height="589"/>
-                                                        <connections>
-                                                            <segue destination="fFB-Ed-6c5" kind="embed" id="3gZ-ZO-ibx"/>
-                                                        </connections>
-                                                    </containerView>
+                                                        <constraints>
+                                                            <constraint firstItem="h6p-Qf-1pg" firstAttribute="leading" secondItem="kFr-Yj-ud9" secondAttribute="leading" id="1nS-1f-dqz"/>
+                                                            <constraint firstItem="h6p-Qf-1pg" firstAttribute="top" secondItem="kFr-Yj-ud9" secondAttribute="top" id="3RD-wq-VH0"/>
+                                                            <constraint firstItem="UTL-UW-xeZ" firstAttribute="top" secondItem="h6p-Qf-1pg" secondAttribute="top" id="Mqg-Ag-2hp"/>
+                                                            <constraint firstItem="n2J-QJ-F0a" firstAttribute="width" secondItem="UTL-UW-xeZ" secondAttribute="width" id="NAV-1j-CNj"/>
+                                                            <constraint firstItem="UTL-UW-xeZ" firstAttribute="leading" secondItem="h6p-Qf-1pg" secondAttribute="trailing" id="U93-xI-mgR"/>
+                                                            <constraint firstAttribute="bottom" secondItem="h6p-Qf-1pg" secondAttribute="bottom" id="YIu-PP-m3x"/>
+                                                            <constraint firstAttribute="trailing" secondItem="n2J-QJ-F0a" secondAttribute="trailing" id="Yw0-UQ-ok3"/>
+                                                            <constraint firstItem="n2J-QJ-F0a" firstAttribute="top" secondItem="UTL-UW-xeZ" secondAttribute="top" id="ame-r5-oeU"/>
+                                                            <constraint firstItem="UTL-UW-xeZ" firstAttribute="bottom" secondItem="h6p-Qf-1pg" secondAttribute="bottom" id="dYf-EI-sdo"/>
+                                                            <constraint firstItem="UTL-UW-xeZ" firstAttribute="width" secondItem="h6p-Qf-1pg" secondAttribute="width" id="kdJ-dQ-MIN"/>
+                                                            <constraint firstItem="n2J-QJ-F0a" firstAttribute="leading" secondItem="UTL-UW-xeZ" secondAttribute="trailing" id="nhY-5d-cge"/>
+                                                            <constraint firstItem="n2J-QJ-F0a" firstAttribute="bottom" secondItem="UTL-UW-xeZ" secondAttribute="bottom" id="qhC-jm-6te"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="n2J-QJ-F0a" firstAttribute="height" secondItem="UTL-UW-xeZ" secondAttribute="height" id="4cF-bf-pKO"/>
-                                                    <constraint firstItem="UTL-UW-xeZ" firstAttribute="bottom" secondItem="h6p-Qf-1pg" secondAttribute="bottom" id="90T-GR-6wf"/>
-                                                    <constraint firstItem="UTL-UW-xeZ" firstAttribute="width" secondItem="h6p-Qf-1pg" secondAttribute="width" id="C0T-yG-E7k"/>
-                                                    <constraint firstItem="n2J-QJ-F0a" firstAttribute="width" secondItem="UTL-UW-xeZ" secondAttribute="width" id="H9R-l8-m0b"/>
-                                                    <constraint firstItem="h6p-Qf-1pg" firstAttribute="top" secondItem="PKq-Mj-r4j" secondAttribute="top" id="OJB-vj-BEm"/>
-                                                    <constraint firstItem="h6p-Qf-1pg" firstAttribute="leading" secondItem="PKq-Mj-r4j" secondAttribute="leading" id="QDS-hF-Rw0"/>
-                                                    <constraint firstItem="n2J-QJ-F0a" firstAttribute="leading" secondItem="UTL-UW-xeZ" secondAttribute="trailing" id="aaL-ep-ayX"/>
-                                                    <constraint firstItem="UTL-UW-xeZ" firstAttribute="top" secondItem="h6p-Qf-1pg" secondAttribute="top" id="cSN-Ch-FKa"/>
-                                                    <constraint firstItem="n2J-QJ-F0a" firstAttribute="top" secondItem="UTL-UW-xeZ" secondAttribute="top" id="eNG-rW-uzI"/>
-                                                    <constraint firstItem="n2J-QJ-F0a" firstAttribute="bottom" secondItem="UTL-UW-xeZ" secondAttribute="bottom" id="no5-sR-J8M"/>
-                                                    <constraint firstAttribute="bottom" secondItem="h6p-Qf-1pg" secondAttribute="bottom" id="qvo-ou-phD"/>
-                                                    <constraint firstAttribute="trailing" secondItem="n2J-QJ-F0a" secondAttribute="trailing" id="rMH-55-Dks"/>
-                                                    <constraint firstItem="UTL-UW-xeZ" firstAttribute="leading" secondItem="h6p-Qf-1pg" secondAttribute="trailing" id="tCH-EE-khm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kFr-Yj-ud9" secondAttribute="bottom" id="4Nv-wU-4Z0"/>
+                                                    <constraint firstItem="kFr-Yj-ud9" firstAttribute="leading" secondItem="PKq-Mj-r4j" secondAttribute="leading" id="b7X-Ib-XSV"/>
+                                                    <constraint firstItem="kFr-Yj-ud9" firstAttribute="height" secondItem="PKq-Mj-r4j" secondAttribute="height" id="fLk-LX-iTF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kFr-Yj-ud9" secondAttribute="trailing" id="fiZ-er-hw0"/>
+                                                    <constraint firstItem="kFr-Yj-ud9" firstAttribute="top" secondItem="PKq-Mj-r4j" secondAttribute="top" id="icK-SU-Uv4"/>
                                                 </constraints>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="PKq-Mj-r4j" firstAttribute="top" secondItem="04T-kG-9sS" secondAttribute="top" id="Eay-mz-6oN"/>
-                                            <constraint firstItem="PKq-Mj-r4j" firstAttribute="leading" secondItem="04T-kG-9sS" secondAttribute="leading" id="GpA-UD-1z0"/>
-                                            <constraint firstItem="h6p-Qf-1pg" firstAttribute="width" secondItem="04T-kG-9sS" secondAttribute="width" id="Rf5-Dy-4eh"/>
-                                            <constraint firstAttribute="trailing" secondItem="PKq-Mj-r4j" secondAttribute="trailing" id="Tpm-kj-1cr"/>
-                                            <constraint firstAttribute="bottom" secondItem="PKq-Mj-r4j" secondAttribute="bottom" id="XVe-hI-3tD"/>
-                                            <constraint firstItem="PKq-Mj-r4j" firstAttribute="height" secondItem="04T-kG-9sS" secondAttribute="height" id="pIK-RT-R73"/>
-                                            <constraint firstItem="h6p-Qf-1pg" firstAttribute="height" secondItem="04T-kG-9sS" secondAttribute="height" id="xRf-G3-LFu"/>
+                                            <constraint firstAttribute="bottom" secondItem="PKq-Mj-r4j" secondAttribute="bottom" id="1Ed-f1-ItV"/>
+                                            <constraint firstItem="PKq-Mj-r4j" firstAttribute="width" secondItem="04T-kG-9sS" secondAttribute="width" id="EwL-9p-oBT"/>
+                                            <constraint firstAttribute="trailing" secondItem="PKq-Mj-r4j" secondAttribute="trailing" id="Giv-KO-iiu"/>
+                                            <constraint firstItem="PKq-Mj-r4j" firstAttribute="top" secondItem="04T-kG-9sS" secondAttribute="top" id="Guk-io-0GX"/>
+                                            <constraint firstItem="PKq-Mj-r4j" firstAttribute="leading" secondItem="04T-kG-9sS" secondAttribute="leading" id="Ynm-uZ-jIB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -146,15 +156,17 @@
                                 <constraints>
                                     <constraint firstItem="0cH-bn-tOT" firstAttribute="top" secondItem="FOB-L0-FMX" secondAttribute="topMargin" id="5cE-NG-E3o"/>
                                     <constraint firstAttribute="trailing" secondItem="1jU-cj-WWi" secondAttribute="trailing" id="951-F6-50D"/>
+                                    <constraint firstAttribute="trailing" secondItem="04T-kG-9sS" secondAttribute="trailing" id="BYL-dM-W35"/>
                                     <constraint firstItem="1jU-cj-WWi" firstAttribute="leading" secondItem="FOB-L0-FMX" secondAttribute="leading" id="Cc4-1c-zPB"/>
                                     <constraint firstItem="1jU-cj-WWi" firstAttribute="top" secondItem="FOB-L0-FMX" secondAttribute="top" id="Dn3-uu-mE4"/>
-                                    <constraint firstAttribute="trailing" secondItem="04T-kG-9sS" secondAttribute="trailing" id="Fht-wv-R79"/>
+                                    <constraint firstItem="04T-kG-9sS" firstAttribute="width" secondItem="FOB-L0-FMX" secondAttribute="width" id="DyP-G1-Uwx"/>
+                                    <constraint firstItem="04T-kG-9sS" firstAttribute="leading" secondItem="FOB-L0-FMX" secondAttribute="leading" id="OOA-8w-ykJ"/>
                                     <constraint firstAttribute="trailing" secondItem="0cH-bn-tOT" secondAttribute="trailing" id="QPn-JO-m4i"/>
-                                    <constraint firstItem="04T-kG-9sS" firstAttribute="top" secondItem="0cH-bn-tOT" secondAttribute="bottom" constant="10" id="SeQ-4W-kj3"/>
+                                    <constraint firstItem="h6p-Qf-1pg" firstAttribute="width" secondItem="FOB-L0-FMX" secondAttribute="width" id="VX0-Cw-XXF"/>
                                     <constraint firstItem="0cH-bn-tOT" firstAttribute="leading" secondItem="FOB-L0-FMX" secondAttribute="leading" id="etl-x7-VO9"/>
-                                    <constraint firstItem="04T-kG-9sS" firstAttribute="leading" secondItem="FOB-L0-FMX" secondAttribute="leading" id="i4S-ep-4mR"/>
-                                    <constraint firstAttribute="bottom" secondItem="04T-kG-9sS" secondAttribute="bottom" id="iGm-kr-pMw"/>
+                                    <constraint firstItem="04T-kG-9sS" firstAttribute="top" secondItem="0cH-bn-tOT" secondAttribute="bottom" constant="10" id="f02-Ev-9tw"/>
                                     <constraint firstAttribute="bottom" secondItem="1jU-cj-WWi" secondAttribute="bottom" id="sch-A9-KJE"/>
+                                    <constraint firstAttribute="bottom" secondItem="04T-kG-9sS" secondAttribute="bottom" id="zwJ-31-Wcr"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -172,6 +184,8 @@
                         <outlet property="btnFriends" destination="4NT-Vt-KIr" id="LO3-pO-mlF"/>
                         <outlet property="btnInvite" destination="Cc8-jv-o5N" id="9Wh-U8-YQ9"/>
                         <outlet property="scrollView" destination="PKq-Mj-r4j" id="GqI-cY-thQ"/>
+                        <outlet property="subview" destination="kFr-Yj-ud9" id="1Pt-iG-1mb"/>
+                        <outlet property="viewParent" destination="dHQ-fP-lq3" id="NvY-45-RGi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULV-4q-WbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -347,6 +361,7 @@
                     <connections>
                         <outlet property="lblTotalSteps" destination="Few-Qk-8p1" id="RgQ-bb-gMm"/>
                         <outlet property="tblTotalSteps" destination="V36-nS-0R9" id="wJV-bB-8JZ"/>
+                        <outlet property="viewParent" destination="bp5-iD-Lx4" id="bHe-OB-0cf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSA-a9-qzp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -590,6 +605,7 @@
                         <outlet property="lblNoDataFound" destination="ldR-Yf-DeQ" id="Jjb-WN-sEp"/>
                         <outlet property="tblFriends" destination="udL-Ex-3MD" id="c19-wp-Tx8"/>
                         <outlet property="txtSearch" destination="DrP-Oh-xeM" id="TeG-09-Ss2"/>
+                        <outlet property="viewParent" destination="F1V-ca-82x" id="9B2-op-HB7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbd-YI-acN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -969,6 +985,7 @@
                         <outlet property="lblMember" destination="aYW-7p-aHz" id="QPY-B9-B4H"/>
                         <outlet property="lblTodaysStepCount" destination="ubi-yi-n9w" id="cCN-Sn-Lj4"/>
                         <outlet property="lblTotalSteps" destination="0d2-lz-xJ9" id="iAP-32-sQa"/>
+                        <outlet property="viewParent" destination="8bC-Xf-vdC" id="7JV-Lr-oJC"/>
                         <outletCollection property="lblTitles" destination="eJn-nV-Q2A" collectionClass="NSMutableArray" id="GhV-3f-MZI"/>
                         <outletCollection property="lblTitles" destination="G7e-vQ-FLg" collectionClass="NSMutableArray" id="rzy-bf-DRa"/>
                         <outletCollection property="lblTitles" destination="p2e-po-afD" collectionClass="NSMutableArray" id="0Jn-Mx-OIs"/>
@@ -1085,6 +1102,7 @@
                         <outlet property="lblSteps" destination="676-gN-C46" id="7bJ-0S-unX"/>
                         <outlet property="lblTitle" destination="U8j-Rk-Sze" id="xZc-jR-X8g"/>
                         <outlet property="mapView" destination="4K7-x5-Guv" id="ei3-s8-pYH"/>
+                        <outlet property="viewParent" destination="3h1-Kd-A2O" id="BCD-ys-fE9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3o4-pg-iJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1468,6 +1486,7 @@
                         <outlet property="lblStore" destination="7B5-SE-iD7" id="03J-W5-ayY"/>
                         <outlet property="lblWallet" destination="SIR-dc-1Sn" id="ZRl-eb-taD"/>
                         <outlet property="viewContainer" destination="Kpu-st-h2g" id="cED-2z-UiE"/>
+                        <outlet property="viewParent" destination="bqc-QL-5ad" id="E2F-7P-utJ"/>
                         <outlet property="viewTabbar" destination="JaN-c4-OA8" id="xTY-mW-hTw"/>
                         <outletCollection property="viewGradients" destination="ZNs-Hm-yqk" collectionClass="NSMutableArray" id="pMz-Ug-qmM"/>
                         <outletCollection property="viewGradients" destination="zxu-Xq-FLo" collectionClass="NSMutableArray" id="HGC-ZB-b1P"/>
@@ -1569,6 +1588,7 @@
                     <connections>
                         <outlet property="lblDescription" destination="Dam-sY-wnR" id="zmR-Zt-BNo"/>
                         <outlet property="lblTitle" destination="WrI-be-bmm" id="as5-0o-2XD"/>
+                        <outlet property="viewParent" destination="XLO-qY-udB" id="LGb-7G-kAt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kC-QV-tZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1673,6 +1693,7 @@
                     <connections>
                         <outlet property="lblDescription" destination="vGa-MF-B0c" id="rS3-LP-zdU"/>
                         <outlet property="lblTitle" destination="tWl-Ra-KT9" id="JQo-sx-tpB"/>
+                        <outlet property="viewParent" destination="mkk-lQ-93r" id="Nxs-Nx-6bK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGY-Sv-Unf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1838,6 +1859,7 @@
                         <outlet property="txtCardHolder" destination="3FV-L3-WyI" id="WIH-aD-vJu"/>
                         <outlet property="txtCardNumber" destination="Lc7-5L-AVC" id="q15-Or-4Qa"/>
                         <outlet property="txtExpDate" destination="760-84-4KP" id="2w2-ew-Gm4"/>
+                        <outlet property="viewParent" destination="i6W-NE-xhC" id="IrX-7o-hh6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCI-ca-x6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2020,6 +2042,7 @@
                     </view>
                     <connections>
                         <outlet property="tblPurchaseHistory" destination="4Hd-vm-JQg" id="Vd5-yF-yhY"/>
+                        <outlet property="viewParent" destination="WHE-om-BIL" id="Y8I-eC-LFB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MET-Sg-WPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2052,6 +2075,7 @@
                         <viewLayoutGuide key="safeArea" id="KvU-AJ-Gla"/>
                     </view>
                     <connections>
+                        <outlet property="viewParent" destination="eN6-At-eiY" id="6wW-Ad-jqf"/>
                         <outlet property="webView" destination="BYL-Oa-yFA" id="kkR-6k-E0Y"/>
                     </connections>
                 </viewController>
@@ -2304,6 +2328,7 @@
                         <outlet property="lblSeller" destination="TKB-hh-59i" id="89a-Ht-biY"/>
                         <outlet property="tblStoreOffers" destination="KCK-jO-gNc" id="0UH-FV-7cv"/>
                         <outlet property="viewFooter" destination="KTt-HX-b3I" id="F7R-hn-cB9"/>
+                        <outlet property="viewParent" destination="yLP-gW-Pnx" id="4o6-Ak-d83"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kX-e7-0eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2632,6 +2657,7 @@
                         <outlet property="stackView" destination="9Cg-vW-sms" id="YTs-j6-2wY"/>
                         <outlet property="txtvwDescription" destination="x8l-ey-0QH" id="rDA-ZT-3Ro"/>
                         <outlet property="viewBottom" destination="MnZ-CK-4rS" id="eCS-uT-aav"/>
+                        <outlet property="viewParent" destination="lU7-9J-Hgt" id="Bla-Lq-dUH"/>
                         <outlet property="viewRating" destination="8q8-fB-Rts" id="68w-Zd-rrr"/>
                         <outlet property="viewShadow" destination="yuu-W5-EyA" id="q1p-hl-qJz"/>
                     </connections>
@@ -2700,6 +2726,7 @@
                     </view>
                     <connections>
                         <outlet property="btnClose" destination="o9P-q5-cqi" id="NhO-iR-KJp"/>
+                        <outlet property="viewParent" destination="Hnz-mp-LnI" id="lod-2s-viF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NAN-4b-WMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3383,6 +3410,7 @@
                         <outlet property="txtState" destination="lAf-OM-mmZ" id="zeS-V7-Tw4"/>
                         <outlet property="txtZipCode" destination="5DG-th-ID1" id="O1w-qa-isZ"/>
                         <outlet property="viewCardSelect" destination="ghs-nm-QAU" id="7IW-0Q-8Zg"/>
+                        <outlet property="viewParent" destination="daT-jN-ZIq" id="Top-a4-Aow"/>
                         <outlet property="viewPayableAmount" destination="Adk-f3-gqd" id="Kak-wR-oqT"/>
                         <outletCollection property="lblPrice" destination="NaU-pZ-Xhy" collectionClass="NSMutableArray" id="EO0-z1-And"/>
                         <outletCollection property="lblPrice" destination="oeh-v5-jbw" collectionClass="NSMutableArray" id="YR3-7r-UHT"/>
@@ -3539,7 +3567,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUk-hk-h9c">
                                                         <rect key="frame" x="0.0" y="0.0" width="160" height="45"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
-                                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-6" maxY="0.0"/>
+                                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="Spend Coins" image="spend-coin"/>
                                                         <userDefinedRuntimeAttributes>
@@ -3629,6 +3657,7 @@
                         <outlet property="btnTransfer" destination="8dD-Zb-LX0" id="6A6-ZC-3Ip"/>
                         <outlet property="lblTitle" destination="2aJ-VB-sFQ" id="mX8-KR-Fsw"/>
                         <outlet property="tblWallet" destination="CUm-pJ-gCV" id="pLc-fO-gd1"/>
+                        <outlet property="viewParent" destination="Q4f-Xd-ZKj" id="N0B-Ki-q3S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bF0-QY-Ngi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3800,6 +3829,7 @@
                         <outlet property="lblNoDataFound" destination="AMQ-LP-pwt" id="veJ-qH-2Kd"/>
                         <outlet property="lblTitle" destination="zTd-oo-lEc" id="RGu-Q0-9xL"/>
                         <outlet property="tblStatistics" destination="jhO-I6-1IO" id="QhS-UR-ci1"/>
+                        <outlet property="viewParent" destination="7HL-pk-WHJ" id="vf6-gc-cDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LUY-op-K6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4102,6 +4132,7 @@
                         <outlet property="lblTotalSteps" destination="igp-Wc-rU1" id="4Sh-Rk-WcA"/>
                         <outlet property="segmentedControl" destination="2Xh-k2-uvD" id="tkj-gg-UOp"/>
                         <outlet property="viewBarDetails" destination="LDa-MA-VPl" id="cpt-Pm-VaT"/>
+                        <outlet property="viewParent" destination="qCX-aQ-syS" id="PkN-ph-d31"/>
                         <outlet property="viewProfile" destination="fCw-CZ-svf" id="rwH-5O-Hp1"/>
                         <outletCollection property="lblTitle" destination="gAG-35-ocl" collectionClass="NSMutableArray" id="NXU-Ea-1WY"/>
                     </connections>
@@ -4271,6 +4302,7 @@
                         <outlet property="btnLogout" destination="y2E-mn-aBG" id="ah7-5S-yLV"/>
                         <outlet property="lblVersion" destination="3EB-PJ-FU2" id="MOS-zD-ElC"/>
                         <outlet property="tblSettings" destination="EtG-5A-m3p" id="ZN2-Nl-Kqj"/>
+                        <outlet property="viewParent" destination="D6K-FZ-2aQ" id="dzA-cl-pMi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ajq-5a-I95" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4385,6 +4417,7 @@
                         <outlet property="lblReferral" destination="YEc-7D-7t7" id="4XX-BD-Fc9"/>
                         <outlet property="lblTitle" destination="aHR-1z-J9Z" id="ZLp-Nh-Q4T"/>
                         <outlet property="viewBoxAnimation" destination="d3e-qc-dFo" id="iVS-KG-LlW"/>
+                        <outlet property="viewParent" destination="J5F-Z7-Lnk" id="nwB-bN-4II"/>
                         <outlet property="viewReferralCode" destination="hRv-oZ-lKe" id="oe0-lP-D78"/>
                     </connections>
                 </viewController>
@@ -4407,10 +4440,10 @@
                                         <rect key="frame" x="15" y="0.0" width="345" height="46"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="APo-IR-UtZ">
-                                                <rect key="frame" x="15" y="6" width="32" height="34"/>
+                                                <rect key="frame" x="15" y="14.5" width="16" height="17"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJz-mg-w4j">
-                                                <rect key="frame" x="55" y="8" width="282" height="30"/>
+                                                <rect key="frame" x="39" y="8" width="298" height="30"/>
                                                 <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -4485,7 +4518,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="obL-Po-mUS">
                                                     <rect key="frame" x="70" y="-1" width="141" height="55"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muhammad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcg-c8-wNy">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcg-c8-wNy">
                                                             <rect key="frame" x="0.0" y="0.0" width="141" height="23"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="23" id="lcW-lL-4v2"/>
@@ -4494,7 +4527,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnl-kS-TEu">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnl-kS-TEu">
                                                             <rect key="frame" x="0.0" y="23" width="141" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="gMO-Cr-K1g"/>
@@ -4503,7 +4536,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+971 6584 69584" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDs-NQ-JpU">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oDs-NQ-JpU">
                                                             <rect key="frame" x="0.0" y="38" width="141" height="17"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="TnN-Nl-SSV"/>
@@ -4596,6 +4629,7 @@
                     <connections>
                         <outlet property="tblFriends" destination="cv8-ta-oYp" id="jMo-Ur-pDP"/>
                         <outlet property="txtSearch" destination="CJz-mg-w4j" id="uxU-zj-S4l"/>
+                        <outlet property="viewParent" destination="Fd9-bj-0cO" id="XhP-qj-Rtr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYP-dr-gff" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4655,6 +4689,7 @@
                     </view>
                     <connections>
                         <outlet property="lblDescription" destination="EmS-cJ-gmY" id="3nx-pK-Udm"/>
+                        <outlet property="viewParent" destination="ORB-tW-w8j" id="jSF-kR-qoo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7l-C6-d58" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4855,6 +4890,7 @@
                     <connections>
                         <outlet property="lblNoDataFound" destination="fDF-BQ-qXZ" id="8RD-IG-7vt"/>
                         <outlet property="tblChatList" destination="E5P-Te-m6j" id="d4r-hl-qrg"/>
+                        <outlet property="viewParent" destination="Yw9-ti-ueJ" id="jGr-L3-PIl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lik-eJ-aTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4976,6 +5012,7 @@
                     </view>
                     <connections>
                         <outlet property="tblPrivacy" destination="1JJ-E8-dh8" id="URS-we-rwS"/>
+                        <outlet property="viewParent" destination="Rxe-5r-L5e" id="ZrR-Lz-oKg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H77-iB-EV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5153,6 +5190,7 @@
                         <outlet property="txtConfirmPassword" destination="X13-jz-S8v" id="TXU-f0-aeP"/>
                         <outlet property="txtCurrentPassword" destination="g4a-1m-e0o" id="fgc-Ki-Kkn"/>
                         <outlet property="txtNewPassword" destination="CWB-b3-gKk" id="dHO-ny-8Ub"/>
+                        <outlet property="viewParent" destination="6fT-nV-8ox" id="2Ku-7o-Z6z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGs-cR-Rlj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5388,6 +5426,7 @@
                         <outlet property="txtProductType" destination="xEE-PT-G93" id="dL7-4w-8G8"/>
                         <outlet property="txtShopName" destination="ut4-Ru-8qF" id="tZ5-VH-wOd"/>
                         <outlet property="txtShopPlace" destination="AO0-el-Azs" id="HcS-ub-OSV"/>
+                        <outlet property="viewParent" destination="XOV-L8-3wA" id="ron-Lf-oMK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WiS-ma-SV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5737,6 +5776,7 @@
                         <outlet property="lblTransfer" destination="9LG-gj-TWM" id="iMM-ST-hw9"/>
                         <outlet property="stackButtons" destination="eWY-Ky-Cl9" id="xuK-RG-NTf"/>
                         <outlet property="stackInfo" destination="Pe7-KM-lOE" id="ChS-nl-p8j"/>
+                        <outlet property="viewParent" destination="YxT-Uw-eIJ" id="yZV-MT-GyC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64G-cx-WLO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5956,6 +5996,7 @@
                         <outlet property="txtMobile" destination="fXi-I4-7zb" id="7qo-3B-Obh"/>
                         <outlet property="txtNickName" destination="9N6-Ql-K2O" id="HLH-Kd-uGi"/>
                         <outlet property="txtWeight" destination="sWx-0C-Gke" id="F0i-iA-f9K"/>
+                        <outlet property="viewParent" destination="Qbi-i6-85I" id="Vqq-hz-8TK"/>
                         <outlet property="viewProfile" destination="GzC-2F-SsZ" id="hhf-lC-fAY"/>
                     </connections>
                 </viewController>
@@ -6136,6 +6177,7 @@
                         <outlet property="lblName" destination="2CS-gj-Ncy" id="ypj-sP-Ucs"/>
                         <outlet property="txtAmount" destination="8OO-gV-hxP" id="kuK-IG-iIX"/>
                         <outlet property="txtMessage" destination="PGy-4W-fMp" id="vLq-rf-3OS"/>
+                        <outlet property="viewParent" destination="AtH-BE-azh" id="zjb-UN-3jS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3Y-2h-9iE" userLabel="First Responder" sceneMemberID="firstResponder"/>

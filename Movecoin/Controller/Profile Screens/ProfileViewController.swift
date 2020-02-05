@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var segmentedControl: TTSegmentedControl!
     @IBOutlet weak var btnMyFriends: UIButton!
     @IBOutlet weak var imgProfilePicture: UIImageView!
@@ -58,6 +59,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
         setupSegmentedControl()
@@ -133,7 +135,7 @@ class ProfileViewController: UIViewController {
     
     func setupProfileData(){
         if let since = UtilityClass.changeDateFormateFrom(dateString: SingletonClass.SharedInstance.userData?.createdDate ?? "", fromFormat: DateFomateKeys.api, withFormat: "MMM dd, yyyy") {
-            lblMemberSince.text = "Member since \(since)"
+            lblMemberSince.text = "Member since ".localized + since
         }
         if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {
             imgProfilePicture.kf.indicatorType = .activity
@@ -141,7 +143,7 @@ class ProfileViewController: UIViewController {
         }else {
             imgProfilePicture.image = UIImage(named: "m-logo")
         }
-        btnMyFriends.setTitle("My Friends (\(profileModel?.data.friends ?? "0"))", for: .normal)
+        btnMyFriends.setTitle("My Friends ".localized + "(\(profileModel?.data.friends ?? "0"))", for: .normal)
         
         lblTotalMoveCoins.text = profileModel?.data.totalCoins
         lblTotalSteps.text = profileModel?.data.totalStepsConverted
@@ -170,7 +172,7 @@ class ProfileViewController: UIViewController {
     
     func setupSegmentedControl(){
         segmentedControl.allowChangeThumbWidth = false
-        segmentedControl.itemTitles = ["Weekly","Monthly","Yearly"]
+        segmentedControl.itemTitles = ["Weekly".localized, "Monthly".localized ,"Yearly".localized]
         segmentedControl.selectedTextFont = FontBook.Bold.of(size: 16)
         segmentedControl.defaultTextFont =  FontBook.Bold.of(size: 16)
         segmentedControl.layer.cornerRadius = segmentedControl.frame.height / 2
@@ -185,7 +187,7 @@ class ProfileViewController: UIViewController {
         switch type {
             
         case .Weekly:
-            self.lblAverage.text = "Average per week"
+            self.lblAverage.text = "Average per week".localized
             self.lblAverageSteps.text = self.profileModel?.data.avarageWeekStepsCount
             self.dataEntries.removeAll()
             
@@ -239,7 +241,7 @@ class ProfileViewController: UIViewController {
              */
             
         case .Monthly:
-            self.lblAverage.text = "Average per month"
+            self.lblAverage.text = "Average per month".localized
             self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
             self.dataEntries.removeAll()
             
@@ -319,7 +321,7 @@ class ProfileViewController: UIViewController {
              */
         case .Yearly:
             
-            self.lblAverage.text = "Average per year"
+            self.lblAverage.text = "Average per year".localized
             self.lblAverageSteps.text = self.profileModel?.data.avarageYearlyStepsCount
             self.dataEntries.removeAll()
             
@@ -443,7 +445,7 @@ class ProfileViewController: UIViewController {
     
     func healthKitDataWeekSetup() {
         
-        self.lblAverage.text = "Average per week"
+        self.lblAverage.text = "Average per week".localized
         self.lblAverageSteps.text = self.profileModel?.data.avarageWeekStepsCount
         self.dataEntries.removeAll()
         
@@ -474,7 +476,7 @@ class ProfileViewController: UIViewController {
     
     func healthKitDataMonthSetup() {
         
-        self.lblAverage.text = "Average per month"
+        self.lblAverage.text = "Average per month".localized
         self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
         self.dataEntries.removeAll()
         
@@ -521,7 +523,7 @@ class ProfileViewController: UIViewController {
     
     func healthKitDataYearSetup() {
         
-        self.lblAverage.text = "Average per year"
+        self.lblAverage.text = "Average per year".localized
         self.lblAverageSteps.text = self.profileModel?.data.avarageYearlyStepsCount
         self.dataEntries.removeAll()
         

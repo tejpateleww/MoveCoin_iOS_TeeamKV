@@ -16,4 +16,6 @@ class LoginModel : RequestModel {
     var Longitude : String = ""
     var DeviceToken : String = ""
     var DeviceType : String = ""
+    var language : Int = 0
+    
 }

@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var lblSteps: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
@@ -49,6 +50,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp(hidesBackButton: true)
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
     }

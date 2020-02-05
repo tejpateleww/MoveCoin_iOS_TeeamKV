@@ -12,6 +12,10 @@ import CoreMotion
 
 extension UIViewController {
     
+    static var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
    
     // ------------------------------------------------------------
     //MARK:- --------- NavigationBar & StatusBar Methods ---------
@@ -19,9 +23,6 @@ extension UIViewController {
     
     
     func navigationBarSetUp(title: String = "", backroundColor: UIColor = .clear, hidesBackButton: Bool = false) {
-        if L102Language.currentAppleLanguage() == "ar" {
-            UIView.appearance().semanticContentAttribute = .forceLeftToRight
-        }
 
         // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
@@ -30,13 +31,15 @@ extension UIViewController {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                  NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
                            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-                           self.navigationController?.navigationBar.topItem?.title = title
+        self.navigationController?.navigationBar.topItem?.title = title.localized
             
         // Background
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.backgroundColor = backroundColor
+        
+        self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
 
 //        statusBarSetUp(backColor: .clear)
     }
@@ -48,19 +51,19 @@ extension UIViewController {
     }
     
     func popViewControllerWithFlipAnimation() {
-//        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromLeft, animations: {
-//            UIView.animate(withDuration: 0.2, animations: {
+        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromLeft, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.navigationController?.popViewController(animated: false)
-//            })
-//        }, completion: nil)
+            })
+        }, completion: nil)
     }
     
     func pushViewControllerWithFlipAnimation(viewController : UIViewController){
-//        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromRight, animations: {
-//            UIView.animate(withDuration: 0.2, animations: {
+        UIView.transition(with: (self.navigationController?.view)!, duration: 1.0, options: .transitionFlipFromRight, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.navigationController?.pushViewController(viewController, animated: false)
-//            })
-//        }, completion: nil)
+            })
+        }, completion: nil)
     }
     
     // ----------------------------------------------------

@@ -14,6 +14,7 @@ class AccountPrivacyViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblPrivacy: UITableView!
     
     // ----------------------------------------------------
@@ -27,6 +28,7 @@ class AccountPrivacyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         setUpView()
     }
     
@@ -72,6 +74,7 @@ extension AccountPrivacyViewController : UITableViewDelegate, UITableViewDataSou
            cell.switchToggle.isOn = privacyStatus == "0" ? false : true
        }
          cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+        localizeUI(parentView: cell.contentView)
         return cell
     }
 }

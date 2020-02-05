@@ -54,7 +54,7 @@ class FriendTableViewCell: UITableViewCell {
         
         switch listType {
         case .TransferCoins:
-            btnOutlet.setTitle("Send", for: .normal)
+            btnOutlet.setTitle("Send".localized, for: .normal)
             btnNext.isHidden = true
             break
         case .NewChat:
@@ -62,7 +62,7 @@ class FriendTableViewCell: UITableViewCell {
             btnNext.isHidden = false
             break
         default:
-            btnOutlet.setTitle("Unfriend", for: .normal)
+            btnOutlet.setTitle("Unfriend".localized, for: .normal)
             btnNext.isHidden = true
             break
         }

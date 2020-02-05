@@ -54,16 +54,16 @@ class UtilityClass : NSObject {
     // ----------------------------------------------------
     
     class func showAlert(Message: String) {
-        let alertController = UIAlertController(title: "", message: Message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: "", message: Message.localized, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK".localized, style: .cancel, handler: nil)
         alertController.addAction(alertAction)
         AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
     class func showAlertWithCompletion(title:String?, Message:String, ButtonTitle:String, Completion:@escaping (() -> ())) {
         
-        let alertController = UIAlertController(title: title , message:Message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: ButtonTitle, style: .default) { (UIAlertAction) in
+        let alertController = UIAlertController(title: title?.localized , message:Message.localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle.localized, style: .default) { (UIAlertAction) in
             Completion()
         }
         alertController.addAction(OKAction)
@@ -72,11 +72,11 @@ class UtilityClass : NSObject {
     
     class func showAlertWithTwoButtonCompletion(title:String, Message:String,ButtonTitle1:String,ButtonTitle2:String, Completion:@escaping ((Int) -> ())) {
         
-        let alertController = UIAlertController(title: title , message:Message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: ButtonTitle1, style: .default) { (UIAlertAction) in
+        let alertController = UIAlertController(title: title.localized , message:Message.localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle1.localized, style: .default) { (UIAlertAction) in
             Completion(0)
         }
-        let CancelAction = UIAlertAction(title: ButtonTitle2, style: .default) { (UIAlertAction) in
+        let CancelAction = UIAlertAction(title: ButtonTitle2.localized, style: .default) { (UIAlertAction) in
             Completion(1)
         }
         alertController.addAction(OKAction)
@@ -139,9 +139,9 @@ class UtilityClass : NSObject {
     
     class func alertForLocation(currentVC:UIViewController){
         
-        let alertController = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app", preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+        let alertController = UIAlertController(title: "Location Services Disabled".localized, message: "Please enable location services for this app".localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings".localized, style: .default) { (_) -> Void in
             
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return

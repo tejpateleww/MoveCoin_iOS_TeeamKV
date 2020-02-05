@@ -14,6 +14,7 @@ class BecomeSellerViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtBusinessName: TextFieldFont!
     @IBOutlet weak var txtShopName: TextFieldFont!
@@ -36,7 +37,8 @@ class BecomeSellerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        self.setupView()
+        localizeUI(parentView: self.viewParent)
     }
     
     override func viewDidAppear(_ animated: Bool) {

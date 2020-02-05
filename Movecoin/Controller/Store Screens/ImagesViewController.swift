@@ -11,13 +11,15 @@ import UIKit
 
 class ImagesViewController: UIViewController, PagingScrollViewDelegate, PagingScrollViewDataSource {
     
-     @IBOutlet weak var btnClose: UIButton!
+    @IBOutlet var viewParent: UIView!
+    @IBOutlet weak var btnClose: UIButton!
     
     private let pagingControl:PagingScrollView = PagingScrollView()
     var imageArray : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         
         pagingControl.frame = self.view.bounds
         pagingControl.delegate   = self

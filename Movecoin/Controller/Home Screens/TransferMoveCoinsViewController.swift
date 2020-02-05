@@ -14,6 +14,7 @@ class TransferMoveCoinsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var txtAmount: UITextField!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var lbl1: UILabel!
@@ -33,6 +34,7 @@ class TransferMoveCoinsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
         txtAmount.delegate = self
         if let name = receiverName {

@@ -18,6 +18,7 @@ class AlertViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
@@ -36,6 +37,7 @@ class AlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBarSetUp(hidesBackButton: true)
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
     }
     

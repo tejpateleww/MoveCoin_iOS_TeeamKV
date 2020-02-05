@@ -26,6 +26,7 @@ class FindFriendsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblFriends: UITableView!
     @IBOutlet weak var txtSearch: UITextField!
     
@@ -49,7 +50,8 @@ class FindFriendsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
+        self.setUpView()
+        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,10 +120,10 @@ class FindFriendsViewController: UIViewController {
     
     @objc func btnAcceptTapped(_ sender: UIButton){
         
-        if (sender.titleLabel?.text == "Accept") {
+        if (sender.titleLabel?.text == "Accept".localized) {
             print("Accept")
             if let data = tableData.first?.Rows[sender.tag] as? Request {
-                webserviceForAcceptReject(requestID: data.iD, action: sender.titleLabel!.text!)
+                webserviceForAcceptReject(requestID: data.iD, action: "Accept")
             }
         }
     }
@@ -187,7 +189,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
 //        let sectionData = tableData[section]
 //        return sectionData.SectionTitle
         let sectionData = isTyping ? searchArray[section] : tableData[section]
-        return sectionData.SectionTitle
+        return sectionData.SectionTitle.localized
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -225,6 +227,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         default:
             break
         }
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -245,7 +248,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
            composeVC.messageComposeDelegate = self
            guard let number = cell.notRegisteredFriend?.number else { return }
            composeVC.recipients = [number]
-           composeVC.body = "Check out this app \(kAppName), referral code - " + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
+            composeVC.body = "Check out this app ".localized + kAppName + ", referral code - ".localized + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
            // Present the view controller modally.
            if MFMessageComposeViewController.canSendText() {
                self.present(composeVC, animated: true, completion: nil)

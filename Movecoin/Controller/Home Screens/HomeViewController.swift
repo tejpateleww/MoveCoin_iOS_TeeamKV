@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgLogo: UIImageView!
     
     @IBOutlet var lblTitles: [UILabel]!
@@ -52,6 +53,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
         healthKitData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

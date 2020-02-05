@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ForgotPasswordViewController: MirroringViewController {
+class ForgotPasswordViewController: UIViewController {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
     
@@ -23,12 +24,13 @@ class ForgotPasswordViewController: MirroringViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         navigationBarSetUp()
+        navigationBarSetUp()
+        localizeUI(parentView: self.viewParent)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-       
+        
     }
     
     // ----------------------------------------------------
@@ -72,11 +74,11 @@ extension ForgotPasswordViewController {
             
             if status{
                 UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
-                   self.navigationController?.popViewController(animated: true)
+                    self.navigationController?.popViewController(animated: true)
                 })
             }
             else{
-               UtilityClass.showAlertOfAPIResponse(param: res)
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }

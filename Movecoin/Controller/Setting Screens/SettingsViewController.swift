@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblSettings: UITableView!
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lblVersion: UILabel!
@@ -30,6 +31,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -48,6 +50,8 @@ class SettingsViewController: UIViewController {
         tblSettings.delegate = self
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        lblVersion.text = "Version - ".localized + kAPPVesion
         
  /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
             switch setttings.authorizationStatus{
@@ -86,11 +90,11 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnLogoutTapped(_ sender: Any) {
-        let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?", preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
+        let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?".localized, preferredStyle: .alert)
+        let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
             self.webserviceForLogout()
         }
-        let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
+        let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
             self.dismiss(animated: true, completion:nil)
         }
         alert.addAction(btnOk)
@@ -131,6 +135,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 cell.switchToggle.isOn = notificationStatus == "0" ? false : true
             }
         }
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     

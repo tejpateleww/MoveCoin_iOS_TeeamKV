@@ -14,6 +14,7 @@ class PermissionAlertViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     
@@ -29,8 +30,9 @@ class PermissionAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialSetup()
         self.navigationBarSetUp(hidesBackButton: true)
+        localizeUI(parentView: self.viewParent)
+        self.initialSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {

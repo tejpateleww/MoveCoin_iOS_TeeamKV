@@ -67,7 +67,7 @@
 // Map Screen
 "My Steps" = "خطواتي";
 "Last seen " = "آخر ظهور ";
-"Member Since " = "عضو منذ";
+"Member since " = "عضو منذ ";
 "Chat" = "محادثة";
 "Today" = "اليوم";
 "Transfer" = "تحويل";
@@ -197,7 +197,7 @@
 "Privacy Policy" = "سياسة الخصوصية";
 "Language" = "اللغة";
 "Rate this app" = "التقييم";
-"Version" = "الإصدار";
+"Version - " = "الإصدار - ";
 "Help" = "مساعدة";
 
 
@@ -273,9 +273,9 @@
 ", referral code - " = ", كود الدعوة - ";
 "Please select product type" = "الرجاء اختيار نوع المنتج";
 "Please enter card details" = "الرجاء إدخال معلومات البطاقة";
-"Your current balance is too low to purchase " = "رصيدك الحالي لا يكفي للشراء";
-"% off " = "نسبة الخصم";
-". Don't want to wait? invite Friends and Family to earn faster!" = "لا تريد الانتظار؟ قم بدعوة الأصدقاء والعائلة للحصول على العملات";
+"Your current balance is too low to purchase " = " رصيدك الحالي لا يكفي للشراء";
+" % off " = " نسبة الخصم ";
+". Don't want to wait? invite Friends and Family to earn faster!" = " لا تريد الانتظار؟ قم بدعوة الأصدقاء والعائلة للحصول على العملات ";
 "Insufficient Balance" = "رصيد غير كافٍ";
 "You need to spend atleast " = "يجب أن تصرف على الأقل ";
 "You can not spend more than " = "نلا يمكنك صرف أكثر من ";

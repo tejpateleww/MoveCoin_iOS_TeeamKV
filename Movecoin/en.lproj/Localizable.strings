@@ -68,7 +68,7 @@
 // Map Screen
 "My Steps" = "My Steps";
 "Last seen " = "Last seen ";
-"Member Since " = "Member Since ";
+"Member since " = "Member since ";
 "Chat" = "Chat";
 "Today" = "Today";
 "Transfer" = "Transfer";
@@ -198,7 +198,7 @@
 "Privacy Policy" = "Privacy Policy";
 "Language" = "Language";
 "Rate this app" = "Rate this app";
-"Version" = "Version";
+"Version - " = "Version - ";
 "Help" = "Help";
 
 

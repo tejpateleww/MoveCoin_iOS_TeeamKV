@@ -20,12 +20,13 @@ struct UserSocialData {
     var Profile : String
 }
 
-class LoginViewController: MirroringViewController, CAAnimationDelegate, TWTRComposerViewControllerDelegate  {
+class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerViewControllerDelegate  {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgTop: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var txtEmail: UITextField!
@@ -52,10 +53,10 @@ class LoginViewController: MirroringViewController, CAAnimationDelegate, TWTRCom
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         setupSOAppleSignIn()
-        
+        localizeUI(parentView: self.viewParent)
         
         #if targetEnvironment(simulator)
-       setDummy()
+//       setDummy()
         #endif
     }
     
@@ -93,6 +94,7 @@ class LoginViewController: MirroringViewController, CAAnimationDelegate, TWTRCom
                 loginModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 loginModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
             }
+            loginModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 0 : 1
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
             loginModel.Latitude = "23.0732727"

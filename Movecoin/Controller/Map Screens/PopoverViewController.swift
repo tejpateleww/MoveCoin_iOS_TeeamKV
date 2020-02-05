@@ -15,6 +15,7 @@ class PopoverViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblLastSeen: UILabel!
@@ -41,6 +42,7 @@ class PopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
     }
     
@@ -78,7 +80,7 @@ class PopoverViewController: UIViewController {
         btnSendFriendRequest.isUserInteractionEnabled = true
         
         lblName.text = userData.fullName
-        lblMemberSince.text = "Member Since " + userData.memberSince
+        lblMemberSince.text = "Member since ".localized + userData.memberSince
 //        let productsURL = NetworkEnvironment.baseImageURL + userData.profilePicture
         if let url = URL(string: userData.profilePicture) {
             self.imgProfile.kf.indicatorType = .activity
@@ -92,7 +94,7 @@ class PopoverViewController: UIViewController {
             stackInfo.isHidden = false
             lblLastSeen.isHidden = false
             
-            lblLastSeen.text = "Last seen " + userData.lastSeen
+            lblLastSeen.text = "Last seen ".localized + userData.lastSeen
             lblTotalSteps.text = userData.steps
             
         } else {
@@ -102,10 +104,10 @@ class PopoverViewController: UIViewController {
             stackInfo.isHidden = true
             lblLastSeen.isHidden = true
             if userData.isFriend == 0 {
-                btnSendFriendRequest.setTitle("Requested", for: .normal)
+                btnSendFriendRequest.setTitle("Requested".localized, for: .normal)
                 btnSendFriendRequest.isUserInteractionEnabled = false
             }else {
-                btnSendFriendRequest.setTitle("Add Friend", for: .normal)
+                btnSendFriendRequest.setTitle("Add Friend".localized, for: .normal)
             }
         }
     }
@@ -214,7 +216,7 @@ extension PopoverViewController {
             UtilityClass.hideHUD()
             if status {
                 UtilityClass.showAlert(Message: json["message"].stringValue)
-                self.btnSendFriendRequest.setTitle("Requested", for: .normal)
+                self.btnSendFriendRequest.setTitle("Requested".localized, for: .normal)
                 self.btnSendFriendRequest.isUserInteractionEnabled = false
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)

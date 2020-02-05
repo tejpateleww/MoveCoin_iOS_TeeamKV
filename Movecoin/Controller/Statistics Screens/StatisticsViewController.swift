@@ -14,6 +14,7 @@ class StatisticsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblStatistics: UITableView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblNoDataFound: UILabel!
@@ -32,6 +33,7 @@ class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceforCoinsConverted(refresh: true)
     }
@@ -79,6 +81,7 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsTableViewCell.className) as! StatisticsTableViewCell
         cell.selectionStyle = .none
         cell.coinsEarnModel = coinsConvertedList[indexPath.row]
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     

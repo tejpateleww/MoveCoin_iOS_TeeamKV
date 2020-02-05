@@ -19,6 +19,7 @@ class FriendsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblFriends: UITableView!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var lblNoDataFound: UILabel!
@@ -39,6 +40,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true
@@ -100,6 +102,7 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
         cell.listType = friendListType
         cell.cellDelegate = self
         cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     

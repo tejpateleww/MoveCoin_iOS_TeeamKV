@@ -14,6 +14,7 @@ class ConfirmPurchaseViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblProductName: UILabel!
     //    @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
@@ -56,15 +57,16 @@ class ConfirmPurchaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupFont()
-        setupView()
+        self.setupView()
         setupProductData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         navigationBarSetUp()
-        self.title =  "Confirm Purchase"
+        self.title =  "Confirm Purchase".localized
     }
     
     // ----------------------------------------------------
@@ -178,12 +180,12 @@ class ConfirmPurchaseViewController: UIViewController {
         if availableCoins < product.coins {
             var msg = ""
             if let discount = product.discount, discount != "0" {
-                msg = "Your current balance is too low to purchase \(discount)% off \(product.name!). Don't want to wait? invite Friends and Family to earn faster!"
+                msg = "Your current balance is too low to purchase ".localized + discount + " % off " + product.name! + ". Don't want to wait? invite Friends and Family to earn faster!".localized
             } else {
-                msg = "Your current balance is too low to purchase \(product.name!). Don't want to wait? invite Friends and Family to earn faster!"
+                msg = "Your current balance is too low to purchase ".localized + product.name! + ". Don't want to wait? invite Friends and Family to earn faster!".localized
             }
             let destination = self.storyboard?.instantiateViewController(withIdentifier: AlertViewController.className) as! AlertViewController
-            destination.alertTitle = "Insufficient Balance"
+            destination.alertTitle = "Insufficient Balance".localized
             destination.alertDescription = msg
             destination.modalPresentationStyle = .overCurrentContext
             self.present(destination, animated: true, completion: nil)
@@ -218,10 +220,10 @@ extension ConfirmPurchaseViewController : UITextFieldDelegate {
                     enteredCoins = Double(coins)!
                 }
                 if enteredCoins < coinsRequired {
-                    UtilityClass.showAlert(Message: "You need to spend atleast \(Int(coinsRequired)) MoveCoins")
+                    UtilityClass.showAlert(Message: "You need to spend atleast ".localized + "\(Int(coinsRequired)) MoveCoins")
                     txtMoveCoins.text = ""
                 } else if enteredCoins > productCoins {
-                    UtilityClass.showAlert(Message: "You can not spend more than \(Int(productCoins)) MoveCoins")
+                    UtilityClass.showAlert(Message: "You can not spend more than ".localized + "\(Int(productCoins)) MoveCoins")
                     txtMoveCoins.text = ""
                 } else{
                     var finalPrice = 0.0

@@ -14,8 +14,10 @@ class EditProfileViewController: UIViewController {
     //MARK:- --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgProfilePicture: UIImageView!
+    
     @IBOutlet weak var txtNickName: ThemeTextfield!
     @IBOutlet weak var txtEmail: ThemeTextfield!
     @IBOutlet weak var txtGender: ThemeTextfield!
@@ -35,7 +37,7 @@ class EditProfileViewController: UIViewController {
     let pickerView = UIPickerView()
     let datePickerView = UIDatePicker()
 
-    var arrayGender = ["Male","Female"]
+    var arrayGender = ["Male".localized,"Female".localized]
     let feetList = Array(3...9)
     let inchList = Array(0...11)
     var numberOfComponents = 1
@@ -47,6 +49,7 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setupView()
         self.updateMylocation()
         setupProfileData()
@@ -209,10 +212,10 @@ extension EditProfileViewController : UITextFieldDelegate {
 //                pickerView.selectRow(ft, inComponent: 0, animated: false)
 //                pickerView.selectRow(inch, inComponent: 2, animated: false)
 //            }
-            let height = textField.text?.replacingOccurrences(of: " cm", with: "")
+            let height = textField.text?.replacingOccurrences(of: " cm".localized, with: "")
             txtHeight.text = height
         } else if textField == txtWeight {
-            let weight = textField.text?.replacingOccurrences(of: " kg", with: "")
+            let weight = textField.text?.replacingOccurrences(of: " kg".localized, with: "")
             txtWeight.text = weight
         }
     }
@@ -232,11 +235,11 @@ extension EditProfileViewController : UITextFieldDelegate {
 //                }
 //            }
             if let height = txtHeight.text {
-                txtHeight.text = height + " cm"
+                txtHeight.text = height + " cm".localized
             }
         } else if textField == txtWeight {
             if let weight = txtWeight.text {
-                 txtWeight.text = weight + " kg"
+                txtWeight.text = weight + " kg".localized
             }
         }
     }

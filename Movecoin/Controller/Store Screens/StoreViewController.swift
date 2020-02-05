@@ -14,6 +14,7 @@ class StoreViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblStoreOffers: UITableView!
     
     @IBOutlet weak var viewFooter: UIView!
@@ -38,6 +39,7 @@ class StoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -106,6 +108,7 @@ extension StoreViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.className) as! StoreTableViewCell
         cell.selectionStyle = .none
         cell.product = productArray[indexPath.row]
+        localizeUI(parentView: cell.contentView)
         return cell
     }
     

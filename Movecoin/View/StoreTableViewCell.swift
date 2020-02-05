@@ -43,7 +43,7 @@ class StoreTableViewCell: UITableViewCell {
                 }
                 
                 
-                if data.status == "Out Stock" {
+                if data.status == "Out Stock".localized {
                     viewOutOfStock.isHidden = false
                 }else{
                     viewOutOfStock.isHidden = true

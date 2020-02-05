@@ -16,6 +16,7 @@ class FacebookViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lblDescription: UILabel!
     
@@ -32,6 +33,7 @@ class FacebookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lblDescription.font = UIFont.regular(ofSize: 15)
+        localizeUI(parentView: self.viewParent)
     }
     
     // ----------------------------------------------------

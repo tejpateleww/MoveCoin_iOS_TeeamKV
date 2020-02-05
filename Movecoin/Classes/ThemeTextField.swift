@@ -15,7 +15,7 @@ class ThemeTextfield : SkyFloatingLabelTextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
         self.selectedTitleColor = .white
         self.selectedLineColor = TransparentColor
         self.font = FontBook.Regular.of(size: 20.0)
@@ -34,7 +34,7 @@ class DropDownThemeTextfield : SkyFloatingLabelTextField {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
         self.selectedTitleColor = .white
         self.selectedLineColor = TransparentColor
         self.font = FontBook.Regular.of(size: 20.0)
@@ -62,7 +62,7 @@ class TextFieldFont : UITextField {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
         self.undoManager?.removeAllActions()
-        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
     }
 }
 
@@ -71,7 +71,7 @@ class DropDownTextField : UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
-        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {

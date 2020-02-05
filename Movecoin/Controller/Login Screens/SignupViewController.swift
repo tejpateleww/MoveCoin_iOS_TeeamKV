@@ -8,14 +8,16 @@
 
 import UIKit
 
-class SignupViewController: MirroringViewController {
+class SignupViewController: UIViewController {
 
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
+    
     @IBOutlet weak var txtFullName: UITextField!
     @IBOutlet weak var txtNickname: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
@@ -24,6 +26,7 @@ class SignupViewController: MirroringViewController {
     @IBOutlet weak var txtConfirmPassword: UITextField!
     @IBOutlet weak var txtGender: UITextField!
     @IBOutlet weak var txtReferral: UITextField!
+    
     @IBOutlet weak var lblAccount: UILabel!
     @IBOutlet weak var btnSignIn: UIButton!
     
@@ -32,7 +35,7 @@ class SignupViewController: MirroringViewController {
     // ----------------------------------------------------
     
     private var imagePicker : ImagePickerClass!
-    var arrayGender = ["Male","Female"]
+    var arrayGender = ["Male".localized,"Female".localized]
     lazy var pickerView = UIPickerView()
     var selectedImage : UIImage?
     var userSocialData : UserSocialData?
@@ -46,6 +49,7 @@ class SignupViewController: MirroringViewController {
         navigationBarSetUp(hidesBackButton: true)
         self.setupView()
         self.setupFont()
+        localizeUI(parentView: self.viewParent)
         #if targetEnvironment(simulator)
         setDummy()
         #endif
@@ -68,11 +72,7 @@ class SignupViewController: MirroringViewController {
         super.viewDidLayoutSubviews()
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-//        shouldLocalize = false
-    }
+  
     
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
@@ -144,6 +144,7 @@ class SignupViewController: MirroringViewController {
                 signupModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 signupModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
             }
+            signupModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 0 : 1
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
             signupModel.Latitude = "23.0732727"
