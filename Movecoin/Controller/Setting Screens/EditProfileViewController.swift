@@ -33,11 +33,12 @@ class EditProfileViewController: UIViewController {
     private var imagePicker : ImagePickerClass!
     var selectedImage : UIImage?
     var isRemovePhoto = false
+    var selectedGender : String?
     
     let pickerView = UIPickerView()
     let datePickerView = UIDatePicker()
 
-    var arrayGender = ["Male".localized,"Female".localized]
+    var arrayGender = ["Male","Female"]
     let feetList = Array(3...9)
     let inchList = Array(0...11)
     var numberOfComponents = 1
@@ -103,7 +104,7 @@ class EditProfileViewController: UIViewController {
             txtNickName.text = userData.nickName
             txtMobile.text = userData.phone
             txtEmail.text = userData.email
-            txtGender.text = userData.gender
+            txtGender.text = (userData.updateGender == "0") ? "Male".localized : "Female".localized
             txtHeight.text = userData.height
             txtWeight.text = userData.weight
             if userData.dateOfBirth != "0000-00-00" {
@@ -135,7 +136,7 @@ class EditProfileViewController: UIViewController {
             editModel.NickName = txtNickName.text ?? ""
             editModel.Phone = mobileNumber
             editModel.Email = email
-            editModel.Gender = txtGender.text!
+            editModel.Gender = (selectedGender == "Male") ? "0" : "1"
             editModel.Height = txtHeight.text ?? ""
             editModel.Weight = txtWeight.text ?? ""
             if isRemovePhoto {
@@ -187,10 +188,10 @@ extension EditProfileViewController : UITextFieldDelegate {
             textField.inputView = pickerView
             numberOfComponents = 1
             
-            if textField.text!.isEmpty || textField.text == arrayGender.first {
-                textField.text = arrayGender.first
+            if textField.text!.isEmpty || SingletonClass.SharedInstance.userData?.updateGender == "0" {
+                textField.text = arrayGender.first?.localized
             } else {
-                textField.text = arrayGender.last
+                textField.text = arrayGender.last?.localized
                 pickerView.selectRow(1, inComponent: 0, animated: false)
             }
         } else if textField == txtDob {
@@ -285,7 +286,7 @@ extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if numberOfComponents == 1 {
-             return arrayGender[row]
+            return arrayGender[row].localized
         } else {
             if component == 0 {
                 return "\(feetList[row])"
@@ -301,7 +302,8 @@ extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if numberOfComponents == 1 {
-            txtGender.text = arrayGender[row]
+            txtGender.text = arrayGender[row].localized
+            selectedGender = arrayGender[row]
         } else {
             let feetIndex = pickerView.selectedRow(inComponent: 0)
             let inchIndex = pickerView.selectedRow(inComponent: 2)

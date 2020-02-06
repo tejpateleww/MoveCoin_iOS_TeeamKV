@@ -81,7 +81,7 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsTableViewCell.className) as! StatisticsTableViewCell
         cell.selectionStyle = .none
         cell.coinsEarnModel = coinsConvertedList[indexPath.row]
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

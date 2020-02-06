@@ -85,12 +85,29 @@ class SettingsViewController: UIViewController {
        webserviceforNotification()
     }
     
+    @objc func languageChanged(sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 1){
+            Localize.setCurrentLanguage(Languages.English.rawValue)
+        }else{
+            Localize.setCurrentLanguage(Languages.Arabic.rawValue)
+        }
+        changeLanguage()
+    }
+    
+    func changeLanguage(){
+        tblSettings.reloadData()
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        self.navigationController?.navigationBar.topItem?.title = "Settings".localized
+        lblVersion.text = "Version - ".localized + kAPPVesion
+    }
+    
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnLogoutTapped(_ sender: Any) {
-        let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?".localized, preferredStyle: .alert)
+        let alert = UIAlertController(title: kAppName.localized, message: "Are you sure you want to logout?".localized, preferredStyle: .alert)
         let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
             self.webserviceForLogout()
         }
@@ -121,21 +138,51 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className) as! SettingsTableViewCell
         cell.selectionStyle = .none
-        cell.lblTitle.text = settingsArray[indexPath.row]
-        if indexPath.row > 0 {
+        cell.lblTitle.text = settingsArray[indexPath.row].localized
+        
+        if let option = SettingsOptions(rawValue: indexPath.row) {
+            switch option {
+                
+            case .Notification :
+                cell.switchToggle.isHidden = false
+                cell.btnArrow.isHidden = true
+                cell.segmentControl.isHidden = true
+                
+                cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+                cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
+                cell.switchToggle.backgroundColor = .gray
+                if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+                    cell.switchToggle.isOn = notificationStatus == "0" ? false : true
+                }
+            case .Language:
+                cell.switchToggle.isHidden = true
+                cell.btnArrow.isHidden = true
+                cell.segmentControl.isHidden = false
+                
+                cell.segmentControl.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
+                cell.segmentControl.addTarget(self, action: #selector(languageChanged), for: UIControl.Event.valueChanged)
+            default :
+                cell.switchToggle.isHidden = true
+                cell.btnArrow.isHidden = false
+                cell.segmentControl.isHidden = true
+            }
+        }
+/*        if indexPath.row > 0 {
             cell.switchToggle.isHidden = true
             cell.btnArrow.isHidden = false
+            cell.segmentControl.isHidden = true
         } else{
             cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
             cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
             cell.switchToggle.backgroundColor = .gray
             cell.switchToggle.isHidden = false
             cell.btnArrow.isHidden = true
+            cell.segmentControl.isHidden = true
             if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
                 cell.switchToggle.isOn = notificationStatus == "0" ? false : true
             }
-        }
-        localizeUI(parentView: cell.contentView)
+        } */
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

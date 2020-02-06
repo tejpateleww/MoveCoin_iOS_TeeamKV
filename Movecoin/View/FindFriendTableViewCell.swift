@@ -44,11 +44,12 @@ class FindFriendTableViewCell: UITableViewCell {
                 }
                 
                 if detail.receiverID == SingletonClass.SharedInstance.userData?.iD {
-                    btnInvite.setTitle("Reject", for: .normal)
+                    btnInvite.setTitle("Reject".localized, for: .normal)
+                    btnAccept.setTitle("Accept".localized, for: .normal)
                     btnAccept.isHidden = false
                 } else if detail.senderID == SingletonClass.SharedInstance.userData?.iD {
                     btnInvite.titleLabel?.font = UIFont.regular(ofSize: 12)
-                    btnInvite.setTitle("Requested", for: .normal)
+                    btnInvite.setTitle("Requested".localized, for: .normal)
                     btnInvite.isUserInteractionEnabled = false
                     btnAccept.isHidden = true
                 }
@@ -60,7 +61,7 @@ class FindFriendTableViewCell: UITableViewCell {
         didSet{
             btnAccept.isHidden = true
             lblNickName.isHidden = true
-            btnInvite.setTitle("+ Invite", for: .normal)
+            btnInvite.setTitle("+ Invite".localized, for: .normal)
             if let detail = notRegisteredFriend {
                 self.lblName.text = detail.name.trimmingCharacters(in: .whitespacesAndNewlines).capitalizingFirstLetter()
                 self.lblNumber.text = detail.number
@@ -73,7 +74,7 @@ class FindFriendTableViewCell: UITableViewCell {
     var registeredFriend: Registered? {
         didSet{
             btnAccept.isHidden = true
-            btnInvite.setTitle("Add Friend", for: .normal)
+            btnInvite.setTitle("Add Friend".localized, for: .normal)
             btnInvite.titleLabel?.font = UIFont.regular(ofSize: 12)
             if let detail = registeredFriend {
                 if detail.fullName != "" {

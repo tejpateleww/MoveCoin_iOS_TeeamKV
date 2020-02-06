@@ -39,7 +39,7 @@ let TransparentColor : UIColor = UIColor.init(white: 1.0, alpha: 0.23)
 
 // Constant Keys
 
-let kAppName = "MoveCoins".localized
+let kAppName = "MoveCoins"
 let kLocalNotificationIdentifier = "MoveCoinsEverydayLocalNotification"
 let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")
 

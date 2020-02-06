@@ -77,6 +77,7 @@ class ProfileViewController: UIViewController {
         super.viewDidAppear(true)
         setUpNavigationItems()
         setupSegmentedControl()
+        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

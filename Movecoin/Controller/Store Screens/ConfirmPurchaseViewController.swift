@@ -67,6 +67,13 @@ class ConfirmPurchaseViewController: UIViewController {
         super.viewDidAppear(true)
         navigationBarSetUp()
         self.title =  "Confirm Purchase".localized
+        if Localize.currentLanguage() == Languages.Arabic.rawValue {
+            lblTitlePayableAmount.textAlignment = .left
+            lblPurchase.textAlignment = .left
+        }else{
+            lblTitlePayableAmount.textAlignment = .right
+            lblPurchase.textAlignment = .left
+        }
     }
     
     // ----------------------------------------------------
@@ -99,6 +106,7 @@ class ConfirmPurchaseViewController: UIViewController {
         viewCardSelect.isUserInteractionEnabled = true
         imgCardIcon.isHidden = true
         txtMoveCoins.delegate = self
+        lblTitleAvailableBalance.text = "Now Available Balance".localized
     }
     
     func setupProductData() {

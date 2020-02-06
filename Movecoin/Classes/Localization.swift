@@ -66,8 +66,9 @@ open class Localize: NSObject {
         if (selectedLanguage != currentLanguage()){
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
             UserDefaults.standard.synchronize()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
+           
         }
+         NotificationCenter.default.post(name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
     }
     
     /**
@@ -125,39 +126,51 @@ func localizeString(stringToLocalize:String) -> String
 func localizeUI(parentView:UIView)
 {
     UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-    for view:UIView in parentView.subviews
-    {
-        if let potentialButton = view as? UIButton
-        {
-            if let titleString = potentialButton.titleLabel?.text {
-                potentialButton.setTitle(localizeString(stringToLocalize: titleString), for: .normal)
+    
+    DispatchQueue.global(qos: .background).async {
+        DispatchQueue.main.async {
+            for view:UIView in parentView.subviews
+            {
+                if let potentialButton = view as? UIButton
+                {
+                    if let titleString = potentialButton.titleLabel?.text {
+//                        potentialButton.setTitle(localizeString(stringToLocalize: titleString), for: .normal)
+                        potentialButton.setTitle(titleString.localized, for: .normal)
+                    }
+                }
+                else if let potentialLabel = view as? UILabel
+                {
+                    if potentialLabel.textAlignment == .left || potentialLabel.textAlignment == .right {
+                         potentialLabel.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+                    }
+                    if potentialLabel.text != nil {
+//                        potentialLabel.text = localizeString(stringToLocalize: potentialLabel.text!)
+                        potentialLabel.text = potentialLabel.text!.localized
+                    }
+                }
+                else if let potentialTextField = view as? UITextField
+                {
+                    potentialTextField.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+                    if potentialTextField.text != nil {
+//                        potentialTextField.text = localizeString(stringToLocalize: potentialTextField.text!)
+                        potentialTextField.text = potentialTextField.text!.localized
+                        if potentialTextField.placeholder != nil {
+//                             potentialTextField.placeholder = localizeString(stringToLocalize: potentialTextField.placeholder!)
+                            potentialTextField.placeholder = potentialTextField.placeholder!.localized
+                        }
+                    }
+                }
+                else if let potentialTextView = view as? UITextView
+                {
+                    potentialTextView.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+                    if potentialTextView.text != nil {
+//                        potentialTextView.text = localizeString(stringToLocalize: potentialTextView.text!)
+                        potentialTextView.text = potentialTextView.text!.localized
+                    }
+                }
+                localizeUI(parentView: view)
             }
         }
-        else if let potentialLabel = view as? UILabel
-        {
-            if potentialLabel.textAlignment == .left || potentialLabel.textAlignment == .right {
-                 potentialLabel.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-            }
-            if potentialLabel.text != nil {
-                potentialLabel.text = localizeString(stringToLocalize: potentialLabel.text!)
-            }
-        }
-        else if let potentialTextField = view as? UITextField
-        {
-            potentialTextField.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-            if potentialTextField.text != nil {
-                potentialTextField.text = localizeString(stringToLocalize: potentialTextField.text!)
-                potentialTextField.placeholder = localizeString(stringToLocalize: potentialTextField.placeholder!)
-            }
-        }
-        else if let potentialTextView = view as? UITextView
-        {
-            potentialTextView.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-            if potentialTextView.text != nil {
-                potentialTextView.text = localizeString(stringToLocalize: potentialTextView.text!)
-            }
-        }
-        localizeUI(parentView: view)
     }
 }
 

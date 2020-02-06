@@ -297,8 +297,8 @@ extension AppDelegate {
         
         //Local Notification for everyday at 9 am
         let content = UNMutableNotificationContent()
-        content.title = kAppName
-        content.body = "Don't forget to walk everyday and earn \(kAppName)"
+        content.title = kAppName.localized
+        content.body = "Don't forget to walk everyday and earn ".localized + kAppName.localized
         
         var dateComponents = DateComponents()
         dateComponents.hour = 9

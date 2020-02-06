@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import AuthenticationServices
 import TwitterKit
 import TwitterCore
+import IQKeyboardManagerSwift
 
 struct UserSocialData {
     var userId: String
@@ -54,7 +55,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
         self.setupFont()
         setupSOAppleSignIn()
         localizeUI(parentView: self.viewParent)
-        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+
         #if targetEnvironment(simulator)
 //       setDummy()
         #endif
@@ -94,7 +96,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
                 loginModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 loginModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
             }
-            loginModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 0 : 1
+            loginModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
             loginModel.Latitude = "23.0732727"

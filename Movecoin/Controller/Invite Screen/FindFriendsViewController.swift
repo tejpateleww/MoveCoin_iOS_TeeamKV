@@ -227,7 +227,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         default:
             break
         }
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -248,7 +248,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
            composeVC.messageComposeDelegate = self
            guard let number = cell.notRegisteredFriend?.number else { return }
            composeVC.recipients = [number]
-            composeVC.body = "Check out this app ".localized + kAppName + ", referral code - ".localized + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
+            composeVC.body = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
            // Present the view controller modally.
            if MFMessageComposeViewController.canSendText() {
                self.present(composeVC, animated: true, completion: nil)

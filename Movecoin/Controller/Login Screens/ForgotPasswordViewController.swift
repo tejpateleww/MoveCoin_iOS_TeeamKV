@@ -25,7 +25,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp()
-        localizeUI(parentView: self.viewParent)
+       localizeUI(parentView: self.viewParent)
     }
     
     override func viewDidAppear(_ animated: Bool) {

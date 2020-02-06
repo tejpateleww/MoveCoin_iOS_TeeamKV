@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+
 
 protocol WalletCoinsDelegate {
     func walletCoins()
@@ -79,6 +81,27 @@ class TabViewController: UIViewController {
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
+    @objc func changeLanguage(){
+
+        // Set Tabbar Text
+        lblStore.text = "STORE".localized
+        lblWallet.text = "WALLET".localized
+        lblHome.text = "HOME".localized
+        lblStatistics.text = "STATISTICS".localized
+        lblProfile.text = "PROFILE".localized
+        
+        
+        homeVC.lblTitleCoins.text = "Coins".localized
+        homeVC.lblTitleFriends.text = "Friends".localized
+        homeVC.lblTitleTotalSteps.text = "Total Steps".localized
+        homeVC.lblTitleInviteFriends.text = "Invite a Friend".localized
+        homeVC.lblTitleTodays.text = "Today's".localized
+        homeVC.lblTitleTotalStep.text = "Total Steps".localized
+        localizeUI(parentView: homeVC.viewParent)
+        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+    }
+    
     func setupView(){
         // Animation of view presented
         viewTabbar.alpha = 0
@@ -96,6 +119,9 @@ class TabViewController: UIViewController {
         }
         viewControllers = [storeVC, walletVC, homeVC, statisticsVC, profileVC]
         self.btnTabTapped(btnTabs![selectedIndex])
+        
+        // Notification observer for Language Change
+        NotificationCenter.default.addObserver(self, selector: #selector(changeLanguage), name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
     }
     
     func setupFont() {

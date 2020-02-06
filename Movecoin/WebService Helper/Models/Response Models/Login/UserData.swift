@@ -43,6 +43,7 @@ class UserData : Codable {
     var userName : String!
     var walletBalance : String!
     var weight : String!
+    var updateGender : String!
     
     init(){
         
@@ -89,6 +90,7 @@ class UserData : Codable {
         userName = json["UserName"].stringValue
         walletBalance = json["WalletBalance"].stringValue
         weight = json["Weight"].stringValue
+        updateGender = json["update_gender"].stringValue
     }
 
     /**
@@ -199,6 +201,9 @@ class UserData : Codable {
         if weight != nil{
             dictionary["Weight"] = weight
         }
+        if updateGender != nil{
+            dictionary["update_gender"] = updateGender
+        }
         return dictionary
     }
 
@@ -242,6 +247,7 @@ class UserData : Codable {
         userName = aDecoder.decodeObject(forKey: "UserName") as? String
         walletBalance = aDecoder.decodeObject(forKey: "WalletBalance") as? String
         weight = aDecoder.decodeObject(forKey: "Weight") as? String
+        updateGender = aDecoder.decodeObject(forKey: "update_gender") as? String
     }
 
     /**
@@ -351,6 +357,9 @@ class UserData : Codable {
         }
         if weight != nil{
             aCoder.encode(weight, forKey: "Weight")
+        }
+        if updateGender != nil{
+            aCoder.encode(updateGender, forKey: "update_gender")
         }
     }
 }

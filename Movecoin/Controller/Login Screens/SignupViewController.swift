@@ -35,10 +35,11 @@ class SignupViewController: UIViewController {
     // ----------------------------------------------------
     
     private var imagePicker : ImagePickerClass!
-    var arrayGender = ["Male".localized,"Female".localized]
+    var arrayGender = ["Male","Female"]
     lazy var pickerView = UIPickerView()
     var selectedImage : UIImage?
     var userSocialData : UserSocialData?
+    var selectedGender : String?
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -135,7 +136,7 @@ class SignupViewController: UIViewController {
             signupModel.Phone = mobileNumber
             signupModel.Email = email
             signupModel.Password = password
-            signupModel.Gender = txtGender.text!
+            signupModel.Gender = (selectedGender == "Male") ? "0" : "1"
             signupModel.ReferralCode = txtReferral.text!
             signupModel.DeviceType = "ios"
             signupModel.SocialID = userSocialData?.userId ?? ""
@@ -144,7 +145,7 @@ class SignupViewController: UIViewController {
                 signupModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 signupModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
             }
-            signupModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 0 : 1
+            signupModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
             signupModel.Latitude = "23.0732727"
@@ -192,7 +193,8 @@ extension SignupViewController : UITextFieldDelegate {
         if textField == txtGender {
             textField.inputView = pickerView
             if textField.text!.isEmpty {
-                textField.text = arrayGender.first
+                textField.text = arrayGender.first?.localized
+                selectedGender = arrayGender.first
             }
         }
     }
@@ -213,11 +215,12 @@ extension SignupViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return arrayGender[row]
+        return arrayGender[row].localized
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtGender.text = arrayGender[row]
+        txtGender.text = arrayGender[row].localized
+        selectedGender = arrayGender[row]
     }
 }
 

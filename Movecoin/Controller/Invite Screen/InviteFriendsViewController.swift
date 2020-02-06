@@ -89,7 +89,7 @@ class InviteFriendsViewController: UIViewController {
     //             }
     //        }
             
-            let text = "Check out this app ".localized + kAppName + ", referral code - ".localized + (lblReferral.text ?? "")
+            let text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (lblReferral.text ?? "")
             let image = UIImage(named: "AppIcon")
             let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
 

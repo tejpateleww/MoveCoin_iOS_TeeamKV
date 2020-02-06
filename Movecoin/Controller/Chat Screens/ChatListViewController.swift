@@ -83,7 +83,7 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.className) as! ChatListTableViewCell
         cell.selectionStyle = .none
         cell.friendDetail = friendsArray[indexPath.row]
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -101,7 +101,7 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            let alert = UIAlertController(title: kAppName, message: "Are you sure you want to delete the chat?".localized, preferredStyle: .alert)
+            let alert = UIAlertController(title: kAppName.localized, message: "Are you sure you want to delete the chat?".localized, preferredStyle: .alert)
             let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
                 let data = self.friendsArray[indexPath.row]
                 self.webserviceForDeleteChat(friendID: data.iD)

@@ -129,7 +129,7 @@
 "Total" = "Total";
 "Delivery Address" = "Delivery Address";
 "Name" = "Name";
-"Contact Number" = "Contact Number";
+"Contact number" = "Contact number";
 "Address-1" = "Address-1";
 "Address-2" = "Address-2";
 "Country" = "Country";
@@ -161,7 +161,7 @@
 // Transfer MoveCoins Screen
 "Sending MoveCoins" = "Sending MoveCoins";
 "Amount" = "Amount";
-"To" = "To";
+"To " = "To ";
 "Add optional message" = "Add optional message";
 "Send MoveCoins" = "Send MoveCoins";
 
@@ -186,6 +186,7 @@
 // Chat Screen
 "Chats" = "Chats";
 "Message" = "Message";
+"No chats available" = "No chats available";
 
 
 // Settings Screen
@@ -235,6 +236,10 @@
 "Camera roll" = "Camera roll";
 "Photo library" = "Photo library";
 "Remove Photo" = "Remove Photo";
+"Male" = "Male";
+"Female" = "Female";
+"You didn't connect with your friends" = "You didn't connect with your friends";
+"You didn't have any updates yet" = "You didn't have any updates yet";
 
 
 // Validation String

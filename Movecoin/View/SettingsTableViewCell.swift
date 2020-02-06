@@ -12,6 +12,7 @@ class SettingsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var switchToggle: UISwitch!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var btnArrow: UIButton!
 
     override func awakeFromNib() {

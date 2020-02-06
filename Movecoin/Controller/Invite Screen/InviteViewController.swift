@@ -33,7 +33,7 @@ class InviteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        localizeUI(parentView: self.viewParent)
+        localizeUI(parentView: self.viewParent)
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
             self.scrollView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
             self.subview.transform =  CGAffineTransform(rotationAngle: CGFloat(Double.pi));

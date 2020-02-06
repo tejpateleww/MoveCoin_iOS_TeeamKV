@@ -94,7 +94,7 @@ extension TotalStepsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: TotalStepsTableViewCell.className) as! TotalStepsTableViewCell
         cell.selectionStyle = .none
         cell.stepModel = stepsHistoryList[indexPath.row]
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

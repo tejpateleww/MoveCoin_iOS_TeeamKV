@@ -40,7 +40,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+       localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true
@@ -102,7 +102,7 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
         cell.listType = friendListType
         cell.cellDelegate = self
         cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -135,7 +135,7 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
                    
             case .Unfriend:
                 print("Unfriend")
-                let alert = UIAlertController(title: kAppName, message: "Are you sure want to remove \(cell.friendDetail?.fullName ?? "") as your friend?", preferredStyle: .alert)
+                let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to remove ".localized + (cell.friendDetail?.fullName ?? "") + " as your friend?".localized, preferredStyle: .alert)
                 let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
                     self.webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
                 }

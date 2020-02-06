@@ -44,6 +44,7 @@ class VerificationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         navigationBarSetUp(title: "Verification Code")
+//        lblDescription.text = "Please enter your code from SMS/Email we've sent you".localized
     }
     
     // ----------------------------------------------------

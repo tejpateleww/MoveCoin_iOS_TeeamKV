@@ -58,7 +58,14 @@ class ValidatorClass {
 struct EmailValidator: ValidatorConvertible {
     
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
+        guard value != "" else {
+            if txtFieldName.contains("enter"){
+                throw ValidationError("Please ".localized + txtFieldName)
+            }else{
+                throw ValidationError("Please enter ".localized + txtFieldName)
+            }
+//            throw ValidationError("Please enter ".localized + txtFieldName)
+        }
         do {
             if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
                 throw ValidationError("Invalid ".localized + txtFieldName)

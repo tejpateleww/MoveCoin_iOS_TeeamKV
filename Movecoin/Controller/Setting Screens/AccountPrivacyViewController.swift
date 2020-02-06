@@ -28,7 +28,7 @@ class AccountPrivacyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+       localizeUI(parentView: self.viewParent)
         setUpView()
     }
     
@@ -74,7 +74,7 @@ extension AccountPrivacyViewController : UITableViewDelegate, UITableViewDataSou
            cell.switchToggle.isOn = privacyStatus == "0" ? false : true
        }
          cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
 }

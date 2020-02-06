@@ -128,7 +128,7 @@
 "Total" = "المجموع";
 "Delivery Address" = "عنوان التوصيل";
 "Name" = "الإسم";
-"Contact Number" = "رقم التواصل";
+"Contact number" = "رقم التواصل";
 "Address-1" = "العنوان الأول";
 "Address-2" = "العنوان الثاني";
 "Country" = "البلد";
@@ -160,7 +160,7 @@
 // Transfer MoveCoins Screen
 "Sending MoveCoins" = "ارسال العملات";
 "Amount" = "عدد العملات";
-"To" = "إلى";
+"To " = " إلى";
 "Add optional message" = "أضف رسالة إختيارية";
 "Send MoveCoins" = "إرسال";
 
@@ -185,6 +185,7 @@
 // Chat Screen
 "Chats" = "المحادثات";
 "Message" = "أرسل";
+"No chats available" = "لا الدردشات المتاحة";
 
 
 // Settings Screen
@@ -234,6 +235,10 @@
 "Camera roll" = "إستديو الكاميرا";
 "Photo library" = "مكتبة الصور";
 "Remove Photo" = "إزالة الصورة";
+"Male" = "الذكر";
+"Female" = "أنثى";
+"You didn't connect with your friends" = "أنت لم تواصل مع أصدقائك";
+"You didn't have any updates yet" = "لم يكن لديك أي تحديثات بعد";
 
 
 // Validation String

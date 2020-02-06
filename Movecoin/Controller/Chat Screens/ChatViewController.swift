@@ -224,7 +224,7 @@ extension ChatViewController: UITableViewDataSource {
             cell.lblReadStatus.textColor = UIColor.white
         }
         cell.selectionStyle = .none
-        localizeUI(parentView: cell.contentView)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

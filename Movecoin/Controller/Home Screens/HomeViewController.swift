@@ -24,7 +24,15 @@ class HomeViewController: UIViewController {
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgLogo: UIImageView!
     
-    @IBOutlet var lblTitles: [UILabel]!
+//    @IBOutlet var lblTitles: [UILabel]!
+    @IBOutlet weak var lblTitleTotalSteps: UILabel!
+    @IBOutlet weak var lblTitleCoins: UILabel!
+    @IBOutlet weak var lblTitleInviteFriends: UILabel!
+    @IBOutlet weak var lblTitleFriends: UILabel!
+    
+    @IBOutlet weak var lblTitleTodays: UILabel!
+    @IBOutlet weak var lblTitleTotalStep: UILabel!
+    
     @IBOutlet weak var lblTotalSteps: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
     @IBOutlet weak var lblInviteFriends: UILabel!
@@ -84,9 +92,14 @@ class HomeViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-        for lbl in lblTitles{
-            lbl.font = UIFont.regular(ofSize: 17)
-        }
+        
+        lblTitleCoins.font = UIFont.regular(ofSize: 17)
+        lblTitleFriends.font = UIFont.regular(ofSize: 17)
+        lblTitleTotalSteps.font = UIFont.regular(ofSize: 17)
+        lblTitleInviteFriends.font = UIFont.regular(ofSize: 17)
+        lblTitleTodays.font = UIFont.regular(ofSize: 23)
+        lblTitleTotalSteps.font = UIFont.regular(ofSize: 16)
+           
         lblCoins.font = UIFont.semiBold(ofSize: 24)
         lblFriends.font = UIFont.semiBold(ofSize: 24)
         lblTotalSteps.font = UIFont.semiBold(ofSize: 24)
