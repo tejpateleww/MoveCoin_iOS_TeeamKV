@@ -40,7 +40,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true

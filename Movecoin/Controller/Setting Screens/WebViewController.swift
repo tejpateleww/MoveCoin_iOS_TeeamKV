@@ -30,7 +30,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.initialSetup()
         webserviceforPolicyHelpTerm()
     }

@@ -471,12 +471,12 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="tq7-Je-iBv">
                                                         <rect key="frame" x="43.5" y="828" width="233.5" height="31"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0J0-Vx-42f">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0J0-Vx-42f" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="175.5" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wO-Ic-PoO">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wO-Ic-PoO" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="178.5" y="0.0" width="55" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                                                 <state key="normal" title="SIGN IN">
@@ -574,7 +574,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG" translatesAutoresizingMaskIntoConstraints="NO" id="LYh-we-428">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your code from SMS/Email we've sent you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WQ-i7-sKa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your code from SMS/Email we've sent you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WQ-i7-sKa" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="50" y="240" width="220" height="33"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -597,7 +597,7 @@
                                             <action selector="btnVerifyTapped:" destination="ibE-DV-sNJ" eventType="touchUpInside" id="jTM-Lb-vPA"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ey-5Y-LRT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ey-5Y-LRT" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="85" y="391" width="150" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="SW1-6U-dRd"/>
@@ -694,7 +694,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-vR-sQr" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
                                                         <rect key="frame" x="0.0" y="266" width="320" height="549.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-uD-i5x">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-uD-i5x" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="20" width="207.5" height="25.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25.5" id="Kd1-5P-BSM"/>
@@ -746,7 +746,7 @@
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgU-Pp-0OX">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VgU-Pp-0OX" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="160" y="193.5" width="145" height="34"/>
                                                                 <state key="normal" title="Forgot Password?">
                                                                     <color key="titleColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -773,12 +773,12 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RbN-o9-jTh">
                                                                 <rect key="frame" x="27.5" y="321.5" width="265.5" height="30"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVo-EL-RBy">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yVo-EL-RBy" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="161.5" height="30"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP7-I6-0xM">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP7-I6-0xM" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="164.5" y="0.0" width="101" height="30"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                                                         <state key="normal" title="SIGN UP NOW">
@@ -790,7 +790,7 @@
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-ae-ouH">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrU-ae-ouH" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="149" y="371.5" width="22" height="31"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="31" id="noN-LM-cms"/>
@@ -936,7 +936,7 @@
                                             <constraint firstAttribute="width" constant="130" id="z5b-ex-Huk"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv1-8f-ao0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv1-8f-ao0" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="80" y="286" width="160" height="25.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25.5" id="myh-bm-0mk"/>

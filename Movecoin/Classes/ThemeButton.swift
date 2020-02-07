@@ -30,6 +30,9 @@ class ThemeButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.circelButtonStyle()
+        
+        // For Localization
+        self.setTitle(self.titleLabel?.text?.localized, for: .normal)
     }
     
     var theme : buttonTheme = buttonTheme.whiteTheme  {

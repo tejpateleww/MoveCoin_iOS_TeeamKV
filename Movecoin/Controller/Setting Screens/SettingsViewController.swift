@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -96,6 +96,7 @@ class SettingsViewController: UIViewController {
     
     func changeLanguage(){
         tblSettings.reloadData()
+       
         UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         self.navigationController?.navigationBar.topItem?.title = "Settings".localized

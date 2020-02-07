@@ -33,8 +33,8 @@ class WelcomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         self.animateView()
         self.setupFont()
-        self.setupView()
-        localizeUI(parentView: self.viewParent)
+        self.localizationSetup()
+        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,15 +46,13 @@ class WelcomeViewController: UIViewController {
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
-    func setupView(){
-//        segmentControlLanguage.selectedSegmentIndex = 1
-//         if Localize.currentLanguage() == Languages.Arabic.rawValue {
-//             segmentControlLanguage.selectedSegmentIndex = 0
-//         }else {
-//             segmentControlLanguage.selectedSegmentIndex = 1
-//         }
+    func localizationSetup(){
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         segmentControlLanguage.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
-         UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
+        
+        lblOr.text = "OR".localized
+        lblTitle.text = "Lorem Ipsum Simply Dummy".localized
     }
     
     func animateView(){
@@ -87,7 +85,7 @@ class WelcomeViewController: UIViewController {
     }
 
     func setDataForLocalisation(){
-        
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         btnSignIn.setTitle("Sign in".localized, for: .normal)
         btnSignUp.setTitle("Sign Up".localized, for: .normal)
        

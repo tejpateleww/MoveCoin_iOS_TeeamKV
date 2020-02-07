@@ -17,8 +17,8 @@ class VerificationViewController: UIViewController {
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var firstPinView: VKPinCodeView!
     
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var btnSendAgian: UIButton!
+    @IBOutlet weak var lblDescription: LocalizLabel!
+    @IBOutlet weak var btnSendAgian: LocalizButton!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -38,7 +38,7 @@ class VerificationViewController: UIViewController {
         super.viewDidLoad()
         self.setUpPinView()
         self.setupFont()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
     }
   
     override func viewDidAppear(_ animated: Bool) {

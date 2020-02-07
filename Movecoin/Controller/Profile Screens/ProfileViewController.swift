@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet var viewParent: UIView!
-    @IBOutlet weak var segmentedControl: TTSegmentedControl!
+    @IBOutlet var viewSegmentedControl: UIView!
     @IBOutlet weak var btnMyFriends: UIButton!
     @IBOutlet weak var imgProfilePicture: UIImageView!
     @IBOutlet weak var viewProfile: UIView!
@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController {
     private var imagePicker : ImagePickerClass!
     var selectedImage : UIImage?
     var isRemovePhoto = false
+    var viewSegmentTT = TTSegmentedControl()
     
     var profileModel: profileDataResponseModel?
     lazy var dataEntries: [DataEntry] = []
@@ -53,17 +54,17 @@ class ProfileViewController: UIViewController {
     
     let leftBarButton = BadgeBarButtonItem()
     var btnChat = UIButton(frame: CGRect(x: 0, y: 0, width: 18, height: 16))
- 
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
-        setupSegmentedControl()
+//        setupSegmentedControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,8 +78,10 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         setUpNavigationItems()
-        setupSegmentedControl()
-        localizeUI(parentView: self.viewParent)
+        localizationSetup()
+//        setupSegmentedControl()
+//        localizationSetup()
+        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,6 +90,7 @@ class ProfileViewController: UIViewController {
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.rightBarButtonItems?.removeAll()
     }
+   
     
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
@@ -105,6 +109,19 @@ class ProfileViewController: UIViewController {
         lblMemberSince.font = UIFont.regular(ofSize: 12)
     }
     
+
+    func localizationSetup(){
+        
+        lblTitleTotalSteps.text = "Total Steps Converted".localized
+        lblTitleTotalMoveCoins.text = "Total MoveCoins Created".localized
+        viewSegmentTT.removeFromSuperview()
+        viewSegmentTT = TTSegmentedControl()
+        viewSegmentTT.frame = viewSegmentedControl.bounds
+        setupSegmentedControl(segmentCntrl: viewSegmentTT)
+        viewSegmentTT.layoutIfNeeded()
+        self.viewSegmentedControl.addSubview(viewSegmentTT)
+    }
+    
     func setupView(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.profileViewTapped(_:)))
         viewProfile.addGestureRecognizer(tap)
@@ -113,11 +130,11 @@ class ProfileViewController: UIViewController {
     }
     
     func setUpNavigationItems(){
-      
+        
         btnChat.setBackgroundImage(UIImage(named: "chat"), for: .normal)
         btnChat.addTarget(self, action: #selector(btnChatTapped), for: .touchUpInside)
         leftBarButton.customView = btnChat
-//        let leftBarButton = UIBarButtonItem(image: UIImage(named: "chat"), style: .plain, target: self, action: #selector(btnChatTapped))
+        //        let leftBarButton = UIBarButtonItem(image: UIImage(named: "chat"), style: .plain, target: self, action: #selector(btnChatTapped))
         self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
         
         let rightBarButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(btnSettingTapped))
@@ -151,7 +168,7 @@ class ProfileViewController: UIViewController {
         lblTotalMoveCoins.text = profileModel?.data.totalCoins
         lblTotalSteps.text = profileModel?.data.totalStepsConverted
         
-        segmentedControl.selectItemAt(index: BarChartTitles.Weekly.rawValue, animated: true)
+        viewSegmentTT.selectItemAt(index: BarChartTitles.Weekly.rawValue, animated: true)
         self.setUpBarChat(index: BarChartTitles.Weekly.rawValue)
         
         leftBarButton.numberOfBages = Int(profileModel?.data.unreadMsgCount ?? "0") ?? 0
@@ -172,14 +189,22 @@ class ProfileViewController: UIViewController {
         self.imagePicker.present(from: imgProfilePicture)
     }
     
-    
-    func setupSegmentedControl(){
-        segmentedControl.allowChangeThumbWidth = false
-        segmentedControl.itemTitles = ["Weekly".localized, "Monthly".localized ,"Yearly".localized]
-        segmentedControl.selectedTextFont = FontBook.Bold.of(size: 16)
-        segmentedControl.defaultTextFont =  FontBook.Bold.of(size: 16)
-        segmentedControl.layer.cornerRadius = segmentedControl.frame.height / 2
-        segmentedControl.didSelectItemWith = { (index, title) -> () in
+    func setupSegmentedControl(segmentCntrl : TTSegmentedControl){
+        segmentCntrl.defaultTextColor = .white
+        segmentCntrl.selectedTextColor = .white
+        segmentCntrl.containerBackgroundColor = .clear
+        segmentCntrl.thumbColor = TransparentColor
+        segmentCntrl.thumbGradientColors = [TransparentColor]
+        segmentCntrl.borderColor = TransparentColor
+        segmentCntrl.border = 1
+        segmentCntrl.layer.cornerRadius = segmentCntrl.frame.height / 2
+        
+        segmentCntrl.allowChangeThumbWidth = false
+        segmentCntrl.itemTitles = ["Weekly".localized, "Monthly".localized ,"Yearly".localized]
+        segmentCntrl.selectedTextFont = FontBook.Bold.of(size: 16)
+        segmentCntrl.defaultTextFont =  FontBook.Bold.of(size: 16)
+        
+        segmentCntrl.didSelectItemWith = { (index, title) -> () in
             self.setUpBarChat(index: index)
         }
     }
@@ -198,7 +223,7 @@ class ProfileViewController: UIViewController {
             //                let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-
+            
             dateFormatter.dateFormat = "yyyy-MM-dd"
             //                let lastWeekDateString = dateFormatter.string(from: lastWeekDate)
             
@@ -208,11 +233,11 @@ class ProfileViewController: UIViewController {
                 
                 let formatter = DateFormatter()
                 formatter.locale = Locale(identifier: "en_US_POSIX")
-
+                
                 formatter.dateFormat = "d"
                 let formatter2 = DateFormatter()
                 formatter2.locale = Locale(identifier: "en_US_POSIX")
-
+                
                 formatter2.dateFormat = "yyyy-MM-dd"
                 
                 let currentDate = formatter2.date(from: item.day)
@@ -262,12 +287,12 @@ class ProfileViewController: UIViewController {
             for i in aryData {
                 let formatter = DateFormatter()
                 formatter.locale = Locale(identifier: "en_US_POSIX")
-
+                
                 formatter.dateFormat = "d"
                 
                 let formatterMonth = DateFormatter()
                 formatterMonth.locale = Locale(identifier: "en_US_POSIX")
-
+                
                 formatterMonth.dateFormat = "MM"
                 
                 var date = Date()
@@ -344,7 +369,7 @@ class ProfileViewController: UIViewController {
                 
                 let formatterMonth = DateFormatter()
                 formatterMonth.locale = Locale(identifier: "en_US_POSIX")
-
+                
                 formatterMonth.dateFormat = "MMM"
                 
                 let currentDate = formatter2.date(from: item.datePartition)
@@ -458,7 +483,7 @@ class ProfileViewController: UIViewController {
             
             let formatter = DateFormatter()
             formatter.locale = Locale(identifier: "en_US_POSIX")
-
+            
             formatter.dateFormat = "dd"
             
             let currentDay = formatter.string(from: item.stepsDate)
@@ -487,12 +512,12 @@ class ProfileViewController: UIViewController {
         
         let formatterDay = DateFormatter()
         formatterDay.locale = Locale(identifier: "en_US_POSIX")
-
+        
         formatterDay.dateFormat = "d"
         
         let formatterMonth = DateFormatter()
         formatterMonth.locale = Locale(identifier: "en_US_POSIX")
-
+        
         formatterMonth.dateFormat = "MM"
         
         let currentMonth = formatterMonth.string(from: Date())
@@ -538,12 +563,12 @@ class ProfileViewController: UIViewController {
         for item in stepsDataEntry {
             let formatterYear = DateFormatter()
             formatterYear.locale = Locale(identifier: "en_US_POSIX")
-
+            
             formatterYear.dateFormat = "yyyy"
             
             let formatterMonth = DateFormatter()
             formatterMonth.locale = Locale(identifier: "en_US_POSIX")
-
+            
             formatterMonth.dateFormat = "MMM"
             
             let month = formatterMonth.string(from: item.stepsDate)

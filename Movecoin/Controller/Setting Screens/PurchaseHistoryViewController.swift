@@ -29,7 +29,7 @@ class PurchaseHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForPurchasehistory()
     }

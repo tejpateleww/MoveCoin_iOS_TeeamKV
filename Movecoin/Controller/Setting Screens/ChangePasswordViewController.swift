@@ -26,7 +26,7 @@ class ChangePasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         lblTitle.font = UIFont.semiBold(ofSize: 21)
     }
     

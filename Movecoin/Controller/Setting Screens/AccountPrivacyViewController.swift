@@ -28,7 +28,7 @@ class AccountPrivacyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       localizeUI(parentView: self.viewParent)
+       //        localizeUI(parentView: self.viewParent)
         setUpView()
     }
     

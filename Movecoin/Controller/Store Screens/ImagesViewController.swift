@@ -19,7 +19,7 @@ class ImagesViewController: UIViewController, PagingScrollViewDelegate, PagingSc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         
         pagingControl.frame = self.view.bounds
         pagingControl.delegate   = self

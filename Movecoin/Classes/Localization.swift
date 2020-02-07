@@ -66,9 +66,9 @@ open class Localize: NSObject {
         if (selectedLanguage != currentLanguage()){
             UserDefaults.standard.set(selectedLanguage, forKey: LCLCurrentLanguageKey)
             UserDefaults.standard.synchronize()
-           
         }
-         NotificationCenter.default.post(name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        NotificationCenter.default.post(name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
     }
     
     /**
@@ -112,17 +112,6 @@ open class Localize: NSObject {
 }
 
 
-func localizeString(stringToLocalize:String) -> String
-{
-    // Get the corresponding bundle path.
-    let selectedLanguage = Localize.currentLanguage()
-    let path = Bundle.main.path(forResource: selectedLanguage, ofType: "lproj")
-    
-    // Get the corresponding localized string.
-    let languageBundle = Bundle(path: path!)
-    return languageBundle!.localizedString(forKey: stringToLocalize, value: "", table: nil)
-}
-
 func localizeUI(parentView:UIView)
 {
     UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
@@ -134,7 +123,6 @@ func localizeUI(parentView:UIView)
                 if let potentialButton = view as? UIButton
                 {
                     if let titleString = potentialButton.titleLabel?.text {
-//                        potentialButton.setTitle(localizeString(stringToLocalize: titleString), for: .normal)
                         potentialButton.setTitle(titleString.localized, for: .normal)
                     }
                 }
@@ -144,7 +132,6 @@ func localizeUI(parentView:UIView)
                          potentialLabel.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
                     }
                     if potentialLabel.text != nil {
-//                        potentialLabel.text = localizeString(stringToLocalize: potentialLabel.text!)
                         potentialLabel.text = potentialLabel.text!.localized
                     }
                 }
@@ -152,10 +139,8 @@ func localizeUI(parentView:UIView)
                 {
                     potentialTextField.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
                     if potentialTextField.text != nil {
-//                        potentialTextField.text = localizeString(stringToLocalize: potentialTextField.text!)
                         potentialTextField.text = potentialTextField.text!.localized
                         if potentialTextField.placeholder != nil {
-//                             potentialTextField.placeholder = localizeString(stringToLocalize: potentialTextField.placeholder!)
                             potentialTextField.placeholder = potentialTextField.placeholder!.localized
                         }
                     }
@@ -164,7 +149,6 @@ func localizeUI(parentView:UIView)
                 {
                     potentialTextView.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
                     if potentialTextView.text != nil {
-//                        potentialTextView.text = localizeString(stringToLocalize: potentialTextView.text!)
                         potentialTextView.text = potentialTextView.text!.localized
                     }
                 }
@@ -183,78 +167,3 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
     }
 }
-
-
-
-//// constants
-//let APPLE_LANGUAGE_KEY = "AppleLanguages"
-//
-///// L102Language
-//class L102Language {
-//
-//    /// get current Apple language
-//    class func currentAppleLanguage() -> String{
-//        let userdef = UserDefaults.standard
-////        let langArray = userdef.object(forKey: APPLE_LANGUAGE_KEY) as! NSArray
-////        let current = langArray.firstObject as! String
-//        if let lang = userdef.string(forKey: "i18n_language") {
-//            return lang
-//        } else {
-//            return "en"
-//        }
-//    }
-//
-//    /// set @lang to be the first in Applelanguages list
-//    class func setAppleLAnguageTo(lang: String) {
-//        let userdef = UserDefaults.standard
-//        userdef.set([lang], forKey: APPLE_LANGUAGE_KEY)
-//        userdef.synchronize()
-//    }
-//}
-//
-//extension UIViewController {
-//
-//    func loopThroughSubViewAndFlipTheImageIfItsAUIImageView(subviews: [UIView]) {
-//        if subviews.count > 0 {
-//            for subView in subviews {
-//                if subView.isKind(of:UIImageView.self) && subView.tag < 0 {
-//                    let toRightArrow = subView as! UIImageView
-//                    if let _img = toRightArrow.image {
-//                        /*1*/toRightArrow.image = UIImage(cgImage: _img.cgImage!, scale:_img.scale , orientation: UIImage.Orientation.upMirrored)
-//                    }
-//                }
-//                /*2*/loopThroughSubViewAndFlipTheImageIfItsAUIImageView(subviews: subView.subviews)
-//            }
-//        }
-//    }
-//}
-//class MirroringViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        //        if L102Language.currentAppleLanguage() == "ar" {
-//        //            loopThroughSubViewAndFlipTheImageIfItsAUIImageView(subviews: self.view.subviews)
-//        //        }
-//        if L102Language.currentAppleLanguage() == secondLanguage {
-//            DispatchQueue.main.async {
-//                UIView.appearance().semanticContentAttribute = .forceRightToLeft
-//                UITextField.appearance().semanticContentAttribute = .forceRightToLeft
-//            }
-//        } else {
-//            DispatchQueue.main.async {
-//                UIView.appearance().semanticContentAttribute = .forceLeftToRight
-//                UITextField.appearance().semanticContentAttribute = .forceLeftToRight
-//            }
-//        }
-//    }
-//}
-//
-//var userInterfaceLayoutDirection: UIUserInterfaceLayoutDirection {
-//    get {
-//        var direction = UIUserInterfaceLayoutDirection.leftToRight
-//        if L102Language.currentAppleLanguage() == secondLanguage {
-//            direction = .rightToLeft
-//        }
-//        return direction
-//    }
-//}

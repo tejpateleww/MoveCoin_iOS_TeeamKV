@@ -18,17 +18,17 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
     
-    @IBOutlet weak var txtFullName: UITextField!
-    @IBOutlet weak var txtNickname: UITextField!
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtMobile: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var txtConfirmPassword: UITextField!
-    @IBOutlet weak var txtGender: UITextField!
-    @IBOutlet weak var txtReferral: UITextField!
+    @IBOutlet weak var txtFullName: TextFieldFont!
+    @IBOutlet weak var txtNickname: TextFieldFont!
+    @IBOutlet weak var txtEmail: TextFieldFont!
+    @IBOutlet weak var txtMobile: TextFieldFont!
+    @IBOutlet weak var txtPassword: TextFieldFont!
+    @IBOutlet weak var txtConfirmPassword: TextFieldFont!
+    @IBOutlet weak var txtGender: TextFieldFont!
+    @IBOutlet weak var txtReferral: TextFieldFont!
     
-    @IBOutlet weak var lblAccount: UILabel!
-    @IBOutlet weak var btnSignIn: UIButton!
+    @IBOutlet weak var lblAccount: LocalizLabel!
+    @IBOutlet weak var btnSignIn: LocalizButton!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -50,7 +50,7 @@ class SignupViewController: UIViewController {
         navigationBarSetUp(hidesBackButton: true)
         self.setupView()
         self.setupFont()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         #if targetEnvironment(simulator)
         setDummy()
         #endif
@@ -256,8 +256,8 @@ extension SignupViewController {
             UtilityClass.hideHUD()
            
             if status{
-
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: VerificationViewController.className) as! VerificationViewController
                     controller.signupModel = signupDic
                     controller.otp = json["otp"].stringValue

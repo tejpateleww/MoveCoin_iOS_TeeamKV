@@ -15,7 +15,11 @@ class ThemeTextfield : SkyFloatingLabelTextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+        // For Localization
+        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.placeholder = self.placeholder?.localized
+        self.text = self.text?.localized
+        
         self.selectedTitleColor = .white
         self.selectedLineColor = TransparentColor
         self.font = FontBook.Regular.of(size: 20.0)
@@ -34,7 +38,11 @@ class DropDownThemeTextfield : SkyFloatingLabelTextField {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+        // For Localization
+        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.placeholder = self.placeholder?.localized
+        self.text = self.text?.localized
+        
         self.selectedTitleColor = .white
         self.selectedLineColor = TransparentColor
         self.font = FontBook.Regular.of(size: 20.0)
@@ -62,7 +70,11 @@ class TextFieldFont : UITextField {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
         self.undoManager?.removeAllActions()
-//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+        
+        // For Localization
+        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.placeholder = self.placeholder?.localized
+        self.text = self.text?.localized
     }
 }
 
@@ -71,7 +83,11 @@ class DropDownTextField : UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
-//        self.textAlignment = (L102Language.currentAppleLanguage() == secondLanguage) ? .right : .left
+
+        // For Localization
+        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.placeholder = self.placeholder?.localized
+        self.text = self.text?.localized
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {

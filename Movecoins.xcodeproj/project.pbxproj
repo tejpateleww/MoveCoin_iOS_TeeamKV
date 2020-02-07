@@ -52,6 +52,8 @@
 		46230A9C2379862B0012D9A1 /* UpdateLocationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46230A9B2379862B0012D9A1 /* UpdateLocationClass.swift */; };
 		4628D8FC23A7810C0061D77D /* PagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628D8FA23A7810C0061D77D /* PagingScrollView.swift */; };
 		4628D8FD23A7810C0061D77D /* ZoomingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4628D8FB23A7810C0061D77D /* ZoomingScrollView.swift */; };
+		462A9FD223ED685B004DD6F2 /* LocalizLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A9FD123ED685B004DD6F2 /* LocalizLabel.swift */; };
+		462A9FD423ED6A18004DD6F2 /* LocalizButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462A9FD323ED6A18004DD6F2 /* LocalizButton.swift */; };
 		462CE32A2397EF47006BB690 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462CE3292397EF47006BB690 /* Date + Extension.swift */; };
 		462CE32C2397F326006BB690 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462CE32B2397F326006BB690 /* HealthKit.framework */; };
 		462D24DC23B32F310050C3F0 /* CustomSegments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462D24D123B32F310050C3F0 /* CustomSegments.swift */; };
@@ -165,7 +167,6 @@
 		46B69D2923A9F02E00DCE8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */; };
 		46BC1B4723C471A500AAABE1 /* YearlyStepsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC1B4623C471A500AAABE1 /* YearlyStepsCount.swift */; };
 		46C7C9A72360795C00A80976 /* happy-birthday.json in Resources */ = {isa = PBXBuildFile; fileRef = 46C7C9A62360795C00A80976 /* happy-birthday.json */; };
-		46C7DAB7236C49B70060385D /* LabelThemeFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7DAB6236C49B70060385D /* LabelThemeFont.swift */; };
 		46C9132C2330EA110068C788 /* WaveLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C913282330EA110068C788 /* WaveLayer.m */; };
 		46C9132D2330EA110068C788 /* LKAWaveCircleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C9132B2330EA110068C788 /* LKAWaveCircleProgressBar.m */; };
 		46C9C4EB23A0D36E0042341B /* UnfriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C9C4EA23A0D36E0042341B /* UnfriendModel.swift */; };
@@ -258,6 +259,8 @@
 		46230A9B2379862B0012D9A1 /* UpdateLocationClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateLocationClass.swift; sourceTree = "<group>"; };
 		4628D8FA23A7810C0061D77D /* PagingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingScrollView.swift; sourceTree = "<group>"; };
 		4628D8FB23A7810C0061D77D /* ZoomingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomingScrollView.swift; sourceTree = "<group>"; };
+		462A9FD123ED685B004DD6F2 /* LocalizLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizLabel.swift; sourceTree = "<group>"; };
+		462A9FD323ED6A18004DD6F2 /* LocalizButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizButton.swift; sourceTree = "<group>"; };
 		462CE3292397EF47006BB690 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		462CE32B2397F326006BB690 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		462D24D123B32F310050C3F0 /* CustomSegments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegments.swift; sourceTree = "<group>"; };
@@ -376,7 +379,6 @@
 		46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46BC1B4623C471A500AAABE1 /* YearlyStepsCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearlyStepsCount.swift; sourceTree = "<group>"; };
 		46C7C9A62360795C00A80976 /* happy-birthday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "happy-birthday.json"; sourceTree = "<group>"; };
-		46C7DAB6236C49B70060385D /* LabelThemeFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelThemeFont.swift; sourceTree = "<group>"; };
 		46C9131A2330E0BD0068C788 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		46C9131C2330E0BD0068C788 /* FillableLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillableLoader.swift; sourceTree = "<group>"; };
 		46C9131D2330E0BD0068C788 /* SpikeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpikeLoader.swift; sourceTree = "<group>"; };
@@ -570,7 +572,6 @@
 				4631E9B02327DB4C0088B49F /* RoundedShadowView.swift */,
 				4631E9AE2327D1E40088B49F /* UtilityClass.swift */,
 				461DC26A237965D00092AC82 /* ValidatorClass.swift */,
-				46C7DAB6236C49B70060385D /* LabelThemeFont.swift */,
 				46230A9723797EEA0012D9A1 /* SingletonClass.swift */,
 				46230A9B2379862B0012D9A1 /* UpdateLocationClass.swift */,
 				46B2E443237AC9F800540D27 /* ImagePickerClass.swift */,
@@ -580,6 +581,8 @@
 				464AE07323B49B3300826BA7 /* SocketProtocol.swift */,
 				46AB0D7D23B612FD0085AC4C /* PinMarker.swift */,
 				463CD0C623E95B560010676D /* Localization.swift */,
+				462A9FD123ED685B004DD6F2 /* LocalizLabel.swift */,
+				462A9FD323ED6A18004DD6F2 /* LocalizButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1333,13 +1336,13 @@
 				4613804A232931E9007C3FA4 /* VerificationViewController.swift in Sources */,
 				461380422328F181007C3FA4 /* LoginViewController.swift in Sources */,
 				46DF729B2350605E005005B1 /* FacebookViewController.swift in Sources */,
-				46C7DAB7236C49B70060385D /* LabelThemeFont.swift in Sources */,
 				465E350D237BDCB20023366C /* LoginResponseModel.swift in Sources */,
 				461D5B5A232B57CF007CB670 /* ProductDetailViewController.swift in Sources */,
 				462D24DC23B32F310050C3F0 /* CustomSegments.swift in Sources */,
 				466762B5238BE06E003136BC /* ProductDetailResponseModel.swift in Sources */,
 				461DC26523793AB90092AC82 /* Logout.swift in Sources */,
 				46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */,
+				462A9FD423ED6A18004DD6F2 /* LocalizButton.swift in Sources */,
 				46F717AB23B9CD1000A26DAB /* WebViewController.swift in Sources */,
 				461EC3FB236C05BC00114759 /* UIFont + Extension.swift in Sources */,
 				463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */,
@@ -1470,6 +1473,7 @@
 				4605D26A2391066100316AB3 /* IntroPageVC.swift in Sources */,
 				46F88CAB23570587003E24CC /* PurchaseHistoryTableViewCell.swift in Sources */,
 				46A76A4023AA3BBB009F5427 /* MessageData.swift in Sources */,
+				462A9FD223ED685B004DD6F2 /* LocalizLabel.swift in Sources */,
 				4616EF1A232A57CF00B138A3 /* UIView + Extension.swift in Sources */,
 				468F86CA23509CC9006DC7D1 /* FriendsViewController.swift in Sources */,
 				461DC26723793B690092AC82 /* Signup.swift in Sources */,

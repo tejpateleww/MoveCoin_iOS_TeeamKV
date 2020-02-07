@@ -100,7 +100,9 @@ extension AppDelegate {
     func setupApplication(){
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
-
+        
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let controller = loginStoryboard.instantiateViewController(withIdentifier: SplashViewController.className) as? SplashViewController
         let nav = UINavigationController(rootViewController: controller!)

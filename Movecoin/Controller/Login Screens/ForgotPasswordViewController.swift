@@ -15,8 +15,8 @@ class ForgotPasswordViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet var viewParent: UIView!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var lblTitle: LocalizLabel!
+    @IBOutlet weak var txtEmail: TextFieldFont!
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -25,7 +25,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp()
-       localizeUI(parentView: self.viewParent)
+       //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +73,8 @@ extension ForgotPasswordViewController {
             print(json)
             
             if status{
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
             }

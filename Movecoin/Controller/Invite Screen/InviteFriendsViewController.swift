@@ -16,9 +16,9 @@ class InviteFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBOutlet var viewParent: UIView!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblCode: UILabel!
+    @IBOutlet weak var lblTitle: LocalizLabel!
+    @IBOutlet weak var lblDescription: LocalizLabel!
+    @IBOutlet weak var lblCode: LocalizLabel!
     @IBOutlet weak var lblReferral: UILabel!
     @IBOutlet weak var viewReferralCode: TransparentView!
     @IBOutlet weak var viewBoxAnimation: UIView!
@@ -36,7 +36,7 @@ class InviteFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         viewReferralCode.addDashedBorder()
         lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
     }

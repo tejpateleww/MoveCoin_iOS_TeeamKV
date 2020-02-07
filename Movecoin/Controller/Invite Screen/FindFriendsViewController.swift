@@ -28,7 +28,7 @@ class FindFriendsViewController: UIViewController {
     
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblFriends: UITableView!
-    @IBOutlet weak var txtSearch: UITextField!
+    @IBOutlet weak var txtSearch: TextFieldFont!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -51,7 +51,7 @@ class FindFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillAppear(_ animated: Bool) {

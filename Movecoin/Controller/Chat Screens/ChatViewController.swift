@@ -39,7 +39,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         
         txtView.delegate = self
         txtView.minHeight = 35.0

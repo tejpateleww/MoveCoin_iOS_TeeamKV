@@ -52,7 +52,7 @@ class ProductDetailViewController: UIViewController {
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         guard productID != nil else { return }
     }
     
@@ -80,6 +80,8 @@ class ProductDetailViewController: UIViewController {
         pageControl.isUserInteractionEnabled = false
         
         viewShadow.isUserInteractionEnabled = false
+        
+        txtvwDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         
         switch viewType {
         case .History:

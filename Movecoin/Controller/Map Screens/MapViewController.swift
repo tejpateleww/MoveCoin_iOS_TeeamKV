@@ -50,7 +50,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp(hidesBackButton: true)
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
     }

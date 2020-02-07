@@ -34,7 +34,7 @@ class TransferMoveCoinsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         txtAmount.delegate = self
         if let name = receiverName {

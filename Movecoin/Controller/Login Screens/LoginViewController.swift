@@ -29,13 +29,13 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
     
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgTop: UIImageView!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTitle: LocalizLabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var btnForgotPassword: UIButton!
-    @IBOutlet weak var lblAccount: UILabel!
-    @IBOutlet weak var btnSignUp: UIButton!
-    @IBOutlet weak var lblOr: UILabel!
+    @IBOutlet weak var btnForgotPassword: LocalizButton!
+    @IBOutlet weak var lblAccount: LocalizLabel!
+    @IBOutlet weak var btnSignUp: LocalizButton!
+    @IBOutlet weak var lblOr: LocalizLabel!
     @IBOutlet weak var viewAppleLogin: UIView!
     @IBOutlet weak var appleSigninBtnHeightConstraint: NSLayoutConstraint!
     
@@ -54,7 +54,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         setupSOAppleSignIn()
-        localizeUI(parentView: self.viewParent)
+        //        localizeUI(parentView: self.viewParent)
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
 
         #if targetEnvironment(simulator)
