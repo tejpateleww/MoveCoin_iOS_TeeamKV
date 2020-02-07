@@ -215,7 +215,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 
             case .TermsAndConditions:
                 let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
-                controller.documentType = DocumentType(rawValue: "Terms And Conditions")
+                controller.documentType = DocumentType(rawValue: "Terms and Conditions")
                 self.navigationController?.pushViewController(controller, animated: true)
                 
             case .PrivacyPolicy:

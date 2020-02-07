@@ -187,6 +187,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
                 socialModel.Username = session?.userName ?? ""
                 socialModel.SocialType = "twitter"
                 socialModel.DeviceType = "ios"
+                socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
@@ -299,6 +300,7 @@ extension LoginViewController {
                 socialModel.Username = strEmail
                 socialModel.SocialType = "facebook"
                 socialModel.DeviceType = "ios"
+                socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
@@ -411,6 +413,7 @@ extension LoginViewController {
                 socialModel.Username = responseModel.message.email
                 socialModel.SocialType = "apple"
                 socialModel.DeviceType = "ios"
+                socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"

@@ -54,6 +54,7 @@ class StatisticsViewController: UIViewController {
         tblStatistics.tableFooterView = UIView.init(frame: CGRect.zero)
         lblNoDataFound.isHidden = true
         lblTitle.font = UIFont.semiBold(ofSize: 21)
+        lblNoDataFound.text = "You didn't have any updates yet".localized
     }
     
     func fetchNextPage() {

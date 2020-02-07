@@ -51,6 +51,7 @@ class ChatListViewController: UIViewController {
         self.tblChatList.dataSource = self
         self.tblChatList.tableFooterView = UIView.init(frame: CGRect.zero)
         lblNoDataFound.isHidden = true
+        lblNoDataFound.text = "No chats available".localized
     }
     
     func setUpNavigationItems(){

@@ -31,7 +31,7 @@ extension UIViewController {
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                  NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
                            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-        self.navigationController?.navigationBar.topItem?.title = title.localized
+//        self.navigationController?.navigationBar.topItem?.title = title.localized
             
         // Background
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -39,7 +39,7 @@ extension UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.backgroundColor = backroundColor
         
-        self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+//        self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
 
 //        statusBarSetUp(backColor: .clear)
     }

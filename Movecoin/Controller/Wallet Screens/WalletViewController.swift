@@ -184,6 +184,7 @@ extension WalletViewController {
                         }
                         self.tblWallet.reloadData()
                         self.btnAmount.setTitle(walletModel.coins, for: .normal)
+                        SingletonClass.SharedInstance.userData?.coins = walletModel.coins
                     }
                 }else{
                     UtilityClass.showAlertOfAPIResponse(param: res)

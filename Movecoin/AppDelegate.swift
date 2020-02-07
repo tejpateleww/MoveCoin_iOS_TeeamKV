@@ -256,7 +256,6 @@ extension AppDelegate {
     func onSocketConnectUser() {
         SocketIOManager.shared.socketCall(for: SocketApiKeys.kConnectUser) { (json) in
             print(json)
-            
         }
     }
     

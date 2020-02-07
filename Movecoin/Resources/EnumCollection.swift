@@ -76,7 +76,7 @@ enum SettingsOptions : Int {
 }
 
 enum DocumentType : String {
-    case TermsAndCondition = "Terms And Conditions"
+    case TermsAndCondition = "Terms and Conditions"
     case PrivacyPolicy = "Privacy Policy"
     case Help = "Help"
 }

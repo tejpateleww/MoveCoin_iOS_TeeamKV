@@ -105,7 +105,7 @@ extension TransferMoveCoinsViewController : UITextFieldDelegate {
 extension TransferMoveCoinsViewController {
     
     func webserviceForTransferCoins(dic : TransferCoinsModel){
-        
+       
         UtilityClass.showHUD()
         
         FriendsWebserviceSubclass.transferCoins(transferCoinModel: dic){ (json, status, res) in
@@ -116,6 +116,7 @@ extension TransferMoveCoinsViewController {
                 UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
+                
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

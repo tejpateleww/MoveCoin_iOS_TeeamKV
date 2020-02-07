@@ -40,7 +40,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       localizeUI(parentView: self.viewParent)
+        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true
@@ -62,6 +62,7 @@ class FriendsViewController: UIViewController {
         self.tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
         
         txtSearch.font = UIFont.regular(ofSize: 15)
+        lblNoDataFound.text = "You didn't connect with your friends".localized
     }
     
     // ----------------------------------------------------

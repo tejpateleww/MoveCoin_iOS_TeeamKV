@@ -29,7 +29,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var imgProfilePicture: UIImageView!
     @IBOutlet weak var viewProfile: UIView!
     
-    @IBOutlet var lblTitle: [UILabel]!
+    @IBOutlet weak var lblTitleTotalMoveCoins: UILabel!
+    @IBOutlet weak var lblTitleTotalSteps: UILabel!
     @IBOutlet weak var lblMemberSince: UILabel!
     @IBOutlet weak var lblTotalMoveCoins: UILabel!
     @IBOutlet weak var lblTotalSteps: UILabel!
@@ -92,9 +93,10 @@ class ProfileViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-        for lbl in lblTitle {
-            lbl.font = UIFont.bold(ofSize: 13)
-        }
+        
+        lblTitleTotalSteps.font = UIFont.bold(ofSize: 13)
+        lblTitleTotalMoveCoins.font = UIFont.bold(ofSize: 13)
+        
         btnMyFriends.titleLabel?.font = UIFont.bold(ofSize: 18)
         lblTotalSteps.font = UIFont.bold(ofSize: 13)
         lblAverageSteps.font = UIFont.bold(ofSize: 13)
