@@ -64,7 +64,6 @@ class ProfileViewController: UIViewController {
         //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
-//        setupSegmentedControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,7 +117,10 @@ class ProfileViewController: UIViewController {
         viewSegmentTT = TTSegmentedControl()
         viewSegmentTT.frame = viewSegmentedControl.bounds
         setupSegmentedControl(segmentCntrl: viewSegmentTT)
+        viewSegmentTT.layer.masksToBounds = true
+        self.viewSegmentedControl.layer.masksToBounds = true
         viewSegmentTT.layoutIfNeeded()
+     
         self.viewSegmentedControl.addSubview(viewSegmentTT)
     }
     
