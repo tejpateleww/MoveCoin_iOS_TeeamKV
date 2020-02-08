@@ -113,7 +113,8 @@ extension TransferMoveCoinsViewController {
             
             if status {
                 self.view.endEditing(true)
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
                 

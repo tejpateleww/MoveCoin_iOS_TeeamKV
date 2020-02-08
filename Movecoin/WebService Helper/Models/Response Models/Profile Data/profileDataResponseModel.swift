@@ -24,7 +24,8 @@ class profileDataResponseModel : NSObject, NSCoding{
         if !dataJson.isEmpty{
             data = profileDataDataModel(fromJson: dataJson)
         }
-        message = json["message"].stringValue
+        let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+        message = msg
         status = json["status"].boolValue
 	}
 

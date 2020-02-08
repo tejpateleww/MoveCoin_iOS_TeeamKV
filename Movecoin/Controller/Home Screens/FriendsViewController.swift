@@ -203,7 +203,8 @@ extension FriendsViewController {
             
             UtilityClass.hideHUD()
             if status {
-                UtilityClass.showAlert(Message: json["message"].stringValue)
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
                 self.webserviceForFriendsList(isLoading: false)
                 
             } else {

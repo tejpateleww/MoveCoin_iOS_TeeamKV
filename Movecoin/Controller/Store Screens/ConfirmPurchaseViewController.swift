@@ -14,8 +14,10 @@ class ConfirmPurchaseViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet weak var btnArrow: UIButton!
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblProductName: UILabel!
+    
     //    @IBOutlet weak var lblTotal: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAvailableBalance: UILabel!
@@ -67,6 +69,9 @@ class ConfirmPurchaseViewController: UIViewController {
         super.viewDidAppear(true)
         navigationBarSetUp()
         self.title =  "Confirm Purchase".localized
+        let arrowImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        btnArrow.setImage(arrowImg, for: .normal)
+        
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
             lblTitlePayableAmount.textAlignment = .left
             lblPurchase.textAlignment = .left
@@ -284,7 +289,8 @@ extension ConfirmPurchaseViewController  {
             UtilityClass.hideHUD()
         
             if status{
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
             }

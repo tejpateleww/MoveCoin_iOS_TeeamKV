@@ -239,6 +239,7 @@
 "Female" = "أنثى";
 "You didn't connect with your friends" = "أنت لم تواصل مع أصدقائك";
 "You didn't have any updates yet" = "لم يكن لديك أي تحديثات بعد";
+"Delete" = "حذف";
 
 
 // Validation String

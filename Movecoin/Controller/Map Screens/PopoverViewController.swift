@@ -215,7 +215,8 @@ extension PopoverViewController {
         FriendsWebserviceSubclass.friendRequest(frinedRequestModel: requestModel){ (json, status, res) in
             UtilityClass.hideHUD()
             if status {
-                UtilityClass.showAlert(Message: json["message"].stringValue)
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
                 self.btnSendFriendRequest.setTitle("Requested".localized, for: .normal)
                 self.btnSendFriendRequest.isUserInteractionEnabled = false
             } else {

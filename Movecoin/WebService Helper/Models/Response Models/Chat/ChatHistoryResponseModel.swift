@@ -32,7 +32,8 @@ class ChatHistoryResponseModel : Codable {
             let value = MessageData(fromJson: chatHistoryJson)
             chatHistory.append(value)
         }
-        message = json["message"].stringValue
+        let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+        message = msg
         status = json["status"].boolValue
         let receiverArrJson = json["receiver_arr"]
         if !receiverArrJson.isEmpty{

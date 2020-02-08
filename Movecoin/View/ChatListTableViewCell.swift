@@ -14,6 +14,7 @@ class ChatListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblId: UILabel!
     @IBOutlet weak var btnBadge: UIButton!
+    @IBOutlet weak var btnArrow: UIButton!
     
     var friendDetail: ChatList? {
         didSet{
@@ -44,6 +45,8 @@ class ChatListTableViewCell: UITableViewCell {
         lblId.font = UIFont.regular(ofSize: 12)
         btnBadge.titleLabel?.font = UIFont.regular(ofSize: 10)
         btnBadge.cornerRadius = btnBadge.frame.height / 2
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        btnArrow.setImage(sendImg, for: .normal)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

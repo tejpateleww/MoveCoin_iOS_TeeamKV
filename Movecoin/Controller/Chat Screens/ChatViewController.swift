@@ -23,7 +23,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     @IBOutlet weak var bottomViewConstraintHeight: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var btnSend: UIButton!
-    
+
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -46,7 +46,12 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
         txtView.maxHeight = 120.0
         txtView.placeholder = "Message".localized
         txtView.undoManager?.removeAllActions()
+        txtView.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         
+        // imageFlippedForRightToLeftLayoutDirection is not working on this, to fix it replace the image
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? UIImage(named: "send-icon-reverse") : UIImage(named: "send-icon")
+        btnSend.setImage(sendImg, for: .normal)
+
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
         webserviceForChatHistory(isLoading: true)
@@ -62,6 +67,8 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUpNavigationItems()
+        
+        
         
         if arrData.count > 0 {
             tblVw.reloadData()
@@ -332,6 +339,7 @@ class MessageCell: UITableViewCell, GrowingTextViewDelegate {
         lblTime.font = UIFont.light(ofSize: 10)
         lblReadStatus.font = UIFont.light(ofSize: 10)
         txtvwMessage.font = UIFont.regular(ofSize: 15)
+        txtvwMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
     }
 }
 

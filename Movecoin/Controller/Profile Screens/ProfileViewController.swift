@@ -165,7 +165,7 @@ class ProfileViewController: UIViewController {
         }else {
             imgProfilePicture.image = UIImage(named: "m-logo")
         }
-        btnMyFriends.setTitle("My Friends ".localized + "(\(profileModel?.data.friends ?? "0"))", for: .normal)
+        btnMyFriends.setTitle("My Friends ".localized + "\(profileModel?.data.friends ?? "0")", for: .normal)
         
         lblTotalMoveCoins.text = profileModel?.data.totalCoins
         lblTotalSteps.text = profileModel?.data.totalStepsConverted
@@ -660,7 +660,8 @@ extension ProfileViewController {
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }
                 self.getUserData()
-                UtilityClass.showAlert(Message: json["message"].stringValue)
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
             }
             else{
                 UtilityClass.showAlertOfAPIResponse(param: res)

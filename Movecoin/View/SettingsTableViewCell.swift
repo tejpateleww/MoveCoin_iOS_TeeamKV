@@ -18,6 +18,8 @@ class SettingsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         lblTitle.font = UIFont.regular(ofSize: 17)
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        btnArrow.setImage(sendImg, for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

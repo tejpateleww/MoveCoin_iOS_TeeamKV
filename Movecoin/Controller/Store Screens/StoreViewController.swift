@@ -20,6 +20,7 @@ class StoreViewController: UIViewController {
     @IBOutlet weak var viewFooter: UIView!
     @IBOutlet weak var lblSeller: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var btnGetInTouch: ThemeButton!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -46,10 +47,19 @@ class StoreViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
         // Navigation & Status bar setup
         self.navigationBarSetUp(title: "Offers For Today", backroundColor: ThemeNavigationColor, hidesBackButton: true)
         self.statusBarSetUp(backColor: ThemeNavigationColor)
+        
          webserviceForProductList()
+        
+        // Localization
+        lblSeller.text = "Be a Seller".localized
+        lblDescription.text = "Do you have a product or service you would like to show in our marketplace?".localized
+        DispatchQueue.main.async {
+            self.btnGetInTouch.setTitle("Get In Touch".localized, for: .normal)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

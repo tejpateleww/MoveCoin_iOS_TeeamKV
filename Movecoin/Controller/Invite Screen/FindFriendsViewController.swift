@@ -329,7 +329,8 @@ extension FindFriendsViewController {
             
             if status {
                 self.retrieveContacts(from: self.store)
-                UtilityClass.showAlert(Message: json["message"].stringValue)
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
@@ -347,7 +348,8 @@ extension FindFriendsViewController {
             
             if status {
                 self.retrieveContacts(from: self.store)
-                UtilityClass.showAlert(Message: json["message"].stringValue)
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

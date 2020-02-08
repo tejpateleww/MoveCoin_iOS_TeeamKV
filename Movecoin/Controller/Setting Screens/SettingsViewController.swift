@@ -53,26 +53,26 @@ class SettingsViewController: UIViewController {
         
         lblVersion.text = "Version - ".localized + kAPPVesion
         
- /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
-            switch setttings.authorizationStatus{
-            case .denied:
-                print("setting has been disabled")
-                if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
-                    if notificationStatus == "1" {
-                        self.webserviceforNotification()
-                    }
-                }
-            case .notDetermined:
-                print("something vital went wrong here")
-            case .provisional:
-                print("provisional")
-            case .authorized:
-                print("setting has been authorized")
-            @unknown default:
-                return
-            }
-        }
-  */
+        /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
+         switch setttings.authorizationStatus{
+         case .denied:
+         print("setting has been disabled")
+         if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+         if notificationStatus == "1" {
+         self.webserviceforNotification()
+         }
+         }
+         case .notDetermined:
+         print("something vital went wrong here")
+         case .provisional:
+         print("provisional")
+         case .authorized:
+         print("setting has been authorized")
+         @unknown default:
+         return
+         }
+         }
+         */
         //        btnLogout.setAttributedTitle(btnLogout.attributedString(), for: .normal)
     }
     
@@ -82,25 +82,29 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func switchChanged(mySwitch: UISwitch) {
-       webserviceforNotification()
+        webserviceforNotification()
     }
     
     @objc func languageChanged(sender: UISegmentedControl) {
         if(sender.selectedSegmentIndex == 1){
-            Localize.setCurrentLanguage(Languages.English.rawValue)
+//            Localize.setCurrentLanguage(Languages.English.rawValue)
+            webserviceForChangeLanguage(language: "1")
         }else{
-            Localize.setCurrentLanguage(Languages.Arabic.rawValue)
+//            Localize.setCurrentLanguage(Languages.Arabic.rawValue)
+            webserviceForChangeLanguage(language: "2")
         }
-        changeLanguage()
     }
     
     func changeLanguage(){
-        tblSettings.reloadData()
-       
-        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+//        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         self.navigationController?.navigationBar.topItem?.title = "Settings".localized
+        tblSettings.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        
         lblVersion.text = "Version - ".localized + kAPPVesion
+        tblSettings.reloadData()
+        self.view.layoutIfNeeded()
+        self.view.layoutSubviews()
     }
     
     // ----------------------------------------------------
@@ -140,7 +144,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className) as! SettingsTableViewCell
         cell.selectionStyle = .none
         cell.lblTitle.text = settingsArray[indexPath.row].localized
-        
+        cell.lblTitle.decideTextDirection()
         if let option = SettingsOptions(rawValue: indexPath.row) {
             switch option {
                 
@@ -168,22 +172,22 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 cell.segmentControl.isHidden = true
             }
         }
-/*        if indexPath.row > 0 {
-            cell.switchToggle.isHidden = true
-            cell.btnArrow.isHidden = false
-            cell.segmentControl.isHidden = true
-        } else{
-            cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
-            cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
-            cell.switchToggle.backgroundColor = .gray
-            cell.switchToggle.isHidden = false
-            cell.btnArrow.isHidden = true
-            cell.segmentControl.isHidden = true
-            if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
-                cell.switchToggle.isOn = notificationStatus == "0" ? false : true
-            }
-        } */
-//        localizeUI(parentView: cell.contentView)
+        /*        if indexPath.row > 0 {
+         cell.switchToggle.isHidden = true
+         cell.btnArrow.isHidden = false
+         cell.segmentControl.isHidden = true
+         } else{
+         cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+         cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
+         cell.switchToggle.backgroundColor = .gray
+         cell.switchToggle.isHidden = false
+         cell.btnArrow.isHidden = true
+         cell.segmentControl.isHidden = true
+         if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+         cell.switchToggle.isOn = notificationStatus == "0" ? false : true
+         }
+         } */
+        //        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -201,9 +205,9 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 let controller = storyboard.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
                 self.navigationController?.pushViewController(controller, animated: true)
                 
-//            case .ChangePassword:
-//                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
-//                self.navigationController?.pushViewController(controller, animated: true)
+                //            case .ChangePassword:
+                //                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
+                //                self.navigationController?.pushViewController(controller, animated: true)
                 
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
@@ -241,28 +245,31 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
 
 extension SettingsViewController {
     
-    func webserviceForLogout(){
-        
-        guard let userData = SingletonClass.SharedInstance.userData  else { return }
+    func webserviceForChangeLanguage(language : String){
         
         UtilityClass.showHUD()
-        guard let xApiKey = UserDefaults.standard.value(forKey: UserDefaultKeys.kX_API_KEY) else { return }
         
-        let logout = userData.iD + "/\(xApiKey)"
-        UserWebserviceSubclass.Logout(strURL: logout){ (json, status, res) in
+        var strParam = String()
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        strParam = NetworkEnvironment.baseURL + ApiKey.updateLanguage.rawValue + "\(id)/\(language)"
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(status)
             
             UtilityClass.hideHUD()
             
-            if status {
-                UserDefaults.standard.set(false, forKey: UserDefaultKeys.kIsLogedIn)
-                SingletonClass.SharedInstance.singletonClear()
-                //                self.removeAllSocketFromMemory()
-                AppDelegateShared.GoToLogout()
-            } else {
+            if status{
+                let lang = (Localize.currentLanguage() == Languages.English.rawValue) ? Languages.Arabic.rawValue : Languages.English.rawValue
+                Localize.setCurrentLanguage(lang)
+                self.changeLanguage()
+            }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
+    
     
     func webserviceforNotification(){
         
@@ -288,7 +295,7 @@ extension SettingsViewController {
                         AppDelegateShared.notificationEnableDisable(notification: userData.notification ?? "0")
                         DispatchQueue.main.async {
                             self.tblSettings.reloadData()
-//                            self.tblSettings.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+                            //                            self.tblSettings.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
                         }
                     }catch{
                         UtilityClass.showAlert(Message: error.localizedDescription)
@@ -299,6 +306,47 @@ extension SettingsViewController {
             }
         }
     }
+    
+    func webserviceForLogout(){
+        
+        guard let userData = SingletonClass.SharedInstance.userData  else { return }
+        
+        UtilityClass.showHUD()
+        guard let xApiKey = UserDefaults.standard.value(forKey: UserDefaultKeys.kX_API_KEY) else { return }
+        
+        let logout = userData.iD + "/\(xApiKey)"
+        UserWebserviceSubclass.Logout(strURL: logout){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            
+            if status {
+                UserDefaults.standard.set(false, forKey: UserDefaultKeys.kIsLogedIn)
+                SingletonClass.SharedInstance.singletonClear()
+                //                self.removeAllSocketFromMemory()
+                AppDelegateShared.GoToLogout()
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
 }
 
+
+extension UILabel {
+    func decideTextDirection () {
+        let tagScheme = [NSLinguisticTagScheme.language]
+        let tagger    = NSLinguisticTagger(tagSchemes: tagScheme, options: 0)
+        tagger.string = self.text
+        let lang      = tagger.tag(at: 0, scheme: NSLinguisticTagScheme.language,
+            tokenRange: nil, sentenceRange: nil)
+        
+        if (Localize.currentLanguage() != Languages.English.rawValue) {//lang?.rawValue.range(of: Languages.English.rawValue) != nil ||  lang?.rawValue.range(of:Languages.Arabic.rawValue) != nil {
+            self.textAlignment = NSTextAlignment.right
+        }
+    else
+    {
+            self.textAlignment = NSTextAlignment.left
+        }
+    }
+}
 

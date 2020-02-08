@@ -168,7 +168,8 @@ extension BecomeSellerViewController : AlertDelegate {
               
                 let destination = self.storyboard?.instantiateViewController(withIdentifier: AlertViewController.className) as! AlertViewController
                 destination.alertTitle = "Thank You"
-                destination.alertDescription = json["message"].stringValue
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                destination.alertDescription = msg
                 destination.delegate = self
                 destination.modalPresentationStyle = .overCurrentContext
                 self.present(destination, animated: true, completion: nil)

@@ -14,6 +14,7 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var btnArrow: UIButton!
     
     var orderDetail: Order? {
         didSet{
@@ -44,6 +45,8 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
         lblTitle.font = UIFont.semiBold(ofSize: 15)
         lblDate.font = UIFont.regular(ofSize: 12)
         lblPrice.font = UIFont.regular(ofSize: 15)
+        let arrowImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        btnArrow.setImage(arrowImg, for: .normal)
     }
     
     override func layoutSubviews() {

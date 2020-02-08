@@ -91,26 +91,28 @@ class UtilityClass : NSObject {
             UtilityClass.showAlert(Message: res)
         }
         else if let resDict = param as? NSDictionary {
-            if let msg = resDict.object(forKey: "message") as? String {
+            let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? "message" : "arabic_message"
+            if let msg = resDict.object(forKey: msg) as? String {
                 UtilityClass.showAlert(Message: msg)
             }
             else if let msg = resDict.object(forKey: "msg") as? String {
                 UtilityClass.showAlert(Message: msg)
             }
-            else if let msg = resDict.object(forKey: "message") as? [String] {
+            else if let msg = resDict.object(forKey: msg) as? [String] {
                 UtilityClass.showAlert(Message: msg.first ?? "")
             }
         }
         else if let resAry = param as? NSArray {
             
             if let dictIndxZero = resAry.firstObject as? NSDictionary {
-                if let message = dictIndxZero.object(forKey: "message") as? String {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? "message" : "arabic_message"
+                if let message = dictIndxZero.object(forKey: msg) as? String {
                     UtilityClass.showAlert(Message: message)
                 }
                 else if let msg = dictIndxZero.object(forKey: "msg") as? String {
                     UtilityClass.showAlert(Message: msg)
                 }
-                else if let msg = dictIndxZero.object(forKey: "message") as? [String] {
+                else if let msg = dictIndxZero.object(forKey: msg) as? [String] {
                     UtilityClass.showAlert(Message: msg.first ?? "")
                 }
             }

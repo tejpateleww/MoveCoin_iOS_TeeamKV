@@ -52,11 +52,31 @@ class WalletViewController: UIViewController {
         switch walletType {
         case .Coins:
 //            btnBack.isHidden = false
-            let leftBarButton = UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .plain, target: self, action: #selector(btnBackTapped))
+            let backImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-left")?.imageFlippedForRightToLeftLayoutDirection()) : UIImage(named: "arrow-left")
+            let leftBarButton = UIBarButtonItem(image: backImg, style: .plain, target: self, action: #selector(btnBackTapped))
             self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
             break
          case .Wallet:
             break
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        lblTitle.text = "My Balance".localized
+        btnSpendCoins.setTitle("Spend Coins".localized, for: .normal)
+        btnTransfer.setTitle("Transfer".localized, for: .normal)
+        
+        if Localize.currentLanguage() == Languages.Arabic.rawValue {
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+        }
+        else {
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
+            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
         }
     }
     
@@ -68,15 +88,6 @@ class WalletViewController: UIViewController {
         self.parent?.navigationItem.rightBarButtonItems?.removeAll()
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if Localize.currentLanguage() == Languages.Arabic.rawValue {
-            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
-            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
-            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
-        }
-    }
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------

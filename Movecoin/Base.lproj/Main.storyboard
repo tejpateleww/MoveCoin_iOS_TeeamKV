@@ -49,10 +49,10 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21c-8M-9xt">
-                                                <rect key="frame" x="78.5" y="0.0" width="218" height="40"/>
+                                                <rect key="frame" x="123" y="0.0" width="129" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-jv-o5N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="40"/>
                                                         <state key="normal" image="logo-unselect"/>
                                                         <state key="selected" image="logo-select"/>
                                                         <connections>
@@ -60,7 +60,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-Vt-KIr">
-                                                        <rect key="frame" x="88" y="0.0" width="48" height="40"/>
+                                                        <rect key="frame" x="54" y="0.0" width="24" height="40"/>
                                                         <state key="normal" image="call-unselect"/>
                                                         <state key="selected" image="call-select"/>
                                                         <connections>
@@ -68,7 +68,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDP-j7-div">
-                                                        <rect key="frame" x="156" y="0.0" width="62" height="40"/>
+                                                        <rect key="frame" x="98" y="0.0" width="31" height="40"/>
                                                         <state key="normal" image="facebook-unselect"/>
                                                         <state key="selected" image="facebook-select"/>
                                                         <connections>
@@ -2007,6 +2007,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="btnArrow" destination="30i-Z0-W28" id="CFj-ZQ-b73"/>
                                                     <outlet property="imgPhoto" destination="BWN-Xt-qJe" id="Wc7-wT-vzF"/>
                                                     <outlet property="lblDate" destination="EwN-Yx-XfA" id="vhj-xh-Hni"/>
                                                     <outlet property="lblPrice" destination="6dY-T1-Cgg" id="giu-8J-iWR"/>
@@ -2122,13 +2123,13 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y21-Ns-OwK" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y21-Ns-OwK" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                                     <rect key="frame" x="97.5" y="108" width="180" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="FId-M7-ehc"/>
                                                         <constraint firstAttribute="height" constant="40" id="f8g-MX-AIz"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
                                                     <state key="normal" title="Get In Touch">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
@@ -2234,7 +2235,7 @@
                                                             </constraints>
                                                             <blurEffect style="light"/>
                                                         </visualEffectView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$0" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHq-nZ-pGK" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHq-nZ-pGK" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                             <rect key="frame" x="138.5" y="180" width="20.5" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="gH7-yq-HXp"/>
@@ -2243,7 +2244,7 @@
                                                             <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Product name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76H-Ij-qMH" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76H-Ij-qMH" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="180" width="113.5" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="hol-el-Sou"/>
@@ -2326,6 +2327,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="YLP-jc-9So"/>
                     <connections>
+                        <outlet property="btnGetInTouch" destination="y21-Ns-OwK" id="CGS-7s-PQI"/>
                         <outlet property="lblDescription" destination="h2f-gq-hkY" id="sKz-vK-H97"/>
                         <outlet property="lblSeller" destination="TKB-hh-59i" id="89a-Ht-biY"/>
                         <outlet property="tblStoreOffers" destination="KCK-jO-gNc" id="0UH-FV-7cv"/>
@@ -3391,6 +3393,7 @@
                         <viewLayoutGuide key="safeArea" id="eaY-bK-tT4"/>
                     </view>
                     <connections>
+                        <outlet property="btnArrow" destination="fuc-Zv-6E7" id="fQA-jw-WFq"/>
                         <outlet property="imgCardIcon" destination="Aew-W4-LGP" id="igh-Pq-DXJ"/>
                         <outlet property="imgProduct" destination="tTO-Bl-HBJ" id="xN9-LE-7Ut"/>
                         <outlet property="lblAddress" destination="4UD-nm-4wn" id="9Xs-lg-4Rk"/>
@@ -3654,7 +3657,7 @@
                     </view>
                     <connections>
                         <outlet property="btnAmount" destination="XI1-dR-fct" id="2YU-vr-KzX"/>
-                        <outlet property="btnBack" destination="cnK-YI-Bgp" id="YAz-3N-W0e"/>
+                        <outlet property="btnBack" destination="cnK-YI-Bgp" id="pZ5-oM-FPl"/>
                         <outlet property="btnSpendCoins" destination="WUk-hk-h9c" id="3lZ-Ob-eY6"/>
                         <outlet property="btnTransfer" destination="8dD-Zb-LX0" id="6A6-ZC-3Ip"/>
                         <outlet property="lblTitle" destination="2aJ-VB-sFQ" id="mX8-KR-Fsw"/>
@@ -4173,8 +4176,9 @@
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FtN-6e-36H">
                                                                     <rect key="frame" x="306" y="20.5" width="51" height="31"/>
                                                                 </switch>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muhammad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIb-v2-28H" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muhammad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIb-v2-28H">
                                                                     <rect key="frame" x="15" y="25.5" width="271" height="20"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -4848,6 +4852,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="btnArrow" destination="5Af-9I-IA6" id="Kcw-Qr-r9T"/>
                                                     <outlet property="btnBadge" destination="qv9-LP-n0e" id="p8r-Tn-b64"/>
                                                     <outlet property="imgPhoto" destination="PVN-Gg-ukA" id="xxy-qS-6Jn"/>
                                                     <outlet property="lblId" destination="Gra-QB-Q0p" id="Sjh-Pd-tO2"/>
