@@ -56,6 +56,14 @@ class TransferMoveCoinsViewController: UIViewController {
         lblName.font = UIFont.semiBold(ofSize: 24)
         txtAmount.font = UIFont.bold(ofSize: 40)
         txtMessage.font = UIFont.regular(ofSize: 19)
+        
+        // For Localization
+        txtAmount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        txtAmount.placeholder = txtAmount.placeholder?.localized
+        txtMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        txtMessage.placeholder = txtMessage.placeholder?.localized
+        txtMessage.placeHolderColor = TransparentColor
+        txtAmount.placeHolderColor = TransparentColor
     }
     
     // ----------------------------------------------------

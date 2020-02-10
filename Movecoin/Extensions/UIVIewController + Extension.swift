@@ -26,7 +26,7 @@ extension UIViewController {
 
         // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
-
+        
         // Title
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                  NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]

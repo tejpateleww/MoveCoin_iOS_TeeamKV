@@ -51,6 +51,7 @@ class PopoverViewController: UIViewController {
         btnSendFriendRequest.isHidden = true
         stackButtons.isHidden = true
         stackInfo.isHidden = true
+        localizeSetup()
         
         if let parent = self.parent as? MapViewController {
             parent.delegateFriendStatus = self
@@ -74,6 +75,15 @@ class PopoverViewController: UIViewController {
         lblMemberSince.font = UIFont.regular(ofSize: 12)
         lblTime.font = UIFont.regular(ofSize: 12)
         lblTotalSteps.font = UIFont.regular(ofSize: 12)
+    }
+    
+    func localizeSetup(){
+        lblChat.text = "Chat".localized
+        lblTime.text = "Today".localized
+        lblTransfer.text = "Transfer".localized
+        lblName.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        lblLastSeen.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        lblMemberSince.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
     }
     
     func setupUserData(){

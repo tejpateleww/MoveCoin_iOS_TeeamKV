@@ -94,17 +94,20 @@ class SettingsViewController: UIViewController {
             webserviceForChangeLanguage(language: "2")
         }
     }
-    
+
     func changeLanguage(){
-//        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        self.navigationController?.navigationBar.topItem?.title = "Settings".localized
+
+        self.navigationBarSetUp(title: "Settings",hidesBackButton: true)
+        self.navigationBarSetUp(title: "Settings",hidesBackButton: false)
         tblSettings.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        
         lblVersion.text = "Version - ".localized + kAPPVesion
         tblSettings.reloadData()
-        self.view.layoutIfNeeded()
-        self.view.layoutSubviews()
+    }
+    
+    func reloadLocalizationEffect(cell : SettingsTableViewCell){
+        cell.lblTitle.textAlignment =  (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        cell.btnArrow.setImage(sendImg, for: .normal)
     }
     
     // ----------------------------------------------------
@@ -144,7 +147,8 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className) as! SettingsTableViewCell
         cell.selectionStyle = .none
         cell.lblTitle.text = settingsArray[indexPath.row].localized
-        cell.lblTitle.decideTextDirection()
+        reloadLocalizationEffect(cell: cell)
+//        cell.lblTitle.decideTextDirection()
         if let option = SettingsOptions(rawValue: indexPath.row) {
             switch option {
                 
@@ -338,13 +342,13 @@ extension UILabel {
         let tagger    = NSLinguisticTagger(tagSchemes: tagScheme, options: 0)
         tagger.string = self.text
         let lang      = tagger.tag(at: 0, scheme: NSLinguisticTagScheme.language,
-            tokenRange: nil, sentenceRange: nil)
+                                   tokenRange: nil, sentenceRange: nil)
         
         if (Localize.currentLanguage() != Languages.English.rawValue) {//lang?.rawValue.range(of: Languages.English.rawValue) != nil ||  lang?.rawValue.range(of:Languages.Arabic.rawValue) != nil {
             self.textAlignment = NSTextAlignment.right
         }
-    else
-    {
+        else
+        {
             self.textAlignment = NSTextAlignment.left
         }
     }

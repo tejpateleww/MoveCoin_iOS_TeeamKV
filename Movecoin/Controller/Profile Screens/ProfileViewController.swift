@@ -165,7 +165,7 @@ class ProfileViewController: UIViewController {
         }else {
             imgProfilePicture.image = UIImage(named: "m-logo")
         }
-        btnMyFriends.setTitle("My Friends ".localized + "\(profileModel?.data.friends ?? "0")", for: .normal)
+        btnMyFriends.setTitle("My Friends ".localized + "(\(profileModel?.data.friends ?? "0"))", for: .normal)
         
         lblTotalMoveCoins.text = profileModel?.data.totalCoins
         lblTotalSteps.text = profileModel?.data.totalStepsConverted

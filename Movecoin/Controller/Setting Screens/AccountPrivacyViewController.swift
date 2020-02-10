@@ -16,6 +16,7 @@ class AccountPrivacyViewController: UIViewController {
     
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblPrivacy: UITableView!
+   
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -48,6 +49,7 @@ class AccountPrivacyViewController: UIViewController {
         tblPrivacy.rowHeight = UITableView.automaticDimension
         tblPrivacy.estimatedRowHeight = 120
         tblPrivacy.tableFooterView = UIView.init(frame: CGRect.zero)
+       
     }
     
     @objc func switchChanged(mySwitch: UISwitch) {

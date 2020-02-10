@@ -16,8 +16,9 @@ class ThemeTextfield : SkyFloatingLabelTextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         // For Localization
-        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+//        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         self.placeholder = self.placeholder?.localized
+        self.isLTRLanguage = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? false : true
         self.text = self.text?.localized
         
         self.selectedTitleColor = .white
@@ -39,7 +40,8 @@ class DropDownThemeTextfield : SkyFloatingLabelTextField {
         super.awakeFromNib()
 
         // For Localization
-        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+//        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.isLTRLanguage = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? false : true
         self.placeholder = self.placeholder?.localized
         self.text = self.text?.localized
         

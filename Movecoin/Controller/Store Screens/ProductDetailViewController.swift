@@ -26,6 +26,9 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStore: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblDiscountedPrice: UILabel!
+    @IBOutlet weak var lblPriceDiscount: UILabel!
+    
     @IBOutlet weak var lblDeliveryCharge: UILabel!
     @IBOutlet weak var lblBuy: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
@@ -96,7 +99,9 @@ class ProductDetailViewController: UIViewController {
     func setupFont(){
         lblBuy.font = UIFont.semiBold(ofSize: 19)
         lblCoins.font = UIFont.semiBold(ofSize: 19)
-        lblPrice.font = UIFont.semiBold(ofSize: 20)
+        lblDiscountedPrice.font = UIFont.semiBold(ofSize: 22)
+        lblPrice.font = UIFont.regular(ofSize: 16)
+        lblPriceDiscount.font = UIFont.regular(ofSize: 14)
         lblTitle.font = UIFont.bold(ofSize: 26)
 //        lblDescription.font = UIFont.bold(ofSize: 16)
         txtvwDescription.font = UIFont.bold(ofSize: 16)
@@ -124,7 +129,7 @@ class ProductDetailViewController: UIViewController {
         
         lblTitle.text = product.name
         lblStore.text = "Store : ".localized + product.store
-        
+/*
         if product.discount != "0" {
 //             lblTitle.text = product.name + " with \(product.discount!)% Discount"
             let priceText = "$\(product.price ?? "") $\(product.totalPrice ?? "")" + " inclusive tax".localized
@@ -136,7 +141,28 @@ class ProductDetailViewController: UIViewController {
 //            lblTitle.text = product.name
             lblPrice.text = "$\(product.price!)" + " inclusive tax".localized
         }
-
+*/
+        if product.discount == "0" {
+            self.lblDiscountedPrice.text = ""
+            self.lblDiscountedPrice.isHidden = true
+            self.lblPrice.text = "$\(product.price ?? "")"
+            self.lblPriceDiscount.text = ""
+            self.lblPriceDiscount.isHidden = true
+        } else {
+            self.lblDiscountedPrice.text = "$\(product.totalPrice ?? "")"
+            self.lblDiscountedPrice.isHidden = false
+            
+            let priceText = "$\(product.price ?? "")"
+            self.lblPrice.text = "$\(product.price ?? "")"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            self.lblPrice.attributedText = attributeString
+            
+            self.lblPriceDiscount.text = " - \(product.discount ?? "")% "
+            self.lblPriceDiscount.isHidden = false
+        }
+        
+        
         var productPrice = 0
         var chargeLimit = 0
         

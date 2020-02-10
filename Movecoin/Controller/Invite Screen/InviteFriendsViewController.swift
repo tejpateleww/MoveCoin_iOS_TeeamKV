@@ -32,7 +32,7 @@ class InviteFriendsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
@@ -46,7 +46,7 @@ class InviteFriendsViewController: UIViewController {
         self.animate()
     }
     
-
+    
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
@@ -75,26 +75,26 @@ class InviteFriendsViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-        // MARK: - --------- IBAction Methods ---------
-        // ----------------------------------------------------
+    // MARK: - --------- IBAction Methods ---------
+    // ----------------------------------------------------
+    
+    @IBAction func btnInviteFriendsTapped(_ sender: Any) {
         
-        @IBAction func btnInviteFriendsTapped(_ sender: Any) {
-            
-    //        if let reviewURL = URL(string: "itms-apps://itunes.apple.com/us/app/apple-store/1483785971?mt=8"), UIApplication.shared.canOpenURL(reviewURL) {
-    //             if #available(iOS 10.0, *) {
-    //               UIApplication.shared.open(reviewURL, options: [:]
-    //        , completionHandler: nil)
-    //             } else {
-    //               UIApplication.shared.openURL(reviewURL)
-    //             }
-    //        }
-            
-            let text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (lblReferral.text ?? "")
-            let image = UIImage(named: "AppIcon")
-            let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
-
-                       let vc = UIActivityViewController(activityItems: [text, image ?? UIImage(), url!], applicationActivities: [])
-            present(vc, animated: true)
-        }
+        //        if let reviewURL = URL(string: "itms-apps://itunes.apple.com/us/app/apple-store/1483785971?mt=8"), UIApplication.shared.canOpenURL(reviewURL) {
+        //             if #available(iOS 10.0, *) {
+        //               UIApplication.shared.open(reviewURL, options: [:]
+        //        , completionHandler: nil)
+        //             } else {
+        //               UIApplication.shared.openURL(reviewURL)
+        //             }
+        //        }
         
+        let text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (lblReferral.text ?? "")
+        let image = UIImage(named: "AppIcon")
+        let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
+        
+        let vc = UIActivityViewController(activityItems: [text, image ?? UIImage(), url!], applicationActivities: [])
+        present(vc, animated: true)
+    }
+    
 }

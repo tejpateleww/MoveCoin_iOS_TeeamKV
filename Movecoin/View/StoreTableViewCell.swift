@@ -17,6 +17,8 @@ class StoreTableViewCell: UITableViewCell {
     @IBOutlet weak var lblCoins: UILabel!
     @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var discountView: UIView!
+    @IBOutlet weak var lblDiscountedPrice: UILabel!
+    @IBOutlet weak var lblPriceDiscount: UILabel!
     
     @IBOutlet weak var lblOutOfStock: UILabel!
     @IBOutlet weak var viewOutOfStock: UIView!
@@ -26,9 +28,9 @@ class StoreTableViewCell: UITableViewCell {
             if let data = product {
                 self.lblProductName.text = data.name
                 self.lblCoins.text = data.coins
-                var priceText = "$\(data.price ?? "")"
-                
-                discountView.isHidden = true
+               discountView.isHidden = true
+               
+/*                var priceText = "$\(data.price ?? "")"
                 if data.discount == "0" {
 //                    discountView.isHidden = true
                     self.lblPrice.text = priceText
@@ -40,6 +42,26 @@ class StoreTableViewCell: UITableViewCell {
                     let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(data.price ?? "")")
                     attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString1.length))
                     self.lblPrice.attributedText = attributeString
+                }
+  */
+                if data.discount == "0"{
+                    self.lblDiscountedPrice.text = ""
+                    self.lblDiscountedPrice.isHidden = true
+                    self.lblPrice.text = "$\(data.price ?? "")"
+                    self.lblPriceDiscount.text = ""
+                    self.lblPriceDiscount.isHidden = true
+                } else {
+                    self.lblDiscountedPrice.text = "$\(data.totalPrice ?? "")"
+                    self.lblDiscountedPrice.isHidden = false
+                    
+                    let priceText = "$\(data.price ?? "")"
+                    self.lblPrice.text = "$\(data.price ?? "")"
+                    let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
+                    attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+                    self.lblPrice.attributedText = attributeString
+                    
+                    self.lblPriceDiscount.text = " - \(data.discount ?? "")% "
+                    self.lblPriceDiscount.isHidden = false
                 }
                 
                 
@@ -75,8 +97,10 @@ class StoreTableViewCell: UITableViewCell {
         lblCoins.font = UIFont.regular(ofSize: 15)
         lblDiscount.font = UIFont.semiBold(ofSize: 13)
         lblProductName.font = UIFont.semiBold(ofSize: 18)
-        lblPrice.font = UIFont.semiBold(ofSize: 18)
         lblOutOfStock.font = UIFont.bold(ofSize: 28)
+        lblDiscountedPrice.font = UIFont.semiBold(ofSize: 20)
+        lblPrice.font = UIFont.regular(ofSize: 14)
+        lblPriceDiscount.font = UIFont.regular(ofSize: 12)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

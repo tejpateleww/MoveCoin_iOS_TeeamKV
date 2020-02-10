@@ -40,8 +40,7 @@ class MessageData : Codable {
 		}
         chatId = json["chat_id"].stringValue
         date = json["Date"].stringValue
-        let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-        message = msg
+        message = json["Message"].stringValue
         receiverID = json["ReceiverID"].stringValue
         senderName = json["sender_name"].stringValue
         senderNickname = json["sender_nickname"].stringValue

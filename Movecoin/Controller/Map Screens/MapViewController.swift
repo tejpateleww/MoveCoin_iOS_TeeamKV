@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
     var delegateFlipToHome : FlipToHomeDelegate!
     var delegateFriendStatus : FriendStatusDelegate!
     var toggleForPopover = false
-    
+    var showOnlyOnce = true
     lazy var nearByUsersArray = [Nearbyuser]()
     
     var nearByuserTimer : Timer!
@@ -57,9 +57,11 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
-      
+        lblTitle.text = "My Steps".localized
+        
         lblSteps.text = SingletonClass.SharedInstance.todaysStepCount ?? "0"
         self.setUpNavigationItems()
         webserviceForNearByUsers()
@@ -141,27 +143,32 @@ class MapViewController: UIViewController {
     }
     
     func reloadMapView(){
-       
+        
         let allAnnotations = mapView.annotations
         mapView.removeAnnotations(allAnnotations)
-         
-         var artView = [PinMarker]()
-        nearByUsersArray.forEach{
-             artView.append(PinMarker(data: $0))
-         }
-         mapView.addAnnotations(artView)
         
-//        var annotationsArray = [MKPointAnnotation]()
-//        for user in nearByUsersArray {
-//            let annotation = MKPointAnnotation()
-//            annotation.title = "\(user.fullName ?? "")"
-//            let lat = CLLocationDegrees(floatLiteral: Double(user.latitude)!)
-//            let lng = CLLocationDegrees(floatLiteral: Double(user.longitude)!)
-//            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-//            annotationsArray.append(annotation)
-//        }
-//        mapView.addAnnotations(annotationsArray)
-        mapView.showAnnotations(mapView.annotations, animated: true)
+        var artView = [PinMarker]()
+        nearByUsersArray.forEach{
+            artView.append(PinMarker(data: $0))
+        }
+        mapView.addAnnotations(artView)
+        
+        //        var annotationsArray = [MKPointAnnotation]()
+        //        for user in nearByUsersArray {
+        //            let annotation = MKPointAnnotation()
+        //            annotation.title = "\(user.fullName ?? "")"
+        //            let lat = CLLocationDegrees(floatLiteral: Double(user.latitude)!)
+        //            let lng = CLLocationDegrees(floatLiteral: Double(user.longitude)!)
+        //            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        //            annotationsArray.append(annotation)
+        //        }
+        //        mapView.addAnnotations(annotationsArray)
+        
+        if(showOnlyOnce)
+        {
+            mapView.showAnnotations(mapView.annotations, animated: true)
+            showOnlyOnce = false
+        }
     }
     
     func zoomInLocation(_ location: CLLocation) {

@@ -339,13 +339,15 @@ extension FindFriendsViewController {
     
     func webserviceForAcceptReject(requestID: String, action: String = "Reject"){
         
+        UtilityClass.showHUD()
+        
         let requestModel = ActionOnFriendRequestModel()
         requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.RequestID = requestID
         requestModel.Action = action
 
         FriendsWebserviceSubclass.actionOnFriendRequest(actionFrinedRequestModel: requestModel){ (json, status, res) in
-            
+            UtilityClass.hideHUD()
             if status {
                 self.retrieveContacts(from: self.store)
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue

@@ -52,14 +52,13 @@ class StoreViewController: UIViewController {
         self.navigationBarSetUp(title: "Offers For Today", backroundColor: ThemeNavigationColor, hidesBackButton: true)
         self.statusBarSetUp(backColor: ThemeNavigationColor)
         
-         webserviceForProductList()
-        
-        // Localization
-        lblSeller.text = "Be a Seller".localized
-        lblDescription.text = "Do you have a product or service you would like to show in our marketplace?".localized
-        DispatchQueue.main.async {
-            self.btnGetInTouch.setTitle("Get In Touch".localized, for: .normal)
-        }
+        webserviceForProductList()
+        localizeSetup()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeFooterToFit()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,11 +66,6 @@ class StoreViewController: UIViewController {
         navigationBarSetUp()
         self.statusBarSetUp(backColor: .clear)
         self.title = ""
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        sizeFooterToFit()
     }
     
     // ----------------------------------------------------
@@ -85,6 +79,14 @@ class StoreViewController: UIViewController {
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
         tblStoreOffers.addSubview(refreshControl)
+    }
+    
+    func localizeSetup(){
+        // Localization
+        lblSeller.text = "Be a Seller".localized
+        lblDescription.text = "Do you have a product or service you would like to show in our marketplace?".localized
+        lblDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.btnGetInTouch.setTitle("Get In Touch".localized, for: .normal)
     }
     
     func setupFont(){
