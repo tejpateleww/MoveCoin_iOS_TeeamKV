@@ -106,7 +106,7 @@ class SettingsViewController: UIViewController {
     
     func reloadLocalizationEffect(cell : SettingsTableViewCell){
         cell.lblTitle.textAlignment =  (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-left")) : (UIImage(named: "arrow-right"))
         cell.btnArrow.setImage(sendImg, for: .normal)
     }
     

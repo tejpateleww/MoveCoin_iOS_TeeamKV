@@ -45,6 +45,11 @@ class WalletTableViewCell: UITableViewCell {
         lblDiscription.font = UIFont.regular(ofSize: 17)
         lblDate.font = UIFont.light(ofSize: 11)
         lblMessage.font = UIFont.regular(ofSize: 13)
+        if lblDiscription.textAlignment == .right || lblDiscription.textAlignment == .left {
+            lblDiscription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+            lblMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+            lblDate.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
