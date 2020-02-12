@@ -74,12 +74,12 @@ class FriendsViewController: UIViewController {
         isTyping = (enteredText?.isEmpty ?? false) ? false : true
         searchArray = friendsArray.filter{ $0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
         tblFriends.reloadData()
-        let isZero = isTyping ? searchArray.count == 0 : friendsArray.count == 0
-        if isZero {
-            lblNoDataFound.isHidden = false
-        }else{
-            lblNoDataFound.isHidden = true
-        }
+//        let isZero = isTyping ? searchArray.count == 0 : friendsArray.count == 0
+//        if isZero {
+//            lblNoDataFound.isHidden = false
+//        }else{
+//            lblNoDataFound.isHidden = true
+//        }
     }
 }
 

@@ -32,6 +32,7 @@ extension UIViewController {
                                                  NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
                            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.topItem?.title = title.localized
+        
             
         // Background
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

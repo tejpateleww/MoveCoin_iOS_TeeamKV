@@ -69,14 +69,20 @@ class WalletViewController: UIViewController {
         btnTransfer.setTitle("Transfer".localized, for: .normal)
         
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
-            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
-            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
             btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            
+            btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         }
         else {
-            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
-            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
             btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
+            
+            btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+            btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         }
     }
     
@@ -112,6 +118,13 @@ class WalletViewController: UIViewController {
         self.isFetchingNextPage = true
         currentPage += 1
         webserviceforWalletHistory()
+    }
+    
+    func reloadLocalizationEffect(cell : WalletTableViewCell){
+        cell.lblDiscription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        cell.lblMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        cell.lblDate.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        cell.lblAmount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
     }
     
     // ----------------------------------------------------
@@ -153,7 +166,8 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WalletTableViewCell.className) as! WalletTableViewCell
         cell.selectionStyle = .none
         cell.walletDetail = walletHistory[indexPath.row]
-        localizeUI(parentView: cell.contentView)
+        reloadLocalizationEffect(cell: cell)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
 }

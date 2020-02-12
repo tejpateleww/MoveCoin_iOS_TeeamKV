@@ -60,7 +60,7 @@ class StoreTableViewCell: UITableViewCell {
                     attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
                     self.lblPrice.attributedText = attributeString
                     
-                    self.lblPriceDiscount.text = " - \(data.discount ?? "")% "
+                    self.lblPriceDiscount.text = " - \(data.discount ?? "")%  "
                     self.lblPriceDiscount.isHidden = false
                 }
                 

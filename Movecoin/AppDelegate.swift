@@ -111,7 +111,7 @@ extension AppDelegate {
     
     func setUpNavigationBar(){
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.barStyle = UIBarStyle.blackOpaque
+        navigationBarAppearace.barStyle = UIBarStyle.black
         navigationBarAppearace.tintColor = UIColor.white
         
         // For "Back" text remove from navigationbar

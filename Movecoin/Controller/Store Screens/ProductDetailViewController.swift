@@ -158,7 +158,7 @@ class ProductDetailViewController: UIViewController {
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
             self.lblPrice.attributedText = attributeString
             
-            self.lblPriceDiscount.text = " - \(product.discount ?? "")% "
+            self.lblPriceDiscount.text = " \(product.discount ?? "")%   "
             self.lblPriceDiscount.isHidden = false
         }
         

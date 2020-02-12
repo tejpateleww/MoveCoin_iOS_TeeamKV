@@ -2244,7 +2244,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="xYj-pH-EzL">
-                                                            <rect key="frame" x="15" y="193" width="67.5" height="21"/>
+                                                            <rect key="frame" x="15" y="193" width="101" height="21"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHq-nZ-pGK" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="20.5" height="21"/>
@@ -2258,8 +2258,8 @@
                                                                     <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbS-qb-1bL" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                    <rect key="frame" x="50.5" y="0.0" width="17" height="21"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- 100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbS-qb-1bL">
+                                                                    <rect key="frame" x="50.5" y="0.0" width="50.5" height="21"/>
                                                                     <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2494,7 +2494,7 @@
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7A-04-EhJ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7A-04-EhJ">
                                                                                         <rect key="frame" x="50.5" y="0.0" width="17" height="21"/>
                                                                                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
@@ -2825,24 +2825,24 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="BAc-dc-gW3">
                                                                         <rect key="frame" x="175" y="0.0" width="188" height="25"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgx-5x-zRf" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="48" height="25"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Total" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgx-5x-zRf" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="25"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="48" id="dxG-FY-Kxv"/>
+                                                                                    <constraint firstAttribute="width" constant="60" id="dxG-FY-Kxv"/>
                                                                                 </constraints>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash Screen Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Us2-68-Uaq">
-                                                                                <rect key="frame" x="51" y="0.0" width="25" height="25"/>
+                                                                                <rect key="frame" x="63" y="0.0" width="25" height="25"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="25" id="A2h-Yr-4dv"/>
                                                                                     <constraint firstAttribute="height" constant="25" id="NgJ-2k-KFs"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaU-pZ-Xhy" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                <rect key="frame" x="79" y="1" width="109" height="23.5"/>
+                                                                                <rect key="frame" x="91" y="1" width="97" height="23.5"/>
                                                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="20"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -3511,7 +3511,7 @@
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-bm-OeW">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXo-bm-OeW" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                     <rect key="frame" x="30" y="5" width="255" height="20"/>
                                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3520,13 +3520,13 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C5Z-ys-0Uh">
                                                                     <rect key="frame" x="30" y="25" width="305" height="13"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYE-6b-Lto">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYE-6b-Lto" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="305" height="0.0"/>
                                                                             <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="11"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YH4-8v-XhX">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YH4-8v-XhX" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="305" height="13"/>
                                                                             <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="11"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3996,20 +3996,17 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c72-9d-Vvb" userLabel="Middle View">
                                                         <rect key="frame" x="20" y="138" width="335" height="130"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="wZd-vP-4vO">
-                                                                <rect key="frame" x="0.0" y="8" width="335" height="17"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wZd-vP-4vO">
+                                                                <rect key="frame" x="0.0" y="8" width="299" height="17"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total MoveCoins Created" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAG-35-ocl" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="17"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="160" id="5PQ-t0-opd"/>
-                                                                        </constraints>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="17"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="13"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="217" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pas-s3-UbL" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="248" y="0.0" width="87" height="17"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="747" text="217" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pas-s3-UbL">
+                                                                        <rect key="frame" x="152" y="0.0" width="147" height="17"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="13"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -4029,7 +4026,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q9D-ue-anV">
                                                                 <rect key="frame" x="213" y="98" width="122" height="36.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average per day" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKk-We-VVi" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average per day" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKk-We-VVi">
                                                                         <rect key="frame" x="0.0" y="0.0" width="122" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="122" id="h6k-Ao-ed0"/>
@@ -4060,7 +4057,6 @@
                                                             <constraint firstItem="Q9D-ue-anV" firstAttribute="top" secondItem="2Xh-k2-uvD" secondAttribute="bottom" constant="8" id="qZx-GC-cbV"/>
                                                             <constraint firstAttribute="trailing" secondItem="2Xh-k2-uvD" secondAttribute="trailing" id="wet-MR-T7z"/>
                                                             <constraint firstAttribute="trailing" secondItem="Q9D-ue-anV" secondAttribute="trailing" id="x4Y-lO-T1g"/>
-                                                            <constraint firstAttribute="trailing" secondItem="wZd-vP-4vO" secondAttribute="trailing" id="y1a-Rd-GKG"/>
                                                             <constraint firstItem="2Xh-k2-uvD" firstAttribute="top" secondItem="wZd-vP-4vO" secondAttribute="bottom" constant="20" id="yam-BN-Bgk"/>
                                                         </constraints>
                                                     </view>
@@ -4071,20 +4067,17 @@
                                                         <rect key="frame" x="20" y="278" width="335" height="168"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="kTU-j0-Ylf">
-                                                        <rect key="frame" x="20" y="466" width="335" height="17"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kTU-j0-Ylf">
+                                                        <rect key="frame" x="20" y="466" width="264" height="17"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps Converted" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFN-Z1-orm" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="17"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="150" id="88K-ZR-Y2Y"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="0.0" y="0.0" width="129.5" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="183k" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igp-Wc-rU1" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="238" y="0.0" width="97" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="183k" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igp-Wc-rU1">
+                                                                <rect key="frame" x="134.5" y="0.0" width="129.5" height="17"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -4107,7 +4100,6 @@
                                                     <constraint firstItem="c72-9d-Vvb" firstAttribute="top" secondItem="t7i-9O-FS9" secondAttribute="bottom" constant="40" id="Jet-Ob-64w"/>
                                                     <constraint firstAttribute="trailing" secondItem="odg-ga-98F" secondAttribute="trailing" constant="20" id="LFS-hT-Ay0"/>
                                                     <constraint firstItem="t7i-9O-FS9" firstAttribute="leading" secondItem="ReO-m7-GWl" secondAttribute="leading" id="PUi-pF-lqa"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kTU-j0-Ylf" secondAttribute="trailing" constant="20" id="PuT-JB-v81"/>
                                                     <constraint firstItem="t7i-9O-FS9" firstAttribute="top" secondItem="ReO-m7-GWl" secondAttribute="topMargin" id="Slg-fK-Hqw"/>
                                                     <constraint firstItem="LDa-MA-VPl" firstAttribute="bottom" secondItem="odg-ga-98F" secondAttribute="bottom" id="UvK-Hy-CV2"/>
                                                     <constraint firstAttribute="trailing" secondItem="t7i-9O-FS9" secondAttribute="trailing" id="ers-G1-nju"/>
@@ -6265,7 +6257,7 @@
         <image name="TopBG" width="375" height="266"/>
         <image name="arrow-down-white" width="18" height="10"/>
         <image name="arrow-dwon" width="18" height="10"/>
-        <image name="arrow-left" width="15.5" height="27.5"/>
+        <image name="arrow-left" width="10" height="18"/>
         <image name="arrow-right" width="10" height="18"/>
         <image name="bg-register" width="375" height="146"/>
         <image name="call-select" width="24" height="32"/>
@@ -6305,6 +6297,6 @@
         <image name="wallet" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hLV-gm-Eo4"/>
+        <segue reference="R1p-X2-06E"/>
     </inferredMetricsTieBreakers>
 </document>
