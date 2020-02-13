@@ -21,7 +21,7 @@ enum PrivacyType : Int {
            case .Friends:
              return "Friends"
            case .None:
-             return "None"
+             return "No one"
          }
        }
      }
@@ -41,7 +41,7 @@ class AccountPrivacyViewController: UIViewController {
     // ----------------------------------------------------
     
     //    let pickerView = UIPickerView()
-    let array = ["All","Friends","None"]
+    let array = ["All","Friends","No one"]
     
     var toolBar = UIToolbar()
     var picker  = UIPickerView()

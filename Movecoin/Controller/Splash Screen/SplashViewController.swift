@@ -44,7 +44,7 @@ class SplashViewController: UIViewController {
     
     
     func playLogoAnimation() {
-        guard let path = Bundle.main.path(forResource: "Blue Conv", ofType:"mp4") else {
+        guard let path = Bundle.main.path(forResource: "MoveCoin Logo Animation", ofType:"mp4") else {
 //        guard let path = Bundle.main.path(forResource: "White Conv", ofType:"mp4") else {
             debugPrint("video.m4v not found")
             return

@@ -13,6 +13,7 @@
 "Sign Up" = "Sign Up";
 "OR" = "OR";
 "Lorem Ipsum Simply Dummy" = "Lorem Ipsum Simply Dummy";
+"Hi…Your Step Remarkable In Move Coins" = "Hi…Your Step Remarkable In Move Coins";
 
 
 // Login Screen
@@ -78,7 +79,7 @@
 // Invite Screen
 "Invite" = "Invite";
 "Invite Friend" = "Invite Friend";
-"Give 5 Coins to your friend when they Join MoveCoins, You'll also get 10 MoveCoins." = "Give 5 Coins to your friend when they Join MoveCoins, You'll also get 10 MoveCoins.";
+"Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins." = "Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins.";
 "REFERRAL CODE" = "REFERRAL CODE";
 "Invite Friends" = "Invite Friends";
 "Find Friend" = "Find Friend";
@@ -102,7 +103,7 @@
 // Store Screen
 "Offers For Today" = "Offers For Today";
 "Be a Seller" = "Be a Seller";
-"Do you have a product or service you would like to show in our marketplace?" = "Do you have a product or service you would like to show in our marketplace?";
+"Do you have a product or service you would like to show in our marketplace." = "Do you have a product or service you would like to show in our marketplace.";
 "Get In Touch" = "Get In Touch";
 
 
@@ -159,7 +160,7 @@
 
 
 // Transfer MoveCoins Screen
-"Sending MoveCoins" = "Sending MoveCoins";
+"Sending Coins" = "Sending Coins";
 "Amount" = "Amount";
 "To " = "To ";
 "Add optional message" = "Add optional message";
@@ -207,6 +208,7 @@
 "Account Privacy" = "Account Privacy";
 "Private Account" = "Private Account";
 "When your account is private, only your friends can see you on map and your information." = "When your account is private, only your friends can see you on map and your information.";
+"When your account is private, only you are choosing who can see you on map and your information" = "When your account is private, only you are choosing who can see you on map and your information";
 
 
 // Edit Profile Screen
@@ -242,7 +244,7 @@
 "You didn't have any updates yet" = "You didn't have any updates yet";
 "Delete" = "Delete";
 "All" = "All";
-"None" = "None";
+"No one" = "No one";
 
 
 // Validation String

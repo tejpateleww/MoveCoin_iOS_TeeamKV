@@ -29,6 +29,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var shadowHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // ----------------------------------------------------
@@ -68,6 +70,18 @@ class MapViewController: UIViewController {
         startTimer()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if AppDelegateShared.window?.safeAreaInsets.top ?? 0.0 > CGFloat(24.0) {
+            shadowHeightConstraint.constant = 50.0
+        } else {
+            shadowHeightConstraint.constant = 30.0
+        }
+        setGradientColorOfView(view: shadowView, startColor: ThemeBlueColor.withAlphaComponent(0.4), endColor: ThemeBlueColor.withAlphaComponent(0.01))
+        self.shadowView.layoutIfNeeded()
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopTimer()

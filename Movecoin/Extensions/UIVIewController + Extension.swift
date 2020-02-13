@@ -112,8 +112,8 @@ extension UIViewController {
         view.layoutIfNeeded()
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
-        let startColor = startColor.withAlphaComponent(0.15)
-        let endColor = endColor.withAlphaComponent(0)
+//        let startColor = startColor.withAlphaComponent(0.15)
+//        let endColor = endColor.withAlphaComponent(0)
         gradient.colors = [startColor.cgColor, endColor.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         view.layoutIfNeeded()

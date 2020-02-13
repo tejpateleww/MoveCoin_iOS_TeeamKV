@@ -66,7 +66,7 @@ class ProductDetailViewController: UIViewController {
    
     override func viewDidLayoutSubviews() {
         super.viewDidAppear(true)
-         setGradientColorOfView(view: viewShadow, startColor: UIColor.black, endColor: UIColor.clear)
+         setGradientColorOfView(view: viewShadow, startColor: UIColor.black.withAlphaComponent(0.15), endColor: UIColor.clear.withAlphaComponent(0))
     }
     
     

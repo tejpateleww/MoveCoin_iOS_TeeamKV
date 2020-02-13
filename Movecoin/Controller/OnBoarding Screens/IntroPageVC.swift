@@ -52,8 +52,8 @@ class IntroPageVC: UIViewController {
             self.view.addSubview(imageview)
             
             // For Request Permission
-            
-            if image == "intro-1" {
+            let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
+            if image == img {
                 userPermission.permissions = [.camera, .motion, .healthKit]
                 for type in userPermission.permissions {
                     userPermission.requestForPermission(type: type)

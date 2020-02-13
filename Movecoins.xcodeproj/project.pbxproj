@@ -130,7 +130,6 @@
 		466762B5238BE06E003136BC /* ProductDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466762B4238BE06E003136BC /* ProductDetailResponseModel.swift */; };
 		466762B7238BE27D003136BC /* ProductDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466762B6238BE27D003136BC /* ProductDetailModel.swift */; };
 		466853DB2391393F00019DF1 /* UserPermissionClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466853DA2391393F00019DF1 /* UserPermissionClass.swift */; };
-		466D4355238D05EF004B9712 /* Blue Conv.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 466D4354238D05EF004B9712 /* Blue Conv.mp4 */; };
 		466D4357238D4424004B9712 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466D4356238D4424004B9712 /* UserDetailModel.swift */; };
 		466DBF00238526D600FD60A4 /* PermissionAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466DBEFF238526D600FD60A4 /* PermissionAlertViewController.swift */; };
 		466DBF0D23856F1400FD60A4 /* OnBoradViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466DBF0C23856F1400FD60A4 /* OnBoradViewController.swift */; };
@@ -142,6 +141,7 @@
 		46729B4723C32B920086F91F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46729B4523C32B910086F91F /* Message.swift */; };
 		467676A1235ED4E60076157B /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467676A0235ED4E60076157B /* EditProfileViewController.swift */; };
 		4676E14023CC48610052A4A0 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4676E13F23CC48610052A4A0 /* SafariServices.framework */; };
+		467A1ED823F55F350084F1C5 /* MoveCoin Logo Animation.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 467A1ED723F55F350084F1C5 /* MoveCoin Logo Animation.mp4 */; };
 		46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46814386238E8EE800D5A297 /* InviteFriendsModel.swift */; };
 		468F86C82350976C006DC7D1 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468F86C72350976C006DC7D1 /* FriendTableViewCell.swift */; };
 		468F86CA23509CC9006DC7D1 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468F86C923509CC9006DC7D1 /* FriendsViewController.swift */; };
@@ -341,7 +341,6 @@
 		466762B4238BE06E003136BC /* ProductDetailResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailResponseModel.swift; sourceTree = "<group>"; };
 		466762B6238BE27D003136BC /* ProductDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailModel.swift; sourceTree = "<group>"; };
 		466853DA2391393F00019DF1 /* UserPermissionClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionClass.swift; sourceTree = "<group>"; };
-		466D4354238D05EF004B9712 /* Blue Conv.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Blue Conv.mp4"; sourceTree = "<group>"; };
 		466D4356238D4424004B9712 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		466DBEFF238526D600FD60A4 /* PermissionAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionAlertViewController.swift; sourceTree = "<group>"; };
 		466DBF0C23856F1400FD60A4 /* OnBoradViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoradViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +352,7 @@
 		46729B4523C32B910086F91F /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		467676A0235ED4E60076157B /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		4676E13F23CC48610052A4A0 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		467A1ED723F55F350084F1C5 /* MoveCoin Logo Animation.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MoveCoin Logo Animation.mp4"; sourceTree = "<group>"; };
 		46814386238E8EE800D5A297 /* InviteFriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsModel.swift; sourceTree = "<group>"; };
 		468F86C72350976C006DC7D1 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		468F86C923509CC9006DC7D1 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
@@ -550,13 +550,13 @@
 		4600A72823278D8A004A7A9E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				467A1ED723F55F350084F1C5 /* MoveCoin Logo Animation.mp4 */,
+				46C7C9A62360795C00A80976 /* happy-birthday.json */,
 				468B44EB2397BC4800EA0093 /* GIF Logo Images */,
 				4638ECE02369CADC00B1F967 /* Font */,
 				4631E9952327A5040088B49F /* Constants.swift */,
-				46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */,
 				46515525236AA2970079627A /* EnumCollection.swift */,
-				466D4354238D05EF004B9712 /* Blue Conv.mp4 */,
-				46C7C9A62360795C00A80976 /* happy-birthday.json */,
+				46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */,
 				46C9132F2330EC360068C788 /* Movecoin-Bridging-Header.h */,
 				4600A71A23278D38004A7A9E /* Assets.xcassets */,
 			);
@@ -1178,7 +1178,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				46374652239E4E91008A3EE7 /* Platinum-package.gif in Resources */,
-				466D4355238D05EF004B9712 /* Blue Conv.mp4 in Resources */,
 				464D896923E062F100715F08 /* Login.storyboard in Resources */,
 				4600A71E23278D38004A7A9E /* LaunchScreen.storyboard in Resources */,
 				4600A71B23278D38004A7A9E /* Assets.xcassets in Resources */,
@@ -1192,6 +1191,7 @@
 				4600A71923278D37004A7A9E /* Main.storyboard in Resources */,
 				464D896523E062C700715F08 /* Localizable.strings in Resources */,
 				4666FA992355DA2500E8758C /* ChatStoryboard.storyboard in Resources */,
+				467A1ED823F55F350084F1C5 /* MoveCoin Logo Animation.mp4 in Resources */,
 				4638ECEA2369CB0200B1F967 /* Cairo-Black.ttf in Resources */,
 				4638ECE92369CB0200B1F967 /* Cairo-Regular.ttf in Resources */,
 				46C7C9A72360795C00A80976 /* happy-birthday.json in Resources */,

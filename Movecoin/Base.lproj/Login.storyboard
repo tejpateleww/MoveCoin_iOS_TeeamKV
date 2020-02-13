@@ -92,14 +92,14 @@
                                         </connections>
                                     </segmentedControl>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash Screen Logo" translatesAutoresizingMaskIntoConstraints="NO" id="NiA-ua-gym">
-                                        <rect key="frame" x="20" y="98.5" width="110" height="110"/>
+                                        <rect key="frame" x="20" y="74" width="110" height="110"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="NiA-ua-gym" secondAttribute="height" multiplier="1:1" id="7XE-Hl-bjt"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum Simply Dummy" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW">
-                                        <rect key="frame" x="25" y="218.5" width="275" height="89"/>
-                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="38"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi…Your Step Remarkable In Move Coins" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW">
+                                        <rect key="frame" x="25" y="204" width="275" height="119"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -187,12 +187,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="NiA-ua-gym" firstAttribute="top" secondItem="3vg-jG-5eB" secondAttribute="bottom" multiplier="0.173028" id="GCx-sQ-o4e"/>
+                                    <constraint firstItem="NiA-ua-gym" firstAttribute="top" secondItem="3vg-jG-5eB" secondAttribute="bottom" multiplier="0.13" id="GCx-sQ-o4e"/>
                                     <constraint firstItem="MJD-Mb-yBz" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" id="Hoj-ja-Tku"/>
                                     <constraint firstItem="Md8-f0-8uW" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" constant="25" id="JQb-AH-tfD"/>
-                                    <constraint firstItem="Md8-f0-8uW" firstAttribute="top" secondItem="NiA-ua-gym" secondAttribute="bottom" constant="10" id="QMf-xY-rBV"/>
+                                    <constraint firstItem="Md8-f0-8uW" firstAttribute="top" secondItem="NiA-ua-gym" secondAttribute="bottom" constant="20" id="QMf-xY-rBV"/>
                                     <constraint firstItem="NiA-ua-gym" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" constant="20" id="Stc-BF-zIQ"/>
-                                    <constraint firstItem="MJD-Mb-yBz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Md8-f0-8uW" secondAttribute="bottom" constant="50" id="gAA-tw-jmS"/>
+                                    <constraint firstItem="MJD-Mb-yBz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Md8-f0-8uW" secondAttribute="bottom" constant="30" id="gAA-tw-jmS"/>
                                     <constraint firstAttribute="trailing" secondItem="Md8-f0-8uW" secondAttribute="trailing" constant="20" id="kFf-rL-dms"/>
                                     <constraint firstItem="Bbv-tU-v35" firstAttribute="top" secondItem="3vg-jG-5eB" secondAttribute="topMargin" constant="10" id="kTA-H2-NaH"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="Bbv-tU-v35" secondAttribute="trailing" constant="5" id="mph-gr-cKk"/>
@@ -1061,14 +1061,14 @@
                                         <color key="pageIndicatorTintColor" red="0.14901960784313725" green="0.58039215686274503" blue="0.69019607843137254" alpha="0.60999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <color key="currentPageIndicatorTintColor" red="0.14901960784313725" green="0.58039215686274503" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     </pageControl>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-yw-8an">
-                                        <rect key="frame" x="235" y="488" width="70" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-yw-8an">
+                                        <rect key="frame" x="215" y="488" width="90" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="d1c-3q-jr1"/>
-                                            <constraint firstAttribute="width" constant="70" id="m0N-s1-zOW"/>
+                                            <constraint firstAttribute="width" constant="90" id="m0N-s1-zOW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Cairo-SemiBold" family="Cairo" pointSize="18"/>
-                                        <state key="normal" title="Skip &gt;&gt;">
+                                        <state key="normal">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>

@@ -12,6 +12,7 @@
 "Sign Up" = "تسجيل جديد";
 "OR" = "أو";
 "Lorem Ipsum Simply Dummy" = "مرحبا..خطوتك غير في موف كوينز";
+"Hi…Your Step Remarkable In Move Coins" = "مرحبا... خطوتك غير في موف كوينز";
 
 
 // Login Screen
@@ -77,7 +78,7 @@
 // Invite Screen
 "Invite" = "دعوة";
 "Invite Friend" = "دعوة صديق";
-"Give 5 Coins to your friend when they Join MoveCoins, You'll also get 10 MoveCoins." = "عند تسجيل أحد أصدقائك تحصل على ١٠عملات وهم يحصلون على ٥.";
+"Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins." = " عند تسجيل أحد أصدقائك في موف كوينز، سوف تحصل على ١٠ عملات، وسوف يحصل صديقك على ٥ عملات";
 "REFERRAL CODE" = "كود";
 "Invite Friends" = "دعوة صديق";
 "Find Friend" = "بحث عن صديق";
@@ -101,7 +102,7 @@
 // Store Screen
 "Offers For Today" = "عروض اليوم";
 "Be a Seller" = "كن بائع";
-"Do you have a product or service you would like to show in our marketplace?" = "لديك خدمة او منتجات تريد عرضها في موف كوينز?";
+"Do you have a product or service you would like to show in our marketplace." = "لديك خدمات أو منتجات تريد عرضها في موف كوينز";
 "Get In Touch" = "تواصل معنا";
 
 
@@ -158,7 +159,7 @@
 
 
 // Transfer MoveCoins Screen
-"Sending MoveCoins" = "ارسال العملات";
+"Sending Coins" = "إرسال العملات";
 "Amount" = "عدد العملات";
 "To " = " إلى";
 "Add optional message" = "أضف رسالة إختيارية";
@@ -206,6 +207,7 @@
 "Account Privacy" = "خصوصية الحساب";
 "Private Account" = "حساب خاص";
 "When your account is private, only your friends can see you on map and your information." = "عند تفعيل هذه الخاصية, فقط أصدقائك يمكنهم رؤية معلوماتك و موقعك";
+"When your account is private, only you are choosing who can see you on map and your information" = "عند تفعيل هذه الخاصية، أنت تحدد من يمكنهم رؤية موقعك ومعلوماتك";
 
 
 // Edit Profile Screen
@@ -232,7 +234,7 @@
 " cm" = " سم";
 " kg" = " كغ";
 "Take photo" = "التقط صورة";
-"Camera roll" = "إستديو الكاميرا";
+"Camera roll" = "أستوديو الكاميرا";
 "Photo library" = "مكتبة الصور";
 "Remove Photo" = "إزالة الصورة";
 "Male" = "الذكر";
@@ -241,7 +243,7 @@
 "You didn't have any updates yet" = "لم يكن لديك أي تحديثات بعد";
 "Delete" = "حذف";
 "All" = "الكل";
-"None" = "لا شيء";
+"No one" = "لا أحد";
 
 
 // Validation String
@@ -258,7 +260,7 @@
 "Age must be a number!" = "العمر لا بد أن يكون رقمًا";
 "Invalid age number!" = "رقم العمر غير صحيح";
 "You have to be over 18 years old to user our app" = "يجب أن تكون 18 عامًا لتتمكن من استخدام التطبيق";
-"Please enter card holder name" = "الرجاء إدخاء اسم حامل البطاقة";
+"Please enter card holder name" = "الرجاء إدخال إسم حامل البطاقة";
 "Card holder should not contain numbers or special characters" = " اسم حامل البطاقة لا ينبغي أن يحتوي على ارقام و أحرف خاصة";
 "Card number must have at least 16 characters" = "رقم البطاقة يجب أن يحتوي على 16 رقمًا";
 "Card number is invalid" = "رقم البطاقة غير صحيح";

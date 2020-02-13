@@ -84,7 +84,7 @@ class StoreViewController: UIViewController {
     func localizeSetup(){
         // Localization
         lblSeller.text = "Be a Seller".localized
-        lblDescription.text = "Do you have a product or service you would like to show in our marketplace?".localized
+        lblDescription.text = "Do you have a product or service you would like to show in our marketplace.".localized
         lblDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         self.btnGetInTouch.setTitle("Get In Touch".localized, for: .normal)
     }
