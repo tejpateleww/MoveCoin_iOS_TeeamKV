@@ -18,9 +18,11 @@ class ProductDetails : Codable{
     var deliveryChargePurchaseLimit : String!
     var descriptionField : String!
     var discount : String!
+    var discountedPrice : String!
     var gallaries : [String]!
     var gallery : String!
     var iD : String!
+    var isAdminApproved : String!
     var name : String!
     var price : String!
     var priceType : String!
@@ -31,10 +33,6 @@ class ProductDetails : Codable{
     var store : String!
     var totalPrice : String!
     var trash : String!
-    
-    init(){
-        
-    }
     
     /**
      * Instantiate the instance using the passed json values to set the properties values
@@ -52,6 +50,7 @@ class ProductDetails : Codable{
         deliveryChargePurchaseLimit = json["delivery_charge_purchase_limit"].stringValue
         descriptionField = json["Description"].stringValue
         discount = json["Discount"].stringValue
+        discountedPrice = json["discounted_price"].stringValue
         gallaries = [String]()
         let gallariesArray = json["gallaries"].arrayValue
         for gallariesJson in gallariesArray{
@@ -59,6 +58,7 @@ class ProductDetails : Codable{
         }
         gallery = json["Gallery"].stringValue
         iD = json["ID"].stringValue
+        isAdminApproved = json["is_admin_approved"].stringValue
         name = json["Name"].stringValue
         price = json["Price"].stringValue
         priceType = json["PriceType"].stringValue
@@ -104,6 +104,9 @@ class ProductDetails : Codable{
         if discount != nil{
             dictionary["Discount"] = discount
         }
+        if discountedPrice != nil{
+            dictionary["discounted_price"] = discountedPrice
+        }
         if gallaries != nil{
             dictionary["gallaries"] = gallaries
         }
@@ -112,6 +115,9 @@ class ProductDetails : Codable{
         }
         if iD != nil{
             dictionary["ID"] = iD
+        }
+        if isAdminApproved != nil{
+            dictionary["is_admin_approved"] = isAdminApproved
         }
         if name != nil{
             dictionary["Name"] = name
@@ -161,9 +167,11 @@ class ProductDetails : Codable{
         deliveryChargePurchaseLimit = aDecoder.decodeObject(forKey: "delivery_charge_purchase_limit") as? String
         descriptionField = aDecoder.decodeObject(forKey: "Description") as? String
         discount = aDecoder.decodeObject(forKey: "Discount") as? String
+        discountedPrice = aDecoder.decodeObject(forKey: "discounted_price") as? String
         gallaries = aDecoder.decodeObject(forKey: "gallaries") as? [String]
         gallery = aDecoder.decodeObject(forKey: "Gallery") as? String
         iD = aDecoder.decodeObject(forKey: "ID") as? String
+        isAdminApproved = aDecoder.decodeObject(forKey: "is_admin_approved") as? String
         name = aDecoder.decodeObject(forKey: "Name") as? String
         price = aDecoder.decodeObject(forKey: "Price") as? String
         priceType = aDecoder.decodeObject(forKey: "PriceType") as? String
@@ -209,6 +217,9 @@ class ProductDetails : Codable{
         if discount != nil{
             aCoder.encode(discount, forKey: "Discount")
         }
+        if discountedPrice != nil{
+            aCoder.encode(discountedPrice, forKey: "discounted_price")
+        }
         if gallaries != nil{
             aCoder.encode(gallaries, forKey: "gallaries")
         }
@@ -217,6 +228,9 @@ class ProductDetails : Codable{
         }
         if iD != nil{
             aCoder.encode(iD, forKey: "ID")
+        }
+        if isAdminApproved != nil{
+            aCoder.encode(isAdminApproved, forKey: "is_admin_approved")
         }
         if name != nil{
             aCoder.encode(name, forKey: "Name")

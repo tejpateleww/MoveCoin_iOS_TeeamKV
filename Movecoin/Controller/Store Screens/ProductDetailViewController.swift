@@ -149,7 +149,7 @@ class ProductDetailViewController: UIViewController {
             self.lblPriceDiscount.text = ""
             self.lblPriceDiscount.isHidden = true
         } else {
-            self.lblDiscountedPrice.text = "$\(product.totalPrice ?? "")"
+            self.lblDiscountedPrice.text = "$\(product.discountedPrice ?? "")"
             self.lblDiscountedPrice.isHidden = false
             
             let priceText = "$\(product.price ?? "")"

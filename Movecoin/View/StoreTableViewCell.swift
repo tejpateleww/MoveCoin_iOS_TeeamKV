@@ -51,7 +51,7 @@ class StoreTableViewCell: UITableViewCell {
                     self.lblPriceDiscount.text = ""
                     self.lblPriceDiscount.isHidden = true
                 } else {
-                    self.lblDiscountedPrice.text = "$\(data.totalPrice ?? "")"
+                    self.lblDiscountedPrice.text = "$\(data.discountedPrice ?? "")"
                     self.lblDiscountedPrice.isHidden = false
                     
                     let priceText = "$\(data.price ?? "")"
@@ -63,7 +63,6 @@ class StoreTableViewCell: UITableViewCell {
                     self.lblPriceDiscount.text = " - \(data.discount ?? "")%  "
                     self.lblPriceDiscount.isHidden = false
                 }
-                
                 
                 if data.status == "Out Stock".localized {
                     viewOutOfStock.isHidden = false
