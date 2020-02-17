@@ -52,7 +52,7 @@ class WelcomeViewController: UIViewController {
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
         
         lblOr.text = "OR".localized
-        lblTitle.text = "Hi…Your Step Remarkable In Move Coins".localized
+        lblTitle.text = "Hi…Your Step Remarkable In MoveCoins".localized
     }
     
     func animateView(){
@@ -90,7 +90,7 @@ class WelcomeViewController: UIViewController {
         btnSignUp.setTitle("Sign Up".localized, for: .normal)
        
         lblOr.text = "OR".localized
-        lblTitle.text = "Hi…Your Step Remarkable In Move Coins".localized
+        lblTitle.text = "Hi…Your Step Remarkable In MoveCoins".localized
     }
     
     @IBAction func btnSignInTapped(_ sender: Any) {

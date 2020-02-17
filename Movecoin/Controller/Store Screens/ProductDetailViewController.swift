@@ -145,15 +145,15 @@ class ProductDetailViewController: UIViewController {
         if product.discount == "0" {
             self.lblDiscountedPrice.text = ""
             self.lblDiscountedPrice.isHidden = true
-            self.lblPrice.text = "$\(product.price ?? "")"
+            self.lblPrice.text = currency.localized + " \(product.price ?? "")"
             self.lblPriceDiscount.text = ""
             self.lblPriceDiscount.isHidden = true
         } else {
-            self.lblDiscountedPrice.text = "$\(product.discountedPrice ?? "")"
+            self.lblDiscountedPrice.text = currency.localized + " \(product.discountedPrice ?? "")"
             self.lblDiscountedPrice.isHidden = false
             
-            let priceText = "$\(product.price ?? "")"
-            self.lblPrice.text = "$\(product.price ?? "")"
+            let priceText = currency.localized + " \(product.price ?? "")"
+            self.lblPrice.text = currency.localized + " \(product.price ?? "")"
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
             self.lblPrice.attributedText = attributeString
@@ -161,8 +161,7 @@ class ProductDetailViewController: UIViewController {
             self.lblPriceDiscount.text = " \(product.discount ?? "")%   "
             self.lblPriceDiscount.isHidden = false
         }
-        
-        
+        /*
         var productPrice = 0
         var chargeLimit = 0
         
@@ -172,13 +171,13 @@ class ProductDetailViewController: UIViewController {
         if let charge = product.deliveryChargePurchaseLimit {
             chargeLimit = Int(charge)!
         }
-        
-        if productPrice < chargeLimit {
-            lblDeliveryCharge.isHidden = false
-            lblDeliveryCharge.text = "Delivery Charge : ".localized + product.deliveryCharge
-        } else {
-            lblDeliveryCharge.isHidden = true
-        }
+        */
+//        if productPrice < chargeLimit {
+        lblDeliveryCharge.isHidden = false
+        lblDeliveryCharge.text = "Delivery Charge : ".localized + product.deliveryCharge + " \(currency.localized)"
+//        } else {
+//            lblDeliveryCharge.isHidden = true
+//        }
         
         if product.status == "Out Stock" {
             stackView.isHidden = true

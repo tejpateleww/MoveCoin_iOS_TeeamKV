@@ -23,13 +23,22 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet weak var lblAvailableBalance: UILabel!
     @IBOutlet weak var lblPurchase: UILabel!
     @IBOutlet weak var lblTitleAvailableBalance: UILabel!
-    @IBOutlet weak var lblTitlePayableAmount: UILabel!
-    @IBOutlet weak var lblPayableAmount: UILabel!
     @IBOutlet var lblPrice: [UILabel]!
+    @IBOutlet weak var lblTitleProductPrice: UILabel!
+    @IBOutlet weak var lblProductPrice: UILabel!
+    @IBOutlet weak var lblTitleDiscount: UILabel!
+    @IBOutlet weak var lblDiscount: UILabel!
+    @IBOutlet weak var lblTitleDelivery: UILabel!
+    @IBOutlet weak var lblDelivery: UILabel!
+    @IBOutlet weak var lblTitleTotal: UILabel!
+    @IBOutlet weak var lblTotal: UILabel!
     
     @IBOutlet weak var imgProduct: UIImageView!
     @IBOutlet weak var viewCardSelect: UIView!
-    @IBOutlet weak var viewPayableAmount: UIStackView!
+    @IBOutlet weak var productPriceStack: UIStackView!
+    @IBOutlet weak var discountStack: UIStackView!
+    @IBOutlet weak var deliveryStack: UIStackView!
+    @IBOutlet weak var totalStack: UIStackView!
     
     @IBOutlet weak var txtName: TextFieldFont!
     @IBOutlet weak var txtNumber: TextFieldFont!
@@ -71,14 +80,6 @@ class ConfirmPurchaseViewController: UIViewController {
         self.title =  "Confirm Purchase".localized
         let arrowImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
         btnArrow.setImage(arrowImg, for: .normal)
-        
-        if Localize.currentLanguage() == Languages.Arabic.rawValue {
-            lblTitlePayableAmount.textAlignment = .left
-            lblPurchase.textAlignment = .left
-        }else{
-            lblTitlePayableAmount.textAlignment = .right
-            lblPurchase.textAlignment = .left
-        }
     }
     
     // ----------------------------------------------------
@@ -101,8 +102,14 @@ class ConfirmPurchaseViewController: UIViewController {
         lblPurchase.font = UIFont.semiBold(ofSize: 19)
         lblAvailableBalance.font = UIFont.bold(ofSize: 18)
         lblTitleAvailableBalance.font = UIFont.semiBold(ofSize: 17)
-        lblTitlePayableAmount.font = UIFont.semiBold(ofSize: 17)
-        lblPayableAmount.font = UIFont.semiBold(ofSize: 17)
+        lblTitleProductPrice.font = UIFont.semiBold(ofSize: 17)
+        lblProductPrice.font = UIFont.semiBold(ofSize: 17)
+        lblTitleDiscount.font = UIFont.semiBold(ofSize: 17)
+        lblDiscount.font = UIFont.semiBold(ofSize: 17)
+        lblTitleDelivery.font = UIFont.semiBold(ofSize: 17)
+        lblDelivery.font = UIFont.semiBold(ofSize: 17)
+        lblTitleTotal.font = UIFont.semiBold(ofSize: 17)
+        lblTotal.font = UIFont.semiBold(ofSize: 17)
     }
     
     func setupView() {
@@ -112,6 +119,23 @@ class ConfirmPurchaseViewController: UIViewController {
         imgCardIcon.isHidden = true
         txtMoveCoins.delegate = self
         lblTitleAvailableBalance.text = "Now Available Balance".localized
+        
+        txtName.placeHolderColor = TransparentColor
+        txtNumber.placeHolderColor = TransparentColor
+        txtEmail.placeHolderColor = TransparentColor
+        txtAddress1.placeHolderColor = TransparentColor
+        txtAddress2.placeHolderColor = TransparentColor
+        txtCountry.placeHolderColor = TransparentColor
+        txtState.placeHolderColor = TransparentColor
+        txtCity.placeHolderColor = TransparentColor
+        txtZipCode.placeHolderColor = TransparentColor
+        txtCard.placeHolderColor = TransparentColor
+
+        lblPurchase.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
+        lblProductPrice.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
+        lblDiscount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
+        lblDelivery.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
+        lblTotal.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
     }
     
     func setupProductData() {
@@ -124,8 +148,12 @@ class ConfirmPurchaseViewController: UIViewController {
                 self.imgProduct.kf.indicatorType = .activity
                 self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
             }
+            lblProductPrice.text = product.price + " \(currency.localized)"
+            lblDiscount.text = product.discountedPrice + " \(currency.localized)"
+            lblDelivery.text = product.deliveryCharge + " \(currency.localized)"
+            lblTotal.text = product.totalPrice + " \(currency.localized)"
         }
-        lblPayableAmount.text = product.totalPrice
+       
         if let user = userData {
             lblAvailableBalance.text = user.coins ?? "0"
         }
@@ -178,19 +206,19 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnPurchaseTapped(_ sender: Any) {
-        var coinsRequired = 0.0
-        //        var availableCoins = 0.0
-        var availableCoins = ""
-        
-        if let coins = SingletonClass.SharedInstance.coinsDiscountRelation?.coins {
-            coinsRequired = Double(coins)!
-        }
+       
+        var availableCoins = 0
+        var productCoins = 0
+
         if let coins = userData?.coins {
-            //            availableCoins = Double(coins)!
-            availableCoins = coins
+            availableCoins = Int(coins) ?? 0
         }
         
-        if availableCoins < product.coins {
+        if let coins = product.coins {
+            productCoins = Int(coins) ?? 0
+        }
+        
+        if availableCoins < productCoins {
             var msg = ""
             if let discount = product.discount, discount != "0" {
                 msg = "Your current balance is too low to purchase ".localized + discount + " % off " + product.name! + ". Don't want to wait? invite Friends and Family to earn faster!".localized
@@ -217,7 +245,7 @@ extension ConfirmPurchaseViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == txtMoveCoins {
-            viewPayableAmount.isHidden = true
+//            viewPayableAmount.isHidden = true
             if txtMoveCoins.text != "" {
                 var enteredCoins = 0.0
                 var productCoins = 0.0
@@ -253,8 +281,8 @@ extension ConfirmPurchaseViewController : UITextFieldDelegate {
                     }
                     discount = productPrice * percentage
                     finalPrice = productPrice - discount
-                    lblPayableAmount.text = String(finalPrice)
-                    viewPayableAmount.isHidden = false
+                    lblTotal.text = String(finalPrice)
+//                    viewPayableAmount.isHidden = false
                 }
             }
         }

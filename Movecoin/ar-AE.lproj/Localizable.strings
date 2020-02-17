@@ -12,7 +12,7 @@
 "Sign Up" = "تسجيل جديد";
 "OR" = "أو";
 "Lorem Ipsum Simply Dummy" = "مرحبا..خطوتك غير في موف كوينز";
-"Hi…Your Step Remarkable In Move Coins" = "مرحبا... خطوتك غير في موف كوينز";
+"Hi…Your Step Remarkable In MoveCoins" = "مرحبا... خطوتك غير في موف كوينز";
 
 
 // Login Screen
@@ -126,7 +126,6 @@
 
 // Confirm Purchase Screen
 "Confirm Purchase" = "تأكيد الشراء";
-"Total" = "المجموع";
 "Delivery Address" = "عنوان التوصيل";
 "Name" = "الإسم";
 "Contact number" = "رقم التواصل";
@@ -140,6 +139,10 @@
 "Enter card details" = "أدخل معلومات البطاقة";
 "Payable Amount is " = "السعر";
 "Purchase" = "شراء";
+"Product Price" = "سعر المنتج";
+"Discount" = "الخصم";
+"Delivery" = "سعر التوصيل";
+"Total" = "المجموع";
 
 
 // Card Detail Screen
@@ -244,6 +247,7 @@
 "Delete" = "حذف";
 "All" = "الكل";
 "No one" = "لا أحد";
+"SAR" = "ر.س";
 
 
 // Validation String

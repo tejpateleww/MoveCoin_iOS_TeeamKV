@@ -143,10 +143,11 @@ extension StoreViewController {
         
         let productsURL = NetworkEnvironment.baseURL + ApiKey.productsList.rawValue
         ProductWebserviceSubclass.productsList(strURL: productsURL){ (json, status, res) in
+            self.refreshControl.endRefreshing()
+            
             if status {
                 let responseModel = ProductsResponseModel(fromJson: json)
                 if responseModel.productsList.count > 0  {
-                    self.refreshControl.endRefreshing()
                     self.productArray = responseModel.productsList
                     self.tblStoreOffers.reloadData()
                 }

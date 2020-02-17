@@ -113,6 +113,8 @@ class ProfileViewController: UIViewController {
         
         lblTitleTotalSteps.text = "Total Steps Converted".localized
         lblTitleTotalMoveCoins.text = "Total MoveCoins Created".localized
+        lblTotalSteps.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        lblTotalMoveCoins.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         viewSegmentTT.removeFromSuperview()
         viewSegmentTT = TTSegmentedControl()
         viewSegmentTT.frame = viewSegmentedControl.bounds
@@ -166,9 +168,6 @@ class ProfileViewController: UIViewController {
             imgProfilePicture.image = UIImage(named: "m-logo")
         }
         btnMyFriends.setTitle("My Friends ".localized + "(\(profileModel?.data.friends ?? "0"))", for: .normal)
-        
-        lblTotalMoveCoins.text = profileModel?.data.totalCoins
-        lblTotalSteps.text = profileModel?.data.totalStepsConverted
         
         viewSegmentTT.selectItemAt(index: BarChartTitles.Weekly.rawValue, animated: true)
         self.setUpBarChat(index: BarChartTitles.Weekly.rawValue)

@@ -97,7 +97,7 @@
                                             <constraint firstAttribute="width" secondItem="NiA-ua-gym" secondAttribute="height" multiplier="1:1" id="7XE-Hl-bjt"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi…Your Step Remarkable In Move Coins" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi…Your Step Remarkable In MoveCoins" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW">
                                         <rect key="frame" x="25" y="204" width="275" height="119"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

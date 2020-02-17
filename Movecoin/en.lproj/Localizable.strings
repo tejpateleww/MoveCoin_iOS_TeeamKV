@@ -13,7 +13,7 @@
 "Sign Up" = "Sign Up";
 "OR" = "OR";
 "Lorem Ipsum Simply Dummy" = "Lorem Ipsum Simply Dummy";
-"Hi…Your Step Remarkable In Move Coins" = "Hi…Your Step Remarkable In Move Coins";
+"Hi…Your Step Remarkable In MoveCoins" = "Hi…Your Step Remarkable In MoveCoins";
 
 
 // Login Screen
@@ -127,7 +127,6 @@
 
 // Confirm Purchase Screen
 "Confirm Purchase" = "Confirm Purchase";
-"Total" = "Total";
 "Delivery Address" = "Delivery Address";
 "Name" = "Name";
 "Contact number" = "Contact number";
@@ -141,6 +140,10 @@
 "Enter card details" = "Enter card details";
 "Payable Amount is " = "Payable Amount is ";
 "Purchase" = "Purchase";
+"Product Price" = "Product Price";
+"Discount" = "Discount";
+"Delivery" = "Delivery";
+"Total" = "Total";
 
 
 // Card Detail Screen
@@ -245,6 +248,7 @@
 "Delete" = "Delete";
 "All" = "All";
 "No one" = "No one";
+"SAR" = "SAR";
 
 
 // Validation String

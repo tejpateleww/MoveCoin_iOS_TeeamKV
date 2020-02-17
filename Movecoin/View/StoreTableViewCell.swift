@@ -47,15 +47,15 @@ class StoreTableViewCell: UITableViewCell {
                 if data.discount == "0"{
                     self.lblDiscountedPrice.text = ""
                     self.lblDiscountedPrice.isHidden = true
-                    self.lblPrice.text = "$\(data.price ?? "")"
+                    self.lblPrice.text = currency.localized + " \(data.price ?? "")"
                     self.lblPriceDiscount.text = ""
                     self.lblPriceDiscount.isHidden = true
                 } else {
-                    self.lblDiscountedPrice.text = "$\(data.discountedPrice ?? "")"
+                    self.lblDiscountedPrice.text = currency.localized + " \(data.discountedPrice ?? "")"
                     self.lblDiscountedPrice.isHidden = false
                     
-                    let priceText = "$\(data.price ?? "")"
-                    self.lblPrice.text = "$\(data.price ?? "")"
+                    let priceText = currency.localized + " \(data.price ?? "")"
+                    self.lblPrice.text = currency.localized + " \(data.price ?? "")"
                     let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
                     attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
                     self.lblPrice.attributedText = attributeString
