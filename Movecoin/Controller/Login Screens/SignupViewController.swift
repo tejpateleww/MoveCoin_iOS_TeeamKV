@@ -198,6 +198,15 @@ extension SignupViewController : UITextFieldDelegate {
             }
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txtPassword || textField == txtConfirmPassword {
+            if string == " " {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 // ----------------------------------------------------

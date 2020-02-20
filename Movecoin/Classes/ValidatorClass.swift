@@ -103,13 +103,13 @@ struct FullNameValidator: ValidatorConvertible {
 //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
 //        }
 
-        do {
-            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Full name should not contain numbers or special characters".localized)
-            }
-        } catch {
-            throw ValidationError("Full name should not contain numbers or special characters".localized)
-        }
+//        do {
+//            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+//                throw ValidationError("Full name should not contain numbers or special characters".localized)
+//            }
+//        } catch {
+//            throw ValidationError("Full name should not contain numbers or special characters".localized)
+//        }
         return value
     }
 }
@@ -126,13 +126,14 @@ struct UserNameValidator: ValidatorConvertible {
             throw ValidationError("Username shoudn't contain more than 18 characters".localized )
         }
         
-        do {
-            if try NSRegularExpression(pattern: "^[a-z]{1,18}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Username should not contain whitespaces, numbers or special characters".localized)
-            }
-        } catch {
-            throw ValidationError("Username should not contain whitespaces, numbers or special characters".localized)
-        }
+        
+//        do {
+//            if try NSRegularExpression(pattern: "^[a-z]{1,18}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+//                throw ValidationError("Username should not contain whitespaces, numbers or special characters".localized)
+//            }
+//        } catch {
+//            throw ValidationError("Username should not contain whitespaces, numbers or special characters".localized)
+//        }
         return value
     }
 }
@@ -144,7 +145,17 @@ struct MobileNumberValidator: ValidatorConvertible {
         guard value.count >= 10 && value.count < 11 else {
             throw ValidationError("Please enter valid ".localized + txtFieldName)
         }
-       
+        do {
+            let numberOnly = NSCharacterSet.init(charactersIn: "+#*0123456789")
+            let stringFromTextField = NSCharacterSet.init(charactersIn: value)
+            let strValid = numberOnly.isSuperset(of: stringFromTextField as CharacterSet)
+            if(!strValid)
+            {
+                throw ValidationError("Only english digits are allowed".localized)
+            }
+        } catch {
+            throw ValidationError("Only english digits are allowed".localized)
+        }
         return value
     }
 }
@@ -188,13 +199,13 @@ struct CardHolderValidator: ValidatorConvertible {
         //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
         //        }
 
-        do {
-            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Card holder should not contain numbers or special characters".localized)
-            }
-        } catch {
-            throw ValidationError("Card holder should not contain numbers or special characters".localized)
-        }
+//        do {
+//            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+//                throw ValidationError("Card holder should not contain numbers or special characters".localized)
+//            }
+//        } catch {
+//            throw ValidationError("Card holder should not contain numbers or special characters".localized)
+//        }
         return value
     }
 }

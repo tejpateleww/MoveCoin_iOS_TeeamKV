@@ -272,6 +272,7 @@
 "Please enter valid CVV number" = "Please enter valid CVV number";
 "Please enter expiry date" = "Please enter expiry date";
 "Invalid expiry date" = "Invalid expiry date";
+"Only english digits are allowed" = "Only english digits are allowed";
 
 "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches." = "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches.";
 "To start please let me see the total steps your phone detects." = "To start please let me see the total steps your phone detects.";

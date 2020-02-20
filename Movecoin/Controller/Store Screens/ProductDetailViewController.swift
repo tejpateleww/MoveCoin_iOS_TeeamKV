@@ -161,7 +161,7 @@ class ProductDetailViewController: UIViewController {
             self.lblPriceDiscount.text = " \(product.discount ?? "")%   "
             self.lblPriceDiscount.isHidden = false
         }
-        /*
+/*
         var productPrice = 0
         var chargeLimit = 0
         
@@ -171,13 +171,15 @@ class ProductDetailViewController: UIViewController {
         if let charge = product.deliveryChargePurchaseLimit {
             chargeLimit = Int(charge)!
         }
-        */
-//        if productPrice < chargeLimit {
+        
+        if productPrice < chargeLimit {
         lblDeliveryCharge.isHidden = false
         lblDeliveryCharge.text = "Delivery Charge : ".localized + product.deliveryCharge + " \(currency.localized)"
-//        } else {
-//            lblDeliveryCharge.isHidden = true
-//        }
+        } else {
+            lblDeliveryCharge.isHidden = true
+        }
+ 
+ */
         
         if product.status == "Out Stock" {
             stackView.isHidden = true
@@ -232,7 +234,7 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ImagesViewController.className) as! ImagesViewController
-        controller.imageArray = imgArray
+        controller.imageArray = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? imgArray.reversed() : imgArray
         self.present(controller, animated: true, completion: nil)
     }
 }

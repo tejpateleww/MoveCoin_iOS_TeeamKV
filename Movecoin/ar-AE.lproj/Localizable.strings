@@ -243,7 +243,7 @@
 "Male" = "الذكر";
 "Female" = "أنثى";
 "You didn't connect with your friends" = "أنت لم تواصل مع أصدقائك";
-"You didn't have any updates yet" = "لم يكن لديك أي تحديثات بعد";
+"You didn't have any updates yet" = "لايوجد تحديثات";
 "Delete" = "حذف";
 "All" = "الكل";
 "No one" = "لا أحد";
@@ -271,6 +271,7 @@
 "Please enter valid CVV number" = "الرجاء ادخال رقم تحقق صحيح";
 "Please enter expiry date" = "الرجاء ادخال تاريخ الانتهاء";
 "Invalid expiry date" = "تاريخ انتهاء غير صحيح";
+"Only english digits are allowed" = "المسموح حروف وأرقام إنجليزية فقط";
 
 "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches." = "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches.";
 "To start please let me see the total steps your phone detects." = "للبدء الرجاء السماح لرؤية مجموع الخطوات المحسوبة في هاتفك";
