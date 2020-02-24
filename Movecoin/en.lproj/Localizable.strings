@@ -252,9 +252,13 @@
 
 
 // Validation String
-"Please enter " = "Please enter ";
-"Please " = "Please ";
-"Invalid " = "Invalid ";
+"Please enter" = "Please enter";
+"Please" = "Please";
+"Invalid" = "Invalid";
+
+"Please enter valid mobile number" = "Please enter valid mobile number";
+"Please enter valid contact number" = "Please enter valid contact number";
+
 "Password must have at least 6 characters" = "Password must have at least 6 characters";
 "Full name should not contain numbers or special characters" = "Full name should not contain numbers or special characters";
 "Username must contain more than three characters" = "Username must contain more than three characters";

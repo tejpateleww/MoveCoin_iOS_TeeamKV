@@ -17,7 +17,7 @@
 
 // Login Screen
 "Sign in to your account" = "تسجيل دخول لحسابك";
-"Email Id" = "البريد الإلكتروني";
+"Email Id" = " البريد الإلكتروني";
 "Password" = "كلمة المرور";
 "Forgot Password?" = "نسيت كلمة المرور؟";
 "Don't have an Account?" = "ليس لديك حساب؟";
@@ -31,13 +31,16 @@
 
 
 // Sign Up Screen
-"Full Name" = "الإسم الكامل";
-"Nickname" = "الأسم المستعار";
-"Email address" = "البريد الإلكتروني";
-"Mobile Number" = "رقم الجوال";
-"Confirm Password" = "تأكيد كلمة المرور";
-"Gender" = "الجنس";
-"Referral code" = "الكود";
+//الرجاء إدخال الإسم كامل
+"Please enter " = " الرجاء إدخال";
+"Full Name" = " الإسم كامل";
+"Nickname" = " الأسم المستعار";
+"Email address" = " البريد الإلكتروني";
+"Please enter valid " = "الرجاء إدخال صحيح ";
+"Mobile Number" = " رقم جوال";
+"Confirm Password" = " تأكيد كلمة المرور";
+"Gender" = " الجنس";
+"Referral code" = " الكود";
 "Verify" = "تأكيد";
 "Already have an Account?" = "لديك حساب مسبق؟";
 "SIGN IN" = "سجل دخول";
@@ -111,7 +114,7 @@
 "Business Name" = "أسم النشاط التجاري ";
 "Shop Name" = "اسم المتجر";
 "Phone Number" = "رقم الجوال";
-"Shop Place" = "مكان المتجر";
+"Shop Place" = "موقع المتجر";
 "Type Of Products" = "نوع المنتجات";
 "Register" = "تسجيل";
 
@@ -127,14 +130,14 @@
 // Confirm Purchase Screen
 "Confirm Purchase" = "تأكيد الشراء";
 "Delivery Address" = "عنوان التوصيل";
-"Name" = "الإسم";
-"Contact number" = "رقم التواصل";
-"Address-1" = "العنوان الأول";
-"Address-2" = "العنوان الثاني";
-"Country" = "البلد";
-"State" = "المنطقة";
-"City" = "المدينة";
-"Zip Code" = "الرمز البريدي";
+"Name" = " الإسم";
+"Contact number" = " رقم التواصل";
+"Address-1" = " العنوان الأول";
+"Address-2" = " العنوان الثاني";
+"Country" = " البلد";
+"State" = " المنطقة";
+"City" = " المدينة";
+"Zip Code" = " الرمز البريدي";
 "Now Available Balance" = "الرصيد المتوفر";
 "Enter card details" = "أدخل معلومات البطاقة";
 "Payable Amount is " = "السعر";
@@ -251,15 +254,19 @@
 
 
 // Validation String
-"Please enter " = "الرجاء إدخال";
-"Please " = "فضًلا";
-"Invalid " = "خطأ";
+
+"Please enter" =  "الرجاء إدخال";
+"Please" = "فضًلا";
+"Invalid" = "خطأ";
+
+"Please enter valid mobile number" = "الرجاء إدخال رقم جوال صحيح ";
+"Please enter valid contact number" = "الرجاء إدخال رقم التواصل صحيح";
+
 "Password must have at least 6 characters" = "كلمة المرور لابد ان تحتوي على 6 احرف على الاقل";
 "Full name should not contain numbers or special characters" = "الاسم الكامل لا ينبغي ان يحتوي على ارقام او احرف خاصة";
 "Username must contain more than three characters" = "اسم المستخدم لابد ان يحتوي على ثلاثة أحرف فأكثر";
 "Username shoudn't contain more than 18 characters" = "اسم المستخدم لا ينبغي أن يحتوي على اكثر من 18 احرف ";
 "Username should not contain whitespaces, numbers or special characters" = "اسم المستخدم لا ينبغي ان يحتوي على مسافة, ارقام أو ارقام غريبة";
-"Please enter valid " = "الرجاء إدخال رقم صحيح ";
 "Age is required" = "العمر مطلوب";
 "Age must be a number!" = "العمر لا بد أن يكون رقمًا";
 "Invalid age number!" = "رقم العمر غير صحيح";

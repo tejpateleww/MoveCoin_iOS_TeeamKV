@@ -59,19 +59,19 @@ struct EmailValidator: ValidatorConvertible {
     
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard value != "" else {
+            
             if txtFieldName.contains("enter"){
-                throw ValidationError("Please ".localized + txtFieldName)
+                throw ValidationError("Please".localized + " \(txtFieldName)")
             }else{
-                throw ValidationError("Please enter ".localized + txtFieldName)
+                throw ValidationError("Please enter".localized + " \(txtFieldName)")
             }
-//            throw ValidationError("Please enter ".localized + txtFieldName)
         }
         do {
             if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Invalid ".localized + txtFieldName)
+                throw ValidationError("Invalid".localized + " \(txtFieldName)")
             }
         } catch {
-            throw ValidationError("Invalid ".localized + txtFieldName)
+            throw ValidationError("Invalid".localized + " \(txtFieldName)")
         }
         return value
     }
@@ -80,7 +80,7 @@ struct EmailValidator: ValidatorConvertible {
 
 struct PasswordValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
         guard value.count >= 6 else { throw ValidationError("Password must have at least 6 characters".localized) }
         
 //        do {
@@ -96,9 +96,9 @@ struct PasswordValidator: ValidatorConvertible {
 
 struct FullNameValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
-        
+    
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+
 //        guard value.count < 50 else {
 //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
 //        }
@@ -118,7 +118,8 @@ struct FullNameValidator: ValidatorConvertible {
 struct UserNameValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+        
         guard value.count >= 3 else {
             throw ValidationError("Username must contain more than three characters".localized )
         }
@@ -141,9 +142,14 @@ struct UserNameValidator: ValidatorConvertible {
 struct MobileNumberValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
         guard value.count >= 10 && value.count < 11 else {
-            throw ValidationError("Please enter valid ".localized + txtFieldName)
+            
+            if(Localize.currentLanguage() == Languages.Arabic.rawValue){
+                throw ValidationError("الرجاء إدخال رقم جوال صحيح")
+            } else {
+                throw ValidationError("Please enter valid ".localized + txtFieldName)
+            }
         }
         do {
             let numberOnly = NSCharacterSet.init(charactersIn: "+#*0123456789")
@@ -171,9 +177,15 @@ struct RequiredFieldValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard !value.isEmpty else {
             if txtFieldName.contains("enter"){
-                throw ValidationError("Please ".localized + txtFieldName)
+                throw ValidationError("Please".localized + " \(txtFieldName)")
             }else{
-                throw ValidationError("Please enter ".localized + txtFieldName)
+                if txtFieldName == "أسم النشاط التجاري " { // business name
+                    throw ValidationError("الرجاء إدخال الإسم التجاري") // "Please enter the trade name"
+                } else if txtFieldName == "اسم المتجر" { // Shope name
+                    throw ValidationError("الرجاء إدخال إسم المتجر") // "Please enter the store name"
+                } else {
+                    throw ValidationError("Please enter".localized + " \(txtFieldName)")
+                }
             }
         }
         return value
@@ -212,7 +224,7 @@ struct CardHolderValidator: ValidatorConvertible {
 
 struct CardNumberValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
         guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters".localized) }
         let v = CreditCardValidator()
         guard v.validate(string: value) else { throw ValidationError("Card number is invalid".localized) }
@@ -223,7 +235,7 @@ struct CardNumberValidator: ValidatorConvertible {
 
 struct CvvValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter ".localized + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
         guard value.count >= 3 && value.count < 5 else { throw ValidationError("Please enter valid CVV number".localized) }
         return value
     }
