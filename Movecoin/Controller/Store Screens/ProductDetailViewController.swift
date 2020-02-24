@@ -15,6 +15,7 @@ class ProductDetailViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var viewBottom: UIView!
@@ -25,6 +26,9 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStore: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblDiscountedPrice: UILabel!
+    @IBOutlet weak var lblPriceDiscount: UILabel!
+    
     @IBOutlet weak var lblDeliveryCharge: UILabel!
     @IBOutlet weak var lblBuy: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
@@ -51,6 +55,7 @@ class ProductDetailViewController: UIViewController {
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
+        //        localizeUI(parentView: self.viewParent)
         guard productID != nil else { return }
     }
     
@@ -61,7 +66,7 @@ class ProductDetailViewController: UIViewController {
    
     override func viewDidLayoutSubviews() {
         super.viewDidAppear(true)
-         setGradientColorOfView(view: viewShadow, startColor: UIColor.black, endColor: UIColor.clear)
+         setGradientColorOfView(view: viewShadow, startColor: UIColor.black.withAlphaComponent(0.15), endColor: UIColor.clear.withAlphaComponent(0))
     }
     
     
@@ -79,6 +84,8 @@ class ProductDetailViewController: UIViewController {
         
         viewShadow.isUserInteractionEnabled = false
         
+        txtvwDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        
         switch viewType {
         case .History:
             viewBottom.isHidden = true
@@ -92,7 +99,9 @@ class ProductDetailViewController: UIViewController {
     func setupFont(){
         lblBuy.font = UIFont.semiBold(ofSize: 19)
         lblCoins.font = UIFont.semiBold(ofSize: 19)
-        lblPrice.font = UIFont.semiBold(ofSize: 20)
+        lblDiscountedPrice.font = UIFont.semiBold(ofSize: 22)
+        lblPrice.font = UIFont.regular(ofSize: 16)
+        lblPriceDiscount.font = UIFont.regular(ofSize: 14)
         lblTitle.font = UIFont.bold(ofSize: 26)
 //        lblDescription.font = UIFont.bold(ofSize: 16)
         txtvwDescription.font = UIFont.bold(ofSize: 16)
@@ -119,20 +128,40 @@ class ProductDetailViewController: UIViewController {
         txtvwDescription.isScrollEnabled = false
         
         lblTitle.text = product.name
-        lblStore.text = "Store : " + product.store
-        
+        lblStore.text = "Store : ".localized + product.store
+/*
         if product.discount != "0" {
 //             lblTitle.text = product.name + " with \(product.discount!)% Discount"
-            let priceText = "$\(product.price ?? "") $\(product.totalPrice ?? "") inclusive tax"
+            let priceText = "$\(product.price ?? "") $\(product.totalPrice ?? "")" + " inclusive tax".localized
             let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
             let attributeString1: NSMutableAttributedString =  NSMutableAttributedString(string: "$\(product.price ?? "")")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString1.length))
             self.lblPrice.attributedText = attributeString
         }else {
 //            lblTitle.text = product.name
-            lblPrice.text = "$\(product.price!) inclusive tax"
+            lblPrice.text = "$\(product.price!)" + " inclusive tax".localized
         }
-
+*/
+        if product.discount == "0" {
+            self.lblDiscountedPrice.text = ""
+            self.lblDiscountedPrice.isHidden = true
+            self.lblPrice.text = currency.localized + " \(product.price ?? "")"
+            self.lblPriceDiscount.text = ""
+            self.lblPriceDiscount.isHidden = true
+        } else {
+            self.lblDiscountedPrice.text = currency.localized + " \(product.discountedPrice ?? "")"
+            self.lblDiscountedPrice.isHidden = false
+            
+            let priceText = currency.localized + " \(product.price ?? "")"
+            self.lblPrice.text = currency.localized + " \(product.price ?? "")"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            self.lblPrice.attributedText = attributeString
+            
+            self.lblPriceDiscount.text = " \(product.discount ?? "")%   "
+            self.lblPriceDiscount.isHidden = false
+        }
+/*
         var productPrice = 0
         var chargeLimit = 0
         
@@ -144,17 +173,19 @@ class ProductDetailViewController: UIViewController {
         }
         
         if productPrice < chargeLimit {
-            lblDeliveryCharge.isHidden = false
-            lblDeliveryCharge.text = "Delivery Charge : " + product.deliveryCharge
+        lblDeliveryCharge.isHidden = false
+        lblDeliveryCharge.text = "Delivery Charge : ".localized + product.deliveryCharge + " \(currency.localized)"
         } else {
             lblDeliveryCharge.isHidden = true
         }
+ 
+ */
         
         if product.status == "Out Stock" {
             stackView.isHidden = true
             btnBuy.isEnabled = false
             btnBuy.backgroundColor = .lightText
-            btnBuy.setTitle("Out of Stock", for: .normal)
+            btnBuy.setTitle("Out of Stock".localized, for: .normal)
         }else{
              lblCoins.text = product.coins
         }
@@ -188,6 +219,7 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCollectionViewCell.className, for: indexPath) as! ProductDetailCollectionViewCell
         cell.productImage = imgArray[indexPath.section]
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -202,7 +234,7 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ImagesViewController.className) as! ImagesViewController
-        controller.imageArray = imgArray
+        controller.imageArray = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? imgArray.reversed() : imgArray
         self.present(controller, animated: true, completion: nil)
     }
 }

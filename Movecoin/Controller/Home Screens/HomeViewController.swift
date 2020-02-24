@@ -21,16 +21,24 @@ class HomeViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgLogo: UIImageView!
     
-    @IBOutlet var lblTitles: [UILabel]!
+    @IBOutlet weak var lblTitleTotalSteps: LocalizLabel!
+    @IBOutlet weak var lblTitleCoins: LocalizLabel!
+    @IBOutlet weak var lblTitleInviteFriends: LocalizLabel!
+    @IBOutlet weak var lblTitleFriends: LocalizLabel!
+    
+    @IBOutlet weak var lblTitleTodays: LocalizLabel!
+    @IBOutlet weak var lblTitleTotalStep: LocalizLabel!
+    
     @IBOutlet weak var lblTotalSteps: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
     @IBOutlet weak var lblInviteFriends: UILabel!
     @IBOutlet weak var lblFriends: UILabel!
     
-    @IBOutlet weak var lblMember: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblMember: LocalizLabel!
+    @IBOutlet weak var lblDescription: LocalizLabel!
     
     @IBOutlet weak var lblTodaysStepCount: UILabel!
     @IBOutlet weak var circularProgress: KDCircularProgress!
@@ -52,6 +60,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         healthKitData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -82,9 +91,14 @@ class HomeViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-        for lbl in lblTitles{
-            lbl.font = UIFont.regular(ofSize: 17)
-        }
+        
+        lblTitleCoins.font = UIFont.regular(ofSize: 17)
+        lblTitleFriends.font = UIFont.regular(ofSize: 17)
+        lblTitleTotalSteps.font = UIFont.regular(ofSize: 17)
+        lblTitleInviteFriends.font = UIFont.regular(ofSize: 17)
+        lblTitleTodays.font = UIFont.regular(ofSize: 23)
+        lblTitleTotalSteps.font = UIFont.regular(ofSize: 16)
+           
         lblCoins.font = UIFont.semiBold(ofSize: 24)
         lblFriends.font = UIFont.semiBold(ofSize: 24)
         lblTotalSteps.font = UIFont.semiBold(ofSize: 24)

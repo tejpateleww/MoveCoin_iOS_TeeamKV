@@ -14,11 +14,13 @@ class InviteViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var btnInvite: UIButton!
     @IBOutlet weak var btnFriends: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
-    
+    @IBOutlet weak var subview: UIView!
+
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
@@ -31,7 +33,11 @@ class InviteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        //        localizeUI(parentView: self.viewParent)
+        if Localize.currentLanguage() == Languages.Arabic.rawValue {
+            self.scrollView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
+            self.subview.transform =  CGAffineTransform(rotationAngle: CGFloat(Double.pi));
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,11 +72,11 @@ class InviteViewController: UIViewController {
     func loadThePage(sender : UIButton){
         sender.isSelected = true
         if btnInvite.isSelected {
-             self.navigationBarSetUp(title: "Invite")
+            self.navigationBarSetUp(title: "Invite".localized)
         }else if btnFriends.isSelected {
-             self.navigationBarSetUp(title: "Find Friend")
+             self.navigationBarSetUp(title: "Find Friend".localized)
         }else if btnFacebook.isSelected {
-             self.navigationBarSetUp(title: "Facebook")
+             self.navigationBarSetUp(title: "Facebook".localized)
         }
     }
     func scrollToPage(page: Int) {
@@ -85,7 +91,7 @@ class InviteViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {
-        self.title = "Invite"
+        self.title = "Invite".localized
 //        scrollToPage(page: 0)
         print("setContentOffset : \(scrollView.contentOffset)")
         self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
@@ -97,7 +103,7 @@ class InviteViewController: UIViewController {
     }
     
     @IBAction func btnFiendFriendsTapped(_ sender: Any) {
-        self.title = "Find Friend"
+        self.title = "Find Friend".localized
 //        scrollToPage(page: 1)
         print("setContentOffset : \(scrollView.contentOffset)")
         scrollView.setContentOffset(CGPoint(x: windowWidth, y: scrollView.frame.minY), animated: true)
@@ -108,7 +114,7 @@ class InviteViewController: UIViewController {
     }
     
     @IBAction func btnFacebookTapped(_ sender: Any) {
-        self.title = "Facebook"
+        self.title = "Facebook".localized
 //        scrollToPage(page: 2)
         print("setContentOffset : \(scrollView.contentOffset)")
         scrollView.setContentOffset(CGPoint(x: (windowWidth*2), y: scrollView.frame.minY), animated: true)

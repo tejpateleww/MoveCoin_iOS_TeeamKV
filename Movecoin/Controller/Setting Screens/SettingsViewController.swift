@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblSettings: UITableView!
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lblVersion: UILabel!
@@ -30,6 +31,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -49,26 +51,28 @@ class SettingsViewController: UIViewController {
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
         
- /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
-            switch setttings.authorizationStatus{
-            case .denied:
-                print("setting has been disabled")
-                if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
-                    if notificationStatus == "1" {
-                        self.webserviceforNotification()
-                    }
-                }
-            case .notDetermined:
-                print("something vital went wrong here")
-            case .provisional:
-                print("provisional")
-            case .authorized:
-                print("setting has been authorized")
-            @unknown default:
-                return
-            }
-        }
-  */
+        lblVersion.text = "Version - ".localized + kAPPVesion
+        
+        /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
+         switch setttings.authorizationStatus{
+         case .denied:
+         print("setting has been disabled")
+         if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+         if notificationStatus == "1" {
+         self.webserviceforNotification()
+         }
+         }
+         case .notDetermined:
+         print("something vital went wrong here")
+         case .provisional:
+         print("provisional")
+         case .authorized:
+         print("setting has been authorized")
+         @unknown default:
+         return
+         }
+         }
+         */
         //        btnLogout.setAttributedTitle(btnLogout.attributedString(), for: .normal)
     }
     
@@ -78,7 +82,32 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func switchChanged(mySwitch: UISwitch) {
-       webserviceforNotification()
+        webserviceforNotification()
+    }
+    
+    @objc func languageChanged(sender: UISegmentedControl) {
+        if(sender.selectedSegmentIndex == 1){
+//            Localize.setCurrentLanguage(Languages.English.rawValue)
+            webserviceForChangeLanguage(language: "1")
+        }else{
+//            Localize.setCurrentLanguage(Languages.Arabic.rawValue)
+            webserviceForChangeLanguage(language: "2")
+        }
+    }
+
+    func changeLanguage(){
+
+        self.navigationBarSetUp(title: "Settings",hidesBackButton: true)
+        self.navigationBarSetUp(title: "Settings",hidesBackButton: false)
+        tblSettings.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        lblVersion.text = "Version - ".localized + kAPPVesion
+        tblSettings.reloadData()
+    }
+    
+    func reloadLocalizationEffect(cell : SettingsTableViewCell){
+        cell.lblTitle.textAlignment =  (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-left")) : (UIImage(named: "arrow-right"))
+        cell.btnArrow.setImage(sendImg, for: .normal)
     }
     
     // ----------------------------------------------------
@@ -86,11 +115,11 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnLogoutTapped(_ sender: Any) {
-        let alert = UIAlertController(title: kAppName, message: "Are you sure you want to logout?", preferredStyle: .alert)
-        let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
+        let alert = UIAlertController(title: kAppName.localized, message: "Are you sure you want to logout?".localized, preferredStyle: .alert)
+        let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
             self.webserviceForLogout()
         }
-        let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
+        let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
             self.dismiss(animated: true, completion:nil)
         }
         alert.addAction(btnOk)
@@ -117,20 +146,52 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className) as! SettingsTableViewCell
         cell.selectionStyle = .none
-        cell.lblTitle.text = settingsArray[indexPath.row]
-        if indexPath.row > 0 {
-            cell.switchToggle.isHidden = true
-            cell.btnArrow.isHidden = false
-        } else{
-            cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
-            cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
-            cell.switchToggle.backgroundColor = .gray
-            cell.switchToggle.isHidden = false
-            cell.btnArrow.isHidden = true
-            if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
-                cell.switchToggle.isOn = notificationStatus == "0" ? false : true
+        cell.lblTitle.text = settingsArray[indexPath.row].localized
+        reloadLocalizationEffect(cell: cell)
+//        cell.lblTitle.decideTextDirection()
+        if let option = SettingsOptions(rawValue: indexPath.row) {
+            switch option {
+                
+            case .Notification :
+                cell.switchToggle.isHidden = false
+                cell.btnArrow.isHidden = true
+                cell.segmentControl.isHidden = true
+                
+                cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+                cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
+                cell.switchToggle.backgroundColor = .gray
+                if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+                    cell.switchToggle.isOn = notificationStatus == "0" ? false : true
+                }
+            case .Language:
+                cell.switchToggle.isHidden = true
+                cell.btnArrow.isHidden = true
+                cell.segmentControl.isHidden = false
+                
+                cell.segmentControl.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
+                cell.segmentControl.addTarget(self, action: #selector(languageChanged), for: UIControl.Event.valueChanged)
+            default :
+                cell.switchToggle.isHidden = true
+                cell.btnArrow.isHidden = false
+                cell.segmentControl.isHidden = true
             }
         }
+        /*        if indexPath.row > 0 {
+         cell.switchToggle.isHidden = true
+         cell.btnArrow.isHidden = false
+         cell.segmentControl.isHidden = true
+         } else{
+         cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+         cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
+         cell.switchToggle.backgroundColor = .gray
+         cell.switchToggle.isHidden = false
+         cell.btnArrow.isHidden = true
+         cell.segmentControl.isHidden = true
+         if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+         cell.switchToggle.isOn = notificationStatus == "0" ? false : true
+         }
+         } */
+        //        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -148,9 +209,9 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 let controller = storyboard.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
                 self.navigationController?.pushViewController(controller, animated: true)
                 
-//            case .ChangePassword:
-//                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
-//                self.navigationController?.pushViewController(controller, animated: true)
+                //            case .ChangePassword:
+                //                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
+                //                self.navigationController?.pushViewController(controller, animated: true)
                 
             case .PurchaseHistory:
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
@@ -163,7 +224,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 
             case .TermsAndConditions:
                 let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
-                controller.documentType = DocumentType(rawValue: "Terms And Conditions")
+                controller.documentType = DocumentType(rawValue: "Terms and Conditions")
                 self.navigationController?.pushViewController(controller, animated: true)
                 
             case .PrivacyPolicy:
@@ -188,28 +249,31 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
 
 extension SettingsViewController {
     
-    func webserviceForLogout(){
-        
-        guard let userData = SingletonClass.SharedInstance.userData  else { return }
+    func webserviceForChangeLanguage(language : String){
         
         UtilityClass.showHUD()
-        guard let xApiKey = UserDefaults.standard.value(forKey: UserDefaultKeys.kX_API_KEY) else { return }
         
-        let logout = userData.iD + "/\(xApiKey)"
-        UserWebserviceSubclass.Logout(strURL: logout){ (json, status, res) in
+        var strParam = String()
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        strParam = NetworkEnvironment.baseURL + ApiKey.updateLanguage.rawValue + "\(id)/\(language)"
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(status)
             
             UtilityClass.hideHUD()
             
-            if status {
-                UserDefaults.standard.set(false, forKey: UserDefaultKeys.kIsLogedIn)
-                SingletonClass.SharedInstance.singletonClear()
-                //                self.removeAllSocketFromMemory()
-                AppDelegateShared.GoToLogout()
-            } else {
+            if status{
+                let lang = (Localize.currentLanguage() == Languages.English.rawValue) ? Languages.Arabic.rawValue : Languages.English.rawValue
+                Localize.setCurrentLanguage(lang)
+                self.changeLanguage()
+            }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
+    
     
     func webserviceforNotification(){
         
@@ -235,7 +299,7 @@ extension SettingsViewController {
                         AppDelegateShared.notificationEnableDisable(notification: userData.notification ?? "0")
                         DispatchQueue.main.async {
                             self.tblSettings.reloadData()
-//                            self.tblSettings.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+                            //                            self.tblSettings.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
                         }
                     }catch{
                         UtilityClass.showAlert(Message: error.localizedDescription)
@@ -246,6 +310,47 @@ extension SettingsViewController {
             }
         }
     }
+    
+    func webserviceForLogout(){
+        
+        guard let userData = SingletonClass.SharedInstance.userData  else { return }
+        
+        UtilityClass.showHUD()
+        guard let xApiKey = UserDefaults.standard.value(forKey: UserDefaultKeys.kX_API_KEY) else { return }
+        
+        let logout = userData.iD + "/\(xApiKey)"
+        UserWebserviceSubclass.Logout(strURL: logout){ (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            
+            if status {
+                UserDefaults.standard.set(false, forKey: UserDefaultKeys.kIsLogedIn)
+                SingletonClass.SharedInstance.singletonClear()
+                //                self.removeAllSocketFromMemory()
+                AppDelegateShared.GoToLogout()
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
 }
 
+
+extension UILabel {
+    func decideTextDirection () {
+        let tagScheme = [NSLinguisticTagScheme.language]
+        let tagger    = NSLinguisticTagger(tagSchemes: tagScheme, options: 0)
+        tagger.string = self.text
+        let lang      = tagger.tag(at: 0, scheme: NSLinguisticTagScheme.language,
+                                   tokenRange: nil, sentenceRange: nil)
+        
+        if (Localize.currentLanguage() != Languages.English.rawValue) {//lang?.rawValue.range(of: Languages.English.rawValue) != nil ||  lang?.rawValue.range(of:Languages.Arabic.rawValue) != nil {
+            self.textAlignment = NSTextAlignment.right
+        }
+        else
+        {
+            self.textAlignment = NSTextAlignment.left
+        }
+    }
+}
 

@@ -30,7 +30,8 @@ class FriendsResponseModel : Codable {
             let value = FriendsData(fromJson: friendListJson)
             friendList.append(value)
         }
-        message = json["message"].stringValue
+        let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+        message = msg
         status = json["status"].boolValue
 	}
 

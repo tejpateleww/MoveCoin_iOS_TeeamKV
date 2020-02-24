@@ -54,16 +54,16 @@ class UtilityClass : NSObject {
     // ----------------------------------------------------
     
     class func showAlert(Message: String) {
-        let alertController = UIAlertController(title: "", message: Message, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: "", message: Message.localized, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK".localized, style: .cancel, handler: nil)
         alertController.addAction(alertAction)
         AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
     class func showAlertWithCompletion(title:String?, Message:String, ButtonTitle:String, Completion:@escaping (() -> ())) {
         
-        let alertController = UIAlertController(title: title , message:Message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: ButtonTitle, style: .default) { (UIAlertAction) in
+        let alertController = UIAlertController(title: title?.localized , message:Message.localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle.localized, style: .default) { (UIAlertAction) in
             Completion()
         }
         alertController.addAction(OKAction)
@@ -72,11 +72,11 @@ class UtilityClass : NSObject {
     
     class func showAlertWithTwoButtonCompletion(title:String, Message:String,ButtonTitle1:String,ButtonTitle2:String, Completion:@escaping ((Int) -> ())) {
         
-        let alertController = UIAlertController(title: title , message:Message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: ButtonTitle1, style: .default) { (UIAlertAction) in
+        let alertController = UIAlertController(title: title.localized , message:Message.localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle1.localized, style: .default) { (UIAlertAction) in
             Completion(0)
         }
-        let CancelAction = UIAlertAction(title: ButtonTitle2, style: .default) { (UIAlertAction) in
+        let CancelAction = UIAlertAction(title: ButtonTitle2.localized, style: .default) { (UIAlertAction) in
             Completion(1)
         }
         alertController.addAction(OKAction)
@@ -91,26 +91,28 @@ class UtilityClass : NSObject {
             UtilityClass.showAlert(Message: res)
         }
         else if let resDict = param as? NSDictionary {
-            if let msg = resDict.object(forKey: "message") as? String {
+            let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? "message" : "arabic_message"
+            if let msg = resDict.object(forKey: msg) as? String {
                 UtilityClass.showAlert(Message: msg)
             }
             else if let msg = resDict.object(forKey: "msg") as? String {
                 UtilityClass.showAlert(Message: msg)
             }
-            else if let msg = resDict.object(forKey: "message") as? [String] {
+            else if let msg = resDict.object(forKey: msg) as? [String] {
                 UtilityClass.showAlert(Message: msg.first ?? "")
             }
         }
         else if let resAry = param as? NSArray {
             
             if let dictIndxZero = resAry.firstObject as? NSDictionary {
-                if let message = dictIndxZero.object(forKey: "message") as? String {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? "message" : "arabic_message"
+                if let message = dictIndxZero.object(forKey: msg) as? String {
                     UtilityClass.showAlert(Message: message)
                 }
                 else if let msg = dictIndxZero.object(forKey: "msg") as? String {
                     UtilityClass.showAlert(Message: msg)
                 }
-                else if let msg = dictIndxZero.object(forKey: "message") as? [String] {
+                else if let msg = dictIndxZero.object(forKey: msg) as? [String] {
                     UtilityClass.showAlert(Message: msg.first ?? "")
                 }
             }
@@ -139,9 +141,9 @@ class UtilityClass : NSObject {
     
     class func alertForLocation(currentVC:UIViewController){
         
-        let alertController = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app", preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+        let alertController = UIAlertController(title: "Location Services Disabled".localized, message: "Please enable location services for this app".localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings".localized, style: .default) { (_) -> Void in
             
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return

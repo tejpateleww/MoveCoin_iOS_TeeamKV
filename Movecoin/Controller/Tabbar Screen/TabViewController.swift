@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
+
 
 protocol WalletCoinsDelegate {
     func walletCoins()
@@ -18,6 +20,7 @@ class TabViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var viewTabbar: UIView!
     
@@ -25,11 +28,11 @@ class TabViewController: UIViewController {
     @IBOutlet var viewUnderLine: [UIView]!
     @IBOutlet var btnTabs: [UIButton]!
     
-    @IBOutlet weak var lblStore: UILabel!
-    @IBOutlet weak var lblWallet: UILabel!
-    @IBOutlet weak var lblHome: UILabel!
-    @IBOutlet weak var lblStatistics: UILabel!
-    @IBOutlet weak var lblProfile: UILabel!
+    @IBOutlet weak var lblStore: LocalizLabel!
+    @IBOutlet weak var lblWallet: LocalizLabel!
+    @IBOutlet weak var lblHome: LocalizLabel!
+    @IBOutlet weak var lblStatistics: LocalizLabel!
+    @IBOutlet weak var lblProfile: LocalizLabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -61,6 +64,7 @@ class TabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setupView()
         self.setupFont()
         self.SocketOnMethods()
@@ -76,6 +80,27 @@ class TabViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
+    
+    @objc func changeLanguage(){
+
+        // Change Tabbar Text
+        lblStore.text = "STORE".localized
+        lblWallet.text = "WALLET".localized
+        lblHome.text = "HOME".localized
+        lblStatistics.text = "STATISTICS".localized
+        lblProfile.text = "PROFILE".localized
+        
+        // Change Home Text
+        homeVC.lblTitleCoins.text = "Coins".localized
+        homeVC.lblTitleFriends.text = "Friends".localized
+        homeVC.lblTitleTotalSteps.text = "Total Steps".localized
+        homeVC.lblTitleInviteFriends.text = "Invite a Friend".localized
+        homeVC.lblTitleTodays.text = "Today's".localized
+        homeVC.lblTitleTotalStep.text = "Total Steps".localized
+//        localizeUI(parentView: homeVC.viewParent)
+        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+    }
     
     func setupView(){
         // Animation of view presented
@@ -94,6 +119,9 @@ class TabViewController: UIViewController {
         }
         viewControllers = [storeVC, walletVC, homeVC, statisticsVC, profileVC]
         self.btnTabTapped(btnTabs![selectedIndex])
+        
+        // Notification observer for Language Change
+        NotificationCenter.default.addObserver(self, selector: #selector(changeLanguage), name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
     }
     
     func setupFont() {

@@ -19,7 +19,7 @@ class StatisticsTableViewCell: UITableViewCell {
             if let data = coinsEarnModel {
                 self.lblPoints.text = data.coins
                 if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate){
-                    self.lblSteps.text = data.steps + " steps. " + dateStr
+                    self.lblSteps.text = data.steps + " steps. ".localized + dateStr
                 }
                 // For Image
                  if let url = URL(string: SingletonClass.SharedInstance.userData?.profilePicture ?? "") {

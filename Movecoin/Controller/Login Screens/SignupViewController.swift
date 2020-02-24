@@ -14,18 +14,21 @@ class SignupViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
-    @IBOutlet weak var txtFullName: UITextField!
-    @IBOutlet weak var txtNickname: UITextField!
-    @IBOutlet weak var txtEmail: UITextField!
-    @IBOutlet weak var txtMobile: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var txtConfirmPassword: UITextField!
-    @IBOutlet weak var txtGender: UITextField!
-    @IBOutlet weak var txtReferral: UITextField!
-    @IBOutlet weak var lblAccount: UILabel!
-    @IBOutlet weak var btnSignIn: UIButton!
+    
+    @IBOutlet weak var txtFullName: TextFieldFont!
+    @IBOutlet weak var txtNickname: TextFieldFont!
+    @IBOutlet weak var txtEmail: TextFieldFont!
+    @IBOutlet weak var txtMobile: TextFieldFont!
+    @IBOutlet weak var txtPassword: TextFieldFont!
+    @IBOutlet weak var txtConfirmPassword: TextFieldFont!
+    @IBOutlet weak var txtGender: TextFieldFont!
+    @IBOutlet weak var txtReferral: TextFieldFont!
+    
+    @IBOutlet weak var lblAccount: LocalizLabel!
+    @IBOutlet weak var btnSignIn: LocalizButton!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -36,6 +39,7 @@ class SignupViewController: UIViewController {
     lazy var pickerView = UIPickerView()
     var selectedImage : UIImage?
     var userSocialData : UserSocialData?
+    var selectedGender : String?
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -46,6 +50,7 @@ class SignupViewController: UIViewController {
         navigationBarSetUp(hidesBackButton: true)
         self.setupView()
         self.setupFont()
+        //        localizeUI(parentView: self.viewParent)
         #if targetEnvironment(simulator)
         setDummy()
         #endif
@@ -68,6 +73,7 @@ class SignupViewController: UIViewController {
         super.viewDidLayoutSubviews()
         self.imgProfile.layer.cornerRadius = self.imgProfile.frame.height / 2
     }
+  
     
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
@@ -130,7 +136,7 @@ class SignupViewController: UIViewController {
             signupModel.Phone = mobileNumber
             signupModel.Email = email
             signupModel.Password = password
-            signupModel.Gender = txtGender.text!
+            signupModel.Gender = (selectedGender == "Male") ? "0" : "1"
             signupModel.ReferralCode = txtReferral.text!
             signupModel.DeviceType = "ios"
             signupModel.SocialID = userSocialData?.userId ?? ""
@@ -139,6 +145,7 @@ class SignupViewController: UIViewController {
                 signupModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 signupModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
             }
+            signupModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
             signupModel.Latitude = "23.0732727"
@@ -186,9 +193,19 @@ extension SignupViewController : UITextFieldDelegate {
         if textField == txtGender {
             textField.inputView = pickerView
             if textField.text!.isEmpty {
-                textField.text = arrayGender.first
+                textField.text = arrayGender.first?.localized
+                selectedGender = arrayGender.first
             }
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txtPassword || textField == txtConfirmPassword {
+            if string == " " {
+                return false
+            }
+        }
+        return true
     }
 }
 
@@ -207,11 +224,12 @@ extension SignupViewController : UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return arrayGender[row]
+        return arrayGender[row].localized
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        txtGender.text = arrayGender[row]
+        txtGender.text = arrayGender[row].localized
+        selectedGender = arrayGender[row]
     }
 }
 
@@ -247,8 +265,8 @@ extension SignupViewController {
             UtilityClass.hideHUD()
            
             if status{
-
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: VerificationViewController.className) as! VerificationViewController
                     controller.signupModel = signupDic
                     controller.otp = json["otp"].stringValue

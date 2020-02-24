@@ -3,4 +3,26 @@
    uuid = "9D3CD3B4-B8B9-46FE-AC2F-A0B0B551A74E"
    type = "0"
    version = "2.0">
+<<<<<<< HEAD
+=======
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77BD3443-1D18-4FCF-889C-333187A4D986"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Login Screens/LoginViewController.swift"
+            timestampString = "0"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "validate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+>>>>>>> origin/Localization-Implementation
 </Bucket>

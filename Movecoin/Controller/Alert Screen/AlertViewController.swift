@@ -18,8 +18,9 @@ class AlertViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet var viewParent: UIView!
+    @IBOutlet weak var lblTitle: LocalizLabel!
+    @IBOutlet weak var lblDescription: LocalizLabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -36,6 +37,7 @@ class AlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBarSetUp(hidesBackButton: true)
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
     }
     

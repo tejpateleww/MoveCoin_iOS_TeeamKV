@@ -14,6 +14,7 @@ class ChatListViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblChatList: UITableView!
     @IBOutlet weak var lblNoDataFound: UILabel!
     
@@ -29,7 +30,8 @@ class ChatListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
+        //        localizeUI(parentView: self.viewParent)
+        self.setUpView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +51,7 @@ class ChatListViewController: UIViewController {
         self.tblChatList.dataSource = self
         self.tblChatList.tableFooterView = UIView.init(frame: CGRect.zero)
         lblNoDataFound.isHidden = true
+        lblNoDataFound.text = "No chats available".localized
     }
     
     func setUpNavigationItems(){
@@ -81,6 +84,7 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.className) as! ChatListTableViewCell
         cell.selectionStyle = .none
         cell.friendDetail = friendsArray[indexPath.row]
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -92,18 +96,22 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Delete".localized
+    }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            let alert = UIAlertController(title: kAppName, message: "Are you sure you want to delete the chat?", preferredStyle: .alert)
-            let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
+            let alert = UIAlertController(title: kAppName.localized, message: "Are you sure you want to delete the chat?".localized, preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
                 let data = self.friendsArray[indexPath.row]
                 self.webserviceForDeleteChat(friendID: data.iD)
             }
-            let btncancel = UIAlertAction(title: "Cancel", style: .default) { (cancel) in
+            let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
                 self.dismiss(animated: true, completion:nil)
             }
             alert.addAction(btnOk)

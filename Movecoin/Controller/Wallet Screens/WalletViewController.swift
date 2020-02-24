@@ -15,6 +15,7 @@ class WalletViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblWallet: UITableView!
     @IBOutlet weak var btnBack: UIButton!
     
@@ -38,6 +39,7 @@ class WalletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -50,11 +52,37 @@ class WalletViewController: UIViewController {
         switch walletType {
         case .Coins:
 //            btnBack.isHidden = false
-            let leftBarButton = UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .plain, target: self, action: #selector(btnBackTapped))
+            let backImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-left")?.imageFlippedForRightToLeftLayoutDirection()) : UIImage(named: "arrow-left")
+            let leftBarButton = UIBarButtonItem(image: backImg, style: .plain, target: self, action: #selector(btnBackTapped))
             self.parent?.navigationItem.leftBarButtonItems = [leftBarButton]
             break
          case .Wallet:
             break
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        lblTitle.text = "My Balance".localized
+        btnSpendCoins.setTitle("Spend Coins".localized, for: .normal)
+        btnTransfer.setTitle("Transfer".localized, for: .normal)
+        
+        if Localize.currentLanguage() == Languages.Arabic.rawValue {
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            
+            btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        }
+        else {
+            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
+            
+            btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+            btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         }
     }
     
@@ -90,6 +118,13 @@ class WalletViewController: UIViewController {
         self.isFetchingNextPage = true
         currentPage += 1
         webserviceforWalletHistory()
+    }
+    
+    func reloadLocalizationEffect(cell : WalletTableViewCell){
+        cell.lblDiscription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        cell.lblMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        cell.lblDate.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        cell.lblAmount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
     }
     
     // ----------------------------------------------------
@@ -131,6 +166,8 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: WalletTableViewCell.className) as! WalletTableViewCell
         cell.selectionStyle = .none
         cell.walletDetail = walletHistory[indexPath.row]
+        reloadLocalizationEffect(cell: cell)
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
 }
@@ -172,6 +209,7 @@ extension WalletViewController {
                         }
                         self.tblWallet.reloadData()
                         self.btnAmount.setTitle(walletModel.coins, for: .normal)
+                        SingletonClass.SharedInstance.userData?.coins = walletModel.coins
                     }
                 }else{
                     UtilityClass.showAlertOfAPIResponse(param: res)

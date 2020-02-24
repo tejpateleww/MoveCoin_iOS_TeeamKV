@@ -19,6 +19,7 @@ class FriendsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblFriends: UITableView!
     @IBOutlet weak var txtSearch: UITextField!
     @IBOutlet weak var lblNoDataFound: UILabel!
@@ -39,6 +40,7 @@ class FriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true
@@ -60,6 +62,7 @@ class FriendsViewController: UIViewController {
         self.tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
         
         txtSearch.font = UIFont.regular(ofSize: 15)
+        lblNoDataFound.text = "You didn't connect with your friends".localized
     }
     
     // ----------------------------------------------------
@@ -71,12 +74,12 @@ class FriendsViewController: UIViewController {
         isTyping = (enteredText?.isEmpty ?? false) ? false : true
         searchArray = friendsArray.filter{ $0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
         tblFriends.reloadData()
-        let isZero = isTyping ? searchArray.count == 0 : friendsArray.count == 0
-        if isZero {
-            lblNoDataFound.isHidden = false
-        }else{
-            lblNoDataFound.isHidden = true
-        }
+//        let isZero = isTyping ? searchArray.count == 0 : friendsArray.count == 0
+//        if isZero {
+//            lblNoDataFound.isHidden = false
+//        }else{
+//            lblNoDataFound.isHidden = true
+//        }
     }
 }
 
@@ -100,6 +103,7 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
         cell.listType = friendListType
         cell.cellDelegate = self
         cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -132,7 +136,7 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
                    
             case .Unfriend:
                 print("Unfriend")
-                let alert = UIAlertController(title: kAppName, message: "Are you sure want to remove \(cell.friendDetail?.fullName ?? "") as your friend?", preferredStyle: .alert)
+                let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to remove ".localized + (cell.friendDetail?.fullName ?? "") + " as your friend?".localized, preferredStyle: .alert)
                 let btnOk = UIAlertAction(title: "OK", style: .default) { (action) in
                     self.webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
                 }
@@ -199,7 +203,8 @@ extension FriendsViewController {
             
             UtilityClass.hideHUD()
             if status {
-                UtilityClass.showAlert(Message: json["message"].stringValue)
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
                 self.webserviceForFriendsList(isLoading: false)
                 
             } else {

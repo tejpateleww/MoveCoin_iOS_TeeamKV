@@ -51,22 +51,22 @@ open class ImagePickerClass: NSObject {
         self.SelectedTag = sourceView.tag
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        if let action = self.action(for: .camera, title: "Take photo", tag: self.SelectedTag) {
+        if let action = self.action(for: .camera, title: "Take photo".localized, tag: self.SelectedTag) {
             alertController.addAction(action)
         }
-        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll", tag: self.SelectedTag) {
+        if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll".localized, tag: self.SelectedTag) {
             alertController.addAction(action)
         }
-        if let action = self.action(for: .photoLibrary, title: "Photo library", tag: self.SelectedTag) {
+        if let action = self.action(for: .photoLibrary, title: "Photo library".localized, tag: self.SelectedTag) {
             alertController.addAction(action)
         }
         let isDefaultImage = ((sourceView as! UIImageView).image?.isEqual(UIImage(named: "m-logo")))!
         if (!isDefaultImage) {
-            alertController.addAction(UIAlertAction(title: "Remove Photo", style: .destructive, handler: { (action) in
+            alertController.addAction(UIAlertAction(title: "Remove Photo".localized, style: .destructive, handler: { (action) in
                 self.delegate?.didSelect(image: nil, SelectedTag:101)
             }))
         }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             alertController.popoverPresentationController?.sourceView = sourceView

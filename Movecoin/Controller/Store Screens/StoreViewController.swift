@@ -14,11 +14,13 @@ class StoreViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
 
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblStoreOffers: UITableView!
     
     @IBOutlet weak var viewFooter: UIView!
     @IBOutlet weak var lblSeller: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var btnGetInTouch: ThemeButton!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -38,16 +40,25 @@ class StoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        
         // Navigation & Status bar setup
         self.navigationBarSetUp(title: "Offers For Today", backroundColor: ThemeNavigationColor, hidesBackButton: true)
         self.statusBarSetUp(backColor: ThemeNavigationColor)
-         webserviceForProductList()
+        
+        webserviceForProductList()
+        localizeSetup()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeFooterToFit()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,11 +66,6 @@ class StoreViewController: UIViewController {
         navigationBarSetUp()
         self.statusBarSetUp(backColor: .clear)
         self.title = ""
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        sizeFooterToFit()
     }
     
     // ----------------------------------------------------
@@ -73,6 +79,14 @@ class StoreViewController: UIViewController {
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
         tblStoreOffers.addSubview(refreshControl)
+    }
+    
+    func localizeSetup(){
+        // Localization
+        lblSeller.text = "Be a Seller".localized
+        lblDescription.text = "Do you have a product or service you would like to show in our marketplace.".localized
+        lblDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.btnGetInTouch.setTitle("Get In Touch".localized, for: .normal)
     }
     
     func setupFont(){
@@ -106,6 +120,7 @@ extension StoreViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.className) as! StoreTableViewCell
         cell.selectionStyle = .none
         cell.product = productArray[indexPath.row]
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -128,10 +143,11 @@ extension StoreViewController {
         
         let productsURL = NetworkEnvironment.baseURL + ApiKey.productsList.rawValue
         ProductWebserviceSubclass.productsList(strURL: productsURL){ (json, status, res) in
+            self.refreshControl.endRefreshing()
+            
             if status {
                 let responseModel = ProductsResponseModel(fromJson: json)
                 if responseModel.productsList.count > 0  {
-                    self.refreshControl.endRefreshing()
                     self.productArray = responseModel.productsList
                     self.tblStoreOffers.reloadData()
                 }

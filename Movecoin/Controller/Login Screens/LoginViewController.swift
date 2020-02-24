@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import AuthenticationServices
 import TwitterKit
 import TwitterCore
+import IQKeyboardManagerSwift
 
 struct UserSocialData {
     var userId: String
@@ -26,17 +27,17 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var imgTop: UIImageView!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTitle: LocalizLabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var btnForgotPassword: UIButton!
-    @IBOutlet weak var lblAccount: UILabel!
-    @IBOutlet weak var btnSignUp: UIButton!
-    @IBOutlet weak var lblOr: UILabel!
+    @IBOutlet weak var btnForgotPassword: LocalizButton!
+    @IBOutlet weak var lblAccount: LocalizLabel!
+    @IBOutlet weak var btnSignUp: LocalizButton!
+    @IBOutlet weak var lblOr: LocalizLabel!
     @IBOutlet weak var viewAppleLogin: UIView!
     @IBOutlet weak var appleSigninBtnHeightConstraint: NSLayoutConstraint!
-    
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -53,9 +54,11 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         setupSOAppleSignIn()
-        
+        //        localizeUI(parentView: self.viewParent)
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+
         #if targetEnvironment(simulator)
-       setDummy()
+//       setDummy()
         #endif
     }
     
@@ -71,6 +74,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
     func setDummy(){
         txtEmail.text = "bhumi.j@excellentwebworld.in"
         txtPassword.text = "123456"
+        
+      
     }
     
     func setupFont(){
@@ -93,6 +98,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
                 loginModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 loginModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
             }
+            loginModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
             loginModel.Latitude = "23.0732727"
@@ -153,7 +159,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
         }
         let login = LoginManager()
         login.logOut()
-        login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
+        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
             
             if error != nil {
                 //                UIApplication.shared.statusBarStyle = .lightContent
@@ -183,6 +189,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
                 socialModel.Username = session?.userName ?? ""
                 socialModel.SocialType = "twitter"
                 socialModel.DeviceType = "ios"
+                socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
@@ -212,6 +219,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
             authorizationController.performRequests()
         }
     }
+    
+    
 }
 
 // -----------------------------------------------------------------
@@ -293,6 +302,7 @@ extension LoginViewController {
                 socialModel.Username = strEmail
                 socialModel.SocialType = "facebook"
                 socialModel.DeviceType = "ios"
+                socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
@@ -405,6 +415,7 @@ extension LoginViewController {
                 socialModel.Username = responseModel.message.email
                 socialModel.SocialType = "apple"
                 socialModel.DeviceType = "ios"
+                socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"

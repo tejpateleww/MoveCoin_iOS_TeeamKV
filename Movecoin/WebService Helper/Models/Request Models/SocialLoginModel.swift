@@ -16,4 +16,5 @@ class SocialLoginModel : RequestModel {
     var DeviceType : String = ""
     var SocialType : String = ""
     var SocialID : String = ""
+    var language : Int = 1
 }

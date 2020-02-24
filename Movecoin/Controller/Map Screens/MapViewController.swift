@@ -23,11 +23,14 @@ class MapViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var lblSteps: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var shadowHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // ----------------------------------------------------
@@ -37,7 +40,7 @@ class MapViewController: UIViewController {
     var delegateFlipToHome : FlipToHomeDelegate!
     var delegateFriendStatus : FriendStatusDelegate!
     var toggleForPopover = false
-    
+    var showOnlyOnce = true
     lazy var nearByUsersArray = [Nearbyuser]()
     
     var nearByuserTimer : Timer!
@@ -49,21 +52,36 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp(hidesBackButton: true)
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
-      
+        lblTitle.text = "My Steps".localized
+        
         lblSteps.text = SingletonClass.SharedInstance.todaysStepCount ?? "0"
         self.setUpNavigationItems()
         webserviceForNearByUsers()
         startTimer()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if AppDelegateShared.window?.safeAreaInsets.top ?? 0.0 > CGFloat(24.0) {
+            shadowHeightConstraint.constant = 50.0
+        } else {
+            shadowHeightConstraint.constant = 30.0
+        }
+        setGradientColorOfView(view: shadowView, startColor: ThemeBlueColor.withAlphaComponent(0.4), endColor: ThemeBlueColor.withAlphaComponent(0.01))
+        self.shadowView.layoutIfNeeded()
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopTimer()
@@ -139,27 +157,32 @@ class MapViewController: UIViewController {
     }
     
     func reloadMapView(){
-       
+        
         let allAnnotations = mapView.annotations
         mapView.removeAnnotations(allAnnotations)
-         
-         var artView = [PinMarker]()
-        nearByUsersArray.forEach{
-             artView.append(PinMarker(data: $0))
-         }
-         mapView.addAnnotations(artView)
         
-//        var annotationsArray = [MKPointAnnotation]()
-//        for user in nearByUsersArray {
-//            let annotation = MKPointAnnotation()
-//            annotation.title = "\(user.fullName ?? "")"
-//            let lat = CLLocationDegrees(floatLiteral: Double(user.latitude)!)
-//            let lng = CLLocationDegrees(floatLiteral: Double(user.longitude)!)
-//            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-//            annotationsArray.append(annotation)
-//        }
-//        mapView.addAnnotations(annotationsArray)
-        mapView.showAnnotations(mapView.annotations, animated: true)
+        var artView = [PinMarker]()
+        nearByUsersArray.forEach{
+            artView.append(PinMarker(data: $0))
+        }
+        mapView.addAnnotations(artView)
+        
+        //        var annotationsArray = [MKPointAnnotation]()
+        //        for user in nearByUsersArray {
+        //            let annotation = MKPointAnnotation()
+        //            annotation.title = "\(user.fullName ?? "")"
+        //            let lat = CLLocationDegrees(floatLiteral: Double(user.latitude)!)
+        //            let lng = CLLocationDegrees(floatLiteral: Double(user.longitude)!)
+        //            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        //            annotationsArray.append(annotation)
+        //        }
+        //        mapView.addAnnotations(annotationsArray)
+        
+        if(showOnlyOnce)
+        {
+            mapView.showAnnotations(mapView.annotations, animated: true)
+            showOnlyOnce = false
+        }
     }
     
     func zoomInLocation(_ location: CLLocation) {

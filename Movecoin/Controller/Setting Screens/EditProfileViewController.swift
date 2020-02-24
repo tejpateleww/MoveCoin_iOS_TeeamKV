@@ -14,8 +14,10 @@ class EditProfileViewController: UIViewController {
     //MARK:- --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewProfile: UIView!
     @IBOutlet weak var imgProfilePicture: UIImageView!
+    
     @IBOutlet weak var txtNickName: ThemeTextfield!
     @IBOutlet weak var txtEmail: ThemeTextfield!
     @IBOutlet weak var txtGender: ThemeTextfield!
@@ -31,6 +33,7 @@ class EditProfileViewController: UIViewController {
     private var imagePicker : ImagePickerClass!
     var selectedImage : UIImage?
     var isRemovePhoto = false
+    var selectedGender : String?
     
     let pickerView = UIPickerView()
     let datePickerView = UIDatePicker()
@@ -47,6 +50,7 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setupView()
         self.updateMylocation()
         setupProfileData()
@@ -100,7 +104,7 @@ class EditProfileViewController: UIViewController {
             txtNickName.text = userData.nickName
             txtMobile.text = userData.phone
             txtEmail.text = userData.email
-            txtGender.text = userData.gender
+            txtGender.text = (userData.updateGender == "0") ? "Male".localized : "Female".localized
             txtHeight.text = userData.height
             txtWeight.text = userData.weight
             if userData.dateOfBirth != "0000-00-00" {
@@ -132,7 +136,7 @@ class EditProfileViewController: UIViewController {
             editModel.NickName = txtNickName.text ?? ""
             editModel.Phone = mobileNumber
             editModel.Email = email
-            editModel.Gender = txtGender.text!
+            editModel.Gender = (selectedGender == "Male") ? "0" : "1"
             editModel.Height = txtHeight.text ?? ""
             editModel.Weight = txtWeight.text ?? ""
             if isRemovePhoto {
@@ -184,10 +188,10 @@ extension EditProfileViewController : UITextFieldDelegate {
             textField.inputView = pickerView
             numberOfComponents = 1
             
-            if textField.text!.isEmpty || textField.text == arrayGender.first {
-                textField.text = arrayGender.first
+            if textField.text!.isEmpty || SingletonClass.SharedInstance.userData?.updateGender == "0" {
+                textField.text = arrayGender.first?.localized
             } else {
-                textField.text = arrayGender.last
+                textField.text = arrayGender.last?.localized
                 pickerView.selectRow(1, inComponent: 0, animated: false)
             }
         } else if textField == txtDob {
@@ -209,10 +213,10 @@ extension EditProfileViewController : UITextFieldDelegate {
 //                pickerView.selectRow(ft, inComponent: 0, animated: false)
 //                pickerView.selectRow(inch, inComponent: 2, animated: false)
 //            }
-            let height = textField.text?.replacingOccurrences(of: " cm", with: "")
+            let height = textField.text?.replacingOccurrences(of: " cm".localized, with: "")
             txtHeight.text = height
         } else if textField == txtWeight {
-            let weight = textField.text?.replacingOccurrences(of: " kg", with: "")
+            let weight = textField.text?.replacingOccurrences(of: " kg".localized, with: "")
             txtWeight.text = weight
         }
     }
@@ -232,11 +236,11 @@ extension EditProfileViewController : UITextFieldDelegate {
 //                }
 //            }
             if let height = txtHeight.text {
-                txtHeight.text = height + " cm"
+                txtHeight.text = height + " cm".localized
             }
         } else if textField == txtWeight {
             if let weight = txtWeight.text {
-                 txtWeight.text = weight + " kg"
+                txtWeight.text = weight + " kg".localized
             }
         }
     }
@@ -282,7 +286,7 @@ extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if numberOfComponents == 1 {
-             return arrayGender[row]
+            return arrayGender[row].localized
         } else {
             if component == 0 {
                 return "\(feetList[row])"
@@ -298,7 +302,8 @@ extension EditProfileViewController : UIPickerViewDelegate, UIPickerViewDataSour
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if numberOfComponents == 1 {
-            txtGender.text = arrayGender[row]
+            txtGender.text = arrayGender[row].localized
+            selectedGender = arrayGender[row]
         } else {
             let feetIndex = pickerView.selectedRow(inComponent: 0)
             let inchIndex = pickerView.selectedRow(inComponent: 2)
@@ -349,7 +354,8 @@ extension EditProfileViewController {
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }
                 self.getUserData()
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
             }

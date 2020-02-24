@@ -58,13 +58,20 @@ class ValidatorClass {
 struct EmailValidator: ValidatorConvertible {
     
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard value != "" else {
+            
+            if txtFieldName.contains("enter"){
+                throw ValidationError("Please".localized + " \(txtFieldName)")
+            }else{
+                throw ValidationError("Please enter".localized + " \(txtFieldName)")
+            }
+        }
         do {
             if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Invalid " + txtFieldName)
+                throw ValidationError("Invalid".localized + " \(txtFieldName)")
             }
         } catch {
-            throw ValidationError("Invalid " + txtFieldName)
+            throw ValidationError("Invalid".localized + " \(txtFieldName)")
         }
         return value
     }
@@ -73,8 +80,8 @@ struct EmailValidator: ValidatorConvertible {
 
 struct PasswordValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
-        guard value.count >= 6 else { throw ValidationError("Password must have at least 6 characters") }
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+        guard value.count >= 6 else { throw ValidationError("Password must have at least 6 characters".localized) }
         
 //        do {
 //            if try NSRegularExpression(pattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
@@ -89,20 +96,20 @@ struct PasswordValidator: ValidatorConvertible {
 
 struct FullNameValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
-        
+    
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+
 //        guard value.count < 50 else {
 //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
 //        }
 
-        do {
-            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Full name should not contain numbers or special characters")
-            }
-        } catch {
-            throw ValidationError("Full name should not contain numbers or special characters")
-        }
+//        do {
+//            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+//                throw ValidationError("Full name should not contain numbers or special characters".localized)
+//            }
+//        } catch {
+//            throw ValidationError("Full name should not contain numbers or special characters".localized)
+//        }
         return value
     }
 }
@@ -111,21 +118,23 @@ struct FullNameValidator: ValidatorConvertible {
 struct UserNameValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+        
         guard value.count >= 3 else {
-            throw ValidationError("Username must contain more than three characters" )
+            throw ValidationError("Username must contain more than three characters".localized )
         }
         guard value.count < 18 else {
-            throw ValidationError("Username shoudn't contain more than 18 characters" )
+            throw ValidationError("Username shoudn't contain more than 18 characters".localized )
         }
         
-        do {
-            if try NSRegularExpression(pattern: "^[a-z]{1,18}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Username should not contain whitespaces, numbers or special characters")
-            }
-        } catch {
-            throw ValidationError("Username should not contain whitespaces, numbers or special characters")
-        }
+        
+//        do {
+//            if try NSRegularExpression(pattern: "^[a-z]{1,18}$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+//                throw ValidationError("Username should not contain whitespaces, numbers or special characters".localized)
+//            }
+//        } catch {
+//            throw ValidationError("Username should not contain whitespaces, numbers or special characters".localized)
+//        }
         return value
     }
 }
@@ -133,11 +142,26 @@ struct UserNameValidator: ValidatorConvertible {
 struct MobileNumberValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
         guard value.count >= 10 && value.count < 11 else {
-            throw ValidationError("Please enter valid " + txtFieldName)
+            
+            if(Localize.currentLanguage() == Languages.Arabic.rawValue){
+                throw ValidationError("الرجاء إدخال رقم جوال صحيح")
+            } else {
+                throw ValidationError("Please enter valid ".localized + txtFieldName)
+            }
         }
-       
+        do {
+            let numberOnly = NSCharacterSet.init(charactersIn: "+#*0123456789")
+            let stringFromTextField = NSCharacterSet.init(charactersIn: value)
+            let strValid = numberOnly.isSuperset(of: stringFromTextField as CharacterSet)
+            if(!strValid)
+            {
+                throw ValidationError("Only english digits are allowed".localized)
+            }
+        } catch {
+            throw ValidationError("Only english digits are allowed".localized)
+        }
         return value
     }
 }
@@ -153,9 +177,15 @@ struct RequiredFieldValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard !value.isEmpty else {
             if txtFieldName.contains("enter"){
-                throw ValidationError("Please " + txtFieldName)
+                throw ValidationError("Please".localized + " \(txtFieldName)")
             }else{
-                throw ValidationError("Please enter " + txtFieldName)
+                if txtFieldName == "أسم النشاط التجاري " { // business name
+                    throw ValidationError("الرجاء إدخال الإسم التجاري") // "Please enter the trade name"
+                } else if txtFieldName == "اسم المتجر" { // Shope name
+                    throw ValidationError("الرجاء إدخال إسم المتجر") // "Please enter the store name"
+                } else {
+                    throw ValidationError("Please enter".localized + " \(txtFieldName)")
+                }
             }
         }
         return value
@@ -164,10 +194,10 @@ struct RequiredFieldValidator: ValidatorConvertible {
 
 class AgeValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value.count > 0 else {throw ValidationError("Age is required")}
-        guard let age = Int(value) else {throw ValidationError("Age must be a number!")}
-        guard value.count < 3 else {throw ValidationError("Invalid age number!")}
-        guard age >= 18 else {throw ValidationError("You have to be over 18 years old to user our app :)")}
+        guard value.count > 0 else {throw ValidationError("Age is required".localized)}
+        guard let age = Int(value) else {throw ValidationError("Age must be a number!".localized)}
+        guard value.count < 3 else {throw ValidationError("Invalid age number!".localized)}
+        guard age >= 18 else {throw ValidationError("You have to be over 18 years old to user our app".localized)}
         return value
     }
 }
@@ -175,29 +205,29 @@ class AgeValidator: ValidatorConvertible {
 struct CardHolderValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
 
-        guard value != "" else {throw ValidationError("Please enter card holder name")}
+        guard value != "" else {throw ValidationError("Please enter card holder name".localized)}
 
         //        guard value.count < 50 else {
         //            throw ValidationError("Full name shoudn't contain more than 50 characters" )
         //        }
 
-        do {
-            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Card holder should not contain numbers or special characters")
-            }
-        } catch {
-            throw ValidationError("Card holder should not contain numbers or special characters")
-        }
+//        do {
+//            if try NSRegularExpression(pattern: "^[a-z ]+$",  options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
+//                throw ValidationError("Card holder should not contain numbers or special characters".localized)
+//            }
+//        } catch {
+//            throw ValidationError("Card holder should not contain numbers or special characters".localized)
+//        }
         return value
     }
 }
 
 struct CardNumberValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
-        guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters") }
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+        guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters".localized) }
         let v = CreditCardValidator()
-        guard v.validate(string: value) else { throw ValidationError("Card number is invalid") }
+        guard v.validate(string: value) else { throw ValidationError("Card number is invalid".localized) }
 
         return value
     }
@@ -205,16 +235,16 @@ struct CardNumberValidator: ValidatorConvertible {
 
 struct CvvValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter " + txtFieldName)}
-        guard value.count >= 3 && value.count < 5 else { throw ValidationError("Please enter valid CVV number") }
+        guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
+        guard value.count >= 3 && value.count < 5 else { throw ValidationError("Please enter valid CVV number".localized) }
         return value
     }
 }
 
 struct ExpDateValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard value != "" else {throw ValidationError("Please enter expiry date")}
-        guard expDateValidation(dateStr: value) else { throw ValidationError("Invalid expiry date") }
+        guard value != "" else {throw ValidationError("Please enter expiry date".localized)}
+        guard expDateValidation(dateStr: value) else { throw ValidationError("Invalid expiry date".localized) }
         return value
     }
     

@@ -47,6 +47,8 @@ class FriendTableViewCell: UITableViewCell {
         lblNumber.font = UIFont.regular(ofSize: 10)
         btnOutlet.titleLabel?.font = UIFont.regular(ofSize: 11)
         btnNext.isUserInteractionEnabled = false
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
+        btnNext.setImage(sendImg, for: .normal)
     }
     
     override func layoutSubviews() {
@@ -54,7 +56,7 @@ class FriendTableViewCell: UITableViewCell {
         
         switch listType {
         case .TransferCoins:
-            btnOutlet.setTitle("Send", for: .normal)
+            btnOutlet.setTitle("Send".localized, for: .normal)
             btnNext.isHidden = true
             break
         case .NewChat:
@@ -62,7 +64,7 @@ class FriendTableViewCell: UITableViewCell {
             btnNext.isHidden = false
             break
         default:
-            btnOutlet.setTitle("Unfriend", for: .normal)
+            btnOutlet.setTitle("Unfriend".localized, for: .normal)
             btnNext.isHidden = true
             break
         }

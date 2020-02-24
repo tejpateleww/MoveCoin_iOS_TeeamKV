@@ -12,6 +12,10 @@ import CoreMotion
 
 extension UIViewController {
     
+    static var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
    
     // ------------------------------------------------------------
     //MARK:- --------- NavigationBar & StatusBar Methods ---------
@@ -22,18 +26,21 @@ extension UIViewController {
 
         // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
-
+        
         // Title
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                  NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
                            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-                           self.navigationController?.navigationBar.topItem?.title = title
+        self.navigationController?.navigationBar.topItem?.title = title.localized
+        
             
         // Background
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.backgroundColor = backroundColor
+        
+        self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
 
 //        statusBarSetUp(backColor: .clear)
     }
@@ -105,8 +112,8 @@ extension UIViewController {
         view.layoutIfNeeded()
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
-        let startColor = startColor.withAlphaComponent(0.15)
-        let endColor = endColor.withAlphaComponent(0)
+//        let startColor = startColor.withAlphaComponent(0.15)
+//        let endColor = endColor.withAlphaComponent(0)
         gradient.colors = [startColor.cgColor, endColor.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         view.layoutIfNeeded()

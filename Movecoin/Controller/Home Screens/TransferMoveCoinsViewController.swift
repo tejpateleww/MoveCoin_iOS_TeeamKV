@@ -14,6 +14,7 @@ class TransferMoveCoinsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var txtAmount: UITextField!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var lbl1: UILabel!
@@ -33,16 +34,17 @@ class TransferMoveCoinsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         txtAmount.delegate = self
         if let name = receiverName {
-             lblName.text = "To \(name)"
+            lblName.text = "To ".localized + name
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(title: "Sending MoveCoins")
+        self.navigationBarSetUp(title: "Sending Coins")
     }
     
     // ----------------------------------------------------
@@ -54,6 +56,14 @@ class TransferMoveCoinsViewController: UIViewController {
         lblName.font = UIFont.semiBold(ofSize: 24)
         txtAmount.font = UIFont.bold(ofSize: 40)
         txtMessage.font = UIFont.regular(ofSize: 19)
+        
+        // For Localization
+        txtAmount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        txtAmount.placeholder = txtAmount.placeholder?.localized
+        txtMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        txtMessage.placeholder = txtMessage.placeholder?.localized
+        txtMessage.placeHolderColor = TransparentColor
+        txtAmount.placeHolderColor = TransparentColor
     }
     
     // ----------------------------------------------------
@@ -103,7 +113,7 @@ extension TransferMoveCoinsViewController : UITextFieldDelegate {
 extension TransferMoveCoinsViewController {
     
     func webserviceForTransferCoins(dic : TransferCoinsModel){
-        
+       
         UtilityClass.showHUD()
         
         FriendsWebserviceSubclass.transferCoins(transferCoinModel: dic){ (json, status, res) in
@@ -111,9 +121,11 @@ extension TransferMoveCoinsViewController {
             
             if status {
                 self.view.endEditing(true)
-                UtilityClass.showAlertWithCompletion(title: "", Message: json["message"].stringValue, ButtonTitle: "OK", Completion: {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
+                
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

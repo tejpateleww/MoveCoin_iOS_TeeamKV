@@ -20,6 +20,7 @@ class CardListViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var lblAddPayment: UILabel!
     
     @IBOutlet weak var txtCardHolder: ThemeTextfield!
@@ -41,10 +42,11 @@ class CardListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationBarSetUp()
+        self.title =  "Card Details".localized
+        //        localizeUI(parentView: self.viewParent)
         self.initialSetup()
         self.setupFont()
-        navigationBarSetUp()
-        self.title =  "Card Details"
     }
     
     override func viewWillAppear(_ animated: Bool) {

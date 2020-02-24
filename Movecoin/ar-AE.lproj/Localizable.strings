@@ -1,0 +1,320 @@
+/* 
+  Localizable.strings
+  Movecoins
+
+  Created by eww090 on 28/01/20.
+  Copyright © 2020 eww090. All rights reserved.
+*/
+
+
+// Welcome Screen
+"Sign in" = "تسجيل دخول";
+"Sign Up" = "تسجيل جديد";
+"OR" = "أو";
+"Lorem Ipsum Simply Dummy" = "مرحبا..خطوتك غير في موف كوينز";
+"Hi…Your Step Remarkable In MoveCoins" = "مرحبا... خطوتك غير في موف كوينز";
+
+
+// Login Screen
+"Sign in to your account" = "تسجيل دخول لحسابك";
+"Email Id" = " البريد الإلكتروني";
+"Password" = "كلمة المرور";
+"Forgot Password?" = "نسيت كلمة المرور؟";
+"Don't have an Account?" = "ليس لديك حساب؟";
+"SIGN UP NOW" = "قم بالتسجيل الآن";
+
+
+// Forgot Password Screen
+"Forgot Password" = "نسيت كلمة المرور";
+"Enter Email Id" = "ادخل بريدك الإلكتروني";
+"Send" = "إرسال";
+
+
+// Sign Up Screen
+//الرجاء إدخال الإسم كامل
+"Please enter " = " الرجاء إدخال";
+"Full Name" = " الإسم كامل";
+"Nickname" = " الأسم المستعار";
+"Email address" = " البريد الإلكتروني";
+"Please enter valid " = "الرجاء إدخال صحيح ";
+"Mobile Number" = " رقم جوال";
+"Confirm Password" = " تأكيد كلمة المرور";
+"Gender" = " الجنس";
+"Referral code" = " الكود";
+"Verify" = "تأكيد";
+"Already have an Account?" = "لديك حساب مسبق؟";
+"SIGN IN" = "سجل دخول";
+
+
+// Verification Code Screen
+"Verification Code" = "رمز التأكيد";
+"Please enter your code from SMS/Email we've sent you" = "الرجاء ادخال الكود المرسل على بريدك او الرسائل القصيرة";
+"Send Again" = "أرسل مرةً أخرى";
+
+
+//Tab Screen
+"HOME" = "البداية";
+"STORE" = "المتجر";
+"WALLET" = "المحفظة";
+"STATISTICS" = "الإحصائيات";
+"PROFILE" = "الملف الشخصي";
+
+
+// Home Screen
+"Total Steps" = "مجموع الخطوات";
+"Coins" = "العملات";
+"Invite a Friend" = "أرسل دعوة لصديق";
+"Friends" = "الأصدقاء";
+"Today's" = "خطواتك اليوم";
+
+
+// Map Screen
+"My Steps" = "خطواتي";
+"Last seen " = "آخر ظهور ";
+"Member since " = "عضو منذ ";
+"Chat" = "محادثة";
+"Today" = "اليوم";
+"Transfer" = "تحويل";
+"Send Friend Request" = "أرسل طلب صداقة";
+
+
+// Invite Screen
+"Invite" = "دعوة";
+"Invite Friend" = "دعوة صديق";
+"Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins." = " عند تسجيل أحد أصدقائك في موف كوينز، سوف تحصل على ١٠ عملات، وسوف يحصل صديقك على ٥ عملات";
+"REFERRAL CODE" = "كود";
+"Invite Friends" = "دعوة صديق";
+"Find Friend" = "بحث عن صديق";
+"Search" = "بحث";
+"Requested" = "الطلبات";
+"Recommended" = "الموصى به";
+"Not Registered" = "غير مسجل";
+"Add Friend" = "أضف صديق";
+"+ Invite" = "+ دعوة";
+"Accept" = "قبول";
+"Reject" = "رفض";
+"Facebook" = "Facebook";
+"Connect Facebook" = "ربط Facebook";
+"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+
+// Friends Screen
+"Unfriend" = "إلغاء صداقة";
+
+
+// Store Screen
+"Offers For Today" = "عروض اليوم";
+"Be a Seller" = "كن بائع";
+"Do you have a product or service you would like to show in our marketplace." = "لديك خدمات أو منتجات تريد عرضها في موف كوينز";
+"Get In Touch" = "تواصل معنا";
+
+
+// Become Seller Screen
+"Become Seller" = "كن بائع";
+"Business Name" = "أسم النشاط التجاري ";
+"Shop Name" = "اسم المتجر";
+"Phone Number" = "رقم الجوال";
+"Shop Place" = "موقع المتجر";
+"Type Of Products" = "نوع المنتجات";
+"Register" = "تسجيل";
+
+
+// Product Detail Screen
+" inclusive tax" = " شامل الضريبة";
+"Store : " = "المتجر: ";
+"Delivery Charge : " = "رسوم التوصيل: ";
+"Buy" = "شراء";
+"Out of Stock" = "غير متوفر";
+
+
+// Confirm Purchase Screen
+"Confirm Purchase" = "تأكيد الشراء";
+"Delivery Address" = "عنوان التوصيل";
+"Name" = " الإسم";
+"Contact number" = " رقم التواصل";
+"Address-1" = " العنوان الأول";
+"Address-2" = " العنوان الثاني";
+"Country" = " البلد";
+"State" = " المنطقة";
+"City" = " المدينة";
+"Zip Code" = " الرمز البريدي";
+"Now Available Balance" = "الرصيد المتوفر";
+"Enter card details" = "أدخل معلومات البطاقة";
+"Payable Amount is " = "السعر";
+"Purchase" = "شراء";
+"Product Price" = "سعر المنتج";
+"Discount" = "الخصم";
+"Delivery" = "سعر التوصيل";
+"Total" = "المجموع";
+
+
+// Card Detail Screen
+"Card Details" = "معلومات البطاقة ";
+"Payment Method" = "طريقة الدفع";
+"Card Holder" = "إسم حامل البطاقة";
+"Card Number" = "رقم البطاقة";
+"Exp Date" = "تاريخ الإنتهاء";
+"CVV" = "رمز التحقق";
+"Done" = "تم";
+
+
+// Wallet Screen
+"My Balance" = "رصيدي";
+"Spend Coins" = "صرف العملات";
+"Transfer" = "تحويل";
+
+
+// Transfer MoveCoins Screen
+"Sending Coins" = "إرسال العملات";
+"Amount" = "عدد العملات";
+"To " = " إلى";
+"Add optional message" = "أضف رسالة إختيارية";
+"Send MoveCoins" = "إرسال";
+
+
+// Statistics Screen
+"Updates" = "التحديثات";
+" steps. " = " الخطوات ";
+
+
+// Profile Screen
+"My Friends " = "أصدقائي ";
+"Total MoveCoins Created" = "مجموع العملات ";
+"Weekly" = "إسبوعي";
+"Monthly" = "شهري";
+"Yearly" = "سنوي";
+"Average per week" = "المعدل الإسبوعي";
+"Average per month" = "المعدل الشهري";
+"Average per year" = "المعدل السنوي";
+"Total Steps Converted" = "مجموع الخطوات المحولة";
+
+
+// Chat Screen
+"Chats" = "المحادثات";
+"Message" = "أرسل";
+"No chats available" = "لا الدردشات المتاحة";
+
+
+// Settings Screen
+"Settings" = "الإعدادات";
+"Notification" = "التنبيهات";
+"Edit Profile" = "تعديل الملف الشخصي";
+"Purchase History" = "سجل المشتريات";
+"Help/Support" = "المساعدة و الدعم الفني";
+"Terms and Conditions" = "الشروط و الأحكام";
+"Privacy Policy" = "سياسة الخصوصية";
+"Language" = "اللغة";
+"Rate this app" = "التقييم";
+"Version - " = "الإصدار - ";
+"Help" = "مساعدة";
+
+
+// Account Privacy Screen
+"Account Privacy" = "خصوصية الحساب";
+"Private Account" = "حساب خاص";
+"When your account is private, only your friends can see you on map and your information." = "عند تفعيل هذه الخاصية, فقط أصدقائك يمكنهم رؤية معلوماتك و موقعك";
+"When your account is private, only you are choosing who can see you on map and your information" = "عند تفعيل هذه الخاصية، أنت تحدد من يمكنهم رؤية موقعك ومعلوماتك";
+
+
+// Edit Profile Screen
+"Mobile" = "الجوال";
+"Date Of Birth" = "تاريخ الميلاد";
+"Height ( cm )" = "الطول (سم)";
+"Weight ( Kg )" = "الوزن (كغ)";
+"Save" = "حفظ";
+
+
+// Alert Screen
+"Thank You" = "شكراً لك";
+"OK" = "تأكيد";
+"Insufficient Balance" = "رصيدك غير كافي";
+"Your current balance is too low to purchase 50% off Mous - Protective phone cases. Don't want to wait? invite Friends and Family to earn faster!" = "رصيدك الحالي لا يسمح لشراء خصم 50% لا تريد الانتظار؟ قم بدعوة الأصدقاء والعائلة للحصول على العملات!";
+
+
+// Other
+"MoveCoins" = "موف كوينز";
+"Go >>" = "ذهاب >>";
+"Skip >>" = "تخطي >>";
+"Cancel" = "إلغاء";
+" MoveCoins" = " موف كوينز";
+" cm" = " سم";
+" kg" = " كغ";
+"Take photo" = "التقط صورة";
+"Camera roll" = "أستوديو الكاميرا";
+"Photo library" = "مكتبة الصور";
+"Remove Photo" = "إزالة الصورة";
+"Male" = "الذكر";
+"Female" = "أنثى";
+"You didn't connect with your friends" = "أنت لم تواصل مع أصدقائك";
+"You didn't have any updates yet" = "لايوجد تحديثات";
+"Delete" = "حذف";
+"All" = "الكل";
+"No one" = "لا أحد";
+"SAR" = "ر.س";
+
+
+// Validation String
+
+"Please enter" =  "الرجاء إدخال";
+"Please" = "فضًلا";
+"Invalid" = "خطأ";
+
+"Please enter valid mobile number" = "الرجاء إدخال رقم جوال صحيح ";
+"Please enter valid contact number" = "الرجاء إدخال رقم التواصل صحيح";
+
+"Password must have at least 6 characters" = "كلمة المرور لابد ان تحتوي على 6 احرف على الاقل";
+"Full name should not contain numbers or special characters" = "الاسم الكامل لا ينبغي ان يحتوي على ارقام او احرف خاصة";
+"Username must contain more than three characters" = "اسم المستخدم لابد ان يحتوي على ثلاثة أحرف فأكثر";
+"Username shoudn't contain more than 18 characters" = "اسم المستخدم لا ينبغي أن يحتوي على اكثر من 18 احرف ";
+"Username should not contain whitespaces, numbers or special characters" = "اسم المستخدم لا ينبغي ان يحتوي على مسافة, ارقام أو ارقام غريبة";
+"Age is required" = "العمر مطلوب";
+"Age must be a number!" = "العمر لا بد أن يكون رقمًا";
+"Invalid age number!" = "رقم العمر غير صحيح";
+"You have to be over 18 years old to user our app" = "يجب أن تكون 18 عامًا لتتمكن من استخدام التطبيق";
+"Please enter card holder name" = "الرجاء إدخال إسم حامل البطاقة";
+"Card holder should not contain numbers or special characters" = " اسم حامل البطاقة لا ينبغي أن يحتوي على ارقام و أحرف خاصة";
+"Card number must have at least 16 characters" = "رقم البطاقة يجب أن يحتوي على 16 رقمًا";
+"Card number is invalid" = "رقم البطاقة غير صحيح";
+"Please enter valid CVV number" = "الرجاء ادخال رقم تحقق صحيح";
+"Please enter expiry date" = "الرجاء ادخال تاريخ الانتهاء";
+"Invalid expiry date" = "تاريخ انتهاء غير صحيح";
+"Only english digits are allowed" = "المسموح حروف وأرقام إنجليزية فقط";
+
+"Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches." = "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches.";
+"To start please let me see the total steps your phone detects." = "للبدء الرجاء السماح لرؤية مجموع الخطوات المحسوبة في هاتفك";
+"Please check your internet" = "الرجاء التحقق من الشبكة";
+"Confirm password does not match with password" = "تأكيد كلمة المرور لا يتوافق مع كلمة المرور";
+"Please select gender" = "الرجاء تحديد الجنس";
+"Please enter verification code" = "الرجاء إدخال رمز التحقق";
+"Invalid verification code" = "رمز تحقق غير صحيح";
+"Are you sure want to remove " = "هل أنت متأكد من الإزالة";
+" as your friend?" = "كصديق؟";
+"Please enter amount" = "الرجاء ادخل القيمة ";
+"Amount should be grater than zero" = "القيمة لا بد أن تكون اكبر من صفر";
+"Check out this app " = "استكشف التطبيق ";
+", referral code - " = ", كود الدعوة - ";
+"Please select product type" = "الرجاء اختيار نوع المنتج";
+"Please enter card details" = "الرجاء إدخال معلومات البطاقة";
+"Your current balance is too low to purchase " = " رصيدك الحالي لا يكفي للشراء";
+" % off " = " نسبة الخصم ";
+". Don't want to wait? invite Friends and Family to earn faster!" = " لا تريد الانتظار؟ قم بدعوة الأصدقاء والعائلة للحصول على العملات ";
+"Insufficient Balance" = "رصيد غير كافٍ";
+"You need to spend atleast " = "يجب أن تصرف على الأقل ";
+"You can not spend more than " = "نلا يمكنك صرف أكثر من ";
+
+"Are you sure you want to delete the chat?" = "هل أنت متأكد من حذف المحادثة؟";
+"Location Services Disabled" = "خدمة تحديد الموقع مقفلة";
+"Please enable location services for this app" = "الرجاء السماح لخدمة تحديد الموقع";
+"Your session is expired" = "انتهاء الوقت المحدد";
+"Don't forget to walk everyday and earn " = "لا تنسى المشي يومياً لكسب النقاط";
+
+
+// plist String
+"App would like to use camera" = "التطبيق يود استخدام الكاميرا ";
+"App would like to use your contacts" = "التطبيق يود استخدام جهات الاتصال";
+"App would like to use your health records" = "التطبيق يريد الوصول لسجلات صحتك";
+"App would like to share health data" = "التطبيق يود مشاركة معلوماتك الصحية";
+"App would like to use health kit" = "التطبيق يود استخدام تطبيق الصحة  ";
+"App would like to use your current location" = "التطبيق يود معرفة موقعك الحالي";
+"If you don't give access then Steps Count feature will not work" = "عند عدم السماح لن يتم احتساب العملات";
+"App would like to use photo library" = "التطبيق يود استخدام مكتبة الصور";

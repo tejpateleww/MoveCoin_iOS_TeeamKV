@@ -16,13 +16,14 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblVw: UITableView!
     @IBOutlet weak var txtView: GrowingTextView!
     @IBOutlet weak var conVwMessageBottom: NSLayoutConstraint!
     @IBOutlet weak var bottomViewConstraintHeight: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var btnSend: UIButton!
-    
+
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -38,13 +39,19 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         
         txtView.delegate = self
         txtView.minHeight = 35.0
         txtView.maxHeight = 120.0
-        txtView.placeholder = "Message"
+        txtView.placeholder = "Message".localized
         txtView.undoManager?.removeAllActions()
+        txtView.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         
+        // imageFlippedForRightToLeftLayoutDirection is not working on this, to fix it replace the image
+        let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? UIImage(named: "send-icon-reverse") : UIImage(named: "send-icon")
+        btnSend.setImage(sendImg, for: .normal)
+
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
         webserviceForChatHistory(isLoading: true)
@@ -60,6 +67,8 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUpNavigationItems()
+        
+        
         
         if arrData.count > 0 {
             tblVw.reloadData()
@@ -222,6 +231,7 @@ extension ChatViewController: UITableViewDataSource {
             cell.lblReadStatus.textColor = UIColor.white
         }
         cell.selectionStyle = .none
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -329,6 +339,7 @@ class MessageCell: UITableViewCell, GrowingTextViewDelegate {
         lblTime.font = UIFont.light(ofSize: 10)
         lblReadStatus.font = UIFont.light(ofSize: 10)
         txtvwMessage.font = UIFont.regular(ofSize: 15)
+        txtvwMessage.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
     }
 }
 

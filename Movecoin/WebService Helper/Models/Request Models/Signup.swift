@@ -24,4 +24,5 @@ class SignupModel : RequestModel {
     var ReferralCode : String = ""
     var SocialID : String = ""
     var SocialType : String = ""
+    var language : Int = 1
 }

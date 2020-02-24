@@ -14,6 +14,7 @@ class StatisticsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblStatistics: UITableView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblNoDataFound: UILabel!
@@ -32,6 +33,7 @@ class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceforCoinsConverted(refresh: true)
     }
@@ -39,6 +41,12 @@ class StatisticsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationBarSetUp()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        lblTitle.text = "Updates".localized
+        lblNoDataFound.text = "You didn't have any updates yet".localized
     }
     
     // ----------------------------------------------------
@@ -52,6 +60,7 @@ class StatisticsViewController: UIViewController {
         tblStatistics.tableFooterView = UIView.init(frame: CGRect.zero)
         lblNoDataFound.isHidden = true
         lblTitle.font = UIFont.semiBold(ofSize: 21)
+        
     }
     
     func fetchNextPage() {
@@ -79,6 +88,7 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsTableViewCell.className) as! StatisticsTableViewCell
         cell.selectionStyle = .none
         cell.coinsEarnModel = coinsConvertedList[indexPath.row]
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

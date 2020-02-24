@@ -1,0 +1,321 @@
+/* 
+  Localizable.strings
+  Movecoins
+
+  Created by eww090 on 28/01/20.
+  Copyright © 2020 eww090. All rights reserved.
+*/
+
+
+
+// Welcome Screen
+"Sign in" = "Sign in";
+"Sign Up" = "Sign Up";
+"OR" = "OR";
+"Lorem Ipsum Simply Dummy" = "Lorem Ipsum Simply Dummy";
+"Hi…Your Step Remarkable In MoveCoins" = "Hi…Your Step Remarkable In MoveCoins";
+
+
+// Login Screen
+"Sign in to your account" = "Sign in to your account";
+"Email Id" = "Email Id";
+"Password" = "Password";
+"Forgot Password?" = "Forgot Password?";
+"Don't have an Account?" = "Don't have an Account?";
+"SIGN UP NOW" = "SIGN UP NOW";
+
+
+// Forgot Password Screen
+"Forgot Password" = "Forgot Password";
+"Enter Email Id" = "Enter Email Id";
+"Send" = "Send";
+
+
+// Sign Up Screen
+"Full Name" = "Full Name";
+"Nickname" = "Nickname";
+"Email address" = "Email address";
+"Mobile Number" = "Mobile Number";
+"Confirm Password" = "Confirm Password";
+"Gender" = "Gender";
+"Referral code" = "Referral code";
+"Verify" = "Verify";
+"Already have an Account?" = "Already have an Account?";
+"SIGN IN" = "SIGN IN";
+
+
+// Verification Code Screen
+"Verification Code" = "Verification Code";
+"Please enter your code from SMS/Email we've sent you" = "Please enter your code from SMS/Email we've sent you";
+"Send Again" = "Send Again";
+
+
+//Tab Screen
+"HOME" = "HOME";
+"STORE" = "STORE";
+"WALLET" = "WALLET";
+"STATISTICS" = "STATISTICS";
+"PROFILE" = "PROFILE";
+
+
+// Home Screen
+"Total Steps" = "Total Steps";
+"Coins" = "Coins";
+"Invite a Friend" = "Invite a Friend";
+"Friends" = "Friends";
+"Today's" = "Today's";
+
+
+// Map Screen
+"My Steps" = "My Steps";
+"Last seen " = "Last seen ";
+"Member since " = "Member since ";
+"Chat" = "Chat";
+"Today" = "Today";
+"Transfer" = "Transfer";
+"Send Friend Request" = "Send Friend Request";
+
+
+// Invite Screen
+"Invite" = "Invite";
+"Invite Friend" = "Invite Friend";
+"Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins." = "Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins.";
+"REFERRAL CODE" = "REFERRAL CODE";
+"Invite Friends" = "Invite Friends";
+"Find Friend" = "Find Friend";
+"Search" = "Search";
+"Requested" = "Requested";
+"Recommended" = "Recommended";
+"Not Registered" = "Not Registered";
+"Add Friend" = "Add Friend";
+"+ Invite" = "+ Invite";
+"Accept" = "Accept";
+"Reject" = "Reject";
+"Facebook" = "Facebook";
+"Connect Facebook" = "Connect Facebook";
+"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+
+// Friends Screen
+"Unfriend" = "Unfriend";
+
+
+// Store Screen
+"Offers For Today" = "Offers For Today";
+"Be a Seller" = "Be a Seller";
+"Do you have a product or service you would like to show in our marketplace." = "Do you have a product or service you would like to show in our marketplace.";
+"Get In Touch" = "Get In Touch";
+
+
+// Become Seller Screen
+"Become Seller" = "Become Seller";
+"Business Name" = "Business Name";
+"Shop Name" = "Shop Name";
+"Phone Number" = "Phone Number";
+"Shop Place" = "Shop Place";
+"Type Of Products" = "Type Of Products";
+"Register" = "Register";
+
+
+// Product Detail Screen
+" inclusive tax" = " inclusive tax";
+"Store : " = "Store : ";
+"Delivery Charge : " = "Delivery Charge : ";
+"Buy" = "Buy";
+"Out of Stock" = "Out of Stock";
+
+
+// Confirm Purchase Screen
+"Confirm Purchase" = "Confirm Purchase";
+"Delivery Address" = "Delivery Address";
+"Name" = "Name";
+"Contact number" = "Contact number";
+"Address-1" = "Address-1";
+"Address-2" = "Address-2";
+"Country" = "Country";
+"State" = "State";
+"City" = "City";
+"Zip Code" = "Zip Code";
+"Now Available Balance" = "Now Available Balance";
+"Enter card details" = "Enter card details";
+"Payable Amount is " = "Payable Amount is ";
+"Purchase" = "Purchase";
+"Product Price" = "Product Price";
+"Discount" = "Discount";
+"Delivery" = "Delivery";
+"Total" = "Total";
+
+
+// Card Detail Screen
+"Card Details" = "Card Details";
+"Payment Method" = "Payment Method";
+"Card Holder" = "Card Holder";
+"Card Number" = "Card Number";
+"Exp Date" = "Exp Date";
+"CVV" = "CVV";
+"Done" = "Done";
+
+
+// Wallet Screen
+"My Balance" = "My Balance";
+"Spend Coins" = "Spend Coins";
+"Transfer" = "Transfer";
+
+
+// Transfer MoveCoins Screen
+"Sending Coins" = "Sending Coins";
+"Amount" = "Amount";
+"To " = "To ";
+"Add optional message" = "Add optional message";
+"Send MoveCoins" = "Send MoveCoins";
+
+
+// Statistics Screen
+"Updates" = "Updates";
+" steps. " = " steps. ";
+
+
+// Profile Screen
+"My Friends " = "My Friends ";
+"Total MoveCoins Created" = "Total MoveCoins Created";
+"Weekly" = "Weekly";
+"Monthly" = "Monthly";
+"Yearly" = "Yearly";
+"Average per week" = "Average per week";
+"Average per month" = "Average per month";
+"Average per year" = "Average per year";
+"Total Steps Converted" = "Total Steps Converted";
+
+
+// Chat Screen
+"Chats" = "Chats";
+"Message" = "Message";
+"No chats available" = "No chats available";
+
+
+// Settings Screen
+"Settings" = "Settings";
+"Notification" = "Notification";
+"Edit Profile" = "Edit Profile";
+"Purchase History" = "Purchase History";
+"Help/Support" = "Help/Support";
+"Terms and Conditions" = "Terms and Conditions";
+"Privacy Policy" = "Privacy Policy";
+"Language" = "Language";
+"Rate this app" = "Rate this app";
+"Version - " = "Version - ";
+"Help" = "Help";
+
+
+// Account Privacy Screen
+"Account Privacy" = "Account Privacy";
+"Private Account" = "Private Account";
+"When your account is private, only your friends can see you on map and your information." = "When your account is private, only your friends can see you on map and your information.";
+"When your account is private, only you are choosing who can see you on map and your information" = "When your account is private, only you are choosing who can see you on map and your information";
+
+
+// Edit Profile Screen
+"Mobile" = "Mobile";
+"Date Of Birth" = "Date Of Birth";
+"Height ( cm )" = "Height ( cm )";
+"Weight ( Kg )" = "Weight ( Kg )";
+"Save" = "Save";
+
+
+// Alert Screen
+"Thank You" = "Thank You";
+"OK" = "OK";
+"Insufficient Balance" = "Insufficient Balance";
+"Your current balance is too low to purchase 50% off Mous - Protective phone cases. Don't want to wait? invite Friends and Family to earn faster!" = "Your current balance is too low to purchase 50% off Mous - Protective phone cases. Don't want to wait? invite Friends and Family to earn faster!";
+
+
+// Other
+"MoveCoins" = "MoveCoins";
+"Go >>" = "Go >>";
+"Skip >>" = "Skip >>";
+"Cancel" = "Cancel";
+" MoveCoins" = " MoveCoins";
+" cm" = " cm";
+" kg" = " kg";
+"Take photo" = "Take photo";
+"Camera roll" = "Camera roll";
+"Photo library" = "Photo library";
+"Remove Photo" = "Remove Photo";
+"Male" = "Male";
+"Female" = "Female";
+"You didn't connect with your friends" = "You didn't connect with your friends";
+"You didn't have any updates yet" = "You didn't have any updates yet";
+"Delete" = "Delete";
+"All" = "All";
+"No one" = "No one";
+"SAR" = "SAR";
+
+
+// Validation String
+"Please enter" = "Please enter";
+"Please" = "Please";
+"Invalid" = "Invalid";
+
+"Please enter valid mobile number" = "Please enter valid mobile number";
+"Please enter valid contact number" = "Please enter valid contact number";
+
+"Password must have at least 6 characters" = "Password must have at least 6 characters";
+"Full name should not contain numbers or special characters" = "Full name should not contain numbers or special characters";
+"Username must contain more than three characters" = "Username must contain more than three characters";
+"Username shoudn't contain more than 18 characters" = "Username shoudn't contain more than 18 characters";
+"Username should not contain whitespaces, numbers or special characters" = "Username should not contain whitespaces, numbers or special characters";
+"Please enter valid " = "Please enter valid ";
+"Age is required" = "Age is required";
+"Age must be a number!" = "Age must be a number!";
+"Invalid age number!" = "Invalid age number!";
+"You have to be over 18 years old to user our app" = "You have to be over 18 years old to user our app";
+"Please enter card holder name" = "Please enter card holder name";
+"Card holder should not contain numbers or special characters" = "Card holder should not contain numbers or special characters";
+"Card number must have at least 16 characters" = "Card number must have at least 16 characters";
+"Card number is invalid" = "Card number is invalid";
+"Please enter valid CVV number" = "Please enter valid CVV number";
+"Please enter expiry date" = "Please enter expiry date";
+"Invalid expiry date" = "Invalid expiry date";
+"Only english digits are allowed" = "Only english digits are allowed";
+
+"Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches." = "Oops, I can't see your HealthKit data. Tap Fix Settings to turn on switches.";
+"To start please let me see the total steps your phone detects." = "To start please let me see the total steps your phone detects.";
+"Please check your internet" = "Please check your internet";
+"Confirm password does not match with password" = "Confirm password does not match with password";
+"Please select gender" = "Please select gender";
+"Please enter verification code" = "Please enter verification code";
+"Invalid verification code" = "Invalid verification code";
+"Are you sure want to remove " = "Are you sure want to remove ";
+" as your friend?" = " as your friend?";
+"Please enter amount" = "Please enter amount";
+"Amount should be grater than zero" = "Amount should be grater than zero";
+"Check out this app " = "Check out this app ";
+", referral code - " = ", referral code - ";
+"Please select product type" = "Please select product type";
+"Please enter card details" = "Please enter card details";
+"Your current balance is too low to purchase " = "Your current balance is too low to purchase ";
+"% off " = "% off ";
+". Don't want to wait? invite Friends and Family to earn faster!" = ". Don't want to wait? invite Friends and Family to earn faster!";
+"Insufficient Balance" = "Insufficient Balance";
+"You need to spend atleast " = "You need to spend atleast ";
+"You can not spend more than " = "You can not spend more than ";
+
+"Are you sure you want to delete the chat?" = "Are you sure you want to delete the chat?";
+"Location Services Disabled" = "Location Services Disabled";
+"Please enable location services for this app" = "Please enable location services for this app";
+"Your session is expired" = "Your session is expired";
+"Don't forget to walk everyday and earn " = "Don't forget to walk everyday and earn ";
+
+
+// plist String
+"App would like to use camera" = "App would like to use camera";
+"App would like to use your contacts" = "App would like to use your contacts";
+"App would like to use your health records" = "App would like to use your health records";
+"App would like to share health data" = "App would like to share health data";
+"App would like to use health kit" = "App would like to use health kit";
+"App would like to use your current location" = "App would like to use your current location";
+"If you don't give access then Steps Count feature will not work" = "If you don't give access then Steps Count feature will not work";
+"App would like to use photo library" = "App would like to use photo library";
+
+
+

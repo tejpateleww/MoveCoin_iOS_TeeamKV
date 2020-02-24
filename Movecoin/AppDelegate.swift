@@ -99,6 +99,9 @@ extension AppDelegate {
     
     func setupApplication(){
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+        
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let controller = loginStoryboard.instantiateViewController(withIdentifier: SplashViewController.className) as? SplashViewController
@@ -108,7 +111,7 @@ extension AppDelegate {
     
     func setUpNavigationBar(){
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.barStyle = UIBarStyle.blackOpaque
+        navigationBarAppearace.barStyle = UIBarStyle.black
         navigationBarAppearace.tintColor = UIColor.white
         
         // For "Back" text remove from navigationbar
@@ -187,16 +190,6 @@ extension AppDelegate {
     }
     
     func GoToLogout() {
-        
-        //        for (key, _) in UserDefaults.standard.dictionaryRepresentation() {
-        //
-        //            if key == "Token" || key  == UserDefaultKeys.IsLogin {
-        //                //                print("\(key) = \(value) \n")
-        //            } else {
-        //                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.IsLogin)
-        //            }
-        //        }
-        //        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.kIsLogedIn)
         SocketIOManager.shared.closeConnection()
         self.GoToLogin()
     }
@@ -265,7 +258,6 @@ extension AppDelegate {
     func onSocketConnectUser() {
         SocketIOManager.shared.socketCall(for: SocketApiKeys.kConnectUser) { (json) in
             print(json)
-            
         }
     }
     
@@ -306,8 +298,8 @@ extension AppDelegate {
         
         //Local Notification for everyday at 9 am
         let content = UNMutableNotificationContent()
-        content.title = kAppName
-        content.body = "Don't forget to walk everyday and earn \(kAppName)"
+        content.title = kAppName.localized
+        content.body = "Don't forget to walk everyday and earn ".localized + kAppName.localized
         
         var dateComponents = DateComponents()
         dateComponents.hour = 9
@@ -413,7 +405,6 @@ extension AppDelegate {
         }
     }
     
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         print(#function, notification.request.content.userInfo)
@@ -496,7 +487,5 @@ extension AppDelegate {
         
         SingletonClass.SharedInstance.DeviceToken = fcmToken
         UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
-        //    let dataDict:[String: String] = ["token": fcmToken]
-        //    NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
 }

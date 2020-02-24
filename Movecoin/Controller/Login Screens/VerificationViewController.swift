@@ -14,9 +14,11 @@ class VerificationViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var firstPinView: VKPinCodeView!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var btnSendAgian: UIButton!
+    
+    @IBOutlet weak var lblDescription: LocalizLabel!
+    @IBOutlet weak var btnSendAgian: LocalizButton!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -34,19 +36,15 @@ class VerificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBarSetUp(title: "Verification Code")
         self.setUpPinView()
         self.setupFont()
-        
-        firstPinView.onCodeDidChange = { (pin) in
-            print("onCodeDidChange : ", pin)
-            self.enteredOTP = pin
-        }
+        //        localizeUI(parentView: self.viewParent)
     }
   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        
+        navigationBarSetUp(title: "Verification Code")
+//        lblDescription.text = "Please enter your code from SMS/Email we've sent you".localized
     }
     
     // ----------------------------------------------------
@@ -66,6 +64,10 @@ class VerificationViewController: UIViewController {
         
         firstPinView.setStyle(underline)
         firstPinView.validator = validator(_:)
+        firstPinView.onCodeDidChange = { (pin) in
+            print("onCodeDidChange : ", pin)
+            self.enteredOTP = pin
+        }
     }
     
     func setupFont(){

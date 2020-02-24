@@ -24,6 +24,7 @@ class OnBoradViewController: UIViewController {
     
     lazy var pageViewController = UIPageViewController()
     var arrayViewControllers    : [UIViewController]   = []
+    var isArabic = NSLocale.current.languageCode == "ar" ? true : false
     
     // ----------------------------------------------------
     // MARK: - --------- ViewController Lifecycle Methods ---------
@@ -33,6 +34,7 @@ class OnBoradViewController: UIViewController {
         super.viewDidLoad()
         navigationBarSetUp()
         self.initialSetup()
+        print(NSLocale.current.languageCode)
     }
     
     
@@ -43,21 +45,23 @@ class OnBoradViewController: UIViewController {
     func initialSetup(){
         setUpPageViewController()
         pageControl.numberOfPages = arrayViewControllers.count
+        let title = isArabic ? "تخطي >>": "Skip >>"
+        btnSkip.setTitle(title, for: .normal)
     }
     
     func setUpPageViewController() {
 
         let controller1 = IntroPageVC()
-        controller1.image = "intro-1"
+        controller1.image = isArabic ? "Intro 1 Arabic" : "intro-1"
 
         let controller2 = IntroPageVC()
-        controller2.image = "intro-2"
+        controller2.image = isArabic ? "Intro 2 Arabic" : "intro-2"
         
         let controller3 = IntroPageVC()
-        controller3.image = "intro-3"
+        controller3.image = isArabic ? "Intro 2 Arabic" : "intro-3"
         
         let controller4 = IntroPageVC()
-        controller4.image = "intro-4"
+        controller4.image = isArabic ? "Intro 4 Arabic" : "intro-4"
 
         arrayViewControllers = [controller1,controller2,controller3,controller4]
         
@@ -128,9 +132,11 @@ extension OnBoradViewController : UIPageViewControllerDataSource, UIPageViewCont
             print(index)
             pageControl.currentPage = index
             if pageControl.currentPage == arrayViewControllers.count - 1 {
-                btnSkip.setTitle("Go >>", for: .normal)
+                let title = isArabic ? "انطلق >>" : "Go >>"
+                btnSkip.setTitle(title, for: .normal)
             }else {
-                btnSkip.setTitle("Skip >>", for: .normal)
+                let title = isArabic ? "تخطي >>" : "Skip >>"
+                btnSkip.setTitle(title, for: .normal)
             }
         }
     }

@@ -43,15 +43,12 @@ class SocketIOManager: NSObject {
         else {
             print("\n\n Socket Disconnected \n\n")
         }
-        
-        
     }
     
     func socketEmit(for key: String, with parameter: [String:Any]){
         socket.emit(key, with: [parameter])
 //        print ("Parameter Emitted for key - \(key) :: \(parameter)")
     }
-    
     
     
     func dataSerializationToJson(data: [Any],_ description : String = "") -> (status: Bool, json: JSON){

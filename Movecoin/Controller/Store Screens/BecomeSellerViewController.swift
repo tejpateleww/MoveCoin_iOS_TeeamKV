@@ -14,7 +14,8 @@ class BecomeSellerViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet var viewParent: UIView!
+    @IBOutlet weak var lblTitle: LocalizLabel!
     @IBOutlet weak var txtBusinessName: TextFieldFont!
     @IBOutlet weak var txtShopName: TextFieldFont!
     @IBOutlet weak var txtPhoneNumber: TextFieldFont!
@@ -36,7 +37,8 @@ class BecomeSellerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        self.setupView()
+        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -165,8 +167,9 @@ extension BecomeSellerViewController : AlertDelegate {
             if status{
               
                 let destination = self.storyboard?.instantiateViewController(withIdentifier: AlertViewController.className) as! AlertViewController
-                destination.alertTitle = "Thank You"
-                destination.alertDescription = json["message"].stringValue
+                destination.alertTitle = "Thank You".localized
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                destination.alertDescription = msg
                 destination.delegate = self
                 destination.modalPresentationStyle = .overCurrentContext
                 self.present(destination, animated: true, completion: nil)

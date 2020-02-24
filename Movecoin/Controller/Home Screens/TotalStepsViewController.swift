@@ -14,6 +14,7 @@ class TotalStepsViewController: UIViewController {
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
     
+    @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblTotalSteps: UITableView!
     
     @IBOutlet weak var lblTotalSteps: UILabel!
@@ -39,6 +40,7 @@ class TotalStepsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceforStepsHistory(refresh: true)
     }
@@ -92,6 +94,7 @@ extension TotalStepsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: TotalStepsTableViewCell.className) as! TotalStepsTableViewCell
         cell.selectionStyle = .none
         cell.stepModel = stepsHistoryList[indexPath.row]
+//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
