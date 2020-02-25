@@ -81,6 +81,19 @@ class AccountPrivacyViewController: UIViewController {
             privacyType = PrivacyType(rawValue: index)
         }
         pickerSelectedIndex = privacyType?.rawValue
+        
+        
+        // Toolbar setup
+        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
+        toolBar.barStyle = .default
+        let cancelButton = UIBarButtonItem.init(title: "Cancel".localized, style: .done, target: self, action: #selector(onCancelButtonTapped))
+        cancelButton.tintColor = UIColor.black
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) //a flexible space between the two buttons
+        let doneButton = UIBarButtonItem.init(title: "Done".localized, style: .done, target: self, action: #selector(onDoneButtonTapped))
+        doneButton.tintColor = UIColor.black
+        
+        //Add the items to the toolbar
+        toolBar.items = [cancelButton, flexSpace, doneButton]
     }
     
     @objc func switchChanged(mySwitch: UISwitch) {
@@ -125,19 +138,10 @@ extension AccountPrivacyViewController : UITableViewDelegate, UITableViewDataSou
         picker.contentMode = .center
         picker.frame = CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 250)
         
-        toolBar = UIToolbar.init(frame: CGRect.init(x: 0.0, y: UIScreen.main.bounds.size.height - 250, width: UIScreen.main.bounds.size.width, height: 50))
-        toolBar.barStyle = .default
-        let cancelButton = UIBarButtonItem.init(title: "Cancel".localized, style: .done, target: self, action: #selector(onCancelButtonTapped))
-        cancelButton.tintColor = UIColor.black
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil) //a flexible space between the two buttons
-        let doneButton = UIBarButtonItem.init(title: "Done".localized, style: .done, target: self, action: #selector(onDoneButtonTapped))
-        doneButton.tintColor = UIColor.black
         
-        //Add the items to the toolbar
-        toolBar.items = [cancelButton, flexSpace, doneButton]
         //        toolBar.items = [UIBarButtonItem.init(title: "Done".localized, style: .done, target: self, action: #selector(onDoneButtonTapped))]
         self.picker.selectRow(self.privacyType!.rawValue, inComponent: 0, animated: false)
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.view.addSubview(self.picker)
             self.view.addSubview(self.toolBar)
             self.picker.alpha = 1
@@ -157,7 +161,7 @@ extension AccountPrivacyViewController : UIPickerViewDelegate, UIPickerViewDataS
     @objc func onDoneButtonTapped() {
         
         
-        UIView.animate(withDuration: 0.6, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.toolBar.alpha = 0
             self.picker.alpha = 0
         }) { _ in
@@ -169,7 +173,7 @@ extension AccountPrivacyViewController : UIPickerViewDelegate, UIPickerViewDataS
     }
     
     @objc func onCancelButtonTapped() {
-        UIView.animate(withDuration: 0.6, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.toolBar.alpha = 0
             self.picker.alpha = 0
         }) { _ in
