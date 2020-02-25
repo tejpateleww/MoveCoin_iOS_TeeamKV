@@ -173,6 +173,9 @@ class ProfileViewController: UIViewController {
         self.setUpBarChat(index: BarChartTitles.Weekly.rawValue)
         
         leftBarButton.numberOfBages = Int(profileModel?.data.unreadMsgCount ?? "0") ?? 0
+        
+        lblTotalMoveCoins.text = profileModel?.data.totalCoins ?? "0"
+        lblTotalSteps.text = profileModel?.data.totalStepsConverted ?? "0"
     }
     
     @objc func btnChatTapped(){
