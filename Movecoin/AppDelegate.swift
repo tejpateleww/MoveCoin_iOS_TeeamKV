@@ -297,7 +297,9 @@ extension AppDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         
         //Local Notification for everyday at 9 am
-        let content = UNMutableNotificationContent()
+        // TODO: Uncomment for Local Notification
+        
+/*        let content = UNMutableNotificationContent()
         content.title = kAppName.localized
         content.body = "Don't forget to walk everyday and earn ".localized + kAppName.localized
         
@@ -311,6 +313,7 @@ extension AppDelegate {
         unc.add(request, withCompletionHandler: { (error) in
             print(error?.localizedDescription ?? "")
         })
+*/
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

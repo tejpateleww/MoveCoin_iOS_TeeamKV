@@ -256,6 +256,7 @@ extension ChatViewController {
         requestModel.Message = message
         
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let currentTime = dateFormatter.string(from: Date()).localToUTC(fromFormate: DateFomateKeys.api, toFormate: DateFomateKeys.api)
         let obj = MessageData(ReceiverID: requestModel.ReceiverID, Message: requestModel.Message, SenderNickname: SingletonClass.SharedInstance.userData?.nickName ?? "", SenderName: SingletonClass.SharedInstance.userData?.fullName ?? "", SenderID: requestModel.SenderID, Date: currentTime, ChatId: "")

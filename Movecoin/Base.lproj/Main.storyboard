@@ -49,10 +49,10 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21c-8M-9xt">
-                                                <rect key="frame" x="78.5" y="0.0" width="218" height="40"/>
+                                                <rect key="frame" x="123" y="0.0" width="129" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-jv-o5N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="40"/>
                                                         <state key="normal" image="logo-unselect"/>
                                                         <state key="selected" image="logo-select"/>
                                                         <connections>
@@ -60,7 +60,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-Vt-KIr">
-                                                        <rect key="frame" x="88" y="0.0" width="48" height="40"/>
+                                                        <rect key="frame" x="54" y="0.0" width="24" height="40"/>
                                                         <state key="normal" image="call-unselect"/>
                                                         <state key="selected" image="call-select"/>
                                                         <connections>
@@ -68,7 +68,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDP-j7-div">
-                                                        <rect key="frame" x="156" y="0.0" width="62" height="40"/>
+                                                        <rect key="frame" x="98" y="0.0" width="31" height="40"/>
                                                         <state key="normal" image="facebook-unselect"/>
                                                         <state key="selected" image="facebook-select"/>
                                                         <connections>
@@ -433,7 +433,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't connect with your friends" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldR-Yf-DeQ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="288.5" width="335" height="70"/>
+                                        <rect key="frame" x="20" y="267.5" width="335" height="112.5"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -660,7 +660,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total-steps-icon" translatesAutoresizingMaskIntoConstraints="NO" id="G0m-ex-MQU">
-                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
+                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="3"/>
@@ -712,7 +712,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coins-icon" translatesAutoresizingMaskIntoConstraints="NO" id="0Jf-VB-DsP">
-                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
+                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="315-Mw-MU8">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31.5"/>
@@ -764,7 +764,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite-friend-icon" translatesAutoresizingMaskIntoConstraints="NO" id="dC0-AG-uqy">
-                                                                <rect key="frame" x="62" y="0.0" width="44" height="31"/>
+                                                                <rect key="frame" x="73" y="0.0" width="22" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmA-KU-yOj">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31"/>
@@ -811,7 +811,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend-icon" translatesAutoresizingMaskIntoConstraints="NO" id="tCc-xS-IrP">
-                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
+                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKo-IP-2hB">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31"/>
@@ -863,7 +863,7 @@
                                                         <rect key="frame" x="5" y="64.5" width="237" height="118"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-UN-1s3" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="79" y="0.0" width="79.5" height="38"/>
+                                                                <rect key="frame" x="82.5" y="0.0" width="72.5" height="38"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="38" id="cbG-jQ-dR9"/>
                                                                 </constraints>
@@ -881,7 +881,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhh-Tr-kgc" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="78.5" y="88" width="80" height="30"/>
+                                                                <rect key="frame" x="81.5" y="88" width="74.5" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="IX5-s2-EWD"/>
                                                                 </constraints>
@@ -3792,7 +3792,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't have any updates yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMQ-LP-pwt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="298.5" width="335" height="70"/>
+                                        <rect key="frame" x="20" y="277.5" width="335" height="112.5"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -4548,10 +4548,10 @@
                                         <rect key="frame" x="15" y="0.0" width="345" height="46"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="APo-IR-UtZ">
-                                                <rect key="frame" x="15" y="6" width="32" height="34"/>
+                                                <rect key="frame" x="15" y="14.5" width="16" height="17"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJz-mg-w4j" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                <rect key="frame" x="55" y="8" width="282" height="30"/>
+                                                <rect key="frame" x="39" y="8" width="298" height="30"/>
                                                 <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -4823,7 +4823,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No chats available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDF-BQ-qXZ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="316" width="335" height="35"/>
+                                        <rect key="frame" x="20" y="305.5" width="335" height="56.5"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -5467,7 +5467,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-dwon" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-bH-4fe">
-                                                                        <rect key="frame" x="289" y="5" width="36" height="40"/>
+                                                                        <rect key="frame" x="307" y="5" width="18" height="40"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6183,7 +6183,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo wallet" translatesAutoresizingMaskIntoConstraints="NO" id="GUy-Vy-ib3">
-                                                                        <rect key="frame" x="140.5" y="-16.5" width="30" height="80"/>
+                                                                        <rect key="frame" x="140.5" y="3.5" width="30" height="40"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="j13-1V-awS"/>
                                                                         </constraints>

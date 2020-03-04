@@ -102,7 +102,7 @@ class ProductDetailViewController: UIViewController {
         lblDiscountedPrice.font = UIFont.semiBold(ofSize: 22)
         lblPrice.font = UIFont.regular(ofSize: 16)
         lblPriceDiscount.font = UIFont.regular(ofSize: 14)
-        lblTitle.font = UIFont.bold(ofSize: 26)
+        lblTitle.font = UIFont.bold(ofSize: 20)
 //        lblDescription.font = UIFont.bold(ofSize: 16)
         txtvwDescription.font = UIFont.bold(ofSize: 16)
         lblStore.font = UIFont.regular(ofSize: 14)

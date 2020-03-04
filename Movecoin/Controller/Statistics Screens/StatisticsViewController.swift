@@ -35,18 +35,25 @@ class StatisticsViewController: UIViewController {
         super.viewDidLoad()
         //        localizeUI(parentView: self.viewParent)
         self.setUpView()
-        webserviceforCoinsConverted(refresh: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         navigationBarSetUp()
+        webserviceforCoinsConverted(refresh: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         lblTitle.text = "Updates".localized
         lblNoDataFound.text = "You didn't have any updates yet".localized
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        currentPage = 1
+        isFetchingNextPage = false
+        coinsConvertedList.removeAll()
     }
     
     // ----------------------------------------------------
@@ -117,8 +124,7 @@ extension StatisticsViewController {
         strParam = NetworkEnvironment.baseURL + ApiKey.coinsEarning.rawValue + id + "/\(currentPage)"
         
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
-            print(json)
-            
+        
             self.isFetchingNextPage = false
             
             if status{
