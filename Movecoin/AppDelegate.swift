@@ -340,10 +340,12 @@ extension AppDelegate {
         
         //        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
-        let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
+        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
+             print("KEY : ",key)
+        }
         
         print("USER INFo : ",userInfo)
-        print("KEY : ",key)
+       
         
         
         if userInfo["gcm.notification.type"] as! String == "chat" {
@@ -419,10 +421,12 @@ extension AppDelegate {
         
         //        let content = notification.request.content
         let userInfo = notification.request.content.userInfo
-        let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type")!
+        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
+            print("KEY : ",key)
+        }
         
         print("USER INFo : ",userInfo)
-        print("KEY : ",key)
+        
         
         if userInfo["gcm.notification.type"] as! String == "chat" {
             

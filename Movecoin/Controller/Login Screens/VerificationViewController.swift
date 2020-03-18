@@ -39,6 +39,7 @@ class VerificationViewController: UIViewController {
         self.setUpPinView()
         self.setupFont()
         //        localizeUI(parentView: self.viewParent)
+        UIView.appearance().semanticContentAttribute = .forceLeftToRight
     }
   
     override func viewDidAppear(_ animated: Bool) {

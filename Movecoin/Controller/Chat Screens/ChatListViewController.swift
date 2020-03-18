@@ -108,6 +108,7 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         if (editingStyle == .delete) {
             let alert = UIAlertController(title: kAppName.localized, message: "Are you sure you want to delete the chat?".localized, preferredStyle: .alert)
             let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
+                AppDelegateShared.notificationCenter.removeAllDeliveredNotifications()
                 let data = self.friendsArray[indexPath.row]
                 self.webserviceForDeleteChat(friendID: data.iD)
             }

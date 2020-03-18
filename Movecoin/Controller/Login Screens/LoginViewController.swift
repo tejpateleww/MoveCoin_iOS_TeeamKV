@@ -74,8 +74,6 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
     func setDummy(){
         txtEmail.text = "bhumi.j@excellentwebworld.in"
         txtPassword.text = "123456"
-        
-      
     }
     
     func setupFont(){
