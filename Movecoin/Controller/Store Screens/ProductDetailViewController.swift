@@ -84,8 +84,6 @@ class ProductDetailViewController: UIViewController {
         
         viewShadow.isUserInteractionEnabled = false
         
-        txtvwDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-        
         switch viewType {
         case .History:
             viewBottom.isHidden = true
@@ -126,6 +124,7 @@ class ProductDetailViewController: UIViewController {
         txtvwDescription.translatesAutoresizingMaskIntoConstraints = true
         txtvwDescription.sizeToFit()
         txtvwDescription.isScrollEnabled = false
+        txtvwDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         
         lblTitle.text = product.name
         lblStore.text = "Store : ".localized + product.store

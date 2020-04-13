@@ -58,7 +58,7 @@ class OnBoradViewController: UIViewController {
         controller2.image = isArabic ? "Intro 2 Arabic" : "intro-2"
         
         let controller3 = IntroPageVC()
-        controller3.image = isArabic ? "Intro 2 Arabic" : "intro-3"
+        controller3.image = isArabic ? "Intro 3 Arabic" : "intro-3"
         
         let controller4 = IntroPageVC()
         controller4.image = isArabic ? "Intro 4 Arabic" : "intro-4"

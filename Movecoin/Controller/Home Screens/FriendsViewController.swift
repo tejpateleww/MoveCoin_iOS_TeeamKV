@@ -62,7 +62,7 @@ class FriendsViewController: UIViewController {
         self.tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
         
         txtSearch.font = UIFont.regular(ofSize: 15)
-        lblNoDataFound.text = "You didn't connect with your friends".localized
+//        lblNoDataFound.text = "You didn't connect with your friends".localized
     }
     
     // ----------------------------------------------------

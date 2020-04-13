@@ -24,7 +24,7 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet weak var lblPurchase: UILabel!
     @IBOutlet weak var lblTitleAvailableBalance: UILabel!
     @IBOutlet var lblPrice: [UILabel]!
-    @IBOutlet weak var lblTitleProductPrice: UILabel!
+    @IBOutlet weak var lblTitleProductPrice: LocalizLabel!
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblTitleDiscount: UILabel!
     @IBOutlet weak var lblDiscount: UILabel!
@@ -130,6 +130,8 @@ class ConfirmPurchaseViewController: UIViewController {
         txtCity.placeHolderColor = TransparentColor
         txtZipCode.placeHolderColor = TransparentColor
         txtCard.placeHolderColor = TransparentColor
+        
+//        lblTitleProductPrice.text = "Product Price".localized
 
         lblPurchase.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
         lblProductPrice.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right

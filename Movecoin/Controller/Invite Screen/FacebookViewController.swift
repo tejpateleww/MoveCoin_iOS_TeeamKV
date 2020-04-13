@@ -25,11 +25,10 @@ class FacebookViewController: UIViewController {
     // ----------------------------------------------------
     
     
-    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         lblDescription.font = UIFont.regular(ofSize: 15)
@@ -43,14 +42,14 @@ class FacebookViewController: UIViewController {
     func getFBUserData() {
         
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email, id, user_friends"
+        parameters["fields"] = "first_name, last_name, email, id"
         
         GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
             if error == nil {
                 
                 print("\(#function) \(result!)")
                 let dictData = result as! [String : AnyObject]
-             
+                
                 let strUserId = String(describing: dictData["id"]!)
                 
                 let request = GraphRequest(graphPath: "/\(strUserId)/friends", parameters: parameters as! [String : Any], httpMethod: HTTPMethod(rawValue: "GET"))
@@ -59,6 +58,14 @@ class FacebookViewController: UIViewController {
                     print("Friends Result: \(String(describing: result))")
                     print("Friends connection: \(String(describing: connection))")
                     print("Friends error: \(String(describing: error))")
+                    
+                    guard let resultData = result else { return }
+                    let resultdict = resultData as! [String : Any]
+                    print("Result Dict: \(resultdict)")
+
+                    let friends = resultdict["data"] as! NSArray
+                    print("Found \(friends.count) friends")
+                    print(friends)
                 })
             }
             else{
@@ -79,8 +86,8 @@ class FacebookViewController: UIViewController {
             }
             let login = LoginManager()
             login.logOut()
-            login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
-        
+            login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
+                
                 if error != nil {
                     //                UIApplication.shared.statusBarStyle = .lightContent
                 }
@@ -98,7 +105,7 @@ class FacebookViewController: UIViewController {
         }else {
             print("Already FB Connected")
             var parameters = [AnyHashable: Any]()
-            parameters["fields"] = "first_name, last_name, email, id, user_friends"
+            parameters["fields"] = "first_name, last_name, email, id, user_friends{email,first_name,last_name}"
             
             let id = SingletonClass.SharedInstance.userData?.socialID ?? ""
             let request = GraphRequest(graphPath: "/\(id)/friends", parameters: parameters as! [String : Any], httpMethod: HTTPMethod(rawValue: "GET"))
@@ -107,6 +114,14 @@ class FacebookViewController: UIViewController {
                 print("Friends Result: \(String(describing: result))")
                 print("Friends connection: \(String(describing: connection))")
                 print("Friends error: \(String(describing: error))")
+                
+                guard let resultData = result else { return }
+                let resultdict = resultData as! [String : Any]
+                print("Result Dict: \(resultdict)")
+
+                let friends = resultdict["data"] as! NSArray
+                print("Found \(friends.count) friends")
+                print(friends)
             })
         }
     }
