@@ -46,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         configureNotification()
         Fabric.with([Crashlytics.self])
         
+        _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
+        
         return true
     }
     
