@@ -16,7 +16,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     // ----------------------------------------------------
     
     @IBOutlet var viewParent: UIView!
-    @IBOutlet weak var webView: WKWebView!
+    var webView: WKWebView?
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -35,6 +35,13 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         webserviceforPolicyHelpTerm()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        webView?.frame = CGRect(x: 0, y: 0, width: viewParent.frame.width, height: viewParent.frame.height)//viewParent.frame
+        
+
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
@@ -50,15 +57,32 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     func initialSetup(){
         self.view.backgroundColor = ThemeNavigationColor
-        webView.backgroundColor = ThemeNavigationColor
-        webView.allowsBackForwardNavigationGestures = true
+        webView = WKWebView()
+        webView?.backgroundColor = .clear
+        viewParent.addSubview(webView ?? WKWebView())
+        webView?.navigationDelegate = self
+        webView?.backgroundColor = ThemeNavigationColor
+        webView?.allowsBackForwardNavigationGestures = true
     }
     
     func load(_ urlString: String) {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
-            webView.load(request)
+            webView?.load(request)
         }
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UtilityClass.showHUD()
+    }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        UtilityClass.hideHUD()
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        UtilityClass.hideHUD()
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        UtilityClass.hideHUD()
     }
 }
 

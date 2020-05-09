@@ -9,8 +9,8 @@
 import UIKit
 import FBSDKLoginKit
 import AuthenticationServices
-import TwitterKit
-import TwitterCore
+//import TwitterKit
+//import TwitterCore
 import IQKeyboardManagerSwift
 
 struct UserSocialData {
@@ -21,7 +21,8 @@ struct UserSocialData {
     var Profile : String
 }
 
-class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerViewControllerDelegate  {
+class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposerViewControllerDelegate
+{
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
@@ -176,7 +177,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
     }
     
     @IBAction func btnTwitterTapped(_ sender: Any) {
-        
+        /*
         TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
             if (session != nil) {
                 print("signed in as \(session?.userName ?? "")");
@@ -203,6 +204,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate, TWTRComposerVi
                 print("error: \(error?.localizedDescription ?? "")");
             }
         })
+ */
     }
     
     @IBAction func actionHandleAppleSignin(_ sender: Any) {

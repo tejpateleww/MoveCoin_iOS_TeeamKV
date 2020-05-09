@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.8.2)
   - Cosmos (19.0.3)
-  - Crashlytics (3.13.4):
+  - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
   - Fabric (1.10.2)
   - FBSDKCoreKit (5.11.1):
@@ -89,7 +89,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.3.2):
     - GoogleUtilities/Logger
   - GrowingTextView (0.7.1)
-  - IQKeyboardManagerSwift (6.4.0)
+  - IQKeyboardManagerSwift (6.5.5)
   - KDCircularProgress (1.5.4)
   - Kingfisher (5.7.0)
   - lottie-ios (3.1.2)
@@ -108,9 +108,6 @@ PODS:
   - Starscream (3.1.1)
   - SwiftyJSON (5.0.0)
   - TTSegmentedControl (0.4.9)
-  - TwitterCore (3.2.0)
-  - TwitterKit (3.4.2):
-    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -131,10 +128,9 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift
   - SwiftyJSON
   - TTSegmentedControl
-  - TwitterKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - Cosmos
     - Crashlytics
@@ -167,13 +163,11 @@ SPEC REPOS:
     - Starscream
     - SwiftyJSON
     - TTSegmentedControl
-    - TwitterCore
-    - TwitterKit
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
-  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: 5aada61a229054694810f3cee231f986004b3c49
   FBSDKLoginKit: 0e4572e0279e477103b57978e3ea05fac1dd673d
@@ -191,7 +185,7 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: ef79a4728b864946a8aafdbab770d5294faf3b5f
   GoogleUtilities: 547a86735c6f0ee30ad17e94df4fc21f616b71cb
   GrowingTextView: 6dff7eedf2fc93f8378d20d456782afd0267b0cc
-  IQKeyboardManagerSwift: ed9b04ee0e3067ffba543283462d619f944b05e5
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
   Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   lottie-ios: 49cd85b1f24f61a7708ad7ec76a523ab2d0e3100
@@ -203,9 +197,7 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: 6657bb0cf85f59a2f559bd22387cdf057f84fce8
-  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: adeaefc5e3b1dac6f4e4772765ee26581c70baf1
+PODFILE CHECKSUM: 7f04c16ff33fbfc51a1d2fc5e6e269ee51ec8259
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.4
