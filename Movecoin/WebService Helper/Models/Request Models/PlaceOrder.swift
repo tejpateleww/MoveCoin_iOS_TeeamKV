@@ -12,7 +12,7 @@ class PlaceOrder : RequestModel {
     
     var product_id : String = ""
     var user_id : String = ""
-//    var card_id : String = ""
+    //    var card_id : String = ""
     var name : String = ""
     var email : String = ""
     var address1 : String = ""
@@ -26,5 +26,8 @@ class PlaceOrder : RequestModel {
     var card_no : String = ""
     var card_expiry_date : String = ""
     var card_cvv_no : String = ""
-//    var user_redeemed_coins : String = ""
+    var payment_type : String = ""
+    var transaction_id : String = ""
+    var payment_response : String = ""
+    //    var user_redeemed_coins : String = ""
 }

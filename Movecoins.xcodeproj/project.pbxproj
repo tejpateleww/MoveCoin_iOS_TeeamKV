@@ -37,7 +37,6 @@
 		461D5B5A232B57CF007CB670 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461D5B59232B57CF007CB670 /* ProductDetailViewController.swift */; };
 		461DC2552379315D0092AC82 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC2542379315D0092AC82 /* Parameters.swift */; };
 		461DC257237931740092AC82 /* ApiPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC256237931740092AC82 /* ApiPaths.swift */; };
-		461DC2592379353C0092AC82 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC2582379353C0092AC82 /* HTTPMethod.swift */; };
 		461DC25B237936F60092AC82 /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC25A237936F60092AC82 /* WebServices.swift */; };
 		461DC25D237938C30092AC82 /* WebserviceSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC25C237938C30092AC82 /* WebserviceSubclass.swift */; };
 		461DC25F237939820092AC82 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461DC25E237939820092AC82 /* RequestModel.swift */; };
@@ -209,7 +208,20 @@
 		46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51D8232F9D1600182B86 /* WalletViewController.swift */; };
 		46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DA232F9D3000182B86 /* StatisticsViewController.swift */; };
 		46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */; };
+		8105CB9D2473A218004EBD54 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105CB9C2473A218004EBD54 /* HTTPMethod.swift */; };
 		8130CD1B24645DE4000B9885 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8130CD1A24645DE4000B9885 /* WebKit.framework */; };
+		81892EFF2473EDBF006F2113 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81892EFE2473EDBF006F2113 /* Transaction.swift */; };
+		81892F022473EE0A006F2113 /* MerchantAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81892F012473EE0A006F2113 /* MerchantAPI.swift */; };
+		81C93932246EABB7005D3CF8 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93927246EABB7005D3CF8 /* Coding.swift */; };
+		81C93933246EABB7005D3CF8 /* MPGSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93928246EABB7005D3CF8 /* MPGSDK.swift */; };
+		81C93934246EABB7005D3CF8 /* Gateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93929246EABB7005D3CF8 /* Gateway.swift */; };
+		81C93935246EABB7005D3CF8 /* GatewayError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9392A246EABB7005D3CF8 /* GatewayError.swift */; };
+		81C93936246EABB7005D3CF8 /* GatewayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9392B246EABB7005D3CF8 /* GatewayResult.swift */; };
+		81C93937246EABB7005D3CF8 /* BuildConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9392C246EABB7005D3CF8 /* BuildConfig.swift */; };
+		81C93939246EABB7005D3CF8 /* GatewayRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9392E246EABB7005D3CF8 /* GatewayRegion.swift */; };
+		81C9393A246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9392F246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift */; };
+		81C9393B246EABB7005D3CF8 /* Gateway3DSecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93930246EABB7005D3CF8 /* Gateway3DSecureViewController.swift */; };
+		81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93931246EABB7005D3CF8 /* GatewayMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -245,7 +257,6 @@
 		461D5B59232B57CF007CB670 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		461DC2542379315D0092AC82 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
 		461DC256237931740092AC82 /* ApiPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPaths.swift; sourceTree = "<group>"; };
-		461DC2582379353C0092AC82 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		461DC25A237936F60092AC82 /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
 		461DC25C237938C30092AC82 /* WebserviceSubclass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceSubclass.swift; sourceTree = "<group>"; };
 		461DC25E237939820092AC82 /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
@@ -436,7 +447,20 @@
 		477FF479109FF521DF9958AC /* Pods-Movecoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.debug.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4D633531C407587B2596F3 /* Pods-Movecoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.release.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.release.xcconfig"; sourceTree = "<group>"; };
 		7E2BDC618FF3EEC01E0811AF /* Pods-Movecoins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoins.release.xcconfig"; path = "Target Support Files/Pods-Movecoins/Pods-Movecoins.release.xcconfig"; sourceTree = "<group>"; };
+		8105CB9C2473A218004EBD54 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		8130CD1A24645DE4000B9885 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		81892EFE2473EDBF006F2113 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		81892F012473EE0A006F2113 /* MerchantAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MerchantAPI.swift; sourceTree = "<group>"; };
+		81C93927246EABB7005D3CF8 /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
+		81C93928246EABB7005D3CF8 /* MPGSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPGSDK.swift; sourceTree = "<group>"; };
+		81C93929246EABB7005D3CF8 /* Gateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gateway.swift; sourceTree = "<group>"; };
+		81C9392A246EABB7005D3CF8 /* GatewayError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayError.swift; sourceTree = "<group>"; };
+		81C9392B246EABB7005D3CF8 /* GatewayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayResult.swift; sourceTree = "<group>"; };
+		81C9392C246EABB7005D3CF8 /* BuildConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuildConfig.swift; sourceTree = "<group>"; };
+		81C9392E246EABB7005D3CF8 /* GatewayRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayRegion.swift; sourceTree = "<group>"; };
+		81C9392F246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gateway+URLSessionDelegate.swift"; sourceTree = "<group>"; };
+		81C93930246EABB7005D3CF8 /* Gateway3DSecureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gateway3DSecureViewController.swift; sourceTree = "<group>"; };
+		81C93931246EABB7005D3CF8 /* GatewayMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayMap.swift; sourceTree = "<group>"; };
 		D31205FDDC085471252E49B4 /* Pods_Movecoins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movecoins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB270C4AD13709CBCFBF4ED /* Pods_Movecoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movecoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -640,6 +664,7 @@
 		4616EF0F232A143B00B138A3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				81C93926246EABB7005D3CF8 /* MPGSDK */,
 				46C9C4EC23A10D820042341B /* MonthYearPickerView.swift */,
 				465CF18E23696D3A0069D4DE /* iOSDevCenters+GIF.swift */,
 				462D24D023B32F310050C3F0 /* BarChart */,
@@ -709,7 +734,6 @@
 		461DC25123792F910092AC82 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				461DC2582379353C0092AC82 /* HTTPMethod.swift */,
 				461DC25A237936F60092AC82 /* WebServices.swift */,
 				461DC25C237938C30092AC82 /* WebserviceSubclass.swift */,
 			);
@@ -1106,6 +1130,34 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		81892F002473EE0A006F2113 /* Merchant API */ = {
+			isa = PBXGroup;
+			children = (
+				81892F012473EE0A006F2113 /* MerchantAPI.swift */,
+			);
+			path = "Merchant API";
+			sourceTree = "<group>";
+		};
+		81C93926246EABB7005D3CF8 /* MPGSDK */ = {
+			isa = PBXGroup;
+			children = (
+				81892F002473EE0A006F2113 /* Merchant API */,
+				81892EFE2473EDBF006F2113 /* Transaction.swift */,
+				8105CB9C2473A218004EBD54 /* HTTPMethod.swift */,
+				81C93927246EABB7005D3CF8 /* Coding.swift */,
+				81C93928246EABB7005D3CF8 /* MPGSDK.swift */,
+				81C93929246EABB7005D3CF8 /* Gateway.swift */,
+				81C9392A246EABB7005D3CF8 /* GatewayError.swift */,
+				81C9392B246EABB7005D3CF8 /* GatewayResult.swift */,
+				81C9392C246EABB7005D3CF8 /* BuildConfig.swift */,
+				81C9392E246EABB7005D3CF8 /* GatewayRegion.swift */,
+				81C9392F246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift */,
+				81C93930246EABB7005D3CF8 /* Gateway3DSecureViewController.swift */,
+				81C93931246EABB7005D3CF8 /* GatewayMap.swift */,
+			);
+			path = MPGSDK;
+			sourceTree = "<group>";
+		};
 		DF2F98B8453FADEA93BD8687 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1305,6 +1357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81892F022473EE0A006F2113 /* MerchantAPI.swift in Sources */,
 				462D24EF23B32F7F0050C3F0 /* MonthStepsCount.swift in Sources */,
 				4613804A232931E9007C3FA4 /* VerificationViewController.swift in Sources */,
 				461380422328F181007C3FA4 /* LoginViewController.swift in Sources */,
@@ -1336,13 +1389,17 @@
 				4670146D23487FD000556CBB /* StatisticsTableViewCell.swift in Sources */,
 				4628D8FC23A7810C0061D77D /* PagingScrollView.swift in Sources */,
 				46E69BF2238FC5E500685EB8 /* Registered.swift in Sources */,
+				81C93939246EABB7005D3CF8 /* GatewayRegion.swift in Sources */,
 				460C04AB239A3FF900D674D7 /* FriendsResponseModel.swift in Sources */,
 				46729B4723C32B920086F91F /* Message.swift in Sources */,
 				460C04AC239A3FF900D674D7 /* FriendsData.swift in Sources */,
 				4616EF14232A146F00B138A3 /* VKLabel.swift in Sources */,
 				46E69BF1238FC5E500685EB8 /* InviteFriendsResponseModel.swift in Sources */,
 				46AB0D7C23B5C9B90085AC4C /* UserDetail.swift in Sources */,
+				81C93936246EABB7005D3CF8 /* GatewayResult.swift in Sources */,
+				81C9393B246EABB7005D3CF8 /* Gateway3DSecureViewController.swift in Sources */,
 				468F86D22350C2E4006DC7D1 /* ChatListTableViewCell.swift in Sources */,
+				81C93935246EABB7005D3CF8 /* GatewayError.swift in Sources */,
 				46F88CA72356F855003E24CC /* UIButton + Extension.swift in Sources */,
 				467014642348629400556CBB /* WalletTableViewCell.swift in Sources */,
 				462D24E323B32F310050C3F0 /* BeautifulBarEntry.swift in Sources */,
@@ -1351,11 +1408,13 @@
 				461DC257237931740092AC82 /* ApiPaths.swift in Sources */,
 				466D4357238D4424004B9712 /* UserDetailModel.swift in Sources */,
 				46EA878F234B132A0082C694 /* TotalStepsViewController.swift in Sources */,
+				81892EFF2473EDBF006F2113 /* Transaction.swift in Sources */,
 				464AE07423B49B3300826BA7 /* SocketProtocol.swift in Sources */,
 				46DF729D23506849005005B1 /* FindFriendTableViewCell.swift in Sources */,
 				4658FB5723B237D40014F7F2 /* ReceiverArr.swift in Sources */,
 				464AE07823B4BBBD00826BA7 /* NearByUserModel.swift in Sources */,
 				463BF57E234F018A0022C465 /* ProductDetailCollectionViewCell.swift in Sources */,
+				81C93932246EABB7005D3CF8 /* Coding.swift in Sources */,
 				461DC26323793A8E0092AC82 /* Login.swift in Sources */,
 				462D24EE23B32F7F0050C3F0 /* WeekStepsCount.swift in Sources */,
 				46A74036235592A4009C9D81 /* PopoverViewController.swift in Sources */,
@@ -1383,12 +1442,14 @@
 				46729B3F23C2FA0F0086F91F /* AppleDetailsModel.swift in Sources */,
 				468F86CF2350C0D5006DC7D1 /* ChatListViewController.swift in Sources */,
 				466DBF0D23856F1400FD60A4 /* OnBoradViewController.swift in Sources */,
+				81C93933246EABB7005D3CF8 /* MPGSDK.swift in Sources */,
 				461CBAA323DABB4700292CD2 /* CreditCardValidator.swift in Sources */,
 				46DF729F23506A10005005B1 /* String + Extension.swift in Sources */,
 				46FA2C8023A122DD000A3B9B /* Card.swift in Sources */,
 				46138044232906C7007C3FA4 /* SignupViewController.swift in Sources */,
 				462D24E123B32F310050C3F0 /* ArrayExtension.swift in Sources */,
 				462D24E423B32F310050C3F0 /* BeautifulBarChart.swift in Sources */,
+				81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */,
 				461DC25B237936F60092AC82 /* WebServices.swift in Sources */,
 				46DDCA0223AB486000FFAF91 /* ChatHistoryModel.swift in Sources */,
 				463CD0C723E95B560010676D /* Localization.swift in Sources */,
@@ -1417,14 +1478,17 @@
 				4631E9AD2327D1870088B49F /* WelcomeViewController.swift in Sources */,
 				464AE07C23B4BF4500826BA7 /* NearByUsersResponseModel.swift in Sources */,
 				468F86C82350976C006DC7D1 /* FriendTableViewCell.swift in Sources */,
+				8105CB9D2473A218004EBD54 /* HTTPMethod.swift in Sources */,
 				4661BB512351C59800DC41E0 /* MapViewController.swift in Sources */,
 				463CAC4323A365120040493E /* PlaceOrder.swift in Sources */,
 				466762B7238BE27D003136BC /* ProductDetailModel.swift in Sources */,
 				46DDCA0023AB463F00FFAF91 /* ChatHistoryResponseModel.swift in Sources */,
 				463BF583234F42E80022C465 /* AlertViewController.swift in Sources */,
 				46E468F7237D86E40068701E /* CardTableViewCell.swift in Sources */,
+				81C9393A246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift in Sources */,
 				465E3509237BBF9C0023366C /* OTPverify.swift in Sources */,
 				4616EF15232A146F00B138A3 /* VKEntryViewStyle.swift in Sources */,
+				81C93934246EABB7005D3CF8 /* Gateway.swift in Sources */,
 				4661BB492351A50700DC41E0 /* AccountPrivacyViewController.swift in Sources */,
 				465E350C237BDCB20023366C /* UserData.swift in Sources */,
 				4631E9B12327DB4C0088B49F /* RoundedShadowView.swift in Sources */,
@@ -1450,10 +1514,10 @@
 				4616EF1A232A57CF00B138A3 /* UIView + Extension.swift in Sources */,
 				468F86CA23509CC9006DC7D1 /* FriendsViewController.swift in Sources */,
 				461DC26723793B690092AC82 /* Signup.swift in Sources */,
-				461DC2592379353C0092AC82 /* HTTPMethod.swift in Sources */,
 				4666FA9B2355DA9F00E8758C /* ChatViewController.swift in Sources */,
 				466DBF00238526D600FD60A4 /* PermissionAlertViewController.swift in Sources */,
 				469057B02396717E000D192E /* Category.swift in Sources */,
+				81C93937246EABB7005D3CF8 /* BuildConfig.swift in Sources */,
 				4631E9AF2327D1E40088B49F /* UtilityClass.swift in Sources */,
 				461DC2552379315D0092AC82 /* Parameters.swift in Sources */,
 				460C049C239A10A800D674D7 /* CoinsEarn.swift in Sources */,
@@ -1657,7 +1721,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.8;
+				CURRENT_PROJECT_VERSION = 1.5.1;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
@@ -1678,7 +1742,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.8;
+				CURRENT_PROJECT_VERSION = 1.5.1;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

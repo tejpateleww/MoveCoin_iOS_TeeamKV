@@ -18,7 +18,7 @@ class FacebookViewController: UIViewController {
     
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var lblDescription: LocalizLabel!
+//    @IBOutlet weak var lblDescription: LocalizLabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -31,7 +31,7 @@ class FacebookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblDescription.font = UIFont.regular(ofSize: 15)
+//        lblDescription.font = UIFont.regular(ofSize: 15)
         //        localizeUI(parentView: self.viewParent)
     }
     
@@ -52,7 +52,7 @@ class FacebookViewController: UIViewController {
                 
                 let strUserId = String(describing: dictData["id"]!)
                 
-                let request = GraphRequest(graphPath: "/\(strUserId)/friends", parameters: parameters as! [String : Any], httpMethod: HTTPMethod(rawValue: "GET"))
+                let request = GraphRequest(graphPath: "/\(strUserId)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
                 request.start(completionHandler: { connection, result, error in
                     // Insert your code here
                     print("Friends Result: \(String(describing: result))")
@@ -108,7 +108,7 @@ class FacebookViewController: UIViewController {
             parameters["fields"] = "first_name, last_name, email, id, user_friends{email,first_name,last_name}"
             
             let id = SingletonClass.SharedInstance.userData?.socialID ?? ""
-            let request = GraphRequest(graphPath: "/\(id)/friends", parameters: parameters as! [String : Any], httpMethod: HTTPMethod(rawValue: "GET"))
+            let request = GraphRequest(graphPath: "/\(id)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
             request.start(completionHandler: { connection, result, error in
                 // Insert your code here
                 print("Friends Result: \(String(describing: result))")

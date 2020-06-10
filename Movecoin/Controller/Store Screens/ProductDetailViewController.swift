@@ -52,6 +52,8 @@ class ProductDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        webserviceForProductDetails()
+
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
@@ -61,7 +63,6 @@ class ProductDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        webserviceForProductDetails()
     }
    
     override func viewDidLayoutSubviews() {
@@ -197,6 +198,10 @@ class ProductDetailViewController: UIViewController {
     @IBAction func btnPurchaseTapped(_ sender: Any) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ConfirmPurchaseViewController.className) as! ConfirmPurchaseViewController
         controller.product = product
+        controller.closure = { str in
+                print(str)
+            self.webserviceForProductDetails()
+        }
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

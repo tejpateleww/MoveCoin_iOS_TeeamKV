@@ -24,7 +24,7 @@ class WebService{
     // MARK:- Method for Get, post..
     //-------------------------------------
     
-    func requestMethod(api: ApiKey, httpMethod:Method,parameters: Any, completion: @escaping CompletionResponse){
+    func requestMethod(api: ApiKey, httpMethod:HTTPMethod,parameters: Any, completion: @escaping CompletionResponse){
         
         guard isConnected else { completion(JSON(), false, ""); return }
         
@@ -88,7 +88,7 @@ class WebService{
         }
     }
     
-    func getMethod(url: URL, httpMethod:Method, completion: @escaping CompletionResponse)
+    func getMethod(url: URL, httpMethod:HTTPMethod, completion: @escaping CompletionResponse)
     {
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.httpBody, headers: NetworkEnvironment.headers)
             .validate()

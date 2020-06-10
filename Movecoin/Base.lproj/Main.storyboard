@@ -49,10 +49,10 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21c-8M-9xt">
-                                                <rect key="frame" x="123" y="0.0" width="129" height="40"/>
+                                                <rect key="frame" x="78.5" y="0.0" width="218" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-jv-o5N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="40"/>
                                                         <state key="normal" image="logo-unselect"/>
                                                         <state key="selected" image="logo-select"/>
                                                         <connections>
@@ -60,7 +60,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NT-Vt-KIr">
-                                                        <rect key="frame" x="54" y="0.0" width="24" height="40"/>
+                                                        <rect key="frame" x="88" y="0.0" width="48" height="40"/>
                                                         <state key="normal" image="call-unselect"/>
                                                         <state key="selected" image="call-select"/>
                                                         <connections>
@@ -68,7 +68,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDP-j7-div">
-                                                        <rect key="frame" x="98" y="0.0" width="31" height="40"/>
+                                                        <rect key="frame" x="156" y="0.0" width="62" height="40"/>
                                                         <state key="normal" image="facebook-unselect"/>
                                                         <state key="selected" image="facebook-select"/>
                                                         <connections>
@@ -210,13 +210,13 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="31"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tBg-c5-N9K">
-                                                <rect key="frame" x="146" y="-11.5" width="83" height="54"/>
+                                                <rect key="frame" x="134.5" y="-11.5" width="106" height="54"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total-steps-icon" translatesAutoresizingMaskIntoConstraints="NO" id="AlL-FB-UB4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="23" height="54"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="54"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Few-Qk-8p1">
-                                                        <rect key="frame" x="33" y="0.0" width="50" height="54"/>
+                                                        <rect key="frame" x="56" y="0.0" width="50" height="54"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="24"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -389,10 +389,10 @@
                                                 <rect key="frame" x="15" y="0.0" width="345" height="46"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Veb-az-9a0">
-                                                        <rect key="frame" x="15" y="14.5" width="16" height="17"/>
+                                                        <rect key="frame" x="15" y="6" width="32" height="34"/>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DrP-Oh-xeM" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="39" y="8" width="298" height="30"/>
+                                                        <rect key="frame" x="55" y="8" width="282" height="30"/>
                                                         <color key="tintColor" red="0.11372549019607843" green="0.12549019607843137" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -660,7 +660,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total-steps-icon" translatesAutoresizingMaskIntoConstraints="NO" id="G0m-ex-MQU">
-                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
+                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="3"/>
@@ -712,7 +712,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coins-icon" translatesAutoresizingMaskIntoConstraints="NO" id="0Jf-VB-DsP">
-                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
+                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="315-Mw-MU8">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31.5"/>
@@ -764,7 +764,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite-friend-icon" translatesAutoresizingMaskIntoConstraints="NO" id="dC0-AG-uqy">
-                                                                <rect key="frame" x="73" y="0.0" width="22" height="31"/>
+                                                                <rect key="frame" x="62" y="0.0" width="44" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmA-KU-yOj">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31"/>
@@ -811,7 +811,7 @@
                                                         <rect key="frame" x="0.0" y="10" width="167.5" height="93.5"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friend-icon" translatesAutoresizingMaskIntoConstraints="NO" id="tCc-xS-IrP">
-                                                                <rect key="frame" x="72.5" y="0.0" width="23" height="31"/>
+                                                                <rect key="frame" x="61" y="0.0" width="46" height="31"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKo-IP-2hB">
                                                                 <rect key="frame" x="77" y="31" width="13.5" height="31"/>
@@ -2817,7 +2817,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="651"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCr-8W-Yw9" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
-                                                        <rect key="frame" x="0.0" y="2" width="375" height="816"/>
+                                                        <rect key="frame" x="0.0" y="2" width="375" height="925"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zQm-eW-Ul4">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
@@ -2892,7 +2892,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-0y-lem">
-                                                                <rect key="frame" x="16" y="158" width="343" height="328"/>
+                                                                <rect key="frame" x="16" y="158" width="343" height="232"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wGl-V9-uIV" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
@@ -2987,7 +2987,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUl-cX-jRm" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="144" width="343" height="40"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address-1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uP-dF-krW" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uP-dF-krW" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="8" y="8" width="327" height="24"/>
                                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3014,8 +3014,8 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsE-fz-4FH" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="192" width="343" height="40"/>
+                                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsE-fz-4FH" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="188" width="343" height="40"/>
                                                                         <subviews>
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address-2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Rt-hb-WPP" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="8" y="8" width="327" height="24"/>
@@ -3044,13 +3044,13 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9fK-uj-Cq4">
-                                                                        <rect key="frame" x="0.0" y="240" width="343" height="40"/>
+                                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9fK-uj-Cq4">
+                                                                        <rect key="frame" x="0.0" y="188" width="343" height="40"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTn-lO-3zZ" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="166.5" height="40"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rZW-kq-31Q" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rZW-kq-31Q" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                         <rect key="frame" x="8" y="8" width="150.5" height="24"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3080,7 +3080,7 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plp-Ze-zqO" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="176.5" y="0.0" width="166.5" height="40"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lAf-OM-mmZ" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lAf-OM-mmZ" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                         <rect key="frame" x="8" y="8" width="150.5" height="24"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3110,7 +3110,7 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Tyz-zg-ZxW">
-                                                                        <rect key="frame" x="0.0" y="288" width="343" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="192" width="343" height="40"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyS-Da-QDn" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="166.5" height="40"/>
@@ -3145,12 +3145,12 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7A-Ny-IhK" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                                 <rect key="frame" x="176.5" y="0.0" width="166.5" height="40"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5DG-th-ID1" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5DG-th-ID1" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
                                                                                         <rect key="frame" x="8" y="8" width="150.5" height="24"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
-                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
+                                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="address-level1"/>
                                                                                         <userDefinedRuntimeAttributes>
                                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                                                                 <color key="value" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3175,12 +3175,9 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                 </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="328" id="hCU-cK-4Ic"/>
-                                                                </constraints>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="vgb-eY-W6D">
-                                                                <rect key="frame" x="79.5" y="506" width="216" height="25"/>
+                                                                <rect key="frame" x="79.5" y="410" width="216" height="25"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now Available Balance " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e7-hV-9g9" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="168" height="25"/>
@@ -3210,16 +3207,16 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Ee-5V-vat">
-                                                                <rect key="frame" x="20" y="551" width="335" height="165"/>
+                                                                <rect key="frame" x="5" y="455" width="365" height="370"/>
                                                                 <subviews>
                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrw-lw-Y0y" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="-50" width="335" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="-50" width="365" height="50"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="GKy-gJ-wqB">
-                                                                                <rect key="frame" x="8" y="5" width="319" height="40"/>
+                                                                                <rect key="frame" x="8" y="5" width="349" height="40"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter moveCoins" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hsU-zp-g2s" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="40"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="349" height="40"/>
                                                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
@@ -3247,190 +3244,343 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghs-nm-QAU" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0h-fp-Dm6" userLabel="Top View">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="365" height="255"/>
                                                                         <subviews>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="WfU-F9-iV8">
-                                                                                <rect key="frame" x="8" y="5" width="279" height="40"/>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zY-PG-yWR" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="365" height="255"/>
                                                                                 <subviews>
-                                                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mastercard-white" translatesAutoresizingMaskIntoConstraints="NO" id="Aew-W4-LGP">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TjY-uu-bGe" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                        <rect key="frame" x="10" y="10" width="141.5" height="25"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="width" constant="50" id="9fu-TH-jIY"/>
-                                                                                            <constraint firstAttribute="height" constant="40" id="YYb-3m-Uef"/>
+                                                                                            <constraint firstAttribute="height" constant="25" id="lAF-VJ-RWs"/>
+                                                                                            <constraint firstAttribute="width" constant="141.5" id="o4o-Wp-e3e"/>
                                                                                         </constraints>
-                                                                                    </imageView>
-                                                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter card details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vp9-Do-kfs" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="279" height="40"/>
-                                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="19"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
-                                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="twitter" textContentType="given-name"/>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                                                                <color key="value" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </textField>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="bZD-KC-ITq">
+                                                                                        <rect key="frame" x="180" y="10" width="170" height="25"/>
+                                                                                        <subviews>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWK-CY-lRj">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="37.5" height="25"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconVisa" translatesAutoresizingMaskIntoConstraints="NO" id="k4G-dz-nKB">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="37.5" height="25"/>
+                                                                                                        <userDefinedRuntimeAttributes>
+                                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                                <real key="value" value="3"/>
+                                                                                                            </userDefinedRuntimeAttribute>
+                                                                                                        </userDefinedRuntimeAttributes>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="k4G-dz-nKB" secondAttribute="bottom" id="Ka7-OR-Onb"/>
+                                                                                                    <constraint firstItem="k4G-dz-nKB" firstAttribute="leading" secondItem="hWK-CY-lRj" secondAttribute="leading" id="VjD-2y-F8i"/>
+                                                                                                    <constraint firstItem="k4G-dz-nKB" firstAttribute="top" secondItem="hWK-CY-lRj" secondAttribute="top" id="Vyv-OL-im9"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="k4G-dz-nKB" secondAttribute="trailing" id="yqz-mg-2WY"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4bk-Gv-Lnj">
+                                                                                                <rect key="frame" x="44.5" y="0.0" width="37" height="25"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconMastercard" translatesAutoresizingMaskIntoConstraints="NO" id="1rc-PD-2vL">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="25"/>
+                                                                                                        <userDefinedRuntimeAttributes>
+                                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                                <real key="value" value="3"/>
+                                                                                                            </userDefinedRuntimeAttribute>
+                                                                                                        </userDefinedRuntimeAttributes>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="1rc-PD-2vL" firstAttribute="top" secondItem="4bk-Gv-Lnj" secondAttribute="top" id="UM1-ks-Ysz"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="1rc-PD-2vL" secondAttribute="trailing" id="W3m-eC-bCN"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="1rc-PD-2vL" secondAttribute="bottom" id="gjT-ca-lNC"/>
+                                                                                                    <constraint firstItem="1rc-PD-2vL" firstAttribute="leading" secondItem="4bk-Gv-Lnj" secondAttribute="leading" id="xKg-82-DNO"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOb-v8-6gp">
+                                                                                                <rect key="frame" x="88.5" y="0.0" width="37.5" height="25"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconMada" translatesAutoresizingMaskIntoConstraints="NO" id="xOU-Zp-0gm">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="37.5" height="25"/>
+                                                                                                        <userDefinedRuntimeAttributes>
+                                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                                <real key="value" value="3"/>
+                                                                                                            </userDefinedRuntimeAttribute>
+                                                                                                        </userDefinedRuntimeAttributes>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="xOU-Zp-0gm" firstAttribute="leading" secondItem="nOb-v8-6gp" secondAttribute="leading" id="XFy-Zv-x5g"/>
+                                                                                                    <constraint firstItem="xOU-Zp-0gm" firstAttribute="top" secondItem="nOb-v8-6gp" secondAttribute="top" id="a1I-tb-b34"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="xOU-Zp-0gm" secondAttribute="trailing" id="fXd-WO-Dqv"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="xOU-Zp-0gm" secondAttribute="bottom" id="sgb-tp-7O8"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEn-Ue-YSf">
+                                                                                                <rect key="frame" x="133" y="0.0" width="37" height="25"/>
+                                                                                                <subviews>
+                                                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconApple" translatesAutoresizingMaskIntoConstraints="NO" id="hvh-Bm-JJO">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="25"/>
+                                                                                                        <userDefinedRuntimeAttributes>
+                                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                                <real key="value" value="3"/>
+                                                                                                            </userDefinedRuntimeAttribute>
+                                                                                                        </userDefinedRuntimeAttributes>
+                                                                                                    </imageView>
+                                                                                                </subviews>
+                                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstItem="hvh-Bm-JJO" firstAttribute="leading" secondItem="sEn-Ue-YSf" secondAttribute="leading" id="7iJ-ap-Ql5"/>
+                                                                                                    <constraint firstAttribute="trailing" secondItem="hvh-Bm-JJO" secondAttribute="trailing" id="b2M-6N-Gx8"/>
+                                                                                                    <constraint firstItem="hvh-Bm-JJO" firstAttribute="top" secondItem="sEn-Ue-YSf" secondAttribute="top" id="rfF-Th-A9l"/>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="hvh-Bm-JJO" secondAttribute="bottom" id="wPg-Lx-x0r"/>
+                                                                                                </constraints>
+                                                                                            </view>
+                                                                                        </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="170" id="WdA-bG-iln"/>
+                                                                                            <constraint firstAttribute="height" constant="25" id="zSp-zo-uBM"/>
+                                                                                        </constraints>
+                                                                                    </stackView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ynD-d7-y5R">
+                                                                                        <rect key="frame" x="10" y="55" width="345" height="180"/>
+                                                                                        <subviews>
+                                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Holder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ux5-QD-2GA" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="50"/>
+                                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="50" id="UDo-hJ-Abw"/>
+                                                                                                </constraints>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                            </textField>
+                                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sih-tI-mbD" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="65" width="345" height="50"/>
+                                                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <constraints>
+                                                                                                    <constraint firstAttribute="height" constant="50" id="M19-KQ-liC"/>
+                                                                                                </constraints>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                                            </textField>
+                                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aBI-Ct-vvp">
+                                                                                                <rect key="frame" x="0.0" y="130" width="345" height="50"/>
+                                                                                                <subviews>
+                                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exp Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qpS-uv-sWP" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="50"/>
+                                                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="height" constant="50" id="cKY-EN-ipm"/>
+                                                                                                        </constraints>
+                                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                                                    </textField>
+                                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="CVV" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8LJ-Rh-fpN" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
+                                                                                                        <rect key="frame" x="177.5" y="0.0" width="167.5" height="50"/>
+                                                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                                                                                                    </textField>
+                                                                                                </subviews>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="trailing" secondItem="sih-tI-mbD" secondAttribute="trailing" id="C3Y-Zr-fig"/>
+                                                                                            <constraint firstItem="sih-tI-mbD" firstAttribute="leading" secondItem="ynD-d7-y5R" secondAttribute="leading" id="F93-sc-ZO2"/>
+                                                                                            <constraint firstItem="Ux5-QD-2GA" firstAttribute="leading" secondItem="ynD-d7-y5R" secondAttribute="leading" id="Prz-Bh-LEE"/>
+                                                                                            <constraint firstItem="aBI-Ct-vvp" firstAttribute="leading" secondItem="ynD-d7-y5R" secondAttribute="leading" id="UGv-M4-g7V"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="aBI-Ct-vvp" secondAttribute="trailing" id="cWr-tZ-Koq"/>
+                                                                                            <constraint firstAttribute="trailing" secondItem="Ux5-QD-2GA" secondAttribute="trailing" id="tju-hY-iM8"/>
+                                                                                        </constraints>
+                                                                                    </stackView>
                                                                                 </subviews>
-                                                                            </stackView>
-                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-Zv-6E7">
-                                                                                <rect key="frame" x="307" y="10" width="20" height="30"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="20" id="KiU-v8-qvD"/>
-                                                                                    <constraint firstAttribute="height" constant="30" id="NNc-n7-FeP"/>
+                                                                                    <constraint firstItem="ynD-d7-y5R" firstAttribute="leading" secondItem="1zY-PG-yWR" secondAttribute="leading" constant="10" id="4xh-yw-dQr"/>
+                                                                                    <constraint firstItem="TjY-uu-bGe" firstAttribute="leading" secondItem="1zY-PG-yWR" secondAttribute="leading" constant="10" id="80r-Hw-2Fv"/>
+                                                                                    <constraint firstItem="bZD-KC-ITq" firstAttribute="centerY" secondItem="TjY-uu-bGe" secondAttribute="centerY" id="9Q2-rN-0qT"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="bZD-KC-ITq" secondAttribute="trailing" constant="15" id="QGu-aN-zrk"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="ynD-d7-y5R" secondAttribute="bottom" constant="20" id="R1q-LB-u8w"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="ynD-d7-y5R" secondAttribute="trailing" constant="10" id="hCr-b6-g2h"/>
+                                                                                    <constraint firstItem="TjY-uu-bGe" firstAttribute="top" secondItem="1zY-PG-yWR" secondAttribute="top" constant="10" id="kAE-u3-3eg"/>
+                                                                                    <constraint firstItem="ynD-d7-y5R" firstAttribute="top" secondItem="TjY-uu-bGe" secondAttribute="bottom" constant="20" id="zaU-Qe-T1e"/>
                                                                                 </constraints>
-                                                                                <state key="normal" image="arrow-right">
-                                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                </state>
-                                                                            </button>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                        <real key="value" value="10"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="border">
+                                                                                        <real key="value" value="2"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </view>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="WfU-F9-iV8" firstAttribute="top" secondItem="ghs-nm-QAU" secondAttribute="top" constant="5" id="3Wk-3S-Q9e"/>
-                                                                            <constraint firstAttribute="height" constant="50" id="A8J-Hf-bc9"/>
-                                                                            <constraint firstItem="fuc-Zv-6E7" firstAttribute="leading" secondItem="WfU-F9-iV8" secondAttribute="trailing" constant="20" id="Qn2-if-ufX"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="fuc-Zv-6E7" secondAttribute="trailing" constant="8" id="XVs-Km-2AF"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="WfU-F9-iV8" secondAttribute="bottom" constant="5" id="awh-hR-tSR"/>
-                                                                            <constraint firstItem="fuc-Zv-6E7" firstAttribute="centerY" secondItem="ghs-nm-QAU" secondAttribute="centerY" id="f9D-SC-fif"/>
-                                                                            <constraint firstItem="WfU-F9-iV8" firstAttribute="leading" secondItem="ghs-nm-QAU" secondAttribute="leading" constant="8" id="rxb-89-3UM"/>
+                                                                            <constraint firstItem="1zY-PG-yWR" firstAttribute="top" secondItem="s0h-fp-Dm6" secondAttribute="top" id="BvN-5I-JGS"/>
+                                                                            <constraint firstItem="1zY-PG-yWR" firstAttribute="leading" secondItem="s0h-fp-Dm6" secondAttribute="leading" id="eTS-Nh-oap"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="1zY-PG-yWR" secondAttribute="bottom" id="pOe-Zb-MdR"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="1zY-PG-yWR" secondAttribute="trailing" id="ueR-lr-Z11"/>
                                                                         </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                <real key="value" value="25"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
                                                                     </view>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="zgR-ua-0fM">
-                                                                        <rect key="frame" x="0.0" y="60" width="335" height="105"/>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mE-0h-pVr">
+                                                                        <rect key="frame" x="0.0" y="265" width="365" height="105"/>
                                                                         <subviews>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Adk-f3-gqd">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="24"/>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="zgR-ua-0fM">
+                                                                                <rect key="frame" x="10" y="0.0" width="345" height="105"/>
                                                                                 <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLx-zz-HT5" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-Th-5P4">
-                                                                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="24" id="cf3-2I-3jq"/>
-                                                                                </constraints>
-                                                                            </stackView>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yfV-Nm-wPj">
-                                                                                <rect key="frame" x="0.0" y="27" width="335" height="24"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price after discount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MB-3g-EPP" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nob-N4-j6e">
-                                                                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l2y-eS-5cr">
-                                                                                <rect key="frame" x="0.0" y="54" width="335" height="24"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91f-ke-qdj" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjg-ec-MZW">
-                                                                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaT-ia-PnM">
-                                                                                <rect key="frame" x="0.0" y="81" width="335" height="24"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-lB-q8h" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vut-qC-0ZP">
-                                                                                        <rect key="frame" x="172.5" y="0.0" width="162.5" height="24"/>
-                                                                                        <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Adk-f3-gqd">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="24"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLx-zz-HT5" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-Th-5P4">
+                                                                                                <rect key="frame" x="177.5" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="24" id="cf3-2I-3jq"/>
+                                                                                        </constraints>
+                                                                                    </stackView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yfV-Nm-wPj">
+                                                                                        <rect key="frame" x="0.0" y="27" width="345" height="24"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price after discount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MB-3g-EPP" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nob-N4-j6e">
+                                                                                                <rect key="frame" x="177.5" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l2y-eS-5cr">
+                                                                                        <rect key="frame" x="0.0" y="54" width="345" height="24"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91f-ke-qdj" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjg-ec-MZW">
+                                                                                                <rect key="frame" x="177.5" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gaT-ia-PnM">
+                                                                                        <rect key="frame" x="0.0" y="81" width="345" height="24"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-lB-q8h" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vut-qC-0ZP">
+                                                                                                <rect key="frame" x="177.5" y="0.0" width="167.5" height="24"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
+                                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
                                                                                 </subviews>
                                                                             </stackView>
                                                                         </subviews>
-                                                                    </stackView>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="zgR-ua-0fM" secondAttribute="trailing" constant="10" id="TuN-pP-A8A"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="zgR-ua-0fM" secondAttribute="bottom" id="XjB-I1-QmK"/>
+                                                                            <constraint firstItem="zgR-ua-0fM" firstAttribute="leading" secondItem="4mE-0h-pVr" secondAttribute="leading" constant="10" id="Xqu-r8-vMn"/>
+                                                                            <constraint firstItem="zgR-ua-0fM" firstAttribute="top" secondItem="4mE-0h-pVr" secondAttribute="top" id="ird-Zc-4Pa"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                             </stackView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wun-9E-nms" userLabel="Bottom View">
-                                                                <rect key="frame" x="20" y="746" width="335" height="50"/>
+                                                                <rect key="frame" x="20" y="855" width="335" height="50"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abt-tn-cTc" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vwm-gs-cwl">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="50" id="fuC-9z-XSm"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="20"/>
-                                                                        <state key="normal">
-                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnPurchaseTapped:" destination="Onz-SK-ZMP" eventType="touchUpInside" id="WXx-BW-pVV"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="NgR-9l-rVA">
-                                                                        <rect key="frame" x="82" y="14" width="171.5" height="22.5"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvq-Aw-8N3" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="22.5"/>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNL-Cc-Glt">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="162.5" height="50"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abt-tn-cTc" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="50"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="50" id="fuC-9z-XSm"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="20"/>
+                                                                                        <state key="normal">
+                                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnPurchaseTapped:" destination="Onz-SK-ZMP" eventType="touchUpInside" id="WXx-BW-pVV"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="NgR-9l-rVA">
+                                                                                        <rect key="frame" x="41.5" y="14" width="80" height="22.5"/>
+                                                                                        <subviews>
+                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvq-Aw-8N3" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="22.5"/>
+                                                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
+                                                                                                <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                                <nil key="highlightedColor"/>
+                                                                                            </label>
+                                                                                        </subviews>
+                                                                                    </stackView>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="80" id="IMq-oH-mc3"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Abt-tn-cTc" secondAttribute="trailing" id="92U-vh-mfK"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="Abt-tn-cTc" secondAttribute="bottom" id="GD7-7L-yn9"/>
+                                                                                    <constraint firstItem="NgR-9l-rVA" firstAttribute="centerY" secondItem="KNL-Cc-Glt" secondAttribute="centerY" id="Mu2-nu-WKr"/>
+                                                                                    <constraint firstItem="Abt-tn-cTc" firstAttribute="leading" secondItem="KNL-Cc-Glt" secondAttribute="leading" id="Q6e-AU-two"/>
+                                                                                    <constraint firstItem="Abt-tn-cTc" firstAttribute="top" secondItem="KNL-Cc-Glt" secondAttribute="top" id="if7-ZT-wTs"/>
+                                                                                    <constraint firstItem="NgR-9l-rVA" firstAttribute="centerX" secondItem="KNL-Cc-Glt" secondAttribute="centerX" id="wwL-ae-wtL"/>
                                                                                 </constraints>
-                                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
-                                                                                <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-blue-small" translatesAutoresizingMaskIntoConstraints="NO" id="K2Z-ZS-GpO">
-                                                                                <rect key="frame" x="81" y="0.0" width="33" height="22.5"/>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="width" constant="33" id="HwU-1X-YSs"/>
-                                                                                </constraints>
-                                                                            </imageView>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeh-v5-jbw" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                <rect key="frame" x="115" y="0.0" width="56.5" height="22.5"/>
-                                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
-                                                                                <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqm-95-zWL">
+                                                                                <rect key="frame" x="172.5" y="0.0" width="162.5" height="50"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </view>
                                                                         </subviews>
                                                                     </stackView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="NgR-9l-rVA" firstAttribute="centerY" secondItem="wun-9E-nms" secondAttribute="centerY" id="GN1-ag-L4m"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="Abt-tn-cTc" secondAttribute="trailing" id="LdM-90-hLU"/>
-                                                                    <constraint firstItem="Abt-tn-cTc" firstAttribute="top" secondItem="wun-9E-nms" secondAttribute="top" id="MWD-Xc-ehe"/>
-                                                                    <constraint firstItem="Abt-tn-cTc" firstAttribute="leading" secondItem="wun-9E-nms" secondAttribute="leading" id="dOL-1O-6mk"/>
-                                                                    <constraint firstItem="NgR-9l-rVA" firstAttribute="centerX" secondItem="wun-9E-nms" secondAttribute="centerX" id="mNB-EM-o2Z"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="vwm-gs-cwl" secondAttribute="bottom" id="2PJ-9a-Okp"/>
+                                                                    <constraint firstItem="vwm-gs-cwl" firstAttribute="leading" secondItem="wun-9E-nms" secondAttribute="leading" id="MW7-V1-fHp"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="vwm-gs-cwl" secondAttribute="trailing" id="RMd-T2-G9T"/>
+                                                                    <constraint firstItem="vwm-gs-cwl" firstAttribute="top" secondItem="wun-9E-nms" secondAttribute="top" id="TXX-rV-dXt"/>
                                                                     <constraint firstAttribute="height" constant="50" id="rZa-Dk-zAw"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="Abt-tn-cTc" secondAttribute="bottom" id="xW6-ek-lS1"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -3439,7 +3589,7 @@
                                                             <constraint firstItem="vgb-eY-W6D" firstAttribute="top" secondItem="R7g-0y-lem" secondAttribute="bottom" constant="20" id="1PI-xh-6lz"/>
                                                             <constraint firstAttribute="trailing" secondItem="wun-9E-nms" secondAttribute="trailing" constant="20" id="6q3-Se-oaF"/>
                                                             <constraint firstItem="5Ee-5V-vat" firstAttribute="top" secondItem="vgb-eY-W6D" secondAttribute="bottom" constant="20" id="9Ui-Dr-UzW"/>
-                                                            <constraint firstAttribute="trailing" secondItem="5Ee-5V-vat" secondAttribute="trailing" constant="20" id="AE9-62-nO8"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5Ee-5V-vat" secondAttribute="trailing" constant="5" id="AE9-62-nO8"/>
                                                             <constraint firstItem="zQm-eW-Ul4" firstAttribute="leading" secondItem="fCr-8W-Yw9" secondAttribute="leading" id="Erm-b7-vzq"/>
                                                             <constraint firstAttribute="trailing" secondItem="R7g-0y-lem" secondAttribute="trailing" constant="16" id="Gaj-a6-rDJ"/>
                                                             <constraint firstItem="vgb-eY-W6D" firstAttribute="centerX" secondItem="fCr-8W-Yw9" secondAttribute="centerX" id="Od7-Lh-r6x"/>
@@ -3449,7 +3599,7 @@
                                                             <constraint firstItem="wun-9E-nms" firstAttribute="top" secondItem="5Ee-5V-vat" secondAttribute="bottom" constant="30" id="kdd-zD-dYD"/>
                                                             <constraint firstItem="R7g-0y-lem" firstAttribute="top" secondItem="zQm-eW-Ul4" secondAttribute="bottom" constant="28" id="msx-0i-Jzf"/>
                                                             <constraint firstAttribute="bottom" secondItem="wun-9E-nms" secondAttribute="bottom" constant="20" id="odL-EN-Qko"/>
-                                                            <constraint firstItem="5Ee-5V-vat" firstAttribute="leading" secondItem="fCr-8W-Yw9" secondAttribute="leading" constant="20" id="tfF-9V-dWZ"/>
+                                                            <constraint firstItem="5Ee-5V-vat" firstAttribute="leading" secondItem="fCr-8W-Yw9" secondAttribute="leading" constant="5" id="tfF-9V-dWZ"/>
                                                             <constraint firstItem="R7g-0y-lem" firstAttribute="leading" secondItem="fCr-8W-Yw9" secondAttribute="leading" constant="16" id="tyX-uA-xaf"/>
                                                         </constraints>
                                                     </view>
@@ -3497,10 +3647,8 @@
                         <viewLayoutGuide key="safeArea" id="eaY-bK-tT4"/>
                     </view>
                     <connections>
-                        <outlet property="btnArrow" destination="fuc-Zv-6E7" id="fQA-jw-WFq"/>
                         <outlet property="deliveryStack" destination="l2y-eS-5cr" id="ZeT-F2-6c7"/>
                         <outlet property="discountStack" destination="yfV-Nm-wPj" id="MNM-wd-yDH"/>
-                        <outlet property="imgCardIcon" destination="Aew-W4-LGP" id="igh-Pq-DXJ"/>
                         <outlet property="imgProduct" destination="tTO-Bl-HBJ" id="xN9-LE-7Ut"/>
                         <outlet property="lblAddress" destination="4UD-nm-4wn" id="9Xs-lg-4Rk"/>
                         <outlet property="lblAvailableBalance" destination="vpN-3W-h9H" id="LoR-8K-wVT"/>
@@ -3518,20 +3666,19 @@
                         <outlet property="productPriceStack" destination="Adk-f3-gqd" id="VtT-YH-c4s"/>
                         <outlet property="totalStack" destination="gaT-ia-PnM" id="yc5-74-97p"/>
                         <outlet property="txtAddress1" destination="1uP-dF-krW" id="bMe-jo-AKT"/>
-                        <outlet property="txtAddress2" destination="9Rt-hb-WPP" id="qJe-gJ-01j"/>
-                        <outlet property="txtCard" destination="vp9-Do-kfs" id="InL-sY-rsB"/>
+                        <outlet property="txtCVV" destination="8LJ-Rh-fpN" id="rUX-AO-RcX"/>
+                        <outlet property="txtCardHolder" destination="Ux5-QD-2GA" id="urR-RD-aAA"/>
+                        <outlet property="txtCardNumber" destination="sih-tI-mbD" id="yYt-Wa-784"/>
                         <outlet property="txtCity" destination="7U1-f5-ccG" id="6C9-w0-rXk"/>
-                        <outlet property="txtCountry" destination="rZW-kq-31Q" id="qIR-D3-Kg2"/>
                         <outlet property="txtEmail" destination="woF-sb-icR" id="kRM-wI-SMg"/>
+                        <outlet property="txtExpDate" destination="qpS-uv-sWP" id="EqY-Oe-fpx"/>
                         <outlet property="txtMoveCoins" destination="hsU-zp-g2s" id="YKc-Yp-zGz"/>
                         <outlet property="txtName" destination="19L-qH-EEQ" id="3pa-LO-gCV"/>
                         <outlet property="txtNumber" destination="Qyi-Cf-U4o" id="bwJ-eu-71M"/>
-                        <outlet property="txtState" destination="lAf-OM-mmZ" id="zeS-V7-Tw4"/>
-                        <outlet property="txtZipCode" destination="5DG-th-ID1" id="O1w-qa-isZ"/>
-                        <outlet property="viewCardSelect" destination="ghs-nm-QAU" id="7IW-0Q-8Zg"/>
+                        <outlet property="txtState" destination="5DG-th-ID1" id="mOR-VZ-DgM"/>
+                        <outlet property="viewApplePay" destination="Gqm-95-zWL" id="hSJ-r1-5l7"/>
                         <outlet property="viewParent" destination="daT-jN-ZIq" id="Top-a4-Aow"/>
                         <outletCollection property="lblPrice" destination="NaU-pZ-Xhy" collectionClass="NSMutableArray" id="EO0-z1-And"/>
-                        <outletCollection property="lblPrice" destination="oeh-v5-jbw" collectionClass="NSMutableArray" id="YR3-7r-UHT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p4e-M8-WBs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3978,7 +4125,7 @@
                                         <rect key="frame" x="0.0" y="5" width="375" height="662"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReO-m7-GWl" userLabel="Main View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="627"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7i-9O-FS9" userLabel="TopView">
                                                         <rect key="frame" x="0.0" y="8" width="375" height="90"/>
@@ -4131,14 +4278,14 @@
                                                         </constraints>
                                                     </view>
                                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphImg" translatesAutoresizingMaskIntoConstraints="NO" id="odg-ga-98F">
-                                                        <rect key="frame" x="20" y="278" width="335" height="168"/>
+                                                        <rect key="frame" x="20" y="278" width="335" height="336"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDa-MA-VPl" customClass="BasicBarChart" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="278" width="335" height="168"/>
+                                                        <rect key="frame" x="20" y="278" width="335" height="336"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kTU-j0-Ylf">
-                                                        <rect key="frame" x="20" y="466" width="264" height="17"/>
+                                                        <rect key="frame" x="20" y="634" width="264" height="17"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps Converted" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFN-Z1-orm" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="129.5" height="17"/>
@@ -4428,14 +4575,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite-image" translatesAutoresizingMaskIntoConstraints="NO" id="mWa-C6-Cu3">
-                                <rect key="frame" x="10" y="0.0" width="355" height="273"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="546"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3e-qc-dFo">
-                                <rect key="frame" x="10" y="0.0" width="355" height="273"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="546"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="oWG-Ye-Y10">
-                                <rect key="frame" x="20" y="268" width="335" height="73"/>
+                                <rect key="frame" x="20" y="541" width="335" height="73"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-1z-J9Z" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
@@ -4455,7 +4602,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-yJ-9wD">
-                                <rect key="frame" x="20" y="363" width="335" height="76"/>
+                                <rect key="frame" x="20" y="636" width="335" height="76"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlU-6Q-BCU" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="94.5" y="0.0" width="146.5" height="21"/>
@@ -4486,7 +4633,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4B-MF-TUa" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
-                                <rect key="frame" x="48" y="464" width="279" height="45"/>
+                                <rect key="frame" x="48" y="737" width="279" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Qlc-ki-DSM"/>
                                 </constraints>
@@ -4550,10 +4697,10 @@
                                         <rect key="frame" x="15" y="0.0" width="345" height="46"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="APo-IR-UtZ">
-                                                <rect key="frame" x="15" y="14.5" width="16" height="17"/>
+                                                <rect key="frame" x="15" y="6" width="32" height="34"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJz-mg-w4j" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="8" width="298" height="30"/>
+                                                <rect key="frame" x="55" y="8" width="282" height="30"/>
                                                 <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -4751,11 +4898,11 @@
             <objects>
                 <viewController storyboardIdentifier="FacebookViewController" id="fFB-Ed-6c5" customClass="FacebookViewController" customModule="Movecoins" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ORB-tW-w8j">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="tid-EN-dwa">
-                                <rect key="frame" x="0.0" y="237.5" width="375" height="114.5"/>
+                                <rect key="frame" x="0.0" y="274.5" width="375" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXN-cq-BC5" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="46.5" y="0.0" width="282" height="40"/>
@@ -4775,18 +4922,7 @@
                                             <action selector="btnConnectFacebookTapped:" destination="fFB-Ed-6c5" eventType="touchUpInside" id="Wcq-XP-Eu1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EmS-cJ-gmY" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="62" width="335" height="52.5"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EmS-cJ-gmY" secondAttribute="trailing" constant="20" id="1zz-N8-ey2"/>
-                                    <constraint firstItem="EmS-cJ-gmY" firstAttribute="leading" secondItem="tid-EN-dwa" secondAttribute="leading" constant="20" id="wpR-Zs-IrK"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4798,7 +4934,6 @@
                         <viewLayoutGuide key="safeArea" id="B3Q-6u-TN7"/>
                     </view>
                     <connections>
-                        <outlet property="lblDescription" destination="EmS-cJ-gmY" id="3nx-pK-Udm"/>
                         <outlet property="viewParent" destination="ORB-tW-w8j" id="jSF-kR-qoo"/>
                     </connections>
                 </viewController>
@@ -5469,7 +5604,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-dwon" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-bH-4fe">
-                                                                        <rect key="frame" x="307" y="5" width="18" height="40"/>
+                                                                        <rect key="frame" x="289" y="5" width="36" height="40"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6185,7 +6320,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo wallet" translatesAutoresizingMaskIntoConstraints="NO" id="GUy-Vy-ib3">
-                                                                        <rect key="frame" x="140.5" y="3.5" width="30" height="40"/>
+                                                                        <rect key="frame" x="140.5" y="-16.5" width="30" height="80"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="j13-1V-awS"/>
                                                                         </constraints>
@@ -6342,6 +6477,10 @@
         <image name="friend-icon" width="23" height="21"/>
         <image name="graphImg" width="353" height="168"/>
         <image name="home-icon" width="22" height="24"/>
+        <image name="iconApple" width="33" height="21"/>
+        <image name="iconMada" width="33" height="21"/>
+        <image name="iconMastercard" width="33" height="21"/>
+        <image name="iconVisa" width="33" height="21"/>
         <image name="invite-friend-icon" width="22" height="23"/>
         <image name="invite-image" width="339" height="273"/>
         <image name="logo-blue-small" width="17" height="17"/>
@@ -6350,7 +6489,6 @@
         <image name="logo-unselect" width="34" height="34"/>
         <image name="m-logo" width="137" height="137"/>
         <image name="map-bg" width="374" height="262"/>
-        <image name="mastercard-white" width="38" height="23"/>
         <image name="navigation" width="42" height="42"/>
         <image name="packge" width="130" height="130"/>
         <image name="photo-fram" width="91" height="91"/>

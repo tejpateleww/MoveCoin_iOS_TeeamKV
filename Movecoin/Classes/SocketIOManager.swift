@@ -14,7 +14,7 @@ typealias CompletionBlock = ((JSON) -> ())?
 class SocketIOManager: NSObject {
     static let shared = SocketIOManager()
     
-    let manager = SocketManager(socketURL: URL(string: SocketApiKeys.kSocketBaseURL)!, config: [.log(true), .compress])
+    let manager = SocketManager(socketURL: URL(string: SocketApiKeys.kSocketBaseURL)!, config: [.log(false), .compress])
     lazy var socket = manager.defaultSocket
     
     var isSocketOn = false
