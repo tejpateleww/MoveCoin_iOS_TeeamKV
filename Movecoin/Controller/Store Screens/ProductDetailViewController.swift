@@ -196,13 +196,17 @@ class ProductDetailViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnPurchaseTapped(_ sender: Any) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: ConfirmPurchaseViewController.className) as! ConfirmPurchaseViewController
-        controller.product = product
-        controller.closure = { str in
-                print(str)
-            self.webserviceForProductDetails()
+        
+        if product != nil {
+            
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: ConfirmPurchaseViewController.className) as! ConfirmPurchaseViewController
+            controller.product = product
+            controller.closure = { str in
+                    print(str)
+                self.webserviceForProductDetails()
+            }
+            self.navigationController?.pushViewController(controller, animated: true)
         }
-        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 

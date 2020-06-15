@@ -356,8 +356,10 @@ class ConfirmPurchaseViewController: UIViewController {
    @IBAction func setupPaymentForApplePay(_ sender: UIButton)
     {
         
-        self.validate(isFromApplePay: true)
-      
+        if validateCoins() {
+            print("Purchase")
+            self.validate(isFromApplePay: true)
+        }
         
     }
     /// Called to configure the view controller with the gateway and merchant service information.
