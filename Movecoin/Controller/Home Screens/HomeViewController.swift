@@ -172,6 +172,14 @@ class HomeViewController: UIViewController {
                     self.startCountingSteps()
                 }
             }
+//            getRemainingSteps { (steps) in
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//                    if Int(steps) > 0 {
+//                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+//                    }
+//                    self.startCountingSteps()
+//                }
+//            }
         }
     }
     
@@ -223,22 +231,44 @@ class HomeViewController: UIViewController {
         }
     }
     
-   func getTodaysSteps(completion: @escaping (Double) -> Void) {
-       let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-
-       let now = Date()
-       let startOfDay = Calendar.current.startOfDay(for: now)
-       let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-
-       let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-           guard let result = result, let sum = result.sumQuantity() else {
-               completion(0.0)
-               return
-           }
-           completion(sum.doubleValue(for: HKUnit.count()))
-       }
-       healthStore.execute(query)
-   }
+    func getTodaysSteps(completion: @escaping (Double) -> Void) {
+        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        
+        let now = Date()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(0.0)
+                return
+            }
+            completion(sum.doubleValue(for: HKUnit.count()))
+        }
+        healthStore.execute(query)
+    }
+    
+    func getRemainingSteps(completion: @escaping (Double) -> Void) {
+        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+       
+        let statDate = dateFormatter.date(from: "2020-01-01")
+        let now = Date()
+        let startOfDay = Calendar.current.startOfDay(for: statDate ?? now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(0.0)
+                return
+            }
+            completion(sum.doubleValue(for: HKUnit.count()))
+        }
+        healthStore.execute(query)
+    }
     
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
