@@ -43,18 +43,18 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet weak var totalStack: UIStackView!
     
     let expiryDatePicker = MonthYearPickerView()
-
+    
     var closure : ((String) -> Void)?
-
+    
     @IBOutlet weak var txtName: TextFieldFont!
     @IBOutlet weak var txtNumber: TextFieldFont!
     @IBOutlet weak var txtEmail: TextFieldFont!
     @IBOutlet weak var txtAddress1: TextFieldFont!
-//    @IBOutlet weak var txtAddress2: TextFieldFont?
-//    @IBOutlet weak var txtCountry: TextFieldFont!
+    //    @IBOutlet weak var txtAddress2: TextFieldFont?
+    //    @IBOutlet weak var txtCountry: TextFieldFont!
     @IBOutlet weak var txtState: TextFieldFont!
     @IBOutlet weak var txtCity: TextFieldFont!
-//    @IBOutlet weak var txtZipCode: TextFieldFont!
+    //    @IBOutlet weak var txtZipCode: TextFieldFont!
     
     @IBOutlet weak var imgCardIcon: UIImageView?
     @IBOutlet weak var txtCard: TextFieldFont?
@@ -64,15 +64,15 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet weak var txtCardNumber: ThemeTextfield!
     @IBOutlet weak var txtExpDate: ThemeTextfield!
     @IBOutlet weak var txtCVV: ThemeTextfield!
-
+    
     
     // ----------------------------------------------------
     // MARK: - --------- Apple Pay Variables ---------
     // ----------------------------------------------------
-
+    
     @IBOutlet weak var viewApplePay: UIView?
     var applePayButton = PKPaymentButton(paymentButtonType: .buy, paymentButtonStyle: .black)
-    var merchantId = "TEST3000000151"
+    var merchantId = "TEST3000000151" //"3000000151"
     var appIdentifier = "merchant.\(Bundle.main.bundleIdentifier ?? "")"
     var merchantURL = "https://www.movecoins.net/admin/pg/apple/"
     var countryCode = "SA"
@@ -84,13 +84,13 @@ class ConfirmPurchaseViewController: UIViewController {
     
     // MARK: - Properties
     var transaction: Transaction = Transaction()
-
+    
     // the object used to communicate with the merchant's api
     var merchantAPI: MerchantAPI!
     // the ojbect used to communicate with the gateway
     var gateway: Gateway!
     
-
+    
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
@@ -112,12 +112,12 @@ class ConfirmPurchaseViewController: UIViewController {
         
         
         
-//        txtName.text = "Rahul"
-//        txtNumber.text = "1102298338"
-//        txtEmail.text = "asdas@gdd.com"
-//        txtAddress1.text = "asdasd"
-//        txtState.text = "asdasd"
-//        txtCity.text = "asdad"
+                txtName.text = "Rahul"
+                txtNumber.text = "1102298338"
+                txtEmail.text = "asdas@gdd.com"
+                txtAddress1.text = "asdasd"
+                txtState.text = "asdasd"
+                txtCity.text = "asdad"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -163,7 +163,7 @@ class ConfirmPurchaseViewController: UIViewController {
         applePayButton.frame = viewApplePay?.bounds ?? CGRect.zero
         applePayButton.layer.cornerRadius = applePayButton.frame.height/2
         applePayButton.layer.masksToBounds = true
-
+        
     }
     
     func setupView() {
@@ -206,7 +206,7 @@ class ConfirmPurchaseViewController: UIViewController {
             self.txtExpDate.text = string
         }
         txtExpDate.inputView = expiryDatePicker
-
+        
     }
     
     func setupProductData() {
@@ -224,7 +224,7 @@ class ConfirmPurchaseViewController: UIViewController {
             lblDelivery.text = product.deliveryCharge + " \(currency.localized)"
             lblTotal.text = product.totalPrice + " \(currency.localized)"
         }
-       
+        
         if let user = userData {
             lblAvailableBalance.text = user.coins ?? "0"
         }
@@ -260,7 +260,7 @@ class ConfirmPurchaseViewController: UIViewController {
                 let cardNumber = try txtCardNumber.validatedText(validationType: ValidatorType.cardNumber)
                 let expDate = try txtExpDate.validatedText(validationType: ValidatorType.expDate)
                 let cvv = try txtCVV.validatedText(validationType: ValidatorType.cvv)
-            
+                
                 orderDetails.card_holder_name = cardHolder
                 orderDetails.card_no = cardNumber
                 orderDetails.card_expiry_date = expDate
@@ -270,7 +270,7 @@ class ConfirmPurchaseViewController: UIViewController {
             else
             {
                 orderDetails.payment_type = "apple"
-
+                
             }
             
             orderDetails.name = name
@@ -278,10 +278,10 @@ class ConfirmPurchaseViewController: UIViewController {
             orderDetails.email = email
             orderDetails.address1 = address1
             //                        orderDetails.address2 = "address2"
-//            orderDetails.country = "India"
+            //            orderDetails.country = "India"
             orderDetails.state = state
             orderDetails.city = city
-//            orderDetails.zip = "123456"
+            //            orderDetails.zip = "123456"
             orderDetails.product_id = product.iD
             orderDetails.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
             //                orderDetails.user_redeemed_coins = moveCoins
@@ -306,7 +306,7 @@ class ConfirmPurchaseViewController: UIViewController {
         
         var availableCoins = 0
         var productCoins = 0
-
+        
         if let coins = userData?.coins {
             availableCoins = Int(coins) ?? 0
         }
@@ -346,14 +346,14 @@ class ConfirmPurchaseViewController: UIViewController {
         }
     }
     
-     func btnApplePayPurchaseTapped() {
+    func btnApplePayPurchaseTapped() {
         
         guard let request = self.request, let apvc = PKPaymentAuthorizationViewController(paymentRequest: request) else { return }
         apvc.delegate = self
         self.present(apvc, animated: true, completion: nil)
     }
     
-   @IBAction func setupPaymentForApplePay(_ sender: UIButton)
+    @IBAction func setupPaymentForApplePay(_ sender: UIButton)
     {
         
         if validateCoins() {
@@ -363,16 +363,16 @@ class ConfirmPurchaseViewController: UIViewController {
         
     }
     /// Called to configure the view controller with the gateway and merchant service information.
-      func configure(merchantId: String, region: GatewayRegion, merchantServiceURL: URL, applePayMerchantIdentifier: String?) {
-          gateway = Gateway(region: region, merchantId: merchantId)
-          merchantAPI = MerchantAPI(url: merchantServiceURL)
-          transaction.applePayMerchantIdentifier = applePayMerchantIdentifier
-      }
+    func configure(merchantId: String, region: GatewayRegion, merchantServiceURL: URL, applePayMerchantIdentifier: String?) {
+        gateway = Gateway(region: region, merchantId: merchantId)
+        merchantAPI = MerchantAPI(url: merchantServiceURL)
+        transaction.applePayMerchantIdentifier = applePayMerchantIdentifier
+    }
     
     func createSession() {
         // update the UI
         UtilityClass.showHUD()
-
+        
         merchantAPI.createSession { (result) in
             DispatchQueue.main.async {
                 // stop the activity indictor
@@ -388,7 +388,7 @@ class ConfirmPurchaseViewController: UIViewController {
                 
                 // The session was created successfully
                 self.transaction.session = GatewaySession(id: session, apiVersion: apiVersion)
-//                self.stepCompleted()
+                //                self.stepCompleted()
                 self.collectCardInfo()
             }
         }
@@ -397,7 +397,7 @@ class ConfirmPurchaseViewController: UIViewController {
     func collectCardInfo()
     {
         let paymentItem = PKPaymentSummaryItem.init(label: product.name, amount: NSDecimalNumber(value: Float(product.price) ?? 0), type: .final)
-
+        
         if PKPaymentAuthorizationViewController.canMakePayments() {
             request = PKPaymentRequest()
             request?.paymentSummaryItems = [paymentItem]
@@ -420,40 +420,40 @@ class ConfirmPurchaseViewController: UIViewController {
 
 extension ConfirmPurchaseViewController : UITextFieldDelegate {
     
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//           if textField == txtExpDate{
-//               textField.inputView = expiryDatePicker
-//               
-//           }
-//       }
-       
-       func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-           
-           if string == "" {
-               return true
-           }
-
-           guard let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else { return true }
-
-           if textField == txtCardNumber {
-               
-               if ((range.location >= 19) || (textField.text?.count ?? 0 >= 19) ){
-                   return false
-               }
-               textField.text = currentText.grouping(every: 4, with: " ")
-               return false
+    //    func textFieldDidBeginEditing(_ textField: UITextField) {
+    //           if textField == txtExpDate{
+    //               textField.inputView = expiryDatePicker
+    //
+    //           }
+    //       }
     
-           } else if textField == txtCVV {
-               if (range.location >= 4) {
-                   return false
-               }
-           }
-           return true
-       }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string == "" {
+            return true
+        }
+        
+        guard let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else { return true }
+        
+        if textField == txtCardNumber {
+            
+            if ((range.location >= 19) || (textField.text?.count ?? 0 >= 19) ){
+                return false
+            }
+            textField.text = currentText.grouping(every: 4, with: " ")
+            return false
+            
+        } else if textField == txtCVV {
+            if (range.location >= 4) {
+                return false
+            }
+        }
+        return true
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == txtMoveCoins {
-//            viewPayableAmount.isHidden = true
+            //            viewPayableAmount.isHidden = true
             if txtMoveCoins.text != "" {
                 var enteredCoins = 0.0
                 var productCoins = 0.0
@@ -490,7 +490,7 @@ extension ConfirmPurchaseViewController : UITextFieldDelegate {
                     discount = productPrice * percentage
                     finalPrice = productPrice - discount
                     lblTotal.text = String(finalPrice)
-//                    viewPayableAmount.isHidden = false
+                    //                    viewPayableAmount.isHidden = false
                 }
             }
         }
@@ -523,7 +523,7 @@ extension ConfirmPurchaseViewController  {
         OrderWebserviceSubclass.placeOrder(orderModel: model){ (json, status, res) in
             
             UtilityClass.hideHUD()
-        
+            
             if status{
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
                 self.webserviceForUserDetails()
@@ -539,35 +539,35 @@ extension ConfirmPurchaseViewController  {
     }
     
     func webserviceForUserDetails(){
+        
+        //        UtilityClass.showHUD()
+        
+        let requestModel = UserDetailModel()
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        requestModel.UserID = id
+        
+        UserWebserviceSubclass.userDetails(userDetailModel: requestModel){ (json, status, res) in
             
-    //        UtilityClass.showHUD()
+            //            UtilityClass.hideHUD()
             
-            let requestModel = UserDetailModel()
-            guard let id = SingletonClass.SharedInstance.userData?.iD else {
-                return
-            }
-            requestModel.UserID = id
-            
-            UserWebserviceSubclass.userDetails(userDetailModel: requestModel){ (json, status, res) in
-               
-    //            UtilityClass.hideHUD()
-                
-                if status {
-                    let responseModel = LoginResponseModel(fromJson: json)
-                    do{
-                        try UserDefaults.standard.set(object: responseModel.data, forKey: UserDefaultKeys.kUserProfile)
-                        SingletonClass.SharedInstance.userData = responseModel.data
-//                        self.userData = responseModel.data
-//                        self.setupHomeData()
-    //                    AppDelegateShared.notificationEnableDisable(notification: self.userData?.notification ?? "0")
-                    }catch{
-                        UtilityClass.showAlert(Message: error.localizedDescription)
-                    }
-                } else {
-                    UtilityClass.showAlertOfAPIResponse(param: res)
+            if status {
+                let responseModel = LoginResponseModel(fromJson: json)
+                do{
+                    try UserDefaults.standard.set(object: responseModel.data, forKey: UserDefaultKeys.kUserProfile)
+                    SingletonClass.SharedInstance.userData = responseModel.data
+                    //                        self.userData = responseModel.data
+                    //                        self.setupHomeData()
+                    //                    AppDelegateShared.notificationEnableDisable(notification: self.userData?.notification ?? "0")
+                }catch{
+                    UtilityClass.showAlert(Message: error.localizedDescription)
                 }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
+    }
     
     func okHandler() {
         self.navigationController?.popViewController(animated: true)
@@ -577,22 +577,22 @@ extension ConfirmPurchaseViewController  {
 extension ConfirmPurchaseViewController : PKPaymentAuthorizationViewControllerDelegate
 {
     public func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-          controller.dismiss(animated: true) {
-              self.dismiss(animated: true, completion: nil)
-          }
-      }
-      
-      func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-          applePayPayment = payment
+        controller.dismiss(animated: true) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        applePayPayment = payment
         transaction.applePayPayment = payment
-//          self.completion?(viewModel.transaction!)
+        //          self.completion?(viewModel.transaction!)
         updateWithPayerData()
-          completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
-      }
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
+    }
     
     func updateWithPayerData() {
         // update the UI
- 
+        
         guard let sessionId = transaction.session?.id, let apiVersion = transaction.session?.apiVersion else { return }
         
         // construct the Gateway Map with the desired parameters.
@@ -615,15 +615,15 @@ extension ConfirmPurchaseViewController : PKPaymentAuthorizationViewControllerDe
     // Call the gateway to update the session.
     fileprivate func updateSessionHandler(_ result: GatewayResult<GatewayMap>) {
         DispatchQueue.main.async {
-//            self.updateSessionActivityIndicator.stopAnimating()
+            //            self.updateSessionActivityIndicator.stopAnimating()
             
             guard case .success(_) = result else {
-//                self.stepErrored(message: "Error Updating Session", stepStatusImageView: self.updateSessionStatusImageView)
+                //                self.stepErrored(message: "Error Updating Session", stepStatusImageView: self.updateSessionStatusImageView)
                 return
             }
             
             // mark the step as completed
-//            self.stepCompleted(stepStatusImageView: self.updateSessionStatusImageView)
+            //            self.stepCompleted(stepStatusImageView: self.updateSessionStatusImageView)
             
             // check for 3DS enrollment
             self.check3dsEnrollment()
@@ -637,16 +637,16 @@ extension ConfirmPurchaseViewController {
     func check3dsEnrollment() {
         // if the transaction is an Apple Pay Transaction, 3DSecure is not supported.  Therfore, the app should skip this step and no longer provide a 3DSecureId
         guard !transaction.isApplePay else {
-//            check3dsActivityIndicator.isHidden = true
-//            check3dsStatusImageView.isHidden = true
-//            check3dsLabel?.attributedText = NSAttributedString(string: "Check 3DS Enrollment", attributes: [.strikethroughStyle: 1])
+            //            check3dsActivityIndicator.isHidden = true
+            //            check3dsStatusImageView.isHidden = true
+            //            check3dsLabel?.attributedText = NSAttributedString(string: "Check 3DS Enrollment", attributes: [.strikethroughStyle: 1])
             transaction.threeDSecureId = nil
             processPayment()
             return
         }
         
         // update the UI
-//        check3dsActivityIndicator.startAnimating()
+        //        check3dsActivityIndicator.startAnimating()
         
         // A redirect URL for 3D Secure that will redirect the browser back to a page on our merchant service after 3D Secure authentication
         let redirectURL = merchantAPI.merchantServerURL.absoluteString.appending("/3DSecureResult.php?3DSecureId=\(transaction.threeDSecureId!)")
@@ -656,7 +656,7 @@ extension ConfirmPurchaseViewController {
     
     func check3DSEnrollmentHandler(_ result: Result<GatewayMap>) {
         DispatchQueue.main.async {
-//            self.check3dsActivityIndicator.stopAnimating()
+            //            self.check3dsActivityIndicator.stopAnimating()
             if Int(self.transaction.session!.apiVersion)! <= 46 {
                 self.check3DSEnrollmentV46Handler(result)
             } else {
@@ -667,7 +667,7 @@ extension ConfirmPurchaseViewController {
     
     func check3DSEnrollmentV46Handler(_ result: Result<GatewayMap>) {
         guard case .success(let response) = result, let code = response[at: "gatewayResponse.3DSecure.summaryStatus"] as? String else {
-//            self.stepErrored(message: "Error checking 3DS Enrollment", stepStatusImageView: self.check3dsStatusImageView)
+            //            self.stepErrored(message: "Error checking 3DS Enrollment", stepStatusImageView: self.check3dsStatusImageView)
             return
         }
         
@@ -694,13 +694,13 @@ extension ConfirmPurchaseViewController {
     
     func check3DSEnrollmentv47Handler(_ result: Result<GatewayMap>) {
         guard case .success(let response) = result, let recommendaition = response[at: "gatewayResponse.response.gatewayRecommendation"] as? String else {
-//            self.stepErrored(message: "Error checking 3DS Enrollment", stepStatusImageView: self.check3dsStatusImageView)
+            //            self.stepErrored(message: "Error checking 3DS Enrollment", stepStatusImageView: self.check3dsStatusImageView)
             return
         }
         
         // if DO_NOT_PROCEED returned in recommendation, should stop transaction
         if recommendaition == "DO_NOT_PROCEED" {
-//            self.stepErrored(message: "3DS Do Not Proceed", stepStatusImageView: self.check3dsStatusImageView)
+            //            self.stepErrored(message: "3DS Do Not Proceed", stepStatusImageView: self.check3dsStatusImageView)
         }
         
         // if PROCEED in recommendation, and we have HTML for 3DS, perform 3DS
@@ -719,7 +719,7 @@ extension ConfirmPurchaseViewController {
         
         // Optionally customize the presentation
         threeDSecureView.title = "3-D Secure Auth"
-//        threeDSecureView.navBar.tintColor = brandColor
+        //        threeDSecureView.navBar.tintColor = brandColor
         
         // Start 3D Secure authentication by providing the view with the HTML content provided by the check enrollment step
         threeDSecureView.authenticatePayer(htmlBodyContent: simple, handler: handle3DS(authView:result:))
@@ -747,7 +747,7 @@ extension ConfirmPurchaseViewController {
         })
     }
     
- 
+    
 }
 
 // MARK: - 5. Process Payment
@@ -785,7 +785,7 @@ extension ConfirmPurchaseViewController {
                 withJSONObject: response.dictionary,
                 options: [.prettyPrinted]) {
                 let theJSONText = String(data: theJSONData,
-                                           encoding: .ascii)
+                                         encoding: .ascii)
                 orderDetails.payment_response = theJSONText ?? "-"
             }
             
@@ -799,10 +799,10 @@ extension ConfirmPurchaseViewController {
             return
         }
         
-//        guard case .success(let response) = result, "SUCCESS" == response[at: "gatewayResponse.result"] as? String else {
-//            self.stepErrored(message: "Unable to complete Pay Operation")
-//            return
-//        }
+        //        guard case .success(let response) = result, "SUCCESS" == response[at: "gatewayResponse.result"] as? String else {
+        //            self.stepErrored(message: "Unable to complete Pay Operation")
+        //            return
+        //        }
         
         
     }
@@ -812,15 +812,15 @@ extension ConfirmPurchaseViewController {
 // MARK: - Helpers
 extension ConfirmPurchaseViewController {
     fileprivate func stepErrored(message: String, detail: String? = nil) {
-
+        
     }
     
     fileprivate func stepCompleted() {
-
+        
     }
     
     fileprivate func setAction(action: @escaping (() -> Void), title: String) {
-
+        
     }
     
     fileprivate func randomID() -> String {
