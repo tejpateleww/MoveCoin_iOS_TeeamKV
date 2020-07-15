@@ -396,7 +396,8 @@ class ConfirmPurchaseViewController: UIViewController {
     
     func collectCardInfo()
     {
-        let paymentItem = PKPaymentSummaryItem.init(label: product.name, amount: NSDecimalNumber(value: Float(product.price) ?? 0), type: .final)
+//        let payableAmount = JSON(product.discountedPrice ?? 0).floatValue + JSON(product.deliveryCharge ?? 0).floatValue
+        let paymentItem = PKPaymentSummaryItem.init(label: product.name, amount: NSDecimalNumber(value: Float(product.totalPrice) ?? 0), type: .final)
         
         if PKPaymentAuthorizationViewController.canMakePayments() {
             request = PKPaymentRequest()

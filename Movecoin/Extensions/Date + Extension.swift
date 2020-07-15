@@ -12,13 +12,24 @@ import Foundation
 extension Date {
     var midnight: Date {
         var cal = Calendar.current
-        cal.timeZone = TimeZone(identifier: "Europe/Paris")!
+        cal.timeZone = TimeZone.current  // TimeZone(identifier: "Europe/Paris")!
         return cal.startOfDay(for: self)
     }
     var midday: Date {
         var cal = Calendar.current
-        cal.timeZone = TimeZone(identifier: "Europe/Paris")!
+        cal.timeZone = TimeZone.current  // TimeZone(identifier: "Europe/Paris")!
         return cal.date(byAdding: .hour, value: 12, to: self.midnight)!
+    }
+    
+    var startOfDay: Date {
+        return Calendar.current.startOfDay(for: self)
+    }
+
+    var endOfDay: Date {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.current.date(byAdding: components, to: startOfDay)!
     }
     
     var yesterday: Date {
@@ -52,6 +63,16 @@ extension Date {
     
     var oneHourBefore: Date {
         return Calendar.current.date(byAdding: .hour, value: -1, to: toDay)!
+    }
+    
+    func interval(ofComponent comp: Calendar.Component, fromDate date: Date) -> Int {
+
+        let currentCalendar = Calendar.current
+
+        guard let start = currentCalendar.ordinality(of: comp, in: .era, for: date) else { return 0 }
+        guard let end = currentCalendar.ordinality(of: comp, in: .era, for: self) else { return 0 }
+
+        return end - start
     }
     
     func getFormattedDate(dateFormate: String) -> String {

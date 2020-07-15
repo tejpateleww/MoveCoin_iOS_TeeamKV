@@ -167,19 +167,21 @@ class HomeViewController: UIViewController {
                     SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
                     SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     if Int(steps) > 0 {
+                        print(steps)
                          self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
                     }
                     self.startCountingSteps()
                 }
             }
-//            getRemainingSteps { (steps) in
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                    if Int(steps) > 0 {
+            getRemainingSteps { (steps) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    if Int(steps) > 0 {
+                        print(steps)
 //                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
-//                    }
-//                    self.startCountingSteps()
-//                }
-//            }
+                    }
+ //                   self.startCountingSteps()
+                }
+            }
         }
     }
     
@@ -255,10 +257,20 @@ class HomeViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
        
-        let statDate = dateFormatter.date(from: "2020-01-01")
+        var startOfDay = Date()
         let now = Date()
-        let startOfDay = Calendar.current.startOfDay(for: statDate ?? now)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
+        let statDate = dateFormatter.date(from: "2020-07-10")!
+        
+        let days = now.yesterday.interval(ofComponent: .day, fromDate: statDate)
+        if days >= 7 {
+            startOfDay = lastWeekDate.startOfDay
+        } else {
+            startOfDay = statDate.startOfDay
+        }
+        let endDate = now.yesterday.endOfDay
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endDate, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
             guard let result = result, let sum = result.sumQuantity() else {
