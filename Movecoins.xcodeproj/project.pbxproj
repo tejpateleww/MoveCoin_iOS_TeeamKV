@@ -208,6 +208,7 @@
 		46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51D8232F9D1600182B86 /* WalletViewController.swift */; };
 		46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DA232F9D3000182B86 /* StatisticsViewController.swift */; };
 		46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */; };
+		64D0EDA724C1A8C3004F683C /* ConvertStepsToCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0EDA624C1A8C3004F683C /* ConvertStepsToCoinModel.swift */; };
 		8105CB9D2473A218004EBD54 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105CB9C2473A218004EBD54 /* HTTPMethod.swift */; };
 		8130CD1B24645DE4000B9885 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8130CD1A24645DE4000B9885 /* WebKit.framework */; };
 		81892EFF2473EDBF006F2113 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81892EFE2473EDBF006F2113 /* Transaction.swift */; };
@@ -446,6 +447,7 @@
 		46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		477FF479109FF521DF9958AC /* Pods-Movecoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.debug.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4D633531C407587B2596F3 /* Pods-Movecoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.release.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.release.xcconfig"; sourceTree = "<group>"; };
+		64D0EDA624C1A8C3004F683C /* ConvertStepsToCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertStepsToCoinModel.swift; sourceTree = "<group>"; };
 		7E2BDC618FF3EEC01E0811AF /* Pods-Movecoins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoins.release.xcconfig"; path = "Target Support Files/Pods-Movecoins/Pods-Movecoins.release.xcconfig"; sourceTree = "<group>"; };
 		8105CB9C2473A218004EBD54 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		8130CD1A24645DE4000B9885 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -751,6 +753,7 @@
 				465E3508237BBF9C0023366C /* OTPverify.swift */,
 				461DC26023793A5A0092AC82 /* ForgotPassword.swift */,
 				466D4356238D4424004B9712 /* UserDetailModel.swift */,
+				64D0EDA624C1A8C3004F683C /* ConvertStepsToCoinModel.swift */,
 				464AE07723B4BBBD00826BA7 /* NearByUserModel.swift */,
 				464AE07E23B4C81A00826BA7 /* NearByUserDetailModel.swift */,
 				46814386238E8EE800D5A297 /* InviteFriendsModel.swift */,
@@ -1414,6 +1417,7 @@
 				4658FB5723B237D40014F7F2 /* ReceiverArr.swift in Sources */,
 				464AE07823B4BBBD00826BA7 /* NearByUserModel.swift in Sources */,
 				463BF57E234F018A0022C465 /* ProductDetailCollectionViewCell.swift in Sources */,
+				64D0EDA724C1A8C3004F683C /* ConvertStepsToCoinModel.swift in Sources */,
 				81C93932246EABB7005D3CF8 /* Coding.swift in Sources */,
 				461DC26323793A8E0092AC82 /* Login.swift in Sources */,
 				462D24EE23B32F7F0050C3F0 /* WeekStepsCount.swift in Sources */,

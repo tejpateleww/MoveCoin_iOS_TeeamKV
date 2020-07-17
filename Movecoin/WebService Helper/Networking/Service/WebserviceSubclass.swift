@@ -63,6 +63,11 @@ class UserWebserviceSubclass
         WebService.shared.requestMethod(api: .changePassword, httpMethod: .post, parameters: params, completion: completion)
     }
     
+    class func convertStepsToCoin( StepToCoinModel : ConvertStepsToCoinModel  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = StepToCoinModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .convertStepToCoin, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
     class func profileData( profileDataModel : ProfileData  ,completion: @escaping CompletionResponse ) {
         let  params : [String:String] = profileDataModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .profileData, httpMethod: .post, parameters: params, completion: completion)

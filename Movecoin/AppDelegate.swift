@@ -11,7 +11,7 @@ import IQKeyboardManagerSwift
 import Fabric
 import Crashlytics
 import Firebase
-import SocketIO
+import SocketIO 
 import CoreLocation
 import CoreMotion
 import FBSDKCoreKit

@@ -33,6 +33,12 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
+            if loggedIn as! Bool {
+                getUserData()
+            }
+        }
         navigationBarSetUp()
         webserviceforAPPInit()
         playLogoAnimation()
@@ -73,7 +79,7 @@ class SplashViewController: UIViewController {
             
             if loggedIn as! Bool {
                 AppDelegateShared.GoToHome()
-                getUserData()
+//                getUserData()
             }else {
                 AppDelegateShared.GoToLogin()
             }
@@ -90,13 +96,14 @@ class SplashViewController: UIViewController {
 
         var strParam = String()
         
-        strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios"
+        strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
       
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(status)
             self.initStatus = status
             if status{
                  let initResponseModel = InitResponse(fromJson: json)
+                SingletonClass.SharedInstance.lastUpdatedStepsAt = initResponseModel.lastUpdateStepAt
                 SingletonClass.SharedInstance.productType = initResponseModel.category
                 SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
             }else{
