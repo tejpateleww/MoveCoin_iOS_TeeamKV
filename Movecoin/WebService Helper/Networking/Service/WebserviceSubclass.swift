@@ -180,6 +180,14 @@ class SellerWebserviceSubclass
 
 class OrderWebserviceSubclass
 {
+    
+    
+    class func getSessionID( strURL : String  ,completion: @escaping CompletionResponse ){
+         WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
+     }
+    
+ 
+    
     class func placeOrder( orderModel : PlaceOrder  ,completion: @escaping CompletionResponse ) {
         let  params : [String:String] = orderModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .placeOrder, httpMethod: .post, parameters: params, completion: completion)

@@ -436,7 +436,7 @@ extension AppDelegate {
         print("USER INFo : ",userInfo)
         
         
-        if userInfo["gcm.notification.type"] as! String == "chat" {
+        if userInfo["gcm.notification.type"] as? String == "chat" {
             
             if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
                 if let vc : ChatViewController = (vc as? ChatViewController) {
@@ -479,13 +479,39 @@ extension AppDelegate {
                 //                NotificationCenter.default.post(name: NotificationBadges, object: content)
                 completionHandler([.alert, .sound])
             }
-        } else if userInfo["gcm.notification.type"] as! String == "friend_request" {
+        } else if userInfo["gcm.notification.type"] as? String == "friend_request" {
             loadFriendsRequest()
             completionHandler([.alert, .sound])
-        }else if userInfo["gcm.notification.type"] as! String == "coins_transfer" {
+        }else if userInfo["gcm.notification.type"] as? String == "coins_transfer" {
             loadWallet()
             completionHandler([.alert, .sound])
         }
+        else if userInfo["gcm.notification.type"] as? String == "WebviewS" {
+            if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+            {
+                topViewController.dismiss(animated: true) {
+                    
+//                    UtilityClass.showAlert(Message: "Purchase Successfull")
+                    UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull", ButtonTitle: "OK") {
+                        UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+            completionHandler([.alert, .sound])
+        }
+        else if userInfo["gcm.notification.type"] as? String == "WebviewF" {
+                    if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+                    {
+                        topViewController.dismiss(animated: true) {
+                            
+        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
+                            UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull", ButtonTitle: "OK") {
+//                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+                              }
+                        }
+                    }
+                    completionHandler([.alert, .sound])
+                }
     }
     
     

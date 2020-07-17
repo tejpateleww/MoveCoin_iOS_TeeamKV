@@ -72,7 +72,7 @@ class ConfirmPurchaseViewController: UIViewController {
     
     @IBOutlet weak var viewApplePay: UIView?
     var applePayButton = PKPaymentButton(paymentButtonType: .buy, paymentButtonStyle: .black)
-    var merchantId = "TEST3000000151" //"3000000151"
+    var merchantId = "3000000151" //"3000000151"
     var appIdentifier = "merchant.\(Bundle.main.bundleIdentifier ?? "")"
     var merchantURL = "https://www.movecoins.net/admin/pg/apple/"
     var countryCode = "SA"
@@ -112,12 +112,12 @@ class ConfirmPurchaseViewController: UIViewController {
         
         
         
-                txtName.text = "Rahul"
-                txtNumber.text = "1102298338"
-                txtEmail.text = "asdas@gdd.com"
-                txtAddress1.text = "asdasd"
-                txtState.text = "asdasd"
-                txtCity.text = "asdad"
+        txtName.text = "Rahul"
+        txtNumber.text = "1102298338"
+        txtEmail.text = "asdas@gdd.com"
+        txtAddress1.text = "asdasd"
+        txtState.text = "asdasd"
+        txtCity.text = "asdad"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -288,7 +288,7 @@ class ConfirmPurchaseViewController: UIViewController {
             
             if(isFromApplePay)
             {
-                configure(merchantId: merchantId, region: .mtf, merchantServiceURL: URL(string: merchantURL) ?? URL(string: "")!, applePayMerchantIdentifier: appIdentifier)
+                configure(merchantId: merchantId, region: .asiaPacific, merchantServiceURL: URL(string: merchantURL) ?? URL(string: "")!, applePayMerchantIdentifier: appIdentifier)
                 createSession()
             }
             else
@@ -350,7 +350,10 @@ class ConfirmPurchaseViewController: UIViewController {
         
         guard let request = self.request, let apvc = PKPaymentAuthorizationViewController(paymentRequest: request) else { return }
         apvc.delegate = self
-        self.present(apvc, animated: true, completion: nil)
+        DispatchQueue.main.async {
+                self.present(apvc, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func setupPaymentForApplePay(_ sender: UIButton)
@@ -373,30 +376,38 @@ class ConfirmPurchaseViewController: UIViewController {
         // update the UI
         UtilityClass.showHUD()
         
-        merchantAPI.createSession { (result) in
-            DispatchQueue.main.async {
-                // stop the activity indictor
-                UtilityClass.hideHUD()
-                guard case .success(let response) = result,
-                    "SUCCESS" == response[at: "gatewayResponse.result"] as? String,
-                    let session = response[at: "gatewayResponse.session.id"] as? String,
-                    let apiVersion = response[at: "apiVersion"] as? String else {
-                        // if anything was missing, flag the step as having errored
-                        self.stepErrored(message: "Error Creating Session")
-                        return
-                }
-                
-                // The session was created successfully
-                self.transaction.session = GatewaySession(id: session, apiVersion: apiVersion)
-                //                self.stepCompleted()
+        //        merchantAPI.createSession { (result) in
+        //            DispatchQueue.main.async {
+        //                // stop the activity indictor
+        //                UtilityClass.hideHUD()
+        //                guard case .success(let response) = result,
+        //                    "SUCCESS" == response[at: "gatewayResponse.result"] as? String,
+        //                    let session = response[at: "gatewayResponse.session.id"] as? String,
+        //                    let apiVersion = response[at: "apiVersion"] as? String else {
+        //                        // if anything was missing, flag the step as having errored
+        //                        self.stepErrored(message: "Error Creating Session")
+        //                        return
+        //                }
+        
+        OrderWebserviceSubclass.getSessionID(strURL: "https://movecoins.net/admin/api/order/generate_session") { (json, status, response) in
+            UtilityClass.hideHUD()
+            if(status)
+            {
+                self.transaction.session = GatewaySession(id: json["session"].string ?? "", apiVersion: json["version"].string ?? "")
                 self.collectCardInfo()
             }
+            
         }
+        
+        // The session was created successfully
+        //                self.stepCo//mpleted()
+        //            }
+        //        }
     }
     
     func collectCardInfo()
     {
-//        let payableAmount = JSON(product.discountedPrice ?? 0).floatValue + JSON(product.deliveryCharge ?? 0).floatValue
+        //        let payableAmount = JSON(product.discountedPrice ?? 0).floatValue + JSON(product.deliveryCharge ?? 0).floatValue
         let paymentItem = PKPaymentSummaryItem.init(label: product.name, amount: NSDecimalNumber(value: Float(product.totalPrice) ?? 0), type: .final)
         
         if PKPaymentAuthorizationViewController.canMakePayments() {
@@ -527,11 +538,19 @@ extension ConfirmPurchaseViewController  {
             
             if status{
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                self.webserviceForUserDetails()
-                self.closure?("product purchased")
-                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
-                    self.navigationController?.popViewController(animated: true)
-                })
+                
+                if (!(json["html"].string?.isEmpty ?? true))
+                {
+                    self.begin3DSAuth(simple: json["html"].string ?? "")
+                }
+                else
+                {
+                    self.webserviceForUserDetails()
+                    self.closure?("product purchased")
+                    UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                }
             }
             else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
@@ -593,7 +612,7 @@ extension ConfirmPurchaseViewController : PKPaymentAuthorizationViewControllerDe
     
     func updateWithPayerData() {
         // update the UI
-        
+        UtilityClass.showHUD()
         guard let sessionId = transaction.session?.id, let apiVersion = transaction.session?.apiVersion else { return }
         
         // construct the Gateway Map with the desired parameters.
@@ -620,6 +639,11 @@ extension ConfirmPurchaseViewController : PKPaymentAuthorizationViewControllerDe
             
             guard case .success(_) = result else {
                 //                self.stepErrored(message: "Error Updating Session", stepStatusImageView: self.updateSessionStatusImageView)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    UtilityClass.showAlert(Message: "Error in payment")
+                    UtilityClass.hideHUD()
+                }
+                
                 return
             }
             
@@ -716,6 +740,13 @@ extension ConfirmPurchaseViewController {
     fileprivate func begin3DSAuth(simple: String) {
         // instatniate the Gateway 3DSecureViewController and present it
         let threeDSecureView = Gateway3DSecureViewController(nibName: nil, bundle: nil)
+//        threeDSecureView.modalPresentationStyle = .fullScreen
+        if #available(iOS 13.0, *) {
+            threeDSecureView.isModalInPresentation = true
+        } else {
+            // Fallback on earlier versions
+        }
+
         present(threeDSecureView, animated: true)
         
         // Optionally customize the presentation
@@ -756,6 +787,7 @@ extension ConfirmPurchaseViewController {
     /// Processes the payment by completing the session with the gateway.
     func processPayment() {
         // update the UI
+        UtilityClass.showHUD()
         merchantAPI.completeSession(transaction: transaction) { (result) in
             DispatchQueue.main.async {
                 self.processPaymentHandler(result: result)
@@ -765,20 +797,20 @@ extension ConfirmPurchaseViewController {
     
     
     func processPaymentHandler(result: Result<GatewayMap>) {
-        
+        UtilityClass.hideHUD()
         switch result {
         case .success(let response):
             
-            if let dictResponse = response["gatewayResponse"] as? [String:Any]
-            {
-                if let orderDict = dictResponse["order"] as? [String:Any]
+//            if let dictResponse = response["gatewayResponse"] as? [String:Any]
+//            {
+                if let orderDict = response["order"] as? [String:Any]
                 {
                     if let strOrderID = orderDict["id"] as? String
                     {
                         orderDetails.transaction_id = strOrderID
                     }
                 }
-            }
+//            }
             
             print(JSON(response).string ?? "")
             

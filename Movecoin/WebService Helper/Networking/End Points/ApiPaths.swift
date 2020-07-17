@@ -120,4 +120,5 @@ enum ApiKey: String{
 //    case placeOrder = "order/place_order"
     case placeOrder = "order/add_order"
     case purchaseHistory = "Order/purchase_history"
+    case transactionApplePay = "Order/apple_pay"
 }

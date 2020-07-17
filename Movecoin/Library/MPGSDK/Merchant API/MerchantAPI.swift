@@ -15,6 +15,7 @@
  */
 
 import Foundation
+
 //import MPGSDK
 
 enum Result<T> {
@@ -40,7 +41,7 @@ class MerchantAPI {
     }
     
     func createSession(completion: @escaping (Result<GatewayMap>) -> Void) {
-        issueRequest(path: "session.php", method: "POST", completion: completion)
+        issueRequest(path: "", method: "GET", completion: completion)
     }
     
     func check3DSEnrollment(transaction: Transaction, redirectURL: String, completion: @escaping (Result<GatewayMap>) -> Void) {
@@ -58,7 +59,7 @@ class MerchantAPI {
     func completeSession(transaction: Transaction, completion: @escaping (Result<GatewayMap>) -> Void) {
         var payload = GatewayMap(["apiOperation": "PAY"])
         payload[at: "sourceOfFunds.type"] =  "CARD"
-        payload[at: "transaction.frequency"] = "SINGLE"
+//        payload[at: "transaction.frequency"] = "SINGLE"
         payload[at: "transaction.source"] = "INTERNET"
         payload[at: "order.amount"] = transaction.amountString
         payload[at: "order.currency"] = transaction.currency
@@ -71,9 +72,34 @@ class MerchantAPI {
         }
         
         let query = [URLQueryItem(name: "order", value: transaction.orderId), URLQueryItem(name: "transaction", value: transaction.id)]
-        issueRequest(path: "transaction.php", method: "PUT", query: query, body: payload, completion: completion)
+        EWWCustomTransactionMethod(path: "", method: "POST", query: query, body: payload, completion: completion)
         
     }
+    
+    
+    func EWWCustomTransactionMethod(path: String, method: String, query: [URLQueryItem]? = nil, body: GatewayMap? = nil, completion: @escaping (Result<GatewayMap>) -> Void)
+    {
+        var completeURLComp = URLComponents(url: URL(string: NetworkEnvironment.baseURL + ApiKey.transactionApplePay.rawValue) ?? URL(string: "")!, resolvingAgainstBaseURL: false)!
+        completeURLComp.queryItems = query
+        var request = URLRequest(url: completeURLComp.url!)
+        
+        request.httpMethod = method
+        
+        if let body = body {
+            let encoder = JSONEncoder()
+            request.httpBody = try? encoder.encode(body)
+        }
+        request.setValue(NetworkEnvironment.headers["x-api-key"], forHTTPHeaderField: UserDefaultKeys.kX_API_KEY)
+
+        print(nsdataToJSON(data: request.httpBody ?? Data()) ?? "")
+        
+        
+        
+        
+        let task = urlSession.dataTask(with: request, completionHandler: responseHandler(completion))
+        task.resume()
+    }
+    
     func nsdataToJSON(data: Data) -> AnyObject? {
         do {
             return try JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers) as AnyObject
