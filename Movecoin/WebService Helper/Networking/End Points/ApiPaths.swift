@@ -32,19 +32,20 @@ enum NetworkEnvironment: String {
     
     static var headers : [String:String]
     {
-        
         if UserDefaults.standard.object(forKey: UserDefaultKeys.kIsLogedIn) != nil {
             
             if UserDefaults.standard.object(forKey: UserDefaultKeys.kIsLogedIn) as? Bool == true {
                 
                 if let key = UserDefaults.standard.value(forKey: UserDefaultKeys.kX_API_KEY) {
-                    print("x-api-key : \(key)")
+                    print("key : \(kKey),  x-api-key : \(key)")
                     return ["key":kKey, "x-api-key": key as! String]
                 }else{
+                    print("key : \(kKey)")
                     return ["key":kKey]
                 }
             }
         }
+        print("key : \(kKey)")
         return ["key":kKey]
     }
     
@@ -87,6 +88,7 @@ enum ApiKey: String{
     case profileData = "user/profile_data"
     case profileUpdate = "user/profile_update"
     case userDetails = "user/detail_user"
+    case convertStepToCoin = "user/convert_step_tocoin/"
     case updateSteps = "User/update_steps/"
     case stepsHistory = "User/steps_history/"
     case coinsEarning = "User/coins_earning_history/"

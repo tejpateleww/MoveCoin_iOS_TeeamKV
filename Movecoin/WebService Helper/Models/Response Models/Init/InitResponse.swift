@@ -13,6 +13,7 @@ class InitResponse : Codable {
     var coinsDiscountRelation : CoinsDiscountRelation!
     var shareLink : String!
     var status : Bool!
+    var lastUpdateStepAt : String!
     
     init(){
         
@@ -37,6 +38,7 @@ class InitResponse : Codable {
         }
         shareLink = json["ShareLink"].stringValue
         status = json["status"].boolValue
+        lastUpdateStepAt = json["last_update_step_at"].stringValue
     }
 
     /**
@@ -61,6 +63,9 @@ class InitResponse : Codable {
         if status != nil{
             dictionary["status"] = status
         }
+        if lastUpdateStepAt != nil{
+            dictionary["last_update_step_at"] = lastUpdateStepAt
+        }
         return dictionary
     }
 
@@ -74,6 +79,7 @@ class InitResponse : Codable {
         coinsDiscountRelation = aDecoder.decodeObject(forKey: "coins_discount_relation") as? CoinsDiscountRelation
         shareLink = aDecoder.decodeObject(forKey: "ShareLink") as? String
         status = aDecoder.decodeObject(forKey: "status") as? Bool
+        lastUpdateStepAt = aDecoder.decodeObject(forKey: "last_update_step_at") as? String
     }
 
     /**
@@ -94,6 +100,8 @@ class InitResponse : Codable {
         if status != nil{
             aCoder.encode(status, forKey: "status")
         }
-
+        if lastUpdateStepAt != nil{
+            aCoder.encode(lastUpdateStepAt, forKey: "last_update_step_at")
+        }
     }
 }

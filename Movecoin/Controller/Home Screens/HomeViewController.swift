@@ -161,6 +161,14 @@ class HomeViewController: UIViewController {
     
     func healthKitData(){
         if checkAuthorization() {
+            getRemainingSteps { (steps) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    if Int(steps) > 0 {
+                        print(steps)
+                        self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
+                    }
+                }
+            }
             getTodaysSteps { (steps) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                     self.lblTodaysStepCount.text = String(Int(steps))
@@ -168,18 +176,9 @@ class HomeViewController: UIViewController {
                     SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     if Int(steps) > 0 {
                         print(steps)
-                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+                        self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
                     }
                     self.startCountingSteps()
-                }
-            }
-            getRemainingSteps { (steps) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    if Int(steps) > 0 {
-                        print(steps)
-//                         self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
-                    }
- //                   self.startCountingSteps()
                 }
             }
         }
@@ -261,7 +260,9 @@ class HomeViewController: UIViewController {
         let now = Date()
         
         let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
-        let statDate = dateFormatter.date(from: "2020-07-10")!
+        guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
+        if lastUpdatedStepsAt.isBlank { return }
+        let statDate = dateFormatter.date(from: lastUpdatedStepsAt)!
         
         let days = now.yesterday.interval(ofComponent: .day, fromDate: statDate)
         if days >= 7 {
@@ -326,6 +327,32 @@ extension HomeViewController {
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }
             } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceforConvertStepToCoin(stepsCount : String){
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        
+        guard let lastDate = SingletonClass.SharedInstance.lastUpdatedStepsAt else {
+            return
+        }
+        
+        let model = ConvertStepsToCoinModel()
+        model.previous_date = lastDate
+        model.steps = stepsCount
+        model.user_id = id
+        
+        UserWebserviceSubclass.convertStepsToCoin(StepToCoinModel: model) { (json, status, res) in
+            print(status)
+            
+            if status{
+               print("convert steps to coins api successfully run")
+            }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }

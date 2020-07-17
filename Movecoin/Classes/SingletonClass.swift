@@ -18,6 +18,7 @@ class SingletonClass: NSObject {
     var myCurrentLocation : CLLocation?
    
     var DeviceToken :String = "123123123123123"
+    var lastUpdatedStepsAt : String?
     var userData : UserData?
     var productType : [Category]?
     var coinsDiscountRelation : CoinsDiscountRelation?
