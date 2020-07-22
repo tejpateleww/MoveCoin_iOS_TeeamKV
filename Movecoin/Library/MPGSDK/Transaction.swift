@@ -28,9 +28,9 @@ struct Transaction {
     var session: GatewaySession?
     
     // basic transaction properties
-    var amount: NSDecimalNumber = 1.0
-    var amountString = "1.00"
-    var amountFormatted = "$1.00"
+    var amount: NSDecimalNumber?//NSDecimalNumber = 1.0
+    var amountString : String?//= "1.00"
+    var amountFormatted :String?//= "$1.00"
     var currency = "SAR"
     var summary = "Some transaction"
     
@@ -68,7 +68,7 @@ struct Transaction {
     var pkPaymentRequest: PKPaymentRequest? {
         guard let merchantId = applePayMerchantIdentifier else { return nil }
         let request = PKPaymentRequest()
-        request.paymentSummaryItems = [PKPaymentSummaryItem(label: summary, amount: amount, type: .final)]
+        request.paymentSummaryItems = [PKPaymentSummaryItem(label: summary, amount: amount ?? 0.0, type: .final)]
         request.merchantIdentifier = merchantId
         request.countryCode = countryCode
         request.currencyCode = currency

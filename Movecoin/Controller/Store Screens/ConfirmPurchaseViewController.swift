@@ -409,7 +409,9 @@ class ConfirmPurchaseViewController: UIViewController {
     {
         //        let payableAmount = JSON(product.discountedPrice ?? 0).floatValue + JSON(product.deliveryCharge ?? 0).floatValue
         let paymentItem = PKPaymentSummaryItem.init(label: product.name, amount: NSDecimalNumber(value: Float(product.totalPrice) ?? 0), type: .final)
-        
+        transaction.amount = NSDecimalNumber(value: Float(product.totalPrice) ?? 0)
+        transaction.amountString = product.totalPrice ?? "0"
+        transaction.amountFormatted = "\(transaction.currency) \(product.totalPrice ?? "0")"
         if PKPaymentAuthorizationViewController.canMakePayments() {
             request = PKPaymentRequest()
             request?.paymentSummaryItems = [paymentItem]
@@ -788,6 +790,7 @@ extension ConfirmPurchaseViewController {
     func processPayment() {
         // update the UI
         UtilityClass.showHUD()
+        
         merchantAPI.completeSession(transaction: transaction) { (result) in
             DispatchQueue.main.async {
                 self.processPaymentHandler(result: result)
