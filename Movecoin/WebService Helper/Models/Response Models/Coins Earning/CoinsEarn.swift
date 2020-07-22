@@ -14,6 +14,7 @@ class CoinsEarn : Codable {
     var iD : String!
     var steps : String!
     var userID : String!
+    var previousDate : String!
 
     init(){
         
@@ -31,6 +32,7 @@ class CoinsEarn : Codable {
         iD = json["ID"].stringValue
         steps = json["Steps"].stringValue
         userID = json["UserID"].stringValue
+        previousDate = json["previous_date"].stringValue
 	}
 
 	/**
@@ -54,6 +56,9 @@ class CoinsEarn : Codable {
         if userID != nil{
         	dictionary["UserID"] = userID
         }
+        if previousDate != nil{
+            dictionary["previous_date"] = previousDate
+        }
 		return dictionary
 	}
 
@@ -68,6 +73,7 @@ class CoinsEarn : Codable {
 		iD = aDecoder.decodeObject(forKey: "ID") as? String
 		steps = aDecoder.decodeObject(forKey: "Steps") as? String
 		userID = aDecoder.decodeObject(forKey: "UserID") as? String
+        previousDate = aDecoder.decodeObject(forKey: "previous_date") as? String
 	}
 
     /**
@@ -91,7 +97,9 @@ class CoinsEarn : Codable {
 		if userID != nil{
 			aCoder.encode(userID, forKey: "UserID")
 		}
-
+        if previousDate != nil{
+            aCoder.encode(previousDate, forKey: "previous_date")
+        }
 	}
 
 }

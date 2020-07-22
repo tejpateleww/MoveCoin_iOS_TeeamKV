@@ -64,6 +64,8 @@ class StatisticsViewController: UIViewController {
         // Tableview setup
         tblStatistics.delegate = self
         tblStatistics.dataSource = self
+        tblStatistics.estimatedRowHeight = 60
+        tblStatistics.rowHeight = UITableView.automaticDimension
         tblStatistics.tableFooterView = UIView.init(frame: CGRect.zero)
         lblNoDataFound.isHidden = true
         lblTitle.font = UIFont.semiBold(ofSize: 21)
@@ -84,7 +86,8 @@ class StatisticsViewController: UIViewController {
 extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+//        return 60
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +98,7 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsTableViewCell.className) as! StatisticsTableViewCell
         cell.selectionStyle = .none
         cell.coinsEarnModel = coinsConvertedList[indexPath.row]
+        cell.lblSteps.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
 //        localizeUI(parentView: cell.contentView)
         return cell
     }

@@ -359,7 +359,7 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBAction func setupPaymentForApplePay(_ sender: UIButton)
     {
         
-        if validateCoins() {
+         if validateCoins() {
             print("Purchase")
             self.validate(isFromApplePay: true)
         }

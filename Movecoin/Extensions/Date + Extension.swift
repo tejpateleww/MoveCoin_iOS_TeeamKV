@@ -10,6 +10,7 @@ import Foundation
 
 
 extension Date {
+    
     var midnight: Date {
         var cal = Calendar.current
         cal.timeZone = TimeZone.current  // TimeZone(identifier: "Europe/Paris")!

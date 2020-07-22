@@ -67,6 +67,19 @@ class UtilityClass : NSObject {
         return nil
     }
     
+    class func getDate(dateString: String, dateFormate: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" // This formate is input formated .
+        let str = dateFormatter.date(from: dateString)!
+        
+        dateFormatter.dateFormat = dateFormate // Output Formated
+        let formateDate = dateFormatter.string(from:str)
+        
+        print ("Print :\(dateFormatter.date(from: formateDate))")
+        return dateFormatter.date(from: formateDate)!
+    }
+    
     // ----------------------------------------------------
     //MARK:- --------- Alert Methods ---------
     // ----------------------------------------------------
