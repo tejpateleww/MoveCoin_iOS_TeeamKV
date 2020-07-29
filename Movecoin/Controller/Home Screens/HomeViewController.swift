@@ -162,25 +162,20 @@ class HomeViewController: UIViewController {
     func healthKitData(){
         if checkAuthorization() {
             getRemainingSteps { (steps) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    if Int(steps) > 0 {
-                        print(steps)
-                        self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
-                    }
+                //                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                print("Previous Steps : ",steps)
+                if Int(steps) > 0 {
+                    
+                    self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
                 }
-            }
-            getTodaysSteps { (steps) in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                    self.lblTodaysStepCount.text = String(Int(steps))
-                    SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
-                    SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-                    if Int(steps) > 0 {
-                        print(steps)
-                        self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
-                    }
-                    self.startCountingSteps()
+                else
+                {
+                    self.getTodaysSteps()
+                    //                        }
                 }
+                //                }
             }
+//            self.getTodaysSteps()
         }
     }
     
@@ -239,9 +234,10 @@ class HomeViewController: UIViewController {
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         
-        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 completion(0.0)
+                print(error?.localizedDescription)
                 return
             }
             completion(sum.doubleValue(for: HKUnit.count()))
@@ -273,8 +269,9 @@ class HomeViewController: UIViewController {
         let endDate = now.yesterday.endOfDay
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endDate, options: .strictStartDate)
         
-        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
+                print(error?.localizedDescription)
                 completion(0.0)
                 return
             }
@@ -351,9 +348,29 @@ extension HomeViewController {
             print(status)
             
             if status{
-               print("convert steps to coins api successfully run")
+                print("convert steps to coins api successfully run")
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+            
+            self.getTodaysSteps()
+        }
+    }
+    
+    func getTodaysSteps()
+    {
+        self.getTodaysSteps { (steps) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                print("Today's Steps : ",steps)
+                self.lblTodaysStepCount.text = String(Int(steps))
+                SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
+                SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                
+                if Int(steps) > 0 {
+                    
+                    self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+                }
+                self.startCountingSteps()
             }
         }
     }
