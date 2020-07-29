@@ -112,12 +112,12 @@ class ConfirmPurchaseViewController: UIViewController {
         
         
         
-        txtName.text = "Rahul"
-        txtNumber.text = "1102298338"
-        txtEmail.text = "asdas@gdd.com"
-        txtAddress1.text = "asdasd"
-        txtState.text = "asdasd"
-        txtCity.text = "asdad"
+//        txtName.text = "Rahul"
+//        txtNumber.text = "1102298338"
+//        txtEmail.text = "asdas@gdd.com"
+//        txtAddress1.text = "asdasd"
+//        txtState.text = "asdasd"
+//        txtCity.text = "asdad"
     }
     
     override func viewDidAppear(_ animated: Bool) {
