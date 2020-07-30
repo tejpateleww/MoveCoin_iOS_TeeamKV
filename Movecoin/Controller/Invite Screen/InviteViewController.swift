@@ -51,8 +51,12 @@ class InviteViewController: UIViewController {
                 }
             }
         } else{
-            if !btnFacebook.isSelected {
+            if btnFacebook.isSelected {
+                self.navigationBarSetUp(title: "Facebook".localized)
+            }else {
                 loadThePage(sender: btnInvite)
+                btnFriends.isSelected = false
+                btnFacebook.isSelected = false
             }
         }
     }

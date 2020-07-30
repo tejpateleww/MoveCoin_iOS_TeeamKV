@@ -170,7 +170,7 @@ class UtilityClass : NSObject {
     //MARK:- --------- Location Methods ---------
     // ----------------------------------------------------
     
-    class func alertForLocation(currentVC:UIViewController){
+    class func alertForLocation(currentVC : UIViewController){
         
         let alertController = UIAlertController(title: "Location Services Disabled".localized, message: "Please enable location services for this app".localized, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK".localized, style: .default, handler: nil)

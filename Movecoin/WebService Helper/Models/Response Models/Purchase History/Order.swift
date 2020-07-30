@@ -15,6 +15,7 @@ class Order : Codable {
     var productImage : String!
     var productName : String!
     var productId : String!
+    var paymentStatus : String!
 
     init(){
         
@@ -33,6 +34,7 @@ class Order : Codable {
         productImage = json["ProductImage"].stringValue
         productName = json["ProductName"].stringValue
         productId = json["product_id"].stringValue
+        paymentStatus = json["PaymentStatus"].stringValue
 	}
 
 	/**
@@ -59,6 +61,9 @@ class Order : Codable {
         if productId != nil{
             dictionary["product_id"] = productId
         }
+        if paymentStatus != nil{
+            dictionary["PaymentStatus"] = paymentStatus
+        }
 		return dictionary
 	}
 
@@ -74,6 +79,7 @@ class Order : Codable {
 		productImage = aDecoder.decodeObject(forKey: "ProductImage") as? String
 		productName = aDecoder.decodeObject(forKey: "ProductName") as? String
         productId = aDecoder.decodeObject(forKey: "product_id") as? String
+        paymentStatus = aDecoder.decodeObject(forKey: "PaymentStatus") as? String
 	}
 
     /**
@@ -100,6 +106,8 @@ class Order : Codable {
         if productId != nil{
             aCoder.encode(productId, forKey: "product_id")
         }
+        if paymentStatus != nil{
+            aCoder.encode(paymentStatus, forKey: "PaymentStatus")
+        }
 	}
-
 }

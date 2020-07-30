@@ -77,6 +77,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         webserviceForUserDetails()
     }
     

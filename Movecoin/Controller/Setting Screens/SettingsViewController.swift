@@ -82,7 +82,24 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func switchChanged(mySwitch: UISwitch) {
-        webserviceforNotification()
+        
+        UNUserNotificationCenter.current().getNotificationSettings(){ (settings) in
+            
+            DispatchQueue.main.async {
+                switch settings.authorizationStatus {
+                case .authorized, .provisional:
+                    print("authorized")
+                    self.webserviceforNotification()
+                    
+                default :
+                    
+                    mySwitch.isOn = false
+                    
+                    
+                    UtilityClass.showAlert(Message: "Please enable notifications from iPhone settings")
+                }
+            }
+        }
     }
     
     @objc func languageChanged(sender: UISegmentedControl) {

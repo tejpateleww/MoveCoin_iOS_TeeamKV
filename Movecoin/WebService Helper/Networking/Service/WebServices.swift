@@ -26,7 +26,7 @@ class WebService{
     
     func requestMethod(api: ApiKey, httpMethod:HTTPMethod,parameters: Any, completion: @escaping CompletionResponse){
         
-        guard isConnected else { completion(JSON(), false, ""); return }
+        guard isConnected else { completion(JSON(), false, "Please check your internet"); return }
         
         var parameterString = "/"
         if httpMethod == .get{
@@ -127,7 +127,7 @@ class WebService{
     
     func uploadMultipartFormData(api: ApiKey,from images: [String:UIImage],completion: @escaping CompletionResponse){
         
-        guard isConnected else { completion(JSON(), false, ""); return }
+        guard isConnected else { completion(JSON(), false, "Please check your internet"); return }
         
         Alamofire.upload(
             multipartFormData: { multipartFormData in
@@ -154,7 +154,7 @@ class WebService{
     
     func postDataWithImage(api: ApiKey, parameter dictParams: [String: Any], image: UIImage, imageParamName: String, completion: @escaping CompletionResponse) {
         
-        guard isConnected else { completion(JSON(), false, ""); return }
+        guard isConnected else { completion(JSON(), false, "Please check your internet"); return }
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             

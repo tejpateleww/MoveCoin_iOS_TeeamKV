@@ -15,6 +15,7 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnArrow: UIButton!
+    @IBOutlet weak var lblPaymentStatus: UILabel!
     
     var orderDetail: Order? {
         didSet{
@@ -22,6 +23,8 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
                 
                 self.lblPrice.text = detail.coins
                 self.lblTitle.text = detail.productName.capitalizingFirstLetter()
+                
+                self.lblPaymentStatus.isHidden = detail.paymentStatus == "failed" ? false : true
                 
 //                if detail.discount != "0" {
 //                    self.lblTitle.text = detail.productName.capitalizingFirstLetter() + " with \(detail.discount!)% Discount"
@@ -45,8 +48,10 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
         lblTitle.font = UIFont.semiBold(ofSize: 15)
         lblDate.font = UIFont.regular(ofSize: 12)
         lblPrice.font = UIFont.regular(ofSize: 15)
+        lblPaymentStatus.font = UIFont.bold(ofSize: 11)
         let arrowImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
         btnArrow.setImage(arrowImg, for: .normal)
+        lblPaymentStatus.text = "FAILED".localized
     }
     
     override func layoutSubviews() {

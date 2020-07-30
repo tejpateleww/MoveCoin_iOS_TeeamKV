@@ -38,7 +38,9 @@ class TransferMoveCoinsViewController: UIViewController {
         self.setupFont()
         txtAmount.delegate = self
         if let name = receiverName {
-            lblName.text = "To ".localized + name
+            let to = "To ".localized
+            let name = "\(to) \( name)"
+            lblName.text = name //"To ".localized + name
         }
     }
     
