@@ -21,15 +21,23 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>twitterkit-MOCMQEYul9oCmCmYDXk8Q7nVN</string>
-			</array>
+			<array/>
 		</dict>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb2613332645452408</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.951385404931-pb5952o14p6ckpfeol6dhfjougesh2b1</string>
 			</array>
 		</dict>
 	</array>
@@ -72,27 +80,27 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>App would like to use camera</string>
+	<string>App would like to use camera to take profile picture.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>App would like to use your contacts</string>
+	<string>App would like to use your contacts to find friends who are using the app.</string>
 	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>App would like to use your health records</string>
+	<string> App would like to use your health records to get the steps you have walked when you open the app.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>App would like to share health data</string>
+	<string>App would like to share health data to get the steps you have walked while the app is closed.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>App would like to use health kit</string>
+	<string>App would like to use health kit to get the steps you have walked</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App would like to use your current location</string>
+	<string>App would like to use your current location to find nearby friends</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App would like to use your current location</string>
+	<string>App would like to use your current location to find nearby friends</string>
 	<key>NSLocationUsageDescription</key>
-	<string>App would like to use your current location</string>
+	<string>App would like to use your current location to find nearby friends</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App would like to use your current location</string>
+	<string>App would like to use your current location to find nearby friends</string>
 	<key>NSMotionUsageDescription</key>
-	<string>If you don't give access then Steps Count feature will not work</string>
+	<string>App would like to use to get the steps count.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>App would like to use photo library</string>
+	<string> App would like to use photo library  to take profile picture.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Cairo-Regular.ttf</string>

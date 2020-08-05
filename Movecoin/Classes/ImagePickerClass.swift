@@ -28,7 +28,7 @@ open class ImagePickerClass: NSObject {
         self.pickerController.navigationController?.isNavigationBarHidden = false
         self.presentationController = presentationController
         self.delegate = delegate
-
+       
         self.pickerController.delegate = self
         self.pickerController.allowsEditing = allowsEditing
 
@@ -92,6 +92,7 @@ extension ImagePickerClass: UIImagePickerControllerDelegate, UINavigationControl
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImage = info[.originalImage] as! UIImage
         self.pickerController(picker, didSelect: chosenImage)
+        
     }
     
 }

@@ -252,7 +252,9 @@
 "All" = "الكل";
 "No one" = "لا أحد";
 "SAR" = "ر.س";
-"FAILED" = "فشل";
+"Failed" = "فشل";
+"Success" = "نجاح";
+"Pending" = "قيد الانتظار";
 
 
 // Validation String

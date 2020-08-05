@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import AuthenticationServices
+import FirebaseAuth
 //import TwitterKit
 //import TwitterCore
 import IQKeyboardManagerSwift
@@ -46,6 +47,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
     
      var userSocialData: UserSocialData?
     
+    var provider = OAuthProvider(providerID: "twitter.com")
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -57,6 +60,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         setupSOAppleSignIn()
         //        localizeUI(parentView: self.viewParent)
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+        
+        
 
         #if targetEnvironment(simulator)
 //       setDummy()
@@ -177,6 +182,61 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
     }
     
     @IBAction func btnTwitterTapped(_ sender: Any) {
+        
+        provider.getCredentialWith(nil) { credential, error in
+          if error != nil {
+            // Handle error..
+            print("Error : \(error?.localizedDescription ?? "")")
+          }
+          if credential != nil {
+            
+ 
+           Auth.auth().signIn(with: credential!) { authResult, error in
+              if error != nil {
+                // Handle error.
+                print("Error : \(error?.localizedDescription ?? "")")
+              }
+            
+            print(authResult?.additionalUserInfo?.profile)
+            
+            let profile = authResult?.additionalUserInfo?.profile!
+            let id = profile?["id_str"] as! String
+            let email = profile?["email"] as! String
+            let userName = profile?["screen_name"] as! String
+              // User is signed in.
+              // IdP data available in authResult.additionalUserInfo.profile.
+              // Twitter OAuth access token can also be retrieved by:
+              // authResult.credential.accessToken
+              // Twitter OAuth ID token can be retrieved by calling:
+              // authResult.credential.idToken
+              // Twitter OAuth secret can be retrieved by calling:
+              // authResult.credential.secret
+            
+            
+            self.userSocialData = UserSocialData(userId:id, fullName: "", userEmail: email, socialType: "twitter", Profile:"")
+            
+            let socialModel = SocialLoginModel()
+            socialModel.SocialID = id
+            socialModel.Username = userName
+            socialModel.SocialType = "twitter"
+            socialModel.DeviceType = "ios"
+            socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
+            if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
+                socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
+                socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+            }
+            #if targetEnvironment(simulator)
+            // 23.0732727,72.5181843
+            socialModel.Latitude = "23.0732727"
+            socialModel.Longitude = "72.5181843"
+            #endif
+
+            self.webserviceCallForSocialLogin(socialModel: socialModel)
+            }
+          }
+        }
+        
+        
         /*
         TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
             if (session != nil) {

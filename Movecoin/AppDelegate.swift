@@ -10,7 +10,9 @@ import UIKit
 import IQKeyboardManagerSwift
 import Fabric
 import Crashlytics
-import Firebase
+import FirebaseCore
+import FirebaseInstanceID
+import FirebaseMessaging
 import SocketIO 
 import CoreLocation
 import CoreMotion
@@ -32,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        // Client MoveCoins Key and Secret
 //        TWTRTwitter.sharedInstance().start(withConsumerKey: "MOCMQEYul9oCmCmYDXk8Q7nVN", consumerSecret: "Nv7qw5isiL2TrRQgQafRkJieHSbJyPnNTttaHVPKu4zEQBeXzX")
         
         let status = CMPedometer.authorizationStatus()
@@ -286,6 +289,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     func configureNotification() {
+        
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         

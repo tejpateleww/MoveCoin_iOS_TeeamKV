@@ -12,6 +12,7 @@ import UIKit
 @IBDesignable
 open class TTSegmentedControl: UIView {
     
+    //Version: 0.4.10
     //Configure the options to for a custom design
     @IBInspectable open var defaultTextFont: UIFont = UIFont.helveticaNeueLight(12)
     @IBInspectable open var selectedTextFont: UIFont = UIFont.helveticaNeueLight(12)
@@ -100,6 +101,21 @@ open class TTSegmentedControl: UIView {
         super.init(coder: aDecoder)
     }
     
+    open func reconfigure() {
+        self.isConfigurated = false
+        allItemLabels = []
+        allSelectedItemLabels = []
+        self.containerView.removeFromSuperview()
+        self.thumbContainerView.removeFromSuperview()
+        self.thumbView.removeFromSuperview()
+        self.selectedLabelsView.removeFromSuperview()
+        
+        self.thumbContainerView = UIView()
+        self.thumbView = UIView()
+        self.selectedLabelsView = UIView()
+        self.containerView = UIView()
+        self.layoutSubviews()
+    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -107,13 +123,11 @@ open class TTSegmentedControl: UIView {
         if !isConfigurated {
             configureItemsConent()
             configureViewBounds()
-            
             configureContainerView()
             configureItems()
             configureSelectedView()
             configureSelectedLabelsView()
             configureSelectedLabelItems()
-            
             isConfigurated = true
         }
         
@@ -150,9 +164,7 @@ open class TTSegmentedControl: UIView {
         return 100
     }
     
-    fileprivate var isSwitch: Bool {
-        return attributedDefaultTitles.count == 2
-    }
+    open var isSwitch: Bool = false
     
     //MARK: - Helpers
     static public func UIColorFromRGB(_ rgbValue: UInt) -> UIColor {
@@ -652,7 +664,7 @@ extension TTSegmentedControl {
             currentSelectedIndex = index
             return
         }
-        let label = allItemLabels[min(index, attributedDefaultTitles.count)]
+        let label = allItemLabels[min(index, attributedDefaultTitles.count - 1)]
         selectedLabelsView.isHidden = noItemSelected
         changeThumbFrameForPoint(label.center, animated: animated)
     }

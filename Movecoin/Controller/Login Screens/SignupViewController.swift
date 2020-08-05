@@ -243,10 +243,13 @@ extension SignupViewController :  ImagePickerDelegate {
     
         if(image == nil && SelectedTag == 101){
             self.imgProfile.image = UIImage(named: "m-logo")
+            self.selectedImage = nil
+            
         }else if image != nil{
             self.imgProfile.image = image
+            self.selectedImage = self.imgProfile.image
         }
-        self.selectedImage = self.imgProfile.image
+//        self.selectedImage = self.imgProfile.image
     }
 }
 
@@ -270,7 +273,7 @@ extension SignupViewController {
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: VerificationViewController.className) as! VerificationViewController
                     controller.signupModel = signupDic
                     controller.otp = json["otp"].stringValue
-                    controller.imgProfilePicture = self.imgProfile.image  //self.selectedImage
+                    controller.imgProfilePicture = self.selectedImage //self.imgProfile.image
                     self.navigationController?.pushViewController(controller, animated: true)
                 })
             }

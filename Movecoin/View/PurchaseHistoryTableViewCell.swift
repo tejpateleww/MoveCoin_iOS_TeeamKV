@@ -24,7 +24,22 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
                 self.lblPrice.text = detail.coins
                 self.lblTitle.text = detail.productName.capitalizingFirstLetter()
                 
-                self.lblPaymentStatus.isHidden = detail.paymentStatus == "failed" ? false : true
+//                self.lblPaymentStatus.isHidden = detail.paymentStatus == "failed" ? false : true
+                
+                let status = PaymentStatus(rawValue: detail.paymentStatus.capitalizingFirstLetter())
+                self.lblPaymentStatus.text = (status?.rawValue)?.localized
+                
+                switch status {
+                case .Success:
+                    self.lblPaymentStatus.textColor = .green
+                case .Failed:
+                    self.lblPaymentStatus.textColor = .red
+                case .Pending:
+                    self.lblPaymentStatus.textColor = .orange
+                case .none:
+                    self.lblPaymentStatus.text = "Pending".localized
+                    self.lblPaymentStatus.textColor = .orange
+                }
                 
 //                if detail.discount != "0" {
 //                    self.lblTitle.text = detail.productName.capitalizingFirstLetter() + " with \(detail.discount!)% Discount"

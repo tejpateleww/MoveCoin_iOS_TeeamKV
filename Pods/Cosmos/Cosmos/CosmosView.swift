@@ -219,6 +219,22 @@ Shows: ★★★★☆ (123)
     previousRatingForDidTouchCallback = -123.192
   }
   
+  /**
+  
+  Makes sure that the right colors are used when the user switches between Light and Dark mode
+  while the app is running
+     
+  */
+  open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+        
+    if #available(iOS 13.0, tvOS 10.0, *) {
+      if self.traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+        update()
+      }
+    }
+  }
+  
   // MARK: - Accessibility
   
   private func updateAccessibility() {
@@ -280,6 +296,14 @@ Shows: ★★★★☆ (123)
   open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     if settings.passTouchesToSuperview { super.touchesEnded(touches, with: event) }
     didFinishTouchingCosmos?(rating)
+  }
+
+  /// Deciding whether to recognize a gesture.
+  open override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    if settings.disablePanGestures {
+      return !(gestureRecognizer is UIPanGestureRecognizer)
+    }
+      return true
   }
 
   /**

@@ -245,8 +245,8 @@ class ConfirmPurchaseViewController: UIViewController {
             let address1 = try txtAddress1.validatedText(validationType: ValidatorType.requiredField(field: txtAddress1.placeholder!))
             //            let address2 = try txtAddress2.validatedText(validationType: ValidatorType.requiredField(field: txtAddress2.placeholder!))
             //            let country = try txtCountry.validatedText(validationType: ValidatorType.requiredField(field: txtCountry.placeholder!))
-            let state = try txtState.validatedText(validationType: ValidatorType.requiredField(field: txtState.placeholder!))
             let city = try txtCity.validatedText(validationType: ValidatorType.requiredField(field: txtCity.placeholder!))
+            let state = try txtState.validatedText(validationType: ValidatorType.requiredField(field: txtState.placeholder!))
             //            let zipcode = try txtZipCode.validatedText(validationType: ValidatorType.requiredField(field: txtZipCode.placeholder!))
             //                let moveCoins = try txtMoveCoins.validatedText(validationType: ValidatorType.requiredField(field: txtMoveCoins.placeholder!))
             //            if txtCard?.text!.isBlank ?? false {
@@ -340,10 +340,10 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnPurchaseTapped(_ sender: Any) {
-        if validateCoins() {
+//        if validateCoins() {
             print("Purchase")
             validate()
-        }
+//        }
     }
     
     func btnApplePayPurchaseTapped() {

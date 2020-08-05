@@ -16,6 +16,7 @@ class PurchaseHistoryViewController: UIViewController {
     
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var tblPurchaseHistory: UITableView!
+    @IBOutlet weak var lblNoDataFound: UILabel!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -48,6 +49,8 @@ class PurchaseHistoryViewController: UIViewController {
         self.tblPurchaseHistory.delegate = self
         self.tblPurchaseHistory.dataSource = self
         self.tblPurchaseHistory.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        lblNoDataFound.isHidden = true
     }
 }
 

@@ -205,28 +205,30 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
 //        cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
         let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
         cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
-       
-        switch cell.type {
-        case .RequestPendding:
-            if let requestData = sectionData.Rows[indexPath.row] as? Request {
-                cell.requested = requestData
-                if requestData.receiverID == SingletonClass.SharedInstance.userData?.iD {
-                    cell.btnAccept.tag = indexPath.row
-                    cell.btnAccept.addTarget(self, action: #selector(self.btnAcceptTapped(_:)), for: .touchUpInside)
-                }
-            }
-            
-        case .RecommendedFriend:
-//            cell.registeredFriend = registeredContacts[indexPath.row]
-            cell.registeredFriend = isTyping ? searchArray[indexPath.section].Rows[indexPath.row] as! Registered : registeredContacts[indexPath.row]
-            
-        case .NotRegistedFriend:
-//           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
-            cell.notRegisteredFriend = isTyping ? searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : notRegisteredContacts[indexPath.row]
-            
-        default:
-            break
+        DispatchQueue.main.async {
+                    switch cell.type {
+                    case .RequestPendding:
+                        if let requestData = sectionData.Rows[indexPath.row] as? Request {
+                            cell.requested = requestData
+                            if requestData.receiverID == SingletonClass.SharedInstance.userData?.iD {
+                                cell.btnAccept.tag = indexPath.row
+                                cell.btnAccept.addTarget(self, action: #selector(self.btnAcceptTapped(_:)), for: .touchUpInside)
+                            }
+                        }
+                        
+                    case .RecommendedFriend:
+            //            cell.registeredFriend = registeredContacts[indexPath.row]
+                        cell.registeredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! Registered : self.registeredContacts[indexPath.row]
+                        
+                    case .NotRegistedFriend:
+            //           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
+                        cell.notRegisteredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : self.notRegisteredContacts[indexPath.row]
+                        
+                    default:
+                        break
+                    }
         }
+
 //        localizeUI(parentView: cell.contentView)
         return cell
     }
@@ -257,6 +259,9 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         default:
             break
         }
+    }
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        
     }
 }
 

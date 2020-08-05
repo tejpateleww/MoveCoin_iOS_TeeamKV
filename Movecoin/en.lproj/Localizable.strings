@@ -250,7 +250,9 @@
 "All" = "All";
 "No one" = "No one";
 "SAR" = "SAR";
-"FAILED" = "FAILED";
+"Failed" = "Failed";
+"Success" = "Success";
+"Pending" = "Pending";
 
 
 // Validation String

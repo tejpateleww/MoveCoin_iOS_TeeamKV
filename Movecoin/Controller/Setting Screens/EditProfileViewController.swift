@@ -105,8 +105,8 @@ class EditProfileViewController: UIViewController {
             txtMobile.text = userData.phone
             txtEmail.text = userData.email
             txtGender.text = (userData.updateGender == "0") ? "Male".localized : "Female".localized
-            txtHeight.text = userData.height
-            txtWeight.text = userData.weight
+            txtHeight.text = userData.height + " cm".localized
+            txtWeight.text = userData.weight + " kg".localized
             if userData.dateOfBirth != "0000-00-00" {
                 if let dob = UtilityClass.changeDateFormateFrom(dateString: userData.dateOfBirth, fromFormat: DateFomateKeys.apiDOB, withFormat: DateFomateKeys.displayDate) {
                     txtDob.text = dob
@@ -137,8 +137,8 @@ class EditProfileViewController: UIViewController {
             editModel.Phone = mobileNumber
             editModel.Email = email
             editModel.Gender = (selectedGender == "Male") ? "0" : "1"
-            editModel.Height = txtHeight.text ?? ""
-            editModel.Weight = txtWeight.text ?? ""
+            editModel.Height = txtHeight.text?.replacingOccurrences(of: " cm".localized, with: "") ?? ""
+            editModel.Weight = txtWeight.text?.replacingOccurrences(of: " kg".localized, with: "") ?? ""
             if isRemovePhoto {
                 editModel.remove_photo = 1
             }

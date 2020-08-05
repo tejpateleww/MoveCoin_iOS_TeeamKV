@@ -127,6 +127,17 @@ class SettingsViewController: UIViewController {
         cell.btnArrow.setImage(sendImg, for: .normal)
     }
     
+    func rateApp() {
+        guard let url = URL(string: "https://itunes.apple.com/app/id\(kAppID)?action=write-review") else {
+            return
+        }
+        if #available(iOS 10, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
@@ -250,7 +261,8 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 self.navigationController?.pushViewController(controller, animated: true)
                 
             case .RateApp:
-                SKStoreReviewController.requestReview()
+                self.rateApp()
+//                SKStoreReviewController.requestReview()
                 
             default :
                 break

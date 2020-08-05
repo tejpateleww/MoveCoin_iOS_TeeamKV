@@ -94,16 +94,25 @@ class FindFriendTableViewCell: UITableViewCell {
             }
         }
     }
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        lblName.font = UIFont.semiBold(ofSize: 18)
+               lblNickName.font = UIFont.regular(ofSize: 12)
+               lblNumber.font = UIFont.regular(ofSize: 13)
+               lblFirstCharacter.font = UIFont.light(ofSize: 24)
+               btnInvite.titleLabel?.font = UIFont.regular(ofSize: 13)
+               btnAccept.titleLabel?.font = UIFont.regular(ofSize: 13)
+               btnInvite.isUserInteractionEnabled = true
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        lblName.font = UIFont.semiBold(ofSize: 18)
-        lblNickName.font = UIFont.regular(ofSize: 12)
-        lblNumber.font = UIFont.regular(ofSize: 13)
-        lblFirstCharacter.font = UIFont.light(ofSize: 24)
-        btnInvite.titleLabel?.font = UIFont.regular(ofSize: 13)
-        btnAccept.titleLabel?.font = UIFont.regular(ofSize: 13)
-        btnInvite.isUserInteractionEnabled = true
+//        lblName.font = UIFont.semiBold(ofSize: 18)
+//        lblNickName.font = UIFont.regular(ofSize: 12)
+//        lblNumber.font = UIFont.regular(ofSize: 13)
+//        lblFirstCharacter.font = UIFont.light(ofSize: 24)
+//        btnInvite.titleLabel?.font = UIFont.regular(ofSize: 13)
+//        btnAccept.titleLabel?.font = UIFont.regular(ofSize: 13)
+//        btnInvite.isUserInteractionEnabled = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -13,6 +13,12 @@ enum StepsPermission : String {
     case MotionAndFitness = "MotionAndFitness"
 }
 
+enum PaymentStatus : String {
+    case Success = "Success"
+    case Failed = "Failed"
+    case Pending = "Pending"
+}
+
 enum TabBarOptions : Int {
     case Store = 0
     case Wallet
@@ -94,7 +100,7 @@ enum FontBook: String {
         return UIFont(name:self.rawValue, size:size)!
     }
 
-    func staticFont(Size:CGFloat) -> UIFont{
+    func staticFont(Size:CGFloat) -> UIFont {
         return UIFont(name:self.rawValue,size:Size)!
     }
 }

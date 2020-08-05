@@ -8,14 +8,15 @@ target 'Movecoins' do
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'Firebase'
+pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
 
 pod 'SwiftyJSON'
-pod 'Alamofire'
+pod 'Alamofire', '4.8.2'
 pod 'Kingfisher'
 pod 'Socket.IO-Client-Swift'
 
-pod 'NVActivityIndicatorView'
+pod 'NVActivityIndicatorView', '4.8.0'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField'
 
@@ -28,7 +29,7 @@ pod 'lottie-ios'
 pod 'KDCircularProgress'
 
 pod 'FBSDKLoginKit'
-#pod 'TwitterKit'
+#pod 'TwitterKit5'
 
   # Pods for Movecoin
 end
