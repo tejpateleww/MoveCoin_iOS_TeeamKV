@@ -101,10 +101,10 @@ class SignupViewController: UIViewController {
     }
     
     func setDummy(){
-        txtEmail.text = "rahul@excellentwebworld.com"
+        txtEmail.text = "rahul@gmail.com"
         txtMobile.text = "1234567121"
-        txtFullName.text = "aa com"
-        txtNickname.text = "a"
+        txtFullName.text = "rahul gmail"
+        txtNickname.text = "prince"
         txtPassword.text = "123456"
         txtConfirmPassword.text = "123456"
     }

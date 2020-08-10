@@ -98,7 +98,9 @@ extension WebViewController {
         
         var strParam = String()
         
-        strParam = NetworkEnvironment.baseURL + ApiKey.policyHelpTerm.rawValue
+        let language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.policyHelpTerm.rawValue + "/\(language)"
         
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(status)

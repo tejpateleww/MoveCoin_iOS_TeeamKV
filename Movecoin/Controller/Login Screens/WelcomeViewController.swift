@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var segmentControlLanguage: UISegmentedControl!
     @IBOutlet weak var btnSignIn: ThemeButton!
     @IBOutlet weak var btnSignUp: ThemeButton!
+    @IBOutlet weak var imgLogo: UIImageView!
     
     
     // ----------------------------------------------------
@@ -48,6 +49,8 @@ class WelcomeViewController: UIViewController {
     
     func localizationSetup(){
         UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+//        imgLogo.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        
         segmentControlLanguage.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
         
@@ -86,6 +89,8 @@ class WelcomeViewController: UIViewController {
 
     func setDataForLocalisation(){
         UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        imgLogo.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        
         btnSignIn.setTitle("Sign in".localized, for: .normal)
         btnSignUp.setTitle("Sign Up".localized, for: .normal)
        

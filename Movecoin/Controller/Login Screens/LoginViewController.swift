@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
     @IBOutlet weak var lblTitle: LocalizLabel!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
-    @IBOutlet weak var btnForgotPassword: LocalizButton!
+    @IBOutlet weak var btnForgotPassword: UIButton!
     @IBOutlet weak var lblAccount: LocalizLabel!
     @IBOutlet weak var btnSignUp: LocalizButton!
     @IBOutlet weak var lblOr: LocalizLabel!
@@ -58,13 +58,13 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         setupSOAppleSignIn()
+        
         //        localizeUI(parentView: self.viewParent)
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
         
         
-
         #if targetEnvironment(simulator)
-//       setDummy()
+        setDummy()
         #endif
     }
     
@@ -88,6 +88,11 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         lblOr.font = UIFont.regular(ofSize: 15)
         btnSignUp.titleLabel?.font = UIFont.semiBold(ofSize: 20)
         btnForgotPassword.titleLabel?.font = UIFont.bold(ofSize: 15)
+        
+        // As per client requirement Forcefully LTR
+        btnForgotPassword.semanticContentAttribute = .forceLeftToRight
+        btnForgotPassword.setTitle(btnForgotPassword.titleLabel?.text?.localized, for: .normal)
+        btnForgotPassword.titleLabel?.textAlignment = .right
     }
     
     func validate() {

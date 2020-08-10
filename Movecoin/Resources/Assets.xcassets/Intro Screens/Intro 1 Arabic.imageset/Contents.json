@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Intro 1 Arabic.jpg",
+      "filename" : "Intro 1 Arabic.jpeg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Intro 1 Arabic@2x.jpg",
+      "filename" : "Intro 1 Arabic@2x.jpeg",
       "scale" : "2x"
     },
     {

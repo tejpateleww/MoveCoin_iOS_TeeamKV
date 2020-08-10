@@ -19,6 +19,7 @@ class VerificationViewController: UIViewController {
     
     @IBOutlet weak var lblDescription: LocalizLabel!
     @IBOutlet weak var btnSendAgian: LocalizButton!
+    @IBOutlet weak var lblTimer: UILabel!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -30,14 +31,25 @@ class VerificationViewController: UIViewController {
     var imgProfilePicture : UIImage?
     var isOTPverified = false
     
+    var timer: Timer?
+    var totalTime = 60
+
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startOtpTimer()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpPinView()
         self.setupFont()
+//        startOtpTimer()
+        
         //        localizeUI(parentView: self.viewParent)
         UIView.appearance().semanticContentAttribute = .forceLeftToRight
     }
@@ -46,6 +58,11 @@ class VerificationViewController: UIViewController {
         super.viewDidAppear(true)
         navigationBarSetUp(title: "Verification Code")
 //        lblDescription.text = "Please enter your code from SMS/Email we've sent you".localized
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopOtpTimer()
     }
     
     // ----------------------------------------------------
@@ -79,6 +96,40 @@ class VerificationViewController: UIViewController {
     private func validator(_ code: String) -> Bool {
         
         return !code.trimmingCharacters(in: CharacterSet.decimalDigits.inverted).isEmpty
+    }
+    
+    private func startOtpTimer() {
+        lblTimer.isHidden = false
+        btnSendAgian.isEnabled = false
+        btnSendAgian.setTitleColor(.gray, for: .normal)
+        
+        totalTime = 120
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+
+    @objc func updateTimer() {
+       
+        self.lblTimer.text = self.timeFormatted(self.totalTime) // will show timer
+        if totalTime != 0 {
+            totalTime -= 1  // decrease counter timer
+        } else {
+            stopOtpTimer()
+        }
+    }
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    private func stopOtpTimer() {
+
+        lblTimer.isHidden = true
+        btnSendAgian.isEnabled = true
+        btnSendAgian.setTitleColor(.white, for: .normal)
+
+        timer?.invalidate()
+        timer = nil
     }
 
     // ----------------------------------------------------
@@ -131,6 +182,8 @@ extension VerificationViewController {
                 }
                 self.getUserData()
                 AppDelegateShared.GoToHome()
+                
+                self.stopOtpTimer()
             }
             else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
@@ -150,6 +203,7 @@ extension VerificationViewController {
             
             if status{
                 self.otp = json["otp"].stringValue
+                self.startOtpTimer()
             }
             else{
                 

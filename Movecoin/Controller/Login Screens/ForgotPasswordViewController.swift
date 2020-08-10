@@ -25,6 +25,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp()
+        lblTitle.font = UIFont.bold(ofSize: 21)
        //        localizeUI(parentView: self.viewParent)
     }
     

@@ -100,5 +100,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68BEB1F7-3BC8-44C7-8616-32C55094B5C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Setting Screens/WebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "webserviceforPolicyHelpTerm()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "68BEB1F7-3BC8-44C7-8616-32C55094B5C5 - 9514043bd6e508e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movecoins.WebViewController.webserviceforPolicyHelpTerm() -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Setting%20Screens/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "844">
+               </Location>
+               <Location
+                  uuid = "68BEB1F7-3BC8-44C7-8616-32C55094B5C5 - 67c1bc15399267c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool, Any) -&gt; () in Movecoins.WebViewController.webserviceforPolicyHelpTerm() -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Setting%20Screens/WebViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CB882B24-F439-4291-BB1F-AA8FA1CF5DA2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Setting Screens/WebViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "webserviceforPolicyHelpTerm()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
