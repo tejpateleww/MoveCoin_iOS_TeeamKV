@@ -69,12 +69,15 @@ class WalletViewController: UIViewController {
         btnTransfer.setTitle("Transfer".localized, for: .normal)
         
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
-            btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-            btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+           
+                self.btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+                self.btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+                self.btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+                
+                self.btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+                self.btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+           
             
-            btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-            btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         }
         else {
             btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -105,6 +108,8 @@ class WalletViewController: UIViewController {
         tblWallet.tableFooterView = UIView.init(frame: CGRect.zero)
         tblWallet.estimatedRowHeight = 65
         tblWallet.rowHeight = UITableView.automaticDimension
+        
+        viewParent.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
    
     func setupFont(){

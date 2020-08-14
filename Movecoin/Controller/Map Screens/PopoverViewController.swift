@@ -222,7 +222,7 @@ extension PopoverViewController {
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = userData.iD
 
-        FriendsWebserviceSubclass.friendRequest(frinedRequestModel: requestModel){ (json, status, res) in
+        FriendsWebserviceSubclass.friendRequest(friendRequestModel: requestModel){ (json, status, res) in
             UtilityClass.hideHUD()
             if status {
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue

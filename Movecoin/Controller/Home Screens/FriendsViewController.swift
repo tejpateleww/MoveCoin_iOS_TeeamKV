@@ -170,7 +170,7 @@ extension FriendsViewController {
         let requestModel = FriendListModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
     
-        FriendsWebserviceSubclass.friendsList(frinedListModel: requestModel){ (json, status, res) in
+        FriendsWebserviceSubclass.friendsList(friendListModel: requestModel){ (json, status, res) in
             
             UtilityClass.hideHUD()
             if status {

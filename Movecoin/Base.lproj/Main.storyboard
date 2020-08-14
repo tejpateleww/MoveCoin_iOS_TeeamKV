@@ -49,7 +49,7 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="21c-8M-9xt">
-                                                <rect key="frame" x="123" y="0.0" width="129" height="40"/>
+                                                <rect key="frame" x="97" y="0.0" width="181" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc8-jv-o5N">
                                                         <rect key="frame" x="0.0" y="0.0" width="34" height="40"/>
@@ -75,6 +75,14 @@
                                                             <action selector="btnFacebookTapped:" destination="oa2-lA-Ypm" eventType="touchUpInside" id="VRk-v0-paA"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSn-TP-f3X">
+                                                        <rect key="frame" x="149" y="0.0" width="32" height="40"/>
+                                                        <state key="normal" image="search-unselect"/>
+                                                        <state key="selected" image="search-select"/>
+                                                        <connections>
+                                                            <action selector="btnSearchTapped:" destination="oa2-lA-Ypm" eventType="touchUpInside" id="7WY-L4-W97"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -93,7 +101,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFr-Yj-ud9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1125" height="589"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1500" height="589"/>
                                                         <subviews>
                                                             <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6p-Qf-1pg">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
@@ -114,19 +122,29 @@
                                                                     <segue destination="fFB-Ed-6c5" kind="embed" id="3gZ-ZO-ibx"/>
                                                                 </connections>
                                                             </containerView>
+                                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYN-mQ-kNQ">
+                                                                <rect key="frame" x="1125" y="0.0" width="375" height="589"/>
+                                                                <connections>
+                                                                    <segue destination="aZk-5A-ahV" kind="embed" id="Wfk-Xk-lKa"/>
+                                                                </connections>
+                                                            </containerView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="h6p-Qf-1pg" firstAttribute="leading" secondItem="kFr-Yj-ud9" secondAttribute="leading" id="1nS-1f-dqz"/>
                                                             <constraint firstItem="h6p-Qf-1pg" firstAttribute="top" secondItem="kFr-Yj-ud9" secondAttribute="top" id="3RD-wq-VH0"/>
+                                                            <constraint firstItem="kYN-mQ-kNQ" firstAttribute="bottom" secondItem="n2J-QJ-F0a" secondAttribute="bottom" id="8Wy-c6-XW3"/>
+                                                            <constraint firstAttribute="trailing" secondItem="kYN-mQ-kNQ" secondAttribute="trailing" id="8Yb-Sx-fT3"/>
+                                                            <constraint firstItem="kYN-mQ-kNQ" firstAttribute="leading" secondItem="n2J-QJ-F0a" secondAttribute="trailing" id="Cq3-q3-KwV"/>
+                                                            <constraint firstItem="kYN-mQ-kNQ" firstAttribute="top" secondItem="n2J-QJ-F0a" secondAttribute="top" id="MWC-w5-weX"/>
                                                             <constraint firstItem="UTL-UW-xeZ" firstAttribute="top" secondItem="h6p-Qf-1pg" secondAttribute="top" id="Mqg-Ag-2hp"/>
                                                             <constraint firstItem="n2J-QJ-F0a" firstAttribute="width" secondItem="UTL-UW-xeZ" secondAttribute="width" id="NAV-1j-CNj"/>
                                                             <constraint firstItem="UTL-UW-xeZ" firstAttribute="leading" secondItem="h6p-Qf-1pg" secondAttribute="trailing" id="U93-xI-mgR"/>
                                                             <constraint firstAttribute="bottom" secondItem="h6p-Qf-1pg" secondAttribute="bottom" id="YIu-PP-m3x"/>
-                                                            <constraint firstAttribute="trailing" secondItem="n2J-QJ-F0a" secondAttribute="trailing" id="Yw0-UQ-ok3"/>
                                                             <constraint firstItem="n2J-QJ-F0a" firstAttribute="top" secondItem="UTL-UW-xeZ" secondAttribute="top" id="ame-r5-oeU"/>
                                                             <constraint firstItem="UTL-UW-xeZ" firstAttribute="bottom" secondItem="h6p-Qf-1pg" secondAttribute="bottom" id="dYf-EI-sdo"/>
                                                             <constraint firstItem="UTL-UW-xeZ" firstAttribute="width" secondItem="h6p-Qf-1pg" secondAttribute="width" id="kdJ-dQ-MIN"/>
+                                                            <constraint firstItem="kYN-mQ-kNQ" firstAttribute="width" secondItem="n2J-QJ-F0a" secondAttribute="width" id="lhQ-21-Gzh"/>
                                                             <constraint firstItem="n2J-QJ-F0a" firstAttribute="leading" secondItem="UTL-UW-xeZ" secondAttribute="trailing" id="nhY-5d-cge"/>
                                                             <constraint firstItem="n2J-QJ-F0a" firstAttribute="bottom" secondItem="UTL-UW-xeZ" secondAttribute="bottom" id="qhC-jm-6te"/>
                                                         </constraints>
@@ -183,6 +201,7 @@
                         <outlet property="btnFacebook" destination="YDP-j7-div" id="Jh1-gb-UzC"/>
                         <outlet property="btnFriends" destination="4NT-Vt-KIr" id="LO3-pO-mlF"/>
                         <outlet property="btnInvite" destination="Cc8-jv-o5N" id="9Wh-U8-YQ9"/>
+                        <outlet property="btnSearch" destination="sSn-TP-f3X" id="Iln-DP-V7i"/>
                         <outlet property="scrollView" destination="PKq-Mj-r4j" id="GqI-cY-thQ"/>
                         <outlet property="subview" destination="kFr-Yj-ud9" id="1Pt-iG-1mb"/>
                         <outlet property="viewParent" destination="dHQ-fP-lq3" id="NvY-45-RGi"/>
@@ -210,13 +229,13 @@
                                         <rect key="frame" x="0.0" y="8" width="375" height="31"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tBg-c5-N9K">
-                                                <rect key="frame" x="146" y="-11.5" width="83" height="54"/>
+                                                <rect key="frame" x="134.5" y="-11.5" width="106" height="54"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total-steps-icon" translatesAutoresizingMaskIntoConstraints="NO" id="AlL-FB-UB4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="23" height="54"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="54"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Few-Qk-8p1">
-                                                        <rect key="frame" x="33" y="0.0" width="50" height="54"/>
+                                                        <rect key="frame" x="56" y="0.0" width="50" height="54"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="24"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -389,10 +408,10 @@
                                                 <rect key="frame" x="15" y="0.0" width="345" height="46"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="Veb-az-9a0">
-                                                        <rect key="frame" x="15" y="14.5" width="16" height="17"/>
+                                                        <rect key="frame" x="15" y="6" width="32" height="34"/>
                                                     </imageView>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DrP-Oh-xeM" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="39" y="8" width="298" height="30"/>
+                                                        <rect key="frame" x="55" y="8" width="282" height="30"/>
                                                         <color key="tintColor" red="0.11372549019607843" green="0.12549019607843137" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -2647,19 +2666,19 @@
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Cg-vW-sms">
-                                                                <rect key="frame" x="116.5" y="14" width="102.5" height="22.5"/>
+                                                                <rect key="frame" x="115.5" y="8" width="104" height="34"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEB-at-6nk" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="33.5" height="22.5"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-blue-small" translatesAutoresizingMaskIntoConstraints="NO" id="724-71-5G1">
-                                                                        <rect key="frame" x="34.5" y="0.0" width="33.5" height="22.5"/>
+                                                                        <rect key="frame" x="35" y="0.0" width="34" height="34"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mde-pj-hEL" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                        <rect key="frame" x="69" y="0.0" width="33.5" height="22.5"/>
+                                                                        <rect key="frame" x="70" y="0.0" width="34" height="34"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="19"/>
                                                                         <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
@@ -3964,7 +3983,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't have any updates yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMQ-LP-pwt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="277.5" width="335" height="112.5"/>
+                                        <rect key="frame" x="20" y="298.5" width="335" height="70"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -4153,7 +4172,7 @@
                                         <rect key="frame" x="0.0" y="5" width="375" height="662"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReO-m7-GWl" userLabel="Main View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="627"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7i-9O-FS9" userLabel="TopView">
                                                         <rect key="frame" x="0.0" y="8" width="375" height="90"/>
@@ -4306,14 +4325,14 @@
                                                         </constraints>
                                                     </view>
                                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graphImg" translatesAutoresizingMaskIntoConstraints="NO" id="odg-ga-98F">
-                                                        <rect key="frame" x="20" y="278" width="335" height="168"/>
+                                                        <rect key="frame" x="20" y="278" width="335" height="336"/>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDa-MA-VPl" customClass="BasicBarChart" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="20" y="278" width="335" height="168"/>
+                                                        <rect key="frame" x="20" y="278" width="335" height="336"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kTU-j0-Ylf">
-                                                        <rect key="frame" x="20" y="466" width="264" height="17"/>
+                                                        <rect key="frame" x="20" y="634" width="264" height="17"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps Converted" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFN-Z1-orm" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="129.5" height="17"/>
@@ -4603,14 +4622,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invite-image" translatesAutoresizingMaskIntoConstraints="NO" id="mWa-C6-Cu3">
-                                <rect key="frame" x="10" y="0.0" width="355" height="273"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="546"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3e-qc-dFo">
-                                <rect key="frame" x="10" y="0.0" width="355" height="273"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="546"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="oWG-Ye-Y10">
-                                <rect key="frame" x="20" y="268" width="335" height="73"/>
+                                <rect key="frame" x="20" y="541" width="335" height="73"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-1z-J9Z" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="29"/>
@@ -4630,7 +4649,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-yJ-9wD">
-                                <rect key="frame" x="20" y="363" width="335" height="76"/>
+                                <rect key="frame" x="20" y="636" width="335" height="76"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlU-6Q-BCU" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="94.5" y="0.0" width="146.5" height="21"/>
@@ -4661,7 +4680,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4B-MF-TUa" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
-                                <rect key="frame" x="48" y="464" width="279" height="45"/>
+                                <rect key="frame" x="48" y="737" width="279" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Qlc-ki-DSM"/>
                                 </constraints>
@@ -4708,7 +4727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D9S-s8-RAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="-1048"/>
+            <point key="canvasLocation" x="-735" y="-392"/>
         </scene>
         <!--Find Friends View Controller-->
         <scene sceneID="Mnf-ty-eTd">
@@ -4725,10 +4744,10 @@
                                         <rect key="frame" x="15" y="0.0" width="345" height="46"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="APo-IR-UtZ">
-                                                <rect key="frame" x="15" y="14.5" width="16" height="17"/>
+                                                <rect key="frame" x="15" y="6" width="32" height="34"/>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJz-mg-w4j" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
-                                                <rect key="frame" x="39" y="8" width="298" height="30"/>
+                                                <rect key="frame" x="55" y="8" width="282" height="30"/>
                                                 <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -4919,7 +4938,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYP-dr-gff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="-910.79460269865069"/>
+            <point key="canvasLocation" x="-314" y="-1024"/>
         </scene>
         <!--Facebook View Controller-->
         <scene sceneID="cVE-rI-8ar">
@@ -4929,6 +4948,136 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOL-ga-3qa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindFriendTableViewCell" rowHeight="53" id="9rg-JJ-upy" customClass="FindFriendTableViewCell" customModule="Movecoins" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9rg-JJ-upy" id="kMF-2l-QL2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4l-Qn-sYK">
+                                                    <rect key="frame" x="15" y="6.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="JZT-zk-JhF"/>
+                                                        <constraint firstAttribute="height" constant="40" id="kLk-ix-xAi"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="24"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="border">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" white="1" alpha="0.64990903249999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nM8-Dy-L1b">
+                                                    <rect key="frame" x="70" y="-1" width="141" height="55"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CgO-Ra-Vxt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="141" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="LbQ-yK-p4V"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6c-Us-QN9" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="23" width="141" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="yMV-xx-flB"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrl-bG-KJf" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="38" width="141" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="17" id="1Rl-vp-jBz"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Een-67-uBR">
+                                                    <rect key="frame" x="221" y="11.5" width="143" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wet-4F-8pc" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="30"/>
+                                                            <color key="backgroundColor" white="1" alpha="0.64990903249999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="68" id="5u8-CQ-Pi6"/>
+                                                                <constraint firstAttribute="height" constant="30" id="exe-ZB-2iQ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <state key="normal" title="Accept">
+                                                                <color key="titleColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QE-6V-v6a" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="75" y="0.0" width="68" height="30"/>
+                                                            <color key="backgroundColor" white="1" alpha="0.64990903249999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="68" id="3f0-tp-ejL"/>
+                                                                <constraint firstAttribute="height" constant="30" id="hrC-am-ndR"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <state key="normal" title="+ Invite">
+                                                                <color key="titleColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="btnAction:" destination="9rg-JJ-upy" eventType="touchUpInside" id="cyA-S3-yyt"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S4l-Qn-sYK" firstAttribute="centerY" secondItem="kMF-2l-QL2" secondAttribute="centerY" id="0tN-xR-0Xy"/>
+                                                <constraint firstAttribute="trailing" secondItem="Een-67-uBR" secondAttribute="trailing" constant="11" id="F0Z-Uy-SwS"/>
+                                                <constraint firstItem="S4l-Qn-sYK" firstAttribute="leading" secondItem="kMF-2l-QL2" secondAttribute="leading" constant="15" id="T5j-pL-33Y"/>
+                                                <constraint firstItem="Een-67-uBR" firstAttribute="centerY" secondItem="nM8-Dy-L1b" secondAttribute="centerY" id="d5f-Vm-NbO"/>
+                                                <constraint firstItem="nM8-Dy-L1b" firstAttribute="leading" secondItem="S4l-Qn-sYK" secondAttribute="trailing" constant="15" id="guN-EG-NgF"/>
+                                                <constraint firstItem="nM8-Dy-L1b" firstAttribute="centerY" secondItem="kMF-2l-QL2" secondAttribute="centerY" id="ha2-h6-NTa"/>
+                                                <constraint firstItem="nM8-Dy-L1b" firstAttribute="centerY" secondItem="S4l-Qn-sYK" secondAttribute="centerY" id="jcc-p2-oeA"/>
+                                                <constraint firstItem="Een-67-uBR" firstAttribute="leading" secondItem="nM8-Dy-L1b" secondAttribute="trailing" constant="10" id="xdl-rD-ynk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="btnAccept" destination="wet-4F-8pc" id="17b-Mj-JaL"/>
+                                            <outlet property="btnInvite" destination="8QE-6V-v6a" id="LfK-Od-as4"/>
+                                            <outlet property="lblFirstCharacter" destination="S4l-Qn-sYK" id="4e2-ft-Elj"/>
+                                            <outlet property="lblName" destination="CgO-Ra-Vxt" id="Uvr-Ws-xdQ"/>
+                                            <outlet property="lblNickName" destination="b6c-Us-QN9" id="s8h-sY-4n2"/>
+                                            <outlet property="lblNumber" destination="Vrl-bG-KJf" id="h9f-02-3oO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="tid-EN-dwa">
                                 <rect key="frame" x="0.0" y="274.5" width="375" height="40"/>
                                 <subviews>
@@ -4955,19 +5104,25 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="JOL-ga-3qa" firstAttribute="top" secondItem="B3Q-6u-TN7" secondAttribute="top" id="Ja2-dI-BKB"/>
                             <constraint firstItem="tid-EN-dwa" firstAttribute="centerY" secondItem="ORB-tW-w8j" secondAttribute="centerY" id="V3k-Xk-2LI"/>
+                            <constraint firstItem="JOL-ga-3qa" firstAttribute="trailing" secondItem="B3Q-6u-TN7" secondAttribute="trailing" id="kcc-Qs-RHt"/>
                             <constraint firstAttribute="trailing" secondItem="tid-EN-dwa" secondAttribute="trailing" id="lmP-jJ-2jN"/>
+                            <constraint firstItem="JOL-ga-3qa" firstAttribute="bottom" secondItem="B3Q-6u-TN7" secondAttribute="bottom" id="pZP-0S-FIa"/>
+                            <constraint firstItem="JOL-ga-3qa" firstAttribute="leading" secondItem="B3Q-6u-TN7" secondAttribute="leading" id="rbK-35-bzo"/>
                             <constraint firstItem="tid-EN-dwa" firstAttribute="leading" secondItem="ORB-tW-w8j" secondAttribute="leading" id="tzK-jT-PXw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B3Q-6u-TN7"/>
                     </view>
                     <connections>
+                        <outlet property="btnFacebook" destination="HXN-cq-BC5" id="A7i-uG-bju"/>
+                        <outlet property="tblFriends" destination="JOL-ga-3qa" id="PVG-GF-SHR"/>
                         <outlet property="viewParent" destination="ORB-tW-w8j" id="jSF-kR-qoo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7l-C6-d58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969" y="-1089"/>
+            <point key="canvasLocation" x="418" y="-1024"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="BGp-pe-l9G">
@@ -4988,7 +5143,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDF-BQ-qXZ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="305.5" width="335" height="56.5"/>
+                                        <rect key="frame" x="20" y="316" width="335" height="35"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -5036,23 +5191,23 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="90z-1P-nJH">
-                                                                    <rect key="frame" x="64" y="9" width="217" height="32"/>
+                                                                    <rect key="frame" x="64" y="8" width="217" height="34"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muhammad" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0x-JJ-GSr" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="217" height="19"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="19" id="xOq-Rm-alg"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
+                                                                            <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="15"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum is simply dummy text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gra-QB-Q0p" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="19" width="217" height="13"/>
+                                                                            <rect key="frame" x="0.0" y="19" width="217" height="15"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="13" id="gbT-Vl-Mgn"/>
+                                                                                <constraint firstAttribute="height" constant="15" id="gbT-Vl-Mgn"/>
                                                                             </constraints>
-                                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="10"/>
+                                                                            <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="10"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -5632,7 +5787,7 @@
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-dwon" translatesAutoresizingMaskIntoConstraints="NO" id="CjA-bH-4fe">
-                                                                        <rect key="frame" x="307" y="5" width="18" height="40"/>
+                                                                        <rect key="frame" x="289" y="5" width="36" height="40"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6348,7 +6503,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo wallet" translatesAutoresizingMaskIntoConstraints="NO" id="GUy-Vy-ib3">
-                                                                        <rect key="frame" x="140.5" y="3.5" width="30" height="40"/>
+                                                                        <rect key="frame" x="140.5" y="-16.5" width="30" height="80"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="j13-1V-awS"/>
                                                                         </constraints>
@@ -6513,6 +6668,217 @@
             </objects>
             <point key="canvasLocation" x="3735" y="1046"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="hat-Ub-vFt">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="aZk-5A-ahV" customClass="SearchViewController" customModule="Movecoins" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sVk-vf-NVY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiG-FQ-HZ2">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSB-WE-92E" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="0.0" width="345" height="46"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="7nE-DH-yQ5">
+                                                <rect key="frame" x="15" y="6" width="32" height="34"/>
+                                            </imageView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exf-HC-omu" customClass="TextFieldFont" customModule="Movecoins" customModuleProvider="target">
+                                                <rect key="frame" x="55" y="8" width="282" height="30"/>
+                                                <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                        <color key="value" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="txtSearchEditingChangedAction:" destination="XmR-RG-SPi" eventType="editingChanged" id="bUJ-4Z-ehb"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="7nE-DH-yQ5" firstAttribute="centerY" secondItem="xSB-WE-92E" secondAttribute="centerY" id="HGH-ul-Ahh"/>
+                                            <constraint firstItem="7nE-DH-yQ5" firstAttribute="leading" secondItem="xSB-WE-92E" secondAttribute="leading" constant="15" id="UBV-bb-yuR"/>
+                                            <constraint firstAttribute="trailing" secondItem="exf-HC-omu" secondAttribute="trailing" constant="8" id="Uy6-Tf-3sc"/>
+                                            <constraint firstAttribute="bottom" secondItem="exf-HC-omu" secondAttribute="bottom" constant="8" id="Wn8-4T-pV7"/>
+                                            <constraint firstItem="exf-HC-omu" firstAttribute="top" secondItem="xSB-WE-92E" secondAttribute="top" constant="8" id="k5x-rq-ety"/>
+                                            <constraint firstItem="exf-HC-omu" firstAttribute="leading" secondItem="7nE-DH-yQ5" secondAttribute="trailing" constant="8" id="uJ0-Ce-sg0"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="xSB-WE-92E" secondAttribute="bottom" id="5bh-rQ-dWA"/>
+                                    <constraint firstAttribute="height" constant="46" id="Szg-2p-5f3"/>
+                                    <constraint firstAttribute="trailing" secondItem="xSB-WE-92E" secondAttribute="trailing" constant="15" id="bh2-vA-v4Y"/>
+                                    <constraint firstItem="xSB-WE-92E" firstAttribute="top" secondItem="BiG-FQ-HZ2" secondAttribute="top" id="etP-1i-E1F"/>
+                                    <constraint firstItem="xSB-WE-92E" firstAttribute="leading" secondItem="BiG-FQ-HZ2" secondAttribute="leading" constant="15" id="hJH-1h-mPJ"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="533-kV-DsY">
+                                <rect key="frame" x="0.0" y="56" width="375" height="533"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindFriendTableViewCell" rowHeight="53" id="p78-9w-g7U" customClass="FindFriendTableViewCell" customModule="Movecoins" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p78-9w-g7U" id="EJ2-nc-kFW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4j-Wq-6eA">
+                                                    <rect key="frame" x="15" y="6.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="6c3-IX-B92"/>
+                                                        <constraint firstAttribute="width" constant="40" id="7WL-8b-v5b"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="24"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="border">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" white="1" alpha="0.64990903249999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MWM-X1-seK">
+                                                    <rect key="frame" x="70" y="-1" width="141" height="55"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Mz-EaO" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="141" height="23"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="x6f-CT-n5Z"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Euz-1a-AtD" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="23" width="141" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="rAL-pZ-VKk"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n05-Le-EMY" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="38" width="141" height="17"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="17" id="UvT-6W-9PX"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="4kP-F6-5Nn">
+                                                    <rect key="frame" x="221" y="11.5" width="143" height="30"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYz-mK-dEc" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="30"/>
+                                                            <color key="backgroundColor" white="1" alpha="0.64990903249999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="TK2-Vd-nqe"/>
+                                                                <constraint firstAttribute="width" constant="68" id="xCa-SR-MfK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <state key="normal" title="Accept">
+                                                                <color key="titleColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGJ-VQ-ulh" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                            <rect key="frame" x="75" y="0.0" width="68" height="30"/>
+                                                            <color key="backgroundColor" white="1" alpha="0.64990903249999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="CrU-tQ-8il"/>
+                                                                <constraint firstAttribute="width" constant="68" id="j9z-xz-RUQ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="13"/>
+                                                            <state key="normal" title="+ Invite">
+                                                                <color key="titleColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="15"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="btnAction:" destination="p78-9w-g7U" eventType="touchUpInside" id="zZ7-5U-Hg0"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4kP-F6-5Nn" firstAttribute="leading" secondItem="MWM-X1-seK" secondAttribute="trailing" constant="10" id="3da-9j-ecl"/>
+                                                <constraint firstItem="MWM-X1-seK" firstAttribute="centerY" secondItem="EJ2-nc-kFW" secondAttribute="centerY" id="68P-Be-ODp"/>
+                                                <constraint firstItem="P4j-Wq-6eA" firstAttribute="centerY" secondItem="EJ2-nc-kFW" secondAttribute="centerY" id="8PW-Ae-ZII"/>
+                                                <constraint firstItem="P4j-Wq-6eA" firstAttribute="leading" secondItem="EJ2-nc-kFW" secondAttribute="leading" constant="15" id="9cW-PN-Bua"/>
+                                                <constraint firstAttribute="trailing" secondItem="4kP-F6-5Nn" secondAttribute="trailing" constant="11" id="CTY-u4-sTU"/>
+                                                <constraint firstItem="MWM-X1-seK" firstAttribute="leading" secondItem="P4j-Wq-6eA" secondAttribute="trailing" constant="15" id="D7R-Px-uD4"/>
+                                                <constraint firstItem="MWM-X1-seK" firstAttribute="centerY" secondItem="P4j-Wq-6eA" secondAttribute="centerY" id="Qr0-vw-H1k"/>
+                                                <constraint firstItem="4kP-F6-5Nn" firstAttribute="centerY" secondItem="MWM-X1-seK" secondAttribute="centerY" id="WMK-Rf-pbm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="btnAccept" destination="TYz-mK-dEc" id="PCn-lx-hGx"/>
+                                            <outlet property="btnInvite" destination="UGJ-VQ-ulh" id="0Ce-Ri-eys"/>
+                                            <outlet property="lblFirstCharacter" destination="P4j-Wq-6eA" id="5U9-V1-Ms0"/>
+                                            <outlet property="lblName" destination="mPS-Mz-EaO" id="Jd1-mH-UgC"/>
+                                            <outlet property="lblNickName" destination="Euz-1a-AtD" id="0PV-fW-oOs"/>
+                                            <outlet property="lblNumber" destination="n05-Le-EMY" id="9VK-pw-gZx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BiG-FQ-HZ2" firstAttribute="top" secondItem="sVk-vf-NVY" secondAttribute="top" id="124-Og-pJa"/>
+                            <constraint firstItem="533-kV-DsY" firstAttribute="leading" secondItem="sVk-vf-NVY" secondAttribute="leading" id="F98-vs-oaN"/>
+                            <constraint firstAttribute="bottom" secondItem="533-kV-DsY" secondAttribute="bottom" id="Nrg-dd-cF5"/>
+                            <constraint firstItem="533-kV-DsY" firstAttribute="top" secondItem="BiG-FQ-HZ2" secondAttribute="bottom" constant="10" id="UJK-5S-pgE"/>
+                            <constraint firstAttribute="trailing" secondItem="BiG-FQ-HZ2" secondAttribute="trailing" id="eWa-5z-UCB"/>
+                            <constraint firstItem="BiG-FQ-HZ2" firstAttribute="leading" secondItem="sVk-vf-NVY" secondAttribute="leading" id="hhF-QH-NqK"/>
+                            <constraint firstAttribute="trailing" secondItem="533-kV-DsY" secondAttribute="trailing" id="xs9-hH-Ggn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WlH-4Y-cfw"/>
+                    </view>
+                    <connections>
+                        <outlet property="tblFriends" destination="533-kV-DsY" id="M2N-K5-sZH"/>
+                        <outlet property="txtSearch" destination="exf-HC-omu" id="2IZ-nl-haw"/>
+                        <outlet property="viewParent" destination="sVk-vf-NVY" id="S3v-Dy-0PN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3B-KL-sQs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1102" y="-367"/>
+        </scene>
     </scenes>
     <resources>
         <image name="3logo-icon" width="33" height="36"/>
@@ -6559,6 +6925,8 @@
         <image name="profile-icon" width="20" height="24"/>
         <image name="round-line" width="169" height="169"/>
         <image name="search" width="16" height="17"/>
+        <image name="search-select" width="32" height="32"/>
+        <image name="search-unselect" width="32" height="32"/>
         <image name="spend-coin" width="20" height="20"/>
         <image name="statistics-icon" width="22" height="23"/>
         <image name="store-icon" width="21" height="25"/>
@@ -6567,6 +6935,6 @@
         <image name="wallet" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R1p-X2-06E"/>
+        <segue reference="hLV-gm-Eo4"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -51,6 +51,8 @@ class SettingsViewController: UIViewController {
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
         
+        tblSettings.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        
         lblVersion.text = "Version - ".localized + kAPPVesion
         
         /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in

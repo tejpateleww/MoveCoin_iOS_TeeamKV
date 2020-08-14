@@ -67,11 +67,11 @@ class InviteFriendsViewController: UIViewController {
             viewBoxAnimation.addSubview(animationView)
         }
         
-        animationView.play { (success)
-            in
-            
-            self.animate()
-        }
+//        animationView.play { (success) in
+//            self.animate()
+//        }
+        
+        animationView.play()
     }
     
     // ----------------------------------------------------
@@ -96,5 +96,4 @@ class InviteFriendsViewController: UIViewController {
         let vc = UIActivityViewController(activityItems: [text, image ?? UIImage(), url!], applicationActivities: [])
         present(vc, animated: true)
     }
-    
 }

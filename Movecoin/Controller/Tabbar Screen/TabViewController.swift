@@ -122,6 +122,8 @@ class TabViewController: UIViewController {
         
         // Notification observer for Language Change
         NotificationCenter.default.addObserver(self, selector: #selector(changeLanguage), name: Notification.Name(rawValue: LCLLanguageChangeNotification), object: nil)
+        
+        viewTabbar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
     
     func setupFont() {

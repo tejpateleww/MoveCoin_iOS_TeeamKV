@@ -80,6 +80,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             let vc = (AppDelegateShared.window?.rootViewController as? UINavigationController)?.topViewController as! ChatViewController
             vc.webserviceForChatHistory(isLoading: false)
         }
+        
+        // For staring the Lottie animation
+        
+//        if let topController = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+//            if let inviteVC : InviteViewController = (topController as? InviteViewController) {
+//                for child in inviteVC.children {
+//                    if child.isKind(of: InviteFriendsViewController.self) {
+//                        let vc = child as! InviteFriendsViewController
+//                        vc.animationView.play { (success) in
+//                            vc.animate()
+//                        }
+////                        break
+//                    }
+//                }
+//            }
+//        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {

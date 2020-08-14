@@ -107,6 +107,8 @@ class HomeViewController: UIViewController {
         
         lblDescription.font = UIFont.semiBold(ofSize: 25)
         lblMember.font = UIFont.light(ofSize: 13)
+        
+        self.viewParent.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
     
     func setUpNavigationItems(){

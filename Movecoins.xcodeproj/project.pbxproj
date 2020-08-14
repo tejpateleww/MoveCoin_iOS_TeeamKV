@@ -208,7 +208,16 @@
 		46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51D8232F9D1600182B86 /* WalletViewController.swift */; };
 		46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DA232F9D3000182B86 /* StatisticsViewController.swift */; };
 		46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */; };
+		648FAB5224E6668100FF516D /* SocialUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */; };
+		648FAB5324E6668100FF516D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648FAB5124E6668000FF516D /* User.swift */; };
+		64CD3A6E24E4FC0D00D8809B /* SocialUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD3A6D24E4FC0D00D8809B /* SocialUserModel.swift */; };
 		64D0EDA724C1A8C3004F683C /* ConvertStepsToCoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0EDA624C1A8C3004F683C /* ConvertStepsToCoinModel.swift */; };
+		64EE612D24E3C2990036F42B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE612C24E3C2990036F42B /* SearchViewController.swift */; };
+		64EE612F24E3EC5D0036F42B /* SearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE612E24E3EC5D0036F42B /* SearchRequestModel.swift */; };
+		64EE613424E3F3CB0036F42B /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613224E3F3CB0036F42B /* SearchData.swift */; };
+		64EE613524E3F3CB0036F42B /* SearchFriendResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613324E3F3CB0036F42B /* SearchFriendResponseModel.swift */; };
+		64EE613924E402040036F42B /* FriendRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613724E402040036F42B /* FriendRequestData.swift */; };
+		64EE613A24E402040036F42B /* FriendRequestResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613824E402040036F42B /* FriendRequestResponseModel.swift */; };
 		8105CB9D2473A218004EBD54 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105CB9C2473A218004EBD54 /* HTTPMethod.swift */; };
 		8130CD1B24645DE4000B9885 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8130CD1A24645DE4000B9885 /* WebKit.framework */; };
 		81892EFF2473EDBF006F2113 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81892EFE2473EDBF006F2113 /* Transaction.swift */; };
@@ -447,7 +456,16 @@
 		46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		477FF479109FF521DF9958AC /* Pods-Movecoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.debug.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4D633531C407587B2596F3 /* Pods-Movecoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.release.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.release.xcconfig"; sourceTree = "<group>"; };
+		648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialUserResponseModel.swift; sourceTree = "<group>"; };
+		648FAB5124E6668000FF516D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		64CD3A6D24E4FC0D00D8809B /* SocialUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialUserModel.swift; sourceTree = "<group>"; };
 		64D0EDA624C1A8C3004F683C /* ConvertStepsToCoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertStepsToCoinModel.swift; sourceTree = "<group>"; };
+		64EE612C24E3C2990036F42B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		64EE612E24E3EC5D0036F42B /* SearchRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestModel.swift; sourceTree = "<group>"; };
+		64EE613224E3F3CB0036F42B /* SearchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		64EE613324E3F3CB0036F42B /* SearchFriendResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendResponseModel.swift; sourceTree = "<group>"; };
+		64EE613724E402040036F42B /* FriendRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestData.swift; sourceTree = "<group>"; };
+		64EE613824E402040036F42B /* FriendRequestResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestResponseModel.swift; sourceTree = "<group>"; };
 		7E2BDC618FF3EEC01E0811AF /* Pods-Movecoins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoins.release.xcconfig"; path = "Target Support Files/Pods-Movecoins/Pods-Movecoins.release.xcconfig"; sourceTree = "<group>"; };
 		8105CB9C2473A218004EBD54 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		8130CD1A24645DE4000B9885 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -757,6 +775,8 @@
 				464AE07723B4BBBD00826BA7 /* NearByUserModel.swift */,
 				464AE07E23B4C81A00826BA7 /* NearByUserDetailModel.swift */,
 				46814386238E8EE800D5A297 /* InviteFriendsModel.swift */,
+				64CD3A6D24E4FC0D00D8809B /* SocialUserModel.swift */,
+				64EE612E24E3EC5D0036F42B /* SearchRequestModel.swift */,
 				4652AF5C239F6EEE00B2E775 /* FriendRequestModel.swift */,
 				46C9C4EA23A0D36E0042341B /* UnfriendModel.swift */,
 				4652AF5E239F9C4200B2E775 /* ActionOnFriendRequestModel.swift */,
@@ -782,6 +802,9 @@
 		461DC253237930BB0092AC82 /* Response Models */ = {
 			isa = PBXGroup;
 			children = (
+				64CD3A6F24E500E900D8809B /* SocialUser */,
+				64EE613624E401EF0036F42B /* FriendRequest */,
+				64EE613124E3F3B10036F42B /* SearchFriend */,
 				46F717AE23B9D35000A26DAB /* PolicyHelpTermsClass.swift */,
 				469057AD2396715A000D192E /* Init */,
 				46D96063238B9ADD0026B96D /* Login */,
@@ -1092,6 +1115,7 @@
 				46DF72962350601F005005B1 /* InviteFriendsViewController.swift */,
 				46DF729823506042005005B1 /* FindFriendsViewController.swift */,
 				46DF729A2350605E005005B1 /* FacebookViewController.swift */,
+				64EE612C24E3C2990036F42B /* SearchViewController.swift */,
 			);
 			path = "Invite Screen";
 			sourceTree = "<group>";
@@ -1131,6 +1155,33 @@
 				46FA2C7F23A122DD000A3B9B /* Card.swift */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		64CD3A6F24E500E900D8809B /* SocialUser */ = {
+			isa = PBXGroup;
+			children = (
+				648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */,
+				648FAB5124E6668000FF516D /* User.swift */,
+			);
+			path = SocialUser;
+			sourceTree = "<group>";
+		};
+		64EE613124E3F3B10036F42B /* SearchFriend */ = {
+			isa = PBXGroup;
+			children = (
+				64EE613224E3F3CB0036F42B /* SearchData.swift */,
+				64EE613324E3F3CB0036F42B /* SearchFriendResponseModel.swift */,
+			);
+			path = SearchFriend;
+			sourceTree = "<group>";
+		};
+		64EE613624E401EF0036F42B /* FriendRequest */ = {
+			isa = PBXGroup;
+			children = (
+				64EE613724E402040036F42B /* FriendRequestData.swift */,
+				64EE613824E402040036F42B /* FriendRequestResponseModel.swift */,
+			);
+			path = FriendRequest;
 			sourceTree = "<group>";
 		};
 		81892F002473EE0A006F2113 /* Merchant API */ = {
@@ -1379,6 +1430,7 @@
 				46F717AB23B9CD1000A26DAB /* WebViewController.swift in Sources */,
 				461EC3FB236C05BC00114759 /* UIFont + Extension.swift in Sources */,
 				463CAC4A23A3765A0040493E /* PurchaseHistoryResponseModel.swift in Sources */,
+				64EE613924E402040036F42B /* FriendRequestData.swift in Sources */,
 				46D96068238B9BB10026B96D /* ProductDetails.swift in Sources */,
 				464AE07D23B4BF4500826BA7 /* Nearbyuser.swift in Sources */,
 				4628D8FD23A7810C0061D77D /* ZoomingScrollView.swift in Sources */,
@@ -1424,9 +1476,11 @@
 				64D0EDA724C1A8C3004F683C /* ConvertStepsToCoinModel.swift in Sources */,
 				81C93932246EABB7005D3CF8 /* Coding.swift in Sources */,
 				461DC26323793A8E0092AC82 /* Login.swift in Sources */,
+				64EE612D24E3C2990036F42B /* SearchViewController.swift in Sources */,
 				462D24EE23B32F7F0050C3F0 /* WeekStepsCount.swift in Sources */,
 				46A74036235592A4009C9D81 /* PopoverViewController.swift in Sources */,
 				46C9C4EF23A116380042341B /* AddCardModel.swift in Sources */,
+				64CD3A6E24E4FC0D00D8809B /* SocialUserModel.swift in Sources */,
 				46FD51D7232F92B200182B86 /* TabViewController.swift in Sources */,
 				46A4CCD723BA0AFC007B00BA /* SocialLoginModel.swift in Sources */,
 				469057B323967CBB000D192E /* BecomeSeller.swift in Sources */,
@@ -1435,10 +1489,12 @@
 				46F5461D23AA515C00251A20 /* ChatListResponseModel.swift in Sources */,
 				46EA8792234B14C20082C694 /* TotalStepsTableViewCell.swift in Sources */,
 				46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */,
+				648FAB5224E6668100FF516D /* SocialUserResponseModel.swift in Sources */,
 				46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */,
 				462D24DF23B32F310050C3F0 /* UIBezierPathExtension.swift in Sources */,
 				464AE07F23B4C81A00826BA7 /* NearByUserDetailModel.swift in Sources */,
 				462D24DE23B32F310050C3F0 /* BasicBarChartPresenter.swift in Sources */,
+				64EE613524E3F3CB0036F42B /* SearchFriendResponseModel.swift in Sources */,
 				462D24E023B32F310050C3F0 /* BasicBarChart.swift in Sources */,
 				46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */,
 				463CAC4523A371610040493E /* PurchaseHistory.swift in Sources */,
@@ -1457,6 +1513,7 @@
 				46138044232906C7007C3FA4 /* SignupViewController.swift in Sources */,
 				462D24E123B32F310050C3F0 /* ArrayExtension.swift in Sources */,
 				462D24E423B32F310050C3F0 /* BeautifulBarChart.swift in Sources */,
+				64EE613A24E402040036F42B /* FriendRequestResponseModel.swift in Sources */,
 				81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */,
 				461DC25B237936F60092AC82 /* WebServices.swift in Sources */,
 				46DDCA0223AB486000FFAF91 /* ChatHistoryModel.swift in Sources */,
@@ -1498,6 +1555,7 @@
 				4616EF15232A146F00B138A3 /* VKEntryViewStyle.swift in Sources */,
 				81C93934246EABB7005D3CF8 /* Gateway.swift in Sources */,
 				4661BB492351A50700DC41E0 /* AccountPrivacyViewController.swift in Sources */,
+				64EE612F24E3EC5D0036F42B /* SearchRequestModel.swift in Sources */,
 				465E350C237BDCB20023366C /* UserData.swift in Sources */,
 				4631E9B12327DB4C0088B49F /* RoundedShadowView.swift in Sources */,
 				4616EF16232A146F00B138A3 /* VKPinCodeView.swift in Sources */,
@@ -1510,6 +1568,7 @@
 				4661BB472351995000DC41E0 /* SettingsTableViewCell.swift in Sources */,
 				46515526236AA2970079627A /* EnumCollection.swift in Sources */,
 				465ECE612330DB1B004FE65E /* SplashViewController.swift in Sources */,
+				648FAB5324E6668100FF516D /* User.swift in Sources */,
 				464F49362398EF3200D803D6 /* StepsData.swift in Sources */,
 				46DF72972350601F005005B1 /* InviteFriendsViewController.swift in Sources */,
 				4643665723A4BA4F0020D741 /* ImagesViewController.swift in Sources */,
@@ -1528,6 +1587,7 @@
 				81C93937246EABB7005D3CF8 /* BuildConfig.swift in Sources */,
 				4631E9AF2327D1E40088B49F /* UtilityClass.swift in Sources */,
 				461DC2552379315D0092AC82 /* Parameters.swift in Sources */,
+				64EE613424E3F3CB0036F42B /* SearchData.swift in Sources */,
 				460C049C239A10A800D674D7 /* CoinsEarn.swift in Sources */,
 				4670146223485D4B00556CBB /* TransparentView.swift in Sources */,
 				46C9C4EB23A0D36E0042341B /* UnfriendModel.swift in Sources */,
@@ -1729,7 +1789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 1.6.4;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
@@ -1750,7 +1810,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.1;
+				CURRENT_PROJECT_VERSION = 1.6.4;
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

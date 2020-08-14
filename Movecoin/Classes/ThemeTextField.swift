@@ -71,7 +71,9 @@ class TextFieldFont : UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.font = FontBook.Regular.of(size: 17)
-        self.undoManager?.removeAllActions()
+//        self.undoManager?.removeAllActions()
+        self.autocorrectionType = .no
+        
         
         // For Localization
         self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left

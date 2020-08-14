@@ -86,7 +86,7 @@ class TransferMoveCoinsViewController: UIViewController {
             webserviceForTransferCoins(dic: requestModel)
            
         } else{
-            UtilityClass.showAlert(Message: "Amount should be grater than zero")
+            UtilityClass.showAlert(Message: "Amount should be greater than zero")
         }
     }
 }

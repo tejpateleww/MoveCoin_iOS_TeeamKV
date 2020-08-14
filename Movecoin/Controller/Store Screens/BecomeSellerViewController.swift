@@ -115,7 +115,7 @@ extension BecomeSellerViewController : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == txtProductType {
             textField.inputView = pickerView
-            if textField.text!.isEmpty {
+            if textField.text!.isEmpty && typeOfProducts.count > 0 {
                 textField.text = typeOfProducts.first?.categoryName
                 selectedCategory = typeOfProducts.first
             }
@@ -143,9 +143,12 @@ extension BecomeSellerViewController : UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let type = typeOfProducts[row]
-        selectedCategory = type
-        txtProductType.text = type.categoryName
+        
+        if typeOfProducts.count > 0 {
+            let type = typeOfProducts[row]
+            selectedCategory = type
+            txtProductType.text = type.categoryName
+        }
     }
 }
 

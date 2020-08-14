@@ -7,161 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4EE558DD-9A52-403A-ADD0-E783DD45BFAB"
+            uuid = "7B9FED70-1391-4716-9BAA-6DE1ADC81142"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/View/PurchaseHistoryTableViewCell.swift"
+            filePath = "Movecoin/Controller/Wallet Screens/WalletViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "orderDetail"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D5EED49B-3133-424F-9A98-EC62764D350C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Invite Screen/InviteViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "viewDidAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EF618652-8EF3-4778-A9A0-8B2B15BD2F0F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "applicationWillEnterForeground(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "83C1E2D1-C6E3-437A-84A6-40AC120B4AA6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Invite Screen/InviteViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "btnInviteFriendsTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "68FEDCA0-DE2E-4F08-A943-0D9C43A41839"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Invite Screen/InviteViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "btnFiendFriendsTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7D2A221B-3AED-40E9-AAD3-CCB29ADBD711"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Invite Screen/FindFriendsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
-            landmarkName = "scrollViewWillBeginDecelerating(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "68BEB1F7-3BC8-44C7-8616-32C55094B5C5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Setting Screens/WebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "webserviceforPolicyHelpTerm()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "68BEB1F7-3BC8-44C7-8616-32C55094B5C5 - 9514043bd6e508e3"
+                  uuid = "7B9FED70-1391-4716-9BAA-6DE1ADC81142 - e3004b564c184784"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Movecoins.WebViewController.webserviceforPolicyHelpTerm() -&gt; ()"
+                  symbolName = "Movecoins.WalletViewController.viewDidAppear(Swift.Bool) -&gt; ()"
                   moduleName = "Movecoins"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Setting%20Screens/WebViewController.swift"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Wallet%20Screens/WalletViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "105"
-                  endingLineNumber = "105"
-                  offsetFromSymbolStart = "844">
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "1720">
                </Location>
                <Location
-                  uuid = "68BEB1F7-3BC8-44C7-8616-32C55094B5C5 - 67c1bc15399267c7"
+                  uuid = "7B9FED70-1391-4716-9BAA-6DE1ADC81142 - 32eac449e3d9e490"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool, Any) -&gt; () in Movecoins.WebViewController.webserviceforPolicyHelpTerm() -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in Movecoins.WalletViewController.viewDidAppear(Swift.Bool) -&gt; ()"
                   moduleName = "Movecoins"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Setting%20Screens/WebViewController.swift"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Wallet%20Screens/WalletViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "110"
-                  endingLineNumber = "110"
-                  offsetFromSymbolStart = "224">
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CB882B24-F439-4291-BB1F-AA8FA1CF5DA2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Setting Screens/WebViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "webserviceforPolicyHelpTerm()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

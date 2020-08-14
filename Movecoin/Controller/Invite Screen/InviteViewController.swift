@@ -19,6 +19,7 @@ class InviteViewController: UIViewController {
     @IBOutlet weak var btnInvite: UIButton!
     @IBOutlet weak var btnFriends: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
+    @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var subview: UIView!
 
     // ----------------------------------------------------
@@ -38,6 +39,8 @@ class InviteViewController: UIViewController {
             self.scrollView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
             self.subview.transform =  CGAffineTransform(rotationAngle: CGFloat(Double.pi));
         }
+        
+        viewParent.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +60,7 @@ class InviteViewController: UIViewController {
                 loadThePage(sender: btnInvite)
                 btnFriends.isSelected = false
                 btnFacebook.isSelected = false
+                btnSearch.isSelected = false
             }
         }
     }
@@ -81,13 +85,20 @@ class InviteViewController: UIViewController {
              self.navigationBarSetUp(title: "Find Friend".localized)
         }else if btnFacebook.isSelected {
              self.navigationBarSetUp(title: "Facebook".localized)
+        }else if btnSearch.isSelected {
+            self.navigationBarSetUp(title: "Search".localized)
         }
     }
+    
     func scrollToPage(page: Int) {
         var frame: CGRect = self.scrollView.frame
         frame.origin.x = (windowWidth) * CGFloat(page)
         frame.origin.y = 0
         self.scrollView.scrollRectToVisible(frame, animated: false)
+        
+        for controller in self.children {
+            controller.view.endEditing(true)
+        }
     }
     
     // ----------------------------------------------------
@@ -97,35 +108,50 @@ class InviteViewController: UIViewController {
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {
         self.title = "Invite".localized
        scrollToPage(page: 0)
-        print("setContentOffset : \(scrollView.contentOffset)")
-        self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
-        self.scrollView.scrollRectToVisible(CGRect(), animated: true)
-        print("setContentOffset : \(scrollView.contentOffset)")
+//        print("setContentOffset : \(scrollView.contentOffset)")
+//        self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
+//        self.scrollView.scrollRectToVisible(CGRect(), animated: true)
+//        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = true
         btnFriends.isSelected = false
         btnFacebook.isSelected = false
+        btnSearch.isSelected = false
     }
     
     @IBAction func btnFiendFriendsTapped(_ sender: Any) {
         self.title = "Find Friend".localized
        scrollToPage(page: 1)
-        print("setContentOffset : \(scrollView.contentOffset)")
-        scrollView.setContentOffset(CGPoint(x: windowWidth, y: scrollView.frame.minY), animated: true)
-        print("setContentOffset : \(scrollView.contentOffset)")
+//        print("setContentOffset : \(scrollView.contentOffset)")
+//        scrollView.setContentOffset(CGPoint(x: windowWidth, y: scrollView.frame.minY), animated: true)
+//        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = true
         btnFacebook.isSelected = false
+        btnSearch.isSelected = false
     }
     
     @IBAction func btnFacebookTapped(_ sender: Any) {
         self.title = "Facebook".localized
         scrollToPage(page: 2)
-        print("setContentOffset : \(scrollView.contentOffset)")
-        scrollView.setContentOffset(CGPoint(x: (windowWidth*2), y: scrollView.frame.minY), animated: true)
-        print("setContentOffset : \(scrollView.contentOffset)")
+//        print("setContentOffset : \(scrollView.contentOffset)")
+//        scrollView.setContentOffset(CGPoint(x: (windowWidth*2), y: scrollView.frame.minY), animated: true)
+//        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = false
         btnFacebook.isSelected = true
+        btnSearch.isSelected = false
+    }
+    
+    @IBAction func btnSearchTapped(_ sender: Any) {
+        self.title = "Search".localized
+        scrollToPage(page: 3)
+//        print("setContentOffset : \(scrollView.contentOffset)")
+//        scrollView.setContentOffset(CGPoint(x: (windowWidth*3), y: scrollView.frame.minY), animated: true)
+//        print("setContentOffset : \(scrollView.contentOffset)")
+        btnInvite.isSelected = false
+        btnFriends.isSelected = false
+        btnFacebook.isSelected = false
+        btnSearch.isSelected = true
     }
 }
 

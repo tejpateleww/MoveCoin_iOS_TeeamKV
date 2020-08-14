@@ -11,4 +11,5 @@ import Foundation
 class FriendRequestModel : RequestModel {
     var SenderID: String = ""
     var ReceiverID :String = ""
+    var social_id :String = ""
 }

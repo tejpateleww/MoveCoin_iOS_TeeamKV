@@ -129,13 +129,23 @@ class FriendsWebserviceSubclass
         WebService.shared.requestMethod(api: .inviteFriends, httpMethod: .post, parameters: params, completion: completion)
     }
     
-    class func friendRequest( frinedRequestModel : FriendRequestModel  ,completion: @escaping CompletionResponse ) {
-        let  params = frinedRequestModel.generatPostParams() as! [String : String]
+    class func socialUsers( socialUserModel : SocialUserModel  ,completion: @escaping CompletionResponse ) {
+        let  params = socialUserModel.generatPostParams()
+        WebService.shared.requestMethod(api: .socialUsers, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func searchFriend( searchRequestModel : SearchRequestModel  ,completion: @escaping CompletionResponse ) {
+        let  params = searchRequestModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .searchFriend, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func friendRequest( friendRequestModel : FriendRequestModel  ,completion: @escaping CompletionResponse ) {
+        let  params = friendRequestModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .friendRequest, httpMethod: .post, parameters: params, completion: completion)
     }
     
-    class func actionOnFriendRequest( actionFrinedRequestModel : ActionOnFriendRequestModel  ,completion: @escaping CompletionResponse ) {
-        let  params = actionFrinedRequestModel.generatPostParams() as! [String : String]
+    class func actionOnFriendRequest( actionFriendRequestModel : ActionOnFriendRequestModel  ,completion: @escaping CompletionResponse ) {
+        let  params = actionFriendRequestModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .actionOnFriendRequest, httpMethod: .post, parameters: params, completion: completion)
     }
     
@@ -144,8 +154,8 @@ class FriendsWebserviceSubclass
         WebService.shared.requestMethod(api: .unfriend, httpMethod: .post, parameters: params, completion: completion)
     }
     
-    class func friendsList( frinedListModel : FriendListModel  ,completion: @escaping CompletionResponse ) {
-        let  params = frinedListModel.generatPostParams() as! [String : String]
+    class func friendsList( friendListModel : FriendListModel  ,completion: @escaping CompletionResponse ) {
+        let  params = friendListModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .friendList, httpMethod: .post, parameters: params, completion: completion)
     }
     

@@ -110,8 +110,6 @@ class ConfirmPurchaseViewController: UIViewController {
         self.setupView()
         setupProductData()
         
-        
-        
 //        txtName.text = "Rahul"
 //        txtNumber.text = "1102298338"
 //        txtEmail.text = "asdas@gdd.com"
@@ -434,12 +432,12 @@ class ConfirmPurchaseViewController: UIViewController {
 
 extension ConfirmPurchaseViewController : UITextFieldDelegate {
     
-    //    func textFieldDidBeginEditing(_ textField: UITextField) {
-    //           if textField == txtExpDate{
-    //               textField.inputView = expiryDatePicker
-    //
-    //           }
-    //       }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        if textField == txtExpDate && txtExpDate.text?.count == 0 {
+            let string = String(format: "%02d/%d", expiryDatePicker.month, (expiryDatePicker.year) % 100)
+            self.txtExpDate.text = string
+        }
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

@@ -12,6 +12,37 @@ protocol InviteFriendCellDelegate : class {
     func didPressButton(_ cell: FindFriendTableViewCell)
 }
 
+
+class FacebookFriend : Codable, Comparable {
+    
+    var firstName : String!
+    var iD : String!
+    var lastName : String!
+  
+    
+    init(){
+        
+    }
+    
+    static func < (lhs: FacebookFriend, rhs: FacebookFriend) -> Bool {
+        return lhs.firstName.capitalizingFirstLetter() < rhs.firstName.capitalizingFirstLetter()
+    }
+    
+    static func == (lhs: FacebookFriend, rhs: FacebookFriend) -> Bool {
+        return lhs.firstName == rhs.firstName
+    }
+    
+    /**
+     * Instantiate the instance using the passed json values to set the properties values
+     */
+    init(fromDictionary dic: [String:Any]){
+       
+        firstName = dic["first_name"] as? String
+        iD = dic["id"] as? String
+        lastName = dic["last_name"] as? String
+    }
+}
+
 class FindFriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblFirstCharacter: UILabel!
@@ -94,15 +125,82 @@ class FindFriendTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    var fbFriend: User? {
+        didSet {
+            btnAccept.isHidden = true
+            lblNickName.isHidden = true
+            lblNumber.isHidden = true
+            btnInvite.setTitle("Add Friend".localized, for: .normal)
+            btnInvite.titleLabel?.font = UIFont.regular(ofSize: 12)
+            
+            guard let data = fbFriend else { return }
+            
+            if data.isFriend == "0" {
+                btnInvite.setTitle("Add Friend".localized, for: .normal)
+                btnInvite.isUserInteractionEnabled = true
+            } else {
+                btnInvite.setTitle("Requested".localized, for: .normal)
+                btnInvite.isUserInteractionEnabled = false
+            }
+            
+            if data.nickname.isBlank  {
+                lblNickName.isHidden = true
+            }else{
+                lblNickName.isHidden = false
+                self.lblNickName.text = data.nickname.capitalizingFirstLetter()
+            }
+        
+//            let fullname = "\(data.firstName ?? "") \(data.lastName ?? "")"
+            self.lblName.text = data.fullname.capitalizingFirstLetter()
+            if lblName.text?.isBlank ?? true { return }
+            self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
+        }
+    }
+    
+    var searchFriend: SearchData? {
+        didSet {
+            lblNumber.isHidden = true
+            btnAccept.isHidden = true
+            btnInvite.titleLabel?.font = UIFont.regular(ofSize: 12)
+            
+            guard let data = searchFriend else { return }
+            
+            if data.nickName.isBlank  {
+                lblNickName.isHidden = true
+            }else{
+                lblNickName.isHidden = false
+                self.lblNickName.text = data.nickName.capitalizingFirstLetter()
+            }
+            
+            self.lblNumber.text = data.phone
+            
+            if data.isFriend == "0" {
+                btnInvite.setTitle("Add Friend".localized, for: .normal)
+                btnInvite.isUserInteractionEnabled = true
+            } else {
+                btnInvite.setTitle("Requested".localized, for: .normal)
+                btnInvite.isUserInteractionEnabled = false
+            }
+            
+            self.lblName.text = data.fullName.capitalizingFirstLetter()
+            if lblName.text?.isBlank ?? true { return }
+            self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
+            
+            
+//            btnInvite.isHidden = (data.isFriend == "0") ? false : true
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         lblName.font = UIFont.semiBold(ofSize: 18)
-               lblNickName.font = UIFont.regular(ofSize: 12)
-               lblNumber.font = UIFont.regular(ofSize: 13)
-               lblFirstCharacter.font = UIFont.light(ofSize: 24)
-               btnInvite.titleLabel?.font = UIFont.regular(ofSize: 13)
-               btnAccept.titleLabel?.font = UIFont.regular(ofSize: 13)
-               btnInvite.isUserInteractionEnabled = true
+        lblNickName.font = UIFont.regular(ofSize: 12)
+        lblNumber.font = UIFont.regular(ofSize: 13)
+        lblFirstCharacter.font = UIFont.light(ofSize: 24)
+        btnInvite.titleLabel?.font = UIFont.regular(ofSize: 13)
+        btnAccept.titleLabel?.font = UIFont.regular(ofSize: 13)
+        btnInvite.isUserInteractionEnabled = true
     }
     override func awakeFromNib() {
         super.awakeFromNib()

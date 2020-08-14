@@ -260,9 +260,6 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
             break
         }
     }
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        
-    }
 }
 
 // ----------------------------------------------------
@@ -330,7 +327,7 @@ extension FindFriendsViewController {
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = id
 
-        FriendsWebserviceSubclass.friendRequest(frinedRequestModel: requestModel){ (json, status, res) in
+        FriendsWebserviceSubclass.friendRequest(friendRequestModel: requestModel){ (json, status, res) in
             
             if status {
                 self.retrieveContacts(from: self.store)
@@ -351,7 +348,7 @@ extension FindFriendsViewController {
         requestModel.RequestID = requestID
         requestModel.Action = action
 
-        FriendsWebserviceSubclass.actionOnFriendRequest(actionFrinedRequestModel: requestModel){ (json, status, res) in
+        FriendsWebserviceSubclass.actionOnFriendRequest(actionFriendRequestModel: requestModel){ (json, status, res) in
             UtilityClass.hideHUD()
             if status {
                 self.retrieveContacts(from: self.store)
