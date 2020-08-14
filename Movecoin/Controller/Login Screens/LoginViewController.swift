@@ -168,7 +168,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         }
         let login = LoginManager()
         login.logOut()
-        login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
+        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
             
             if error != nil {
                 //                UIApplication.shared.statusBarStyle = .lightContent
