@@ -39,11 +39,20 @@ class InviteFriendsViewController: UIViewController {
         //        localizeUI(parentView: self.viewParent)
         viewReferralCode.addDashedBorder()
         lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
+//        self.animate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        print("ViewdidAppear")
+//        self.animate()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("viewDidLayoutSubviews")
         self.animate()
+//        self.view.layoutIfNeeded()
     }
     
     
@@ -59,7 +68,7 @@ class InviteFriendsViewController: UIViewController {
     }
     
     func animate() {
-        
+        print("Animate")
         animationView.frame = CGRect(x: 0, y: 0, width: viewBoxAnimation.frame.width, height: viewBoxAnimation.frame.height)
         animationView.contentMode = .scaleAspectFill
         animationView.animationSpeed = 0.5

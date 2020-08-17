@@ -109,7 +109,7 @@ class InviteViewController: UIViewController {
         self.title = "Invite".localized
        scrollToPage(page: 0)
 //        print("setContentOffset : \(scrollView.contentOffset)")
-//        self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
+        self.scrollView.setContentOffset(CGPoint(x: 0.0, y: self.scrollView.frame.minY), animated: true)
 //        self.scrollView.scrollRectToVisible(CGRect(), animated: true)
 //        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = true
@@ -122,7 +122,7 @@ class InviteViewController: UIViewController {
         self.title = "Find Friend".localized
        scrollToPage(page: 1)
 //        print("setContentOffset : \(scrollView.contentOffset)")
-//        scrollView.setContentOffset(CGPoint(x: windowWidth, y: scrollView.frame.minY), animated: true)
+        scrollView.setContentOffset(CGPoint(x: windowWidth, y: scrollView.frame.minY), animated: true)
 //        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = true
@@ -134,7 +134,7 @@ class InviteViewController: UIViewController {
         self.title = "Facebook".localized
         scrollToPage(page: 2)
 //        print("setContentOffset : \(scrollView.contentOffset)")
-//        scrollView.setContentOffset(CGPoint(x: (windowWidth*2), y: scrollView.frame.minY), animated: true)
+        scrollView.setContentOffset(CGPoint(x: (windowWidth*2), y: scrollView.frame.minY), animated: true)
 //        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = false
@@ -146,7 +146,7 @@ class InviteViewController: UIViewController {
         self.title = "Search".localized
         scrollToPage(page: 3)
 //        print("setContentOffset : \(scrollView.contentOffset)")
-//        scrollView.setContentOffset(CGPoint(x: (windowWidth*3), y: scrollView.frame.minY), animated: true)
+        scrollView.setContentOffset(CGPoint(x: (windowWidth*3), y: scrollView.frame.minY), animated: true)
 //        print("setContentOffset : \(scrollView.contentOffset)")
         btnInvite.isSelected = false
         btnFriends.isSelected = false
