@@ -22,6 +22,7 @@ class BecomeSellerViewController: UIViewController {
     @IBOutlet weak var txtEmail: TextFieldFont!
     @IBOutlet weak var txtShopPlace: TextFieldFont!
     @IBOutlet weak var txtProductType: TextFieldFont!
+    @IBOutlet weak var imageArrow: UIImageView!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -38,12 +39,18 @@ class BecomeSellerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        //        localizeUI(parentView: self.viewParent)
+        webserviceForProductTypeList()
+        self.viewParent.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         navigationBarSetUp()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageArrow.image = UIImage(named: "arrow-dwon")
     }
     
     // ----------------------------------------------------
@@ -76,7 +83,7 @@ class BecomeSellerViewController: UIViewController {
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let shopPlace = try txtShopPlace.validatedText(validationType: ValidatorType.requiredField(field: (txtShopPlace.placeholder?.lowercased())!))
             if txtProductType.text!.trimmingCharacters(in: .whitespacesAndNewlines).isBlank {
-                UtilityClass.showAlert(Message: "Please select product type")
+                UtilityClass.showAlert(Message: "Please select product type".localized)
                 return
             }
             guard let id = SingletonClass.SharedInstance.userData?.iD else {
@@ -93,7 +100,7 @@ class BecomeSellerViewController: UIViewController {
 
             webserviceCallForSeller(sellerModel: sellerModel)
         } catch(let error) {
-            UtilityClass.showAlert(Message: (error as! ValidationError).message)
+            UtilityClass.showAlert(Message: (error as! ValidationError).message.localized)
         }
     }
     
@@ -157,6 +164,24 @@ extension BecomeSellerViewController : UIPickerViewDelegate, UIPickerViewDataSou
 // ----------------------------------------------------
 
 extension BecomeSellerViewController : AlertDelegate {
+    
+    func webserviceForProductTypeList(){
+        
+        let apiURL = NetworkEnvironment.baseURL + ApiKey.categoryList.rawValue
+        ProductWebserviceSubclass.categoryList(strURL: apiURL){ (json, status, res) in
+            
+            if status {
+                
+                let model = CategoryListResponseModel(fromJson: json)
+                SingletonClass.SharedInstance.productType = model.category
+                if let types = SingletonClass.SharedInstance.productType  {
+                    self.typeOfProducts = types
+                }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
     
     func webserviceCallForSeller(sellerModel: BecomeSellerModel){
         

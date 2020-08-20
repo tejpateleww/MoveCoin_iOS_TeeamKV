@@ -59,7 +59,6 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         self.setupFont()
         setupSOAppleSignIn()
         
-        //        localizeUI(parentView: self.viewParent)
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
         
         
@@ -90,17 +89,17 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         btnForgotPassword.titleLabel?.font = UIFont.bold(ofSize: 15)
         
         // As per client requirement Forcefully LTR
-        btnForgotPassword.semanticContentAttribute = .forceLeftToRight
+//        btnForgotPassword.semanticContentAttribute = .forceLeftToRight
         btnForgotPassword.setTitle(btnForgotPassword.titleLabel?.text?.localized, for: .normal)
         btnForgotPassword.titleLabel?.textAlignment = .right
     }
     
     func validate() {
         do {
-            let email = try txtEmail.validatedText(validationType: ValidatorType.email)
+            let email = try txtEmail.validatedText(validationType: ValidatorType.requiredField(field: txtEmail.placeholder!))
             let password = try txtPassword.validatedText(validationType: ValidatorType.password)
             let loginModel = LoginModel()
-            loginModel.Email = email
+            loginModel.UserName = email
             loginModel.Password = password
             loginModel.DeviceType = "ios"
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
@@ -116,7 +115,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
             loginModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
             webserviceCallForLogin(loginDic: loginModel)
         } catch(let error) {
-            UtilityClass.showAlert(Message: (error as! ValidationError).message)
+            UtilityClass.showAlert(Message: (error as! ValidationError).message.localized)
         }
     }
     
@@ -163,7 +162,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
     @IBAction func btnFBTapped(_ sender: Any) {
         
         if !WebService.shared.isConnected {
-            UtilityClass.showAlert(Message: "Please check your internet")
+            UtilityClass.showAlert(Message: "Please check your internet".localized)
             return
         }
         let login = LoginManager()
@@ -225,6 +224,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
             socialModel.Username = userName
             socialModel.SocialType = "twitter"
             socialModel.DeviceType = "ios"
+            socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
             socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
@@ -253,6 +253,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
                 socialModel.Username = session?.userName ?? ""
                 socialModel.SocialType = "twitter"
                 socialModel.DeviceType = "ios"
+                socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
                 socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
@@ -367,6 +368,7 @@ extension LoginViewController {
                 socialModel.Username = strEmail
                 socialModel.SocialType = "facebook"
                 socialModel.DeviceType = "ios"
+                socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
                 socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
@@ -480,6 +482,7 @@ extension LoginViewController {
                 socialModel.Username = responseModel.message.email
                 socialModel.SocialType = "apple"
                 socialModel.DeviceType = "ios"
+                socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
                 socialModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
@@ -494,6 +497,8 @@ extension LoginViewController {
                 self.userSocialData = UserSocialData(userId:responseModel.message.appleId, fullName: "\(responseModel.message.firstName ?? "") \(responseModel.message.lastName ?? "")", userEmail: responseModel.message.email, socialType: "apple", Profile:"")
                 
                 self.webserviceCallForSocialLogin(socialModel: socialModel)
+            } else {
+                
             }
         }
     }

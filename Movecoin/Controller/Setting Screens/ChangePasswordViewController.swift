@@ -26,7 +26,6 @@ class ChangePasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         lblTitle.font = UIFont.semiBold(ofSize: 21)
     }
     
@@ -103,7 +102,7 @@ class ChangePasswordViewController: UIViewController {
                 UtilityClass.hideHUD()
                 if status{
                     let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                    UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                    UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
                         self.navigationController?.popViewController(animated: true)
                     })
                 }else {

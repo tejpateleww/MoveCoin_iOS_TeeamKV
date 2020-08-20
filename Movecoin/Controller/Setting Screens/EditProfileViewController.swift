@@ -19,6 +19,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var imgProfilePicture: UIImageView!
     
     @IBOutlet weak var txtNickName: ThemeTextfield!
+    @IBOutlet weak var txtFullName: ThemeTextfield!
     @IBOutlet weak var txtEmail: ThemeTextfield!
     @IBOutlet weak var txtGender: ThemeTextfield!
     @IBOutlet weak var txtMobile: ThemeTextfield!
@@ -50,7 +51,6 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         self.setupView()
         self.updateMylocation()
         setupProfileData()
@@ -72,6 +72,7 @@ class EditProfileViewController: UIViewController {
         datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
         
         txtNickName.delegate = self
+        txtFullName.delegate = self
         txtEmail.delegate = self
         txtMobile.delegate = self
         txtDob.delegate = self
@@ -102,11 +103,12 @@ class EditProfileViewController: UIViewController {
         
         if let userData = SingletonClass.SharedInstance.userData {
             txtNickName.text = userData.nickName
+            txtFullName.text = userData.fullName
             txtMobile.text = userData.phone
             txtEmail.text = userData.email
             txtGender.text = (userData.updateGender == "0") ? "Male".localized : "Female".localized
-            txtHeight.text = userData.height + " cm".localized
-            txtWeight.text = userData.weight + " kg".localized
+            txtHeight.text = userData.height.isBlank ? "" : userData.height + " cm".localized
+            txtWeight.text = userData.weight.isBlank ? "" : userData.weight + " kg".localized
             if userData.dateOfBirth != "0000-00-00" {
                 if let dob = UtilityClass.changeDateFormateFrom(dateString: userData.dateOfBirth, fromFormat: DateFomateKeys.apiDOB, withFormat: DateFomateKeys.displayDate) {
                     txtDob.text = dob
@@ -128,12 +130,14 @@ class EditProfileViewController: UIViewController {
     
     func validate() {
         do {
+            let fullName = try txtFullName.validatedText(validationType: ValidatorType.fullname)
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let mobileNumber = try txtMobile.validatedText(validationType: ValidatorType.mobileNumber)
         
             let editModel = EditProfileModel()
             editModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
             editModel.NickName = txtNickName.text ?? ""
+            editModel.FullName = fullName
             editModel.Phone = mobileNumber
             editModel.Email = email
             editModel.Gender = (selectedGender == "Male") ? "0" : "1"
@@ -156,6 +160,7 @@ class EditProfileViewController: UIViewController {
             editModel.Longitude = "72.5181843"
             #endif
             editModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken
+            
             webserviceCallForEditProfile(editProfileDic: editModel)
         } catch(let error) {
             UtilityClass.showAlert(Message: (error as! ValidationError).message)
@@ -236,11 +241,11 @@ extension EditProfileViewController : UITextFieldDelegate {
 //                }
 //            }
             if let height = txtHeight.text {
-                txtHeight.text = height + " cm".localized
+                txtHeight.text = height.isBlank ? "" : height + " cm".localized
             }
         } else if textField == txtWeight {
             if let weight = txtWeight.text {
-                txtWeight.text = weight + " kg".localized
+                txtWeight.text = weight.isBlank ? "" : weight + " kg".localized
             }
         }
     }
@@ -355,7 +360,7 @@ extension EditProfileViewController {
                 }
                 self.getUserData()
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
             }

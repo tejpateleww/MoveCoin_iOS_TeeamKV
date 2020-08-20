@@ -26,7 +26,6 @@ class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         navigationBarSetUp()
         lblTitle.font = UIFont.bold(ofSize: 21)
-       //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +44,7 @@ class ForgotPasswordViewController: UIViewController {
             requestModel.Email = email
             webserviceCallForForgotPassword(requestDic: requestModel)
         } catch(let error) {
-            UtilityClass.showAlert(Message: (error as! ValidationError).message)
+            UtilityClass.showAlert(Message: (error as! ValidationError).message.localized)
         }
     }
     
@@ -75,7 +74,7 @@ extension ForgotPasswordViewController {
             
             if status{
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
             }

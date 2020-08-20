@@ -29,6 +29,13 @@ class FacebookViewController: UIViewController {
     lazy var fbFriendsArray : [User] = []
     lazy var getFBfriendsArray : [FacebookFriend] = []
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(getFacebookFriendList), for: .valueChanged)
+        refreshControl.tintColor = .white
+        return refreshControl
+    }()
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -37,7 +44,6 @@ class FacebookViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
 //        lblDescription.font = UIFont.regular(ofSize: 15)
-        //        localizeUI(parentView: self.viewParent)
     }
     
     // ----------------------------------------------------
@@ -49,43 +55,58 @@ class FacebookViewController: UIViewController {
         tblFriends.delegate = self
         tblFriends.dataSource = self
         tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
+        tblFriends.addSubview(refreshControl)
         
-        if SingletonClass.SharedInstance.userData?.socialID.isBlank ?? true {
-            btnFacebook.isHidden = false
-        } else {
+        if let socialType = SingletonClass.SharedInstance.userData?.socialType {
+            if socialType == "facebook" && UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) == nil { // SingletonClass.SharedInstance.facebookID == nil {
+                
+                // Store facebook ID if login with facebook
+//                SingletonClass.SharedInstance.facebookID = SingletonClass.SharedInstance.userData?.socialID
+                UserDefaults.standard.set(SingletonClass.SharedInstance.userData?.socialID, forKey: UserDefaultKeys.kFacebookID)
+                
+            }
+        }
+        
+        // Check Login type is facebook or nor
+        if let fbID = UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) {
+            tblFriends.isHidden = false
             btnFacebook.isHidden = true
             getFacebookFriendList()
+        } else {
+            tblFriends.isHidden = true
+            btnFacebook.isHidden = false
         }
+        
+//        if let socialType = SingletonClass.SharedInstance.userData?.socialType {
+//            if socialType == "facebook" {
+//                btnFacebook.isHidden = true
+//                getFacebookFriendList()
+//            } else {
+//               btnFacebook.isHidden = false
+//            }
+//        } else {
+//            btnFacebook.isHidden = false
+//        }
     }
     
     func getFBUserData() {
         
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email, id, user_friends"
+        parameters["fields"] = "first_name, last_name, email, id"
         
         GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
             if error == nil {
                 
                 print("\(#function) \(result!)")
                 let dictData = result as! [String : AnyObject]
-                
+            
                 let strUserId = String(describing: dictData["id"]!)
                 
-                let request = GraphRequest(graphPath: "/\(strUserId)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
-                request.start(completionHandler: { connection, result, error in
-                    // Insert your code here
-                    print("Friends Result: \(String(describing: result))")
-                    print("Friends connection: \(String(describing: connection))")
-                    print("Friends error: \(String(describing: error))")
-                    
-                    guard let resultData = result else { return }
-                    let resultdict = resultData as! [String : Any]
-                    print("Result Dict: \(resultdict)")
-
-                    let friends = resultdict["data"] as! Array<Any>
-                    print("Found \(friends.count) friends")
-                    print(friends)
-                })
+                // Store facebook ID
+//                SingletonClass.SharedInstance.facebookID = strUserId
+                UserDefaults.standard.set(strUserId, forKey: UserDefaultKeys.kFacebookID)
+                
+                self.getFacebookFriendList()
             }
             else{
                 print(error?.localizedDescription ?? "")
@@ -93,15 +114,16 @@ class FacebookViewController: UIViewController {
         }
     }
     
-    func getFacebookFriendList() {
+    @objc func getFacebookFriendList() {
         
 //        UtilityClass.showHUD()
         
         var parameters = [AnyHashable: Any]()
         parameters["fields"] = "first_name, last_name, email, id"
         
-        let id = SingletonClass.SharedInstance.userData?.socialID ?? ""
-        let request = GraphRequest(graphPath: "/\(id)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
+        guard let fbID = UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) else { return }
+        
+        let request = GraphRequest(graphPath: "/\(fbID)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
         request.start(completionHandler: { connection, result, error in
             // Insert your code here
             print("Friends Result: \(String(describing: result))")
@@ -121,13 +143,12 @@ class FacebookViewController: UIViewController {
             print("Found \(friendsArray.count) friends")
             print(friendsArray)
             
-            
-            
             for friend in friendsArray {
                 let value = FacebookFriend(fromDictionary: friend as! [String : Any])
                 self.getFBfriendsArray.append(value)
             }
             
+            self.btnFacebook.isHidden = true
             self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
             
 //            DispatchQueue.main.async {
@@ -141,32 +162,31 @@ class FacebookViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnConnectFacebookTapped(_ sender: Any) {
-        if SingletonClass.SharedInstance.userData?.socialID.isBlank ?? true {
-            if !WebService.shared.isConnected {
-                UtilityClass.showAlert(Message: "Please check your internet")
-                return
-            }
-            let login = LoginManager()
-            login.logOut()
-            login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
+        
+        //        if let socialType = SingletonClass.SharedInstance.userData?.socialType {
+        //            if socialType != "facebook" {
+        
+        if !WebService.shared.isConnected {
+            UtilityClass.showAlert(Message: "Please check your internet".localized)
+            return
+        }
+        let login = LoginManager()
+        login.logOut()
+        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
+            
+            if error != nil {
                 
-                if error != nil {
-                    //                UIApplication.shared.statusBarStyle = .lightContent
-                }
-                else if (result?.isCancelled)! {
-                    //                UIApplication.shared.statusBarStyle = .lightContent
+            }
+            else if (result?.isCancelled)! {
+                
+            }else {
+                if (result?.grantedPermissions.contains("email"))! {
+                    
+                    self.getFBUserData()
                 }else {
-                    if (result?.grantedPermissions.contains("email"))! {
-                        //                    UIApplication.shared.statusBarStyle = .lightContent
-                        self.getFBUserData()
-                    }else {
-                        print("you don't have permission")
-                    }
+                    print("you don't have permission")
                 }
             }
-        }else {
-            print("Already FB Connected")
-            self.getFacebookFriendList()
         }
     }
 }
@@ -179,9 +199,8 @@ class FacebookViewController: UIViewController {
 extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, InviteFriendCellDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        //            return 65
-        return 55
+
+        return fbFriendsArray.count > 0 ? 55 : tableView.frame.height
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -189,33 +208,45 @@ extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, I
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fbFriendsArray.count
+        return fbFriendsArray.count > 0 ? fbFriendsArray.count : 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendTableViewCell.className) as! FindFriendTableViewCell
-        cell.selectionStyle = .none
-        cell.cellDelegate = self
         
-        cell.type = FriendsStatus.init(rawValue: "Recommended")
-        DispatchQueue.main.async {
-            switch cell.type {
-                
-            case .RecommendedFriend:
-        
-                cell.fbFriend = self.fbFriendsArray[indexPath.row]
-                
-//                if self.notFriendsArray.contains(cell.fbFriend?.iD ?? "") {
-//                    cell.btnInvite.isHidden = false
-//                } else {
-//                    cell.btnInvite.isHidden = true
-//                }
-                
-            default:
-                break
+        if fbFriendsArray.count > 0 {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendTableViewCell.className) as! FindFriendTableViewCell
+            cell.selectionStyle = .none
+            cell.cellDelegate = self
+            
+            cell.type = FriendsStatus.init(rawValue: "Recommended")
+            DispatchQueue.main.async {
+                switch cell.type {
+                    
+                case .RecommendedFriend:
+                    
+                    cell.fbFriend = self.fbFriendsArray[indexPath.row]
+                    
+                default:
+                    break
+                }
             }
+            return cell
+            
+        } else {
+        
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            cell.backgroundColor = .clear
+            cell.textLabel?.text = "No friends from facebook to add".localized
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.bold(ofSize: 30)
+            cell.textLabel?.lineBreakMode = .byWordWrapping
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textAlignment = .center
+            cell.selectionStyle = .none
+            
+            return cell
         }
-        return cell
     }
     
     func didPressButton(_ cell: FindFriendTableViewCell) {
@@ -255,12 +286,14 @@ extension FacebookViewController {
         FriendsWebserviceSubclass.socialUsers(socialUserModel: requestModel){ (json, status, res) in
             
 //            UtilityClass.hideHUD()
+            self.refreshControl.endRefreshing()
             
             if status {
                 
                 let responseModel = SocialUserResponseModel(fromJson: json)
 //                self.notFriendsArray = responseModel.notFriend
                 self.fbFriendsArray = responseModel.users
+                self.tblFriends.isHidden = false
                 self.tblFriends.reloadData()
                 
             } else {

@@ -60,12 +60,17 @@ open class ImagePickerClass: NSObject {
         if let action = self.action(for: .photoLibrary, title: "Photo library".localized, tag: self.SelectedTag) {
             alertController.addAction(action)
         }
-        let isDefaultImage = ((sourceView as! UIImageView).image?.isEqual(UIImage(named: "m-logo")))!
-        if (!isDefaultImage) {
-            alertController.addAction(UIAlertAction(title: "Remove Photo".localized, style: .destructive, handler: { (action) in
-                self.delegate?.didSelect(image: nil, SelectedTag:101)
-            }))
+        if let sourceImage = (sourceView as! UIImageView).image {
+            if let defaultImage = UIImage(named: "m-logo") {
+                let isDefaultImage = sourceImage.isEqualToImage(defaultImage)
+                if (!isDefaultImage) {
+                    alertController.addAction(UIAlertAction(title: "Remove Photo".localized, style: .destructive, handler: { (action) in
+                        self.delegate?.didSelect(image: nil, SelectedTag:101)
+                    }))
+                }
+            }
         }
+        
         alertController.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
 
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -95,4 +100,12 @@ extension ImagePickerClass: UIImagePickerControllerDelegate, UINavigationControl
         
     }
     
+}
+
+extension UIImage {
+
+    func isEqualToImage(_ image: UIImage) -> Bool {
+        return self.pngData() == image.pngData()
+    }
+
 }

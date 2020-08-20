@@ -41,7 +41,7 @@ extension String {
 //            attribute.addAttribute(NSAttributedString.Key.font, value: UIFont.bold(ofSize: 16) ,range: range)
             return attribute
         } catch {
-            print("error: ", error)
+            print("error: ", error.localizedDescription)
             return nil
         }
     }

@@ -31,7 +31,6 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         self.setupFont()
     }
@@ -91,6 +90,7 @@ class SettingsViewController: UIViewController {
                 switch settings.authorizationStatus {
                 case .authorized, .provisional:
                     print("authorized")
+                    mySwitch.isOn = !mySwitch.isOn
                     self.webserviceforNotification()
                     
                 default :
@@ -98,7 +98,7 @@ class SettingsViewController: UIViewController {
                     mySwitch.isOn = false
                     
                     
-                    UtilityClass.showAlert(Message: "Please enable notifications from iPhone settings")
+                    UtilityClass.showAlert(Message: "Please enable notifications from iPhone settings".localized)
                 }
             }
         }
@@ -118,6 +118,7 @@ class SettingsViewController: UIViewController {
 
         self.navigationBarSetUp(title: "Settings",hidesBackButton: true)
         self.navigationBarSetUp(title: "Settings",hidesBackButton: false)
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         tblSettings.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         lblVersion.text = "Version - ".localized + kAPPVesion
         tblSettings.reloadData()
@@ -178,7 +179,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         cell.lblTitle.text = settingsArray[indexPath.row].localized
         reloadLocalizationEffect(cell: cell)
-//        cell.lblTitle.decideTextDirection()
+
         if let option = SettingsOptions(rawValue: indexPath.row) {
             switch option {
                 
@@ -221,7 +222,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
          cell.switchToggle.isOn = notificationStatus == "0" ? false : true
          }
          } */
-        //        localizeUI(parentView: cell.contentView)
+        
         return cell
     }
     
@@ -249,7 +250,7 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 
             case .Help:
                 let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
-                controller.documentType = DocumentType(rawValue: "Help")
+                controller.documentType = DocumentType(rawValue: "Help/Support")
                 self.navigationController?.pushViewController(controller, animated: true)
                 
             case .TermsAndConditions:
@@ -328,10 +329,10 @@ extension SettingsViewController {
                         try UserDefaults.standard.set(object: userData, forKey: UserDefaultKeys.kUserProfile)
                         SingletonClass.SharedInstance.userData = userData
                         AppDelegateShared.notificationEnableDisable(notification: userData.notification ?? "0")
-                        DispatchQueue.main.async {
+//                        DispatchQueue.main.async {
                             self.tblSettings.reloadData()
                             //                            self.tblSettings.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
-                        }
+//                        }
                     }catch{
                         UtilityClass.showAlert(Message: error.localizedDescription)
                     }
@@ -362,25 +363,6 @@ extension SettingsViewController {
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
-        }
-    }
-}
-
-
-extension UILabel {
-    func decideTextDirection () {
-        let tagScheme = [NSLinguisticTagScheme.language]
-        let tagger    = NSLinguisticTagger(tagSchemes: tagScheme, options: 0)
-        tagger.string = self.text
-        let lang      = tagger.tag(at: 0, scheme: NSLinguisticTagScheme.language,
-                                   tokenRange: nil, sentenceRange: nil)
-        
-        if (Localize.currentLanguage() != Languages.English.rawValue) {//lang?.rawValue.range(of: Languages.English.rawValue) != nil ||  lang?.rawValue.range(of:Languages.Arabic.rawValue) != nil {
-            self.textAlignment = NSTextAlignment.right
-        }
-        else
-        {
-            self.textAlignment = NSTextAlignment.left
         }
     }
 }

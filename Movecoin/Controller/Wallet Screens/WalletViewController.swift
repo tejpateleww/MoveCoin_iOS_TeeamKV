@@ -39,7 +39,7 @@ class WalletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
+       
         self.setUpView()
         self.setupFont()
     }
@@ -70,14 +70,12 @@ class WalletViewController: UIViewController {
         
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
            
-                self.btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-                self.btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-                self.btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            self.btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            self.btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            self.btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
                 
-                self.btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-                self.btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-           
-            
+            self.btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+            self.btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         }
         else {
             btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -172,7 +170,7 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.walletDetail = walletHistory[indexPath.row]
         reloadLocalizationEffect(cell: cell)
-//        localizeUI(parentView: cell.contentView)
+
         return cell
     }
 }

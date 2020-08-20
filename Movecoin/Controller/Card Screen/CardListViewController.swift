@@ -44,7 +44,6 @@ class CardListViewController: UIViewController {
         super.viewDidLoad()
         navigationBarSetUp()
         self.title =  "Card Details".localized
-        //        localizeUI(parentView: self.viewParent)
         self.initialSetup()
         self.setupFont()
     }

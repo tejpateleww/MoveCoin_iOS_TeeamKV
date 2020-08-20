@@ -56,9 +56,7 @@ class AccountPrivacyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         setUpView()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,12 +117,13 @@ extension AccountPrivacyViewController : UITableViewDelegate, UITableViewDataSou
         cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
         cell.switchToggle.backgroundColor = .gray
         cell.txtPrivacy.text = privacyType?.description.localized
+        print("Privacy : ",cell.txtPrivacy.text)
         
         if let privacyStatus = SingletonClass.SharedInstance.userData?.accountPrivacy{
             cell.switchToggle.isOn = privacyStatus == "0" ? false : true
         }
         cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
-        //        localizeUI(parentView: cell.contentView)
+       
         return cell
     }
     
@@ -192,9 +191,19 @@ extension AccountPrivacyViewController : UIPickerViewDelegate, UIPickerViewDataS
         return array.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return array[row].localized
     }
+
+    
+//    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+//
+//        let label = UILabel()
+//        label.font = UIFont.regular(ofSize: 17)
+//        label.text = array[row].localized
+//        label.textAlignment = .center
+//        return label
+//    }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerSelectedIndex = row

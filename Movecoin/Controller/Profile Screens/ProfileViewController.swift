@@ -11,6 +11,7 @@ import TTSegmentedControl
 import Kingfisher
 import SwiftyJSON
 import HealthKit
+import IQKeyboardManagerSwift
 
 struct StepsCountDataEntry {
     var stepsCount : Double
@@ -61,7 +62,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         self.setupFont()
         self.setupView()
     }
@@ -80,7 +80,6 @@ class ProfileViewController: UIViewController {
         localizationSetup()
 //        setupSegmentedControl()
 //        localizationSetup()
-        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,6 +109,8 @@ class ProfileViewController: UIViewController {
     
 
     func localizationSetup(){
+        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
         
         lblTitleTotalSteps.text = "Total Steps Converted".localized
         lblTitleTotalMoveCoins.text = "Total MoveCoins Created".localized

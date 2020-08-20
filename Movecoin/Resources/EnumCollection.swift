@@ -84,7 +84,7 @@ enum SettingsOptions : Int {
 enum DocumentType : String {
     case TermsAndCondition = "Terms and Conditions"
     case PrivacyPolicy = "Privacy Policy"
-    case Help = "Help"
+    case Help = "Help/Support"
 }
 
 enum FontBook: String {
@@ -112,12 +112,7 @@ enum UserDefaultKeys : CaseIterable {
     static let kUserProfile = "userProfile"
     static let kX_API_KEY = "x-api-key"
     static let kIsFirstTimeLocationUpdate = "isFirstTimeLocationUpdate"
-    
-    //    static let LoginResponse = "LoginResponse"
-    //    static let IsLogin = "IsLogin"
-    //    static let EmailNotification = "EmailNotification"
-    //    static let SmsNotification = "SmsNotification"
-    //    static let PushNotification = "PushNotification"
+    static let kFacebookID = "FacebookID"
 }
 
 enum DateFomateKeys : CaseIterable {

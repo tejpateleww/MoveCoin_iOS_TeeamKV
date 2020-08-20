@@ -166,29 +166,13 @@ extension AppDelegate {
     }
     
     func GoToHome() {
-        //        let healthStore = HKHealthStore()
-        //
-        //        guard let type = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else { return  }
-        //        let authorizationStatus = healthStore.authorizationStatus(for: type)
-        //
-        //
-        //        if (HKHealthStore().authorizationStatus(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!) != .sharingAuthorized) {
-        //            AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "HeakthKit")!)
-        //        } else {
-        //            switch CMPedometer.authorizationStatus() {
-        //            case .authorized, .notDetermined :
+        // For localization
+       UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let destination = storyborad.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
         let NavHomeVC = UINavigationController(rootViewController: destination)
         self.window?.rootViewController = NavHomeVC
-        //
-        //            case .denied, .restricted :
-        //                AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "MotionAndFitness")!)
-        //
-        //            @unknown default:
-        //                fatalError()
-        //            }
-        //        }
     }
     
     func GoToOnBoard(){
@@ -204,16 +188,6 @@ extension AppDelegate {
         let Login = storyborad.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
         let NavHomeVC = UINavigationController(rootViewController: Login)
         self.window?.rootViewController = NavHomeVC
-        
-//                let healthStore = HKHealthStore()
-//                guard let type = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount) else { return  }
-//                let authorizationStatus = healthStore.authorizationStatus(for: type)
-//
-//
-//                if (HKHealthStore().authorizationStatus(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!) != .sharingAuthorized) {
-//                    AppDelegateShared.GoToPermission(type: StepsPermission(rawValue: "HeakthKit")!)
-//                } else {
-//                }
     }
     
     func GoToLogout() {
@@ -512,7 +486,7 @@ extension AppDelegate {
                 topViewController.dismiss(animated: true) {
                     
 //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                    UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull", ButtonTitle: "OK") {
+                    UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull".localized, ButtonTitle: "OK".localized) {
                         UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
                     }
                 }
@@ -525,7 +499,7 @@ extension AppDelegate {
                         topViewController.dismiss(animated: true) {
                             
         //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                            UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull", ButtonTitle: "OK") {
+                            UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
 //                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
                               }
                         }

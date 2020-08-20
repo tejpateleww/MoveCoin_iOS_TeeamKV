@@ -40,7 +40,7 @@ class TotalStepsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
+      
         self.setUpView()
         webserviceforStepsHistory(refresh: true)
     }
@@ -94,7 +94,7 @@ extension TotalStepsViewController : UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: TotalStepsTableViewCell.className) as! TotalStepsTableViewCell
         cell.selectionStyle = .none
         cell.stepModel = stepsHistoryList[indexPath.row]
-//        localizeUI(parentView: cell.contentView)
+
         return cell
     }
     
@@ -112,41 +112,41 @@ extension TotalStepsViewController : UITableViewDelegate, UITableViewDataSource 
 extension TotalStepsViewController {
     
     func webserviceforStepsHistory(refresh : Bool = false){
-
-            var strParam = String()
-            
-            guard let id = SingletonClass.SharedInstance.userData?.iD else {
-                return
-            }
-            if refresh{
-                UtilityClass.showHUD()
-            }
-           
-            strParam = NetworkEnvironment.baseURL + ApiKey.stepsHistory.rawValue + id + "/\(currentPage)"
-          
-            UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
-                print(json)
-                UtilityClass.hideHUD()
-                self.isFetchingNextPage = false
-                if status{
-                    let stepsResponseModel = StepsHistoryResponseModel(fromJson: json)
-                    DispatchQueue.main.async {
-                        self.lblTotalSteps.text = stepsResponseModel.totalStepsCount
-                      if refresh {
-//                            self.refreshControl.endRefreshing()
-                            self.stepsHistoryList = stepsResponseModel.stepsDataList
-                        } else {
-                            if stepsResponseModel.stepsDataList.count > 0 {
-                                self.stepsHistoryList.append(contentsOf: stepsResponseModel.stepsDataList)
-                            }else{
-                                self.isFetchingNextPage = true
-                            }
+        
+        var strParam = String()
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        if refresh{
+            UtilityClass.showHUD()
+        }
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.stepsHistory.rawValue + id + "/\(currentPage)"
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(json)
+            UtilityClass.hideHUD()
+            self.isFetchingNextPage = false
+            if status{
+                let stepsResponseModel = StepsHistoryResponseModel(fromJson: json)
+                DispatchQueue.main.async {
+                    self.lblTotalSteps.text = stepsResponseModel.totalStepsCount
+                    if refresh {
+                        //                            self.refreshControl.endRefreshing()
+                        self.stepsHistoryList = stepsResponseModel.stepsDataList
+                    } else {
+                        if stepsResponseModel.stepsDataList.count > 0 {
+                            self.stepsHistoryList.append(contentsOf: stepsResponseModel.stepsDataList)
+                        }else{
+                            self.isFetchingNextPage = true
                         }
-                        self.tblTotalSteps.reloadData()
                     }
-                }else{
-                    UtilityClass.showAlertOfAPIResponse(param: res)
+                    self.tblTotalSteps.reloadData()
                 }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
+    }
 }

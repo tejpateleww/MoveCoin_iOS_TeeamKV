@@ -19,6 +19,7 @@ class SingletonClass: NSObject {
    
     var DeviceToken :String = "123123123123123"
     var lastUpdatedStepsAt : String?
+    var facebookID : String?
     var userData : UserData?
     var productType : [Category]?
     var coinsDiscountRelation : CoinsDiscountRelation?

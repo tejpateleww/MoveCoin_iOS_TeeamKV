@@ -34,7 +34,7 @@ class TransferMoveCoinsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
+      
         self.setupFont()
         txtAmount.delegate = self
         if let name = receiverName {
@@ -75,7 +75,7 @@ class TransferMoveCoinsViewController: UIViewController {
     @IBAction func btnSendTapped(_ sender: Any) {
         let amount = Int(txtAmount.text ?? "0") ?? 0
         if txtAmount.text!.isBlank {
-            UtilityClass.showAlert(Message: "Please enter amount")
+            UtilityClass.showAlert(Message: "Please enter amount".localized)
            
         } else if (amount > 0){
             let requestModel = TransferCoinsModel()
@@ -86,7 +86,7 @@ class TransferMoveCoinsViewController: UIViewController {
             webserviceForTransferCoins(dic: requestModel)
            
         } else{
-            UtilityClass.showAlert(Message: "Amount should be greater than zero")
+            UtilityClass.showAlert(Message: "Amount should be greater than zero".localized)
         }
     }
 }
@@ -102,7 +102,7 @@ extension TransferMoveCoinsViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if txtAmount.text!.isEmpty {
-            txtAmount.placeholder = "Amount"
+            txtAmount.placeholder = "Amount".localized
         }
     }
 }
@@ -124,7 +124,7 @@ extension TransferMoveCoinsViewController {
             if status {
                 self.view.endEditing(true)
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
                     self.navigationController?.popViewController(animated: true)
                 })
                 

@@ -17,6 +17,7 @@
 
 // Login Screen
 "Sign in to your account" = "تسجيل دخول لحسابك";
+"Email Id or Phone Number" = "معرف البريد الإلكتروني أو رقم الهاتف";
 "Email Id" = " البريد الإلكتروني";
 "Password" = "كلمة المرور";
 "Forgot Password?" = "نسيت كلمة المرور؟";
@@ -95,7 +96,10 @@
 "Reject" = "رفض";
 "Facebook" = "Facebook";
 "Connect Facebook" = "ربط Facebook";
+
 "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+"No friends from facebook to add" = "لايوجد أصدقاء من ال Facebook لإضافتهم.";
 
 
 // Friends Screen
@@ -132,6 +136,7 @@
 "Delivery Address" = "عنوان التوصيل";
 "Name" = " الإسم";
 "Contact number" = " رقم التواصل";
+"Address" = " العنوان";
 "Address-1" = " العنوان الأول";
 "Address-2" = " العنوان الثاني";
 "Country" = " البلد";
@@ -201,13 +206,14 @@
 "Notification" = "التنبيهات";
 "Edit Profile" = "تعديل الملف الشخصي";
 "Purchase History" = "سجل المشتريات";
-"Help/Support" = "المساعدة و الدعم الفني";
+//"Help/Support" = "المساعدة و الدعم الفني";
 "Terms and Conditions" = "الشروط و الأحكام";
 "Privacy Policy" = "سياسة الخصوصية";
 "Language" = "اللغة";
 "Rate this app" = "التقييم";
 "Version - " = "الإصدار - ";
 "Help" = "مساعدة";
+"Help/Support" = "المساعدة / الدعم";
 
 
 // Account Privacy Screen
@@ -262,6 +268,12 @@
 "Please enter" =  "الرجاء إدخال";
 "Please" = "فضًلا";
 "Invalid" = "خطأ";
+
+"Error in payment" = "خطأ في السداد";
+"Purchase Successfull" = "تم الشراء بنجاح";
+"Purchase Unsuccessfull" = "عملية الشراء غير ناجحة";
+"Unable to make Apple Pay transaction" = "تعذر إجراء عملية Apple Pay";
+"Please enable notifications from iPhone settings" = "الرجاء السماح للإشعارات من إعدادات ال iPhone الخاص بك";
 
 "Please enter valid mobile number" = "الرجاء إدخال رقم جوال صحيح ";
 "Please enter valid contact number" = "الرجاء إدخال رقم التواصل صحيح";

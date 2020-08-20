@@ -39,7 +39,6 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         
         txtView.delegate = self
         txtView.minHeight = 35.0
@@ -231,7 +230,6 @@ extension ChatViewController: UITableViewDataSource {
             cell.lblReadStatus.textColor = UIColor.white
         }
         cell.selectionStyle = .none
-//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

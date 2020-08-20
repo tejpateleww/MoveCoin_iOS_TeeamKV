@@ -10,7 +10,7 @@ import Foundation
 
 
 class LoginModel : RequestModel {
-    var Email : String = ""
+    var UserName : String = ""
     var Password : String = ""
     var Latitude : String = ""
     var Longitude : String = ""

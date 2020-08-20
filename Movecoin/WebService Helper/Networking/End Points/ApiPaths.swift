@@ -102,6 +102,7 @@ enum ApiKey: String{
     
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"
+    case categoryList = "Products/category_list"
     
     case nearByUsers = "friends/nearbyuser"
     case nearByUsersDetail = "friends/nearbyuser_details"

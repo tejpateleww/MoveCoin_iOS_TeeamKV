@@ -112,52 +112,6 @@ open class Localize: NSObject {
 }
 
 
-func localizeUI(parentView:UIView)
-{
-    UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-    
-    DispatchQueue.global(qos: .background).async {
-        DispatchQueue.main.async {
-            for view:UIView in parentView.subviews
-            {
-                if let potentialButton = view as? UIButton
-                {
-                    if let titleString = potentialButton.titleLabel?.text {
-                        potentialButton.setTitle(titleString.localized, for: .normal)
-                    }
-                }
-                else if let potentialLabel = view as? UILabel
-                {
-                    if potentialLabel.textAlignment == .left || potentialLabel.textAlignment == .right {
-                         potentialLabel.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-                    }
-                    if potentialLabel.text != nil {
-                        potentialLabel.text = potentialLabel.text!.localized
-                    }
-                }
-                else if let potentialTextField = view as? UITextField
-                {
-                    potentialTextField.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-                    if potentialTextField.text != nil {
-                        potentialTextField.text = potentialTextField.text!.localized
-                        if potentialTextField.placeholder != nil {
-                            potentialTextField.placeholder = potentialTextField.placeholder!.localized
-                        }
-                    }
-                }
-                else if let potentialTextView = view as? UITextView
-                {
-                    potentialTextView.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-                    if potentialTextView.text != nil {
-                        potentialTextView.text = potentialTextView.text!.localized
-                    }
-                }
-                localizeUI(parentView: view)
-            }
-        }
-    }
-}
-
 extension String {
     var localized: String {
 

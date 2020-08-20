@@ -18,6 +18,7 @@
 
 // Login Screen
 "Sign in to your account" = "Sign in to your account";
+"Email Id or Phone Number" = "Email Id or Phone Number";
 "Email Id" = "Email Id";
 "Password" = "Password";
 "Forgot Password?" = "Forgot Password?";
@@ -93,7 +94,10 @@
 "Reject" = "Reject";
 "Facebook" = "Facebook";
 "Connect Facebook" = "Connect Facebook";
+
 "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+"No friends from facebook to add" = "No friends from facebook to add";
 
 
 // Friends Screen
@@ -130,6 +134,7 @@
 "Delivery Address" = "Delivery Address";
 "Name" = "Name";
 "Contact number" = "Contact number";
+"Address" = "Address";
 "Address-1" = "Address-1";
 "Address-2" = "Address-2";
 "Country" = "Country";
@@ -141,7 +146,7 @@
 "Payable Amount is " = "Payable Amount is ";
 "Purchase" = "Purchase";
 "Product Price" = "Product Price";
-"Price after discount" = "Price after discount";
+"Price after discount" = "Price after Discount";
 "Delivery" = "Delivery";
 "Total" = "Total";
 
@@ -199,13 +204,14 @@
 "Notification" = "Notification";
 "Edit Profile" = "Edit Profile";
 "Purchase History" = "Purchase History";
-"Help/Support" = "Help/Support";
+//"Help/Support" = "Help/Support";
 "Terms and Conditions" = "Terms and Conditions";
 "Privacy Policy" = "Privacy Policy";
 "Language" = "Language";
 "Rate this app" = "Rate this app";
 "Version - " = "Version - ";
 "Help" = "Help";
+"Help/Support" = "Help/Support";
 
 
 // Account Privacy Screen
@@ -259,6 +265,13 @@
 "Please enter" = "Please enter";
 "Please" = "Please";
 "Invalid" = "Invalid";
+
+
+"Error in payment" = "Error in payment";
+"Purchase Successfull" = "Purchase Successfull";
+"Purchase Unsuccessfull" = "Purchase Unsuccessfull";
+"Unable to make Apple Pay transaction" = "Unable to make Apple Pay transaction";
+"Please enable notifications from iPhone settings" = "Please enable notifications from iPhone settings";
 
 "Please enter valid mobile number" = "Please enter valid mobile number";
 "Please enter valid contact number" = "Please enter valid contact number";

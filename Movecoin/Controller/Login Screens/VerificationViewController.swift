@@ -50,7 +50,7 @@ class VerificationViewController: UIViewController {
         self.setupFont()
 //        startOtpTimer()
         
-        //        localizeUI(parentView: self.viewParent)
+        // Forcefully LTR as client need OTP view LTR
         UIView.appearance().semanticContentAttribute = .forceLeftToRight
     }
   
@@ -63,6 +63,9 @@ class VerificationViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopOtpTimer()
+        
+        // Set app appearance according to the selected language
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
     
     // ----------------------------------------------------
@@ -139,13 +142,13 @@ class VerificationViewController: UIViewController {
     @IBAction func btnVerifyTapped(_ sender: Any) {
         print("OTP : \(otp)")
         if enteredOTP.count == 0 {
-            UtilityClass.showAlert(Message: "Please enter verification code")
+            UtilityClass.showAlert(Message: "Please enter verification code".localized)
 //        } else if otp.count != 4 {
 //            UtilityClass.showAlert(Message: "Please enter valid verification code")
         } else if enteredOTP == otp {
             webserviceCallForSignup(signupDic: signupModel)
         } else {
-             UtilityClass.showAlert(Message: "Invalid verification code")
+            UtilityClass.showAlert(Message: "Invalid verification code".localized)
         }
     }
     
@@ -154,6 +157,7 @@ class VerificationViewController: UIViewController {
         let otpDic = OTPrequestModel()
         otpDic.Email = signupModel.Email
         otpDic.Phone = signupModel.Phone
+        otpDic.NickName = signupModel.NickName
         webserviceCallForOTPrequest(otpModel: otpDic)
     }
 }

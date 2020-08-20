@@ -64,7 +64,7 @@ class TabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
+       
         self.setupView()
         self.setupFont()
         self.SocketOnMethods()
@@ -97,7 +97,6 @@ class TabViewController: UIViewController {
         homeVC.lblTitleInviteFriends.text = "Invite a Friend".localized
         homeVC.lblTitleTodays.text = "Today's".localized
         homeVC.lblTitleTotalStep.text = "Total Steps".localized
-//        localizeUI(parentView: homeVC.viewParent)
         
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
     }

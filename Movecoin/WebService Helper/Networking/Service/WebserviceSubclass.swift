@@ -102,6 +102,11 @@ class UserWebserviceSubclass
 
 class ProductWebserviceSubclass
 {
+    
+    class func categoryList( strURL : String  ,completion: @escaping CompletionResponse ){
+           WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
+    }
+    
     class func productsList( strURL : String  ,completion: @escaping CompletionResponse ){
         WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
     }

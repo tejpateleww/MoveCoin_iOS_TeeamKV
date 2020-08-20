@@ -36,7 +36,7 @@ class InviteFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
-        //        localizeUI(parentView: self.viewParent)
+       
         viewReferralCode.addDashedBorder()
         lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
 //        self.animate()

@@ -105,7 +105,7 @@ class ConfirmPurchaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
+     
         self.setupFont()
         self.setupView()
         setupProductData()
@@ -161,7 +161,7 @@ class ConfirmPurchaseViewController: UIViewController {
         applePayButton.frame = viewApplePay?.bounds ?? CGRect.zero
         applePayButton.layer.cornerRadius = applePayButton.frame.height/2
         applePayButton.layer.masksToBounds = true
-        
+        applePayButton.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
     }
     
     func setupView() {
@@ -295,7 +295,7 @@ class ConfirmPurchaseViewController: UIViewController {
             }
             
         } catch(let error) {
-            UtilityClass.showAlert(Message: (error as! ValidationError).message)
+            UtilityClass.showAlert(Message: (error as! ValidationError).message.localized)
         }
     }
     
@@ -338,10 +338,10 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnPurchaseTapped(_ sender: Any) {
-//        if validateCoins() {
+        if validateCoins() {
             print("Purchase")
             validate()
-//        }
+        }
     }
     
     func btnApplePayPurchaseTapped() {
@@ -351,18 +351,15 @@ class ConfirmPurchaseViewController: UIViewController {
         DispatchQueue.main.async {
                 self.present(apvc, animated: true, completion: nil)
         }
-        
     }
     
-    @IBAction func setupPaymentForApplePay(_ sender: UIButton)
-    {
-        
+    @IBAction func setupPaymentForApplePay(_ sender: UIButton){
          if validateCoins() {
             print("Purchase")
             self.validate(isFromApplePay: true)
         }
-        
     }
+    
     /// Called to configure the view controller with the gateway and merchant service information.
     func configure(merchantId: String, region: GatewayRegion, merchantServiceURL: URL, applePayMerchantIdentifier: String?) {
         gateway = Gateway(region: region, merchantId: merchantId)
@@ -421,7 +418,7 @@ class ConfirmPurchaseViewController: UIViewController {
             self.btnApplePayPurchaseTapped()
         } else {
             
-            UtilityClass.showAlert(Message: "Unable to make Apple Pay transaction.")
+            UtilityClass.showAlert(Message: "Unable to make Apple Pay transaction".localized)
         }
     }
 }
@@ -481,10 +478,10 @@ extension ConfirmPurchaseViewController : UITextFieldDelegate {
                     enteredCoins = Double(coins)!
                 }
                 if enteredCoins < coinsRequired {
-                    UtilityClass.showAlert(Message: "You need to spend atleast ".localized + "\(Int(coinsRequired)) MoveCoins")
+                    UtilityClass.showAlert(Message: "You need to spend atleast ".localized + "\(Int(coinsRequired)) \(kAppName.localized)")
                     txtMoveCoins.text = ""
                 } else if enteredCoins > productCoins {
-                    UtilityClass.showAlert(Message: "You can not spend more than ".localized + "\(Int(productCoins)) MoveCoins")
+                    UtilityClass.showAlert(Message: "You can not spend more than ".localized + "\(Int(productCoins)) \(kAppName.localized)")
                     txtMoveCoins.text = ""
                 } else{
                     var finalPrice = 0.0
@@ -547,7 +544,7 @@ extension ConfirmPurchaseViewController  {
                 {
                     self.webserviceForUserDetails()
                     self.closure?("product purchased")
-                    UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                    UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
                         self.navigationController?.popViewController(animated: true)
                     })
                 }
@@ -640,7 +637,7 @@ extension ConfirmPurchaseViewController : PKPaymentAuthorizationViewControllerDe
             guard case .success(_) = result else {
                 //                self.stepErrored(message: "Error Updating Session", stepStatusImageView: self.updateSessionStatusImageView)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    UtilityClass.showAlert(Message: "Error in payment")
+                    UtilityClass.showAlert(Message: "Error in payment".localized)
                     UtilityClass.hideHUD()
                 }
                 

@@ -14,6 +14,7 @@ class SocialLoginModel : RequestModel {
     var Latitude : String = ""
     var Longitude : String = ""
     var DeviceType : String = ""
+    var DeviceToken : String = ""
     var SocialType : String = ""
     var SocialID : String = ""
     var language : Int = 1

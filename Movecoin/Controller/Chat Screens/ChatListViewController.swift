@@ -30,7 +30,6 @@ class ChatListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
     }
     
@@ -84,7 +83,6 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatListTableViewCell.className) as! ChatListTableViewCell
         cell.selectionStyle = .none
         cell.friendDetail = friendsArray[indexPath.row]
-//        localizeUI(parentView: cell.contentView)
         return cell
     }
     

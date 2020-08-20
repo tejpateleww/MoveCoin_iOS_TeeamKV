@@ -33,7 +33,6 @@ class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
     }
     
@@ -99,7 +98,7 @@ extension StatisticsViewController : UITableViewDelegate, UITableViewDataSource 
         cell.selectionStyle = .none
         cell.coinsEarnModel = coinsConvertedList[indexPath.row]
         cell.lblSteps.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
-//        localizeUI(parentView: cell.contentView)
+
         return cell
     }
     

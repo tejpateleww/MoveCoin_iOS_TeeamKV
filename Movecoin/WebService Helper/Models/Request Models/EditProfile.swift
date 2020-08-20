@@ -14,6 +14,7 @@ class EditProfileModel : RequestModel {
     var UserID : String = ""
     var Email : String = ""
     var NickName : String = ""
+    var FullName : String = ""
     var Latitude : String = ""
     var Longitude : String = ""
     var DeviceToken : String = ""

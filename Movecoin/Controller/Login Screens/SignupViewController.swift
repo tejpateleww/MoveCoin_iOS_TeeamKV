@@ -50,7 +50,7 @@ class SignupViewController: UIViewController {
         navigationBarSetUp(hidesBackButton: true)
         self.setupView()
         self.setupFont()
-        //        localizeUI(parentView: self.viewParent)
+
         #if targetEnvironment(simulator)
         setDummy()
         #endif
@@ -124,10 +124,10 @@ class SignupViewController: UIViewController {
             _ = try txtConfirmPassword.validatedText(validationType: ValidatorType.requiredField(field: txtConfirmPassword.placeholder!))
 
             if txtPassword.text != txtConfirmPassword.text {
-                UtilityClass.showAlert(Message: "Confirm password does not match with password")
+                UtilityClass.showAlert(Message: "Confirm password does not match with password".localized)
                 return
             } else if txtGender.text!.isBlank {
-                UtilityClass.showAlert(Message: "Please select gender")
+                UtilityClass.showAlert(Message: "Please select gender".localized)
                 return
             }
             let signupModel = SignupModel()
@@ -269,7 +269,7 @@ extension SignupViewController {
            
             if status{
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK", Completion: {
+                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
                     let controller = self.storyboard?.instantiateViewController(withIdentifier: VerificationViewController.className) as! VerificationViewController
                     controller.signupModel = signupDic
                     controller.otp = json["otp"].stringValue

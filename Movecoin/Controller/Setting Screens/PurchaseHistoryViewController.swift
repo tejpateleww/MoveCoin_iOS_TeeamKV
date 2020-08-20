@@ -30,7 +30,6 @@ class PurchaseHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        localizeUI(parentView: self.viewParent)
         self.setUpView()
         webserviceForPurchasehistory()
     }
@@ -72,7 +71,7 @@ extension PurchaseHistoryViewController : UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: PurchaseHistoryTableViewCell.className) as! PurchaseHistoryTableViewCell
         cell.selectionStyle = .none
         cell.orderDetail = purchaseHistory?[indexPath.row]
-//        localizeUI(parentView: cell.contentView)
+
         return cell
     }
     

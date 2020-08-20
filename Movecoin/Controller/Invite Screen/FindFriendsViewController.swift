@@ -44,6 +44,13 @@ class FindFriendsViewController: UIViewController {
     lazy var isTyping: Bool = false
     lazy var searchArray : [FriendsTableData] = []
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(accessContacts), for: .valueChanged)
+        refreshControl.tintColor = .white
+        return refreshControl
+    }()
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -51,7 +58,6 @@ class FindFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
-        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +74,10 @@ class FindFriendsViewController: UIViewController {
         tblFriends.delegate = self
         tblFriends.dataSource = self
         tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
+        tblFriends.addSubview(refreshControl)
     }
     
-    func accessContacts(){
+    @objc func accessContacts(){
         let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
         if authorizationStatus == .notDetermined {
 
@@ -228,8 +235,6 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
                         break
                     }
         }
-
-//        localizeUI(parentView: cell.contentView)
         return cell
     }
     
@@ -292,6 +297,8 @@ extension FindFriendsViewController {
         requestModel.Phone = JSONstring
 
         FriendsWebserviceSubclass.inviteFriends(inviteFrinedsModel: requestModel){ (json, status, res) in
+            
+            self.refreshControl.endRefreshing()
             
             if status {
                 self.tableData.removeAll()

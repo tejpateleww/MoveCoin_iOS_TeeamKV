@@ -31,7 +31,6 @@ class PermissionAlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBarSetUp(hidesBackButton: true)
-        //        localizeUI(parentView: self.viewParent)
         self.initialSetup()
     }
     

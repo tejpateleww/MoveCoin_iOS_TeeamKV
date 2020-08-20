@@ -208,6 +208,7 @@
 		46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51D8232F9D1600182B86 /* WalletViewController.swift */; };
 		46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DA232F9D3000182B86 /* StatisticsViewController.swift */; };
 		46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */; };
+		646BBC1224EBE382009E395B /* CategoryListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646BBC1124EBE382009E395B /* CategoryListResponseModel.swift */; };
 		648FAB5224E6668100FF516D /* SocialUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */; };
 		648FAB5324E6668100FF516D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648FAB5124E6668000FF516D /* User.swift */; };
 		64CD3A6E24E4FC0D00D8809B /* SocialUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD3A6D24E4FC0D00D8809B /* SocialUserModel.swift */; };
@@ -456,6 +457,7 @@
 		46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		477FF479109FF521DF9958AC /* Pods-Movecoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.debug.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4D633531C407587B2596F3 /* Pods-Movecoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.release.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.release.xcconfig"; sourceTree = "<group>"; };
+		646BBC1124EBE382009E395B /* CategoryListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListResponseModel.swift; sourceTree = "<group>"; };
 		648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialUserResponseModel.swift; sourceTree = "<group>"; };
 		648FAB5124E6668000FF516D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		64CD3A6D24E4FC0D00D8809B /* SocialUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialUserModel.swift; sourceTree = "<group>"; };
@@ -1104,6 +1106,7 @@
 				46D96066238B9BB10026B96D /* ProductDetails.swift */,
 				46D96065238B9BB10026B96D /* ProductsResponseModel.swift */,
 				466762B4238BE06E003136BC /* ProductDetailResponseModel.swift */,
+				646BBC1124EBE382009E395B /* CategoryListResponseModel.swift */,
 			);
 			path = "Products List";
 			sourceTree = "<group>";
@@ -1483,6 +1486,7 @@
 				64CD3A6E24E4FC0D00D8809B /* SocialUserModel.swift in Sources */,
 				46FD51D7232F92B200182B86 /* TabViewController.swift in Sources */,
 				46A4CCD723BA0AFC007B00BA /* SocialLoginModel.swift in Sources */,
+				646BBC1224EBE382009E395B /* CategoryListResponseModel.swift in Sources */,
 				469057B323967CBB000D192E /* BecomeSeller.swift in Sources */,
 				461DC26B237965D00092AC82 /* ValidatorClass.swift in Sources */,
 				46E468F5237D7A430068701E /* CardListViewController.swift in Sources */,

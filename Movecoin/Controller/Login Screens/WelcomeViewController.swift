@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class WelcomeViewController: UIViewController {
     
@@ -35,7 +36,6 @@ class WelcomeViewController: UIViewController {
         self.animateView()
         self.setupFont()
         self.localizationSetup()
-        //        localizeUI(parentView: self.viewParent)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,7 +49,7 @@ class WelcomeViewController: UIViewController {
     
     func localizationSetup(){
         UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-//        imgLogo.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        imgLogo.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         
         segmentControlLanguage.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
         UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
@@ -96,6 +96,8 @@ class WelcomeViewController: UIViewController {
        
         lblOr.text = "OR".localized
         lblTitle.text = "Hi…Your Step Remarkable In MoveCoins".localized
+        
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
     }
     
     @IBAction func btnSignInTapped(_ sender: Any) {

@@ -12,4 +12,5 @@ import Foundation
 class OTPrequestModel : RequestModel {
     var Email : String = ""
     var Phone : String = ""
+    var NickName : String = ""
 }

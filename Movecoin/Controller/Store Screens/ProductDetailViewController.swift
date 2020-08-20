@@ -57,7 +57,7 @@ class ProductDetailViewController: UIViewController {
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
-        //        localizeUI(parentView: self.viewParent)
+       
         guard productID != nil else { return }
     }
     
@@ -227,7 +227,7 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailCollectionViewCell.className, for: indexPath) as! ProductDetailCollectionViewCell
         cell.productImage = imgArray[indexPath.section]
-//        localizeUI(parentView: cell.contentView)
+
         return cell
     }
     
