@@ -165,9 +165,10 @@ class HomeViewController: UIViewController {
     // ----------------------------------------------------
     
     func healthKitData(){
+        
         if checkAuthorization() {
             
-            getRemainingSteps { (steps) in
+            getRemainingStepsFromHealthKit { (steps) in
                 print("Previous Steps : ",steps)
                 
                 if Int(steps) > 0 {
@@ -175,6 +176,26 @@ class HomeViewController: UIViewController {
                 }else{
                     self.getTodaysSteps()
                 }
+            }
+        }
+    }
+    
+    func getTodaysSteps() {
+        
+        self.getTodaysStepsFromHealthKit { (steps) in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                
+                print("Today's Steps : ",steps)
+                self.lblTodaysStepCount.text = String(Int(steps))
+                SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
+                SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                
+                if Int(steps) > 0 {
+                    
+                    self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+                }
+                self.startCountingSteps()
             }
         }
     }
@@ -226,7 +247,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func getTodaysSteps(completion: @escaping (Double) -> Void) {
+    func getTodaysStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         
         let now = Date()
@@ -244,7 +265,7 @@ class HomeViewController: UIViewController {
         healthStore.execute(query)
     }
     
-    func getRemainingSteps(completion: @escaping (Double) -> Void) {
+    func getRemainingStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         
         let dateFormatter = DateFormatter()
@@ -353,24 +374,6 @@ extension HomeViewController {
             }
             
             self.getTodaysSteps()
-        }
-    }
-    
-    func getTodaysSteps()
-    {
-        self.getTodaysSteps { (steps) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                print("Today's Steps : ",steps)
-                self.lblTodaysStepCount.text = String(Int(steps))
-                SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
-                SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-                
-                if Int(steps) > 0 {
-                    
-                    self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
-                }
-                self.startCountingSteps()
-            }
         }
     }
     

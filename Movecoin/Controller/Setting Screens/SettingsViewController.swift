@@ -97,7 +97,6 @@ class SettingsViewController: UIViewController {
                     
                     mySwitch.isOn = false
                     
-                    
                     UtilityClass.showAlert(Message: "Please enable notifications from iPhone settings".localized)
                 }
             }

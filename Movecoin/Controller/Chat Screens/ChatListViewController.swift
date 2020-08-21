@@ -24,6 +24,13 @@ class ChatListViewController: UIViewController {
     
     lazy var friendsArray = [ChatList]()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(webserviceForChatList), for: .valueChanged)
+        refreshControl.tintColor = .white
+        return refreshControl
+    }()
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -49,6 +56,7 @@ class ChatListViewController: UIViewController {
         self.tblChatList.delegate = self
         self.tblChatList.dataSource = self
         self.tblChatList.tableFooterView = UIView.init(frame: CGRect.zero)
+        self.tblChatList.addSubview(refreshControl)
         lblNoDataFound.isHidden = true
 //        lblNoDataFound.text = "No chats available".localized
     }
@@ -134,12 +142,14 @@ extension ChatListViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension ChatListViewController {
     
-    func webserviceForChatList(){
+    @objc func webserviceForChatList(){
         
     let requestModel = ChatListModel()
         requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
     
         FriendsWebserviceSubclass.chatList(chatListModel: requestModel){ (json, status, res) in
+            
+            self.refreshControl.endRefreshing()
 
             if status {
                 let responseModel = ChatListResponseModel(fromJson: json)

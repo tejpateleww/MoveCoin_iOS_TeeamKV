@@ -122,7 +122,7 @@ class FacebookViewController: UIViewController {
         parameters["fields"] = "first_name, last_name, email, id"
         
         guard let fbID = UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) else { return }
-        
+
         let request = GraphRequest(graphPath: "/\(fbID)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
         request.start(completionHandler: { connection, result, error in
             // Insert your code here
@@ -138,7 +138,7 @@ class FacebookViewController: UIViewController {
             guard let resultData = result else { return }
             let resultdict = resultData as! [String : Any]
             print("Result Dict: \(resultdict)")
-
+            
             let friendsArray = resultdict["data"] as! NSArray
             print("Found \(friendsArray.count) friends")
             print(friendsArray)
@@ -147,6 +147,16 @@ class FacebookViewController: UIViewController {
                 let value = FacebookFriend(fromDictionary: friend as! [String : Any])
                 self.getFBfriendsArray.append(value)
             }
+            
+/*            let paging = resultdict["paging"] as! NSDictionary
+            print("Paging : \(paging)")
+            print("Next : \(paging["next"] as! String)")
+            
+            if let nextURL = paging["next"] as? String {
+                
+//                self.webserivceForFacebookPagination(nextURL: <#T##URL#>)
+            }
+ */
             
             self.btnFacebook.isHidden = true
             self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
@@ -269,6 +279,14 @@ extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, I
 // ----------------------------------------------------
 
 extension FacebookViewController {
+    
+    func webserivceForFacebookPagination(nextURL : URL) {
+        
+        WebService.shared.getMethod(url: nextURL, httpMethod: .get) { (result, success, obj) in
+            
+            print(result)
+        }
+    }
     
     func webserviceForInviteFriends(dic : [FacebookFriend]){
         

@@ -3,4 +3,70 @@
    uuid = "8A809D7C-0178-4E10-87D4-A122E9ABD30E"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0AAD5D78-A8EB-49A4-808B-90D6138F37E5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Store Screens/ConfirmPurchaseViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
+            landmarkName = "webserviceCallForPlaceOrder(model:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0AAD5D78-A8EB-49A4-808B-90D6138F37E5 - 7b30afad3378e939"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movecoins.ConfirmPurchaseViewController.webserviceCallForPlaceOrder(model: Movecoins.PlaceOrder) -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Store%20Screens/ConfirmPurchaseViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "532"
+                  endingLineNumber = "532"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "0AAD5D78-A8EB-49A4-808B-90D6138F37E5 - 8b0630c8fb925e22"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool, Any) -&gt; () in Movecoins.ConfirmPurchaseViewController.webserviceCallForPlaceOrder(model: Movecoins.PlaceOrder) -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Store%20Screens/ConfirmPurchaseViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "534"
+                  endingLineNumber = "534"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BA0590A-99CB-4AD1-BD05-D4A986E7C157"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Store Screens/ConfirmPurchaseViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "536"
+            endingLineNumber = "536"
+            landmarkName = "webserviceCallForPlaceOrder(model:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
