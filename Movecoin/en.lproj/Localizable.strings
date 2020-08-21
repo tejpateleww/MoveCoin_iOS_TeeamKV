@@ -35,11 +35,11 @@
 // Sign Up Screen
 "Full Name" = "Full Name";
 "Nickname" = "Nickname";
-"Email address" = "Email address";
+"Email address" = "Email Address";
 "Mobile Number" = "Mobile Number";
 "Confirm Password" = "Confirm Password";
 "Gender" = "Gender";
-"Referral code" = "Referral code";
+"Referral code" = "Referral Code";
 "Verify" = "Verify";
 "Already have an Account?" = "Already have an Account?";
 "SIGN IN" = "SIGN IN";
