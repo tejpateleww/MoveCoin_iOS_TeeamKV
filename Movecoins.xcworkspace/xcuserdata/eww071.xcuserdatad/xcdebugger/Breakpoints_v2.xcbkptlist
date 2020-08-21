@@ -7,65 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0AAD5D78-A8EB-49A4-808B-90D6138F37E5"
+            uuid = "956B62A2-1176-48DC-8E56-40E29088D5E0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Store Screens/ConfirmPurchaseViewController.swift"
+            filePath = "Movecoin/Controller/Invite Screen/FacebookViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "532"
-            endingLineNumber = "532"
-            landmarkName = "webserviceCallForPlaceOrder(model:)"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "webserivceForFacebookPagination(nextURL:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0AAD5D78-A8EB-49A4-808B-90D6138F37E5 - 7b30afad3378e939"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Movecoins.ConfirmPurchaseViewController.webserviceCallForPlaceOrder(model: Movecoins.PlaceOrder) -&gt; ()"
-                  moduleName = "Movecoins"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Store%20Screens/ConfirmPurchaseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "532"
-                  endingLineNumber = "532"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  uuid = "0AAD5D78-A8EB-49A4-808B-90D6138F37E5 - 8b0630c8fb925e22"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool, Any) -&gt; () in Movecoins.ConfirmPurchaseViewController.webserviceCallForPlaceOrder(model: Movecoins.PlaceOrder) -&gt; ()"
-                  moduleName = "Movecoins"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Store%20Screens/ConfirmPurchaseViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "534"
-                  endingLineNumber = "534"
-                  offsetFromSymbolStart = "208">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1BA0590A-99CB-4AD1-BD05-D4A986E7C157"
+            uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Store Screens/ConfirmPurchaseViewController.swift"
+            filePath = "Movecoin/Controller/Invite Screen/FacebookViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "536"
-            endingLineNumber = "536"
-            landmarkName = "webserviceCallForPlaceOrder(model:)"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
+            landmarkName = "webserviceForInviteFriends(dic:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D - 8e876a2a5a0623b4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Movecoins.FacebookViewController.webserviceForInviteFriends(dic: Swift.Array&lt;Movecoins.FacebookFriend&gt;) -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Invite%20Screen/FacebookViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "342"
+                  endingLineNumber = "342"
+                  offsetFromSymbolStart = "1732">
+               </Location>
+               <Location
+                  uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D - 2d2e62b11ab168e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool, Any) -&gt; () in Movecoins.FacebookViewController.webserviceForInviteFriends(dic: Swift.Array&lt;Movecoins.FacebookFriend&gt;) -&gt; ()"
+                  moduleName = "Movecoins"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Invite%20Screen/FacebookViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "345"
+                  endingLineNumber = "345"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

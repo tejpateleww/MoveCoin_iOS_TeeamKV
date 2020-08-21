@@ -29,6 +29,17 @@ class FacebookViewController: UIViewController {
     lazy var fbFriendsArray : [User] = []
     lazy var getFBfriendsArray : [FacebookFriend] = []
     
+//    var facebookFriendsCount : Int {
+//
+//        get {
+//            return self.facebookFriendsCount
+//        }
+//
+//        set(newValue) {
+//            self.facebookFriendsCount = newValue
+//        }
+//    }
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(getFacebookFriendList), for: .valueChanged)
@@ -68,7 +79,7 @@ class FacebookViewController: UIViewController {
         }
         
         // Check Login type is facebook or nor
-        if let fbID = UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) {
+        if UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) != nil {
             tblFriends.isHidden = false
             btnFacebook.isHidden = true
             getFacebookFriendList()
@@ -118,6 +129,8 @@ class FacebookViewController: UIViewController {
         
 //        UtilityClass.showHUD()
         
+        self.getFBfriendsArray = []
+        
         var parameters = [AnyHashable: Any]()
         parameters["fields"] = "first_name, last_name, email, id"
         
@@ -148,21 +161,35 @@ class FacebookViewController: UIViewController {
                 self.getFBfriendsArray.append(value)
             }
             
-/*            let paging = resultdict["paging"] as! NSDictionary
-            print("Paging : \(paging)")
-            print("Next : \(paging["next"] as! String)")
+//            if let summery = resultdict["summary"] as? NSDictionary {
+//                self.facebookFriendsCount = summery["total_count"] as! Int
+//            }
             
-            if let nextURL = paging["next"] as? String {
-                
-//                self.webserivceForFacebookPagination(nextURL: <#T##URL#>)
+            if let paging = resultdict["paging"] as? NSDictionary {
+                print("Paging : \(paging)")
+                if let nextURL = paging["next"] as? String {
+                    if let url = URL(string: nextURL) {
+//                        self.webserivceForFacebookPagination(nextURL: url) { _ in
+//                            self.btnFacebook.isHidden = true
+//                            self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
+//                        }
+                    }
+                }
             }
- */
             
+//            if self.facebookFriendsCount == self.getFBfriendsArray.count {
             self.btnFacebook.isHidden = true
-            self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
             
-//            DispatchQueue.main.async {
-//                self.tblFriends.reloadData()
+            if self.getFBfriendsArray.count == 0 {
+                
+                self.refreshControl.endRefreshing()
+                self.tblFriends.isHidden = false
+                self.tblFriends.reloadData()
+                
+            } else {
+                self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
+            }
+                
 //            }
         })
     }
@@ -280,11 +307,34 @@ extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, I
 
 extension FacebookViewController {
     
-    func webserivceForFacebookPagination(nextURL : URL) {
+    func webserivceForFacebookPagination(nextURL : URL, completion: @escaping ([FacebookFriend]) -> Void) {
         
         WebService.shared.getMethod(url: nextURL, httpMethod: .get) { (result, success, obj) in
             
             print(result)
+           
+            let friendsArray = result["data"].arrayValue
+            print("Found \(friendsArray.count) friends")
+            print(friendsArray)
+            
+//            for friend in friendsArray {
+//
+//                let value = FacebookFriend(fromDictionary: friend.dictionaryObject!)
+//                self.getFBfriendsArray.append(value)
+//            }
+            
+            if let paging = result["paging"].dictionaryObject {
+                if let nextURL = paging["next"] as? String {
+                    if let url = URL(string: nextURL) {
+                        self.webserivceForFacebookPagination(nextURL: url) { (array) in
+                            print(array)
+                        }
+                    }
+                }
+            }
+            
+            //            self.btnFacebook.isHidden = true
+            //            self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
         }
     }
     

@@ -147,10 +147,10 @@ extension StoreViewController {
             
             if status {
                 let responseModel = ProductsResponseModel(fromJson: json)
-                if responseModel.productsList.count > 0  {
+//                if responseModel.productsList.count > 0  {
                     self.productArray = responseModel.productsList
                     self.tblStoreOffers.reloadData()
-                }
+//                }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
