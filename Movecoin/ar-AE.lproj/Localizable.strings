@@ -66,6 +66,7 @@
 "Coins" = "العملات";
 "Invite a Friend" = "أرسل دعوة لصديق";
 "Friends" = "الأصدقاء";
+"Friend" = "صديق";
 "Today's" = "خطواتك اليوم";
 
 
@@ -275,6 +276,7 @@
 "Unable to make Apple Pay transaction" = "تعذر إجراء عملية Apple Pay";
 "Please enable notifications from iPhone settings" = "الرجاء السماح للإشعارات من إعدادات ال iPhone الخاص بك";
 
+"Please enter a valid email id" = "الرجاء إدخال معرف بريد إلكتروني صالح";
 "Please enter valid mobile number" = "الرجاء إدخال رقم جوال صحيح ";
 "Please enter valid contact number" = "الرجاء إدخال رقم التواصل صحيح";
 

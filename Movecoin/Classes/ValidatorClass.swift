@@ -68,10 +68,20 @@ struct EmailValidator: ValidatorConvertible {
         }
         do {
             if try NSRegularExpression(pattern: "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", options: .caseInsensitive).firstMatch(in: value, options: [], range: NSRange(location: 0, length: value.count)) == nil {
-                throw ValidationError("Invalid".localized + " \(txtFieldName)")
+                //throw ValidationError("Invalid".localized + " \(txtFieldName)")
+                if txtFieldName.contains("enter"){
+                    throw ValidationError("Please enter a valid email id".localized)
+                }else {
+                    throw ValidationError("Invalid".localized + " \(txtFieldName)")
+                }
             }
         } catch {
-            throw ValidationError("Invalid".localized + " \(txtFieldName)")
+//            throw ValidationError("Invalid".localized + " \(txtFieldName)")
+            if txtFieldName.contains("enter"){
+                throw ValidationError("Please enter a valid email id".localized)
+            } else {
+                 throw ValidationError("Invalid".localized + " \(txtFieldName)")
+            }
         }
         return value
     }

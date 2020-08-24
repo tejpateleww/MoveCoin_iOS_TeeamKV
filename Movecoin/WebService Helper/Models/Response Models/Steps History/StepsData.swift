@@ -18,6 +18,7 @@ class StepsData : Codable, Equatable {
     var steps : String!
     var updatedDate : String!
     var userID : String!
+    var previousDate : String!
     
     init(){
         
@@ -35,6 +36,7 @@ class StepsData : Codable, Equatable {
         steps = json["Steps"].stringValue
         updatedDate = json["UpdatedDate"].stringValue
         userID = json["UserID"].stringValue
+        previousDate = json["previous_date"].stringValue
 	}
 
 	/**
@@ -58,6 +60,9 @@ class StepsData : Codable, Equatable {
         if userID != nil{
         	dictionary["UserID"] = userID
         }
+        if previousDate != nil{
+            dictionary["previous_date"] = previousDate
+        }
 		return dictionary
 	}
 
@@ -72,6 +77,7 @@ class StepsData : Codable, Equatable {
 		steps = aDecoder.decodeObject(forKey: "Steps") as? String
 		updatedDate = aDecoder.decodeObject(forKey: "UpdatedDate") as? String
 		userID = aDecoder.decodeObject(forKey: "UserID") as? String
+        previousDate = aDecoder.decodeObject(forKey: "previous_date") as? String
 	}
 
     /**
@@ -95,7 +101,9 @@ class StepsData : Codable, Equatable {
 		if userID != nil{
 			aCoder.encode(userID, forKey: "UserID")
 		}
-
+        if previousDate != nil{
+            aCoder.encode(previousDate, forKey: "previous_date")
+        }
 	}
 
 }

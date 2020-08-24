@@ -146,6 +146,14 @@ class HomeViewController: UIViewController {
             lblInviteFriends.text = user.inviteFriends
             lblTotalSteps.text = user.steps
             
+            if let friendCount = Int(lblFriends.text ?? "0") {
+                if friendCount > 1 {
+                    lblTitleFriends.text = "Friends".localized
+                } else {
+                    lblTitleFriends.text = "Friend".localized
+                }
+            }
+            
             let membership = Membership(rawValue: Int(user.memberType) ?? 1)
             switch membership {
             case .Silver:
@@ -287,6 +295,13 @@ class HomeViewController: UIViewController {
             startOfDay = statDate.startOfDay
         }
         let endDate = now.yesterday.endOfDay
+        
+        print("-------------------------------------")
+        print("Start Date : \(startOfDay)")
+        print("END DATE : \(endDate)")
+        print("Last updated date : \(lastUpdatedStepsAt)")
+        print("-------------------------------------")
+        
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endDate, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in

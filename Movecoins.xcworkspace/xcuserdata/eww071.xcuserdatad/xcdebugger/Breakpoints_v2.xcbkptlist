@@ -46,9 +46,9 @@
                   urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Invite%20Screen/FacebookViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "342"
-                  endingLineNumber = "342"
-                  offsetFromSymbolStart = "1732">
+                  startingLineNumber = "354"
+                  endingLineNumber = "354"
+                  offsetFromSymbolStart = "1660">
                </Location>
                <Location
                   uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D - 2d2e62b11ab168e8"
@@ -61,11 +61,27 @@
                   urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Invite%20Screen/FacebookViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "345"
-                  endingLineNumber = "345"
-                  offsetFromSymbolStart = "328">
+                  startingLineNumber = "357"
+                  endingLineNumber = "357"
+                  offsetFromSymbolStart = "421">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D8A127F-7899-47CD-A160-23B451BE7971"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Movecoin/Controller/Home Screens/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "setupHomeData()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

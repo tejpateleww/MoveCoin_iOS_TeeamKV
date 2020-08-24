@@ -19,7 +19,13 @@ class TotalStepsTableViewCell: UITableViewCell {
                 if let data = stepModel {
                     self.lblSteps.text = data.steps
                     
-                    if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
+                    if let previousStr = data.previousDate, !previousStr.isEmpty {
+                        let previousDateStr = UtilityClass.changeDateFormateFrom(dateString: data.previousDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate)
+                        let toDateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate)
+                        
+                        self.lblDate.text = (previousDateStr ?? "") + " to ".localized + (toDateStr ?? "")
+                        
+                    } else if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
                          self.lblDate.text =  dateStr
                     }
                   

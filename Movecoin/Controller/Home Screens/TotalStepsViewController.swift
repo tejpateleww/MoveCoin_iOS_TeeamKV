@@ -58,6 +58,8 @@ class TotalStepsViewController: UIViewController {
         // Tableview setup
         tblTotalSteps.delegate = self
         tblTotalSteps.dataSource = self
+//        tblTotalSteps.estimatedRowHeight = 60
+//        tblTotalSteps.rowHeight = UITableView.automaticDimension
 //        tblTotalSteps.addSubview(refreshControl)
         tblTotalSteps.tableFooterView = UIView.init(frame: CGRect.zero)
         
@@ -84,6 +86,7 @@ extension TotalStepsViewController : UITableViewDelegate, UITableViewDataSource 
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+//        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

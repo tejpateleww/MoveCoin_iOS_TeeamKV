@@ -64,6 +64,7 @@
 "Coins" = "Coins";
 "Invite a Friend" = "Invite a Friend";
 "Friends" = "Friends";
+"Friend" = "Friend";
 "Today's" = "Today's";
 
 
@@ -273,6 +274,8 @@
 "Unable to make Apple Pay transaction" = "Unable to make Apple Pay transaction";
 "Please enable notifications from iPhone settings" = "Please enable notifications from iPhone settings";
 
+
+"Please enter a valid email id" = "Please enter a valid email id";
 "Please enter valid mobile number" = "Please enter valid mobile number";
 "Please enter valid contact number" = "Please enter valid contact number";
 
