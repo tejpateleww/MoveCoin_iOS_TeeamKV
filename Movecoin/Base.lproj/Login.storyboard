@@ -86,9 +86,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vg-jG-5eB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bbv-tU-v35">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bbv-tU-v35">
                                         <rect key="frame" x="234" y="18" width="73" height="29"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="73" id="RHi-8C-HP9"/>
                                             <constraint firstAttribute="height" constant="28" id="qG3-1I-N7T"/>
                                         </constraints>
                                         <segments>
@@ -106,7 +107,7 @@
                                             <constraint firstAttribute="width" secondItem="NiA-ua-gym" secondAttribute="height" multiplier="1:1" id="7XE-Hl-bjt"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi…Your Step Remarkable In MoveCoins" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi…Your Step Remarkable In MoveCoins" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="25" y="204" width="275" height="146"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,11 +201,13 @@
                                     <constraint firstItem="MJD-Mb-yBz" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" id="Hoj-ja-Tku"/>
                                     <constraint firstItem="Md8-f0-8uW" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" constant="25" id="JQb-AH-tfD"/>
                                     <constraint firstItem="Md8-f0-8uW" firstAttribute="top" secondItem="NiA-ua-gym" secondAttribute="bottom" constant="20" id="QMf-xY-rBV"/>
-                                    <constraint firstItem="NiA-ua-gym" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" constant="20" id="Stc-BF-zIQ"/>
+                                    <constraint firstItem="NiA-ua-gym" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" priority="750" constant="20" id="Stc-BF-zIQ"/>
+                                    <constraint firstItem="Bbv-tU-v35" firstAttribute="leading" secondItem="3vg-jG-5eB" secondAttribute="leading" priority="650" constant="20" id="YwF-tX-DI2"/>
                                     <constraint firstItem="MJD-Mb-yBz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Md8-f0-8uW" secondAttribute="bottom" constant="30" id="gAA-tw-jmS"/>
+                                    <constraint firstAttribute="trailing" secondItem="NiA-ua-gym" secondAttribute="trailing" priority="650" constant="20" id="hxj-Nk-xZc"/>
                                     <constraint firstAttribute="trailing" secondItem="Md8-f0-8uW" secondAttribute="trailing" constant="20" id="kFf-rL-dms"/>
                                     <constraint firstItem="Bbv-tU-v35" firstAttribute="top" secondItem="3vg-jG-5eB" secondAttribute="topMargin" constant="10" id="kTA-H2-NaH"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Bbv-tU-v35" secondAttribute="trailing" constant="5" id="mph-gr-cKk"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="Bbv-tU-v35" secondAttribute="trailing" priority="750" constant="5" id="mph-gr-cKk"/>
                                     <constraint firstItem="NiA-ua-gym" firstAttribute="width" secondItem="3vg-jG-5eB" secondAttribute="width" multiplier="0.34375" id="qBD-44-D9u"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="MJD-Mb-yBz" secondAttribute="bottom" constant="20" id="uLj-ct-N8j"/>
                                     <constraint firstAttribute="trailing" secondItem="MJD-Mb-yBz" secondAttribute="trailing" id="v57-9G-yxj"/>
@@ -232,7 +235,9 @@
                         <outlet property="imgLogo" destination="NiA-ua-gym" id="5v7-0B-2i7"/>
                         <outlet property="lblOr" destination="Unv-Og-xoR" id="UR0-Xw-8gY"/>
                         <outlet property="lblTitle" destination="Md8-f0-8uW" id="2eP-aa-79y"/>
+                        <outlet property="logoTraillingConstraint" destination="hxj-Nk-xZc" id="zks-Wo-pm4"/>
                         <outlet property="segmentControlLanguage" destination="Bbv-tU-v35" id="xKF-ez-IF5"/>
+                        <outlet property="switchLeadingConstraint" destination="YwF-tX-DI2" id="zcn-nC-2M2"/>
                         <outlet property="viewContainer" destination="3vg-jG-5eB" id="4cd-Kl-rgG"/>
                         <outlet property="viewParent" destination="lsL-sp-I6P" id="UQx-YK-izY"/>
                     </connections>
@@ -698,7 +703,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJW-ml-xxW">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="815.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="857.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopBG" translatesAutoresizingMaskIntoConstraints="NO" id="8Rf-8a-WnS">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="266"/>
@@ -714,7 +719,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-vR-sQr" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
-                                                        <rect key="frame" x="0.0" y="266" width="320" height="549.5"/>
+                                                        <rect key="frame" x="0.0" y="266" width="320" height="591.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-uD-i5x" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="20" width="290" height="25.5"/>
@@ -830,17 +835,17 @@
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2g9-dO-nLa">
-                                                                <rect key="frame" x="108" y="477.5" width="104" height="42"/>
+                                                                <rect key="frame" x="66" y="477.5" width="188" height="84"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdQ-0Z-aG4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                                                                         <state key="normal" image="Twitter icon"/>
                                                                         <connections>
                                                                             <action selector="btnTwitterTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="G2t-fY-J8i"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-10-Hf6">
-                                                                        <rect key="frame" x="62" y="0.0" width="42" height="42"/>
+                                                                        <rect key="frame" x="104" y="0.0" width="84" height="84"/>
                                                                         <state key="normal" image="Facebook-icon"/>
                                                                         <connections>
                                                                             <action selector="btnFBTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="hmQ-Vm-POe"/>

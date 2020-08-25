@@ -17,13 +17,15 @@ class WelcomeViewController: UIViewController {
 
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var viewContainer: UIView!
-    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblTitle: LocalizLabel!
     @IBOutlet weak var lblOr: UILabel!
     @IBOutlet weak var segmentControlLanguage: UISegmentedControl!
     @IBOutlet weak var btnSignIn: ThemeButton!
     @IBOutlet weak var btnSignUp: ThemeButton!
     @IBOutlet weak var imgLogo: UIImageView!
     
+    @IBOutlet weak var switchLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var logoTraillingConstraint: NSLayoutConstraint!
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -35,7 +37,9 @@ class WelcomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         self.animateView()
         self.setupFont()
-        self.localizationSetup()
+
+        segmentControlLanguage.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
+        setDataForLocalisation()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,20 +47,10 @@ class WelcomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
-    
-    func localizationSetup(){
-        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        imgLogo.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        
-        segmentControlLanguage.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
-        UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
-        
-        lblOr.text = "OR".localized
-        lblTitle.text = "Hi…Your Step Remarkable In MoveCoins".localized
-    }
     
     func animateView(){
         viewContainer.alpha = 0
@@ -70,6 +64,26 @@ class WelcomeViewController: UIViewController {
         lblOr.font = UIFont.bold(ofSize: 17.0)
     }
     
+    func setDataForLocalisation(){
+        
+        // Forcefully set LTR for changing the alignment of logo and segment by constraint
+        UIView.appearance().semanticContentAttribute = .forceLeftToRight
+         
+         btnSignIn.setTitle("Sign in".localized, for: .normal)
+         btnSignUp.setTitle("Sign Up".localized, for: .normal)
+        
+         lblOr.text = "OR".localized
+         lblTitle.text = "Hi…Your Step Remarkable In MoveCoins".localized
+         
+         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
+
+         let priorityEng = UILayoutPriority(rawValue: 650)
+         let priorityAR = UILayoutPriority(rawValue: 850)
+
+         logoTraillingConstraint.priority = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? priorityAR : priorityEng
+         switchLeadingConstraint.priority = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? priorityAR : priorityEng
+     }
+    
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
@@ -82,26 +96,13 @@ class WelcomeViewController: UIViewController {
         }else{
             Localize.setCurrentLanguage(Languages.Arabic.rawValue)
             lblTitle.textAlignment = .right
-//            loopThroughSubViewAndFlipTheImageIfItsAUIImageView(subviews: self.view.subviews)
         }
         setDataForLocalisation()
-    }
-
-    func setDataForLocalisation(){
-        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        imgLogo.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        
-        btnSignIn.setTitle("Sign in".localized, for: .normal)
-        btnSignUp.setTitle("Sign Up".localized, for: .normal)
-       
-        lblOr.text = "OR".localized
-        lblTitle.text = "Hi…Your Step Remarkable In MoveCoins".localized
-        
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
     }
     
     @IBAction func btnSignInTapped(_ sender: Any) {
         (sender as! UIButton).bounceAnimationOnCompletion {
+            UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
             let controller = self.storyboard?.instantiateViewController(withIdentifier: LoginViewController.className) as! LoginViewController
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -109,6 +110,7 @@ class WelcomeViewController: UIViewController {
     
     @IBAction func btnSignUpTapped(_ sender: Any) {
         (sender as! UIButton).bounceAnimationOnCompletion {
+            UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
             let controller = self.storyboard?.instantiateViewController(withIdentifier: SignupViewController.className) as! SignupViewController
             self.navigationController?.pushViewController(controller, animated: true)
         }

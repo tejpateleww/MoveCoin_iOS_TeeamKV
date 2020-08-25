@@ -69,10 +69,6 @@ class FindFriendTableViewCell: UITableViewCell {
                     lblNickName.isHidden = false
                     self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
                 }
-                if lblName.text?.isBlank ?? true { return }
-                if lblName.text != "" {
-                    self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
-                }
                 
                 if detail.receiverID == SingletonClass.SharedInstance.userData?.iD {
                     btnInvite.setTitle("Reject".localized, for: .normal)
@@ -83,6 +79,11 @@ class FindFriendTableViewCell: UITableViewCell {
                     btnInvite.setTitle("Requested".localized, for: .normal)
                     btnInvite.isUserInteractionEnabled = false
                     btnAccept.isHidden = true
+                }
+                
+                if lblName.text?.isBlank ?? true { return }
+                if lblName.text != "" {
+                    self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
                 }
             }
         }

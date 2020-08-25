@@ -7,81 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "956B62A2-1176-48DC-8E56-40E29088D5E0"
-            shouldBeEnabled = "Yes"
+            uuid = "423C3304-8A17-4BDB-9631-AE17CF7A55B2"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Invite Screen/FacebookViewController.swift"
+            filePath = "Movecoin/View/FindFriendTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
-            landmarkName = "webserivceForFacebookPagination(nextURL:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Invite Screen/FacebookViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
-            landmarkName = "webserviceForInviteFriends(dic:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D - 8e876a2a5a0623b4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Movecoins.FacebookViewController.webserviceForInviteFriends(dic: Swift.Array&lt;Movecoins.FacebookFriend&gt;) -&gt; ()"
-                  moduleName = "Movecoins"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Invite%20Screen/FacebookViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "354"
-                  endingLineNumber = "354"
-                  offsetFromSymbolStart = "1660">
-               </Location>
-               <Location
-                  uuid = "DF3D98F6-E3B2-4D6A-87BF-6E3356BDD48D - 2d2e62b11ab168e8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON, Swift.Bool, Any) -&gt; () in Movecoins.FacebookViewController.webserviceForInviteFriends(dic: Swift.Array&lt;Movecoins.FacebookFriend&gt;) -&gt; ()"
-                  moduleName = "Movecoins"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eww071/Documents/Bhumi/Projects/MoveCoins/Movecoin/Controller/Invite%20Screen/FacebookViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "357"
-                  endingLineNumber = "357"
-                  offsetFromSymbolStart = "421">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8D8A127F-7899-47CD-A160-23B451BE7971"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Home Screens/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "setupHomeData()"
-            landmarkType = "7">
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

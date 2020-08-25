@@ -84,6 +84,7 @@ class OnBoradViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnSkipTapped(_ sender: Any) {
+        UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsOnBoardLaunched)
         AppDelegateShared.GoToLogin()
     }
 }

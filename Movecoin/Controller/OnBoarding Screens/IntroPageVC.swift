@@ -10,55 +10,54 @@ import UIKit
 import AVFoundation
 
 class IntroPageVC: UIViewController {
-
-        // ----------------------------------------------------
-        // MARK: - --------- IBOutlets ---------
-        // ----------------------------------------------------
-        
-        
-        // ----------------------------------------------------
-        // MARK: - --------- Variables ---------
-        // ----------------------------------------------------
-        
-        var image : String!
     
-        lazy var userPermission = UserPermission()
+    // ----------------------------------------------------
+    // MARK: - --------- IBOutlets ---------
+    // ----------------------------------------------------
+    
+    
+    // ----------------------------------------------------
+    // MARK: - --------- Variables ---------
+    // ----------------------------------------------------
+    
+    var image : String!
+    
+    lazy var userPermission = UserPermission()
+    
+    // ----------------------------------------------------
+    // MARK: - --------- ViewController Lifecycle Methods ---------
+    // ----------------------------------------------------
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.initialSetup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
+    // ----------------------------------------------------
+    // MARK: - --------- Custom Methods ---------
+    // ----------------------------------------------------
+    
+    func initialSetup(){
+        let imageview = UIImageView(frame: self.view.frame)
+        imageview.image = UIImage(named: image)
+        imageview.contentMode = .scaleAspectFill
+        self.view.addSubview(imageview)
         
-        // ----------------------------------------------------
-        // MARK: - --------- ViewController Lifecycle Methods ---------
-        // ----------------------------------------------------
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            self.initialSetup()
-        }
-        
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(true)
-        }
-        
-        override func viewDidLayoutSubviews() {
-            super.viewDidLayoutSubviews()
-        }
-        
-        // ----------------------------------------------------
-        // MARK: - --------- Custom Methods ---------
-        // ----------------------------------------------------
-        
-        func initialSetup(){
-            let imageview = UIImageView(frame: self.view.frame)
-            imageview.image = UIImage(named: image)
-            imageview.contentMode = .scaleAspectFill
-            self.view.addSubview(imageview)
-            
-            // For Request Permission
-            let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
-            if image == img {
-                userPermission.permissions = [.camera, .motion, .healthKit]
-                for type in userPermission.permissions {
-                    userPermission.requestForPermission(type: type)
-                }
+        // For Request Permission
+        let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
+        if image == img {
+            userPermission.permissions = [.camera, .motion, .healthKit]
+            for type in userPermission.permissions {
+                userPermission.requestForPermission(type: type)
             }
         }
-
+    }
 }
