@@ -20,7 +20,7 @@ class StoreViewController: UIViewController {
     @IBOutlet weak var viewFooter: UIView!
     @IBOutlet weak var lblSeller: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var btnGetInTouch: ThemeButton!
+    @IBOutlet weak var btnGetInTouch: UIButton!
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -59,6 +59,7 @@ class StoreViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sizeFooterToFit()
+        setButtonLayout()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,6 +93,15 @@ class StoreViewController: UIViewController {
     func setupFont(){
         lblSeller.font = UIFont.bold(ofSize: 26)
         lblDescription.font = UIFont.regular(ofSize: 17)
+    }
+    
+    func setButtonLayout() {
+        btnGetInTouch.backgroundColor = .white
+        btnGetInTouch.setTitleColor(ThemeBlueColor, for: .normal)
+        btnGetInTouch.layer.cornerRadius = btnGetInTouch.frame.size.height / 2
+        //        self.clipsToBounds = true
+        btnGetInTouch.layer.masksToBounds = true
+        btnGetInTouch.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
     }
     
     func sizeFooterToFit() {

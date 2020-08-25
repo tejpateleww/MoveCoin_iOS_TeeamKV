@@ -28,12 +28,12 @@ class FriendTableViewCell: UITableViewCell {
             if let detail = friendDetail {
                 self.lblName.text = detail.fullName.capitalizingFirstLetter()
                 self.lblNumber.text = detail.nickName
+                
                 // For Image
-                if detail.profilePicture.isBlank{
-                    return
-                }
-//                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture
-                if let url = URL(string: detail.profilePicture) {
+                if detail.profilePicture.isBlank {
+                    self.imgPhoto.image = UIImage(named: "m-logo")
+                    
+                } else if let url = URL(string: detail.profilePicture) {
                     self.imgPhoto.kf.indicatorType = .activity
                     self.imgPhoto.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
                 }

@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import SwiftyJSON
 
 class FacebookViewController: UIViewController {
     
@@ -69,12 +70,10 @@ class FacebookViewController: UIViewController {
         tblFriends.addSubview(refreshControl)
         
         if let socialType = SingletonClass.SharedInstance.userData?.socialType {
-            if socialType == "facebook" && UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) == nil { // SingletonClass.SharedInstance.facebookID == nil {
+            if socialType == "facebook" && UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) == nil {
                 
                 // Store facebook ID if login with facebook
-//                SingletonClass.SharedInstance.facebookID = SingletonClass.SharedInstance.userData?.socialID
                 UserDefaults.standard.set(SingletonClass.SharedInstance.userData?.socialID, forKey: UserDefaultKeys.kFacebookID)
-                
             }
         }
         
@@ -87,17 +86,6 @@ class FacebookViewController: UIViewController {
             tblFriends.isHidden = true
             btnFacebook.isHidden = false
         }
-        
-//        if let socialType = SingletonClass.SharedInstance.userData?.socialType {
-//            if socialType == "facebook" {
-//                btnFacebook.isHidden = true
-//                getFacebookFriendList()
-//            } else {
-//               btnFacebook.isHidden = false
-//            }
-//        } else {
-//            btnFacebook.isHidden = false
-//        }
     }
     
     func getFBUserData() {
@@ -110,11 +98,9 @@ class FacebookViewController: UIViewController {
                 
                 print("\(#function) \(result!)")
                 let dictData = result as! [String : AnyObject]
-            
                 let strUserId = String(describing: dictData["id"]!)
                 
                 // Store facebook ID
-//                SingletonClass.SharedInstance.facebookID = strUserId
                 UserDefaults.standard.set(strUserId, forKey: UserDefaultKeys.kFacebookID)
                 
                 self.getFacebookFriendList()
@@ -153,8 +139,6 @@ class FacebookViewController: UIViewController {
             print("Result Dict: \(resultdict)")
             
             let friendsArray = resultdict["data"] as! NSArray
-            print("Found \(friendsArray.count) friends")
-            print(friendsArray)
             
             for friend in friendsArray {
                 let value = FacebookFriend(fromDictionary: friend as! [String : Any])
@@ -165,32 +149,34 @@ class FacebookViewController: UIViewController {
 //                self.facebookFriendsCount = summery["total_count"] as! Int
 //            }
             
-            if let paging = resultdict["paging"] as? NSDictionary {
-                print("Paging : \(paging)")
-                if let nextURL = paging["next"] as? String {
-                    if let url = URL(string: nextURL) {
-//                        self.webserivceForFacebookPagination(nextURL: url) { _ in
-//                            self.btnFacebook.isHidden = true
-//                            self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
-//                        }
-                    }
-                }
-            }
-            
-//            if self.facebookFriendsCount == self.getFBfriendsArray.count {
             self.btnFacebook.isHidden = true
             
-            if self.getFBfriendsArray.count == 0 {
-                
-                self.refreshControl.endRefreshing()
-                self.tblFriends.isHidden = false
-                self.tblFriends.reloadData()
-                
+            if let paging = resultdict["paging"] as? NSDictionary {
+//                print("Paging : \(paging)")
+                if let nextURL = paging["next"] as? String {
+                    if let url = URL(string: nextURL) {
+                        self.webserivceForFacebookPagination(nextURL: url) { (isNext) in
+                            print(isNext)
+                            
+                            if !isNext {
+                                self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
+                            }
+                        }
+                    }
+                } else {
+                    self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
+                }
             } else {
-                self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
-            }
                 
-//            }
+                if self.getFBfriendsArray.count == 0 {
+                    
+                    self.refreshControl.endRefreshing()
+                    self.tblFriends.isHidden = false
+                    self.tblFriends.reloadData()
+                } else {
+                    self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
+                }
+            }
         })
     }
     
@@ -307,34 +293,32 @@ extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, I
 
 extension FacebookViewController {
     
-    func webserivceForFacebookPagination(nextURL : URL, completion: @escaping ([FacebookFriend]) -> Void) {
+    func webserivceForFacebookPagination(nextURL : URL, completion: @escaping (Bool) -> Void) {
         
         WebService.shared.getMethod(url: nextURL, httpMethod: .get) { (result, success, obj) in
             
             print(result)
            
             let friendsArray = result["data"].arrayValue
-            print("Found \(friendsArray.count) friends")
-            print(friendsArray)
             
-//            for friend in friendsArray {
-//
-//                let value = FacebookFriend(fromDictionary: friend.dictionaryObject!)
-//                self.getFBfriendsArray.append(value)
-//            }
+            for friend in friendsArray {
+
+                let value = FacebookFriend(fromDictionary: friend.dictionaryObject!)
+                self.getFBfriendsArray.append(value)
+            }
             
             if let paging = result["paging"].dictionaryObject {
                 if let nextURL = paging["next"] as? String {
+                    completion(true)
                     if let url = URL(string: nextURL) {
-                        self.webserivceForFacebookPagination(nextURL: url) { (array) in
-                            print(array)
+                        self.webserivceForFacebookPagination(nextURL: url) { (isNext) in
+                            print(isNext)
                         }
                     }
+                } else {
+                    completion(false)
                 }
             }
-            
-            //            self.btnFacebook.isHidden = true
-            //            self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
         }
     }
     

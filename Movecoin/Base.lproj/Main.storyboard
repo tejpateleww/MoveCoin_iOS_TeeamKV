@@ -1834,10 +1834,10 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbs-DU-hUW">
-                                                                    <rect key="frame" x="254" y="49.5" width="50" height="18"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbs-DU-hUW" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                    <rect key="frame" x="254" y="49.5" width="70" height="18"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="50" id="MX2-xU-8f0"/>
+                                                                        <constraint firstAttribute="width" constant="70" id="MX2-xU-8f0"/>
                                                                         <constraint firstAttribute="height" constant="18" id="nZl-aE-kfR"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
@@ -1998,13 +1998,13 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y21-Ns-OwK" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
-                                                    <rect key="frame" x="97.5" y="108" width="180" height="40"/>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y21-Ns-OwK">
+                                                    <rect key="frame" x="87.5" y="108" width="200" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="FId-M7-ehc"/>
+                                                        <constraint firstAttribute="width" constant="200" id="FId-M7-ehc"/>
                                                         <constraint firstAttribute="height" constant="40" id="f8g-MX-AIz"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="20"/>
                                                     <state key="normal" title="Get In Touch">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>

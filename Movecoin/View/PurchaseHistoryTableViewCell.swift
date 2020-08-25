@@ -15,7 +15,7 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnArrow: UIButton!
-    @IBOutlet weak var lblPaymentStatus: UILabel!
+    @IBOutlet weak var lblPaymentStatus: LocalizLabel!
     
     var orderDetail: Order? {
         didSet{

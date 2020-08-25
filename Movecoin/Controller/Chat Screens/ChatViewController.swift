@@ -40,6 +40,9 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.bottomViewConstraintHeight.constant = 0
+        self.bottomView.isHidden = true
+        
         txtView.delegate = self
         txtView.minHeight = 35.0
         txtView.maxHeight = 120.0
@@ -307,6 +310,7 @@ extension ChatViewController {
                     self.bottomViewConstraintHeight.constant = 0
                     self.bottomView.isHidden = true
                 }else{
+                    self.bottomViewConstraintHeight.constant = 58
                     self.bottomView.isHidden = false
                 }
                 if responseModel.chatHistory.count > 0  {
