@@ -33,6 +33,26 @@ enum Membership : Int {
     case Platinum
 }
 
+enum RequestType : String {
+    case Facebook = "0"
+    case Contacts = "1"
+    case Search = "2"
+    case Map = "3"
+    
+    func requestTypeString() -> String {
+        switch self {
+        case .Facebook:
+            return "Facebook".localized
+        case .Contacts:
+            return "Contacts".localized
+        case .Search:
+            return "Search".localized
+        case .Map:
+            return "Map".localized
+        }
+    }
+}
+
 enum FriendsStatus : String {
     case RequestPendding = "Requested"
     case RecommendedFriend = "Recommended"
@@ -113,6 +133,7 @@ enum UserDefaultKeys : CaseIterable {
     static let kX_API_KEY = "x-api-key"
     static let kIsFirstTimeLocationUpdate = "isFirstTimeLocationUpdate"
     static let kFacebookID = "FacebookID"
+    static let kFriendRequestCount = "FriendRequestCount"
 }
 
 enum DateFomateKeys : CaseIterable {

@@ -360,6 +360,7 @@ extension FacebookViewController {
         let requestModel = FriendRequestModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.social_id = id
+        requestModel.type = "0" // For Facebook
 
         FriendsWebserviceSubclass.friendRequest(friendRequestModel: requestModel){ (json, status, res) in
             

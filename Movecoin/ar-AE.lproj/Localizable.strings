@@ -17,7 +17,7 @@
 
 // Login Screen
 "Sign in to your account" = "تسجيل دخول لحسابك";
-"Email Id or Phone Number" = "معرف البريد الإلكتروني أو رقم الهاتف";
+"Email Id or Phone Number" =  "البريد الإلكتروني أو رقم الهاتف";
 "Email Id" = " البريد الإلكتروني";
 "Password" = "كلمة المرور";
 "Forgot Password?" = "نسيت كلمة المرور؟";
@@ -96,6 +96,7 @@
 "Accept" = "قبول";
 "Reject" = "رفض";
 "Facebook" = "Facebook";
+"From : " = "من عند : ";
 "Connect Facebook" = "ربط Facebook";
 
 "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";

@@ -75,6 +75,8 @@ class FindFriendsViewController: UIViewController {
         tblFriends.dataSource = self
         tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
         tblFriends.addSubview(refreshControl)
+//        tblFriends.estimatedRowHeight = 65
+//        tblFriends.rowHeight = UITableView.automaticDimension
     }
     
     @objc func accessContacts(){
@@ -85,10 +87,14 @@ class FindFriendsViewController: UIViewController {
             error in
                 if didAuthorize {
                     self?.retrieveContacts(from: self!.store)
+                } else {
+                    self?.webserviceForInviteFriends(dic: self!.contactsArray)
                 }
             }
         } else if authorizationStatus == .authorized {
             retrieveContacts(from: store)
+        } else {
+            webserviceForInviteFriends(dic: contactsArray)
         }
     }
     
@@ -113,11 +119,12 @@ class FindFriendsViewController: UIViewController {
                     }
                 }
             }
-            if contactsArray.count >= 1 {
+//            if contactsArray.count >= 1 {
                 webserviceForInviteFriends(dic: contactsArray)
-            }
+//            }
         } catch {
             print("unable to fetch contacts")
+            webserviceForInviteFriends(dic: contactsArray)
         }
     }
     
@@ -174,7 +181,9 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
         let type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
         switch type {
-        case .RecommendedFriend, .RequestPendding:
+        case .RequestPendding:
+            return 65 //UITableView.automaticDimension
+        case .RecommendedFriend:
             return 65
         default:
             return 55
@@ -213,27 +222,27 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
         cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
         DispatchQueue.main.async {
-                    switch cell.type {
-                    case .RequestPendding:
-                        if let requestData = sectionData.Rows[indexPath.row] as? Request {
-                            cell.requested = requestData
-                            if requestData.receiverID == SingletonClass.SharedInstance.userData?.iD {
-                                cell.btnAccept.tag = indexPath.row
-                                cell.btnAccept.addTarget(self, action: #selector(self.btnAcceptTapped(_:)), for: .touchUpInside)
-                            }
-                        }
-                        
-                    case .RecommendedFriend:
-            //            cell.registeredFriend = registeredContacts[indexPath.row]
-                        cell.registeredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! Registered : self.registeredContacts[indexPath.row]
-                        
-                    case .NotRegistedFriend:
-            //           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
-                        cell.notRegisteredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : self.notRegisteredContacts[indexPath.row]
-                        
-                    default:
-                        break
+            switch cell.type {
+            case .RequestPendding:
+                if let requestData = sectionData.Rows[indexPath.row] as? Request {
+                    cell.requested = requestData
+                    if requestData.receiverID == SingletonClass.SharedInstance.userData?.iD {
+                        cell.btnAccept.tag = indexPath.row
+                        cell.btnAccept.addTarget(self, action: #selector(self.btnAcceptTapped(_:)), for: .touchUpInside)
                     }
+                }
+                
+            case .RecommendedFriend:
+                //            cell.registeredFriend = registeredContacts[indexPath.row]
+                cell.registeredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! Registered : self.registeredContacts[indexPath.row]
+                
+            case .NotRegistedFriend:
+                //           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
+                cell.notRegisteredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : self.notRegisteredContacts[indexPath.row]
+                
+            default:
+                break
+            }
         }
         return cell
     }
@@ -283,7 +292,7 @@ extension FindFriendsViewController : MFMessageComposeViewControllerDelegate {
 
 extension FindFriendsViewController {
     
-    func webserviceForInviteFriends(dic : [PhoneModel]){
+    func webserviceForInviteFriends(dic : [PhoneModel]) {
         
         // JSON String for Sending Contacts
         var JSONstring = String()
@@ -304,6 +313,20 @@ extension FindFriendsViewController {
                 self.tableData.removeAll()
                 self.responseModel = InviteFriendsResponseModel(fromJson: json)
                 
+                // For displaying star image
+                let friendCount = UserDefaults.standard.integer(forKey: UserDefaultKeys.kFriendRequestCount)
+                if friendCount < self.responseModel?.friendRequest ?? 0 {
+                    let parent = self.parent as! InviteViewController
+                    if !parent.btnFriends.isSpringLoaded {
+                         parent.imgStar.isHidden = false
+                    }
+                } else {
+                    let parent = self.parent as! InviteViewController
+                    parent.imgStar.isHidden = true
+                }
+                UserDefaults.standard.set(self.responseModel?.friendRequest, forKey: UserDefaultKeys.kFriendRequestCount)
+                
+                // For categories
                 if let requestedArray = self.responseModel?.requests, requestedArray.count > 0 {
                     let arr = requestedArray.sorted(by: <)
                     let requestedDic = FriendsTableData(section: "Requested", rows: arr)
@@ -333,6 +356,7 @@ extension FindFriendsViewController {
         let requestModel = FriendRequestModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = id
+        requestModel.type = "1" // For Contacts
 
         FriendsWebserviceSubclass.friendRequest(friendRequestModel: requestModel){ (json, status, res) in
             

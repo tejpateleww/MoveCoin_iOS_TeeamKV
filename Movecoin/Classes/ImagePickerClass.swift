@@ -39,11 +39,15 @@ open class ImagePickerClass: NSObject {
         guard UIImagePickerController.isSourceTypeAvailable(type) else {
             return nil
         }
-
+        
         return UIAlertAction(title: title, style: .default) { [unowned self] _ in
-            self.pickerController.sourceType = type
-            self.pickerController.modalPresentationStyle = .overCurrentContext
-            self.presentationController?.present(self.pickerController, animated: true)
+            if type == .camera {
+                self.checkCamera()
+            } else {
+                self.pickerController.sourceType = type
+                self.pickerController.modalPresentationStyle = .overCurrentContext
+                self.presentationController?.present(self.pickerController, animated: true)
+            }
         }
     }
 
@@ -97,9 +101,7 @@ extension ImagePickerClass: UIImagePickerControllerDelegate, UINavigationControl
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImage = info[.originalImage] as! UIImage
         self.pickerController(picker, didSelect: chosenImage)
-        
     }
-    
 }
 
 extension UIImage {
@@ -107,5 +109,41 @@ extension UIImage {
     func isEqualToImage(_ image: UIImage) -> Bool {
         return self.pngData() == image.pngData()
     }
+}
 
+extension ImagePickerClass {
+    
+    func callCamera(){
+        self.pickerController.sourceType = .camera
+        self.pickerController.modalPresentationStyle = .overCurrentContext
+        self.presentationController?.present(self.pickerController, animated: true)
+    }
+    func checkCamera() {
+        let authStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        switch authStatus {
+        case .authorized: callCamera() // Do your stuff here i.e. callCameraMethod()
+        case .denied: alertToEncourageCameraAccessInitially()
+        case .notDetermined: alertToEncourageCameraAccessInitially()
+        default: alertToEncourageCameraAccessInitially()
+        }
+    }
+
+    func alertToEncourageCameraAccessInitially() {
+        let alert = UIAlertController(
+            title: "IMPORTANT".localized,
+            message: "Camera access required for capturing photos!".localized,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Allow Camera".localized, style: .cancel, handler: { (alert) -> Void in
+
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        self.presentationController?.present(alert, animated: true)
+    }
 }

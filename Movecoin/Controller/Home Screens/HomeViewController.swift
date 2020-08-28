@@ -146,13 +146,15 @@ class HomeViewController: UIViewController {
             lblInviteFriends.text = user.inviteFriends
             lblTotalSteps.text = user.steps
             
-            if let friendCount = Int(lblFriends.text ?? "0") {
-                if friendCount > 1 {
-                    lblTitleFriends.text = "Friends".localized
-                } else {
-                    lblTitleFriends.text = "Friend".localized
-                }
-            }
+            // Client Remove this
+            
+//            if let friendCount = Int(lblFriends.text ?? "0") {
+//                if friendCount > 1 {
+//                    lblTitleFriends.text = "Friends".localized
+//                } else {
+//                    lblTitleFriends.text = "Friend".localized
+//                }
+//            }
             
             let membership = Membership(rawValue: Int(user.memberType) ?? 1)
             switch membership {

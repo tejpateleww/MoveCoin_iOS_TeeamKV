@@ -12,4 +12,7 @@ class FriendRequestModel : RequestModel {
     var SenderID: String = ""
     var ReceiverID :String = ""
     var social_id :String = ""
+    var type : String = "" // 0= fb, 1= contacts , 2= existing, 3= map
+    
+  
 }

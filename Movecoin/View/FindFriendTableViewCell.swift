@@ -61,7 +61,13 @@ class FindFriendTableViewCell: UITableViewCell {
             
             if let detail = requested {
                 self.lblName.text = detail.fullName.capitalizingFirstLetter()
-                self.lblNumber.text = detail.phone
+//                self.lblNumber.text = detail.phone
+                self.lblNumber.isHidden = false
+                if let type = RequestType(rawValue: detail.type) {
+                    self.lblNumber.text = "From : ".localized + type.requestTypeString()
+                } else {
+                    self.lblNumber.text = "-"
+                }
                 
                 if detail.nickName.isBlank {
                     lblNickName.isHidden = true
@@ -93,6 +99,8 @@ class FindFriendTableViewCell: UITableViewCell {
         didSet{
             btnAccept.isHidden = true
             lblNickName.isHidden = true
+            lblNumber.isHidden = false
+            
             btnInvite.setTitle("+ Invite".localized, for: .normal)
             if let detail = notRegisteredFriend {
                 self.lblName.text = detail.name.trimmingCharacters(in: .whitespacesAndNewlines).capitalizingFirstLetter()
@@ -121,6 +129,8 @@ class FindFriendTableViewCell: UITableViewCell {
                     self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
                 }
                 self.lblNumber.text = detail.phone
+                self.lblNumber.isHidden = true
+                
                 if lblName.text?.isBlank ?? true { return }
                 self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
             }

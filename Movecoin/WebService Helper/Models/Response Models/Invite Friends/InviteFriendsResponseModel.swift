@@ -13,6 +13,7 @@ class InviteFriendsResponseModel : Codable {
     var registered : [Registered]!
     var requests : [Request]!
     var status : Bool!
+    var friendRequest : Int!
     
     init(){
         
@@ -44,6 +45,7 @@ class InviteFriendsResponseModel : Codable {
             requests.append(value)
         }
         status = json["status"].boolValue
+        friendRequest = json["friend_request"].intValue
 	}
 
 	/**
@@ -76,6 +78,9 @@ class InviteFriendsResponseModel : Codable {
         if status != nil{
         	dictionary["status"] = status
         }
+        if friendRequest != nil{
+            dictionary["friend_request"] = friendRequest
+        }
 		return dictionary
 	}
 
@@ -89,6 +94,7 @@ class InviteFriendsResponseModel : Codable {
 		registered = aDecoder.decodeObject(forKey: "Registered") as? [Registered]
         requests = aDecoder.decodeObject(forKey: "Requests") as? [Request]
 		status = aDecoder.decodeObject(forKey: "status") as? Bool
+        friendRequest = aDecoder.decodeObject(forKey: "friend_request") as? Int
 	}
 
     /**
@@ -109,7 +115,9 @@ class InviteFriendsResponseModel : Codable {
 		if status != nil{
 			aCoder.encode(status, forKey: "status")
 		}
-
+        if friendRequest != nil{
+            aCoder.encode(friendRequest, forKey: "friend_request")
+        }
 	}
 
 }

@@ -163,6 +163,7 @@ extension SearchViewController {
         let requestModel = FriendRequestModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = id
+        requestModel.type = "2" // For Search
 
         FriendsWebserviceSubclass.friendRequest(friendRequestModel: requestModel){ (json, status, res) in
             

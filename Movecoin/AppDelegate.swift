@@ -53,8 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         configureNotification()
         Fabric.with([Crashlytics.self])
         
-        
-        
         _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
         
         return true
@@ -209,6 +207,14 @@ extension AppDelegate {
         if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
             if let vc : InviteViewController = (vc as? InviteViewController) {
                 vc.isFromNotification = true
+                if vc.btnFriends.isSelected {
+                    vc.btnFiendFriendsTapped(vc.btnFriends as Any)
+                    for controller in vc.children {
+                        if controller.isKind(of: FindFriendsViewController.self) {
+                            (controller as! FindFriendsViewController).accessContacts()
+                        }
+                    }
+                }
             }else {
                 if let inviteVC = vc.navigationController?.hasViewController(ofKind: InviteViewController.self) as? InviteViewController {
                     
@@ -220,11 +226,19 @@ extension AppDelegate {
                         }
                     }
                     inviteVC.isFromNotification = true
+                    
                 } else {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: InviteViewController.className) as! InviteViewController
-                    controller.isFromNotification = true
-                    vc.navigationController?.pushViewController(controller, animated: false)
+                    let state = UIApplication.shared.applicationState
+                    if state == .inactive {
+                        NotificationCenter.default.addObserver(self, selector: #selector(loadInviteVC), name: NotificationSetHomeVC, object: nil)
+                    }
+                    if !vc.isKind(of: SplashViewController.self) {
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: InviteViewController.className) as! InviteViewController
+                        controller.isFromNotification = true
+                        vc.navigationController?.pushViewController(controller, animated: false)
+                    }
                 }
             }
         }
@@ -243,6 +257,13 @@ extension AppDelegate {
         let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
         let userinfo = SingletonClass.SharedInstance.userInfo
         controller.receiverID = userinfo?["SenderID"] as? String
+        (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
+    }
+    
+    @objc func loadInviteVC(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: InviteViewController.className) as! InviteViewController
+        controller.isFromNotification = true
         (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
     }
    
@@ -353,8 +374,6 @@ extension AppDelegate {
         }
         
         print("USER INFo : ",userInfo)
-       
-        
         
         if userInfo["gcm.notification.type"] as! String == "chat" {
             
@@ -441,29 +460,6 @@ extension AppDelegate {
             if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
                 if let vc : ChatViewController = (vc as? ChatViewController) {
                     vc.webserviceForChatHistory(isLoading: false)
-             /*       if let response = userInfo["gcm.notification.response_arr"] as? String {
-                        let jsonData = response.data(using: .utf8)!
-                        let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
-                        
-                        if let dic = dictionary  as? [String: Any]{
-                            print(dic)
-                            
-                            if let senderID = dic["SenderID"] as? String {
-                                if senderID == vc.receiverID {
-                                    
-                                    let chat = MessageData(ReceiverID: dic["ReceiverID"] as? String ?? "", Message: dic["Message"] as? String ?? "", SenderNickname: dic["sender_nickname"] as? String ?? "", SenderName: dic["sender_name"] as? String ?? "", SenderID: dic["SenderID"] as? String ?? "", Date: dic["Date"] as? String ?? "", ChatId: dic["chat_id"] as? String ?? "")
-                                    print(chat)
-                                    vc.arrData.append(chat)
-                                    let indexPath = IndexPath.init(row: vc.arrData.count-1, section: 0)
-                                    vc.tblVw.insertRows(at: [indexPath], with: .bottom)
-                                    let path = IndexPath.init(row: vc.arrData.count-1, section: 0)
-                                    vc.tblVw.scrollToRow(at: path, at: .bottom, animated: true)
-                                } else{
-                                    completionHandler([.alert, .sound])
-                                }
-                            }
-                        }
-                    } */
                 } else if let vc : ChatListViewController = (vc as? ChatListViewController) {
                     completionHandler([.alert, .sound])
                     vc.webserviceForChatList()

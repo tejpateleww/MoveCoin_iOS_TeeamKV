@@ -68,9 +68,8 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         setUpNavigationItems()
-        
-        
         
         if arrData.count > 0 {
             tblVw.reloadData()

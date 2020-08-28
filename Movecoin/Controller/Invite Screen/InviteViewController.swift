@@ -21,6 +21,7 @@ class InviteViewController: UIViewController {
     @IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var btnSearch: UIButton!
     @IBOutlet weak var subview: UIView!
+    @IBOutlet weak var imgStar: UIImageView!
 
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -34,6 +35,8 @@ class InviteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imgStar.isHidden = true
       
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
             self.scrollView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
@@ -47,6 +50,7 @@ class InviteViewController: UIViewController {
         super.viewDidAppear(true)
        
         if isFromNotification {
+            loadThePage(sender: btnFriends)
             btnFiendFriendsTapped(btnFriends as Any)
             for controller in self.children {
                 if controller.isKind(of: FindFriendsViewController.self) {
@@ -119,6 +123,7 @@ class InviteViewController: UIViewController {
     }
     
     @IBAction func btnFiendFriendsTapped(_ sender: Any) {
+        imgStar.isHidden = true
         self.title = "Find Friend".localized
        scrollToPage(page: 1)
 //        print("setContentOffset : \(scrollView.contentOffset)")

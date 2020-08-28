@@ -33,7 +33,6 @@ extension UIViewController {
                            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.topItem?.title = title.localized
         
-            
         // Background
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()

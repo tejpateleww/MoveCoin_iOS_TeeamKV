@@ -27,7 +27,7 @@ class PopoverViewController: UIViewController {
     
     @IBOutlet weak var stackInfo: UIStackView!
     @IBOutlet weak var stackButtons: UIStackView!
-    @IBOutlet weak var btnSendFriendRequest: ThemeButton!
+    @IBOutlet weak var btnSendFriendRequest: UIButton!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -44,6 +44,7 @@ class PopoverViewController: UIViewController {
         super.viewDidLoad()
      
         self.setupFont()
+        setButtonLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +76,14 @@ class PopoverViewController: UIViewController {
         lblMemberSince.font = UIFont.regular(ofSize: 12)
         lblTime.font = UIFont.regular(ofSize: 12)
         lblTotalSteps.font = UIFont.regular(ofSize: 12)
+    }
+    
+    func setButtonLayout() {
+        btnSendFriendRequest.backgroundColor = .init(white: 1.0, alpha: 0.23)
+        btnSendFriendRequest.setTitleColor(.white, for: .normal)
+        btnSendFriendRequest.layer.cornerRadius = btnSendFriendRequest.frame.size.height / 2
+        btnSendFriendRequest.layer.masksToBounds = true
+        btnSendFriendRequest.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
     }
     
     func localizeSetup(){
@@ -221,6 +230,7 @@ extension PopoverViewController {
         let requestModel = FriendRequestModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.ReceiverID = userData.iD
+        requestModel.type = "3" // For map
 
         FriendsWebserviceSubclass.friendRequest(friendRequestModel: requestModel){ (json, status, res) in
             UtilityClass.hideHUD()
