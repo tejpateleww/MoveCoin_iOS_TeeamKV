@@ -15,7 +15,9 @@ class SearchData : NSObject, NSCoding{
     var nickName : String!
     var phone : String!
     var profilePicture : String!
-    var isFriend : String!
+    var isFriend : String! // 1 - Requested, 0 - add friend
+    var senderID : String!
+    var requestID : String!
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -31,6 +33,8 @@ class SearchData : NSObject, NSCoding{
         phone = json["Phone"].stringValue
         profilePicture = json["ProfilePicture"].stringValue
         isFriend = json["is_friend"].stringValue
+        senderID = json["SenderID"].stringValue
+        requestID = json["requestID"].stringValue
 	}
 
 	/**
@@ -60,6 +64,12 @@ class SearchData : NSObject, NSCoding{
         if isFriend != nil{
             dictionary["is_friend"] = isFriend
         }
+        if senderID != nil{
+            dictionary["SenderID"] = senderID
+        }
+        if requestID != nil{
+            dictionary["requestID"] = requestID
+        }
 		return dictionary
 	}
 
@@ -76,6 +86,8 @@ class SearchData : NSObject, NSCoding{
 		phone = aDecoder.decodeObject(forKey: "Phone") as? String
 		profilePicture = aDecoder.decodeObject(forKey: "ProfilePicture") as? String
         isFriend = aDecoder.decodeObject(forKey: "is_friend") as? String
+        senderID = aDecoder.decodeObject(forKey: "SenderID") as? String
+        requestID = aDecoder.decodeObject(forKey: "requestID") as? String
 	}
 
     /**
@@ -104,6 +116,12 @@ class SearchData : NSObject, NSCoding{
 		}
         if isFriend != nil{
             aCoder.encode(isFriend, forKey: "is_friend")
+        }
+        if senderID != nil{
+            aCoder.encode(senderID, forKey: "SenderID")
+        }
+        if requestID != nil{
+            aCoder.encode(requestID, forKey: "requestID")
         }
 	}
 }

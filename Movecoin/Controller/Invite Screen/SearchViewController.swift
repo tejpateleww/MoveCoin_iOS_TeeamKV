@@ -46,6 +46,26 @@ class SearchViewController: UIViewController {
         
         txtSearch.delegate = self
     }
+    
+    func showActionSheet(cell: FindFriendTableViewCell) {
+        
+        let alert = UIAlertController(title: nil, message: "Please Select an Option".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Accept".localized, style: .default, handler: { (_) in
+            self.webserviceForAcceptReject(requestID: cell.searchFriend?.requestID ?? "", action: "Accept", cell: cell)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Reject".localized, style: .default, handler: { (_) in
+            self.webserviceForAcceptReject(requestID: cell.searchFriend?.requestID ?? "", action: "Reject", cell: cell)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { (_) in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
 }
 
 // ----------------------------------------------------
@@ -100,6 +120,7 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource, Inv
             case .RecommendedFriend:
                 
                 cell.searchFriend = self.searchArray[indexPath.row]
+                cell.tag = indexPath.row
                 
             default:
                 break
@@ -112,8 +133,12 @@ extension SearchViewController : UITableViewDelegate, UITableViewDataSource, Inv
         switch cell.type {
             
         case .RecommendedFriend:
-            if let recevierID = cell.searchFriend?.iD {
-                webserviceForAddFriends(id: recevierID, cell: cell)
+            if cell.searchFriend?.isFriend == "0" {
+                webserviceForAddFriends(id: cell.searchFriend?.iD ?? "", cell: cell)
+            } else {
+                if (cell.searchFriend?.isFriend == "1") && (cell.searchFriend?.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+                    self.showActionSheet(cell: cell)
+                }
             }
             
         default:
@@ -171,22 +196,53 @@ extension SearchViewController {
                 
                 let response = FriendRequestResponseModel(fromJson: json)
                 
-                cell.searchFriend?.isFriend = "1"
+                cell.searchFriend?.isFriend = "1" // Requested
                 DispatchQueue.main.async {
                     self.tblFriends.reloadData()
                 }
                 
+                // For refreshing Friends list
+                let parent = self.parent as! InviteViewController
+                parent.refreshAllFriendsList()
+                
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? response.message : response.arabicMessage
                 UtilityClass.showAlert(Message: msg ?? "")
                 
-                // For refreshing the Find Friends list
-                let parent = self.parent as! InviteViewController
-                for child in parent.children {
-                    if child.isKind(of: FindFriendsViewController.self) {
-                        let findFriendVC = child as! FindFriendsViewController
-                        findFriendVC.retrieveContacts(from: findFriendVC.store)
-                    }
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForAcceptReject(requestID: String, action: String = "Reject", cell: FindFriendTableViewCell){
+        
+        UtilityClass.showHUD()
+        
+        let requestModel = ActionOnFriendRequestModel()
+        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.RequestID = requestID
+        requestModel.Action = action
+
+        FriendsWebserviceSubclass.actionOnFriendRequest(actionFriendRequestModel: requestModel){ (json, status, res) in
+            UtilityClass.hideHUD()
+            if status {
+                
+                if action == "Accept" {
+                   self.searchArray.remove(at: cell.tag)
+                } else {
+                    cell.searchFriend?.isFriend = "0" // Add Friend
                 }
+                
+                DispatchQueue.main.async {
+                    self.tblFriends.reloadData()
+                }
+                
+                // For refreshing Friends list
+                let parent = self.parent as! InviteViewController
+                parent.refreshAllFriendsList()
+                
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

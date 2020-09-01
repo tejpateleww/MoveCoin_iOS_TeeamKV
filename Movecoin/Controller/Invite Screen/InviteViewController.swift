@@ -37,6 +37,8 @@ class InviteViewController: UIViewController {
         super.viewDidLoad()
         
         imgStar.isHidden = true
+        imgStar.tintColor = .white
+        imgStar.image = imgStar.image?.withRenderingMode(.alwaysTemplate)
       
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
             self.scrollView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
@@ -102,6 +104,25 @@ class InviteViewController: UIViewController {
         
         for controller in self.children {
             controller.view.endEditing(true)
+        }
+    }
+    
+    func refreshAllFriendsList() {
+        
+        for child in self.children {
+            // For refreshing the Find Friends list
+            if child.isKind(of: FindFriendsViewController.self) {
+                let findFriendVC = child as! FindFriendsViewController
+                findFriendVC.retrieveContacts(from: findFriendVC.store)
+            }
+            
+            // For refreshing FB Friends list
+            if child.isKind(of: FacebookViewController.self) {
+                let fbVC = child as! FacebookViewController
+                if UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) != nil {
+                    fbVC.webserviceForInviteFriends(dic: fbVC.getFBfriendsArray)
+                }
+            }
         }
     }
     

@@ -180,6 +180,26 @@ class FacebookViewController: UIViewController {
         })
     }
     
+    func showActionSheet(friendRequestID : String) {
+        
+        let alert = UIAlertController(title: nil, message: "Please Select an Option".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Accept".localized, style: .default, handler: { (_) in
+            self.webserviceForAcceptReject(requestID: friendRequestID, action: "Accept")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Reject".localized, style: .default, handler: { (_) in
+            self.webserviceForAcceptReject(requestID: friendRequestID,action: "Reject")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { (_) in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+    
     // ----------------------------------------------------
     //MARK:- --------- IBAction Methods ---------
     // ----------------------------------------------------
@@ -276,8 +296,12 @@ extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, I
         switch cell.type {
       
         case .RecommendedFriend:
-            if let recevierID = cell.fbFriend?.id {
-                webserviceForAddFriends(id: recevierID)
+            if cell.fbFriend?.isFriend == "0" {
+                webserviceForAddFriends(id: cell.fbFriend?.id ?? "")
+            } else {
+                if (cell.fbFriend?.isFriend == "1") && (cell.fbFriend?.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+                    self.showActionSheet(friendRequestID: cell.fbFriend?.requestID ?? "")
+                }
             }
             
         default:
@@ -366,28 +390,38 @@ extension FacebookViewController {
             
             if status {
                 
-//                let filteredFriend = self.fbFriendsArray.filter{$0.id == id}
-//                if let friend = filteredFriend.first {
-//                    guard let index = self.fbFriendsArray.firstIndex(of: friend) else { return }
-//                    self.fbFriendsArray.remove(at: index)
-//                    DispatchQueue.main.async {
-//                        self.tblFriends.reloadData()
-//                    }
-//                }
-                
-                self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
+//                self.webserviceForInviteFriends(dic: self.getFBfriendsArray)
                
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
                 UtilityClass.showAlert(Message: msg)
                 
-                // For refreshing the Find Friends list
+                // For refreshing Friends list
                 let parent = self.parent as! InviteViewController
-                for child in parent.children {
-                    if child.isKind(of: FindFriendsViewController.self) {
-                        let findFriendVC = child as! FindFriendsViewController
-                        findFriendVC.retrieveContacts(from: findFriendVC.store)
-                    }
-                }
+                parent.refreshAllFriendsList()
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForAcceptReject(requestID: String, action: String = "Reject"){
+        
+        UtilityClass.showHUD()
+        
+        let requestModel = ActionOnFriendRequestModel()
+        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.RequestID = requestID
+        requestModel.Action = action
+
+        FriendsWebserviceSubclass.actionOnFriendRequest(actionFriendRequestModel: requestModel){ (json, status, res) in
+            UtilityClass.hideHUD()
+            if status {
+                // For refreshing Friends list
+                let parent = self.parent as! InviteViewController
+                parent.refreshAllFriendsList()
+                
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

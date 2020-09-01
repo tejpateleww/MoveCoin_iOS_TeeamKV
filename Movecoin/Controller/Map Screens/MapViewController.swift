@@ -42,6 +42,7 @@ class MapViewController: UIViewController {
     var toggleForPopover = false
     var showOnlyOnce = true
     lazy var nearByUsersArray = [Nearbyuser]()
+    var isShadowViewSet = false
     
     var nearByuserTimer : Timer!
 
@@ -73,13 +74,17 @@ class MapViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        if AppDelegateShared.window?.safeAreaInsets.top ?? 0.0 > CGFloat(24.0) {
-            shadowHeightConstraint.constant = 50.0
-        } else {
-            shadowHeightConstraint.constant = 30.0
+        if !isShadowViewSet {
+            isShadowViewSet = true
+            
+            if AppDelegateShared.window?.safeAreaInsets.top ?? 0.0 > CGFloat(24.0) {
+                shadowHeightConstraint.constant = 42.0
+            } else {
+                shadowHeightConstraint.constant = 22.0
+            }
+            setGradientColorOfView(view: shadowView, startColor: ThemeBlueColor.withAlphaComponent(0.5), endColor: ThemeBlueColor.withAlphaComponent(0.01))
+            self.shadowView.layoutIfNeeded()
         }
-        setGradientColorOfView(view: shadowView, startColor: ThemeBlueColor.withAlphaComponent(0.4), endColor: ThemeBlueColor.withAlphaComponent(0.01))
-        self.shadowView.layoutIfNeeded()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -167,17 +172,6 @@ class MapViewController: UIViewController {
         }
         mapView.addAnnotations(artView)
         
-        //        var annotationsArray = [MKPointAnnotation]()
-        //        for user in nearByUsersArray {
-        //            let annotation = MKPointAnnotation()
-        //            annotation.title = "\(user.fullName ?? "")"
-        //            let lat = CLLocationDegrees(floatLiteral: Double(user.latitude)!)
-        //            let lng = CLLocationDegrees(floatLiteral: Double(user.longitude)!)
-        //            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-        //            annotationsArray.append(annotation)
-        //        }
-        //        mapView.addAnnotations(annotationsArray)
-        
         if(showOnlyOnce)
         {
             mapView.showAnnotations(mapView.annotations, animated: true)
@@ -259,6 +253,11 @@ extension MapViewController {
         requestModel.user_id = id
         requestModel.latitude = "\(String(describing: myLocation.coordinate.latitude))"
         requestModel.longitude = "\(String(describing: myLocation.coordinate.longitude))"
+        #if targetEnvironment(simulator)
+        // 23.0732727,72.5181843
+        requestModel.latitude = "23.0732727"
+        requestModel.longitude = "72.5181843"
+        #endif
         
         FriendsWebserviceSubclass.nearByUsers(nearByUsersModel: requestModel){ (json, status, res) in
            

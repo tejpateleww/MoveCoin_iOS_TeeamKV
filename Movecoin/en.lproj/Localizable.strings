@@ -96,6 +96,9 @@
 "Facebook" = "Facebook";
 "From : " = "From : ";
 "Connect Facebook" = "Connect Facebook";
+"Map" = "Map";
+"Contacts" = "Contacts";
+
 
 "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
@@ -261,6 +264,11 @@
 "Failed" = "Failed";
 "Success" = "Success";
 "Pending" = "Pending";
+"Respond" = "Respond";
+"Please Select an Option" = "Please Select an Option";
+"IMPORTANT" = "IMPORTANT";
+"Allow Camera" = "Allow Camera";
+"Camera access required for capturing photos!" = "Camera access required for capturing photos!";
 
 
 // Validation String

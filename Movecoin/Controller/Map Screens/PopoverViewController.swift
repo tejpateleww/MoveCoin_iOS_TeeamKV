@@ -122,13 +122,40 @@ class PopoverViewController: UIViewController {
             stackButtons.isHidden = true
             stackInfo.isHidden = true
             lblLastSeen.isHidden = true
-            if userData.isFriend == 0 {
+            if (userData.isFriend == 0) && (userData.senderID == SingletonClass.SharedInstance.userData?.iD ?? "") {
+                
                 btnSendFriendRequest.setTitle("Requested".localized, for: .normal)
                 btnSendFriendRequest.isUserInteractionEnabled = false
+                
+            } else if (userData.isFriend == 0) && (userData.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+                
+                btnSendFriendRequest.setTitle("Respond".localized, for: .normal)
+                btnSendFriendRequest.isUserInteractionEnabled = true
             }else {
                 btnSendFriendRequest.setTitle("Add Friend".localized, for: .normal)
+                btnSendFriendRequest.isUserInteractionEnabled = true
             }
         }
+    }
+    
+    func showActionSheet() {
+        
+        let alert = UIAlertController(title: nil, message: "Please Select an Option".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Accept".localized, style: .default, handler: { (_) in
+            self.webserviceForAcceptReject(action: "Accept")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Reject".localized, style: .default, handler: { (_) in
+            self.webserviceForAcceptReject(action: "Reject")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { (_) in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
     
     // ----------------------------------------------------
@@ -167,9 +194,12 @@ class PopoverViewController: UIViewController {
     }
     
     @IBAction func btnAddFriendTapped(_ sender: Any) {
-//        if let recevierID = cell.registeredFriend?.iD {
-            webserviceForAddFriends()
-//        }
+
+        if (userData.isFriend == 0) && (userData.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+            showActionSheet()
+        } else {
+             webserviceForAddFriends()
+        }
     }
 }
 
@@ -239,6 +269,26 @@ extension PopoverViewController {
                 UtilityClass.showAlert(Message: msg)
                 self.btnSendFriendRequest.setTitle("Requested".localized, for: .normal)
                 self.btnSendFriendRequest.isUserInteractionEnabled = false
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForAcceptReject(action: String = "Reject"){
+        
+        UtilityClass.showHUD()
+        
+        let requestModel = ActionOnFriendRequestModel()
+        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.RequestID = userData.requestID
+        requestModel.Action = action
+
+        FriendsWebserviceSubclass.actionOnFriendRequest(actionFriendRequestModel: requestModel){ (json, status, res) in
+            UtilityClass.hideHUD()
+            if status {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

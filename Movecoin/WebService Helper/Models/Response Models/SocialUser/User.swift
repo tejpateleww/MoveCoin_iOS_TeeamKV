@@ -11,8 +11,10 @@ class User : NSObject, NSCoding{
 
     var fullname : String!
     var id : String!
-    var isFriend : String!
+    var isFriend : String! // 0 - Add Friend, 1 - Requested
     var nickname : String!
+    var senderID : String!
+    var requestID : String!
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -25,6 +27,8 @@ class User : NSObject, NSCoding{
         id = json["Id"].stringValue
         isFriend = json["is_friend"].stringValue
         nickname = json["nickname"].stringValue
+        senderID = json["SenderID"].stringValue
+        requestID = json["requestID"].stringValue
 	}
 
 	/**
@@ -45,6 +49,12 @@ class User : NSObject, NSCoding{
         if nickname != nil{
         	dictionary["nickname"] = nickname
         }
+        if senderID != nil{
+            dictionary["SenderID"] = senderID
+        }
+        if requestID != nil{
+            dictionary["requestID"] = requestID
+        }
 		return dictionary
 	}
 
@@ -58,6 +68,8 @@ class User : NSObject, NSCoding{
 		id = aDecoder.decodeObject(forKey: "Id") as? String
 		isFriend = aDecoder.decodeObject(forKey: "is_friend") as? String
 		nickname = aDecoder.decodeObject(forKey: "nickname") as? String
+        senderID = aDecoder.decodeObject(forKey: "SenderID") as? String
+        requestID = aDecoder.decodeObject(forKey: "requestID") as? String
 	}
 
     /**
@@ -78,7 +90,12 @@ class User : NSObject, NSCoding{
 		if nickname != nil{
 			aCoder.encode(nickname, forKey: "nickname")
 		}
-
+        if senderID != nil{
+            aCoder.encode(senderID, forKey: "SenderID")
+        }
+        if requestID != nil{
+            aCoder.encode(requestID, forKey: "requestID")
+        }
 	}
 
 }

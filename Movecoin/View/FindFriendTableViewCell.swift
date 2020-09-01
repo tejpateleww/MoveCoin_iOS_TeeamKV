@@ -129,7 +129,7 @@ class FindFriendTableViewCell: UITableViewCell {
                     self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
                 }
                 self.lblNumber.text = detail.phone
-                self.lblNumber.isHidden = true
+                self.lblNumber.isHidden = false
                 
                 if lblName.text?.isBlank ?? true { return }
                 self.lblFirstCharacter.text = String(lblName.text?.first ?? Character(""))
@@ -151,8 +151,13 @@ class FindFriendTableViewCell: UITableViewCell {
                 btnInvite.setTitle("Add Friend".localized, for: .normal)
                 btnInvite.isUserInteractionEnabled = true
             } else {
-                btnInvite.setTitle("Requested".localized, for: .normal)
-                btnInvite.isUserInteractionEnabled = false
+                if (data.isFriend == "1") && (data.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+                    btnInvite.setTitle("Respond".localized, for: .normal)
+                    btnInvite.isUserInteractionEnabled = true
+                } else {
+                    btnInvite.setTitle("Requested".localized, for: .normal)
+                    btnInvite.isUserInteractionEnabled = false
+                }
             }
             
             if data.nickname.isBlank  {
@@ -190,8 +195,13 @@ class FindFriendTableViewCell: UITableViewCell {
                 btnInvite.setTitle("Add Friend".localized, for: .normal)
                 btnInvite.isUserInteractionEnabled = true
             } else {
-                btnInvite.setTitle("Requested".localized, for: .normal)
-                btnInvite.isUserInteractionEnabled = false
+                if (data.isFriend == "1") && (data.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+                    btnInvite.setTitle("Respond".localized, for: .normal)
+                    btnInvite.isUserInteractionEnabled = true
+                } else {
+                    btnInvite.setTitle("Requested".localized, for: .normal)
+                    btnInvite.isUserInteractionEnabled = false
+                }
             }
             
             self.lblName.text = data.fullName.capitalizingFirstLetter()

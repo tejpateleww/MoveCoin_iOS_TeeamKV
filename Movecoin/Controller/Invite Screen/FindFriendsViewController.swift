@@ -319,6 +319,7 @@ extension FindFriendsViewController {
                     let parent = self.parent as! InviteViewController
                     if !parent.btnFriends.isSpringLoaded {
                          parent.imgStar.isHidden = false
+                         parent.imgStar.tintColor = .white
                     }
                 } else {
                     let parent = self.parent as! InviteViewController
@@ -345,6 +346,10 @@ extension FindFriendsViewController {
                     self.tableData.append(notRegisteredDic)
                 }
                 self.tblFriends.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                     let path = IndexPath.init(row: 0, section: 0)
+                    self.tblFriends.scrollToRow(at: path, at: .top, animated: true)
+                }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

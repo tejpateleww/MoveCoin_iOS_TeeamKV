@@ -95,9 +95,12 @@
 "+ Invite" = "+ دعوة";
 "Accept" = "قبول";
 "Reject" = "رفض";
-"Facebook" = "Facebook";
-"From : " = "من عند : ";
+"Facebook" = "فيس بوك";
+"From : " = "من : ";
 "Connect Facebook" = "ربط Facebook";
+"Map" = "الخريطة";
+"Contacts" = "جهات الاتصال";
+
 
 "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
@@ -263,7 +266,11 @@
 "Failed" = "فشل";
 "Success" = "نجاح";
 "Pending" = "قيد الانتظار";
-
+"Respond" = "Respond";
+"Please Select an Option" = "Please Select an Option";
+"IMPORTANT" = "١. هام";
+"Allow Camera" = "السماح للكاميرا";
+"Camera access required for capturing photos!" = "السماح للكاميرا لالتقاط الصور";
 
 // Validation String
 

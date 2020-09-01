@@ -207,14 +207,16 @@ extension AppDelegate {
         if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
             if let vc : InviteViewController = (vc as? InviteViewController) {
                 vc.isFromNotification = true
+                vc.refreshAllFriendsList()
+                
                 if vc.btnFriends.isSelected {
                     vc.btnFiendFriendsTapped(vc.btnFriends as Any)
-                    for controller in vc.children {
-                        if controller.isKind(of: FindFriendsViewController.self) {
-                            (controller as! FindFriendsViewController).accessContacts()
-                        }
-                    }
                 }
+//                for controller in vc.children {
+//                    if controller.isKind(of: FindFriendsViewController.self) {
+//                        (controller as! FindFriendsViewController).accessContacts()
+//                    }
+//                }
             }else {
                 if let inviteVC = vc.navigationController?.hasViewController(ofKind: InviteViewController.self) as? InviteViewController {
                     
@@ -226,6 +228,7 @@ extension AppDelegate {
                         }
                     }
                     inviteVC.isFromNotification = true
+                    inviteVC.refreshAllFriendsList()
                     
                 } else {
                     let state = UIApplication.shared.applicationState
@@ -246,8 +249,18 @@ extension AppDelegate {
     
     func loadWallet(){
         if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+            
             if let vc : TabViewController = (vc as? TabViewController) {
                 vc.btnTabTapped(vc.btnTabs[TabBarOptions.Wallet.rawValue])
+            } else {
+                for controller in vc.navigationController?.viewControllers ?? [] {
+                    if(controller.isKind(of: TabViewController.self)) {
+                        let tabVC = controller as! TabViewController
+                        vc.navigationController?.popToViewController(tabVC, animated: true)
+                        tabVC.btnTabTapped(tabVC.btnTabs[TabBarOptions.Wallet.rawValue])
+                        break
+                    }
+                }
             }
         }
     }

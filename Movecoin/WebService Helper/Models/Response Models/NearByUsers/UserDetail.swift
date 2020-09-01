@@ -11,12 +11,14 @@ class UserDetail : Codable {
     
     var iD : String!
     var fullName : String!
-    var isFriend : Int!
+    var isFriend : Int! // 0 - Requested, 1 - Friend, 2 - Add friend
     var lastSeen : String!
     var memberSince : String!
     var profilePicture : String!
     var steps : String!
     var updatedDate : String!
+    var senderID : String!
+    var requestID : String!
     
     init(){
         
@@ -37,6 +39,8 @@ class UserDetail : Codable {
         profilePicture = json["ProfilePicture"].stringValue
         steps = json["Steps"].stringValue
         updatedDate = json["UpdatedDate"].stringValue
+        senderID = json["SenderID"].stringValue
+        requestID = json["requestID"].stringValue
     }
 
     /**
@@ -69,6 +73,12 @@ class UserDetail : Codable {
         if updatedDate != nil{
             dictionary["UpdatedDate"] = updatedDate
         }
+        if senderID != nil{
+            dictionary["SenderID"] = senderID
+        }
+        if requestID != nil{
+            dictionary["requestID"] = requestID
+        }
         return dictionary
     }
 
@@ -86,6 +96,8 @@ class UserDetail : Codable {
         profilePicture = aDecoder.decodeObject(forKey: "ProfilePicture") as? String
         steps = aDecoder.decodeObject(forKey: "Steps") as? String
         updatedDate = aDecoder.decodeObject(forKey: "UpdatedDate") as? String
+        senderID = aDecoder.decodeObject(forKey: "SenderID") as? String
+        requestID = aDecoder.decodeObject(forKey: "requestID") as? String
     }
 
     /**
@@ -118,7 +130,11 @@ class UserDetail : Codable {
         if updatedDate != nil{
             aCoder.encode(updatedDate, forKey: "UpdatedDate")
         }
-
+        if senderID != nil{
+            aCoder.encode(senderID, forKey: "SenderID")
+        }
+        if requestID != nil{
+            aCoder.encode(requestID, forKey: "requestID")
+        }
     }
-
 }
