@@ -144,6 +144,9 @@ class SignupViewController: UIViewController {
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 signupModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 signupModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+            } else {
+                signupModel.Latitude = "0"
+                signupModel.Longitude = "0"
             }
             signupModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             #if targetEnvironment(simulator)

@@ -225,16 +225,22 @@ extension TabViewController : FlipToMapDelegate, FlipToHomeDelegate, WalletCoins
     
     func flipToMap() {
         
-        mapVC.delegateFlipToHome = self
-        mapVC.setUpNavigationItems()
-        UIView.transition(with: viewContainer, duration: 1.0, options: .transitionFlipFromLeft, animations: {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.layoutIfNeeded()
-                self.addChild(self.mapVC)
-                self.mapVC.view.frame = self.viewContainer.bounds
-                self.viewContainer.addSubview(self.mapVC.view)
-            })
-        }, completion: nil)
+        if !UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
+            print("Location permission is off")
+            UtilityClass.alertForLocation(currentVC: self)
+            
+        } else {
+            mapVC.delegateFlipToHome = self
+            mapVC.setUpNavigationItems()
+            UIView.transition(with: viewContainer, duration: 1.0, options: .transitionFlipFromLeft, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.view.layoutIfNeeded()
+                    self.addChild(self.mapVC)
+                    self.mapVC.view.frame = self.viewContainer.bounds
+                    self.viewContainer.addSubview(self.mapVC.view)
+                })
+            }, completion: nil)
+        }
     }
     
     func flipToHome() {

@@ -45,7 +45,7 @@ class MapViewController: UIViewController {
     var isShadowViewSet = false
     
     var nearByuserTimer : Timer!
-
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -61,14 +61,21 @@ class MapViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        startTimer()
+        
         self.parent?.navigationItem.leftBarButtonItems?.removeAll()
         self.parent?.navigationItem.setRightBarButton(nil, animated: true)
         lblTitle.text = "My Steps".localized
         
         lblSteps.text = SingletonClass.SharedInstance.todaysStepCount ?? "0"
         self.setUpNavigationItems()
-        webserviceForNearByUsers()
-        startTimer()
+        
+        if !UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
+            print("Location permission is off")
+            UtilityClass.alertForLocation(currentVC: self)
+        } else {
+            webserviceForNearByUsers()
+        }
     }
     
     override func viewDidLayoutSubviews() {

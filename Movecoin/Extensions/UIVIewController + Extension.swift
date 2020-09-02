@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 import CoreMotion
+import CoreLocation
 
-extension UIViewController {
+let locationManager = CLLocationManager()
+
+extension UIViewController : CLLocationManagerDelegate {
     
     static var appVersion: String? {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
@@ -88,6 +91,7 @@ extension UIViewController {
             UpdateLocationClass.sharedLocationInstance.GeneralLocationManager.stopUpdatingLocation()
         }
     }
+  
     
     // ----------------------------------------------------
     //MARK:- --------- Get UserData Method ---------

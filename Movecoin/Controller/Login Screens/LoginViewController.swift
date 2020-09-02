@@ -105,6 +105,9 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 loginModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 loginModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+            } else {
+                loginModel.Latitude = "0"
+                loginModel.Longitude = "0"
             }
             loginModel.language = (Localize.currentLanguage() == Languages.English.rawValue) ? 1 : 2
             #if targetEnvironment(simulator)
@@ -229,6 +232,9 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+            } else {
+                socialModel.Latitude = "0"
+                socialModel.Longitude = "0"
             }
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
@@ -373,6 +379,9 @@ extension LoginViewController {
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+                } else {
+                    socialModel.Latitude = "0"
+                    socialModel.Longitude = "0"
                 }
                 #if targetEnvironment(simulator)
                 // 23.0732727,72.5181843
@@ -487,6 +496,9 @@ extension LoginViewController {
                 if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                     socialModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                     socialModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+                } else {
+                    socialModel.Latitude = "0"
+                    socialModel.Longitude = "0"
                 }
                 #if targetEnvironment(simulator)
                 // 23.0732727,72.5181843

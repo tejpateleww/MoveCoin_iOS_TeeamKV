@@ -41,6 +41,7 @@ class FindFriendsViewController: UIViewController {
     let store = CNContactStore()
     lazy var tableData : [FriendsTableData] = []
     
+    private var lastSearchTxt = ""
     lazy var isTyping: Bool = false
     lazy var searchArray : [FriendsTableData] = []
     
@@ -70,6 +71,9 @@ class FindFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     func setUpView(){
+        
+        txtSearch.delegate = self
+        
         // Tableview setup
         tblFriends.delegate = self
         tblFriends.dataSource = self
@@ -128,6 +132,37 @@ class FindFriendsViewController: UIViewController {
         }
     }
     
+    @objc private func reloadTableForSearch(searchText : String) {
+        print("\(searchText)")
+        
+        if searchText.isBlank {
+            self.txtSearch.endEditing(true)
+            isTyping = false
+            tblFriends.reloadData()
+            return
+        }
+        
+        self.txtSearch.endEditing(true)
+        searchArray.removeAll()
+        
+        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(searchText.lowercased() ) || $0.nickName.lowercased().contains(searchText.lowercased() )}
+        
+        let reco = (tableData.filter{$0.SectionTitle == "Recommended"}.first?.Rows as? [Registered])?.filter{$0.fullName.lowercased().contains(searchText.lowercased() ) || $0.nickName.lowercased().contains(searchText.lowercased() )}
+        
+        let notReq = (tableData.filter{$0.SectionTitle == "Not Registered"}.first?.Rows as? [PhoneModel])?.filter{$0.name.lowercased().contains(searchText.lowercased() ) }
+        
+        if let data = req, data.count != 0 {
+            searchArray.append(FriendsTableData(section: "Requested", rows: data))
+        }
+        if let data = reco, data.count != 0 {
+            searchArray.append(FriendsTableData(section: "Recommended", rows: data))
+        }
+        if let data = notReq, data.count != 0 {
+            searchArray.append(FriendsTableData(section: "Not Registered", rows: data))
+        }
+        tblFriends.reloadData()
+    }
+    
     // ----------------------------------------------------
     //MARK:- --------- Button Action Method ---------
     // ----------------------------------------------------
@@ -147,7 +182,7 @@ class FindFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func txtSearchEditingChangedAction(_ sender: UITextField) {
-        let enteredText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+ /*       let enteredText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         isTyping = (enteredText?.isEmpty ?? false) ? false : true
         searchArray.removeAll()
         
@@ -167,6 +202,8 @@ class FindFriendsViewController: UIViewController {
             searchArray.append(FriendsTableData(section: "Not Registered", rows: data))
         }
         tblFriends.reloadData()
+ 
+ */
     }
 }
 
@@ -247,6 +284,16 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        txtSearch.isUserInteractionEnabled = false
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("scrollViewDidEndDecelerating")
+//        txtSearch.isUserInteractionEnabled = true
+    }
+    
+    
     func didPressButton(_ cell: FindFriendTableViewCell) {
         switch cell.type {
         case .RequestPendding:
@@ -273,6 +320,31 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         default:
             break
         }
+    }
+}
+
+// ----------------------------------------------------
+//MARK:- --------- TextField Delegate Methods ---------
+// ----------------------------------------------------
+
+extension FindFriendsViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        isTyping = true
+        
+        if let text = textField.text,
+           let textRange = Range(range, in: text) {
+           let updatedText = text.replacingCharacters(in: textRange, with: string)
+           if lastSearchTxt.isEmpty {
+               lastSearchTxt = updatedText
+           }
+           NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reloadTableForSearch(searchText:)), object: lastSearchTxt)
+           lastSearchTxt = updatedText
+           self.perform(#selector(self.reloadTableForSearch(searchText:)), with: updatedText, afterDelay: 0.7)
+        }
+        
+        return true
     }
 }
 
@@ -346,9 +418,11 @@ extension FindFriendsViewController {
                     self.tableData.append(notRegisteredDic)
                 }
                 self.tblFriends.reloadData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                     let path = IndexPath.init(row: 0, section: 0)
-                    self.tblFriends.scrollToRow(at: path, at: .top, animated: true)
+                if self.tableData.count > 0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                         let path = IndexPath.init(row: 0, section: 0)
+                        self.tblFriends.scrollToRow(at: path, at: .top, animated: true)
+                    }
                 }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)

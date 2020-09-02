@@ -196,6 +196,7 @@ extension SearchViewController {
                 
                 let response = FriendRequestResponseModel(fromJson: json)
                 
+                cell.searchFriend?.senderID = response.data.senderID
                 cell.searchFriend?.isFriend = "1" // Requested
                 DispatchQueue.main.async {
                     self.tblFriends.reloadData()

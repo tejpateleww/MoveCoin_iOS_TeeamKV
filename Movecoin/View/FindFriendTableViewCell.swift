@@ -195,10 +195,16 @@ class FindFriendTableViewCell: UITableViewCell {
                 btnInvite.setTitle("Add Friend".localized, for: .normal)
                 btnInvite.isUserInteractionEnabled = true
             } else {
-                if (data.isFriend == "1") && (data.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
-                    btnInvite.setTitle("Respond".localized, for: .normal)
-                    btnInvite.isUserInteractionEnabled = true
-                } else {
+                if let senderID = data.senderID, !senderID.isEmpty {
+                    if (data.isFriend == "1") && (senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
+                        btnInvite.setTitle("Respond".localized, for: .normal)
+                        btnInvite.isUserInteractionEnabled = true
+                    } else {
+                        btnInvite.setTitle("Requested".localized, for: .normal)
+                        btnInvite.isUserInteractionEnabled = false
+                    }
+                }
+                 else {
                     btnInvite.setTitle("Requested".localized, for: .normal)
                     btnInvite.isUserInteractionEnabled = false
                 }

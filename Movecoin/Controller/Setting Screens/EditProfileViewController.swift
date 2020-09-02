@@ -153,6 +153,9 @@ class EditProfileViewController: UIViewController {
             if let myLocation = SingletonClass.SharedInstance.myCurrentLocation  {
                 editModel.Latitude = "\(String(describing: myLocation.coordinate.latitude))"
                 editModel.Longitude = "\(String(describing: myLocation.coordinate.longitude))"
+            } else {
+                editModel.Latitude = "0"
+                editModel.Longitude = "0"
             }
             #if targetEnvironment(simulator)
             // 23.0732727,72.5181843
