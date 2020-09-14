@@ -313,8 +313,8 @@
 "Please select gender" = "الرجاء تحديد الجنس";
 "Please enter verification code" = "الرجاء إدخال رمز التحقق";
 "Invalid verification code" = "رمز تحقق غير صحيح";
-"Are you sure want to remove " = "هل أنت متأكد من الإزالة";
-" as your friend?" = "كصديق؟";
+"Are you sure want to remove " = "هل أنت متأكد من الإزالة ";
+" as your friend?" = " كصديق؟ ";
 "Please enter amount" = "الرجاء ادخل القيمة ";
 "Amount should be greater than zero" = "القيمة لا بد أن تكون اكبر من صفر";
 "Check out this app " = "استكشف التطبيق ";

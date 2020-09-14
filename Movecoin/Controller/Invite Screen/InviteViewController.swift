@@ -75,6 +75,7 @@ class InviteViewController: UIViewController {
         super.viewWillDisappear(animated)
 //        self.view.contentOffset = self.scrollView.contentOffset;
         if !btnFacebook.isSelected {
+            btnInvite.isSelected = true
             self.scrollView.contentOffset = CGPoint.zero
         }
     }
@@ -178,6 +179,17 @@ class InviteViewController: UIViewController {
         btnFriends.isSelected = false
         btnFacebook.isSelected = false
         btnSearch.isSelected = true
+        
+        // For clearing search list
+        for child in self.children {
+            if child.isKind(of: SearchViewController.self) {
+                let vc = child as! SearchViewController
+                vc.txtSearch.text = ""
+                vc.searchArray = []
+                vc.tblFriends.reloadData()
+                return
+            }
+        }
     }
 }
 

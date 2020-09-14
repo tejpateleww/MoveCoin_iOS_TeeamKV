@@ -139,6 +139,7 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
                    
             case .Unfriend:
                 print("Unfriend")
+                let msg = ""
                 let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to remove ".localized + (cell.friendDetail?.fullName ?? "") + " as your friend?".localized, preferredStyle: .alert)
                 let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
                     self.webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")

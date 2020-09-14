@@ -229,7 +229,7 @@ class HomeViewController: UIViewController {
         {
             isEnabled = false
         }
-        
+        print("Health Kit Data is Available : \(isEnabled)")
         return isEnabled
     }
     
@@ -264,6 +264,11 @@ class HomeViewController: UIViewController {
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         
+        print("-------------------------------------")
+        print("Start Of Date for Today : \(startOfDay)")
+        print("END DATE for Today : \(now)")
+        print("-------------------------------------")
+        
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 completion(0.0)
@@ -287,7 +292,11 @@ class HomeViewController: UIViewController {
         
         let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
         guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
-        if lastUpdatedStepsAt.isBlank { return }
+        if lastUpdatedStepsAt.isBlank {
+//            completion(0.0)
+            return
+        }
+        
         let statDate = dateFormatter.date(from: lastUpdatedStepsAt)!
         
         let days = now.yesterday.interval(ofComponent: .day, fromDate: statDate)

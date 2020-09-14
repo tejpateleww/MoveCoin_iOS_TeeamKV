@@ -9,6 +9,8 @@
 import UIKit
 import Contacts
 import MessageUI
+import IQKeyboardManagerSwift
+
 
 class FriendsTableData {
     var SectionTitle : String!
@@ -43,6 +45,7 @@ class FindFriendsViewController: UIViewController {
     
     private var lastSearchTxt = ""
     lazy var isTyping: Bool = false
+    lazy var isSearchData: Bool = false
     lazy var searchArray : [FriendsTableData] = []
     
     lazy var refreshControl: UIRefreshControl = {
@@ -71,8 +74,11 @@ class FindFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     func setUpView(){
+        // for hiding toolbar of keyboard
+        txtSearch.inputAccessoryView = UIView()
         
         txtSearch.delegate = self
+        txtSearch.returnKeyType = .search
         
         // Tableview setup
         tblFriends.delegate = self
@@ -133,16 +139,28 @@ class FindFriendsViewController: UIViewController {
     }
     
     @objc private func reloadTableForSearch(searchText : String) {
-        print("\(searchText)")
-        
-        if searchText.isBlank {
-            self.txtSearch.endEditing(true)
-            isTyping = false
-            tblFriends.reloadData()
-            return
-        }
+        print("reloadTableForSearch : \(searchText)")
         
         self.txtSearch.endEditing(true)
+        isTyping = false
+        
+        if searchText.isBlank {
+            // For displaying original data while textfield has no data
+            UtilityClass.hideHUD()
+            tblFriends.reloadData()
+            return
+        } else {
+            // For handling crash put loader for delay refreshing table
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                UtilityClass.hideHUD()
+                self.isTyping = true
+                self.filterSearchListFor(searchText: searchText)
+                self.tblFriends.reloadData()
+            }
+        }
+    }
+    
+    func filterSearchListFor(searchText : String){
         searchArray.removeAll()
         
         let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(searchText.lowercased() ) || $0.nickName.lowercased().contains(searchText.lowercased() )}
@@ -160,7 +178,6 @@ class FindFriendsViewController: UIViewController {
         if let data = notReq, data.count != 0 {
             searchArray.append(FriendsTableData(section: "Not Registered", rows: data))
         }
-        tblFriends.reloadData()
     }
     
     // ----------------------------------------------------
@@ -182,28 +199,14 @@ class FindFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func txtSearchEditingChangedAction(_ sender: UITextField) {
- /*       let enteredText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // For handling type and reload tableview with original data if no text in search textfield
+        let enteredText = sender.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         isTyping = (enteredText?.isEmpty ?? false) ? false : true
-        searchArray.removeAll()
-        
-        let req = (tableData.filter{$0.SectionTitle == "Requested"}.first?.Rows as? [Request])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
-        
-        let reco = (tableData.filter{$0.SectionTitle == "Recommended"}.first?.Rows as? [Registered])?.filter{$0.fullName.lowercased().contains(enteredText?.lowercased() ?? "") || $0.nickName.lowercased().contains(enteredText?.lowercased() ?? "")}
-        
-        let notReq = (tableData.filter{$0.SectionTitle == "Not Registered"}.first?.Rows as? [PhoneModel])?.filter{$0.name.lowercased().contains(enteredText?.lowercased() ?? "") }
-        
-        if let data = req, data.count != 0 {
-            searchArray.append(FriendsTableData(section: "Requested", rows: data))
+        if !isTyping {
+            tblFriends.reloadData()
         }
-        if let data = reco, data.count != 0 {
-            searchArray.append(FriendsTableData(section: "Recommended", rows: data))
-        }
-        if let data = notReq, data.count != 0 {
-            searchArray.append(FriendsTableData(section: "Not Registered", rows: data))
-        }
-        tblFriends.reloadData()
- 
- */
+//       reloadTableForSearch(searchText: enteredText)
     }
 }
 
@@ -215,7 +218,7 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
-        let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
+        let sectionData = isSearchData ? searchArray[indexPath.section] : tableData[indexPath.section]
         let type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
         switch type {
         case .RequestPendding:
@@ -228,20 +231,23 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isTyping ? searchArray.count : tableData.count
+        print("numberOfSections for seach : \(isSearchData)")
+        return isSearchData ? searchArray.count : tableData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        let sectionData = tableData[section]
 //        return sectionData.Rows.count
-        let sectionData = isTyping ? searchArray[section] : tableData[section]
+        let sectionData = isSearchData ? searchArray[section] : tableData[section]
+        print("numberOfRowsInSection for search : \(isSearchData)")
+        print("numberOfRows : \(sectionData.Rows.count) InSection : \(section) \(sectionData.SectionTitle)")
         return sectionData.Rows.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        let sectionData = tableData[section]
 //        return sectionData.SectionTitle
-        let sectionData = isTyping ? searchArray[section] : tableData[section]
+        let sectionData = isSearchData ? searchArray[section] : tableData[section]
         return sectionData.SectionTitle.localized
     }
     
@@ -254,9 +260,11 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         cell.selectionStyle = .none
         cell.cellDelegate = self
         
-//        let sectionData = tableData[indexPath.section]
-//        cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
-        let sectionData = isTyping ? searchArray[indexPath.section] : tableData[indexPath.section]
+        if isSearchData && searchArray.count == 0 {
+            print("Search data is blank")
+            
+        }
+        let sectionData = isSearchData ? searchArray[indexPath.section] : tableData[indexPath.section]
         cell.type = FriendsStatus.init(rawValue: sectionData.SectionTitle)
         DispatchQueue.main.async {
             switch cell.type {
@@ -271,11 +279,11 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
                 
             case .RecommendedFriend:
                 //            cell.registeredFriend = registeredContacts[indexPath.row]
-                cell.registeredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! Registered : self.registeredContacts[indexPath.row]
+                cell.registeredFriend = self.isSearchData ? self.searchArray[indexPath.section].Rows[indexPath.row] as! Registered : self.registeredContacts[indexPath.row]
                 
             case .NotRegistedFriend:
                 //           cell.notRegisteredFriend = notRegisteredContacts[indexPath.row]
-                cell.notRegisteredFriend = self.isTyping ? self.searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : self.notRegisteredContacts[indexPath.row]
+                cell.notRegisteredFriend = self.isSearchData ? self.searchArray[indexPath.section].Rows[indexPath.row] as! PhoneModel : self.notRegisteredContacts[indexPath.row]
                 
             default:
                 break
@@ -284,13 +292,13 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        txtSearch.isUserInteractionEnabled = false
-    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         print("scrollViewDidEndDecelerating")
-//        txtSearch.isUserInteractionEnabled = true
+
+        // For handling crash while tableview is scrolling and user search
+        if isTyping {
+            isSearchData = isTyping
+        }
     }
     
     
@@ -308,9 +316,9 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
             
         case .NotRegistedFriend:
             let composeVC = MFMessageComposeViewController()
-           composeVC.messageComposeDelegate = self
-           guard let number = cell.notRegisteredFriend?.number else { return }
-           composeVC.recipients = [number]
+            composeVC.messageComposeDelegate = self
+            guard let number = cell.notRegisteredFriend?.number else { return }
+            composeVC.recipients = [number]
             composeVC.body = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (SingletonClass.SharedInstance.userData?.referralCode ?? "") + " itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
            // Present the view controller modally.
            if MFMessageComposeViewController.canSendText() {
@@ -329,10 +337,27 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
 
 extension FindFriendsViewController : UITextFieldDelegate {
     
+    // For search when tap on search button in keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        UtilityClass.showHUD()
+        isTyping = true
+        reloadTableForSearch(searchText: txtSearch.text ?? "")
+        return true
+    }
+    
+    // For detecting search data display or not
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        isSearchData = (txtSearch.text?.isEmpty ?? false) ? false : true
+        print("textFieldDidEndEditing isSearchData : \(isSearchData)")
+        tblFriends.reloadData()
+    }
+    
+    /*  --------  Uncomment for search while typing  ---------
+     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         isTyping = true
-        
+
         if let text = textField.text,
            let textRange = Range(range, in: text) {
            let updatedText = text.replacingCharacters(in: textRange, with: string)
@@ -346,6 +371,7 @@ extension FindFriendsViewController : UITextFieldDelegate {
         
         return true
     }
+ */
 }
 
 // ----------------------------------------------------
@@ -365,6 +391,9 @@ extension FindFriendsViewController : MFMessageComposeViewControllerDelegate {
 extension FindFriendsViewController {
     
     func webserviceForInviteFriends(dic : [PhoneModel]) {
+        
+        txtSearch.text = ""
+        isSearchData = false
         
         // JSON String for Sending Contacts
         var JSONstring = String()
@@ -418,7 +447,7 @@ extension FindFriendsViewController {
                     self.tableData.append(notRegisteredDic)
                 }
                 self.tblFriends.reloadData()
-                if self.tableData.count > 0 {
+                if self.tableData.count > 0  && !self.isSearchData {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                          let path = IndexPath.init(row: 0, section: 0)
                         self.tblFriends.scrollToRow(at: path, at: .top, animated: true)

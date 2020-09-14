@@ -81,22 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             let vc = (AppDelegateShared.window?.rootViewController as? UINavigationController)?.topViewController as! ChatViewController
             vc.webserviceForChatHistory(isLoading: false)
         }
-        
-        // For staring the Lottie animation
-        
-//        if let topController = (self.window?.rootViewController as? UINavigationController)?.topViewController {
-//            if let inviteVC : InviteViewController = (topController as? InviteViewController) {
-//                for child in inviteVC.children {
-//                    if child.isKind(of: InviteFriendsViewController.self) {
-//                        let vc = child as! InviteFriendsViewController
-//                        vc.animationView.play { (success) in
-//                            vc.animate()
-//                        }
-////                        break
-//                    }
-//                }
-//            }
-//        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -127,6 +111,7 @@ extension AppDelegate {
     
     func setupApplication(){
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
         
         UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
@@ -215,11 +200,6 @@ extension AppDelegate {
                 if vc.btnFriends.isSelected {
                     vc.btnFiendFriendsTapped(vc.btnFriends as Any)
                 }
-//                for controller in vc.children {
-//                    if controller.isKind(of: FindFriendsViewController.self) {
-//                        (controller as! FindFriendsViewController).accessContacts()
-//                    }
-//                }
             }else {
                 if let inviteVC = vc.navigationController?.hasViewController(ofKind: InviteViewController.self) as? InviteViewController {
                     
@@ -266,6 +246,35 @@ extension AppDelegate {
                 }
             }
         }
+    }
+    
+    func acceptFriedRequestNotificationHandle(){
+        if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+            if let vc : FriendsViewController = (vc as? FriendsViewController) {
+    
+                vc.webserviceForFriendsList(isLoading: true)
+            }else {
+                
+                let state = UIApplication.shared.applicationState
+                if state == .inactive {
+                    NotificationCenter.default.addObserver(self, selector: #selector(loadFriendVC), name: NotificationSetHomeVC, object: nil)
+                }
+                if !vc.isKind(of: SplashViewController.self) {
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: FriendsViewController.className) as! FriendsViewController
+                    controller.webserviceForFriendsList(isLoading: true)
+                    vc.navigationController?.pushViewController(controller, animated: false)
+                }
+            }
+        }
+    }
+    
+    @objc func loadFriendVC(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: FriendsViewController.className) as! FriendsViewController
+        controller.webserviceForFriendsList(isLoading: true)
+        (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
     }
     
     @objc func loadChatVC(){
@@ -450,6 +459,8 @@ extension AppDelegate {
             loadFriendsRequest()
         } else if userInfo["gcm.notification.type"] as! String == "coins_transfer" {
             loadWallet()
+        } else if userInfo["gcm.notification.type"] as! String == "friend_request_accept" {
+            acceptFriedRequestNotificationHandle()
         }
     }
     
@@ -494,8 +505,16 @@ extension AppDelegate {
         } else if userInfo["gcm.notification.type"] as? String == "friend_request" {
             loadFriendsRequest()
             completionHandler([.alert, .sound])
-        }else if userInfo["gcm.notification.type"] as? String == "coins_transfer" {
+            
+        } else if userInfo["gcm.notification.type"] as? String == "coins_transfer" {
             loadWallet()
+            completionHandler([.alert, .sound])
+            
+        } else if userInfo["gcm.notification.type"] as? String == "friend_request_accept" {
+            acceptFriedRequestNotificationHandle()
+            completionHandler([.alert, .sound])
+            
+        } else if userInfo["gcm.notification.type"] as? String == "friend_request_reject" {
             completionHandler([.alert, .sound])
         }
         else if userInfo["gcm.notification.type"] as? String == "WebviewS" {
@@ -512,18 +531,18 @@ extension AppDelegate {
             completionHandler([.alert, .sound])
         }
         else if userInfo["gcm.notification.type"] as? String == "WebviewF" {
-                    if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
-                    {
-                        topViewController.dismiss(animated: true) {
-                            
-        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                            UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
-//                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
-                              }
-                        }
+            if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+            {
+                topViewController.dismiss(animated: true) {
+                    
+                    //                    UtilityClass.showAlert(Message: "Purchase Successfull")
+                    UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
+                        //                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
                     }
-                    completionHandler([.alert, .sound])
                 }
+            }
+            completionHandler([.alert, .sound])
+        }
     }
     
     

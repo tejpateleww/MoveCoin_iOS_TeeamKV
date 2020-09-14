@@ -159,7 +159,11 @@ extension SearchViewController {
         
          print("\(searchText)")
         
-        if searchText.isBlank { return }
+        if searchText.isBlank {
+            self.searchArray = []
+            self.tblFriends.reloadData()
+            return
+        }
         
         UtilityClass.showHUD()
         self.txtSearch.endEditing(true)
