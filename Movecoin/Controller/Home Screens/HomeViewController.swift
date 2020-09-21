@@ -299,7 +299,7 @@ class HomeViewController: UIViewController {
         
         let statDate = dateFormatter.date(from: lastUpdatedStepsAt)!
         
-        let days = now.yesterday.interval(ofComponent: .day, fromDate: statDate)
+        let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate.startOfDay)
         if days >= 7 {
             startOfDay = lastWeekDate.startOfDay
         } else {

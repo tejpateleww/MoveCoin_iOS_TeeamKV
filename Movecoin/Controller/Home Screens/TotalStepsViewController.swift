@@ -125,7 +125,7 @@ extension TotalStepsViewController {
             UtilityClass.showHUD()
         }
         
-        strParam = NetworkEnvironment.baseURL + ApiKey.stepsHistory.rawValue + id + "/\(currentPage)"
+        strParam = NetworkEnvironment.baseURL + ApiKey.stepsHistory.rawValue + "271" + "/\(currentPage)"
         
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(json)

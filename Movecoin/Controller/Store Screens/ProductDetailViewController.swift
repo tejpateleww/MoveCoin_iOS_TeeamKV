@@ -123,9 +123,14 @@ class ProductDetailViewController: UIViewController {
 //        lblDescription.text = product.descriptionField
         txtvwDescription.text = product.descriptionField
         txtvwDescription.translatesAutoresizingMaskIntoConstraints = true
-        txtvwDescription.sizeToFit()
+//        txtvwDescription.sizeToFit()
         txtvwDescription.isScrollEnabled = false
         txtvwDescription.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        
+        // For the textview proper width and height according to content
+        let fixedWidth = txtvwDescription.frame.size.width
+        let newSize = txtvwDescription.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        txtvwDescription.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         
         lblTitle.text = product.name
         lblStore.text = "Store : ".localized + product.store
