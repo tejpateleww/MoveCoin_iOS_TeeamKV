@@ -64,7 +64,16 @@ class SignupViewController: UIViewController {
             txtFullName.text = socialData.fullName
             if let url = URL(string: socialData.Profile ) {
                 imgProfile.kf.indicatorType = .activity
-                imgProfile.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
+                imgProfile.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
+                    print(result)
+                    switch result {
+                    case .success(let imageResult) :
+                        self.selectedImage = imageResult.image
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
             }
         }
     }

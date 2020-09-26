@@ -11,12 +11,15 @@ import UIKit
 class TotalStepsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblSteps: UILabel!
+    @IBOutlet weak var lblDate1: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     
      var stepModel: StepsData? {
             didSet{
                 if let data = stepModel {
+                    
+                    self.lblDate1.isHidden = true
                     self.lblSteps.text = data.steps
                     
                     if let previousStr = data.previousDate, !previousStr.isEmpty {
@@ -24,7 +27,10 @@ class TotalStepsTableViewCell: UITableViewCell {
                         let toDateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate)
                         
                         if previousDateStr != toDateStr {
-                            self.lblDate.text = (previousDateStr ?? "") + " to ".localized + (toDateStr ?? "")
+                            self.lblDate1.isHidden = false
+                            let toStr = " to ".localized
+                            self.lblDate.text = "\(previousDateStr ?? "") \(toStr) "
+                            self.lblDate1.text = "\(toDateStr ?? "")"
                             
                         } else if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
                              self.lblDate.text =  dateStr

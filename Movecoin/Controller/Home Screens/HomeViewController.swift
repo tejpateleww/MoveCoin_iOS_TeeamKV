@@ -187,6 +187,8 @@ class HomeViewController: UIViewController {
                     self.getTodaysSteps()
                 }
             }
+        } else {
+            print("Health Kit Data is Not Available")
         }
     }
     
@@ -293,7 +295,7 @@ class HomeViewController: UIViewController {
         let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
         guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
         if lastUpdatedStepsAt.isBlank {
-//            completion(0.0)
+            completion(0.0)
             return
         }
         

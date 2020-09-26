@@ -392,7 +392,9 @@ extension FindFriendsViewController {
     
     func webserviceForInviteFriends(dic : [PhoneModel]) {
         
-        txtSearch.text = ""
+        DispatchQueue.main.async {
+            self.txtSearch.text = ""
+        }
         isSearchData = false
         
         // JSON String for Sending Contacts
