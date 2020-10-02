@@ -407,13 +407,17 @@ extension HomeViewController {
     
     func webserviceforUpdateStepsCount(stepsCount : String){
         
-        var strParam = String()
-        
         guard let id = SingletonClass.SharedInstance.userData?.iD else {
             return
         }
+        var strParam = String()
+        let uuid = UUID().uuidString
         
-        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)"
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            print(uuid)
+        }
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)/\(uuid)"
         
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(status)
