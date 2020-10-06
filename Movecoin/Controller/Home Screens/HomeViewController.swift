@@ -310,8 +310,7 @@ class HomeViewController: UIViewController {
         
         let statDate = dateFormatter.date(from: lastUpdatedStepsAt)!
         
-        
-        let strCurrentTime = Date.localToUTC1(date: dateFormatter.string(from: statDate), fromFormat: "yyyy-MM-dd", toFormat: "yyyy-MM-dd HH:mm:ss", strTimeZone: "Australia/Sydney")
+        let strCurrentTime = Date.localToUTC1(date: dateFormatter.string(from: statDate), fromFormat: "yyyy-MM-dd", toFormat: "yyyy-MM-dd HH:mm:ss", strTimeZone: "Asia/Riyadh")
         
         let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: strCurrentTime.startOfDay)
         if days >= 7 {
@@ -324,10 +323,10 @@ class HomeViewController: UIViewController {
         self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
         print("-------------------------------------")
-        print("-- LastUpdateDate in Local : \(statDate)")
-        print("-- LastUpdateDate in LocalToUTC : \(strCurrentTime)")
-        print("Start Date : \(startOfDay)")
-        print("END DATE : \(endDate)")
+        print("-- LastUpdateDate in Local : \(statDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
+        print("-- LastUpdateDate in LocalToUTC : \(strCurrentTime.getFormattedDate(dateFormate: DateFomateKeys.api))")
+        print("Start Date : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
+        print("END DATE : \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
         print("Last updated date : \(lastUpdatedStepsAt)")
         print("-------------------------------------")
         

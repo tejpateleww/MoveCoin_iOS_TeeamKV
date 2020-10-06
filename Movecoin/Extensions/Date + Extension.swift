@@ -85,7 +85,7 @@ extension Date {
         let formateDate = dateFormatter.date(from:str)!
         dateFormatter.dateFormat = dateFormate // Output Formated
         
-        print ("Print :\(dateFormatter.string(from: formateDate))")
+        print ("getFormattedDate() :\(dateFormatter.string(from: formateDate))")
         return dateFormatter.string(from: formateDate)
     }
     
