@@ -288,10 +288,9 @@ class HomeViewController: UIViewController {
     func getRemainingStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-//        dateFormatter.timeZone = TimeZone.abbreviation("GMT")
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
         
         var startOfDay = Date()
         let now = Date()
@@ -303,19 +302,30 @@ class HomeViewController: UIViewController {
             return
         }
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"//"h:mm a"
+        dateFormatter.calendar = NSCalendar.current
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = .current
+        
         let statDate = dateFormatter.date(from: lastUpdatedStepsAt)!
         
-        let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate.startOfDay)
+        
+        let strCurrentTime = Date.localToUTC1(date: dateFormatter.string(from: statDate), fromFormat: "yyyy-MM-dd", toFormat: "yyyy-MM-dd HH:mm:ss", strTimeZone: "Australia/Sydney")
+        
+        let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: strCurrentTime.startOfDay)
         if days >= 7 {
             startOfDay = lastWeekDate.startOfDay
         } else {
-            startOfDay = statDate.startOfDay
+            startOfDay = strCurrentTime.startOfDay
         }
         let endDate = now.yesterday.endOfDay
         
         self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
         print("-------------------------------------")
+        print("-- LastUpdateDate in Local : \(statDate)")
+        print("-- LastUpdateDate in LocalToUTC : \(strCurrentTime)")
         print("Start Date : \(startOfDay)")
         print("END DATE : \(endDate)")
         print("Last updated date : \(lastUpdatedStepsAt)")

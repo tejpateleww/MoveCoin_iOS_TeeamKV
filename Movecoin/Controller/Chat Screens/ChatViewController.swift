@@ -258,7 +258,7 @@ extension ChatViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let currentTime = dateFormatter.string(from: Date()).localToUTC(fromFormate: DateFomateKeys.api, toFormate: DateFomateKeys.api)
+        let currentTime = dateFormatter.string(from: Date()).localToUTCString(fromFormate: DateFomateKeys.api, toFormate: DateFomateKeys.api)
         let obj = MessageData(ReceiverID: requestModel.ReceiverID, Message: requestModel.Message, SenderNickname: SingletonClass.SharedInstance.userData?.nickName ?? "", SenderName: SingletonClass.SharedInstance.userData?.fullName ?? "", SenderID: requestModel.SenderID, Date: currentTime, ChatId: "")
         self.arrData.append(obj)
         
@@ -412,19 +412,19 @@ extension UIViewController {
 }
 
 
-extension Date {
-    static func localToUTC(date:String, fromFormat: String, toFormat: String,strTimeZone : String) -> String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = fromFormat
-        dateFormatter.calendar = NSCalendar.current
-        dateFormatter.timeZone = TimeZone.current
-        
-        let dt = dateFormatter.date(from: date)
-        dateFormatter.timeZone = TimeZone(identifier: strTimeZone)
-        dateFormatter.dateFormat = toFormat
-        
-        return dateFormatter.string(from: dt!)
-    }
-}
+//extension Date {
+//    static func localToUTC(date:String, fromFormat: String, toFormat: String,strTimeZone : String) -> String {
+//        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//        dateFormatter.dateFormat = fromFormat
+//        dateFormatter.calendar = NSCalendar.current
+//        dateFormatter.timeZone = TimeZone.current
+//        
+//        let dt = dateFormatter.date(from: date)
+//        dateFormatter.timeZone = TimeZone(identifier: strTimeZone)
+//        dateFormatter.dateFormat = toFormat
+//        
+//        return dateFormatter.string(from: dt!)
+//    }
+//}

@@ -489,6 +489,7 @@ extension LoginViewController {
                 let socialModel = SocialLoginModel()
                 socialModel.SocialID = responseModel.message.appleId
                 socialModel.Username = responseModel.message.email
+                socialModel.FullName = responseModel.message.firstName + " " + responseModel.message.lastName
                 socialModel.SocialType = "apple"
                 socialModel.DeviceType = "ios"
                 socialModel.DeviceToken = SingletonClass.SharedInstance.DeviceToken

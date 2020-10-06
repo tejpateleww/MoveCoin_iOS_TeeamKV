@@ -93,7 +93,7 @@ extension String {
             }.joined().dropFirst())
     }
     
-    func localToUTC(fromFormate: String, toFormate: String) -> String {
+    func localToUTCString(fromFormate: String, toFormate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = fromFormate
@@ -107,7 +107,7 @@ extension String {
        return dateFormatter.string(from: dt)
     }
 
-    func UTCToLocal(fromFormate: String, toFormate: String) -> String {
+    func UTCToLocalString(fromFormate: String, toFormate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = fromFormate

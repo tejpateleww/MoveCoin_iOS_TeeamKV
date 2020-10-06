@@ -58,7 +58,7 @@ class UtilityClass : NSObject {
             outputFormatter.locale = Locale(identifier: "en_US_POSIX")
             outputFormatter.dateFormat = format
             let str = outputFormatter.string(from: date)
-            return str.UTCToLocal(fromFormate: format, toFormate: format)
+            return str.UTCToLocalString(fromFormate: format, toFormate: format)
 
             //Date.localToUTC(date: str, fromFormat: DateFomateKeys.displayDateTime, toFormat: format, strTimeZone: "Asia/Riyadh")
 //            return str
@@ -101,13 +101,13 @@ class UtilityClass : NSObject {
         AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
-    class func showAlertWithTwoButtonCompletion(title:String, Message:String,ButtonTitle1:String,ButtonTitle2:String, Completion:@escaping ((Int) -> ())) {
+    class func showAlertWithTwoButtonCompletion(title:String, Message:String, ButtonTitle1:String, ButtonTitle2:String, Completion:@escaping ((Int) -> ())) {
         
         let alertController = UIAlertController(title: title.localized , message:Message.localized, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: ButtonTitle1.localized, style: .default) { (UIAlertAction) in
             Completion(0)
         }
-        let CancelAction = UIAlertAction(title: ButtonTitle2.localized, style: .default) { (UIAlertAction) in
+        let CancelAction = UIAlertAction(title: ButtonTitle2.localized, style: .cancel) { (UIAlertAction) in
             Completion(1)
         }
         alertController.addAction(OKAction)

@@ -10,6 +10,7 @@ import Foundation
 
 class SocialLoginModel : RequestModel {
     var Username : String = ""
+    var FullName : String = ""
 //    var ProfilePicture : String = ""
     var Latitude : String = ""
     var Longitude : String = ""
