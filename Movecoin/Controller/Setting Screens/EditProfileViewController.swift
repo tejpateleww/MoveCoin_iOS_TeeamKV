@@ -106,7 +106,9 @@ class EditProfileViewController: UIViewController {
             txtFullName.text = userData.fullName
             txtMobile.text = userData.phone
             txtEmail.text = userData.email
-            txtGender.text = (userData.updateGender == "0") ? "Male".localized : "Female".localized
+            if let gender = userData.updateGender, !gender.isEmpty  {
+                txtGender.text = (gender == "0") ? "Male".localized : "Female".localized
+            }
             txtHeight.text = userData.height.isBlank ? "" : userData.height + " cm".localized
             txtWeight.text = userData.weight.isBlank ? "" : userData.weight + " kg".localized
             if userData.dateOfBirth != "0000-00-00" {
@@ -140,7 +142,9 @@ class EditProfileViewController: UIViewController {
             editModel.FullName = fullName
             editModel.Phone = mobileNumber
             editModel.Email = email
-            editModel.Gender = (selectedGender == "Male") ? "0" : "1"
+            if let gender = selectedGender, !gender.isEmpty {
+                editModel.Gender = (selectedGender == "Male") ? "0" : "1"
+            }
             editModel.Height = txtHeight.text?.replacingOccurrences(of: " cm".localized, with: "") ?? ""
             editModel.Weight = txtWeight.text?.replacingOccurrences(of: " kg".localized, with: "") ?? ""
             if isRemovePhoto {

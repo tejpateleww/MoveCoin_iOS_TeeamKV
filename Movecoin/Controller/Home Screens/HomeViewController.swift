@@ -53,6 +53,8 @@ class HomeViewController: UIViewController {
     
     var userData = SingletonClass.SharedInstance.userData
     
+    lazy var queryDate = String()
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
@@ -205,7 +207,7 @@ class HomeViewController: UIViewController {
                 
                 if Int(steps) > 0 {
                     
-                    self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)))
+                    self.webserviceforUpdateStepsCount(stepsCount: String(Int(steps)), dateStr: self.queryDate)
                 }
                 self.startCountingSteps()
             }
@@ -253,7 +255,7 @@ class HomeViewController: UIViewController {
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                         SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     }
-                    self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0")
+                    self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0", dateStr: self.queryDate)
                 }
             }
         }
@@ -265,6 +267,7 @@ class HomeViewController: UIViewController {
         let now = Date()
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
         print("-------------------------------------")
         print("Start Of Date for Today : \(startOfDay)")
@@ -288,6 +291,7 @@ class HomeViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd"
+//        dateFormatter.timeZone = TimeZone.abbreviation("GMT")
         
         var startOfDay = Date()
         let now = Date()
@@ -308,6 +312,8 @@ class HomeViewController: UIViewController {
             startOfDay = statDate.startOfDay
         }
         let endDate = now.yesterday.endOfDay
+        
+        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
         print("-------------------------------------")
         print("Start Date : \(startOfDay)")
@@ -405,21 +411,24 @@ extension HomeViewController {
         }
     }
     
-    func webserviceforUpdateStepsCount(stepsCount : String){
+    func webserviceforUpdateStepsCount(stepsCount : String, dateStr : String){
         
         guard let id = SingletonClass.SharedInstance.userData?.iD else {
             return
         }
         var strParam = String()
-        let uuid = UUID().uuidString
-        
+        let deviceName = UIDevice.current.name
+        var uid = "uuid"
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
+            uid = uuid
         }
         
-        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)/\(uuid)"
+        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)/\(uid)/\(dateStr)"
         
-        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+        guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
+        
+        UserWebserviceSubclass.getAPI(strURL: urlString) { (json, status, res) in
             print(status)
             
             if status{

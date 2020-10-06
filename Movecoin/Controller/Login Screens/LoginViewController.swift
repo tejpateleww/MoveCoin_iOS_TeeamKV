@@ -150,11 +150,11 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         }
     }
     @IBAction func btnSignInTapped(_ sender: Any) {
-        if UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
+//        if UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
              self.validate()
-        } else {
-            UtilityClass.alertForLocation(currentVC: self)
-        }
+//        } else {
+//            UtilityClass.alertForLocation(currentVC: self)
+//        }
        
         (sender as! UIButton).bounceAnimationOnCompletion {
 //            UserDefaults.standard.set(true, forKey: UserDefaultKeys.IsLogin)
@@ -510,7 +510,7 @@ extension LoginViewController {
                 
                 self.webserviceCallForSocialLogin(socialModel: socialModel)
             } else {
-                
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }

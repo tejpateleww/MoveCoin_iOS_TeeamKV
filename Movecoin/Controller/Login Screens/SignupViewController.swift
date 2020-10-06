@@ -135,17 +135,20 @@ class SignupViewController: UIViewController {
             if txtPassword.text != txtConfirmPassword.text {
                 UtilityClass.showAlert(Message: "Confirm password does not match with password".localized)
                 return
-            } else if txtGender.text!.isBlank {
-                UtilityClass.showAlert(Message: "Please select gender".localized)
-                return
             }
+//            else if txtGender.text!.isBlank {
+//                UtilityClass.showAlert(Message: "Please select gender".localized)
+//                return
+//            }
             let signupModel = SignupModel()
             signupModel.FullName = fullName
             signupModel.NickName = nickName
             signupModel.Phone = mobileNumber
             signupModel.Email = email
             signupModel.Password = password
-            signupModel.Gender = (selectedGender == "Male") ? "0" : "1"
+            if let gender = selectedGender {
+                signupModel.Gender = (gender == "Male") ? "0" : "1"
+            }
             signupModel.ReferralCode = txtReferral.text!
             signupModel.DeviceType = "ios"
             signupModel.SocialID = userSocialData?.userId ?? ""
@@ -187,12 +190,12 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func btnVerifyTapped(_ sender: Any) {
-        if UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
+//        if UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
             self.validate()
-        } else {
-            UtilityClass.alertForLocation(currentVC: self)
+//        } else {
+//            UtilityClass.alertForLocation(currentVC: self)
 //            UtilityClass.showAlert(Message: "\(kAppName) would like to access your location, please enable location permission to move forward")
-        }
+//        }
     }
 }
 
