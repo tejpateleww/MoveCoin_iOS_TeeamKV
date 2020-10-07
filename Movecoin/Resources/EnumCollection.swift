@@ -64,6 +64,7 @@ enum FriendsList  {
     case TransferCoins
     case Unfriend
     case NewChat
+    case BlockList
 }
 
 enum BarChartTitles : Int {
@@ -93,6 +94,7 @@ enum SettingsOptions : Int {
     case EditProfile
 //    case ChangePassword
     case PurchaseHistory
+    case BlockList
 //    case AddCard
     case Help
     case TermsAndConditions

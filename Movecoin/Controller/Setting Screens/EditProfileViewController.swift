@@ -102,6 +102,8 @@ class EditProfileViewController: UIViewController {
     func setupProfileData(){
         
         if let userData = SingletonClass.SharedInstance.userData {
+            txtNickName.isUserInteractionEnabled = userData.nickName.isEmpty ? true : false
+            
             txtNickName.text = userData.nickName
             txtFullName.text = userData.fullName
             txtMobile.text = userData.phone
@@ -132,13 +134,14 @@ class EditProfileViewController: UIViewController {
     
     func validate() {
         do {
+            let nickname = try txtNickName.validatedText(validationType: ValidatorType.requiredField(field: txtNickName.placeholder!))
             let fullName = try txtFullName.validatedText(validationType: ValidatorType.fullname)
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let mobileNumber = try txtMobile.validatedText(validationType: ValidatorType.mobileNumber)
         
             let editModel = EditProfileModel()
             editModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
-            editModel.NickName = txtNickName.text ?? ""
+            editModel.NickName = nickname
             editModel.FullName = fullName
             editModel.Phone = mobileNumber
             editModel.Email = email

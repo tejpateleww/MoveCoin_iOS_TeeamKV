@@ -103,6 +103,9 @@ enum ApiKey: String{
     case updateLanguage = "user/update_language/"
     case accountPrivacy = "user/account_privacy/"
     case policyHelpTerm = "user/policy_help_terms"
+    case blockList = "user/block_list"
+    case unblockUser = "user/unblock_user"
+    case blockUser = "user/block_user"
     
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"

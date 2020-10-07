@@ -41,6 +41,24 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
+    var blockUserDetail: List? {
+        didSet{
+            if let detail = blockUserDetail {
+                self.lblName.text = detail.fullName.capitalizingFirstLetter()
+                self.lblNumber.text = detail.nickName
+                
+                // For Image
+                if detail.profilePicture.isBlank {
+                    self.imgPhoto.image = UIImage(named: "m-logo")
+                    
+                } else if let url = URL(string: detail.profilePicture) {
+                    self.imgPhoto.kf.indicatorType = .activity
+                    self.imgPhoto.kf.setImage(with: url, placeholder: UIImage(named: "m-logo"))
+                }
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         lblName.font = UIFont.semiBold(ofSize: 15)
@@ -59,10 +77,17 @@ class FriendTableViewCell: UITableViewCell {
             btnOutlet.setTitle("Send".localized, for: .normal)
             btnNext.isHidden = true
             break
+            
+        case .BlockList:
+            btnOutlet.setTitle("Unblock".localized, for: .normal)
+            btnNext.isHidden = true
+            break
+            
         case .NewChat:
             btnOutlet.isHidden = true
             btnNext.isHidden = false
             break
+            
         default:
             btnOutlet.setTitle("Unfriend".localized, for: .normal)
             btnNext.isHidden = true

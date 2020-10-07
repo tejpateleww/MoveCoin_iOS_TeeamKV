@@ -62,6 +62,21 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // For apple login, alert for complete profile
+        if let phoneNumber = SingletonClass.SharedInstance.userData?.phone {
+            if phoneNumber.isEmpty {
+                UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "For better performance please complete your profile", ButtonTitle1: "OK", ButtonTitle2: "Not now") { index in
+                    if index == 0 {
+                        let destination = self.storyboard?.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
+                        self.parent?.navigationController?.pushViewController(destination, animated: true)
+                        
+                    } else if index == 1 {
+                        print("")
+                    }
+                }
+            }
+        }
+        
         self.setupFont()
         healthKitData()
         

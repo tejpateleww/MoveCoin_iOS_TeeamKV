@@ -124,19 +124,6 @@ class TabViewController: UIViewController {
         
         // For RTL and LTR
         viewTabbar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-        
-        // For apple login, alert for complete profile
-        if let phoneNumber = SingletonClass.SharedInstance.userData?.phone {
-            if phoneNumber.isEmpty {
-                UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "For better performance please complete your profile", ButtonTitle1: "OK", ButtonTitle2: "Not now") { index in
-                    if index == 0 {
-                        self.btnTabTapped(self.btnTabs[TabBarOptions.Profile.rawValue])
-                    } else if index == 1 {
-                        print("")
-                    }
-                }
-            }
-        }
     }
     
     func setupFont() {

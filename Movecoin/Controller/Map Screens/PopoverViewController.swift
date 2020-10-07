@@ -28,6 +28,7 @@ class PopoverViewController: UIViewController {
     @IBOutlet weak var stackInfo: UIStackView!
     @IBOutlet weak var stackButtons: UIStackView!
     @IBOutlet weak var btnSendFriendRequest: UIButton!
+    @IBOutlet weak var btnBlock: UIButton!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -50,6 +51,7 @@ class PopoverViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         btnSendFriendRequest.isHidden = true
+        btnBlock.isHidden = true
         stackButtons.isHidden = true
         stackInfo.isHidden = true
         localizeSetup()
@@ -84,6 +86,16 @@ class PopoverViewController: UIViewController {
         btnSendFriendRequest.layer.cornerRadius = btnSendFriendRequest.frame.size.height / 2
         btnSendFriendRequest.layer.masksToBounds = true
         btnSendFriendRequest.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
+        
+        btnBlock.backgroundColor = .init(white: 1.0, alpha: 0.23)
+        btnBlock.setTitleColor(.white, for: .normal)
+        btnBlock.layer.cornerRadius = btnBlock.frame.size.height / 2
+        btnBlock.layer.masksToBounds = true
+        btnBlock.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
+        
+        self.btnBlock.setTitle("Block".localized, for: .normal)
+        self.btnBlock.isUserInteractionEnabled = true
+        self.btnSendFriendRequest.isEnabled = true
     }
     
     func localizeSetup(){
@@ -98,6 +110,7 @@ class PopoverViewController: UIViewController {
     func setupUserData(){
         btnSendFriendRequest.isUserInteractionEnabled = true
         
+        
         lblName.text = userData.fullName
         lblMemberSince.text = "Member since ".localized + userData.memberSince
 //        let productsURL = NetworkEnvironment.baseImageURL + userData.profilePicture
@@ -109,6 +122,7 @@ class PopoverViewController: UIViewController {
         if userData.isFriend == 1 {
             // Friend
             btnSendFriendRequest.isHidden = true
+            btnBlock.isHidden = true
             stackButtons.isHidden = false
             stackInfo.isHidden = false
             lblLastSeen.isHidden = false
@@ -119,6 +133,7 @@ class PopoverViewController: UIViewController {
         } else {
             // Not Friend
             btnSendFriendRequest.isHidden = false
+            btnBlock.isHidden = false
             stackButtons.isHidden = true
             stackInfo.isHidden = true
             lblLastSeen.isHidden = true
@@ -201,6 +216,21 @@ class PopoverViewController: UIViewController {
              webserviceForAddFriends()
         }
     }
+    
+    @IBAction func btnBlockTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to block ".localized + (userData.fullName ?? "") + "?", preferredStyle: .alert)
+        let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
+            self.webserviceForBlock()
+        }
+        let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
+            self.dismiss(animated: true, completion:nil)
+        }
+        alert.addAction(btnOk)
+        alert.addAction(btncancel)
+        alert.modalPresentationStyle = .overCurrentContext
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // ----------------------------------------------------
@@ -214,12 +244,14 @@ extension PopoverViewController : FriendStatusDelegate {
         switch status {
         case .AlreadyFriend:
             btnSendFriendRequest.isHidden = true
+            btnBlock.isHidden = true
             stackButtons.isHidden = false
             stackInfo.isHidden = false
             lblLastSeen.isHidden = false
             
         case .RecommendedFriend:
             btnSendFriendRequest.isHidden = false
+            btnBlock.isHidden = false
             stackButtons.isHidden = true
             stackInfo.isHidden = true
             lblLastSeen.isHidden = true
@@ -289,6 +321,28 @@ extension PopoverViewController {
             if status {
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
                 UtilityClass.showAlert(Message: msg)
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForBlock(){
+        UtilityClass.showHUD()
+        let requestModel = BlockUser()
+        requestModel.block_by = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.block_user_id = userData.iD
+        
+        UserWebserviceSubclass.blockUser(requestModel: requestModel) { (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+               let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
+                self.btnBlock.setTitle("Blocked".localized, for: .normal)
+                self.btnBlock.isUserInteractionEnabled = false
+                self.btnSendFriendRequest.isEnabled = false
+                
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

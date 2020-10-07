@@ -219,6 +219,9 @@
 "Version - " = "الإصدار - ";
 "Help" = "مساعدة";
 "Help/Support" = "المساعدة / الدعم";
+"Block List" = "قائمة الحظر";
+"Block" = "حظر";
+"Unblock" = "رفع الحظر";
 
 
 // Account Privacy Screen
@@ -272,6 +275,7 @@
 "IMPORTANT" = "١. هام";
 "Allow Camera" = "السماح للكاميرا";
 "Camera access required for capturing photos!" = "السماح للكاميرا لالتقاط الصور";
+"For better performance please complete your profile" = "الرجاء إكمال معلومات ملفك الشخصي";
 
 // Validation String
 

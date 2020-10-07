@@ -217,6 +217,9 @@
 "Version - " = "Version - ";
 "Help" = "Help";
 "Help/Support" = "Help/Support";
+"Block List" = "Block List";
+"Block" = "Block";
+"Unblock" = "Unblock";
 
 
 // Account Privacy Screen
@@ -270,7 +273,7 @@
 "IMPORTANT" = "IMPORTANT";
 "Allow Camera" = "Allow Camera";
 "Camera access required for capturing photos!" = "Camera access required for capturing photos!";
-
+"For better performance please complete your profile" = "For better performance please complete your profile";
 
 // Validation String
 "Please enter" = "Please enter";

@@ -96,6 +96,21 @@ class UserWebserviceSubclass
         let  params : [String:String] = addCardModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .addCard, httpMethod: .post, parameters: params, completion: completion)
     }
+    
+    class func blockList( requestModel : BlockList  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = requestModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .blockList, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func blockUser( requestModel : BlockUser  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = requestModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .blockUser, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func unblockUser( requestModel : UnblockUser  ,completion: @escaping CompletionResponse ) {
+        let  params : [String:String] = requestModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .unblockUser, httpMethod: .post, parameters: params, completion: completion)
+    }
  
 }
 

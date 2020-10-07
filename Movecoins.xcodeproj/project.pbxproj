@@ -208,6 +208,9 @@
 		46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51D8232F9D1600182B86 /* WalletViewController.swift */; };
 		46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DA232F9D3000182B86 /* StatisticsViewController.swift */; };
 		46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */; };
+		64063F02252DAE3E00B11730 /* BlockedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64063F01252DAE3E00B11730 /* BlockedListViewController.swift */; };
+		64063F06252DB65600B11730 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64063F04252DB65500B11730 /* List.swift */; };
+		64063F07252DB65600B11730 /* BlockListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64063F05252DB65600B11730 /* BlockListResponseModel.swift */; };
 		646BBC1224EBE382009E395B /* CategoryListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646BBC1124EBE382009E395B /* CategoryListResponseModel.swift */; };
 		648FAB5224E6668100FF516D /* SocialUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */; };
 		648FAB5324E6668100FF516D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648FAB5124E6668000FF516D /* User.swift */; };
@@ -457,6 +460,9 @@
 		46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		477FF479109FF521DF9958AC /* Pods-Movecoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.debug.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4D633531C407587B2596F3 /* Pods-Movecoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.release.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.release.xcconfig"; sourceTree = "<group>"; };
+		64063F01252DAE3E00B11730 /* BlockedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedListViewController.swift; sourceTree = "<group>"; };
+		64063F04252DB65500B11730 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		64063F05252DB65600B11730 /* BlockListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockListResponseModel.swift; sourceTree = "<group>"; };
 		646BBC1124EBE382009E395B /* CategoryListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryListResponseModel.swift; sourceTree = "<group>"; };
 		648FAB5024E6668000FF516D /* SocialUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialUserResponseModel.swift; sourceTree = "<group>"; };
 		648FAB5124E6668000FF516D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -817,6 +823,7 @@
 				46FA2C7E23A122B0000A3B9B /* Cards */,
 				460C04A4239A3E2900D674D7 /* Friend List */,
 				46D96064238B9AF20026B96D /* Products List */,
+				64063F03252DB62700B11730 /* Block List */,
 				460C049F239A294600D674D7 /* Wallet History */,
 				460C049A239A100E00D674D7 /* Coins Earning */,
 				464F49332398EF1E00D803D6 /* Steps History */,
@@ -991,6 +998,7 @@
 				4661BB4C2351B30E00DC41E0 /* ChangePasswordViewController.swift */,
 				46F88CA823570408003E24CC /* PurchaseHistoryViewController.swift */,
 				46F717AA23B9CD1000A26DAB /* WebViewController.swift */,
+				64063F01252DAE3E00B11730 /* BlockedListViewController.swift */,
 			);
 			path = "Setting Screens";
 			sourceTree = "<group>";
@@ -1158,6 +1166,15 @@
 				46FA2C7F23A122DD000A3B9B /* Card.swift */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		64063F03252DB62700B11730 /* Block List */ = {
+			isa = PBXGroup;
+			children = (
+				64063F05252DB65600B11730 /* BlockListResponseModel.swift */,
+				64063F04252DB65500B11730 /* List.swift */,
+			);
+			path = "Block List";
 			sourceTree = "<group>";
 		};
 		64CD3A6F24E500E900D8809B /* SocialUser */ = {
@@ -1440,6 +1457,7 @@
 				462D24DD23B32F310050C3F0 /* CALayerExtension.swift in Sources */,
 				462D24E623B32F310050C3F0 /* BeautifulBarChartPresenter.swift in Sources */,
 				46230A9823797EEA0012D9A1 /* SingletonClass.swift in Sources */,
+				64063F07252DB65600B11730 /* BlockListResponseModel.swift in Sources */,
 				46C9132D2330EA110068C788 /* LKAWaveCircleProgressBar.m in Sources */,
 				4661BB4B2351A5A100DC41E0 /* AccountPrivacyTableViewCell.swift in Sources */,
 				46374657239E6939008A3EE7 /* Request.swift in Sources */,
@@ -1447,6 +1465,7 @@
 				4600A71623278D37004A7A9E /* HomeViewController.swift in Sources */,
 				46FA2C8423A1278B000A3B9B /* CardListResponseModel.swift in Sources */,
 				460C04A3239A295600D674D7 /* WalletData.swift in Sources */,
+				64063F06252DB65600B11730 /* List.swift in Sources */,
 				46AB0D7B23B5C9B90085AC4C /* NearByUserDetailResponseModel.swift in Sources */,
 				4670146D23487FD000556CBB /* StatisticsTableViewCell.swift in Sources */,
 				4628D8FC23A7810C0061D77D /* PagingScrollView.swift in Sources */,
@@ -1495,6 +1514,7 @@
 				46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */,
 				648FAB5224E6668100FF516D /* SocialUserResponseModel.swift in Sources */,
 				46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */,
+				64063F02252DAE3E00B11730 /* BlockedListViewController.swift in Sources */,
 				462D24DF23B32F310050C3F0 /* UIBezierPathExtension.swift in Sources */,
 				464AE07F23B4C81A00826BA7 /* NearByUserDetailModel.swift in Sources */,
 				462D24DE23B32F310050C3F0 /* BasicBarChartPresenter.swift in Sources */,
