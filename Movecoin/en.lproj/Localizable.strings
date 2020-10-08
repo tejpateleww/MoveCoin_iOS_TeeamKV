@@ -220,6 +220,7 @@
 "Block List" = "Block List";
 "Block" = "Block";
 "Unblock" = "Unblock";
+"Blocked" = "Blocked";
 
 
 // Account Privacy Screen
@@ -319,6 +320,7 @@
 "Please enter verification code" = "Please enter verification code";
 "Invalid verification code" = "Invalid verification code";
 "Are you sure want to remove " = "Are you sure want to remove ";
+"Are you sure want to block " = "Are you sure want to block ";
 " as your friend?" = " as your friend?";
 "Please enter amount" = "Please enter amount";
 "Amount should be greater than zero" = "Amount should be greater than zero";
