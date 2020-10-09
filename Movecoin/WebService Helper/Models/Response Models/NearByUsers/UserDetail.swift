@@ -19,6 +19,7 @@ class UserDetail : Codable {
     var updatedDate : String!
     var senderID : String!
     var requestID : String!
+    var isBlock : Int! // 0 - Unblock, 1 - Block
     
     init(){
         
@@ -41,6 +42,7 @@ class UserDetail : Codable {
         updatedDate = json["UpdatedDate"].stringValue
         senderID = json["SenderID"].stringValue
         requestID = json["requestID"].stringValue
+        isBlock = json["is_block"].intValue
     }
 
     /**
@@ -79,6 +81,9 @@ class UserDetail : Codable {
         if requestID != nil{
             dictionary["requestID"] = requestID
         }
+        if isBlock != nil{
+            dictionary["is_block"] = isBlock
+        }
         return dictionary
     }
 
@@ -98,6 +103,7 @@ class UserDetail : Codable {
         updatedDate = aDecoder.decodeObject(forKey: "UpdatedDate") as? String
         senderID = aDecoder.decodeObject(forKey: "SenderID") as? String
         requestID = aDecoder.decodeObject(forKey: "requestID") as? String
+        isBlock = aDecoder.decodeObject(forKey: "is_block") as? Int
     }
 
     /**
@@ -135,6 +141,9 @@ class UserDetail : Codable {
         }
         if requestID != nil{
             aCoder.encode(requestID, forKey: "requestID")
+        }
+        if isBlock != nil{
+            aCoder.encode(isBlock, forKey: "is_block")
         }
     }
 }

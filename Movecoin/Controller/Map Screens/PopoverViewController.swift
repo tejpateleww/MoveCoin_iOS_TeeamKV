@@ -92,10 +92,6 @@ class PopoverViewController: UIViewController {
         btnBlock.layer.cornerRadius = btnBlock.frame.size.height / 2
         btnBlock.layer.masksToBounds = true
         btnBlock.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
-        
-        self.btnBlock.setTitle("Block".localized, for: .normal)
-        self.btnBlock.isUserInteractionEnabled = true
-        self.btnSendFriendRequest.isEnabled = true
     }
     
     func localizeSetup(){
@@ -109,7 +105,8 @@ class PopoverViewController: UIViewController {
     
     func setupUserData(){
         btnSendFriendRequest.isUserInteractionEnabled = true
-        
+        btnBlock.isUserInteractionEnabled = true
+        btnSendFriendRequest.isEnabled = true
         
         lblName.text = userData.fullName
         lblMemberSince.text = "Member since ".localized + userData.memberSince
@@ -117,6 +114,12 @@ class PopoverViewController: UIViewController {
         if let url = URL(string: userData.profilePicture) {
             self.imgProfile.kf.indicatorType = .activity
             self.imgProfile.kf.setImage(with: url, placeholder: imgProfile.image)
+        }
+        
+        if userData.isBlock == 1 {
+            btnBlock.setTitle("Blocked".localized, for: .normal)
+        } else {
+           btnBlock.setTitle("Block".localized, for: .normal)
         }
         
         if userData.isFriend == 1 {
@@ -141,6 +144,7 @@ class PopoverViewController: UIViewController {
                 
                 btnSendFriendRequest.setTitle("Requested".localized, for: .normal)
                 btnSendFriendRequest.isUserInteractionEnabled = false
+                btnBlock.isUserInteractionEnabled = false
                 
             } else if (userData.isFriend == 0) && (userData.senderID != SingletonClass.SharedInstance.userData?.iD ?? "") {
                 
