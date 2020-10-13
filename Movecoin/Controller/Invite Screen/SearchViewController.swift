@@ -45,6 +45,7 @@ class SearchViewController: UIViewController {
         tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
         
         txtSearch.delegate = self
+        txtSearch.returnKeyType = .search
     }
     
     func showActionSheet(cell: FindFriendTableViewCell) {
