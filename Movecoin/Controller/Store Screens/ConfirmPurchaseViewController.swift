@@ -403,7 +403,7 @@ class ConfirmPurchaseViewController: UIViewController {
     func collectCardInfo()
     {
         //        let payableAmount = JSON(product.discountedPrice ?? 0).floatValue + JSON(product.deliveryCharge ?? 0).floatValue
-        let paymentItem = PKPaymentSummaryItem.init(label: product.store, amount: NSDecimalNumber(value: Float(product.totalPrice) ?? 0), type: .final)
+        let paymentItem = PKPaymentSummaryItem.init(label: "MoveCoins", amount: NSDecimalNumber(value: Float(product.totalPrice) ?? 0), type: .final)
         transaction.amount = NSDecimalNumber(value: Float(product.totalPrice) ?? 0)
         transaction.amountString = product.totalPrice ?? "0"
         transaction.amountFormatted = "\(transaction.currency) \(product.totalPrice ?? "0")"
