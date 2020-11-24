@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 enum PrivacyType : Int {
     case All = 0
     case Friends
@@ -57,6 +57,8 @@ class AccountPrivacyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        Analytics.logEvent("AccountPrivacyScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

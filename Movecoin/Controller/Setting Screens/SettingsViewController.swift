@@ -8,7 +8,7 @@
 
 import UIKit
 import StoreKit
-
+import FirebaseAnalytics
 class SettingsViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -33,6 +33,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         self.setUpView()
         self.setupFont()
+        Analytics.logEvent("SettingsScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

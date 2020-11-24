@@ -24,12 +24,13 @@ class PopoverViewController: UIViewController {
     @IBOutlet weak var lblTotalSteps: UILabel!
     @IBOutlet weak var lblChat: UILabel!
     @IBOutlet weak var lblTransfer: UILabel!
-    
+    @IBOutlet weak var lblBlock: UILabel!
     @IBOutlet weak var stackInfo: UIStackView!
     @IBOutlet weak var stackButtons: UIStackView!
     @IBOutlet weak var btnSendFriendRequest: UIButton!
     @IBOutlet weak var btnBlock: UIButton!
-    
+    @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
+
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
     // ----------------------------------------------------
@@ -73,6 +74,7 @@ class PopoverViewController: UIViewController {
     func setupFont(){
         lblChat.font = UIFont.semiBold(ofSize: 16)
         lblTransfer.font = UIFont.semiBold(ofSize: 16)
+        lblBlock.font = UIFont.semiBold(ofSize: 16)
         lblName.font = UIFont.semiBold(ofSize: 16)
         lblLastSeen.font = UIFont.regular(ofSize: 12)
         lblMemberSince.font = UIFont.regular(ofSize: 12)
@@ -92,12 +94,15 @@ class PopoverViewController: UIViewController {
         btnBlock.layer.cornerRadius = btnBlock.frame.size.height / 2
         btnBlock.layer.masksToBounds = true
         btnBlock.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
+        
+        //lblBlock.font = btnBlock.titleLabel?.font
     }
     
     func localizeSetup(){
         lblChat.text = "Chat".localized
         lblTime.text = "Today".localized
         lblTransfer.text = "Transfer".localized
+        lblBlock.text = "Block".localized
         lblName.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         lblLastSeen.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         lblMemberSince.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
@@ -118,8 +123,10 @@ class PopoverViewController: UIViewController {
         
         if userData.isBlock == 1 {
             btnBlock.setTitle("Blocked".localized, for: .normal)
+            lblBlock.text = "Blocked".localized
         } else {
            btnBlock.setTitle("Block".localized, for: .normal)
+            lblBlock.text = "Block".localized
         }
         
         if userData.isFriend == 1 {
@@ -223,7 +230,13 @@ class PopoverViewController: UIViewController {
     
     @IBAction func btnBlockTapped(_ sender: Any) {
         
-        let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to block ".localized + (userData.fullName ?? "") + "?", preferredStyle: .alert)
+        var str = "?"
+        if ((Localize.currentLanguage() == Languages.Arabic.rawValue))
+        {
+            str = "؟"
+        }
+        
+        let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to block ".localized + (userData.fullName ?? "") + str, preferredStyle: .alert)
         let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
             self.webserviceForBlock()
         }
@@ -277,9 +290,9 @@ extension PopoverViewController {
         let requestModel = NearByUserDetailModel()
         requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.friend_id = user.userID
-
+        activityIndicator.isHidden = false
         FriendsWebserviceSubclass.nearByUsersDetails(nearByUsersDetailsModel: requestModel){ (json, status, res) in
-            
+            self.activityIndicator.stopAnimating()
             if status {
                 let responseModel = NearByUserDetailResponseModel(fromJson: json)
                 self.userData = responseModel.userDetail
@@ -344,6 +357,7 @@ extension PopoverViewController {
                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
                 UtilityClass.showAlert(Message: msg)
                 self.btnBlock.setTitle("Blocked".localized, for: .normal)
+                self.lblBlock.text = "Blocked".localized
                 self.btnBlock.isUserInteractionEnabled = false
                 self.btnSendFriendRequest.isEnabled = false
                 

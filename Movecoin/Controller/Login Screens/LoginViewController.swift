@@ -13,7 +13,7 @@ import FirebaseAuth
 //import TwitterKit
 //import TwitterCore
 import IQKeyboardManagerSwift
-
+import FirebaseAnalytics
 struct UserSocialData {
     var userId: String
     var fullName: String
@@ -416,7 +416,9 @@ extension LoginViewController {
                 let loginResponseModel = LoginResponseModel(fromJson: json)
                 UserDefaults.standard.set(loginResponseModel.xApiKey, forKey: UserDefaultKeys.kX_API_KEY)
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsLogedIn)
-               
+                Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                    AnalyticsParameterMethod: "simpleLogin"
+                  ])
                 do{
                     try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
                     SingletonClass.SharedInstance.userData = loginResponseModel.data
@@ -439,8 +441,14 @@ extension LoginViewController {
            UserWebserviceSubclass.socialModel(socialModel: socialModel) { (json, status, res) in
                
             UtilityClass.hideHUD()
-            
+         
             if status{
+                
+                Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                    AnalyticsParameterMethod: socialModel.SocialType
+                  ])
+                
+                
                 let loginResponseModel = LoginResponseModel(fromJson: json)
                 UserDefaults.standard.set(loginResponseModel.xApiKey, forKey: UserDefaultKeys.kX_API_KEY)
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsLogedIn)
@@ -483,7 +491,9 @@ extension LoginViewController {
             UtilityClass.hideHUD()
            
             if status{
-                
+                Analytics.logEvent(AnalyticsEventLogin, parameters: [
+                    AnalyticsParameterMethod: "AppleSignIn"
+                  ])
                 let responseModel = AppleLoginResponseModel(fromJson: json)
             
                 let socialModel = SocialLoginModel()

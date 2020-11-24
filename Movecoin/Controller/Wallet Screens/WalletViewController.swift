@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 
 class WalletViewController: UIViewController {
     
@@ -39,7 +39,7 @@ class WalletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         self.setUpView()
         self.setupFont()
     }
@@ -63,7 +63,8 @@ class WalletViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        Analytics.logEvent("WalletScreen", parameters: nil)
+
         lblTitle.text = "My Balance".localized
         btnSpendCoins.setTitle("Spend Coins".localized, for: .normal)
         btnTransfer.setTitle("Transfer".localized, for: .normal)
@@ -147,6 +148,7 @@ class WalletViewController: UIViewController {
     @IBAction func btnTransferTapped(_ sender: Any) {
         let destination = self.storyboard?.instantiateViewController(withIdentifier: FriendsViewController.className) as! FriendsViewController
         destination.friendListType = FriendsList.TransferCoins
+        destination.isFromTransferCoins = true
         self.parent?.navigationController?.pushViewController(destination, animated: true)
     }
 }

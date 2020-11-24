@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class SearchViewController: UIViewController {
 
    // ----------------------------------------------------
@@ -32,8 +32,14 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
+
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.logEvent("SearchFriendsScreen", parameters: nil)
+
+    }
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------

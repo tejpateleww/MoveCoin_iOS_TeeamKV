@@ -13,11 +13,12 @@ protocol FriendCellDelegate : class {
 }
 
 class FriendTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblNumber: UILabel!
-    @IBOutlet weak var btnOutlet: UIButton!
+    @IBOutlet weak var btnFriendUnFriend: UIButton!
+    @IBOutlet weak var btnBlockUnBlock: UIButton?
     @IBOutlet weak var btnNext: UIButton!
     
     var listType = FriendsList.Unfriend
@@ -63,7 +64,9 @@ class FriendTableViewCell: UITableViewCell {
         super.awakeFromNib()
         lblName.font = UIFont.semiBold(ofSize: 15)
         lblNumber.font = UIFont.regular(ofSize: 10)
-        btnOutlet.titleLabel?.font = UIFont.regular(ofSize: 11)
+        btnFriendUnFriend.titleLabel?.font = UIFont.regular(ofSize: 11)
+        btnBlockUnBlock?.titleLabel?.font = UIFont.regular(ofSize: 11)
+        
         btnNext.isUserInteractionEnabled = false
         let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
         btnNext.setImage(sendImg, for: .normal)
@@ -74,22 +77,22 @@ class FriendTableViewCell: UITableViewCell {
         
         switch listType {
         case .TransferCoins:
-            btnOutlet.setTitle("Send".localized, for: .normal)
+            btnFriendUnFriend.setTitle("Send".localized, for: .normal)
             btnNext.isHidden = true
             break
             
         case .BlockList:
-            btnOutlet.setTitle("Unblock".localized, for: .normal)
+            btnFriendUnFriend.setTitle("Unblock".localized, for: .normal)
             btnNext.isHidden = true
             break
             
         case .NewChat:
-            btnOutlet.isHidden = true
+            btnFriendUnFriend.isHidden = true
             btnNext.isHidden = false
             break
             
         default:
-            btnOutlet.setTitle("Unfriend".localized, for: .normal)
+            btnFriendUnFriend.setTitle("Unfriend".localized, for: .normal)
             btnNext.isHidden = true
             break
         }
@@ -98,8 +101,24 @@ class FriendTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
-    @IBAction func btnAction(_ sender: Any) {
+    
+    @IBAction func btnAction(_ sender: UIButton) {
+        listType = FriendsList.Unfriend
+        if((sender.titleLabel?.text ?? "") == "Unblock".localized)
+        {
+            listType = FriendsList.BlockList
+            
+        }
+        else  if((sender.titleLabel?.text ?? "") == "Send".localized)
+        {
+            listType = FriendsList.TransferCoins
+            
+        }
+        cellDelegate?.didPressButton(self)
+    }
+    
+    @IBAction func btnBlockUnBlock(_ sender: Any) {
+        listType = FriendsList.Block
         cellDelegate?.didPressButton(self)
     }
 }

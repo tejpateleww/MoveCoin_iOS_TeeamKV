@@ -72,7 +72,7 @@ struct SocketApiKeys {
     static let kSocketBaseURL = "http://www.movecoins.net:8080/"
 //    static let kSocketBaseURL = "http://15.207.107.71:8080/"
     static let kConnectUser = "connect_user"
-    static let kUpdateUserLocation = "update_user_location"
+    static let kUpdateUserLocation = "update_user_location" 
     
     static let KUserId = "user_id"
     static let kLat = "lat"

@@ -10,6 +10,7 @@ import UIKit
 import CoreMotion
 import HealthKit
 import KDCircularProgress
+import FirebaseAnalytics
 
 protocol FlipToMapDelegate {
     func flipToMap()
@@ -62,6 +63,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // For apple login, alert for complete profile
         if let phoneNumber = SingletonClass.SharedInstance.userData?.phone {
             if phoneNumber.isEmpty {
@@ -95,7 +98,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        Analytics.logEvent("HomeScreen", parameters: nil)
+
         webserviceForUserDetails()
     }
     
@@ -195,14 +199,33 @@ class HomeViewController: UIViewController {
         
         if checkAuthorization() {
             
-            getRemainingStepsFromHealthKit { (steps) in
-                print("Previous Steps : ",steps)
-                
-                if Int(steps) > 0 {
-                    self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
-                }else{
-                    self.getTodaysSteps()
+            
+            guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
+            if lastUpdatedStepsAt.isBlank {
+                return
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"//"h:mm a"
+            dateFormatter.calendar = NSCalendar.current
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = .current
+            
+            guard let statDate = dateFormatter.date(from: lastUpdatedStepsAt) else { return  }
+            let now = Date()
+            let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate )
+            if days >= 1 {
+//                startOfDay = lastWeekDate?.startOfDay ?? Date()
+                getRemainingStepsFromHealthKit { (steps) in
+                    print("Previous Steps : ",steps)
+                    
+                    if Int(steps) > 0 {
+                        self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
+                    }
                 }
+            }
+            else{
+                self.getTodaysSteps()
             }
         } else {
             print("Health Kit Data is Not Available")
@@ -292,7 +315,7 @@ class HomeViewController: UIViewController {
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 completion(0.0)
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "-")
                 return
             }
             completion(sum.doubleValue(for: HKUnit.count()))
@@ -301,16 +324,12 @@ class HomeViewController: UIViewController {
     }
     
     func getRemainingStepsFromHealthKit(completion: @escaping (Double) -> Void) {
-        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        guard let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return  completion(0.0) }
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        var startOfDay = Date()
+        var startOfDay = UtilityClass.getDate(dateString: SingletonClass.SharedInstance.serverTime ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"), dateFormate: DateFomateKeys.api)//Date()
         let now = Date()
         
-        let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
+        let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())
         guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
         if lastUpdatedStepsAt.isBlank {
             completion(0.0)
@@ -323,33 +342,33 @@ class HomeViewController: UIViewController {
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.locale = .current
         
-        let statDate = dateFormatter.date(from: lastUpdatedStepsAt)!
+        let statDate = dateFormatter.date(from: lastUpdatedStepsAt)
         
-        let strCurrentTime = Date.localToUTC1(date: dateFormatter.string(from: statDate), fromFormat: "yyyy-MM-dd", toFormat: "yyyy-MM-dd HH:mm:ss", strTimeZone: "Asia/Riyadh")
-        
-        let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: strCurrentTime.startOfDay)
+//        let strCurrentTime = Date.localToUTC1(date: dateFormatter.string(from: statDate), fromFormat: DateFomateKeys.apiDOB, toFormat: DateFomateKeys.api, strTimeZone: timeZone)
+        let days = now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate ?? Date())
         if days >= 7 {
-            startOfDay = lastWeekDate.startOfDay
-        } else {
-            startOfDay = strCurrentTime.startOfDay
+            startOfDay = lastWeekDate?.startOfDay ?? Date()
         }
-        let endDate = now.yesterday.endOfDay
+//        else {
+//            startOfDay = strCurrentTime
+//        }
+//        let endDate = now.yesterday.endOfDay
         
-        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))"
+//        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
         print("-------------------------------------")
-        print("-- LastUpdateDate in Local : \(statDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("-- LastUpdateDate in LocalToUTC : \(strCurrentTime.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("Start Date : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("END DATE : \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("Last updated date : \(lastUpdatedStepsAt)")
+        print("-- EndDate in Local : \(statDate?.getFormattedDate(dateFormate: DateFomateKeys.api) ?? "-")")
+        print("-- StartDate in LocalToUTC : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//        print("Start Date : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//        print("END DATE : \(endDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//        print("Last updated date : \(lastUpdatedStepsAt)")
         print("-------------------------------------")
         
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: endDate, options: .strictStartDate)
+        let predicate = HKQuery.predicateForSamples(withStart: statDate, end: startOfDay, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "error while fetching steps")
                 completion(0.0)
                 return
             }

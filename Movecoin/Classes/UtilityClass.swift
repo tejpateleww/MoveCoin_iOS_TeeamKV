@@ -66,6 +66,31 @@ class UtilityClass : NSObject {
         
         return nil
     }
+   
+    
+    class func changeDateFormateFrom1(dateString: String, fromFormat : String , withFormat format: String) -> String? {
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.locale = Locale(identifier: "en_US_POSIX")
+        if(fromFormat.trimmingCharacters(in: .whitespacesAndNewlines).count != 0){
+            inputFormatter.dateFormat = fromFormat
+        }
+//        let UTC = dateString.localToUTC(fromFormate:fromFormat, toFormate: fromFormat)
+        if let date = inputFormatter.date(from: dateString){
+            let outputFormatter = DateFormatter()
+            outputFormatter.locale = Locale(identifier: "en_US_POSIX")
+            outputFormatter.dateFormat = format
+            let str = outputFormatter.string(from: date)
+            return str.UTCToLocalString1(fromFormate: format, toFormate: format)
+
+            //Date.localToUTC(date: str, fromFormat: DateFomateKeys.displayDateTime, toFormat: format, strTimeZone: "Asia/Riyadh")
+//            return str
+        }
+        
+        return nil
+    }
+    
+
     
     class func getDate(dateString: String, dateFormate: String) -> Date {
         let dateFormatter = DateFormatter()

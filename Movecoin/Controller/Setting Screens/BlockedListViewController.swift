@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class BlockedListViewController: UIViewController {
 
@@ -33,6 +34,8 @@ class BlockedListViewController: UIViewController {
         super.viewDidLoad()
         self.setUpView()
         webserviceForBlockedList()
+        Analytics.logEvent("BlockedUsersScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,7 +77,6 @@ extension BlockedListViewController : UITableViewDelegate, UITableViewDataSource
         cell.listType = friendListType 
         cell.cellDelegate = self
         cell.blockUserDetail = blockList?[indexPath.row]
-
         return cell
     }
     
@@ -89,19 +91,8 @@ extension BlockedListViewController : UITableViewDelegate, UITableViewDataSource
             
         case .BlockList:
             print("Unblock")
-//            let msg = ""
-//            let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to remove ".localized + (cell.friendDetail?.fullName ?? "") + " as your friend?".localized, preferredStyle: .alert)
-//            let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
                 self.webserviceForUnblock(id: cell.blockUserDetail?.id ?? "")
-//            }
-//            let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
-//                self.dismiss(animated: true, completion:nil)
-//            }
-//            alert.addAction(btnOk)
-//            alert.addAction(btncancel)
-//            alert.modalPresentationStyle = .overCurrentContext
-//            self.present(alert, animated: true, completion: nil)
-            
+
         default:
             print("Default")
         }

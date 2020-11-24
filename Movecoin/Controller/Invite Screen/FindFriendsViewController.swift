@@ -10,6 +10,7 @@ import UIKit
 import Contacts
 import MessageUI
 import IQKeyboardManagerSwift
+import FirebaseAnalytics
 
 
 class FriendsTableData {
@@ -69,6 +70,12 @@ class FindFriendsViewController: UIViewController {
         accessContacts()
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.logEvent("FindFriendsScreen", parameters: nil)
+
+    }
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
@@ -102,6 +109,9 @@ class FindFriendsViewController: UIViewController {
                 }
             }
         } else if authorizationStatus == .authorized {
+            isSearchData = false
+            searchArray.removeAll()
+            isTyping = false
             retrieveContacts(from: store)
         } else {
             webserviceForInviteFriends(dic: contactsArray)

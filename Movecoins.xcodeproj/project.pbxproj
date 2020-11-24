@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0EF3D5C9C8DF26B946A43506 /* Pods_Movecoins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31205FDDC085471252E49B4 /* Pods_Movecoins.framework */; };
+		181B3B5025664B6000940519 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 181B3B4F25664B6000940519 /* GoogleService-Info.plist */; };
 		4600A71423278D37004A7A9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600A71323278D37004A7A9E /* AppDelegate.swift */; };
 		4600A71623278D37004A7A9E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600A71523278D37004A7A9E /* HomeViewController.swift */; };
 		4600A71923278D37004A7A9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4600A71723278D37004A7A9E /* Main.storyboard */; };
@@ -162,7 +163,6 @@
 		46AECDBB239A85480097806B /* TransferCoinsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECDBA239A85480097806B /* TransferCoinsModel.swift */; };
 		46B2E442237A7C2800540D27 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B2E441237A7C2800540D27 /* ChangePassword.swift */; };
 		46B2E444237AC9F800540D27 /* ImagePickerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B2E443237AC9F800540D27 /* ImagePickerClass.swift */; };
-		46B69D2923A9F02E00DCE8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */; };
 		46BC1B4723C471A500AAABE1 /* YearlyStepsCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BC1B4623C471A500AAABE1 /* YearlyStepsCount.swift */; };
 		46C7C9A72360795C00A80976 /* happy-birthday.json in Resources */ = {isa = PBXBuildFile; fileRef = 46C7C9A62360795C00A80976 /* happy-birthday.json */; };
 		46C9132C2330EA110068C788 /* WaveLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C913282330EA110068C788 /* WaveLayer.m */; };
@@ -238,7 +238,21 @@
 		81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93931246EABB7005D3CF8 /* GatewayMap.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		181B3B4D25664A0600940519 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		181B3B4F25664B6000940519 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22FB7FDCCCC2333B20539610 /* Pods-Movecoins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoins.debug.xcconfig"; path = "Target Support Files/Pods-Movecoins/Pods-Movecoins.debug.xcconfig"; sourceTree = "<group>"; };
 		4600A71023278D37004A7A9E /* Movecoins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movecoins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4600A71323278D37004A7A9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -401,7 +415,6 @@
 		46AECDBA239A85480097806B /* TransferCoinsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCoinsModel.swift; sourceTree = "<group>"; };
 		46B2E441237A7C2800540D27 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
 		46B2E443237AC9F800540D27 /* ImagePickerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerClass.swift; sourceTree = "<group>"; };
-		46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		46BC1B4623C471A500AAABE1 /* YearlyStepsCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearlyStepsCount.swift; sourceTree = "<group>"; };
 		46C7C9A62360795C00A80976 /* happy-birthday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "happy-birthday.json"; sourceTree = "<group>"; };
 		46C9131A2330E0BD0068C788 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -525,6 +538,7 @@
 		4600A70723278D37004A7A9E = {
 			isa = PBXGroup;
 			children = (
+				181B3B4F25664B6000940519 /* GoogleService-Info.plist */,
 				4690AEA92386D41E0030A598 /* Movecoins.entitlements */,
 				4600A71223278D37004A7A9E /* Movecoin */,
 				4600A71123278D37004A7A9E /* Products */,
@@ -612,7 +626,6 @@
 				4638ECE02369CADC00B1F967 /* Font */,
 				4631E9952327A5040088B49F /* Constants.swift */,
 				46515525236AA2970079627A /* EnumCollection.swift */,
-				46B69D2823A9F02E00DCE8BF /* GoogleService-Info.plist */,
 				46C9132F2330EC360068C788 /* Movecoin-Bridging-Header.h */,
 				4600A71A23278D38004A7A9E /* Assets.xcassets */,
 			);
@@ -1255,7 +1268,8 @@
 				4600A70D23278D37004A7A9E /* Frameworks */,
 				4600A70E23278D37004A7A9E /* Resources */,
 				D1F5A5CA12B133217CF010DB /* [CP] Embed Pods Frameworks */,
-				46F16A59237EBC6400A378C8 /* Run Script */,
+				181B3AE42566424300940519 /* ShellScript */,
+				181B3B4D25664A0600940519 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -1316,8 +1330,8 @@
 				465CF18D23696B620069D4DE /* Gold-package.gif in Resources */,
 				46CD13A62400FF23007F38A9 /* Silver-package.gif in Resources */,
 				4638ECEB2369CB0200B1F967 /* Cairo-Light.ttf in Resources */,
-				46B69D2923A9F02E00DCE8BF /* GoogleService-Info.plist in Resources */,
 				4600A71923278D37004A7A9E /* Main.storyboard in Resources */,
+				181B3B5025664B6000940519 /* GoogleService-Info.plist in Resources */,
 				464D896523E062C700715F08 /* Localizable.strings in Resources */,
 				4666FA992355DA2500E8758C /* ChatStoryboard.storyboard in Resources */,
 				467A1ED823F55F350084F1C5 /* MoveCoin Logo Animation.mp4 in Resources */,
@@ -1330,7 +1344,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		46F16A59237EBC6400A378C8 /* Run Script */ = {
+		181B3AE42566424300940519 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1338,15 +1352,16 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 14a43f19af433e25667bd2c0d03a5aa6e886a728 2340430a2873285f1c9628d9b46f95a0a23165a6305e01fc1529cbcacd067e65\n";
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 		B39B45237D4D469052F2E81B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1813,12 +1828,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.7.7;
+				CURRENT_PROJECT_VERSION = 1.8.5;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.movecoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Movecoin/Resources/Movecoin-Bridging-Header.h";
@@ -1834,11 +1851,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.7.7;
+				CURRENT_PROJECT_VERSION = 1.8.5;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.movecoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Movecoin/Resources/Movecoin-Bridging-Header.h";

@@ -12,7 +12,7 @@ import Kingfisher
 import SwiftyJSON
 import HealthKit
 import IQKeyboardManagerSwift
-
+import FirebaseAnalytics
 struct StepsCountDataEntry {
     var stepsCount : Double
     var stepsDate : Date
@@ -64,6 +64,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.setupFont()
         self.setupView()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +79,8 @@ class ProfileViewController: UIViewController {
         super.viewDidAppear(true)
         setUpNavigationItems()
         localizationSetup()
+        Analytics.logEvent("ProfileScreen", parameters: nil)
+
 //        setupSegmentedControl()
 //        localizationSetup()
     }

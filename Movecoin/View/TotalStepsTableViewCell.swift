@@ -35,7 +35,8 @@ class TotalStepsTableViewCell: UITableViewCell {
                         } else if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
                              self.lblDate.text =  dateStr
                         }
-                    } else if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
+                    }
+                    else if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDateTime) {
                          self.lblDate.text =  dateStr
                     }
                   

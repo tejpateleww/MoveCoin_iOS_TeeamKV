@@ -9,7 +9,7 @@
 import UIKit
 import PassKit
 import SwiftyJSON
-
+import FirebaseAnalytics
 class ConfirmPurchaseViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -109,7 +109,8 @@ class ConfirmPurchaseViewController: UIViewController {
         self.setupFont()
         self.setupView()
         setupProductData()
-        
+        Analytics.logEvent("ProductPurchaseScreen", parameters: nil)
+
 //        txtName.text = "Rahul"
 //        txtNumber.text = "1102298338"
 //        txtEmail.text = "asdas@gdd.com"
@@ -533,6 +534,15 @@ extension ConfirmPurchaseViewController  {
             
             UtilityClass.hideHUD()
             
+            var dict = [String:Any]()
+            dict["product_id"] = model.product_id
+            dict["user_id"] = model.user_id
+            dict["name"] = model.name
+            dict["email"] = model.email
+            dict["payment_type"] = model.payment_type
+            dict["transaction_id"] = model.transaction_id
+            Analytics.logEvent("purchase", parameters: dict)
+            
             if status{
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
                 
@@ -549,7 +559,8 @@ extension ConfirmPurchaseViewController  {
                     })
                 }
             }
-            else{
+            else
+            {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }

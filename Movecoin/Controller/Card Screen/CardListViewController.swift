@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 
 protocol CardDelegate {
     func setCardDetails(value: PlaceOrder)
@@ -46,6 +46,8 @@ class CardListViewController: UIViewController {
         self.title =  "Card Details".localized
         self.initialSetup()
         self.setupFont()
+        Analytics.logEvent("CardListScreen", parameters: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

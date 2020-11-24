@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class StoreViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -40,7 +40,7 @@ class StoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+
         self.setUpView()
         self.setupFont()
     }
@@ -54,6 +54,8 @@ class StoreViewController: UIViewController {
         
         webserviceForProductList()
         localizeSetup()
+        Analytics.logEvent("StoresScreen", parameters: nil)
+
     }
     
     override func viewDidLayoutSubviews() {

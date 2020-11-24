@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class TransferMoveCoinsViewController: UIViewController {
 
     // ----------------------------------------------------
@@ -42,6 +42,9 @@ class TransferMoveCoinsViewController: UIViewController {
             let name = "\(to) \( name)"
             lblName.text = name //"To ".localized + name
         }
+        
+        Analytics.logEvent("TransferMoveCoinsScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

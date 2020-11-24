@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class EditProfileViewController: UIViewController {
     
@@ -54,6 +55,8 @@ class EditProfileViewController: UIViewController {
         self.setupView()
         self.updateMylocation()
         setupProfileData()
+        Analytics.logEvent("EditProfileScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

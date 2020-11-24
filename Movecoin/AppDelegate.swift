@@ -8,8 +8,8 @@
 
 import UIKit
 import IQKeyboardManagerSwift
-import Fabric
-import Crashlytics
+//import Fabric
+//import Crashlytics
 import FirebaseCore
 import FirebaseInstanceID
 import FirebaseMessaging
@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         locationPermission()
         
         configureNotification()
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
         
         _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
         

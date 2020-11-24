@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class ChatListViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -38,6 +38,8 @@ class ChatListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
+        Analytics.logEvent("ChatListScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

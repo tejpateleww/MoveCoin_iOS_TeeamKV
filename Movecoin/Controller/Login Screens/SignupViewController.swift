@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class SignupViewController: UIViewController {
 
     // ----------------------------------------------------
@@ -281,7 +281,9 @@ extension SignupViewController {
         UserWebserviceSubclass.otpRequest(signupModel: signupDic){ (json, status, res) in
             
             UtilityClass.hideHUD()
-           
+            Analytics.logEvent(AnalyticsEventSignUp, parameters: [
+              AnalyticsParameterMethod: "SimpleSignup"
+              ])
             if status{
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
                 UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {

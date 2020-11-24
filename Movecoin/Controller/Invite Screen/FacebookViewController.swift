@@ -10,7 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 import SwiftyJSON
-
+import FirebaseAnalytics
 class FacebookViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -55,7 +55,14 @@ class FacebookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+
 //        lblDescription.font = UIFont.regular(ofSize: 15)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.logEvent("FacebookFriendsScreen", parameters: nil)
+
     }
     
     // ----------------------------------------------------

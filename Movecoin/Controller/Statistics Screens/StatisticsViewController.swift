@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class StatisticsViewController: UIViewController {
 
     // ----------------------------------------------------
@@ -34,6 +34,7 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpView()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +47,8 @@ class StatisticsViewController: UIViewController {
         super.viewDidAppear(animated)
         lblTitle.text = "Updates".localized
         lblNoDataFound.text = "You didn't have any updates yet".localized
+        Analytics.logEvent("StatisticsScreen", parameters: nil)
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {

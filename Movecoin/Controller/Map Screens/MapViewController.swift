@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseAnalytics
 
 protocol FlipToHomeDelegate {
     func flipToHome()
@@ -53,7 +54,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp(hidesBackButton: true)
-       
         self.setupFont()
         self.setupView()
     }
@@ -78,6 +78,12 @@ class MapViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.logEvent("MapScreen", parameters: nil)
+
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -94,6 +100,8 @@ class MapViewController: UIViewController {
         }
     }
 
+    
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopTimer()

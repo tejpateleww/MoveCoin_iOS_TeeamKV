@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 
 class ImagesViewController: UIViewController, PagingScrollViewDelegate, PagingScrollViewDataSource {
     
@@ -27,6 +27,8 @@ class ImagesViewController: UIViewController, PagingScrollViewDelegate, PagingSc
         self.view.addSubview(pagingControl)
         pagingControl.reloadData()
         self.view.bringSubviewToFront(btnClose)
+        Analytics.logEvent("ImagesDetailScreen", parameters: nil)
+
     }
     
     func pagingScrollView(_ pagingScrollView: PagingScrollView, willChangedCurrentPage currentPageIndex:NSInteger) {

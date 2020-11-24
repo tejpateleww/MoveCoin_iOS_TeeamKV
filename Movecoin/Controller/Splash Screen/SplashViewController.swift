@@ -16,21 +16,21 @@ class SplashViewController: UIViewController {
     //MARK:- --------- IBOutlets ---------
     // ----------------------------------------------------
     
-   
+    
     @IBOutlet weak var viewContainer: UIView!
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
     // ----------------------------------------------------
-  
+    
     var initStatus = false
     var isAvailable = false
- 
+    
     
     // ----------------------------------------------------
     //MARK:- --------- Lifecycle Methods ---------
     // ----------------------------------------------------
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +51,7 @@ class SplashViewController: UIViewController {
     
     func playLogoAnimation() {
         guard let path = Bundle.main.path(forResource: "MoveCoin Logo Animation", ofType:"mp4") else {
-//        guard let path = Bundle.main.path(forResource: "White Conv", ofType:"mp4") else {
+            //        guard let path = Bundle.main.path(forResource: "White Conv", ofType:"mp4") else {
             debugPrint("video.m4v not found")
             return
         }
@@ -67,19 +67,19 @@ class SplashViewController: UIViewController {
         player.play()
         player.rate = 1.5
         Timer.scheduledTimer(withTimeInterval: 4.5, repeats: false) { (timer) in
-//            if self.initStatus {
-                self.moveToViewController()
-//            }
+            //            if self.initStatus {
+            self.moveToViewController()
+            //            }
         }
     }
     
     func moveToViewController() {
-    
+        
         if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
             
             if loggedIn as! Bool {
                 AppDelegateShared.GoToHome()
-//                getUserData()
+                //                getUserData()
             }else {
                 AppDelegateShared.GoToLogin()
             }
@@ -93,19 +93,20 @@ class SplashViewController: UIViewController {
     }
     
     func webserviceforAPPInit(){
-
+        
         var strParam = String()
         
         strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
-      
+        
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(status)
             self.initStatus = status
             if status{
-                 let initResponseModel = InitResponse(fromJson: json)
+                let initResponseModel = InitResponse(fromJson: json)
                 SingletonClass.SharedInstance.lastUpdatedStepsAt = initResponseModel.lastUpdateStepAt
                 SingletonClass.SharedInstance.productType = initResponseModel.category
                 SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
+                SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

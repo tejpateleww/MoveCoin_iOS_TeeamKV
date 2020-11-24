@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypb-rl-8x4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypb-rl-8x4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -333,10 +333,10 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wfL-oc-RH7">
-                                                                    <rect key="frame" x="64" y="9" width="185" height="32"/>
+                                                                    <rect key="frame" x="64" y="9" width="0.0" height="32"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lta-l3-d9n" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="185" height="19"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="19"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="19" id="R7I-lq-bTM"/>
                                                                             </constraints>
@@ -345,7 +345,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-M2-byd" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="19" width="185" height="13"/>
+                                                                            <rect key="frame" x="0.0" y="19" width="0.0" height="13"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="13" id="JNh-oA-N7C"/>
                                                                             </constraints>
@@ -365,39 +365,63 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cao-wf-qxF" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
-                                                                    <rect key="frame" x="269" y="10" width="68" height="30"/>
-                                                                    <color key="backgroundColor" red="0.11372549019607843" green="0.14509803921568626" blue="0.35686274509803922" alpha="0.37" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="Tif-0o-kur"/>
-                                                                        <constraint firstAttribute="width" constant="68" id="XWu-eb-tPq"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="11"/>
-                                                                    <state key="normal" title="Unfriend">
-                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </state>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="15"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                    <connections>
-                                                                        <action selector="btnAction:" destination="Dq7-aP-7f3" eventType="touchUpInside" id="7Rl-01-5Op"/>
-                                                                    </connections>
-                                                                </button>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cX6-6v-Gku">
+                                                                    <rect key="frame" x="191" y="10" width="146" height="30"/>
+                                                                    <subviews>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9G-EY-5gS" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="68" height="30"/>
+                                                                            <color key="backgroundColor" red="0.1137254902" green="0.1450980392" blue="0.35686274509999999" alpha="0.37" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="30" id="C65-Oz-54A"/>
+                                                                                <constraint firstAttribute="width" constant="68" id="HiJ-lU-I36"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="11"/>
+                                                                            <state key="normal" title="Block">
+                                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </state>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                    <real key="value" value="15"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="btnBlockUnBlock:" destination="Dq7-aP-7f3" eventType="touchUpInside" id="eBY-ZI-wmp"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cao-wf-qxF" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                                            <rect key="frame" x="78" y="0.0" width="68" height="30"/>
+                                                                            <color key="backgroundColor" red="0.11372549019607843" green="0.14509803921568626" blue="0.35686274509803922" alpha="0.37" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="30" id="Tif-0o-kur"/>
+                                                                                <constraint firstAttribute="width" constant="68" id="XWu-eb-tPq"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="11"/>
+                                                                            <state key="normal" title="Unfriend">
+                                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </state>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                    <real key="value" value="15"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="btnAction:" destination="Dq7-aP-7f3" eventType="touchUpInside" id="7Rl-01-5Op"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="wfL-oc-RH7" firstAttribute="leading" secondItem="7mF-02-AkQ" secondAttribute="trailing" constant="10" id="25o-mF-8o8"/>
                                                                 <constraint firstAttribute="bottom" secondItem="7mF-02-AkQ" secondAttribute="bottom" constant="5" id="3XA-PG-sN9"/>
-                                                                <constraint firstItem="cao-wf-qxF" firstAttribute="leading" relation="lessThanOrEqual" secondItem="wfL-oc-RH7" secondAttribute="trailing" constant="20" id="BXv-by-96w"/>
                                                                 <constraint firstItem="wfL-oc-RH7" firstAttribute="centerY" secondItem="d4a-NZ-qT1" secondAttribute="centerY" id="LtP-6b-2ke"/>
-                                                                <constraint firstAttribute="trailing" secondItem="cao-wf-qxF" secondAttribute="trailing" constant="8" id="Pe0-a3-T3b"/>
-                                                                <constraint firstItem="cao-wf-qxF" firstAttribute="centerY" secondItem="d4a-NZ-qT1" secondAttribute="centerY" id="Qyz-Hw-gqC"/>
                                                                 <constraint firstItem="EEe-S3-pkS" firstAttribute="centerY" secondItem="d4a-NZ-qT1" secondAttribute="centerY" id="RP3-uZ-A8m"/>
                                                                 <constraint firstItem="7mF-02-AkQ" firstAttribute="leading" secondItem="d4a-NZ-qT1" secondAttribute="leading" constant="4" id="fbt-yY-zse"/>
                                                                 <constraint firstItem="7mF-02-AkQ" firstAttribute="top" secondItem="d4a-NZ-qT1" secondAttribute="top" constant="5" id="jv4-3q-CT1"/>
+                                                                <constraint firstItem="cX6-6v-Gku" firstAttribute="centerY" secondItem="d4a-NZ-qT1" secondAttribute="centerY" id="l4Y-8b-4eU"/>
                                                                 <constraint firstAttribute="trailing" secondItem="EEe-S3-pkS" secondAttribute="trailing" constant="8" id="laD-89-nLV"/>
+                                                                <constraint firstAttribute="trailing" secondItem="cX6-6v-Gku" secondAttribute="trailing" constant="8" id="vQP-ut-IkA"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -415,8 +439,9 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
+                                                    <outlet property="btnBlockUnBlock" destination="X9G-EY-5gS" id="QHa-ec-KHp"/>
+                                                    <outlet property="btnFriendUnFriend" destination="cao-wf-qxF" id="OUt-gH-Y0E"/>
                                                     <outlet property="btnNext" destination="EEe-S3-pkS" id="S5T-CZ-0iY"/>
-                                                    <outlet property="btnOutlet" destination="cao-wf-qxF" id="OUt-gH-Y0E"/>
                                                     <outlet property="imgPhoto" destination="2Lx-fp-fe0" id="46D-EV-nad"/>
                                                     <outlet property="lblName" destination="Lta-l3-d9n" id="hRh-mZ-lpb"/>
                                                     <outlet property="lblNumber" destination="d6e-M2-byd" id="jIJ-ac-MF2"/>
@@ -462,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbd-YI-acN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-598" y="340"/>
+            <point key="canvasLocation" x="-716" y="340"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -715,7 +740,7 @@
                                                         <rect key="frame" x="5" y="64.5" width="237" height="118"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-UN-1s3" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="79" y="0.0" width="79.5" height="38"/>
+                                                                <rect key="frame" x="82.5" y="0.0" width="72.5" height="38"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="38" id="cbG-jQ-dR9"/>
                                                                 </constraints>
@@ -733,7 +758,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhh-Tr-kgc" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                <rect key="frame" x="78.5" y="88" width="80" height="30"/>
+                                                                <rect key="frame" x="81.5" y="88" width="74.5" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="IX5-s2-EWD"/>
                                                                 </constraints>
@@ -2243,7 +2268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kX-e7-0eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2605.5999999999999" y="339.58020989505252"/>
+            <point key="canvasLocation" x="2433" y="340"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="QPA-wK-Kuj">
@@ -3817,7 +3842,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't have any updates yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMQ-LP-pwt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="298.5" width="335" height="70"/>
+                                        <rect key="frame" x="20" y="277.5" width="335" height="112.5"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -4050,7 +4075,7 @@
                                                                     <constraint firstItem="uXO-6S-bUU" firstAttribute="top" secondItem="fCw-CZ-svf" secondAttribute="top" constant="1" id="wNP-OB-FQ8"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fn-Hm-6Hj" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
+                                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fn-Hm-6Hj" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="120" y="29" width="137" height="38"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOj-6p-8YF">
@@ -4465,7 +4490,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDF-BQ-qXZ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="316" width="335" height="35"/>
+                                        <rect key="frame" x="20" y="305.5" width="335" height="56.5"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -4790,8 +4815,8 @@
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
+                                                            <outlet property="btnFriendUnFriend" destination="MhZ-cW-Ryi" id="9A3-Dd-yaC"/>
                                                             <outlet property="btnNext" destination="xwX-Sx-4EQ" id="cpX-LW-zXt"/>
-                                                            <outlet property="btnOutlet" destination="MhZ-cW-Ryi" id="9A3-Dd-yaC"/>
                                                             <outlet property="imgPhoto" destination="SbR-6J-uy7" id="UfA-0K-uVO"/>
                                                             <outlet property="lblName" destination="xuM-FR-XYU" id="zW7-qG-RrO"/>
                                                             <outlet property="lblNumber" destination="327-sx-cLI" id="vsu-og-j2O"/>
@@ -4828,7 +4853,7 @@
                             <constraint firstItem="Vb3-iY-5h7" firstAttribute="leading" secondItem="0fx-05-OHH" secondAttribute="leading" id="12f-Q8-dPd"/>
                             <constraint firstItem="Vb3-iY-5h7" firstAttribute="top" secondItem="HmO-Em-U5v" secondAttribute="top" id="9yw-q3-bls"/>
                             <constraint firstAttribute="trailing" secondItem="Vb3-iY-5h7" secondAttribute="trailing" id="DoR-Uz-ytp"/>
-                            <constraint firstItem="0fx-05-OHH" firstAttribute="bottom" secondItem="Vb3-iY-5h7" secondAttribute="bottom" id="Yvu-cr-hZ6"/>
+                            <constraint firstAttribute="bottom" secondItem="Vb3-iY-5h7" secondAttribute="bottom" id="Yvu-cr-hZ6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -5605,7 +5630,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="D3P-Ox-96m"/>
                                                 </constraints>
@@ -5743,7 +5768,6 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="89.5" height="75"/>
                                                                 <connections>
                                                                     <action selector="btnBlockTapped:" destination="VAr-Nz-BKt" eventType="touchUpInside" id="zhR-j7-wWS"/>
-                                                                    <action selector="btntransferTapped:" destination="VAr-Nz-BKt" eventType="touchUpInside" id="qDd-OV-MmI"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -5778,6 +5802,10 @@
                                             <constraint firstItem="eWY-Ky-Cl9" firstAttribute="top" secondItem="60L-WE-Rcc" secondAttribute="top" constant="5" id="ffA-vT-5be"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="4qW-Zj-mX1">
+                                        <rect key="frame" x="169" y="136.5" width="37" height="37"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -5790,10 +5818,12 @@
                                     <constraint firstAttribute="trailing" secondItem="mHO-PA-3Bw" secondAttribute="trailing" id="M8C-A0-uH4"/>
                                     <constraint firstItem="SEZ-aw-AfO" firstAttribute="top" secondItem="MJm-KJ-yU9" secondAttribute="top" constant="20" id="YP1-WV-63V"/>
                                     <constraint firstItem="mHO-PA-3Bw" firstAttribute="leading" secondItem="MJm-KJ-yU9" secondAttribute="leading" id="aY2-CW-2tn"/>
+                                    <constraint firstItem="4qW-Zj-mX1" firstAttribute="centerY" secondItem="60L-WE-Rcc" secondAttribute="centerY" id="bpr-dk-efn"/>
                                     <constraint firstAttribute="bottom" secondItem="60L-WE-Rcc" secondAttribute="bottom" id="gtH-Bo-07I"/>
                                     <constraint firstItem="60L-WE-Rcc" firstAttribute="top" secondItem="SEZ-aw-AfO" secondAttribute="bottom" id="irf-Cz-bVJ"/>
                                     <constraint firstItem="mHO-PA-3Bw" firstAttribute="top" secondItem="MJm-KJ-yU9" secondAttribute="top" id="qcQ-yA-WGu"/>
                                     <constraint firstItem="pre-q3-CoH" firstAttribute="top" secondItem="MJm-KJ-yU9" secondAttribute="top" id="qgP-Wd-X3J"/>
+                                    <constraint firstItem="4qW-Zj-mX1" firstAttribute="centerX" secondItem="60L-WE-Rcc" secondAttribute="centerX" id="sw6-m4-fTS"/>
                                     <constraint firstItem="60L-WE-Rcc" firstAttribute="leading" secondItem="MJm-KJ-yU9" secondAttribute="leading" id="uSf-77-T8U"/>
                                     <constraint firstAttribute="bottom" secondItem="mHO-PA-3Bw" secondAttribute="bottom" id="x6w-we-daY"/>
                                 </constraints>
@@ -5809,9 +5839,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnBlock" destination="pou-Xt-pRG" id="C4r-2b-cuE"/>
+                        <outlet property="activityIndicator" destination="4qW-Zj-mX1" id="zGw-YL-FHT"/>
+                        <outlet property="btnBlock" destination="pou-Xt-pRG" id="NfM-Vy-DtX"/>
                         <outlet property="btnSendFriendRequest" destination="am1-xv-ewl" id="50h-eS-odT"/>
                         <outlet property="imgProfile" destination="AHW-SP-Nt3" id="5Ql-4o-BmR"/>
+                        <outlet property="lblBlock" destination="yAN-Zh-oFz" id="SZm-Ep-WTX"/>
                         <outlet property="lblChat" destination="a0g-fm-b66" id="geI-Pc-PbQ"/>
                         <outlet property="lblLastSeen" destination="qMe-UJ-GJc" id="Vdt-Jc-r6r"/>
                         <outlet property="lblMemberSince" destination="S9g-wu-7Js" id="c1S-H3-T3g"/>
@@ -7281,9 +7313,6 @@
         <image name="wallet" width="27" height="27"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

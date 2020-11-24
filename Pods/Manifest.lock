@@ -1,9 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
   - Cosmos (22.1.0)
-  - Crashlytics (3.14.0):
-    - Fabric (~> 1.10.2)
-  - Fabric (1.10.2)
   - FBSDKCoreKit (7.1.1):
     - FBSDKCoreKit/Basics (= 7.1.1)
     - FBSDKCoreKit/Core (= 7.1.1)
@@ -16,6 +13,8 @@ PODS:
     - FBSDKCoreKit (~> 7.1.1)
   - Firebase (6.29.0):
     - Firebase/Core (= 6.29.0)
+  - Firebase/Analytics (6.29.0):
+    - Firebase/Core
   - Firebase/Auth (6.29.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.7.1)
@@ -24,6 +23,9 @@ PODS:
     - FirebaseAnalytics (= 6.7.0)
   - Firebase/CoreOnly (6.29.0):
     - FirebaseCore (= 6.9.2)
+  - Firebase/Crashlytics (6.29.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.3.1)
   - Firebase/Messaging (6.29.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.6.1)
@@ -50,6 +52,12 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30905.0)
+  - FirebaseCrashlytics (4.3.1):
+    - FirebaseCore (~> 6.8)
+    - FirebaseInstallations (~> 1.1)
+    - GoogleDataTransport (~> 7.0)
+    - nanopb (~> 1.30905.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (1.5.0):
     - FirebaseCore (~> 6.8)
     - GoogleUtilities/Environment (~> 6.7)
@@ -124,11 +132,11 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.8.2)
   - Cosmos
-  - Crashlytics
-  - Fabric
   - FBSDKLoginKit
   - Firebase
+  - Firebase/Analytics
   - Firebase/Auth
+  - Firebase/Crashlytics
   - Firebase/Messaging
   - FormTextField
   - GrowingTextView
@@ -146,8 +154,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Cosmos
-    - Crashlytics
-    - Fabric
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -155,6 +161,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
@@ -181,8 +188,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
-  Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   Firebase: 57957c8d6eb3d8b80a560b1dc58be24724b89ff2
@@ -190,6 +195,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: a818d73466d51db897d3bf3c0f3baa3dae7fd4c0
   FirebaseCore: 7930a1946517d94256d857f97371ed993b55f7bd
   FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
+  FirebaseCrashlytics: 863c851b034baeb3116cd2c91743e37de2dcedfc
   FirebaseInstallations: 3c520c951305cbf9ca54eb891ff9e6d1fd384881
   FirebaseInstanceID: c4ad474b87787afd27d09541800620993b457d6f
   FirebaseMessaging: 942cfe05b4f53c95ab8959395ca35c200398b2f0
@@ -213,6 +219,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: d8005c0cdca2549ade0aee8e09240723e2478a6a
 
-PODFILE CHECKSUM: c43f8841c82178f89a57c69b8803d5354da78826
+PODFILE CHECKSUM: 4f3dbceebc87873117e1460b716e7785c9c121a8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

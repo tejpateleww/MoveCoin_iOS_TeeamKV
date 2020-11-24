@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 struct FriendDetail {
     var name : String
@@ -33,17 +34,18 @@ class FriendsViewController: UIViewController {
     lazy var searchArray : [FriendsData] = []
     lazy var friendListType = FriendsList.Unfriend
     lazy var isTyping: Bool = false
-   
+    var isFromTransferCoins: Bool = false
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         self.setUpView()
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true
+        Analytics.logEvent("CurrentFriendsScreen", parameters: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +64,7 @@ class FriendsViewController: UIViewController {
         self.tblFriends.tableFooterView = UIView.init(frame: CGRect.zero)
         
         txtSearch.font = UIFont.regular(ofSize: 15)
-//        lblNoDataFound.text = "You didn't connect with your friends".localized
+        //        lblNoDataFound.text = "You didn't connect with your friends".localized
     }
     
     // ----------------------------------------------------
@@ -106,54 +108,78 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
         cell.listType = friendListType
         cell.cellDelegate = self
         cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
-
+        if(isFromTransferCoins)
+        {
+            cell.btnBlockUnBlock?.isHidden = true
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       switch friendListType {
-       case .NewChat, .Unfriend:
-                let chatStoryboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
-                let destination = chatStoryboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
-                let data = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
-                destination.receiverID = data.iD
-                self.navigationController?.pushViewController(destination, animated: true)
-                   
-            default:
-                return
+        switch friendListType {
+        case .NewChat, .Unfriend:
+            let chatStoryboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+            let destination = chatStoryboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+            let data = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
+            destination.receiverID = data.iD
+            self.navigationController?.pushViewController(destination, animated: true)
+            
+        default:
+            return
         }
-       
+        
     }
     
     func didPressButton(_ cell: FriendTableViewCell) {
         print(cell.listType)
         
         switch cell.listType {
-                   
-            case .TransferCoins:
-                print("Send")
-                let destination = self.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
-                destination.receiverID = cell.friendDetail?.iD
-                destination.receiverName = cell.friendDetail?.fullName
-                self.navigationController?.pushViewController(destination, animated: true)
-                   
-            case .Unfriend:
-                print("Unfriend")
-    
-                let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to remove ".localized + (cell.friendDetail?.fullName ?? "") + " as your friend?".localized, preferredStyle: .alert)
-                let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
-                    self.webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
-                }
-                let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
-                    self.dismiss(animated: true, completion:nil)
-                }
-                alert.addAction(btnOk)
-                alert.addAction(btncancel)
-                alert.modalPresentationStyle = .overCurrentContext
-                self.present(alert, animated: true, completion: nil)
-                
-            default:
-                print("Default")
+            
+        case .TransferCoins:
+            print("Send")
+            let destination = self.storyboard?.instantiateViewController(withIdentifier: TransferMoveCoinsViewController.className) as! TransferMoveCoinsViewController
+            destination.receiverID = cell.friendDetail?.iD
+            destination.receiverName = cell.friendDetail?.fullName
+            self.navigationController?.pushViewController(destination, animated: true)
+            
+        case .Unfriend:
+            print("Unfriend")
+            
+            let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to remove ".localized + (cell.friendDetail?.fullName ?? "") + " as your friend?".localized, preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
+                self.webserviceForUnfriend(id: cell.friendDetail?.iD ?? "")
+            }
+            let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
+                self.dismiss(animated: true, completion:nil)
+            }
+            alert.addAction(btnOk)
+            alert.addAction(btncancel)
+            alert.modalPresentationStyle = .overCurrentContext
+            self.present(alert, animated: true, completion: nil)
+            
+        case .Block:
+            print("Block")
+            
+            var str = "?"
+            if ((Localize.currentLanguage() == Languages.Arabic.rawValue))
+            {
+                str = "؟"
+            }
+            
+            let alert = UIAlertController(title: kAppName.localized, message: "Are you sure want to block ".localized + (cell.friendDetail?.fullName ?? "") + str, preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "OK".localized, style: .default) { (action) in
+                self.webserviceForBlock(userData: cell.friendDetail!, cell: cell)
+            }
+            let btncancel = UIAlertAction(title: "Cancel".localized, style: .default) { (cancel) in
+                self.dismiss(animated: true, completion:nil)
+            }
+            alert.addAction(btnOk)
+            alert.addAction(btncancel)
+            alert.modalPresentationStyle = .overCurrentContext
+            self.present(alert, animated: true, completion: nil)
+            
+        default:
+            print("Default")
         }
     }
 }
@@ -165,15 +191,40 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
 
 extension FriendsViewController {
     
+    
+    func webserviceForBlock(userData: FriendsData, cell : FriendTableViewCell){
+        UtilityClass.showHUD()
+        let requestModel = BlockUser()
+        requestModel.block_by = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.block_user_id = userData.iD
+        
+        UserWebserviceSubclass.blockUser(requestModel: requestModel) { (json, status, res) in
+            
+            UtilityClass.hideHUD()
+            if status {
+                let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
+                UtilityClass.showAlert(Message: msg)
+//                cell.btnBlockUnBlock?.setTitle("Blocked".localized, for: .normal)
+//                cell.btnBlockUnBlock?.isUserInteractionEnabled = false
+                //                cell.btnSendFriendRequest.isEnabled = false
+                self.webserviceForFriendsList(isLoading: true)
+                
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    
     func webserviceForFriendsList(isLoading: Bool){
         
         if isLoading {
             UtilityClass.showHUD()
         }
-            
+        
         let requestModel = FriendListModel()
         requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
-    
+        
         FriendsWebserviceSubclass.friendsList(friendListModel: requestModel){ (json, status, res) in
             
             UtilityClass.hideHUD()
@@ -198,11 +249,11 @@ extension FriendsViewController {
     func webserviceForUnfriend(id: String){
         
         UtilityClass.showHUD()
-               
+        
         let requestModel = UnfriendModel()
         requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
         requestModel.FriendID = id
-    
+        
         FriendsWebserviceSubclass.unfriend(unfrinedModel: requestModel){ (json, status, res) in
             
             UtilityClass.hideHUD()

@@ -8,7 +8,7 @@
 
 import UIKit
 import Lottie
-
+import FirebaseAnalytics
 class InviteFriendsViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -44,7 +44,7 @@ class InviteFriendsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("ViewdidAppear")
+        Analytics.logEvent("InviteFriendsScreen", parameters: nil)
 //        self.animate()
     }
     
@@ -86,7 +86,8 @@ class InviteFriendsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
-    
+    var vc : UIActivityViewController?
+
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {
         
         //        if let reviewURL = URL(string: "itms-apps://itunes.apple.com/us/app/apple-store/1483785971?mt=8"), UIApplication.shared.canOpenURL(reviewURL) {
@@ -98,11 +99,10 @@ class InviteFriendsViewController: UIViewController {
         //             }
         //        }
         
-        let text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (lblReferral.text ?? "")
-        let image = UIImage(named: "AppIcon")
-        let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
-        
-        let vc = UIActivityViewController(activityItems: [text, image ?? UIImage(), url!], applicationActivities: [])
-        present(vc, animated: true)
+        let text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (lblReferral.text ?? "") + "\n" + "itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
+//        let image = UIImage(named: "AppIcon")
+//        let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
+        vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
+        present(vc!, animated: true)
     }
 }

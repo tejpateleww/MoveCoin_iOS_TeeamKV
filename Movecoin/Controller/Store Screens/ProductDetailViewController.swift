@@ -8,7 +8,7 @@
 
 import UIKit
 import Cosmos
-
+import FirebaseAnalytics
 class ProductDetailViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -57,7 +57,7 @@ class ProductDetailViewController: UIViewController {
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
-       
+
         guard productID != nil else { return }
     }
     
@@ -274,6 +274,16 @@ extension ProductDetailViewController {
                 if let data = responseModel.data {
                     self.product = data
                     self.setupProductData()
+                    var dictData = [String:Any]()
+                    dictData["catID"] = self.product.catID
+                    dictData["iD"] = self.product.iD
+                    dictData["name"] = self.product.name
+                    dictData["price"] = self.product.price
+                    dictData["sellerID"] = self.product.sellerID
+                    dictData["store"] = self.product.store
+                    dictData["totalPrice"] = self.product.totalPrice
+                    Analytics.logEvent("ProductDetailScreen", parameters: dictData)
+
                 }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)

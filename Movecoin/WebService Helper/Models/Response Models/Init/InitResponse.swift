@@ -14,7 +14,7 @@ class InitResponse : Codable {
     var shareLink : String!
     var status : Bool!
     var lastUpdateStepAt : String!
-    
+    var serverTime : String!
     init(){
         
     }
@@ -39,6 +39,7 @@ class InitResponse : Codable {
         shareLink = json["ShareLink"].stringValue
         status = json["status"].boolValue
         lastUpdateStepAt = json["last_update_step_at"].stringValue
+        serverTime = json["server_time"].stringValue
     }
 
     /**

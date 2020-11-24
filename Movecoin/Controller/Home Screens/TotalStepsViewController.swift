@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class TotalStepsViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -40,9 +40,10 @@ class TotalStepsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        Analytics.logEvent("TotalStepsScreen", parameters: nil)
         self.setUpView()
         webserviceforStepsHistory(refresh: true)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

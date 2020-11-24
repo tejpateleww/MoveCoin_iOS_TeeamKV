@@ -65,6 +65,7 @@ enum FriendsList  {
     case Unfriend
     case NewChat
     case BlockList
+    case Block
 }
 
 enum BarChartTitles : Int {

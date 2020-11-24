@@ -114,7 +114,20 @@ extension String {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 
         guard let dt = dateFormatter.date(from: self) else { return "" }
-        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.timeZone = TimeZone.current //TimeZone(identifier: "Asia/Riyadh")//
+        dateFormatter.dateFormat = toFormate
+
+        return dateFormatter.string(from: dt)
+    }
+    
+    func UTCToLocalString1(fromFormate: String, toFormate: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = fromFormate
+        dateFormatter.timeZone = TimeZone(abbreviation: timeZone)
+
+        guard let dt = dateFormatter.date(from: self) else { return "" }
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)//TimeZone.current Asia/Riyadh
         dateFormatter.dateFormat = toFormate
 
         return dateFormatter.string(from: dt)

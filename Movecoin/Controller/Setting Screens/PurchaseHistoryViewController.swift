@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class PurchaseHistoryViewController: UIViewController {
 
@@ -32,6 +33,8 @@ class PurchaseHistoryViewController: UIViewController {
         super.viewDidLoad()
         self.setUpView()
         webserviceForPurchasehistory()
+        Analytics.logEvent("PurchaseHistoryScreen", parameters: nil)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
