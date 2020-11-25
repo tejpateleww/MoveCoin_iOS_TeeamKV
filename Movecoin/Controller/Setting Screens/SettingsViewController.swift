@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var settingsArray = ["Notification","Account Privacy","Edit Profile","Purchase History","Block List","Help/Support","Terms and Conditions","Privacy Policy","Language","Rate this app"]
+    var settingsArray = ["Notification","Account Privacy","Edit Profile","Purchase History" ,"Total Redeem","Block List","Help/Support","Terms and Conditions","Privacy Policy","Language","Rate this app"]
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -249,6 +249,9 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
                 let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
                 self.navigationController?.pushViewController(controller, animated: true)
                 
+            case .TotalRedeem:
+                let controller = storyboard.instantiateViewController(withIdentifier: TotalRedeemVC.className) as! TotalRedeemVC
+                self.navigationController?.pushViewController(controller, animated: true)
             case .BlockList:
                 let controller = storyboard.instantiateViewController(withIdentifier: BlockedListViewController.className) as! BlockedListViewController
                 self.navigationController?.pushViewController(controller, animated: true)

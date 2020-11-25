@@ -222,6 +222,8 @@
 		64EE613524E3F3CB0036F42B /* SearchFriendResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613324E3F3CB0036F42B /* SearchFriendResponseModel.swift */; };
 		64EE613924E402040036F42B /* FriendRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613724E402040036F42B /* FriendRequestData.swift */; };
 		64EE613A24E402040036F42B /* FriendRequestResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE613824E402040036F42B /* FriendRequestResponseModel.swift */; };
+		6864A0D2256E1E7F008EECAF /* TotalRedeemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6864A0D1256E1E7F008EECAF /* TotalRedeemVC.swift */; };
+		68B179D7256D372A00B5A10B /* RewardViaInviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B179D6256D372A00B5A10B /* RewardViaInviteVC.swift */; };
 		8105CB9D2473A218004EBD54 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8105CB9C2473A218004EBD54 /* HTTPMethod.swift */; };
 		8130CD1B24645DE4000B9885 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8130CD1A24645DE4000B9885 /* WebKit.framework */; };
 		81892EFF2473EDBF006F2113 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81892EFE2473EDBF006F2113 /* Transaction.swift */; };
@@ -487,6 +489,8 @@
 		64EE613324E3F3CB0036F42B /* SearchFriendResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFriendResponseModel.swift; sourceTree = "<group>"; };
 		64EE613724E402040036F42B /* FriendRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestData.swift; sourceTree = "<group>"; };
 		64EE613824E402040036F42B /* FriendRequestResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendRequestResponseModel.swift; sourceTree = "<group>"; };
+		6864A0D1256E1E7F008EECAF /* TotalRedeemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRedeemVC.swift; sourceTree = "<group>"; };
+		68B179D6256D372A00B5A10B /* RewardViaInviteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViaInviteVC.swift; sourceTree = "<group>"; };
 		7E2BDC618FF3EEC01E0811AF /* Pods-Movecoins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoins.release.xcconfig"; path = "Target Support Files/Pods-Movecoins/Pods-Movecoins.release.xcconfig"; sourceTree = "<group>"; };
 		8105CB9C2473A218004EBD54 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		8130CD1A24645DE4000B9885 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -613,6 +617,8 @@
 				468F86D02350C0F8006DC7D1 /* Chat Screens */,
 				46E468F3237D7A1F0068701E /* Card Screen */,
 				468F86CB2350AAFA006DC7D1 /* Setting Screens */,
+				68B179D6256D372A00B5A10B /* RewardViaInviteVC.swift */,
+				6864A0D1256E1E7F008EECAF /* TotalRedeemVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1529,10 +1535,12 @@
 				46AECDB9239A56F00097806B /* FriendListModel.swift in Sources */,
 				648FAB5224E6668100FF516D /* SocialUserResponseModel.swift in Sources */,
 				46814387238E8EE800D5A297 /* InviteFriendsModel.swift in Sources */,
+				68B179D7256D372A00B5A10B /* RewardViaInviteVC.swift in Sources */,
 				64063F02252DAE3E00B11730 /* BlockedListViewController.swift in Sources */,
 				462D24DF23B32F310050C3F0 /* UIBezierPathExtension.swift in Sources */,
 				464AE07F23B4C81A00826BA7 /* NearByUserDetailModel.swift in Sources */,
 				462D24DE23B32F310050C3F0 /* BasicBarChartPresenter.swift in Sources */,
+				6864A0D2256E1E7F008EECAF /* TotalRedeemVC.swift in Sources */,
 				64EE613524E3F3CB0036F42B /* SearchFriendResponseModel.swift in Sources */,
 				462D24E023B32F310050C3F0 /* BasicBarChart.swift in Sources */,
 				46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */,

@@ -95,6 +95,7 @@ enum SettingsOptions : Int {
     case EditProfile
 //    case ChangePassword
     case PurchaseHistory
+    case TotalRedeem
     case BlockList
 //    case AddCard
     case Help
