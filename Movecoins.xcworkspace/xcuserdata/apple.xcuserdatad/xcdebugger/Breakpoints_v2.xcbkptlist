@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "04D2C33E-1C20-416D-AF3F-47049B6794F8"
+            uuid = "67378A6C-5DC5-4B06-B3DB-C7D20BDEE05B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Home Screens/HomeViewController.swift"
+            filePath = "Movecoin/Controller/Invite Screen/InviteFriendsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
-            landmarkName = "getRemainingStepsFromHealthKit(completion:)"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "webserviceCallForGettingClaimInfo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

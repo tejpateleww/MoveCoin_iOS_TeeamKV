@@ -111,7 +111,26 @@ class UserWebserviceSubclass
         let  params : [String:String] = requestModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .unblockUser, httpMethod: .post, parameters: params, completion: completion)
     }
+    
+    class func rewardClaimInfo( profileDataModel : ProfileData  ,completion: @escaping CompletionResponse ) {
+        let  params = profileDataModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .rewardsInfo, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func rewardRedeemHistory( redeemModel : RedeemHistory  ,completion: @escaping CompletionResponse ) {
+        let  params = redeemModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .redeemHistory, httpMethod: .post, parameters: params, completion: completion)
+    }
  
+    class func rewardClaim( redeemClaim : RedeemClaim  ,completion: @escaping CompletionResponse ) {
+        let  params = redeemClaim.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .claimAmount, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func rewardRedeemList( profileDataModel : ProfileData  ,completion: @escaping CompletionResponse ) {
+        let  params = profileDataModel.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .redeemList, httpMethod: .post, parameters: params, completion: completion)
+    }
 }
 
 
@@ -232,4 +251,5 @@ class OrderWebserviceSubclass
         let  params = purchaseHistoryModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .purchaseHistory, httpMethod: .post, parameters: params, completion: completion)
     }
+
 }

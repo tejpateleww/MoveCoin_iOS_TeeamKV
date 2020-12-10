@@ -59,6 +59,8 @@ class WebService{
         //            NetworkEnvironment.headers = ["x-api-key" : strAPIKey] as! [String : String]
         //        }
         
+        
+        
         Alamofire.request(url, method: method, parameters: params as? [String : Any], encoding: URLEncoding.httpBody, headers: NetworkEnvironment.headers).validate()
             .responseJSON { (response) in
                 // LoaderClass.hideActivityIndicator()
@@ -155,6 +157,7 @@ class WebService{
     func postDataWithImage(api: ApiKey, parameter dictParams: [String: Any], image: UIImage, imageParamName: String, completion: @escaping CompletionResponse) {
         
         guard isConnected else { completion(JSON(), false, "Please check your internet"); return }
+        
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             

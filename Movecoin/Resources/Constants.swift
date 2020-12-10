@@ -44,5 +44,5 @@ let kAppID = "1483785971"
 let currency = "SAR"
 let kLocalNotificationIdentifier = "MoveCoinsEverydayLocalNotification"
 let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")
-let timeZone = TimeZone.current.abbreviation() ?? "Asia/Riyadh"
+let timeZone = TimeZone.current.abbreviation() ?? "America/Chicago"//"Asia/Riyadh"
 

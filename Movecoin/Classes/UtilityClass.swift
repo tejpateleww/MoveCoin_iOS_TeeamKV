@@ -92,17 +92,24 @@ class UtilityClass : NSObject {
     
 
     
-    class func getDate(dateString: String, dateFormate: String) -> Date {
+    class func getDate(dateString: String, dateFormate: String, currentDateFormat : String = "yyyy-MM-dd HH:mm:ss") -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" // This formate is input formated .
+        dateFormatter.timeZone = TimeZone(abbreviation: timeZone)
+        dateFormatter.dateFormat = currentDateFormat // This formate is input formated .
         let str = dateFormatter.date(from: dateString)!
         
         dateFormatter.dateFormat = dateFormate // Output Formated
         let formateDate = dateFormatter.string(from:str)
         
-        print ("Print :\(dateFormatter.date(from: formateDate))")
+        print ("Print :\(dateFormatter.date(from: formateDate) ?? Date())")
         return dateFormatter.date(from: formateDate)!
+    }
+    
+    
+    class func getTodayFromServer() -> Date
+    {
+        return self.getDate(dateString: SingletonClass.SharedInstance.serverTime ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"), dateFormate: DateFomateKeys.api)
     }
     
     // ----------------------------------------------------

@@ -13,7 +13,8 @@ import Foundation
 class ProfileData : RequestModel {
     
     var UserID : String = ""
-    
+    var user_id : String = ""
+
 }
 
 

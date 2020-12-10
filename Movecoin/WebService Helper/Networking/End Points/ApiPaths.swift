@@ -12,9 +12,9 @@ typealias NetworkRouterCompletion = ((Data?,[String:Any]?, Bool) -> ())
 
 enum NetworkEnvironment: String {
     
-    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
-    case imageURL = "https://www.movecoins.net/admin/"
-    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
+    case liveBaseUrl = "http://www.movecoins.net/admin/api/"
+    case imageURL = "http://www.movecoins.net/admin/"
+    case galleryURL = "http://www.movecoins.net/admin/assets/images/products/"
     
     
     case developmentBaseUrl = "http://15.207.107.71/admin/api/"
@@ -79,6 +79,8 @@ struct SocketApiKeys {
     static let kLng = "lng"
 }
 
+
+
 enum ApiKey: String{
     case Init = "user/init/"
     case login = "user/login"
@@ -107,6 +109,12 @@ enum ApiKey: String{
     case unblockUser = "user/unblock_user"
     case blockUser = "user/block_user"
     
+    case rewardsInfo = "User/rewards_info"
+    case redeemHistory = "User/redeem_history"
+    case claimAmount = "User/claim_amount"
+    case redeemList = "User/redeem_list"
+
+    
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"
     case categoryList = "Products/category_list"
@@ -133,4 +141,6 @@ enum ApiKey: String{
     case placeOrder = "order/add_order"
     case purchaseHistory = "Order/purchase_history"
     case transactionApplePay = "Order/apple_pay"
+    
+    
 }

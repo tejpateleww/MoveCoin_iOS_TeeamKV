@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0EF3D5C9C8DF26B946A43506 /* Pods_Movecoins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31205FDDC085471252E49B4 /* Pods_Movecoins.framework */; };
+		1815C4DA2571201A00C00710 /* BankDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1815C4D92571201A00C00710 /* BankDetailsViewController.swift */; };
 		181B3B5025664B6000940519 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 181B3B4F25664B6000940519 /* GoogleService-Info.plist */; };
+		184F82CB25814A20007B5EC5 /* RedeemLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F82C925814A20007B5EC5 /* RedeemLog.swift */; };
+		184F82CC25814A20007B5EC5 /* RedeemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F82CA25814A20007B5EC5 /* RedeemList.swift */; };
+		18937293258106B8009BF5EE /* RedeemHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937292258106B8009BF5EE /* RedeemHistory.swift */; };
+		1893729625810704009BF5EE /* RedeemClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893729525810704009BF5EE /* RedeemClaim.swift */; };
+		1893729925810AAB009BF5EE /* RedeemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893729825810AAB009BF5EE /* RedeemInfo.swift */; };
 		4600A71423278D37004A7A9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600A71323278D37004A7A9E /* AppDelegate.swift */; };
 		4600A71623278D37004A7A9E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600A71523278D37004A7A9E /* HomeViewController.swift */; };
 		4600A71923278D37004A7A9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4600A71723278D37004A7A9E /* Main.storyboard */; };
@@ -240,21 +246,14 @@
 		81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93931246EABB7005D3CF8 /* GatewayMap.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		181B3B4D25664A0600940519 /* Copy Files */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			name = "Copy Files";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		1815C4D92571201A00C00710 /* BankDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankDetailsViewController.swift; sourceTree = "<group>"; };
 		181B3B4F25664B6000940519 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		184F82C925814A20007B5EC5 /* RedeemLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemLog.swift; sourceTree = "<group>"; };
+		184F82CA25814A20007B5EC5 /* RedeemList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemList.swift; sourceTree = "<group>"; };
+		18937292258106B8009BF5EE /* RedeemHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemHistory.swift; sourceTree = "<group>"; };
+		1893729525810704009BF5EE /* RedeemClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemClaim.swift; sourceTree = "<group>"; };
+		1893729825810AAB009BF5EE /* RedeemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemInfo.swift; sourceTree = "<group>"; };
 		22FB7FDCCCC2333B20539610 /* Pods-Movecoins.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoins.debug.xcconfig"; path = "Target Support Files/Pods-Movecoins/Pods-Movecoins.debug.xcconfig"; sourceTree = "<group>"; };
 		4600A71023278D37004A7A9E /* Movecoins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movecoins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4600A71323278D37004A7A9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -525,6 +524,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184F82C825814A20007B5EC5 /* Reedem List */ = {
+			isa = PBXGroup;
+			children = (
+				184F82C925814A20007B5EC5 /* RedeemLog.swift */,
+				184F82CA25814A20007B5EC5 /* RedeemList.swift */,
+			);
+			path = "Reedem List";
+			sourceTree = "<group>";
+		};
 		28D254C20CB1D48D8A390266 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -819,6 +827,8 @@
 				46D2569C23DEBF7300C50B77 /* ChatClearModel.swift */,
 				46A76A3C23AA2E4E009F5427 /* SendMessage.swift */,
 				462D24F023B32FF40050C3F0 /* ProfileData.swift */,
+				18937292258106B8009BF5EE /* RedeemHistory.swift */,
+				1893729525810704009BF5EE /* RedeemClaim.swift */,
 				46E468F1237D1CA70068701E /* EditProfile.swift */,
 				46B2E441237A7C2800540D27 /* ChangePassword.swift */,
 				461DC26423793AB90092AC82 /* Logout.swift */,
@@ -846,6 +856,7 @@
 				460C049F239A294600D674D7 /* Wallet History */,
 				460C049A239A100E00D674D7 /* Coins Earning */,
 				464F49332398EF1E00D803D6 /* Steps History */,
+				184F82C825814A20007B5EC5 /* Reedem List */,
 				46E69BED238FC54C00685EB8 /* Invite Friends */,
 			);
 			path = "Response Models";
@@ -1143,6 +1154,7 @@
 			children = (
 				46DF729423504B2F005005B1 /* InviteViewController.swift */,
 				46DF72962350601F005005B1 /* InviteFriendsViewController.swift */,
+				1815C4D92571201A00C00710 /* BankDetailsViewController.swift */,
 				46DF729823506042005005B1 /* FindFriendsViewController.swift */,
 				46DF729A2350605E005005B1 /* FacebookViewController.swift */,
 				64EE612C24E3C2990036F42B /* SearchViewController.swift */,
@@ -1161,6 +1173,7 @@
 		46E69BED238FC54C00685EB8 /* Invite Friends */ = {
 			isa = PBXGroup;
 			children = (
+				1893729825810AAB009BF5EE /* RedeemInfo.swift */,
 				46E69BEE238FC5E400685EB8 /* InviteFriendsResponseModel.swift */,
 				46E69BF0238FC5E500685EB8 /* NotRegistered.swift */,
 				46E69BEF238FC5E500685EB8 /* Registered.swift */,
@@ -1275,7 +1288,6 @@
 				4600A70E23278D37004A7A9E /* Resources */,
 				D1F5A5CA12B133217CF010DB /* [CP] Embed Pods Frameworks */,
 				181B3AE42566424300940519 /* ShellScript */,
-				181B3B4D25664A0600940519 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -1500,17 +1512,21 @@
 				46AB0D7C23B5C9B90085AC4C /* UserDetail.swift in Sources */,
 				81C93936246EABB7005D3CF8 /* GatewayResult.swift in Sources */,
 				81C9393B246EABB7005D3CF8 /* Gateway3DSecureViewController.swift in Sources */,
+				1893729925810AAB009BF5EE /* RedeemInfo.swift in Sources */,
 				468F86D22350C2E4006DC7D1 /* ChatListTableViewCell.swift in Sources */,
 				81C93935246EABB7005D3CF8 /* GatewayError.swift in Sources */,
 				46F88CA72356F855003E24CC /* UIButton + Extension.swift in Sources */,
+				18937293258106B8009BF5EE /* RedeemHistory.swift in Sources */,
 				467014642348629400556CBB /* WalletTableViewCell.swift in Sources */,
 				462D24E323B32F310050C3F0 /* BeautifulBarEntry.swift in Sources */,
+				184F82CC25814A20007B5EC5 /* RedeemList.swift in Sources */,
 				46138046232918DD007C3FA4 /* ForgotPasswordViewController.swift in Sources */,
 				46F88CA923570408003E24CC /* PurchaseHistoryViewController.swift in Sources */,
 				461DC257237931740092AC82 /* ApiPaths.swift in Sources */,
 				466D4357238D4424004B9712 /* UserDetailModel.swift in Sources */,
 				46EA878F234B132A0082C694 /* TotalStepsViewController.swift in Sources */,
 				81892EFF2473EDBF006F2113 /* Transaction.swift in Sources */,
+				1893729625810704009BF5EE /* RedeemClaim.swift in Sources */,
 				464AE07423B49B3300826BA7 /* SocketProtocol.swift in Sources */,
 				46DF729D23506849005005B1 /* FindFriendTableViewCell.swift in Sources */,
 				4658FB5723B237D40014F7F2 /* ReceiverArr.swift in Sources */,
@@ -1541,6 +1557,7 @@
 				464AE07F23B4C81A00826BA7 /* NearByUserDetailModel.swift in Sources */,
 				462D24DE23B32F310050C3F0 /* BasicBarChartPresenter.swift in Sources */,
 				6864A0D2256E1E7F008EECAF /* TotalRedeemVC.swift in Sources */,
+				184F82CB25814A20007B5EC5 /* RedeemLog.swift in Sources */,
 				64EE613524E3F3CB0036F42B /* SearchFriendResponseModel.swift in Sources */,
 				462D24E023B32F310050C3F0 /* BasicBarChart.swift in Sources */,
 				46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */,
@@ -1585,6 +1602,7 @@
 				46FA2C8223A123A9000A3B9B /* AddCardResponseModel.swift in Sources */,
 				468F86CD2350AB1D006DC7D1 /* SettingsViewController.swift in Sources */,
 				4652AF5F239F9C4200B2E775 /* ActionOnFriendRequestModel.swift in Sources */,
+				1815C4DA2571201A00C00710 /* BankDetailsViewController.swift in Sources */,
 				46374659239E7443008A3EE7 /* FriendsClass.swift in Sources */,
 				464AE07623B49DAA00826BA7 /* SocketCallExtension.swift in Sources */,
 				4631E9AD2327D1870088B49F /* WelcomeViewController.swift in Sources */,
@@ -1836,7 +1854,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.8.5;
+				CURRENT_PROJECT_VERSION = 1.8.6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1859,7 +1877,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.8.5;
+				CURRENT_PROJECT_VERSION = 1.8.6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;

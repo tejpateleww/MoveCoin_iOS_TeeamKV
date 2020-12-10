@@ -112,10 +112,12 @@ class SignupViewController: UIViewController {
     func setDummy(){
         txtEmail.text = "rahul@gmail.com"
         txtMobile.text = "1234567121"
-        txtFullName.text = "rahul gmail"
-        txtNickname.text = "prince"
-        txtPassword.text = "123456"
-        txtConfirmPassword.text = "123456"
+        txtFullName.text = "Rahul Patel"
+        txtNickname.text = "rahul"
+        txtPassword.text = "12345678"
+        txtConfirmPassword.text = "12345678"
+        txtReferral.text = "mvcn7rah"
+        
     }
     
     @objc func profileViewTapped(_ sender: UITapGestureRecognizer) {

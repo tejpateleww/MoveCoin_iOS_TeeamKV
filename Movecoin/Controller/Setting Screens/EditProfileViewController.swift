@@ -72,6 +72,11 @@ class EditProfileViewController: UIViewController {
         pickerView.delegate = self
         datePickerView.datePickerMode = .date
         datePickerView.maximumDate = Date()
+        if #available(iOS 13.4, *) {
+            datePickerView.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
         datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
         
         txtNickName.delegate = self

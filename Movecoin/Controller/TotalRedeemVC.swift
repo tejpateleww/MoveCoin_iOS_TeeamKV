@@ -25,26 +25,18 @@ class TotalRedeemVC: UIViewController {
     
     //MARK: FileGlobals
     var refreshRedeem = UIRefreshControl()
-    var arrDummy = [dummyData]()
+    var arrRedeemList = [RedeemLog]()
     
     //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefresh()
-        arrDummy.append(dummyData(date: "05/11/2020", amount: "70.00 SAR"))
-        arrDummy.append(dummyData(date: "21/10/2020", amount: "50.00 SAR"))
-        arrDummy.append(dummyData(date: "01/08/2020", amount: "150.00 SAR"))
-        arrDummy.append(dummyData(date: "22/12/2019", amount: "300.00 SAR"))
-        arrDummy.append(dummyData(date: "31/11/2019", amount: "200.00 SAR"))
-        arrDummy.append(dummyData(date: "04/10/2019", amount: "100.00 SAR"))
-        arrDummy.append(dummyData(date: "08/06/2019", amount: "10.00 SAR"))
-        arrDummy.append(dummyData(date: "24/05/2020", amount: "100.00 SAR"))
-        arrDummy.append(dummyData(date: "21/04/2019", amount: "50.00 SAR"))
+        webserviceCallForRedeemList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(title: "Total Redeem")
+        self.navigationBarSetUp(title: "Total Redeem".localized)
     }
     
     //MARK: custom methods
@@ -54,8 +46,29 @@ class TotalRedeemVC: UIViewController {
         refreshRedeem.addTarget(self, action: #selector(refreshTableRedeem), for: .valueChanged)
     }
     @objc func refreshTableRedeem(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        webserviceCallForRedeemList()
+    }
+    
+    func webserviceCallForRedeemList()
+    {
+        let profileData = ProfileData()
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+
+        profileData.user_id = id
+        UserWebserviceSubclass.rewardRedeemList(profileDataModel: profileData) { (json, status, res) in
             self.refreshRedeem.endRefreshing()
+
+            if status{
+                let redeemListData = RedeemList(fromJson: json)
+                self.arrRedeemList = redeemListData.redeemLog
+                DispatchQueue.main.async {
+                    self.tblRedeem.reloadData()
+                }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
         }
     }
 }
@@ -63,19 +76,44 @@ class TotalRedeemVC: UIViewController {
 //MARK: tableview Delegate-Datasource
 extension TotalRedeemVC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrDummy.count
+        if(arrRedeemList.count == 0)
+        {
+            return 1
+        }
+        return arrRedeemList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RedeemCell", for: indexPath) as! RedeemCell
-        let obj = arrDummy[indexPath.row]
-        cell.lblDate.text = obj.date
-        cell.lblAmount.text = obj.amount
-        return cell
+        if(arrRedeemList.count == 0)
+        {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            cell.backgroundColor = .clear
+            cell.textLabel?.text = "No data found".localized
+            cell.textLabel?.textColor = .white
+            cell.textLabel?.font = UIFont.bold(ofSize: 30)
+            cell.textLabel?.lineBreakMode = .byWordWrapping
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textAlignment = .center
+            cell.selectionStyle = .none
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RedeemCell", for: indexPath) as! RedeemCell
+            let obj = arrRedeemList[indexPath.row]
+            let date = UtilityClass.changeDateFormateFrom(dateString: obj.createdAt, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.apiDOB)
+            cell.lblDate.text = date
+            cell.lblAmount.text = "\(obj.sar ?? "0") " + "SAR".localized
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return arrRedeemList.count > 0 ? 70 : tableView.frame.height
     }
 }
 

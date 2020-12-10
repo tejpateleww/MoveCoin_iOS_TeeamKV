@@ -9,6 +9,29 @@
 
 // Welcome Screen
 
+"Get This Offers With 100 Invites or More" = "أحصل على هذا العرض مقابل ١٠٠ دعوة أو أكثر";
+//"100 Invites or More" = "١٠٠ دعوة  أو أكثر";
+"Win 1 SAR for 1 Invitation" = "اربح ريال لكل دعوة";
+"You have invited" = "قمت بدعوة";
+"You have won" = "لقد ربحت";
+"Confirm" = "تأكيد";
+"Claim Now" = "أطلب الآن";
+"Your reward in process" = "مكافأتك تحت المعالجة";
+"You already claimed rewards for this month" = "تم طلب مكافأة هذا الشهر مسبقاً";
+"You reached redeemed maximum amount 1000 SAR" = "لقد وصلت للحد الأعلى المبلغ ١٠٠٠ ريال سعودي ";
+"Your Reward in Process" = "مكافأتك تحت المعالجة";
+"Bank Information" = "المعلومات البنكية";
+"Account Owner" = "اسم مالك الحساب";
+"IBAN Bank" = "الآيبان البنكي";
+"Name of the Bank" = "إسم البنك";
+"Submit" = "إرسال";
+"SUBMIT" = "إرسال";
+"*minimum numbers of invitations are (100) invites" = "*الحد الأدنى للدعوات هو ١٠٠ دعوة.";
+"*maximum numbers of invitations are (1000) invites once time for each user." = "*الحد الأعلى هو ١٠٠٠ دعوة لمرة واحدة فقط لكل مستخدم.";
+"Total Redeem" = "Total Redeem";
+
+
+
 
 "Sign in" = "تسجيل دخول";
 "Sign Up" = "تسجيل جديد";

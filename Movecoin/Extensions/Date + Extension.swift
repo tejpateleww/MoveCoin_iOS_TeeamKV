@@ -76,9 +76,16 @@ extension Date {
         return end - start
     }
     
+    
+    /// Returns the amount of days from another date
+      func days(from date: Date) -> Int {
+          return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
+      }
+    
     func getFormattedDate(dateFormate: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz" // This formate is input formated .
         let str = dateFormatter.string(from: self)
         
@@ -252,7 +259,7 @@ extension Date {
         // change to a readable time format and change to local time zone
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
-        dateFormatter.timeZone = NSTimeZone.local
+        dateFormatter.timeZone = TimeZone(abbreviation: timeZone)
         let timeStamp = dateFormatter.string(from: Date())
         
         return timeStamp

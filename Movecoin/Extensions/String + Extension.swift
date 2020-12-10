@@ -98,7 +98,7 @@ extension String {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = fromFormate
         dateFormatter.calendar = NSCalendar.current
-        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)
 
         guard let dt = dateFormatter.date(from: self) else { return "" }
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -114,7 +114,7 @@ extension String {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
 
         guard let dt = dateFormatter.date(from: self) else { return "" }
-        dateFormatter.timeZone = TimeZone.current //TimeZone(identifier: "Asia/Riyadh")//
+        dateFormatter.timeZone = TimeZone(identifier: timeZone) //TimeZone(identifier: "Asia/Riyadh")//
         dateFormatter.dateFormat = toFormate
 
         return dateFormatter.string(from: dt)

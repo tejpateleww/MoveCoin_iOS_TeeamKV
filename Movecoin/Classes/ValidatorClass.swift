@@ -235,7 +235,7 @@ struct CardHolderValidator: ValidatorConvertible {
 struct CardNumberValidator: ValidatorConvertible {
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
         guard value != "" else {throw ValidationError("Please enter".localized + " \(txtFieldName)")}
-        guard value.count >= 19 else { throw ValidationError("Card number must have at least 16 characters".localized) }
+        guard value.count >= 19 else { throw ValidationError("Card number must have at least 14 characters".localized) }
         let v = CreditCardValidator()
         guard v.validate(string: value) else { throw ValidationError("Card number is invalid".localized) }
 

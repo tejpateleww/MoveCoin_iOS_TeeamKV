@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     var window: UIWindow?
     let locationManager = CLLocationManager()
     let notificationCenter = UNUserNotificationCenter.current()
+    let healthKitStore:HKHealthStore = HKHealthStore()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -36,9 +37,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             window?.overrideUserInterfaceStyle = .light
         }
         
+        
+        
+        #if DEBUG
+        //                return .developmentBaseUrl
+        self.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                print("HealthKit authorization received.")
+            }
+            else {
+                print("HealthKit authorization denied!")
+                if error != nil {
+                    print("\(error ?? NSError())")
+                }
+            }
+        }
+        
+        #else
+        //                return .liveBaseUrl
+        #endif
+        
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         // Client MoveCoins Key and Secret
-//        TWTRTwitter.sharedInstance().start(withConsumerKey: "MOCMQEYul9oCmCmYDXk8Q7nVN", consumerSecret: "Nv7qw5isiL2TrRQgQafRkJieHSbJyPnNTttaHVPKu4zEQBeXzX")
+        //        TWTRTwitter.sharedInstance().start(withConsumerKey: "MOCMQEYul9oCmCmYDXk8Q7nVN", consumerSecret: "Nv7qw5isiL2TrRQgQafRkJieHSbJyPnNTttaHVPKu4zEQBeXzX")
         
         let status = CMPedometer.authorizationStatus()
         print("Permission : ",status.rawValue)
@@ -54,13 +75,184 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         locationPermission()
         
         configureNotification()
-//        Fabric.with([Crashlytics.self])
+        //        Fabric.with([Crashlytics.self])
         
         _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
         
         return true
     }
     
+    
+    
+    func startObservingHeightChanges() {
+        
+        let sampleType =  HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)! as HKQuantityType
+        
+        let query: HKObserverQuery = HKObserverQuery(sampleType: sampleType, predicate: nil) { (query, completionHandler, error) in
+            if error != nil {
+
+                // Perform Proper Error Handling Here...
+                print("*** An error occured while setting up the stepCount observer. \(error?.localizedDescription ?? "") ***")
+//                abort()
+            }
+            else
+            {
+                self.heightChangedHandler(query: query, completionHandler: completionHandler, error: error as NSError?)
+            }
+
+            // Take whatever steps are necessary to update your app's data and UI
+            // This may involve executing other queries
+//            self.updateDailyStepCount()
+
+            // If you have subscribed for background updates you must call the completion handler here.
+            // completionHandler()
+        }//HKObserverQuery(sampleType: sampleType, predicate: nil, updateHandler: self.heightChanged)
+        
+        healthKitStore.execute(query)
+        
+        healthKitStore.enableBackgroundDelivery(for: sampleType, frequency: .hourly) { (success, error) in
+            if success{
+                print("Enabled background delivery of weight changes")
+            } else {
+                if let theError = error{
+                    print("Failed to enable background delivery of weight changes. ")
+                    print("Error = \(theError)")
+                }
+            }
+        }
+    }
+    
+    
+    func heightChangedHandler(query: HKObserverQuery!, completionHandler: HKObserverQueryCompletionHandler!, error: NSError!) {
+        
+      
+        let healthStore = HKHealthStore()
+
+        let now = Date()//UtilityClass.getTodayFromServer()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        
+        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+
+
+        let sample = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+//                completion(0.0)
+                print(error?.localizedDescription ?? "-")
+                return
+            }
+            self.localNotification(value: "\(sum.doubleValue(for: HKUnit.count()))")
+        }
+        healthStore.execute(sample)
+
+       
+        completionHandler()
+    }
+    
+    func localNotification(value : String)
+    {
+        //get the notification center
+        let center =  UNUserNotificationCenter.current()
+
+        //create the content for the notification
+        let content = UNMutableNotificationContent()
+        
+        content.title = "Today's Steps \(value)"
+        content.subtitle = "Keep it up"
+//        content.body = "Its lunch time at the park, please join us for a dinosaur feeding"
+        content.sound = UNNotificationSound.default
+        //notification trigger can be based on time, calendar or location
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:2.0, repeats: false)
+
+        //create request to display
+        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
+
+        //add request to notification center
+        center.add(request) { (error) in
+            if error != nil {
+                print("error \(String(describing: error))")
+            }
+        }
+        
+        webserviceforUpdateStepsCount(stepsCount: value)
+    }
+    
+    
+    func webserviceforUpdateStepsCount(stepsCount : String){
+        
+        let now = Date()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let dateStr = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        var strParam = String()
+//        let deviceName = UIDevice.current.name
+        var uid = "uuid"
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+//            print(uuid)
+            uid = uuid
+        }
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)/\(uid)/\(dateStr)"
+        
+        guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
+        
+        UserWebserviceSubclass.getAPI(strURL: urlString) { (json, status, res) in
+            print(status)
+            
+            if status{
+//                DispatchQueue.main.async {
+//                    self.lblTotalSteps.text = json["steps"].stringValue
+                    //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
+//                }
+            }else{
+//                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    
+    func authorizeHealthKit(completion: ((_ success:Bool, _ error:NSError?) -> Void)!) {
+   
+        // 1. Set the types you want to read from HK Store
+        let healthKitTypesToRead = [
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount),
+        ] as! [HKObjectType]
+        
+        // 2. Set the types you want to write to HK Store
+        let healthKitTypesToWrite = [
+            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount),
+        ] as! [HKSampleType]
+        
+        
+        
+        // 3. If the store is not available (for instance, iPad) return an error and don't go on.
+        if !HKHealthStore.isHealthDataAvailable() {
+            let error = NSError(domain: "any.domain.com", code: 2, userInfo: [NSLocalizedDescriptionKey:"HealthKit is not available in this Device"])
+            
+            if( completion != nil ) {
+                completion(false, error)
+            }
+            return;
+        }
+        
+        // 4.  Request HealthKit authorization
+        
+        healthKitStore.requestAuthorization(toShare: nil, read: Set(healthKitTypesToRead)) { (success, error) in
+            if( completion != nil ) {
+                
+                
+                DispatchQueue.main.async {
+                    self.startObservingHeightChanges()
+                }
+                completion(success,error as NSError?)
+                
+            }
+        }
+ 
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         
     }
@@ -93,11 +285,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        let handled = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        _ = ApplicationDelegate.shared.application(application, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         // Add any custom logic here.
         
-//        let access = TWTRTwitter.sharedInstance().application(application, open: url, options: options)
-       
+        //        let access = TWTRTwitter.sharedInstance().application(application, open: url, options: options)
+        
         return true
     }
     
@@ -153,7 +345,7 @@ extension AppDelegate {
     
     func GoToHome() {
         // For localization
-       UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
+        UIView.appearance().semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         
         let storyborad = UIStoryboard(name: "Main", bundle: nil)
         let destination = storyborad.instantiateViewController(withIdentifier: TabViewController.className) as! TabViewController
@@ -169,7 +361,7 @@ extension AppDelegate {
     }
     
     func GoToLogin() {
-       
+        
         let storyborad = UIStoryboard(name: "Login", bundle: nil)
         let Login = storyborad.instantiateViewController(withIdentifier: WelcomeViewController.className) as! WelcomeViewController
         let NavHomeVC = UINavigationController(rootViewController: Login)
@@ -178,7 +370,7 @@ extension AppDelegate {
     
     func GoToLogout() {
         SocketIOManager.shared.closeConnection()
-       // Reset UserDefaults
+        // Reset UserDefaults
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()
         dictionary.keys.forEach { key in
@@ -251,7 +443,7 @@ extension AppDelegate {
     func acceptFriedRequestNotificationHandle(){
         if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
             if let vc : FriendsViewController = (vc as? FriendsViewController) {
-    
+                
                 vc.webserviceForFriendsList(isLoading: true)
             }else {
                 
@@ -291,7 +483,7 @@ extension AppDelegate {
         controller.isFromNotification = true
         (self.window?.rootViewController as? UINavigationController)?.pushViewController(controller, animated: false)
     }
-   
+    
     func notificationEnableDisable(notification : String){
         if notification == "0" {
             UIApplication.shared.unregisterForRemoteNotifications()
@@ -318,7 +510,7 @@ extension AppDelegate {
     func emitSocket_UserConnect(){
         let param = [
             SocketApiKeys.KUserId : SingletonClass.SharedInstance.userData?.iD ?? "" as Any
-            ] as [String : Any]
+        ] as [String : Any]
         SocketIOManager.shared.socketEmit(for: SocketApiKeys.kConnectUser, with: param)
     }
     
@@ -353,21 +545,21 @@ extension AppDelegate {
         //Local Notification for everyday at 9 am
         // TODO: Uncomment for Local Notification
         
-/*        let content = UNMutableNotificationContent()
-        content.title = kAppName.localized
-        content.body = "Don't forget to walk everyday and earn ".localized + kAppName.localized
-        
-        var dateComponents = DateComponents()
-        dateComponents.hour = 9
-        dateComponents.minute = 00
-        //        let triggerInputForEverydayRepeat = Calendar.current.dateComponents([.day], from: Date())
-        let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: kLocalNotificationIdentifier, content: content, trigger: trigger)
-        let unc = UNUserNotificationCenter.current()
-        unc.add(request, withCompletionHandler: { (error) in
-            print(error?.localizedDescription ?? "")
-        })
-*/
+        /*        let content = UNMutableNotificationContent()
+         content.title = kAppName.localized
+         content.body = "Don't forget to walk everyday and earn ".localized + kAppName.localized
+         
+         var dateComponents = DateComponents()
+         dateComponents.hour = 9
+         dateComponents.minute = 00
+         //        let triggerInputForEverydayRepeat = Calendar.current.dateComponents([.day], from: Date())
+         let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
+         let request = UNNotificationRequest(identifier: kLocalNotificationIdentifier, content: content, trigger: trigger)
+         let unc = UNUserNotificationCenter.current()
+         unc.add(request, withCompletionHandler: { (error) in
+         print(error?.localizedDescription ?? "")
+         })
+         */
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -395,7 +587,7 @@ extension AppDelegate {
         //        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
         if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
-             print("KEY : ",key)
+            print("KEY : ",key)
         }
         
         print("USER INFo : ",userInfo)
@@ -522,7 +714,7 @@ extension AppDelegate {
             {
                 topViewController.dismiss(animated: true) {
                     
-//                    UtilityClass.showAlert(Message: "Purchase Successfull")
+                    //                    UtilityClass.showAlert(Message: "Purchase Successfull")
                     UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull".localized, ButtonTitle: "OK".localized) {
                         UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
                     }
@@ -559,5 +751,8 @@ extension AppDelegate {
         
         SingletonClass.SharedInstance.DeviceToken = fcmToken
         UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
+        
+        
+        
     }
 }

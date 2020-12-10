@@ -408,11 +408,13 @@ extension LoginViewController {
         
         UtilityClass.showHUD()
         
+        
         UserWebserviceSubclass.login(loginModel: loginDic) { (json, status, res) in
             
             UtilityClass.hideHUD()
            
             if status{
+                
                 let loginResponseModel = LoginResponseModel(fromJson: json)
                 UserDefaults.standard.set(loginResponseModel.xApiKey, forKey: UserDefaultKeys.kX_API_KEY)
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsLogedIn)
