@@ -287,21 +287,42 @@ class HomeViewController: UIViewController {
     func startCountingSteps(){
         if CMPedometer.isStepCountingAvailable(){
             
-            pedoMeter.startUpdates(from: Date()) { (data, error) in
+//            pedoMeter.startUpdates(from: Date()) { (data, error) in
+            pedoMeter.startUpdates(from: UtilityClass.getTodayFromServer()) { (data, error) in
                 print(data ?? 0)
                 guard let activityData = data else {
                     return
                 }
                 DispatchQueue.main.async {
-                    if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
-                        let total = counts + activityData.numberOfSteps.intValue
-                        self.lblTodaysStepCount.text = "\(total)"
-                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-                        print("Total:\(total)")
-                    }else {
+                    let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
+                    let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
+                    let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
+                    
+                    if lastUpdatedDate == currentDate {
+                        if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
+                            let total = counts + activityData.numberOfSteps.intValue
+                            self.lblTodaysStepCount.text = "\(total)"
+                            SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                            print("Today's total steps :\(total)")
+                        }else {
+                            print("Today's previous steps are not there  : \(activityData.numberOfSteps.stringValue)")
+                            self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+                            SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                        }
+                    } else {
+                        print("date is different : \(activityData.numberOfSteps.stringValue)")
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                         SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     }
+//                    if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
+//                        let total = counts + activityData.numberOfSteps.intValue
+//                        self.lblTodaysStepCount.text = "\(total)"
+//                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+//                        print("Total:\(total)")
+//                    }else {
+//                        self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+//                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+//                    }
                     
                     self.webserviceforAPPInit()
                 }
@@ -460,12 +481,12 @@ extension HomeViewController {
 //            return
 //        }
         
-        
         let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())
         guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
+        
         if lastUpdatedStepsAt.isBlank {
         }
-        var statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)
+        var statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB, currentDateFormat: DateFomateKeys.apiDOB)
         let now = UtilityClass.getTodayFromServer()
         let days = now.days(from: statDate )//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate ?? Date())
         

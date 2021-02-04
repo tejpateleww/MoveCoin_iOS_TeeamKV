@@ -112,6 +112,11 @@ class UtilityClass : NSObject {
         return self.getDate(dateString: SingletonClass.SharedInstance.serverTime ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"), dateFormate: DateFomateKeys.api)
     }
     
+    class func getDateFromDateString(dateString : String) -> Date
+    {
+        return self.getDate(dateString: dateString , dateFormate: DateFomateKeys.apiDOB, currentDateFormat: DateFomateKeys.apiDOB)
+    }
+    
     // ----------------------------------------------------
     //MARK:- --------- Alert Methods ---------
     // ----------------------------------------------------
