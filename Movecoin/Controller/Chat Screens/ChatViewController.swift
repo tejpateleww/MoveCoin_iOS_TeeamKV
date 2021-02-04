@@ -302,7 +302,7 @@ extension ChatViewController {
             if status {
                 let responseModel = ChatHistoryResponseModel(fromJson: json)
                 
-                self.navigationBarSetUp(title: responseModel.receiverArr.fullName ?? "")
+                self.navigationBarSetUp(title: responseModel.receiverArr.nickname ?? "")
                 self.profileImg.kf.setImage(with: URL(string: responseModel.receiverArr.profilePicture ?? ""), placeholder:  UIImage(named: "m-logo"), options: .none, progressBlock: nil) { (result) in
                 }
                 if responseModel.isFriend == 0 {

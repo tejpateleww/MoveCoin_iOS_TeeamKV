@@ -67,6 +67,7 @@ class ChatHistoryResponseModel : Codable {
         if isFriend != nil{
             dictionary["is_friend"] = isFriend
         }
+    
         return dictionary
     }
     
@@ -81,6 +82,7 @@ class ChatHistoryResponseModel : Codable {
         status = aDecoder.decodeObject(forKey: "status") as? Bool
         receiverArr = aDecoder.decodeObject(forKey: "receiver_arr") as? ReceiverArr
         isFriend = aDecoder.decodeObject(forKey: "is_friend") as? Int
+       
     }
     
     /**
@@ -104,6 +106,7 @@ class ChatHistoryResponseModel : Codable {
         if isFriend != nil{
             aCoder.encode(isFriend, forKey: "is_friend")
         }
+      
     }
     
 }

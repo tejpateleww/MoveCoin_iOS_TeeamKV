@@ -41,8 +41,9 @@ let TransparentColor : UIColor = UIColor.init(white: 1.0, alpha: 0.23)
 
 let kAppName = "MoveCoins"
 let kAppID = "1483785971"
+let appURL = "itms-apps://itunes.apple.com/app/apple-store/id\(kAppID)?mt=8"
 let currency = "SAR"
 let kLocalNotificationIdentifier = "MoveCoinsEverydayLocalNotification"
 let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")
-let timeZone = TimeZone.current.abbreviation() ?? "America/Chicago"//"Asia/Riyadh"
+let timeZone = TimeZone.current.abbreviation() ?? "Asia/Riyadh"
 

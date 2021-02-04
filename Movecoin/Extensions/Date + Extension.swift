@@ -34,7 +34,7 @@ extension Date {
     }
     
     var yesterday: Date {
-        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
     }
     var tomorrow: Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: noon)!

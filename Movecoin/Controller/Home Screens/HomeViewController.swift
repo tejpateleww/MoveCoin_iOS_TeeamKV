@@ -219,7 +219,7 @@ class HomeViewController: UIViewController {
             print("Now Date : \(now.getFormattedDate(dateFormate: DateFomateKeys.api))")
 
             let days = now.days(from: statDate)//interval(ofComponent: .day, fromDate: statDate)//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate )
-            if days > 1 {                
+            if days >= 1 {
                 getRemainingStepsFromHealthKit { (steps) in
                     print("Previous Steps : ",steps)
                     
@@ -302,8 +302,32 @@ class HomeViewController: UIViewController {
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                         SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     }
-                    self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0", dateStr: self.queryDate)
+                    
+                    self.webserviceforAPPInit()
                 }
+            }
+       	 }
+    }
+    
+    
+    func webserviceforAPPInit(){
+        
+        var strParam = String()
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(status)
+            if status{
+                let initResponseModel = InitResponse(fromJson: json)
+                SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
+                let now = UtilityClass.getTodayFromServer()
+                let startOfDay = Calendar.current.startOfDay(for: now)
+                self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
+                self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0", dateStr: self.queryDate)
+
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
@@ -335,10 +359,9 @@ class HomeViewController: UIViewController {
     func getRemainingStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         guard let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return  completion(0.0) }
         
-        let lastUpdatedDate = UtilityClass.getDate(dateString: SingletonClass.SharedInstance.serverTime ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"), dateFormate: DateFomateKeys.api)//Date()
+        var lastUpdatedDate = UtilityClass.getDate(dateString: SingletonClass.SharedInstance.serverTime ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"), dateFormate: DateFomateKeys.api)//Date()
         let now = UtilityClass.getTodayFromServer()
         
-        let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())
         guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
         if lastUpdatedStepsAt.isBlank {
             completion(0.0)
@@ -353,10 +376,11 @@ class HomeViewController: UIViewController {
         
         var statDate = dateFormatter.date(from: lastUpdatedStepsAt)
         let days = now.days(from: statDate ?? Date())//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate ?? Date())
-        
+        let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())
         if days > 7 {
             statDate = lastWeekDate?.startOfDay ?? Date()
         }
+        lastUpdatedDate = lastUpdatedDate.startOfDay - 1
 
         print("-------------------------------------")
         print("-- EndDate in Local : \(statDate?.getFormattedDate(dateFormate: DateFomateKeys.api) ?? "-")")
@@ -432,24 +456,37 @@ extension HomeViewController {
             return
         }
         
-        guard let lastDate = SingletonClass.SharedInstance.lastUpdatedStepsAt else {
-            return
+//        guard let lastDate = SingletonClass.SharedInstance.lastUpdatedStepsAt else {
+//            return
+//        }
+        
+        
+        let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())
+        guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
+        if lastUpdatedStepsAt.isBlank {
+        }
+        var statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)
+        let now = UtilityClass.getTodayFromServer()
+        let days = now.days(from: statDate )//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate ?? Date())
+        
+        if days > 7 {
+            statDate = lastWeekDate?.startOfDay ?? Date()
         }
         
         let model = ConvertStepsToCoinModel()
-        model.previous_date = lastDate
+        model.previous_date = statDate.getFormattedDate(dateFormate: DateFomateKeys.apiDOB)//ToLocalStringWithFormat(dateFormat: DateFomateKeys.apiDOB)
         model.steps = stepsCount
         model.user_id = id
         
         UserWebserviceSubclass.convertStepsToCoin(StepToCoinModel: model) { (json, status, res) in
             print(status)
-            
+
             if status{
                 print("convert steps to coins api successfully run")
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
-            
+
             self.getTodaysSteps()
         }
     }

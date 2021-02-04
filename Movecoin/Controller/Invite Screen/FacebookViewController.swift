@@ -98,7 +98,7 @@ class FacebookViewController: UIViewController {
     func getFBUserData() {
         
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email, id"
+        parameters["fields"] = "first_name, last_name, email, id, picture.type(large),friends"
         
         GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
             if error == nil {
@@ -125,11 +125,11 @@ class FacebookViewController: UIViewController {
         self.getFBfriendsArray = []
         
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email, id"
+        parameters["fields"] = "name,email,id,friends{first_name,last_name}"
         
-        guard let fbID = UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) else { return }
+//        guard let fbID = UserDefaults.standard.string(forKey: UserDefaultKeys.kFacebookID) else { return }
 
-        let request = GraphRequest(graphPath: "/\(fbID)/friends", parameters: parameters as! [String : Any], httpMethod: .get)
+        let request = GraphRequest(graphPath: "me", parameters: parameters as! [String : Any], httpMethod: .get)
         request.start(completionHandler: { connection, result, error in
             // Insert your code here
             print("Friends Result: \(String(describing: result))")
@@ -141,8 +141,8 @@ class FacebookViewController: UIViewController {
                 return
             }
             
-            guard let resultData = result else { return }
-            let resultdict = resultData as! [String : Any]
+            guard let resultData = result as? [String : Any] else { return }
+            let resultdict = resultData["friends"] as! [String : Any]
             print("Result Dict: \(resultdict)")
             
             let friendsArray = resultdict["data"] as! NSArray

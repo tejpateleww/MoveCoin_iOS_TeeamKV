@@ -39,23 +39,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         
         
-        #if DEBUG
-        //                return .developmentBaseUrl
-        self.authorizeHealthKit { (authorized,  error) -> Void in
-            if authorized {
-                print("HealthKit authorization received.")
-            }
-            else {
-                print("HealthKit authorization denied!")
-                if error != nil {
-                    print("\(error ?? NSError())")
-                }
-            }
-        }
-        
-        #else
-        //                return .liveBaseUrl
-        #endif
+//        #if DEBUG
+//        //                return .developmentBaseUrl
+//        self.authorizeHealthKit { (authorized,  error) -> Void in
+//            if authorized {
+//                print("HealthKit authorization received.")
+//            }
+//            else {
+//                print("HealthKit authorization denied!")
+//                if error != nil {
+//                    print("\(error ?? NSError())")
+//                }
+//            }
+//        }
+//
+//        #else
+//        //                return .liveBaseUrl
+//        #endif
         
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         // Client MoveCoins Key and Secret
@@ -245,7 +245,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
                 
                 
                 DispatchQueue.main.async {
-                    self.startObservingHeightChanges()
+//                    self.startObservingHeightChanges()
                 }
                 completion(success,error as NSError?)
                 
@@ -611,10 +611,13 @@ extension AppDelegate {
                                 if senderID == vc.receiverID {
                                     vc.webserviceForChatHistory(isLoading: false)
                                 } else {
-                                    if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
-                                        vc.navigationController?.popViewController(animated: false)
-                                        chatListVC.ChatFromNotification(dict: dic)
-                                    }
+//                                    if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
+//                                        vc.navigationController?.popViewController(animated: false)
+//                                        chatListVC.ChatFromNotification(dict: dic)
+//                                    }
+                                    vc.receiverID = senderID
+                                    vc.webserviceForChatHistory(isLoading: false)
+
                                 }
                             }
                         } else {
@@ -667,73 +670,129 @@ extension AppDelegate {
         
         //        let content = notification.request.content
         let userInfo = notification.request.content.userInfo
-        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
+        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") as? String {
             print("KEY : ",key)
-        }
-        
-        print("USER INFo : ",userInfo)
-        
-        
-        if userInfo["gcm.notification.type"] as? String == "chat" {
             
-            if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
-                if let vc : ChatViewController = (vc as? ChatViewController) {
-                    vc.webserviceForChatHistory(isLoading: false)
-                } else if let vc : ChatListViewController = (vc as? ChatListViewController) {
-                    completionHandler([.alert, .sound])
-                    vc.webserviceForChatList()
-                } else if let vc : TabViewController = (vc as? TabViewController) {
-                    completionHandler([.alert, .sound])
-                    if vc.selectedIndex == TabBarOptions.Profile.rawValue {
-                        vc.btnTabTapped(vc.btnTabs![vc.selectedIndex])
+            
+            print("USER INFo : ",userInfo)
+            
+            
+            if key == "chat" {
+                
+                if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+                    if let vc : ChatViewController = (vc as? ChatViewController) {
+                        if let response = userInfo["gcm.notification.response_arr"] as? String {
+                            let jsonData = response.data(using: .utf8)!
+                            let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                            if let dic = dictionary  as? [String: Any]
+                            {
+                                if let senderID = dic["SenderID"] as? String
+                                {
+                                    if(vc.receiverID != senderID)
+                                    {
+                                        completionHandler([.alert, .sound])
+                                    }
+                                    else
+                                    {
+                                        vc.webserviceForChatHistory(isLoading: false)
+                                    }
+                                }
+                            }
+                        }
+                    } else if let vc : ChatListViewController = (vc as? ChatListViewController) {
+                        completionHandler([.alert, .sound])
+                        vc.webserviceForChatList()
+                    } else if let vc : TabViewController = (vc as? TabViewController) {
+                        completionHandler([.alert, .sound])
+                        if vc.selectedIndex == TabBarOptions.Profile.rawValue {
+                            vc.btnTabTapped(vc.btnTabs![vc.selectedIndex])
+                        }
+                    }else {
+                        completionHandler([.alert, .sound])
                     }
-                }else {
+                } else {
+                    //                NotificationCenter.default.post(name: NotificationBadges, object: content)
                     completionHandler([.alert, .sound])
                 }
-            } else {
-                //                NotificationCenter.default.post(name: NotificationBadges, object: content)
+            } else if key == "friend_request" {
+                loadFriendsRequest()
+                completionHandler([.alert, .sound])
+                
+            } else if key == "coins_transfer" {
+                loadWallet()
+                completionHandler([.alert, .sound])
+                
+            } else if key == "friend_request_accept" {
+                acceptFriedRequestNotificationHandle()
+                completionHandler([.alert, .sound])
+                
+            } else if key == "friend_request_reject" {
                 completionHandler([.alert, .sound])
             }
-        } else if userInfo["gcm.notification.type"] as? String == "friend_request" {
-            loadFriendsRequest()
-            completionHandler([.alert, .sound])
-            
-        } else if userInfo["gcm.notification.type"] as? String == "coins_transfer" {
-            loadWallet()
-            completionHandler([.alert, .sound])
-            
-        } else if userInfo["gcm.notification.type"] as? String == "friend_request_accept" {
-            acceptFriedRequestNotificationHandle()
-            completionHandler([.alert, .sound])
-            
-        } else if userInfo["gcm.notification.type"] as? String == "friend_request_reject" {
-            completionHandler([.alert, .sound])
-        }
-        else if userInfo["gcm.notification.type"] as? String == "WebviewS" {
-            if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
-            {
-                topViewController.dismiss(animated: true) {
-                    
-                    //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                    UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull".localized, ButtonTitle: "OK".localized) {
-                        UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+            else if key == "WebviewS" {
+                if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+                {
+                    topViewController.dismiss(animated: true) {
+                        
+                        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
+                        UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull".localized, ButtonTitle: "OK".localized) {
+                            UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
+                completionHandler([.alert, .sound])
             }
-            completionHandler([.alert, .sound])
-        }
-        else if userInfo["gcm.notification.type"] as? String == "WebviewF" {
-            if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
-            {
-                topViewController.dismiss(animated: true) {
-                    
-                    //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                    UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
-                        //                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+            else if key == "WebviewF" {
+                if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+                {
+                    topViewController.dismiss(animated: true) {
+                        
+                        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
+                        UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
+                            //                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
+                completionHandler([.alert, .sound])
             }
-            completionHandler([.alert, .sound])
+            else if key == "Logout" {
+                self.GoToLogout()
+                if let aps = ((userInfo["aps"] as? [String:Any])?["alert"] as? [String:Any])?["title"] as? String
+                {
+                    UtilityClass.showAlert(Message: aps )
+                    
+                }
+                completionHandler([.alert, .sound])
+            }
+            else if key.lowercased() == "block".lowercased() {
+                if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+                    if let vc : ChatViewController = (vc as? ChatViewController) {
+                        if let response = userInfo["gcm.notification.response_arr"] as? String {
+                            let jsonData = response.data(using: .utf8)!
+                            let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                            if let dic = dictionary  as? [String: Any]
+                            {
+                                if let senderID = dic["block_by"] as? String
+                                {
+                                    if(vc.receiverID == senderID)
+                                    {
+                                        vc.bottomViewConstraintHeight.constant = 0
+                                        vc.bottomView.isHidden = true
+                                        vc.parent?.children.forEach({ (viewController) in
+                                            if(viewController.isKind(of: FriendsViewController.self))
+                                            {
+                                                (viewController as? FriendsViewController)?.webserviceForFriendsList(isLoading: false)
+                                            }
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+//                completionHandler([.alert, .sound])
+            }
         }
     }
     
@@ -742,17 +801,16 @@ extension AppDelegate {
     //MARK:- === Firebase Methods ======
     // ----------------------------------------------------
     
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print(remoteMessage)
+//    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+//        print(remoteMessage)
+//    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(fcmToken ?? "")")
+        
+        SingletonClass.SharedInstance.DeviceToken = fcmToken ?? ""
+        UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
     }
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        
-        SingletonClass.SharedInstance.DeviceToken = fcmToken
-        UserDefaults.standard.set(fcmToken, forKey: UserDefaultKeys.kDeviceToken)
-        
-        
-        
-    }
+    
 }

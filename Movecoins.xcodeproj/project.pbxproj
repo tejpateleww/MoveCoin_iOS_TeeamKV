@@ -12,6 +12,7 @@
 		181B3B5025664B6000940519 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 181B3B4F25664B6000940519 /* GoogleService-Info.plist */; };
 		184F82CB25814A20007B5EC5 /* RedeemLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F82C925814A20007B5EC5 /* RedeemLog.swift */; };
 		184F82CC25814A20007B5EC5 /* RedeemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184F82CA25814A20007B5EC5 /* RedeemList.swift */; };
+		1857E5D025AEE88000646749 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 1857E5CF25AEE87F00646749 /* Location.gpx */; };
 		18937293258106B8009BF5EE /* RedeemHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937292258106B8009BF5EE /* RedeemHistory.swift */; };
 		1893729625810704009BF5EE /* RedeemClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893729525810704009BF5EE /* RedeemClaim.swift */; };
 		1893729925810AAB009BF5EE /* RedeemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1893729825810AAB009BF5EE /* RedeemInfo.swift */; };
@@ -251,6 +252,7 @@
 		181B3B4F25664B6000940519 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		184F82C925814A20007B5EC5 /* RedeemLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemLog.swift; sourceTree = "<group>"; };
 		184F82CA25814A20007B5EC5 /* RedeemList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemList.swift; sourceTree = "<group>"; };
+		1857E5CF25AEE87F00646749 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		18937292258106B8009BF5EE /* RedeemHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemHistory.swift; sourceTree = "<group>"; };
 		1893729525810704009BF5EE /* RedeemClaim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemClaim.swift; sourceTree = "<group>"; };
 		1893729825810AAB009BF5EE /* RedeemInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemInfo.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				181B3B4F25664B6000940519 /* GoogleService-Info.plist */,
+				1857E5CF25AEE87F00646749 /* Location.gpx */,
 				4690AEA92386D41E0030A598 /* Movecoins.entitlements */,
 				4600A71223278D37004A7A9E /* Movecoin */,
 				4600A71123278D37004A7A9E /* Products */,
@@ -1344,6 +1347,7 @@
 				4600A71B23278D38004A7A9E /* Assets.xcassets in Resources */,
 				4638ECE72369CB0200B1F967 /* Cairo-SemiBold.ttf in Resources */,
 				4638ECE82369CB0200B1F967 /* Cairo-Bold.ttf in Resources */,
+				1857E5D025AEE88000646749 /* Location.gpx in Resources */,
 				4638ECEC2369CB0200B1F967 /* Cairo-ExtraLight.ttf in Resources */,
 				465CF18D23696B620069D4DE /* Gold-package.gif in Resources */,
 				46CD13A62400FF23007F38A9 /* Silver-package.gif in Resources */,
@@ -1379,7 +1383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		B39B45237D4D469052F2E81B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1414,8 +1418,16 @@
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseCrashlytics/FirebaseCrashlytics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstanceID/FirebaseInstanceID.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework",
 				"${BUILT_PRODUCTS_DIR}/FormTextField/FormTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -1423,7 +1435,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
@@ -1438,8 +1449,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCrashlytics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstanceID.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessaging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FormTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GrowingTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -1447,7 +1466,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
@@ -1854,7 +1872,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.8.6;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1877,7 +1895,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.8.6;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;

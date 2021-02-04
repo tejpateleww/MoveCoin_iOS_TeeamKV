@@ -8,29 +8,37 @@
 
 
 // Welcome Screen
-
-"Get This Offers With 100 Invites or More" = "أحصل على هذا العرض مقابل ١٠٠ دعوة أو أكثر";
+"*user who received invitation must walk 5000 steps" = "*الشخص المدعو يجب عليه مشي 5000 خطوة.";
+"MoveCoins rewards" = "مكافآت موف كوينز";
+"Get This Offers With 100 Invites or More" = "أحصل على هذا العرض مقابل 100 دعوة أو أكثر";
 //"100 Invites or More" = "١٠٠ دعوة  أو أكثر";
 "Win 1 SAR for 1 Invitation" = "اربح ريال لكل دعوة";
 "You have invited" = "قمت بدعوة";
 "You have won" = "لقد ربحت";
 "Confirm" = "تأكيد";
 "Claim Now" = "أطلب الآن";
-"Your reward in process" = "مكافأتك تحت المعالجة";
+"Your reward is in process" = "مكافأتك تحت المعالجة";
 "You already claimed rewards for this month" = "تم طلب مكافأة هذا الشهر مسبقاً";
-"You reached redeemed maximum amount 1000 SAR" = "لقد وصلت للحد الأعلى المبلغ ١٠٠٠ ريال سعودي ";
-"Your Reward in Process" = "مكافأتك تحت المعالجة";
+"You reached redeemed maximum amount 1000 SAR" = "لقد وصلت للحد الأعلى المبلغ 1000 ريال سعودي ";
+"Your Reward is in Process" = "مكافأتك تحت المعالجة";
 "Bank Information" = "المعلومات البنكية";
 "Account Owner" = "اسم مالك الحساب";
 "IBAN Bank" = "الآيبان البنكي";
 "Name of the Bank" = "إسم البنك";
 "Submit" = "إرسال";
 "SUBMIT" = "إرسال";
-"*minimum numbers of invitations are (100) invites" = "*الحد الأدنى للدعوات هو ١٠٠ دعوة.";
-"*maximum numbers of invitations are (1000) invites once time for each user." = "*الحد الأعلى هو ١٠٠٠ دعوة لمرة واحدة فقط لكل مستخدم.";
-"Total Redeem" = "Total Redeem";
+"Total Redeem" = "مجموع المطالبة";
+"No data found" = "لا توجد بيانات";
+"Invitations numbers not enough to claim" = "عدد الدعوات غير كاف للمطالبة";
 
+"Terms and Conditions:" = "الشروط والاحكام:";
+"*Purchase one product at least." = "*شراء منتج واحد على الأقل.";
+"*User who received invitation must walk 5000 steps." = "*الشخص المدعو يجب عليه مشي 5000 خطوة.";
 
+"*You can claim when you reach 100 invitations once during the offer period." =
+"*يحق لك المطالبة عند الوصول لعدد 100 دعوة ولمرة واحدة فقط خلال مدة العرض.";
+
+"LIMITED TIME OFFER" = "عرض لفترة محدودة";
 
 
 "Sign in" = "تسجيل دخول";
@@ -108,7 +116,7 @@
 // Invite Screen
 "Invite" = "دعوة";
 "Invite Friend" = "دعوة صديق";
-"Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins." = " عند تسجيل أحد أصدقائك في موف كوينز، سوف تحصل على ١٠ عملات، وسوف يحصل صديقك على ٥ عملات";
+"Give 5 Coins to your friend when they Join to MoveCoins, you’ll also get 10 Coins." = " عند تسجيل أحد أصدقائك في موف كوينز، سوف تحصل على 10 عملات، وسوف يحصل صديقك على 5 عملات";
 "REFERRAL CODE" = "كود";
 "Invite Friends" = "دعوة صديق";
 "Find Friend" = "بحث عن صديق";
@@ -350,8 +358,8 @@
 " as your friend?" = " كصديق؟ ";
 "Please enter amount" = "الرجاء ادخل القيمة ";
 "Amount should be greater than zero" = "القيمة لا بد أن تكون اكبر من صفر";
-"Check out this app " = "استكشف التطبيق ";
-", referral code - " = ", كود الدعوة - ";
+"Check out this app " = " حمل واستكشف تطبيق ";
+"referral code - " = "كود الدعوة";
 "Please select product type" = "الرجاء اختيار نوع المنتج";
 "Please enter card details" = "الرجاء إدخال معلومات البطاقة";
 "Your current balance is too low to purchase " = " رصيدك الحالي لا يكفي للشراء";
@@ -378,3 +386,7 @@
 "If you don't give access then Steps Count feature will not work" = "عند عدم السماح لن يتم احتساب العملات";
 "App would like to use photo library" = "التطبيق يود استخدام مكتبة الصور";
 
+// Bank info scree
+"Please enter Account owner name" = "الرجاء إدخال اسم مالك الحساب البنكي";
+"Please enter IBAN Bank details" = "الرجاء إدخال رقم الايبان البنكي";
+"Please enter Name of the bank" = "الرجاء إدخال اسم البنك";

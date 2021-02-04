@@ -170,17 +170,14 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         }
         let login = LoginManager()
         login.logOut()
-        login.logIn(permissions: ["public_profile","email"], from: self) { (result, error) in
+        login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
             
             if error != nil {
-                //                UIApplication.shared.statusBarStyle = .lightContent
-            }
+             }
             else if (result?.isCancelled)! {
-                //                UIApplication.shared.statusBarStyle = .lightContent
-            }else {
+             }else {
                 if (result?.grantedPermissions.contains("email"))! {
-                    //                    UIApplication.shared.statusBarStyle = .lightContent
-                    self.getFBUserData()
+                     self.getFBUserData()
                 }else {
                     print("you don't have permission")
                 }
@@ -351,7 +348,7 @@ extension LoginViewController {
     func getFBUserData() {
        
         var parameters = [AnyHashable: Any]()
-        parameters["fields"] = "first_name, last_name, email, id, picture.type(large)"
+        parameters["fields"] = "first_name, last_name, email, id, picture.type(large),friends"
         
         GraphRequest.init(graphPath: "me", parameters: parameters as! [String : Any]).start { (connection, result, error) in
             if error == nil {

@@ -29,6 +29,10 @@ class StoreTableViewCell: UITableViewCell {
                 self.lblProductName.text = data.name
                 self.lblCoins.text = data.coins
                discountView.isHidden = true
+                
+                
+                self.lblProductName.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+
                
 /*                var priceText = "$\(data.price ?? "")"
                 if data.discount == "0" {

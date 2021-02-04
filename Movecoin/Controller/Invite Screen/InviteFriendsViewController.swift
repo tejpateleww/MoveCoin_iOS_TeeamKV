@@ -14,6 +14,8 @@ class InviteFriendsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
+    @IBOutlet weak var constraintBottom: NSLayoutConstraint!
+    @IBOutlet weak var constraintMiddle: NSLayoutConstraint!
     
     @IBOutlet weak var btnClaimNow: ThemeButton!{
         didSet{
@@ -30,25 +32,50 @@ class InviteFriendsViewController: UIViewController {
     @IBOutlet weak var lblReferral: UILabel!
     @IBOutlet weak var viewReferralCode: TransparentView!
     @IBOutlet weak var viewBoxAnimation: UIView!
+    
+    
+    var isHideBottomPart : Bool = true
+    {
+        didSet
+        {
+            
+            self.viewOfferBG.isHidden = isHideBottomPart
+            self.btnClaimNow.isHidden = isHideBottomPart
+            
+            self.constraintBottom.priority = UILayoutPriority(isHideBottomPart ? 850 : 700)
+            self.constraintMiddle.priority = UILayoutPriority(isHideBottomPart ? 850 : 700)
+            
+        }
+    }
+    
+    
     var redeemData : RedeemInfo!
+    
+    @IBOutlet weak var lblTermsConditions: LocalizLabel!{
+        didSet{
+            lblTermsConditions.font = FontBook.Regular.of(size: 07)
+            lblTermsConditions.text = "Terms and Conditions:"
+        }
+    }
+    
     @IBOutlet weak var lblMaximum100: LocalizLabel!{
         didSet{
-            lblMaximum100.font = FontBook.Bold.of(size: 09)
-            lblMaximum100.text = "*minimum numbers of invitations are (100) invites"
+            lblMaximum100.font = FontBook.Regular.of(size: 09)
+            lblMaximum100.text = "*Purchase one product at least."
         }
     }
     
     @IBOutlet weak var lblMaximum1000: LocalizLabel!{
         didSet{
-            lblMaximum1000.font = FontBook.Bold.of(size: 09)
-            lblMaximum1000.text = "*maximum numbers of invitations are (1000) invites once time for each user."
+            lblMaximum1000.font = FontBook.Regular.of(size: 09)
+            lblMaximum1000.text = "*User who received invitation must walk 5000 steps."
         }
     }
     
     @IBOutlet weak var lblOfferInfo: LocalizLabel!{
         didSet{
-            lblOfferInfo.font = FontBook.Bold.of(size: 16)
-            lblOfferInfo.text = "Get This Offers With 100 Invites or More"
+            lblOfferInfo.font = FontBook.Regular.of(size: 16)
+            lblOfferInfo.text = "LIMITED TIME OFFER"
         }
     }
     @IBOutlet weak var lblWinningInfo: LocalizLabel!
@@ -67,8 +94,15 @@ class InviteFriendsViewController: UIViewController {
     @IBOutlet weak var lblInvitationCount: LocalizLabel!
     {
         didSet{
-            lblInvitationCount.font = FontBook.Bold.of(size: 16)
+            lblInvitationCount.font = FontBook.Regular.of(size: 16)
             //            lblInvitationCount.text = "100 Invites or More"
+        }
+    }
+    @IBOutlet weak var lblMaxUsers: LocalizLabel!
+    {
+        didSet{
+            lblMaxUsers.font = FontBook.Regular.of(size: 09)
+            lblMaxUsers.text = "*You can claim when you reach 100 invitations once during the offer period."
         }
     }
     
@@ -85,8 +119,9 @@ class InviteFriendsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupFont()
+        isHideBottomPart = true
         
-        viewReferralCode.addDashedBorder()
+        
         lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
         self.webserviceCallForGettingClaimInfo()
         //        self.animate()
@@ -171,21 +206,52 @@ class InviteFriendsViewController: UIViewController {
         
         //        webserviceCallForGettingClaimInfo()
         
-        UtilityClass.showAlertWithTwoButtonCompletion(title: "MoveCoins Reward".localized, Message: "You have won".localized + " " + self.redeemData.inviteeCount + " " + "SAR".localized, ButtonTitle1: "Confirm".localized, ButtonTitle2: "Cancel".localized) { index in
-            if index == 0{
-                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let bankDetailsScreen = mainStoryboard.instantiateViewController(withIdentifier: BankDetailsViewController.className) as! BankDetailsViewController
-                bankDetailsScreen.strClaimedSAR = self.redeemData.inviteeCount
-                self.navigationController?.pushViewController(bankDetailsScreen, animated: true)
+        //        self.moveToBankDetailScreen()
+        //        return
+        //
+        if(Double(self.redeemData.inviteeCount) ?? 0 < 100)
+        {
+            UtilityClass.showAlertWithCompletion(title: "MoveCoins rewards".localized, Message: "Invitations numbers not enough to claim".localized, ButtonTitle: "OK".localized) {
+                
             }
+        }
+        else
+        {
             
+            UtilityClass.showAlertWithTwoButtonCompletion(title: "MoveCoins rewards".localized, Message: "You have won".localized + " " + self.redeemData.inviteeCount + " " + "SAR".localized, ButtonTitle1: "Confirm".localized, ButtonTitle2: "Cancel".localized) { index in
+                if index == 0{
+                    self.moveToBankDetailScreen()
+                }
+            }
         }
     }
+    
+    func moveToBankDetailScreen()
+    {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let bankDetailsScreen = mainStoryboard.instantiateViewController(withIdentifier: BankDetailsViewController.className) as! BankDetailsViewController
+        bankDetailsScreen.strClaimedSAR = self.redeemData.inviteeCount
+        self.navigationController?.pushViewController(bankDetailsScreen, animated: true)
+        
+    }
+    
+    
     @IBAction func btnInviteFriendsTapped(_ sender: Any) {
         
-        let text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + (lblReferral.text ?? "") + "\n" + "itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8"
-        //        let image = UIImage(named: "AppIcon")
-        //        let url = URL(string:"itms-apps://itunes.apple.com/app/apple-store/id1483785971?mt=8")
+        var text = "Check out this app ".localized + kAppName.localized + ", referral code - ".localized + "(\((lblReferral.text ?? "")))" + "\n" + appURL
+     
+        if(Localize.currentLanguage() == Languages.Arabic.rawValue)
+        {
+            
+            let text1 = "referral code - ".localized
+            let text2 = "Check out this app ".localized
+            let text3 = kAppName.localized
+            let text4 = "\n"
+            let text5 = "(\(lblReferral.text ?? ""))"
+            text = text1 + text2 + text3 + text4 + text5 + text4 + appURL
+            
+            print(text)
+        }
         vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
         present(vc!, animated: true)
     }
@@ -202,7 +268,7 @@ class InviteFriendsViewController: UIViewController {
             if status {
                 let responseModel = RedeemInfo(fromJson: json)
                 self.redeemData = responseModel
-
+                self.isHideBottomPart = !self.redeemData.offerActive
                 self.lblInvitationInfo.text = "You have invited".localized + " " + self.redeemData.inviteeCount + "*"
             }
             else {

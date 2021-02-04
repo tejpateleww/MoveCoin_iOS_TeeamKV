@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var lblTitleTotalMoveCoins: UILabel!
     @IBOutlet weak var lblTitleTotalSteps: UILabel!
     @IBOutlet weak var lblMemberSince: UILabel!
+    @IBOutlet weak var lblUpperTitle: UILabel!
     @IBOutlet weak var lblTotalMoveCoins: UILabel!
     @IBOutlet weak var lblTotalSteps: UILabel!
     @IBOutlet weak var lblAverage: UILabel!
@@ -108,6 +109,7 @@ class ProfileViewController: UIViewController {
         lblTotalMoveCoins.font = UIFont.bold(ofSize: 13)
         lblAverage.font = UIFont.semiBold(ofSize: 13)
         lblMemberSince.font = UIFont.regular(ofSize: 12)
+        lblUpperTitle.sizeToFit()
     }
     
 
@@ -151,14 +153,15 @@ class ProfileViewController: UIViewController {
         // Multiline Title
         
         let upperTitle = NSMutableAttributedString(string: SingletonClass.SharedInstance.userData?.nickName ?? "", attributes: [NSAttributedString.Key.font: FontBook.Bold.of(size: 22.0), NSAttributedString.Key.foregroundColor: UIColor.white])
+        self.lblUpperTitle.attributedText = upperTitle
         //        let lowerTitle = NSMutableAttributedString(string: "\nMember since Augest 5,2019", attributes: [NSAttributedString.Key.font: FontBook.Regular.of(size: 12.0) , NSAttributedString.Key.foregroundColor: UIColor.white])
         //        upperTitle.append(lowerTitle)
         
-        let label1 = UILabel(frame: CGRect(x: 0, y: 0, width: 500, height:50))
-        label1.numberOfLines = 0
-        label1.textAlignment = .center
-        label1.attributedText = upperTitle  //assign it to attributedText instead of text
-        self.parent?.navigationItem.titleView = label1
+//        let label1 = UILabel(frame: CGRect(x: 0, y: 0, width: 500, height:50))
+//        label1.numberOfLines = 0
+//        label1.textAlignment = .center
+//        label1.attributedText = upperTitle  //assign it to attributedText instead of text
+//        self.parent?.navigationItem.titleView = label1
     }
     
     func setupProfileData(){

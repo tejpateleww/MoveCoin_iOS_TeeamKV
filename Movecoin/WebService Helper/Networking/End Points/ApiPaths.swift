@@ -12,12 +12,12 @@ typealias NetworkRouterCompletion = ((Data?,[String:Any]?, Bool) -> ())
 
 enum NetworkEnvironment: String {
     
-    case liveBaseUrl = "http://www.movecoins.net/admin/api/"
-    case imageURL = "http://www.movecoins.net/admin/"
-    case galleryURL = "http://www.movecoins.net/admin/assets/images/products/"
+    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
+    case imageURL = "https://www.movecoins.net/admin/"
+    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
     
     
-    case developmentBaseUrl = "http://15.207.107.71/admin/api/"
+    case developmentBaseUrl = "https://15.207.107.71/admin/api/"
 //    case imageURL = "http://15.207.107.71/admin/"
 //    case galleryURL = "http://15.207.107.71/admin/assets/images/products/"
     
@@ -69,7 +69,7 @@ enum NetworkEnvironment: String {
 
 struct SocketApiKeys {
     
-    static let kSocketBaseURL = "http://www.movecoins.net:8080/"
+    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
 //    static let kSocketBaseURL = "http://15.207.107.71:8080/"
     static let kConnectUser = "connect_user"
     static let kUpdateUserLocation = "update_user_location" 

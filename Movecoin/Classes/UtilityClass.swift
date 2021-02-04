@@ -102,7 +102,7 @@ class UtilityClass : NSObject {
         dateFormatter.dateFormat = dateFormate // Output Formated
         let formateDate = dateFormatter.string(from:str)
         
-        print ("Print :\(dateFormatter.date(from: formateDate) ?? Date())")
+        print ("Print \(#function):\(dateFormatter.date(from: formateDate) ?? Date())")
         return dateFormatter.date(from: formateDate)!
     }
     

@@ -270,8 +270,8 @@ extension MapViewController {
         requestModel.longitude = "\(String(describing: myLocation.coordinate.longitude))"
         #if targetEnvironment(simulator)
         // 23.0732727,72.5181843
-        requestModel.latitude = "23.0732727"
-        requestModel.longitude = "72.5181843"
+        requestModel.latitude = "21.4296875"
+        requestModel.longitude = "40.4801856"
         #endif
         
         FriendsWebserviceSubclass.nearByUsers(nearByUsersModel: requestModel){ (json, status, res) in

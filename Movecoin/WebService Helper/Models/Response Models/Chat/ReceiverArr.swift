@@ -12,6 +12,8 @@ class ReceiverArr : Codable {
     var fullName : String!
     var iD : String!
     var profilePicture : String!
+    var nickname : String!
+
     
     init(){
         
@@ -27,6 +29,8 @@ class ReceiverArr : Codable {
         fullName = json["FullName"].stringValue
         iD = json["ID"].stringValue
         profilePicture = json["ProfilePicture"].stringValue
+        nickname = json["nickname"].stringValue
+
 	}
 
 	/**
@@ -44,6 +48,9 @@ class ReceiverArr : Codable {
         if profilePicture != nil{
         	dictionary["ProfilePicture"] = profilePicture
         }
+        if nickname != nil{
+            dictionary["nickname"] = nickname
+        }
 		return dictionary
 	}
 
@@ -56,6 +63,7 @@ class ReceiverArr : Codable {
 		fullName = aDecoder.decodeObject(forKey: "FullName") as? String
 		iD = aDecoder.decodeObject(forKey: "ID") as? String
 		profilePicture = aDecoder.decodeObject(forKey: "ProfilePicture") as? String
+        nickname = aDecoder.decodeObject(forKey: "nickname") as? String
 	}
 
     /**
@@ -73,6 +81,9 @@ class ReceiverArr : Codable {
 		if profilePicture != nil{
 			aCoder.encode(profilePicture, forKey: "ProfilePicture")
 		}
+        if nickname != nil{
+            aCoder.encode(nickname, forKey: "nickname")
+        }
 
 	}
 

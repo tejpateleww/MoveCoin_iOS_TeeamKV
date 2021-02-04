@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypb-rl-8x4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypb-rl-8x4">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -3262,7 +3262,7 @@
                                                                                                     <constraint firstAttribute="height" constant="50" id="UDo-hJ-Abw"/>
                                                                                                 </constraints>
                                                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                                                                                             </textField>
                                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sih-tI-mbD" customClass="ThemeTextfield" customModule="Movecoins" customModuleProvider="target">
                                                                                                 <rect key="frame" x="0.0" y="65" width="345" height="50"/>
@@ -4024,8 +4024,8 @@
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG" translatesAutoresizingMaskIntoConstraints="NO" id="ZkC-Hy-ZnH">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member since" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CK-JM-gjV" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="-10" width="315" height="15.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CK-JM-gjV" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="-10" width="315" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -4106,6 +4106,33 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLG-G5-Bgk">
+                                                                <rect key="frame" x="125" y="32.5" width="235" height="31"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Na9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNZ-FQ-P2W">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="20.5"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member since Oct 30,2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGD-19-tGk" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="10.5" width="209" height="20.5"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="KGD-19-tGk" firstAttribute="leading" secondItem="gLG-G5-Bgk" secondAttribute="leading" id="3eH-93-vST"/>
+                                                                    <constraint firstItem="KGD-19-tGk" firstAttribute="top" secondItem="BNZ-FQ-P2W" secondAttribute="bottom" constant="-10" id="R5F-O8-5JD"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="KGD-19-tGk" secondAttribute="bottom" id="igA-SI-tE4"/>
+                                                                    <constraint firstItem="BNZ-FQ-P2W" firstAttribute="top" secondItem="gLG-G5-Bgk" secondAttribute="top" id="pG0-Hp-STj"/>
+                                                                    <constraint firstItem="BNZ-FQ-P2W" firstAttribute="leading" secondItem="gLG-G5-Bgk" secondAttribute="leading" id="qQj-xW-dvs"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -4114,7 +4141,10 @@
                                                             <constraint firstAttribute="height" constant="90" id="P9P-Y0-cU9"/>
                                                             <constraint firstItem="6Fn-Hm-6Hj" firstAttribute="centerY" secondItem="fCw-CZ-svf" secondAttribute="centerY" id="SmQ-bo-DU5"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6Fn-Hm-6Hj" secondAttribute="trailing" constant="45" id="bi3-QC-zXW"/>
+                                                            <constraint firstItem="gLG-G5-Bgk" firstAttribute="centerY" secondItem="fCw-CZ-svf" secondAttribute="centerY" id="bj6-0A-1B6"/>
+                                                            <constraint firstItem="gLG-G5-Bgk" firstAttribute="leading" secondItem="fCw-CZ-svf" secondAttribute="trailing" constant="20" id="dPs-v8-zCB"/>
                                                             <constraint firstItem="fCw-CZ-svf" firstAttribute="top" secondItem="t7i-9O-FS9" secondAttribute="top" constant="3" id="lcy-js-dik"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gLG-G5-Bgk" secondAttribute="trailing" constant="15" id="tyX-HN-eOY"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c72-9d-Vvb" userLabel="Middle View">
@@ -4275,11 +4305,12 @@
                         <outlet property="imgProfilePicture" destination="9j4-Sy-iFH" id="3QU-7u-d61"/>
                         <outlet property="lblAverage" destination="IKk-We-VVi" id="CC3-ep-SKQ"/>
                         <outlet property="lblAverageSteps" destination="A3o-zq-ycS" id="olv-Ex-uOV"/>
-                        <outlet property="lblMemberSince" destination="8CK-JM-gjV" id="y77-HU-qoI"/>
+                        <outlet property="lblMemberSince" destination="KGD-19-tGk" id="XZC-RE-gJ7"/>
                         <outlet property="lblTitleTotalMoveCoins" destination="gAG-35-ocl" id="vKH-2V-IpP"/>
                         <outlet property="lblTitleTotalSteps" destination="zFN-Z1-orm" id="tQc-DU-CKe"/>
                         <outlet property="lblTotalMoveCoins" destination="pas-s3-UbL" id="ncU-fp-XNF"/>
                         <outlet property="lblTotalSteps" destination="igp-Wc-rU1" id="4Sh-Rk-WcA"/>
+                        <outlet property="lblUpperTitle" destination="BNZ-FQ-P2W" id="YMj-M2-ixK"/>
                         <outlet property="viewBarDetails" destination="LDa-MA-VPl" id="cpt-Pm-VaT"/>
                         <outlet property="viewParent" destination="qCX-aQ-syS" id="PkN-ph-d31"/>
                         <outlet property="viewProfile" destination="fCw-CZ-svf" id="rwH-5O-Hp1"/>
@@ -5290,7 +5321,7 @@
                                                                         <rect key="frame" x="12" y="10" width="325" height="30"/>
                                                                         <color key="tintColor" red="0.11372549019607843" green="0.12549019607843137" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6540,7 +6571,7 @@
                                                     <constraint firstAttribute="width" secondItem="FJa-6u-MU1" secondAttribute="height" multiplier="1:1" id="phz-tH-xzO"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Reward in Process" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjm-RQ-sCt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Reward is in Process" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjm-RQ-sCt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="115" width="295" height="21"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -6718,103 +6749,123 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N95-4v-D1T">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="637"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inviteFriends" translatesAutoresizingMaskIntoConstraints="NO" id="xzr-vM-66o">
-                                                <rect key="frame" x="112.5" y="0.0" width="150" height="150"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="bz5-Iu-8WV"/>
-                                                    <constraint firstAttribute="width" secondItem="xzr-vM-66o" secondAttribute="height" multiplier="1:1" id="g2e-D8-E1g"/>
-                                                </constraints>
-                                            </imageView>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDs-KU-or3">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="313.5"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="0DA-bz-vx5">
-                                                <rect key="frame" x="10" y="170" width="355" height="35"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6f-kz-zGK">
+                                                <rect key="frame" x="10" y="0.0" width="355" height="351"/>
                                                 <subviews>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuC-OI-QeZ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inviteFriends" translatesAutoresizingMaskIntoConstraints="NO" id="xzr-vM-66o">
+                                                        <rect key="frame" x="102.5" y="0.0" width="150" height="150"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="29" id="ajd-Wr-iBH"/>
+                                                            <constraint firstAttribute="height" constant="150" id="bz5-Iu-8WV"/>
+                                                            <constraint firstAttribute="width" secondItem="xzr-vM-66o" secondAttribute="height" multiplier="1:1" id="g2e-D8-E1g"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="25"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give 5 Coins to your friend when they Join to Move Coins, you’ll also get 10 Coins." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-o7-sVs" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="35"/>
-                                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lEa-N3-VkF">
-                                                <rect key="frame" x="10" y="215" width="355" height="76"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stM-VV-lJu" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="104.5" y="0.0" width="146.5" height="21"/>
-                                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUS-w0-nuy" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
-                                                        <rect key="frame" x="76" y="31" width="203" height="45"/>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="0DA-bz-vx5">
+                                                        <rect key="frame" x="0.0" y="170" width="355" height="35"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zayed658452" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-kM-5Ii">
-                                                                <rect key="frame" x="0.0" y="0.0" width="203" height="45"/>
-                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friend" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuC-OI-QeZ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="29"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="29" id="ajd-Wr-iBH"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="25"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Zayed658452" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OlC-Vc-HSJ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="203" height="45"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Give 5 Coins to your friend when they Join to MoveCoins, you’ll also get 10 Coins." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1J-o7-sVs" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="35"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="20"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lEa-N3-VkF">
+                                                        <rect key="frame" x="0.0" y="215" width="355" height="76"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REFERRAL CODE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stM-VV-lJu" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="104.5" y="0.0" width="146.5" height="21"/>
+                                                                <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUS-w0-nuy" customClass="TransparentView" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="76" y="31" width="203" height="45"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zayed658452" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-kM-5Ii">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="203" height="45"/>
+                                                                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Zayed658452" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OlC-Vc-HSJ">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="203" height="45"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="20"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                    </textView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="ZgO-kM-5Ii" secondAttribute="bottom" id="0yg-SZ-oRR"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="ZgO-kM-5Ii" secondAttribute="trailing" id="ASS-w7-vyI"/>
+                                                                    <constraint firstAttribute="height" constant="45" id="Fyn-Jp-7Rx"/>
+                                                                    <constraint firstItem="OlC-Vc-HSJ" firstAttribute="top" secondItem="ZgO-kM-5Ii" secondAttribute="top" id="KEb-mv-HXl"/>
+                                                                    <constraint firstItem="OlC-Vc-HSJ" firstAttribute="trailing" secondItem="ZgO-kM-5Ii" secondAttribute="trailing" id="O0a-DK-wXm"/>
+                                                                    <constraint firstAttribute="width" constant="203" id="bAg-9y-vGo"/>
+                                                                    <constraint firstItem="OlC-Vc-HSJ" firstAttribute="leading" secondItem="ZgO-kM-5Ii" secondAttribute="leading" id="fJC-54-xmS"/>
+                                                                    <constraint firstItem="ZgO-kM-5Ii" firstAttribute="leading" secondItem="eUS-w0-nuy" secondAttribute="leading" id="se8-WH-7uh"/>
+                                                                    <constraint firstItem="ZgO-kM-5Ii" firstAttribute="top" secondItem="eUS-w0-nuy" secondAttribute="top" id="xFM-6h-WQl"/>
+                                                                    <constraint firstItem="OlC-Vc-HSJ" firstAttribute="bottom" secondItem="ZgO-kM-5Ii" secondAttribute="bottom" id="z2t-um-78C"/>
+                                                                </constraints>
+                                                                <variation key="default">
+                                                                    <mask key="subviews">
+                                                                        <exclude reference="OlC-Vc-HSJ"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WL6-QA-JVg" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                                        <rect key="frame" x="28" y="306" width="299" height="45"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="ZgO-kM-5Ii" secondAttribute="bottom" id="0yg-SZ-oRR"/>
-                                                            <constraint firstAttribute="trailing" secondItem="ZgO-kM-5Ii" secondAttribute="trailing" id="ASS-w7-vyI"/>
-                                                            <constraint firstAttribute="height" constant="45" id="Fyn-Jp-7Rx"/>
-                                                            <constraint firstItem="OlC-Vc-HSJ" firstAttribute="top" secondItem="ZgO-kM-5Ii" secondAttribute="top" id="KEb-mv-HXl"/>
-                                                            <constraint firstItem="OlC-Vc-HSJ" firstAttribute="trailing" secondItem="ZgO-kM-5Ii" secondAttribute="trailing" id="O0a-DK-wXm"/>
-                                                            <constraint firstAttribute="width" constant="203" id="bAg-9y-vGo"/>
-                                                            <constraint firstItem="OlC-Vc-HSJ" firstAttribute="leading" secondItem="ZgO-kM-5Ii" secondAttribute="leading" id="fJC-54-xmS"/>
-                                                            <constraint firstItem="ZgO-kM-5Ii" firstAttribute="leading" secondItem="eUS-w0-nuy" secondAttribute="leading" id="se8-WH-7uh"/>
-                                                            <constraint firstItem="ZgO-kM-5Ii" firstAttribute="top" secondItem="eUS-w0-nuy" secondAttribute="top" id="xFM-6h-WQl"/>
-                                                            <constraint firstItem="OlC-Vc-HSJ" firstAttribute="bottom" secondItem="ZgO-kM-5Ii" secondAttribute="bottom" id="z2t-um-78C"/>
+                                                            <constraint firstAttribute="height" constant="45" id="T0c-tR-DGp"/>
                                                         </constraints>
-                                                        <variation key="default">
-                                                            <mask key="subviews">
-                                                                <exclude reference="OlC-Vc-HSJ"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </view>
+                                                        <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="20"/>
+                                                        <state key="normal" title="Invite Friends">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="btnInviteFriendsTapped:" destination="lxc-1t-jQG" eventType="touchUpInside" id="hng-MV-Oeo"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
-                                            </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WL6-QA-JVg" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
-                                                <rect key="frame" x="38" y="306" width="299" height="45"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="T0c-tR-DGp"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WL6-QA-JVg" secondAttribute="trailing" constant="28" id="274-qn-hbJ"/>
+                                                    <constraint firstItem="WL6-QA-JVg" firstAttribute="top" secondItem="lEa-N3-VkF" secondAttribute="bottom" constant="15" id="2fa-1F-qw0"/>
+                                                    <constraint firstItem="xzr-vM-66o" firstAttribute="centerX" secondItem="L6f-kz-zGK" secondAttribute="centerX" id="AbS-F7-VC7"/>
+                                                    <constraint firstItem="lEa-N3-VkF" firstAttribute="trailing" secondItem="0DA-bz-vx5" secondAttribute="trailing" id="C5x-Fl-YRd"/>
+                                                    <constraint firstItem="lEa-N3-VkF" firstAttribute="top" secondItem="0DA-bz-vx5" secondAttribute="bottom" constant="10" id="H9m-fg-XEP"/>
+                                                    <constraint firstItem="xzr-vM-66o" firstAttribute="top" secondItem="L6f-kz-zGK" secondAttribute="top" id="QII-kD-SzX"/>
+                                                    <constraint firstItem="WL6-QA-JVg" firstAttribute="leading" secondItem="L6f-kz-zGK" secondAttribute="leading" constant="28" id="a6d-uv-kk5"/>
+                                                    <constraint firstItem="lEa-N3-VkF" firstAttribute="leading" secondItem="0DA-bz-vx5" secondAttribute="leading" id="bRl-hg-JVU"/>
+                                                    <constraint firstAttribute="bottom" secondItem="WL6-QA-JVg" secondAttribute="bottom" id="evH-WE-Fe4"/>
+                                                    <constraint firstItem="0DA-bz-vx5" firstAttribute="leading" secondItem="L6f-kz-zGK" secondAttribute="leading" id="j70-Ps-fVX"/>
+                                                    <constraint firstItem="0DA-bz-vx5" firstAttribute="top" secondItem="xzr-vM-66o" secondAttribute="bottom" constant="20" id="pI4-Hz-lbN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0DA-bz-vx5" secondAttribute="trailing" id="qLQ-G7-8wL"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="20"/>
-                                                <state key="normal" title="Invite Friends">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnInviteFriendsTapped:" destination="lxc-1t-jQG" eventType="touchUpInside" id="hng-MV-Oeo"/>
-                                                </connections>
-                                            </button>
+                                            </view>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDs-KU-or3">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="235.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLj-u2-3CB">
-                                                <rect key="frame" x="15" y="366" width="345" height="168"/>
+                                                <rect key="frame" x="15" y="366" width="345" height="196"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get This Offers With" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XmA-ao-lbt" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="10" width="180.5" height="23.5"/>
@@ -6846,16 +6897,28 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="eTO-qq-ovQ">
-                                                        <rect key="frame" x="10" y="125" width="325" height="33"/>
+                                                        <rect key="frame" x="10" y="125" width="325" height="61"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*maximum numbers of invitations are (100) invites" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="owl-Fx-vBP" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="ajR-7F-ybF" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="10"/>
                                                                 <color key="textColor" red="0.69817525150000004" green="0.072829239069999996" blue="0.038753021509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*maximum numbers of invitations are (1000) invites once time for each user." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="9WC-0v-1EB" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*maximum numbers of invitations are (100) invites" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="owl-Fx-vBP" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="14" width="325" height="19"/>
+                                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="10"/>
+                                                                <color key="textColor" red="0.69817525150000004" green="0.072829239069999996" blue="0.038753021509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*maximum numbers of invitations are (1000) invites once time for each user." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="9WC-0v-1EB" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="28" width="325" height="19"/>
+                                                                <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="10"/>
+                                                                <color key="textColor" red="0.69817525150000004" green="0.072829239069999996" blue="0.038753021509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*user who received invitation must walk 5000 steps" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Uqs-C9-PNG" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="42" width="325" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Cairo-Regular" family="Cairo" pointSize="10"/>
                                                                 <color key="textColor" red="0.69817525150000004" green="0.072829239069999996" blue="0.038753021509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -6908,7 +6971,7 @@
                                                 </variation>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kA3-w2-30k">
-                                                <rect key="frame" x="30" y="549" width="315" height="45"/>
+                                                <rect key="frame" x="30" y="577" width="315" height="45"/>
                                                 <color key="backgroundColor" red="0.15512344240000001" green="0.64947718379999997" blue="0.78350180390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="gRN-79-wL8"/>
@@ -6927,26 +6990,19 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="0DA-bz-vx5" secondAttribute="trailing" constant="10" id="E3M-eY-7YS"/>
-                                            <constraint firstItem="xzr-vM-66o" firstAttribute="centerX" secondItem="N95-4v-D1T" secondAttribute="centerX" id="FaV-LB-Ncr"/>
-                                            <constraint firstItem="lEa-N3-VkF" firstAttribute="leading" secondItem="0DA-bz-vx5" secondAttribute="leading" id="FeE-rS-Aub"/>
+                                            <constraint firstItem="L6f-kz-zGK" firstAttribute="leading" secondItem="N95-4v-D1T" secondAttribute="leading" constant="10" id="2Ug-4b-1ir"/>
                                             <constraint firstItem="mLj-u2-3CB" firstAttribute="leading" secondItem="N95-4v-D1T" secondAttribute="leading" constant="15" id="GTt-fs-gBa"/>
-                                            <constraint firstItem="0DA-bz-vx5" firstAttribute="top" secondItem="xzr-vM-66o" secondAttribute="bottom" constant="20" id="IlE-0C-TCE"/>
                                             <constraint firstItem="KDs-KU-or3" firstAttribute="leading" secondItem="N95-4v-D1T" secondAttribute="leading" id="NHr-Ia-p8o"/>
+                                            <constraint firstAttribute="trailing" secondItem="L6f-kz-zGK" secondAttribute="trailing" constant="10" id="PLc-bo-zCJ"/>
                                             <constraint firstItem="kA3-w2-30k" firstAttribute="top" secondItem="mLj-u2-3CB" secondAttribute="bottom" constant="15" id="QUa-Nb-MiH"/>
-                                            <constraint firstItem="lEa-N3-VkF" firstAttribute="trailing" secondItem="0DA-bz-vx5" secondAttribute="trailing" id="Qfs-32-4e7"/>
-                                            <constraint firstItem="WL6-QA-JVg" firstAttribute="leading" secondItem="N95-4v-D1T" secondAttribute="leading" constant="38" id="TT8-Lz-A9r"/>
-                                            <constraint firstItem="mLj-u2-3CB" firstAttribute="top" secondItem="WL6-QA-JVg" secondAttribute="bottom" constant="15" id="WGp-ff-RxX"/>
-                                            <constraint firstItem="lEa-N3-VkF" firstAttribute="top" secondItem="0DA-bz-vx5" secondAttribute="bottom" constant="10" id="WSB-nv-MKE"/>
+                                            <constraint firstItem="L6f-kz-zGK" firstAttribute="centerY" secondItem="N95-4v-D1T" secondAttribute="centerY" priority="700" id="Ych-Ar-yKO"/>
                                             <constraint firstAttribute="trailing" secondItem="KDs-KU-or3" secondAttribute="trailing" id="YoL-J6-3up"/>
-                                            <constraint firstItem="0DA-bz-vx5" firstAttribute="top" secondItem="KDs-KU-or3" secondAttribute="bottom" constant="-15" id="b97-tX-9bZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="WL6-QA-JVg" secondAttribute="trailing" constant="38" id="fwE-Fq-UA0"/>
-                                            <constraint firstItem="WL6-QA-JVg" firstAttribute="top" secondItem="lEa-N3-VkF" secondAttribute="bottom" constant="15" id="gVB-1x-MBU"/>
+                                            <constraint firstItem="mLj-u2-3CB" firstAttribute="top" secondItem="L6f-kz-zGK" secondAttribute="bottom" priority="750" constant="15" id="hf0-CH-eFc"/>
                                             <constraint firstAttribute="trailing" secondItem="mLj-u2-3CB" secondAttribute="trailing" constant="15" id="iMe-e5-daU"/>
+                                            <constraint firstAttribute="bottom" secondItem="L6f-kz-zGK" secondAttribute="bottom" priority="700" constant="15" id="lUv-g1-zlY"/>
                                             <constraint firstItem="kA3-w2-30k" firstAttribute="leading" secondItem="N95-4v-D1T" secondAttribute="leading" constant="30" id="o9J-GI-sK6"/>
-                                            <constraint firstItem="xzr-vM-66o" firstAttribute="top" secondItem="N95-4v-D1T" secondAttribute="top" id="obf-z3-OaC"/>
                                             <constraint firstAttribute="trailing" secondItem="kA3-w2-30k" secondAttribute="trailing" constant="30" id="obm-po-lLS"/>
-                                            <constraint firstItem="0DA-bz-vx5" firstAttribute="leading" secondItem="N95-4v-D1T" secondAttribute="leading" constant="10" id="opQ-5v-u5d"/>
+                                            <constraint firstItem="L6f-kz-zGK" firstAttribute="top" secondItem="N95-4v-D1T" secondAttribute="top" priority="700" id="xUb-b8-ZHS"/>
                                             <constraint firstItem="KDs-KU-or3" firstAttribute="top" secondItem="N95-4v-D1T" secondAttribute="top" id="yDT-7u-EWc"/>
                                             <constraint firstAttribute="bottom" secondItem="kA3-w2-30k" secondAttribute="bottom" constant="15" id="ygS-j0-7Y3"/>
                                         </constraints>
@@ -6980,14 +7036,18 @@
                     </view>
                     <connections>
                         <outlet property="btnClaimNow" destination="kA3-w2-30k" id="tso-ef-Hty"/>
+                        <outlet property="constraintBottom" destination="lUv-g1-zlY" id="Glj-Ge-Me0"/>
+                        <outlet property="constraintMiddle" destination="Ych-Ar-yKO" id="P1v-8z-iQK"/>
                         <outlet property="lblCode" destination="stM-VV-lJu" id="5sS-ej-WAB"/>
                         <outlet property="lblDescription" destination="p1J-o7-sVs" id="SfH-G7-UhF"/>
                         <outlet property="lblInvitationCount" destination="Ilg-dN-cqI" id="WVH-qw-7jq"/>
                         <outlet property="lblInvitationInfo" destination="Kq9-0g-X7G" id="Ed9-99-O9d"/>
+                        <outlet property="lblMaxUsers" destination="Uqs-C9-PNG" id="jkm-1t-lhE"/>
                         <outlet property="lblMaximum100" destination="owl-Fx-vBP" id="ztQ-lp-By7"/>
                         <outlet property="lblMaximum1000" destination="9WC-0v-1EB" id="p0F-WB-iFg"/>
                         <outlet property="lblOfferInfo" destination="XmA-ao-lbt" id="D37-H4-DZ3"/>
                         <outlet property="lblReferral" destination="ZgO-kM-5Ii" id="dSM-gD-eqe"/>
+                        <outlet property="lblTermsConditions" destination="ajR-7F-ybF" id="SYS-LD-6xa"/>
                         <outlet property="lblTitle" destination="NuC-OI-QeZ" id="xT6-1I-9RV"/>
                         <outlet property="lblWinningInfo" destination="LRj-Ee-Kw8" id="IMp-xc-6xF"/>
                         <outlet property="viewBoxAnimation" destination="KDs-KU-or3" id="PC8-HH-lk1"/>
@@ -7863,7 +7923,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hLV-gm-Eo4"/>
+        <segue reference="R1p-X2-06E"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="3logo-icon" width="33" height="36"/>

@@ -116,7 +116,13 @@ class WebService{
                     //  LoaderClass.hideActivityIndicator()
                     if let error = response.result.error {
                         print("Error = \(error.localizedDescription)")
-                        completion(JSON(), false, error.localizedDescription)
+                        
+                        if error.localizedDescription == "Response status code was unacceptable: 403."{
+                            AppDelegateShared.GoToLogout()
+                            completion(JSON(), false, "Your session is expired")
+                        }else{
+                             completion(JSON(), false, error.localizedDescription)
+                        }
 //                        AlertMessage.showMessageForError(error.localizedDescription)
                     }
                 }
@@ -202,9 +208,17 @@ class WebService{
                         }
                     }
                     else {
+                        //  LoaderClass.hideActivityIndicator()
                         if let error = response.result.error {
                             print("Error = \(error.localizedDescription)")
-                            completion(JSON(), false, error.localizedDescription)
+                            
+                            if error.localizedDescription == "Response status code was unacceptable: 403."{
+                                AppDelegateShared.GoToLogout()
+                                completion(JSON(), false, "Your session is expired")
+                            }else{
+                                 completion(JSON(), false, error.localizedDescription)
+                            }
+    //                        AlertMessage.showMessageForError(error.localizedDescription)
                         }
                     }
                 }

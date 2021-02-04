@@ -19,7 +19,7 @@ class ChatListTableViewCell: UITableViewCell {
     var friendDetail: ChatList? {
         didSet{
             if let detail = friendDetail {
-                self.lblName.text = detail.nickName.capitalizingFirstLetter()
+                self.lblName.text = detail.nickName//.capitalizingFirstLetter()
                 self.lblId.text = UtilityClass.changeDateFormateFrom(dateString: detail.lastMessageDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayFullDate)
                 // For Image
                 //                let urlStr = NetworkEnvironment.baseImageURL + detail.profilePicture

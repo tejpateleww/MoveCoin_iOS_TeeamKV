@@ -9,8 +9,8 @@
 import UIKit
 
 class BankDetailsViewController: UIViewController {
-    @IBOutlet weak var txtAccountOwner: TextFieldFont!
     
+    @IBOutlet weak var txtAccountOwner: TextFieldFont!
     @IBOutlet weak var txtIbanBank: TextFieldFont!
     @IBOutlet weak var txtContactNumber: TextFieldFont!
     @IBOutlet weak var btnSubmit: ThemeButton!
@@ -24,15 +24,41 @@ class BankDetailsViewController: UIViewController {
         
         
         txtIbanBank.placeholder = "IBAN Bank".localized
-//        txtContactNumber.placeholder = "".localized
         btnSubmit.setTitle("Submit".localized, for: .normal)
         txtNameOfTheBank.placeholder = "Name of the Bank".localized
         // Do any additional setup after loading the view.
     }
     
+    func validation() -> Bool
+    {
+        
+        if(txtAccountOwner.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
+        {
+            UtilityClass.showAlert(Message: "Please enter Account owner name".localized)
+            return false
+        }
+        else if(txtIbanBank.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
+        {
+            UtilityClass.showAlert(Message: "Please enter IBAN Bank details".localized)
+
+            return false
+        }
+        else if(txtNameOfTheBank.text?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0)
+        {
+            UtilityClass.showAlert(Message: "Please enter Name of the bank".localized)
+
+            return false
+        }
+        
+        return true
+    }
+    
     @IBAction func btnSubmit(sender : UIButton)
     {
-        webserviceCallForClaimReward()
+        if(validation)()
+        {
+            webserviceCallForClaimReward()
+        }
     }
     
     func webserviceCallForClaimReward()

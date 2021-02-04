@@ -139,6 +139,11 @@ public class Gateway3DSecureViewController: UIViewController, WKNavigationDelega
         activityIndicator.startAnimating()
     }
     
+    public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        let jscript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);"
+        webView.evaluateJavaScript(jscript)
+    }
+    
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         activityIndicator.stopAnimating()
     }

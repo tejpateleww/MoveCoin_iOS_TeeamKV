@@ -73,7 +73,7 @@ class FindFriendTableViewCell: UITableViewCell {
                     lblNickName.isHidden = true
                 }else{
                     lblNickName.isHidden = false
-                    self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
+                    self.lblNickName.text = detail.nickName//.capitalizingFirstLetter()
                 }
                 
                 if detail.receiverID == SingletonClass.SharedInstance.userData?.iD {
@@ -120,13 +120,13 @@ class FindFriendTableViewCell: UITableViewCell {
                 if detail.fullName != "" {
                     self.lblName.text = detail.fullName.capitalizingFirstLetter()
                 } else {
-                     self.lblName.text = detail.nickName.capitalizingFirstLetter()
+                     self.lblName.text = detail.nickName//.capitalizingFirstLetter()
                 }
                 if detail.nickName.isBlank {
                     lblNickName.isHidden = true
                 }else{
                     lblNickName.isHidden = false
-                    self.lblNickName.text = detail.nickName.capitalizingFirstLetter()
+                    self.lblNickName.text = detail.nickName//.capitalizingFirstLetter()
                 }
                 self.lblNumber.text = detail.phone
                 self.lblNumber.isHidden = false
@@ -164,7 +164,7 @@ class FindFriendTableViewCell: UITableViewCell {
                 lblNickName.isHidden = true
             }else{
                 lblNickName.isHidden = false
-                self.lblNickName.text = data.nickname.capitalizingFirstLetter()
+                self.lblNickName.text = data.nickname//.capitalizingFirstLetter()
             }
         
 //            let fullname = "\(data.firstName ?? "") \(data.lastName ?? "")"
@@ -186,7 +186,7 @@ class FindFriendTableViewCell: UITableViewCell {
                 lblNickName.isHidden = true
             }else{
                 lblNickName.isHidden = false
-                self.lblNickName.text = data.nickName.capitalizingFirstLetter()
+                self.lblNickName.text = data.nickName//.capitalizingFirstLetter()
             }
             
             self.lblNumber.text = data.phone

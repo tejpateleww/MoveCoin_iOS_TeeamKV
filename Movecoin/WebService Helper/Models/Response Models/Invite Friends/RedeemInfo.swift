@@ -14,7 +14,7 @@ class RedeemInfo : NSObject, NSCoding{
     var message : String!
     var status : Bool!
     var totalSar : String!
-
+    var offerActive : Bool!
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
@@ -27,6 +27,8 @@ class RedeemInfo : NSObject, NSCoding{
         message = json["message"].stringValue
         status = json["status"].boolValue
         totalSar = json["total_sar"].stringValue
+        offerActive = json["offer_active"].boolValue
+
 	}
 
 	/**
@@ -64,6 +66,8 @@ class RedeemInfo : NSObject, NSCoding{
 		message = aDecoder.decodeObject(forKey: "message") as? String
 		status = aDecoder.decodeObject(forKey: "status") as? Bool
 		totalSar = aDecoder.decodeObject(forKey: "total_sar") as? String
+        offerActive = aDecoder.decodeObject(forKey: "offer_active") as? Bool
+
 	}
 
     /**
@@ -87,7 +91,9 @@ class RedeemInfo : NSObject, NSCoding{
 		if totalSar != nil{
 			aCoder.encode(totalSar, forKey: "total_sar")
 		}
-
+        if offerActive != nil{
+            aCoder.encode(offerActive, forKey: "offer_active")
+        }
 	}
 
 }

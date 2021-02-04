@@ -108,6 +108,7 @@ class ConfirmPurchaseViewController: UIViewController {
      
         self.setupFont()
         self.setupView()
+        self.setupTextfield()
         setupProductData()
         Analytics.logEvent("ProductPurchaseScreen", parameters: nil)
 
@@ -130,6 +131,25 @@ class ConfirmPurchaseViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
+    
+    
+    func setupTextfield()
+    {
+        txtNumber.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        txtEmail.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        txtCity.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        txtState.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+
+        let text = textField.text ?? ""
+
+        let trimmedText = text.replacingOccurrences(of: " ", with: "")
+
+        textField.text = trimmedText
+    }
     
     func setupFont(){
         for lbl in lblPrice {

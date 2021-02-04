@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jwo-NY-7e3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jwo-NY-7e3">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -50,6 +51,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QUt-Fq-c1o"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cWP-iH-RM8" firstAttribute="trailing" secondItem="GVo-vD-CPJ" secondAttribute="trailing" id="4Xg-pR-N2M"/>
@@ -61,7 +63,6 @@
                             <constraint firstItem="cWP-iH-RM8" firstAttribute="leading" secondItem="GVo-vD-CPJ" secondAttribute="leading" id="eF6-r0-nOG"/>
                             <constraint firstItem="cWP-iH-RM8" firstAttribute="bottom" secondItem="GVo-vD-CPJ" secondAttribute="bottom" id="qpI-hW-TOL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QUt-Fq-c1o"/>
                     </view>
                     <navigationItem key="navigationItem" id="ryI-TH-b8G"/>
                     <connections>
@@ -214,6 +215,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="eOF-f2-5BA"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="3vg-jG-5eB" secondAttribute="bottom" id="E4T-YT-hbE"/>
@@ -225,7 +227,6 @@
                             <constraint firstItem="3vg-jG-5eB" firstAttribute="leading" secondItem="eOF-f2-5BA" secondAttribute="leading" id="fsG-gX-0r7"/>
                             <constraint firstItem="eOF-f2-5BA" firstAttribute="trailing" secondItem="3vg-jG-5eB" secondAttribute="trailing" id="pg7-AH-Abf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="eOF-f2-5BA"/>
                     </view>
                     <navigationItem key="navigationItem" id="lge-iT-3zV"/>
                     <size key="freeformSize" width="320" height="568"/>
@@ -394,7 +395,7 @@
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
                                                                         <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="username"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -413,7 +414,7 @@
                                                                         <rect key="frame" x="12" y="10" width="270" height="30"/>
                                                                         <color key="tintColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
-                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="username"/>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -465,7 +466,7 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Nu-Vh-Mrp" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Nu-Vh-Mrp" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                                         <rect key="frame" x="60" y="770" width="200" height="38"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="0Cg-Z0-Z0D"/>
@@ -490,7 +491,7 @@
                                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wO-Ic-PoO" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wO-Ic-PoO" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="178.5" y="0.0" width="55" height="31"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                                                 <state key="normal" title="SIGN IN">
@@ -545,6 +546,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Yhl-LE-dTw"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nEV-Ie-WOw" firstAttribute="top" secondItem="c67-gV-rsZ" secondAttribute="top" id="0ku-QI-Vdy"/>
@@ -552,7 +554,6 @@
                             <constraint firstAttribute="bottom" secondItem="nEV-Ie-WOw" secondAttribute="bottom" id="HbI-RZ-9IW"/>
                             <constraint firstItem="nEV-Ie-WOw" firstAttribute="leading" secondItem="c67-gV-rsZ" secondAttribute="leading" id="RWu-wG-tiI"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Yhl-LE-dTw"/>
                     </view>
                     <connections>
                         <outlet property="btnSignIn" destination="2wO-Ic-PoO" id="Q6U-ZB-25Y"/>
@@ -602,7 +603,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REm-RB-h8m" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REm-RB-h8m" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="60" y="318" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="DSM-XG-NKP"/>
@@ -628,7 +629,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ey-5Y-LRT" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ey-5Y-LRT" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="85" y="431" width="150" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="SW1-6U-dRd"/>
@@ -667,6 +668,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Qr3-hD-GQe"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iI9-2n-f5W" firstAttribute="top" secondItem="rEv-Ma-vsn" secondAttribute="top" id="5Mo-iV-epK"/>
@@ -674,7 +676,6 @@
                             <constraint firstItem="iI9-2n-f5W" firstAttribute="leading" secondItem="rEv-Ma-vsn" secondAttribute="leading" id="sXX-IU-1s9"/>
                             <constraint firstAttribute="trailing" secondItem="iI9-2n-f5W" secondAttribute="trailing" id="tuQ-aN-ZdO"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Qr3-hD-GQe"/>
                     </view>
                     <connections>
                         <outlet property="btnSendAgian" destination="7Ey-5Y-LRT" id="oM1-Gp-aD3"/>
@@ -703,7 +704,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJW-ml-xxW">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="857.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="815.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopBG" translatesAutoresizingMaskIntoConstraints="NO" id="8Rf-8a-WnS">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="266"/>
@@ -719,7 +720,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-vR-sQr" customClass="IQPreviousNextView" customModule="IQKeyboardManagerSwift">
-                                                        <rect key="frame" x="0.0" y="266" width="320" height="591.5"/>
+                                                        <rect key="frame" x="0.0" y="266" width="320" height="549.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-uD-i5x" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="20" width="290" height="25.5"/>
@@ -805,7 +806,7 @@
                                                                         <fontDescription key="fontDescription" name="Nunito-Light" family="Nunito" pointSize="15"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP7-I6-0xM" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP7-I6-0xM" customClass="LocalizButton" customModule="Movecoins" customModuleProvider="target">
                                                                         <rect key="frame" x="164.5" y="0.0" width="101" height="30"/>
                                                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                                                         <state key="normal" title="SIGN UP NOW">
@@ -828,24 +829,24 @@
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVl-P1-oeR">
                                                                 <rect key="frame" x="35" y="417.5" width="250" height="40"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="4dY-z1-Ib2"/>
                                                                     <constraint firstAttribute="width" constant="250" id="skD-3O-9gl"/>
                                                                 </constraints>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2g9-dO-nLa">
-                                                                <rect key="frame" x="66" y="477.5" width="188" height="84"/>
+                                                                <rect key="frame" x="108" y="477.5" width="104" height="42"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdQ-0Z-aG4">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="42"/>
                                                                         <state key="normal" image="Twitter icon"/>
                                                                         <connections>
                                                                             <action selector="btnTwitterTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="G2t-fY-J8i"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-10-Hf6">
-                                                                        <rect key="frame" x="104" y="0.0" width="84" height="84"/>
+                                                                        <rect key="frame" x="62" y="0.0" width="42" height="42"/>
                                                                         <state key="normal" image="Facebook-icon"/>
                                                                         <connections>
                                                                             <action selector="btnFBTapped:" destination="hPL-W7-8tZ" eventType="touchUpInside" id="hmQ-Vm-POe"/>
@@ -913,6 +914,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="AtV-Gq-xQT"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ef5-h6-qeq" firstAttribute="trailing" secondItem="AtV-Gq-xQT" secondAttribute="trailing" id="8Hu-zb-bLa"/>
@@ -921,7 +923,6 @@
                             <constraint firstItem="Ef5-h6-qeq" firstAttribute="top" secondItem="oOy-gg-OYb" secondAttribute="top" id="o7w-yc-Gxz"/>
                             <constraint firstItem="Ef5-h6-qeq" firstAttribute="leading" secondItem="AtV-Gq-xQT" secondAttribute="leading" id="yMB-xH-LnG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="AtV-Gq-xQT"/>
                     </view>
                     <connections>
                         <outlet property="appleSigninBtnHeightConstraint" destination="4dY-z1-Ib2" id="DIX-Cj-9Nu"/>
@@ -993,7 +994,7 @@
                                             <constraint firstAttribute="trailing" secondItem="KD0-1E-fuO" secondAttribute="trailing" constant="8" id="kak-Uh-R1T"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gq-Sg-gnz" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gq-Sg-gnz" customClass="ThemeButton" customModule="Movecoins" customModuleProvider="target">
                                         <rect key="frame" x="60" y="431.5" width="200" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="8K4-0d-oiX"/>
@@ -1028,6 +1029,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="U7e-gq-4hF"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mJ4-XO-f6i" secondAttribute="trailing" id="3Aq-xE-jKf"/>
@@ -1035,7 +1037,6 @@
                             <constraint firstAttribute="bottom" secondItem="mJ4-XO-f6i" secondAttribute="bottom" id="gIR-fe-i2f"/>
                             <constraint firstItem="mJ4-XO-f6i" firstAttribute="top" secondItem="LEJ-Ei-A1Z" secondAttribute="top" id="xJX-G9-GW5"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="U7e-gq-4hF"/>
                     </view>
                     <connections>
                         <outlet property="lblTitle" destination="zv1-8f-ao0" id="jkN-3P-aSd"/>
@@ -1091,7 +1092,7 @@
                                         <color key="pageIndicatorTintColor" red="0.14901960784313725" green="0.58039215686274503" blue="0.69019607843137254" alpha="0.60999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <color key="currentPageIndicatorTintColor" red="0.14901960784313725" green="0.58039215686274503" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     </pageControl>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-yw-8an">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-yw-8an">
                                         <rect key="frame" x="215" y="488" width="90" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="d1c-3q-jr1"/>
@@ -1123,6 +1124,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="GVC-MO-gHV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9Yb-cK-rel" firstAttribute="top" secondItem="J42-lA-y5r" secondAttribute="top" id="CK2-CO-ngT"/>
@@ -1130,7 +1132,6 @@
                             <constraint firstAttribute="bottom" secondItem="9Yb-cK-rel" secondAttribute="bottom" id="kbB-eI-qdm"/>
                             <constraint firstItem="9Yb-cK-rel" firstAttribute="leading" secondItem="J42-lA-y5r" secondAttribute="leading" id="pe1-ww-r0y"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="GVC-MO-gHV"/>
                     </view>
                     <connections>
                         <outlet property="btnSkip" destination="Xuw-yw-8an" id="vnX-uD-qYd"/>
@@ -1153,5 +1154,8 @@
         <image name="m-logo" width="137" height="137"/>
         <image name="photo-frame" width="116" height="116"/>
         <image name="plus-2" width="52" height="52"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
