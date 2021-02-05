@@ -58,7 +58,7 @@ enum NetworkEnvironment: String {
 //        #if DEBUG
 //        return .developmentBaseUrl
 //        #else
-        return .developmentBaseUrl
+        return .developmentBaseUrl //.liveBaseUrl //
 //        #endif
     }
     

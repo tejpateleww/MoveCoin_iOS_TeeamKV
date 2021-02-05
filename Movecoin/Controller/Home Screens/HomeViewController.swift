@@ -294,6 +294,8 @@ class HomeViewController: UIViewController {
                     return
                 }
                 DispatchQueue.main.async {
+                    // if last updated date and current date is same when open from background
+                    
                     let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
                     let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
                     let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)

@@ -209,7 +209,7 @@ class InviteFriendsViewController: UIViewController {
         //        self.moveToBankDetailScreen()
         //        return
         //
-        if(Double(self.redeemData.inviteeCount) ?? 0 < 100)
+        if(Double(self.redeemData.inviteeCount) ?? 0 < 2)
         {
             UtilityClass.showAlertWithCompletion(title: "MoveCoins rewards".localized, Message: "Invitations numbers not enough to claim".localized, ButtonTitle: "OK".localized) {
                 

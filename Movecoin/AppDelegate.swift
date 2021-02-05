@@ -273,6 +273,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             let vc = (AppDelegateShared.window?.rootViewController as? UINavigationController)?.topViewController as! ChatViewController
             vc.webserviceForChatHistory(isLoading: false)
         }
+        
+        // If LastUpdatedDate and Current Date is same then Main Today's steps should be 0 if it opens from background 
+        if let topViewController = UIApplication.topViewController() as? HomeViewController {
+            DispatchQueue.main.async {
+                
+                let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
+                let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
+                let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
+                
+                if lastUpdatedDate == currentDate {
+                    topViewController.lblTodaysStepCount.text = "0"
+                }
+            }
+        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
