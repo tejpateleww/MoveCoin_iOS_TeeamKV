@@ -44,7 +44,7 @@ struct Transaction {
     // Apple Pay Information
     var applePayMerchantIdentifier: String?
     var countryCode = "US"
-    var supportedNetworks: [PKPaymentNetwork] = [.visa, .masterCard, .discover, .amex]
+    var supportedNetworks: [PKPaymentNetwork] = [.visa, .masterCard, .discover, .amex, .mada]
     var applePayPayment: PKPayment?
     
     var isApplePay: Bool {

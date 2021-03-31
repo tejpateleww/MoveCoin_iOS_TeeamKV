@@ -76,7 +76,7 @@ class ConfirmPurchaseViewController: UIViewController {
     var appIdentifier = "merchant.\(Bundle.main.bundleIdentifier ?? "")"
     var merchantURL = "https://www.movecoins.net/admin/pg/apple/"
     var countryCode = "SA"
-    var supportedNetworks: [PKPaymentNetwork] = [.visa, .masterCard, .discover, .amex]
+    var supportedNetworks: [PKPaymentNetwork] = [.visa, .masterCard, .discover, .amex, .mada]
     var request : PKPaymentRequest?
     var applePayPayment: PKPayment?
     

@@ -32,9 +32,12 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var lblDeliveryCharge: UILabel!
     @IBOutlet weak var lblBuy: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
+    @IBOutlet weak var lblOrderStatus: UILabel!
     @IBOutlet weak var btnBuy: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     
+    var strOrderStatus = String()
+
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
@@ -45,6 +48,7 @@ class ProductDetailViewController: UIViewController {
     var imgArray : [String] = []
     var viewType : PurchaseDetailViewType = .Purchase
     var product : ProductDetails!
+    var orderDetail : Order!
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -57,6 +61,7 @@ class ProductDetailViewController: UIViewController {
         navigationBarSetUp()
         self.setUpView()
         self.setupFont()
+//        print("The order id is \(orderDetail.orderID ?? "-")")
 
         guard productID != nil else { return }
     }
@@ -186,6 +191,12 @@ class ProductDetailViewController: UIViewController {
  
  */
         
+        if(viewType == .History)
+        {
+            lblOrderStatus.isHidden = false
+            lblOrderStatus.text = "Order Status : ".localized + strOrderStatus
+        }
+        
         if product.status == "Out Stock" {
             stackView.isHidden = true
             btnBuy.isEnabled = false
@@ -258,13 +269,19 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
 
 extension ProductDetailViewController {
     
-    func webserviceForProductDetails(){
+    func webserviceForProductDetails(productId : String = ""){
         
         UtilityClass.showHUD()
         
         let requestModel = ProductDetailModel()
-        requestModel.ProductID = productID ?? ""
-    
+        if(productId == "")
+        {
+            requestModel.ProductID = productID ?? ""
+        }
+        else
+        {
+            requestModel.ProductID = productId
+        }
         ProductWebserviceSubclass.productDetails(productDetailModel: requestModel){ (json, status, res) in
           
             UtilityClass.hideHUD()

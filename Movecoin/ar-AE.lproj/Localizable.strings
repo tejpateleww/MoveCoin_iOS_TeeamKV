@@ -93,7 +93,7 @@
 "STATISTICS" = "الإحصائيات";
 "PROFILE" = "الملف الشخصي";
 
-
+"Order Status : " = "حالة الطلب :";
 // Home Screen
 "Total Steps" = "مجموع الخطوات";
 "Coins" = "العملات";

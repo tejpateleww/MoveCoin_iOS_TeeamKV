@@ -86,6 +86,12 @@ class HomeViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 3, completion: nil)
         }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(getTodaysSteps), name: NotificationSetTodaysSteps, object: nil)
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +105,7 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.logEvent("HomeScreen", parameters: nil)
-
+        
         webserviceForUserDetails()
     }
     
@@ -169,13 +175,13 @@ class HomeViewController: UIViewController {
             
             // Client Remove this
             
-//            if let friendCount = Int(lblFriends.text ?? "0") {
-//                if friendCount > 1 {
-//                    lblTitleFriends.text = "Friends".localized
-//                } else {
-//                    lblTitleFriends.text = "Friend".localized
-//                }
-//            }
+            //            if let friendCount = Int(lblFriends.text ?? "0") {
+            //                if friendCount > 1 {
+            //                    lblTitleFriends.text = "Friends".localized
+            //                } else {
+            //                    lblTitleFriends.text = "Friend".localized
+            //                }
+            //            }
             
             let membership = Membership(rawValue: Int(user.memberType) ?? 1)
             switch membership {
@@ -205,19 +211,19 @@ class HomeViewController: UIViewController {
                 lastUpdatedStepsAt = Date().ToLocalStringWithFormat(dateFormat: DateFomateKeys.apiDOB)
             }
             
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd"//"h:mm a"
-//            dateFormatter.calendar = NSCalendar.current
-//            dateFormatter.timeZone = TimeZone(identifier: timeZone)
-//            dateFormatter.locale = .current
-
+            //            let dateFormatter = DateFormatter()
+            //            dateFormatter.dateFormat = "yyyy-MM-dd"//"h:mm a"
+            //            dateFormatter.calendar = NSCalendar.current
+            //            dateFormatter.timeZone = TimeZone(identifier: timeZone)
+            //            dateFormatter.locale = .current
+            
             let statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)// as? Date else {return}//dateFormatter.date(from: lastUpdatedStepsAt) else { return  }
             print("Start Date : \(statDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
-
+            
             let now = UtilityClass.getTodayFromServer()
             
             print("Now Date : \(now.getFormattedDate(dateFormate: DateFomateKeys.api))")
-
+            
             let days = now.days(from: statDate)//interval(ofComponent: .day, fromDate: statDate)//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate )
             if days >= 1 {
                 getRemainingStepsFromHealthKit { (steps) in
@@ -226,7 +232,7 @@ class HomeViewController: UIViewController {
                     if Int(steps) > 0 {
                         self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
                         print("IF")
-
+                        
                     }
                 }
             }
@@ -239,24 +245,27 @@ class HomeViewController: UIViewController {
         }
     }
     
-    fileprivate func getTodaysSteps() {
+    @objc func getTodaysSteps() {
         
         self.getTodaysStepsFromHealthKit { (steps) in
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 var tempSteps = steps
                 print("Today's Steps : ",steps)
-                self.lblTodaysStepCount.text = String(Int(steps))
-                SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
-                SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-                #if targetEnvironment(simulator)
-                tempSteps = 5000
-                #endif
-                if Int(tempSteps) > 0 {
-               
-                    self.webserviceforUpdateStepsCount(stepsCount: String(Int(tempSteps)), dateStr: self.queryDate)
+                if((SingletonClass.SharedInstance.todaysStepCount ?? "0.00") < String(Int(steps)))
+                {
+                    self.lblTodaysStepCount.text = String(Int(steps))
+                    SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
+                    SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                    #if targetEnvironment(simulator)
+                    tempSteps = 5000
+                    #endif
+                    if Int(tempSteps) > 0 {
+                        
+                        self.webserviceforUpdateStepsCount(stepsCount: String(Int(tempSteps)), dateStr: self.queryDate)
+                    }
+                    self.startCountingSteps()
                 }
-                self.startCountingSteps()
             }
         }
     }
@@ -287,7 +296,7 @@ class HomeViewController: UIViewController {
     func startCountingSteps(){
         if CMPedometer.isStepCountingAvailable(){
             
-//            pedoMeter.startUpdates(from: Date()) { (data, error) in
+            //            pedoMeter.startUpdates(from: Date()) { (data, error) in
             pedoMeter.startUpdates(from: UtilityClass.getTodayFromServer()) { (data, error) in
                 print(data ?? 0)
                 guard let activityData = data else {
@@ -316,24 +325,24 @@ class HomeViewController: UIViewController {
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                         SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     }
-//                    if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
-//                        let total = counts + activityData.numberOfSteps.intValue
-//                        self.lblTodaysStepCount.text = "\(total)"
-//                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-//                        print("Total:\(total)")
-//                    }else {
-//                        self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
-//                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-//                    }
+                    //                    if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
+                    //                        let total = counts + activityData.numberOfSteps.intValue
+                    //                        self.lblTodaysStepCount.text = "\(total)"
+                    //                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                    //                        print("Total:\(total)")
+                    //                    }else {
+                    //                        self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
+                    //                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                    //                    }
                     
                     self.webserviceforAPPInit()
                 }
             }
-       	 }
+        }
     }
     
     
-    func webserviceforAPPInit(){
+    @objc func webserviceforAPPInit(){
         
         var strParam = String()
         
@@ -348,7 +357,7 @@ class HomeViewController: UIViewController {
                 let startOfDay = Calendar.current.startOfDay(for: now)
                 self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
                 self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0", dateStr: self.queryDate)
-
+                
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
@@ -404,7 +413,7 @@ class HomeViewController: UIViewController {
             statDate = lastWeekDate?.startOfDay ?? Date()
         }
         lastUpdatedDate = lastUpdatedDate.startOfDay - 1
-
+        
         print("-------------------------------------")
         print("-- EndDate in Local : \(statDate?.getFormattedDate(dateFormate: DateFomateKeys.api) ?? "-")")
         print("-- StartDate in LocalToUTC : \(lastUpdatedDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
@@ -450,7 +459,7 @@ extension HomeViewController {
             return
         }
         requestModel.UserID = id
-  
+        
         
         UserWebserviceSubclass.userDetails(userDetailModel: requestModel){ (json, status, res) in
             
@@ -479,9 +488,9 @@ extension HomeViewController {
             return
         }
         
-//        guard let lastDate = SingletonClass.SharedInstance.lastUpdatedStepsAt else {
-//            return
-//        }
+        //        guard let lastDate = SingletonClass.SharedInstance.lastUpdatedStepsAt else {
+        //            return
+        //        }
         
         let lastWeekDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())
         guard let lastUpdatedStepsAt = SingletonClass.SharedInstance.lastUpdatedStepsAt else { return }
@@ -503,13 +512,13 @@ extension HomeViewController {
         
         UserWebserviceSubclass.convertStepsToCoin(StepToCoinModel: model) { (json, status, res) in
             print(status)
-
+            
             if status{
                 print("convert steps to coins api successfully run")
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
-
+            
             self.getTodaysSteps()
         }
     }
@@ -520,7 +529,7 @@ extension HomeViewController {
             return
         }
         var strParam = String()
-//        let deviceName = UIDevice.current.name
+        //        let deviceName = UIDevice.current.name
         var uid = "uuid"
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)

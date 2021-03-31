@@ -58,7 +58,7 @@ enum NetworkEnvironment: String {
 //        #if DEBUG
 //        return .developmentBaseUrl
 //        #else
-        return .developmentBaseUrl //.liveBaseUrl //
+        return .liveBaseUrl //.liveBaseUrl //
 //        #endif
     }
     
@@ -70,7 +70,7 @@ enum NetworkEnvironment: String {
 struct SocketApiKeys {
     
     static let kSocketBaseURL = "https://www.movecoins.net:8081/"
-//    static let kSocketBaseURL = "http://15.207.107.71:8080/"
+    //    static let kSocketBaseURL = "http://15.207.107.71:8080/"
     static let kConnectUser = "connect_user"
     static let kUpdateUserLocation = "update_user_location" 
     

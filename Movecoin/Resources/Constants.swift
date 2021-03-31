@@ -45,5 +45,6 @@ let appURL = "itms-apps://itunes.apple.com/app/apple-store/id\(kAppID)?mt=8"
 let currency = "SAR"
 let kLocalNotificationIdentifier = "MoveCoinsEverydayLocalNotification"
 let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")
+let NotificationSetTodaysSteps = NSNotification.Name(rawValue:"NotificationSetTodaysSteps")
 let timeZone = TimeZone.current.abbreviation() ?? "Asia/Riyadh"
 

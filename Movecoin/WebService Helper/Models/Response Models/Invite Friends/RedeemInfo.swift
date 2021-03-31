@@ -11,6 +11,8 @@ class RedeemInfo : NSObject, NSCoding{
 
     var arabicMessage : String!
     var inviteeCount : String!
+    var fromDate : String!
+    var toDate : String!
     var message : String!
     var status : Bool!
     var totalSar : String!
@@ -28,6 +30,8 @@ class RedeemInfo : NSObject, NSCoding{
         status = json["status"].boolValue
         totalSar = json["total_sar"].stringValue
         offerActive = json["offer_active"].boolValue
+        fromDate = json["from_date"].stringValue
+        toDate = json["to_date"].stringValue
 
 	}
 
@@ -52,6 +56,12 @@ class RedeemInfo : NSObject, NSCoding{
         if totalSar != nil{
         	dictionary["total_sar"] = totalSar
         }
+        if fromDate != nil{
+            dictionary["from_date"] = fromDate
+        }
+        if toDate != nil{
+            dictionary["to_date"] = toDate
+        }
 		return dictionary
 	}
 
@@ -67,6 +77,8 @@ class RedeemInfo : NSObject, NSCoding{
 		status = aDecoder.decodeObject(forKey: "status") as? Bool
 		totalSar = aDecoder.decodeObject(forKey: "total_sar") as? String
         offerActive = aDecoder.decodeObject(forKey: "offer_active") as? Bool
+        fromDate = aDecoder.decodeObject(forKey: "from_date") as? String
+        toDate = aDecoder.decodeObject(forKey: "to_date") as? String
 
 	}
 
@@ -93,6 +105,12 @@ class RedeemInfo : NSObject, NSCoding{
 		}
         if offerActive != nil{
             aCoder.encode(offerActive, forKey: "offer_active")
+        }
+        if fromDate != nil{
+            aCoder.encode(fromDate, forKey: "from_date")
+        }
+        if toDate != nil{
+            aCoder.encode(toDate, forKey: "to_date")
         }
 	}
 

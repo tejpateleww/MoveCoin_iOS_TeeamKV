@@ -97,7 +97,7 @@ class UtilityClass : NSObject {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone(abbreviation: timeZone)
         dateFormatter.dateFormat = currentDateFormat // This formate is input formated .
-        let str = dateFormatter.date(from: dateString)!
+        guard let str = dateFormatter.date(from: dateString) else { return Date() }
         
         dateFormatter.dateFormat = dateFormate // Output Formated
         let formateDate = dateFormatter.string(from:str)

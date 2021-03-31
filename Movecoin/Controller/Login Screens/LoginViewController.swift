@@ -201,7 +201,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
                 print("Error : \(error?.localizedDescription ?? "")")
               }
             
-            print(authResult?.additionalUserInfo?.profile)
+//            print(authResult?.additionalUserInfo?.profile)
             
             let profile = authResult?.additionalUserInfo?.profile!
             let id = profile?["id_str"] as! String

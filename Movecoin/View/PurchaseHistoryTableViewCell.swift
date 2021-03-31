@@ -26,20 +26,28 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
                 
 //                self.lblPaymentStatus.isHidden = detail.paymentStatus == "failed" ? false : true
                 
-                let status = PaymentStatus(rawValue: detail.paymentStatus.capitalizingFirstLetter())
+                let status = PaymentStatus(rawValue: detail.orderStatus.capitalizingFirstLetter())
                 self.lblPaymentStatus.text = (status?.rawValue)?.localized
+                self.lblPaymentStatus.textColor = .white
                 
-                switch status {
-                case .Success:
-                    self.lblPaymentStatus.textColor = .green
-                case .Failed:
+                
+                if(status == .Failed)
+                {
                     self.lblPaymentStatus.textColor = .red
-                case .Pending:
-                    self.lblPaymentStatus.textColor = .orange
-                case .none:
-                    self.lblPaymentStatus.text = "Pending".localized
-                    self.lblPaymentStatus.textColor = .orange
                 }
+//                switch status {
+//                case .Success:
+////                    self.lblPaymentStatus.textColor = .green
+//                case .Failed:
+////                    self.lblPaymentStatus.textColor = .red
+//                case .Pending:
+////                    self.lblPaymentStatus.textColor = .orange
+//                case .Placed:
+////                    self.lblPaymentStatus.textColor = .blue
+//                case .none:
+////                    self.lblPaymentStatus.text = "Pending".localized
+////                    self.lblPaymentStatus.textColor = .orange
+//                }
                 
 //                if detail.discount != "0" {
 //                    self.lblTitle.text = detail.productName.capitalizingFirstLetter() + " with \(detail.discount!)% Discount"

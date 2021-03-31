@@ -81,7 +81,10 @@ extension PurchaseHistoryViewController : UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
         controller.viewType = .History
+        let status = PaymentStatus(rawValue: purchaseHistory?[indexPath.row].orderStatus.capitalizingFirstLetter() ?? "")
+        controller.strOrderStatus = status?.rawValue ?? "-"
         controller.productID = purchaseHistory?[indexPath.row].productId
+        controller.orderDetail = purchaseHistory?[indexPath.row]
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }

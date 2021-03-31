@@ -275,16 +275,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         }
         
         // If LastUpdatedDate and Current Date is same then Main Today's steps should be 0 if it opens from background 
-        if let topViewController = UIApplication.topViewController() as? HomeViewController {
+//        if let topViewController = UIApplication.topViewController()?.children.first as? HomeViewController {
             DispatchQueue.main.async {
                 
                 let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
                 let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
                 let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
                 
-                if lastUpdatedDate == currentDate {
-                    topViewController.lblTodaysStepCount.text = "0"
+                if lastUpdatedDate != currentDate {
+//                    topViewController.getTodaysSteps()
+                    SingletonClass.SharedInstance.todaysStepCount = "" // This is done because when coming from background and day is changed then this is affecting in getTodaysStepsFromHealthKit
+                    self.webserviceforAPPInit()
+
                 }
+            }
+//        }
+    }
+    
+    
+    func webserviceforAPPInit(){
+        
+        var strParam = String()
+        
+        strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
+        
+        UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
+            print(status)
+            if status{
+                let initResponseModel = InitResponse(fromJson: json)
+                SingletonClass.SharedInstance.lastUpdatedStepsAt = initResponseModel.lastUpdateStepAt
+                SingletonClass.SharedInstance.productType = initResponseModel.category
+                SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
+                SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
+//                topViewcontroller.getTodaysSteps()
+                NotificationCenter.default.post(name: NotificationSetTodaysSteps, object: nil)
+
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
@@ -476,6 +503,14 @@ extension AppDelegate {
         }
     }
     
+    func productDetails()
+    {
+        if let topViewController = UIApplication.topViewController() as? ProductDetailViewController
+        {
+            topViewController.webserviceForProductDetails()
+        }
+    }
+    
     @objc func loadFriendVC(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: FriendsViewController.className) as! FriendsViewController
@@ -600,76 +635,108 @@ extension AppDelegate {
         
         //        let content = response.notification.request.content
         let userInfo = response.notification.request.content.userInfo
-        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") {
+        if let key = (userInfo as NSDictionary).object(forKey: "gcm.notification.type") as? String
+        {
             print("KEY : ",key)
-        }
-        
-        print("USER INFo : ",userInfo)
-        
-        if userInfo["gcm.notification.type"] as! String == "chat" {
             
-            if let response = userInfo["gcm.notification.response_arr"] as? String {
-                let jsonData = response.data(using: .utf8)!
-                let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+            
+            print("USER INFo : ",userInfo)
+            
+            if key == "chat" {
                 
-                if let dic = dictionary  as? [String: Any]{
-                    print(dic)
+                if let response = userInfo["gcm.notification.response_arr"] as? String {
+                    let jsonData = response.data(using: .utf8)!
+                    let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
                     
-                    let state = UIApplication.shared.applicationState
-                    
-                    if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
+                    if let dic = dictionary  as? [String: Any]{
+                        print(dic)
                         
-                        if let vc : ChatViewController = (vc as? ChatViewController) {
+                        let state = UIApplication.shared.applicationState
+                        
+                        if let vc = (self.window?.rootViewController as? UINavigationController)?.topViewController {
                             
-                            if let senderID = dic["SenderID"] as? String {
-                                if senderID == vc.receiverID {
-                                    vc.webserviceForChatHistory(isLoading: false)
-                                } else {
-//                                    if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
-//                                        vc.navigationController?.popViewController(animated: false)
-//                                        chatListVC.ChatFromNotification(dict: dic)
-//                                    }
-                                    vc.receiverID = senderID
-                                    vc.webserviceForChatHistory(isLoading: false)
-
-                                }
-                            }
-                        } else {
-                            if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
+                            if let vc : ChatViewController = (vc as? ChatViewController) {
                                 
-                                for controller in vc.navigationController?.viewControllers ?? [] {
-                                    if(controller.isKind(of: ChatListViewController.self)) {
-                                        vc.navigationController?.popToViewController(controller as! ChatListViewController, animated: true)
-                                        break
+                                if let senderID = dic["SenderID"] as? String {
+                                    if senderID == vc.receiverID {
+                                        vc.webserviceForChatHistory(isLoading: false)
+                                    } else {
+                                        //                                    if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
+                                        //                                        vc.navigationController?.popViewController(animated: false)
+                                        //                                        chatListVC.ChatFromNotification(dict: dic)
+                                        //                                    }
+                                        vc.receiverID = senderID
+                                        vc.webserviceForChatHistory(isLoading: false)
+                                        
                                     }
                                 }
-                                chatListVC.ChatFromNotification(dict: dic)
                             } else {
-                                if state == .inactive {
-                                    NotificationCenter.default.addObserver(self, selector: #selector(loadChatVC), name: NotificationSetHomeVC, object: nil)
-                                    SingletonClass.SharedInstance.userInfo = dic
-                                }
-                                if !vc.isKind(of: SplashViewController.self) {
+                                if let chatListVC = vc.navigationController?.hasViewController(ofKind: ChatListViewController.self) as? ChatListViewController {
                                     
-                                    let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
-                                    let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
-                                    controller.receiverID = dic["SenderID"] as? String
-                                    vc.navigationController?.pushViewController(controller, animated: false)
+                                    for controller in vc.navigationController?.viewControllers ?? [] {
+                                        if(controller.isKind(of: ChatListViewController.self)) {
+                                            vc.navigationController?.popToViewController(controller as! ChatListViewController, animated: true)
+                                            break
+                                        }
+                                    }
+                                    chatListVC.ChatFromNotification(dict: dic)
+                                } else {
+                                    if state == .inactive {
+                                        NotificationCenter.default.addObserver(self, selector: #selector(loadChatVC), name: NotificationSetHomeVC, object: nil)
+                                        SingletonClass.SharedInstance.userInfo = dic
+                                    }
+                                    if !vc.isKind(of: SplashViewController.self) {
+                                        
+                                        let storyboard = UIStoryboard(name: "ChatStoryboard", bundle: nil)
+                                        let controller = storyboard.instantiateViewController(withIdentifier: ChatViewController.className) as! ChatViewController
+                                        controller.receiverID = dic["SenderID"] as? String
+                                        vc.navigationController?.pushViewController(controller, animated: false)
+                                    }
                                 }
                             }
                         }
+                        //                    }
+                    } else {
+                        completionHandler()
                     }
-                    //                    }
-                } else {
-                    completionHandler()
+                }
+            } else if key == "friend_request" {
+                loadFriendsRequest()
+            } else if key == "coins_transfer" {
+                loadWallet()
+            } else if key == "friend_request_accept" {
+                acceptFriedRequestNotificationHandle()
+            }else if key == "order_update" {
+                if let response = userInfo["gcm.notification.response_arr"] as? String {
+                    let jsonData = response.data(using: .utf8)!
+                    let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                    if let dic = dictionary  as? [String: Any]
+                    {
+                        if let productDetailVC = UIApplication.topViewController() as? ProductDetailViewController
+                        {
+                            if let productID = dic["product_id"] as? String
+                            {
+                                productDetailVC.strOrderStatus = ((dic["order_status"] as? String ?? "").capitalizingFirstLetter())
+                                productDetailVC.webserviceForProductDetails(productId: productID)
+                            }
+                        }
+                        else
+                        {
+                            
+                            if let productID = dic["product_id"] as? String
+                            {
+                                let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                                
+                                let controller = mainStoryboard.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
+                                controller.viewType = .History
+                                controller.strOrderStatus = ((dic["order_status"] as? String ?? "").capitalizingFirstLetter())
+                                controller.productID = productID
+                                UIApplication.topViewController()?.navigationController?.pushViewController(controller, animated: true)
+                            }
+                        }
+                    }
                 }
             }
-        } else if userInfo["gcm.notification.type"] as! String == "friend_request" {
-            loadFriendsRequest()
-        } else if userInfo["gcm.notification.type"] as! String == "coins_transfer" {
-            loadWallet()
-        } else if userInfo["gcm.notification.type"] as! String == "friend_request_accept" {
-            acceptFriedRequestNotificationHandle()
         }
     }
     
@@ -769,6 +836,42 @@ extension AppDelegate {
                 }
                 completionHandler([.alert, .sound])
             }
+            else if key == "order_update" {
+                if let response = userInfo["gcm.notification.response_arr"] as? String {
+                    let jsonData = response.data(using: .utf8)!
+                    let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
+                    if let dic = dictionary  as? [String: Any]
+                        {
+                        if let productID = dic["product_id"] as? String
+                        {
+                            if let topViewController = UIApplication.topViewController() as? ProductDetailViewController
+                            {
+                                if let orderID = dic["order_id"] as? String
+                                {
+                                    if(orderID == topViewController.orderDetail?.orderID)
+                                    {
+                                        for viewController in topViewController.parent?.children ?? []
+                                        {
+                                            if(viewController.isKind(of: PurchaseHistoryViewController.self))
+                                            {
+                                                (viewController as? PurchaseHistoryViewController)?.webserviceForPurchasehistory()
+                                            }
+                                        }
+                                        topViewController.strOrderStatus = ((dic["order_status"] as? String ?? "").capitalizingFirstLetter())
+                                        topViewController.webserviceForProductDetails(productId: productID)
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+
+
+              
+                completionHandler([.alert, .sound])
+
+            }
             else if key == "Logout" {
                 self.GoToLogout()
                 if let aps = ((userInfo["aps"] as? [String:Any])?["alert"] as? [String:Any])?["title"] as? String
@@ -807,6 +910,7 @@ extension AppDelegate {
                 
 //                completionHandler([.alert, .sound])
             }
+            completionHandler([.alert, .sound])
         }
     }
     

@@ -30,6 +30,7 @@ class InviteFriendsViewController: UIViewController {
     @IBOutlet weak var lblDescription: LocalizLabel!
     @IBOutlet weak var lblCode: LocalizLabel!
     @IBOutlet weak var lblReferral: UILabel!
+    @IBOutlet weak var lblValidityDate: UILabel!
     @IBOutlet weak var viewReferralCode: TransparentView!
     @IBOutlet weak var viewBoxAnimation: UIView!
     
@@ -120,7 +121,7 @@ class InviteFriendsViewController: UIViewController {
         super.viewDidLoad()
         self.setupFont()
         isHideBottomPart = true
-        
+        self.lblValidityDate.text = ""
         
         lblReferral.text = SingletonClass.SharedInstance.userData?.referralCode ?? ""
         self.webserviceCallForGettingClaimInfo()
@@ -209,7 +210,7 @@ class InviteFriendsViewController: UIViewController {
         //        self.moveToBankDetailScreen()
         //        return
         //
-        if(Double(self.redeemData.inviteeCount) ?? 0 < 2)
+        if((Double(self.redeemData.inviteeCount) ?? 0.0) < 100)
         {
             UtilityClass.showAlertWithCompletion(title: "MoveCoins rewards".localized, Message: "Invitations numbers not enough to claim".localized, ButtonTitle: "OK".localized) {
                 
@@ -270,6 +271,19 @@ class InviteFriendsViewController: UIViewController {
                 self.redeemData = responseModel
                 self.isHideBottomPart = !self.redeemData.offerActive
                 self.lblInvitationInfo.text = "You have invited".localized + " " + self.redeemData.inviteeCount + "*"
+                
+                let fromDate = UtilityClass.changeDateFormateFrom(dateString: self.redeemData.fromDate, fromFormat: DateFomateKeys.apiDOB, withFormat: DateFomateKeys.displayDate)
+                
+                let toDate = UtilityClass.changeDateFormateFrom(dateString: self.redeemData.toDate, fromFormat: DateFomateKeys.apiDOB, withFormat: DateFomateKeys.displayDate)
+
+                let text1 = "From : ".localized + (fromDate ?? "")
+                    
+                self.lblValidityDate.text = text1 + " " + "To ".localized + ": " + (toDate ?? "")
+                if(Localize.currentLanguage() == Languages.Arabic.rawValue)
+                {
+                    self.lblValidityDate.text = text1 + " " + "To ".localized + " " + ": " + (toDate ?? "")
+
+                }
             }
             else {
                 UtilityClass.showAlertOfAPIResponse(param: res)

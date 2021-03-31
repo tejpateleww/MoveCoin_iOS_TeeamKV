@@ -14,9 +14,11 @@ enum StepsPermission : String {
 }
 
 enum PaymentStatus : String {
-    case Success = "Success"
-    case Failed = "Failed"
+    case Success = "Completed"
+    case Failed = "Cancel"
     case Pending = "Pending"
+    case Placed = "Placed"
+
 }
 
 enum TabBarOptions : Int {
