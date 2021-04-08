@@ -194,7 +194,7 @@ class ProductDetailViewController: UIViewController {
         if(viewType == .History)
         {
             lblOrderStatus.isHidden = false
-            lblOrderStatus.text = "Order Status : ".localized + strOrderStatus
+            lblOrderStatus.text = "Order Status : ".localized + strOrderStatus.capitalizingFirstLetter()
         }
         
         if product.status == "Out Stock" {
@@ -205,6 +205,13 @@ class ProductDetailViewController: UIViewController {
         }else{
              lblCoins.text = product.coins
         }
+        
+        self.lblTitle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.lblOrderStatus.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        lblTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        lblOrderStatus.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+
     }
     
     // ----------------------------------------------------

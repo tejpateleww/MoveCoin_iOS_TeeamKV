@@ -26,15 +26,15 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
                 
 //                self.lblPaymentStatus.isHidden = detail.paymentStatus == "failed" ? false : true
                 
-                let status = PaymentStatus(rawValue: detail.orderStatus.capitalizingFirstLetter())
-                self.lblPaymentStatus.text = (status?.rawValue)?.localized
+                let status = detail.orderStatus//PaymentStatus(rawValue: detail.orderStatus.capitalizingFirstLetter())
+                self.lblPaymentStatus.text = status?.capitalizingFirstLetter()//(status?.rawValue)?.localized
                 self.lblPaymentStatus.textColor = .white
                 
                 
-                if(status == .Failed)
-                {
-                    self.lblPaymentStatus.textColor = .red
-                }
+//                if(status == .Failed)
+//                {
+//                    self.lblPaymentStatus.textColor = .red
+//                }
 //                switch status {
 //                case .Success:
 ////                    self.lblPaymentStatus.textColor = .green

@@ -403,7 +403,7 @@ class HomeViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"//"h:mm a"
         dateFormatter.calendar = NSCalendar.current
-        dateFormatter.timeZone = TimeZone(identifier: timeZone)
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)1111```
         dateFormatter.locale = .current
         
         var statDate = dateFormatter.date(from: lastUpdatedStepsAt)
