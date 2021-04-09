@@ -33,7 +33,8 @@ class ProductDetails : Codable{
     var store : String!
     var totalPrice : String!
     var trash : String!
-    
+    var isVat : String!
+    var vat : String!
     /**
      * Instantiate the instance using the passed json values to set the properties values
      */
@@ -69,6 +70,8 @@ class ProductDetails : Codable{
         store = json["Store"].stringValue
         totalPrice = json["TotalPrice"].stringValue
         trash = json["Trash"].stringValue
+        isVat = json["IsVat"].stringValue
+        vat = json["vat"].stringValue
     }
     
     /**
@@ -149,6 +152,12 @@ class ProductDetails : Codable{
         if trash != nil{
             dictionary["Trash"] = trash
         }
+        if isVat != nil{
+            dictionary["IsVat"] = isVat
+        }
+        if vat != nil{
+            dictionary["vat"] = vat
+        }
         return dictionary
     }
     
@@ -182,6 +191,9 @@ class ProductDetails : Codable{
         store = aDecoder.decodeObject(forKey: "Store") as? String
         totalPrice = aDecoder.decodeObject(forKey: "TotalPrice") as? String
         trash = aDecoder.decodeObject(forKey: "Trash") as? String
+        isVat = aDecoder.decodeObject(forKey: "IsVat") as? String
+        vat = aDecoder.decodeObject(forKey: "vat") as? String
+
     }
     
     /**
@@ -262,6 +274,11 @@ class ProductDetails : Codable{
         if trash != nil{
             aCoder.encode(trash, forKey: "Trash")
         }
-        
+        if isVat != nil{
+            aCoder.encode(isVat, forKey: "IsVat")
+        }
+        if vat != nil{
+            aCoder.encode(vat, forKey: "vat")
+        }
     }
 }

@@ -390,3 +390,6 @@
 "Please enter Account owner name" = "الرجاء إدخال اسم مالك الحساب البنكي";
 "Please enter IBAN Bank details" = "الرجاء إدخال رقم الايبان البنكي";
 "Please enter Name of the bank" = "الرجاء إدخال اسم البنك";
+"VAT" = "ضريبة القيمة المضافة";
+"(VAT included)" = "الإجمالي (شامل ضريبة القيمة المضافة)";
+"Total (VAT included)" = "الإجمالي(شامل ضريبة المقيمة المضافة)";

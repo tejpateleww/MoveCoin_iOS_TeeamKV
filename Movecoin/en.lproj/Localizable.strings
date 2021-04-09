@@ -43,6 +43,7 @@
 "Verify" = "Verify";
 "Already have an Account?" = "Already have an Account?";
 "SIGN IN" = "SIGN IN";
+"(VAT included)" = "(VAT included)";
 
 
 // Verification Code Screen
@@ -351,6 +352,4 @@
 "App would like to use your current location" = "App would like to use your current location";
 "If you don't give access then Steps Count feature will not work" = "If you don't give access then Steps Count feature will not work";
 "App would like to use photo library" = "App would like to use photo library";
-
-
-
+"Total: Total (VAT included)" = "Total: Total (VAT included)";

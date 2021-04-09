@@ -30,6 +30,7 @@ class SingletonClass: NSObject {
     var todaysStepCountInitial : Int?
     var todaysStepCount : String?
     var lastUpdatedDtae : Date?
+    var initResponse : InitResponse?
     
     func singletonClear() {
         self.userData = nil

@@ -44,7 +44,7 @@ class WebService{
             return
         }
         
-        print("the url is \(url) and the parameters are \n \(parameters)")
+        print("the url is \(url) and the parameters are \n \(parameters) and the headers are \(NetworkEnvironment.headers)")
         let method = Alamofire.HTTPMethod.init(rawValue: httpMethod.rawValue)!
         
         var params = parameters
@@ -97,7 +97,7 @@ class WebService{
             .responseJSON { (response) in
                 // LoaderClass.hideActivityIndicator()
                 
-                print("The webservice call is for \(url)")
+                print("The webservice call is for \(url) and the header is \(NetworkEnvironment.headers)")
                 
                 if let json = response.result.value{
                     let resJson = JSON(json)

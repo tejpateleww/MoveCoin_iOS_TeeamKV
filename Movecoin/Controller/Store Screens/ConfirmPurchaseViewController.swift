@@ -113,6 +113,11 @@ class ConfirmPurchaseViewController: UIViewController {
         self.setupTextfield()
         setupProductData()
         Analytics.logEvent("ProductPurchaseScreen", parameters: nil)
+        lblTax.text = "0 %"
+        if(product.isVat == "1")
+        {
+            lblTax.text = "\(product.vat ?? "0") \(currency.localized)"
+        }
 
 //        txtName.text = "Rahul"
 //        txtNumber.text = "1102298338"
@@ -177,6 +182,9 @@ class ConfirmPurchaseViewController: UIViewController {
         lblDelivery.font = UIFont.semiBold(ofSize: 17)
         lblTitleTotal.font = UIFont.semiBold(ofSize: 17)
         lblTotal.font = UIFont.semiBold(ofSize: 17)
+        lblTax.font = UIFont.semiBold(ofSize: 17)
+        lblTaxTitle.font = UIFont.semiBold(ofSize: 17)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -194,7 +202,8 @@ class ConfirmPurchaseViewController: UIViewController {
         imgCardIcon?.isHidden = true
         txtMoveCoins.delegate = self
         lblTitleAvailableBalance.text = "Now Available Balance".localized
-        
+        lblTitleTotal.text = "Total (VAT included)".localized
+        lblTaxTitle.text = "VAT".localized + " " + "(\(SingletonClass.SharedInstance.initResponse?.vat ?? "0")%)"
         viewApplePay?.addSubview(applePayButton)
         applePayButton.addTarget(self, action: #selector(setupPaymentForApplePay), for: .touchUpInside)
         
@@ -217,6 +226,7 @@ class ConfirmPurchaseViewController: UIViewController {
         lblDiscount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
         lblDelivery.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
         lblTotal.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
+        lblTax.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .left : .right
         
         txtCardNumber.delegate = self
         txtExpDate.delegate = self

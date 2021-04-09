@@ -107,6 +107,7 @@ class SplashViewController: UIViewController {
                 SingletonClass.SharedInstance.productType = initResponseModel.category
                 SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
                 SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
+                SingletonClass.SharedInstance.initResponse = initResponseModel
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
