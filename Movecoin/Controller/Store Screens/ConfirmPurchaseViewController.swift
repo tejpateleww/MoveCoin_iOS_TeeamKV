@@ -28,6 +28,8 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet var lblPrice: [UILabel]!
     @IBOutlet weak var lblTitleProductPrice: LocalizLabel!
     @IBOutlet weak var lblProductPrice: UILabel!
+    @IBOutlet weak var lblTaxTitle: UILabel!
+    @IBOutlet weak var lblTax: UILabel!
     @IBOutlet weak var lblTitleDiscount: UILabel!
     @IBOutlet weak var lblDiscount: UILabel!
     @IBOutlet weak var lblTitleDelivery: UILabel!
