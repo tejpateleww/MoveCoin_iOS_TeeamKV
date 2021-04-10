@@ -113,11 +113,7 @@ class ConfirmPurchaseViewController: UIViewController {
         self.setupTextfield()
         setupProductData()
         Analytics.logEvent("ProductPurchaseScreen", parameters: nil)
-        lblTax.text = "0 %"
-        if(product.isVat == "1")
-        {
-            lblTax.text = "\(product.vat ?? "0") \(currency.localized)"
-        }
+    
 
 //        txtName.text = "Rahul"
 //        txtNumber.text = "1102298338"
@@ -207,7 +203,15 @@ class ConfirmPurchaseViewController: UIViewController {
         viewApplePay?.addSubview(applePayButton)
         applePayButton.addTarget(self, action: #selector(setupPaymentForApplePay), for: .touchUpInside)
         
-        
+        lblTax.text = ""
+        if(product.isVat == "1")
+        {
+            lblTax.text = "\(product.vat ?? "0") \(currency.localized)"
+        }
+        else
+        {
+            lblTaxTitle.text = "VAT".localized + " " + "(\("0")%)"
+        }
         txtName.placeHolderColor = TransparentColor
         txtNumber.placeHolderColor = TransparentColor
         txtEmail.placeHolderColor = TransparentColor
