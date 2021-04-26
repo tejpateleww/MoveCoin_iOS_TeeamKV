@@ -27,6 +27,7 @@ class ConfirmPurchaseViewController: UIViewController {
     @IBOutlet weak var lblTitleAvailableBalance: UILabel!
     @IBOutlet var lblPrice: [UILabel]!
     @IBOutlet weak var lblTitleProductPrice: LocalizLabel!
+    @IBOutlet weak var lblVATIncludedTitle: LocalizLabel!
     @IBOutlet weak var lblProductPrice: UILabel!
     @IBOutlet weak var lblTaxTitle: UILabel!
     @IBOutlet weak var lblTax: UILabel!
@@ -180,6 +181,7 @@ class ConfirmPurchaseViewController: UIViewController {
         lblTotal.font = UIFont.semiBold(ofSize: 17)
         lblTax.font = UIFont.semiBold(ofSize: 17)
         lblTaxTitle.font = UIFont.semiBold(ofSize: 17)
+        lblVATIncludedTitle.font = UIFont.semiBold(ofSize: 13)
 
     }
     
@@ -198,7 +200,8 @@ class ConfirmPurchaseViewController: UIViewController {
         imgCardIcon?.isHidden = true
         txtMoveCoins.delegate = self
         lblTitleAvailableBalance.text = "Now Available Balance".localized
-        lblTitleTotal.text = "Total (VAT included)".localized
+        lblTitleTotal.text = "Total".localized
+        lblVATIncludedTitle.text = "(VAT included)".localized
         lblTaxTitle.text = "VAT".localized + " " + "(\(SingletonClass.SharedInstance.initResponse?.vat ?? "0")%)"
         viewApplePay?.addSubview(applePayButton)
         applePayButton.addTarget(self, action: #selector(setupPaymentForApplePay), for: .touchUpInside)
