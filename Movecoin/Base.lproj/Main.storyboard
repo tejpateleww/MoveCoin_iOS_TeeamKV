@@ -3430,15 +3430,15 @@
                                                                                         <rect key="frame" x="0.0" y="160" width="345" height="37.5"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="slhdvshvjkshjkshjkshvdjkshvkjsdvhsjkvhsjkvhsjkvhsd" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-lB-q8h" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="255" height="37.5"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="215" height="37.5"/>
                                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vut-qC-0ZP">
-                                                                                                <rect key="frame" x="265" y="0.0" width="80" height="37.5"/>
+                                                                                                <rect key="frame" x="225" y="0.0" width="120" height="37.5"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="width" constant="80" id="gZt-Qp-IoK"/>
+                                                                                                    <constraint firstAttribute="width" constant="120" id="gZt-Qp-IoK"/>
                                                                                                 </constraints>
                                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
