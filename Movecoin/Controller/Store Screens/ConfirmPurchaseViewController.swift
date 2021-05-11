@@ -202,6 +202,8 @@ class ConfirmPurchaseViewController: UIViewController {
         lblTitleAvailableBalance.text = "Now Available Balance".localized
         lblTitleTotal.text = "Total".localized
         lblVATIncludedTitle.text = "(VAT included)".localized
+        
+        guard let moreVat = Double(product.vat)?.rounded(toPlaces: 2) else { return  }
         lblTaxTitle.text = "VAT".localized + " " + "(\(SingletonClass.SharedInstance.initResponse?.vat ?? "0")%)"
         viewApplePay?.addSubview(applePayButton)
         applePayButton.addTarget(self, action: #selector(setupPaymentForApplePay), for: .touchUpInside)
@@ -209,7 +211,7 @@ class ConfirmPurchaseViewController: UIViewController {
         lblTax.text = ""
         if(product.isVat == "1")
         {
-            lblTax.text = "\(product.vat ?? "0") \(currency.localized)"
+            lblTax.text = "\(moreVat) \(currency.localized)"
         }
         else
         {
@@ -910,3 +912,10 @@ extension ConfirmPurchaseViewController {
 }
 
 
+extension Double {
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}

@@ -3430,15 +3430,15 @@
                                                                                         <rect key="frame" x="0.0" y="178.5" width="345" height="19"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-lB-q8h" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="255" height="19"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="215" height="19"/>
                                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <nil key="highlightedColor"/>
                                                                                             </label>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vut-qC-0ZP">
-                                                                                                <rect key="frame" x="265" y="0.0" width="80" height="19"/>
+                                                                                                <rect key="frame" x="225" y="0.0" width="120" height="19"/>
                                                                                                 <constraints>
-                                                                                                    <constraint firstAttribute="width" constant="80" id="gZt-Qp-IoK"/>
+                                                                                                    <constraint firstAttribute="width" constant="120" id="gZt-Qp-IoK"/>
                                                                                                 </constraints>
                                                                                                 <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -7960,8 +7960,56 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="3FV-L3-WyI">
+            <size key="intrinsicContentSize" width="78" height="18.5"/>
+        </designable>
+        <designable name="760-84-4KP">
+            <size key="intrinsicContentSize" width="58" height="18.5"/>
+        </designable>
+        <designable name="8LJ-Rh-fpN">
+            <size key="intrinsicContentSize" width="28.5" height="17"/>
+        </designable>
         <designable name="8q8-fB-Rts">
             <size key="intrinsicContentSize" width="108" height="20"/>
+        </designable>
+        <designable name="9N6-Ql-K2O">
+            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
+        </designable>
+        <designable name="B1h-5c-AYQ">
+            <size key="intrinsicContentSize" width="84.5" height="18.5"/>
+        </designable>
+        <designable name="Lc7-5L-AVC">
+            <size key="intrinsicContentSize" width="86.5" height="18.5"/>
+        </designable>
+        <designable name="RuJ-Nx-Bhr">
+            <size key="intrinsicContentSize" width="64.5" height="18.5"/>
+        </designable>
+        <designable name="TwW-BC-6yE">
+            <size key="intrinsicContentSize" width="48" height="18.5"/>
+        </designable>
+        <designable name="Ux5-QD-2GA">
+            <size key="intrinsicContentSize" width="78" height="18.5"/>
+        </designable>
+        <designable name="ZZG-nc-vAT">
+            <size key="intrinsicContentSize" width="84.5" height="18.5"/>
+        </designable>
+        <designable name="fXi-I4-7zb">
+            <size key="intrinsicContentSize" width="43.5" height="18.5"/>
+        </designable>
+        <designable name="ikk-Gb-DLa">
+            <size key="intrinsicContentSize" width="28.5" height="17"/>
+        </designable>
+        <designable name="qpS-uv-sWP">
+            <size key="intrinsicContentSize" width="58" height="18.5"/>
+        </designable>
+        <designable name="sWx-0C-Gke">
+            <size key="intrinsicContentSize" width="84" height="18.5"/>
+        </designable>
+        <designable name="sih-tI-mbD">
+            <size key="intrinsicContentSize" width="86.5" height="18.5"/>
+        </designable>
+        <designable name="v4D-gb-7Zh">
+            <size key="intrinsicContentSize" width="90" height="18.5"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

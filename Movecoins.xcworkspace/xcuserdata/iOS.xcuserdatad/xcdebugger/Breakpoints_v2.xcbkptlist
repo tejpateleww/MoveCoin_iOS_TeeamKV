@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C6DC5BD8-C4D4-4F2D-9F13-347154BA869C"
+            uuid = "5B5FF149-7AC2-4F0A-A9EA-87BD0832921D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movecoin/Controller/Setting Screens/SettingsViewController.swift"
+            filePath = "Movecoin/Controller/Store Screens/ConfirmPurchaseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "setUpView()"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "setupView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
