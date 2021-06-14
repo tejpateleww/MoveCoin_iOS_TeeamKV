@@ -96,12 +96,12 @@
 		<key>FirebaseCrashlytics.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>38</integer>
+			<integer>37</integer>
 		</dict>
 		<key>FirebaseInstallations.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>37</integer>
+			<integer>38</integer>
 		</dict>
 		<key>FirebaseInstanceID.xcscheme</key>
 		<dict>

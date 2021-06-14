@@ -48,13 +48,14 @@ class SettingsViewController: UIViewController {
     
     func setUpView(){
         // Tableview setup
+        lblVersion.text = "Version - ".localized + kAPPVesion
+
         tblSettings.delegate = self
         tblSettings.dataSource = self
         tblSettings.tableFooterView = UIView.init(frame: CGRect.zero)
         
         tblSettings.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
         
-        lblVersion.text = "Version - ".localized + kAPPVesion
         
         /*       UNUserNotificationCenter.current().getNotificationSettings(){ (setttings) in
          switch setttings.authorizationStatus{
