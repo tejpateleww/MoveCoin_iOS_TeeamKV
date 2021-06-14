@@ -209,7 +209,10 @@ class ConfirmPurchaseViewController: UIViewController {
         lblTax.text = ""
         if(product.isVat == "1")
         {
-            lblTax.text = "\(product.vat ?? "0") \(currency.localized)"
+            
+            if let vat = Double(product.vat) {
+                lblTax.text = "\(String(format: "%.2f", vat)) \(currency.localized)"
+            }
         }
         else
         {
@@ -281,7 +284,7 @@ class ConfirmPurchaseViewController: UIViewController {
             let number = try txtNumber.validatedText(validationType: ValidatorType.mobileNumber)
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let address1 = try txtAddress1.validatedText(validationType: ValidatorType.requiredField(field: txtAddress1.placeholder!))
-            //            let address2 = try txtAddress2.validatedText(validationType: ValidatorType.requiredField(field: txtAddress2.placeholder!))
+            //            let address2 = try txtAddress2.validatedText(validationType: ValidatorTyxx45pe.requiredField(field: txtAddress2.placeholder!))
             //            let country = try txtCountry.validatedText(validationType: ValidatorType.requiredField(field: txtCountry.placeholder!))
             let city = try txtCity.validatedText(validationType: ValidatorType.requiredField(field: txtCity.placeholder!))
             let state = try txtState.validatedText(validationType: ValidatorType.requiredField(field: txtState.placeholder!))
@@ -908,5 +911,3 @@ extension ConfirmPurchaseViewController {
         return String(UUID().uuidString.split(separator: "-").first!)
     }
 }
-
-

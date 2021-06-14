@@ -17,7 +17,7 @@ enum NetworkEnvironment: String {
     case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
     
     
-    case developmentBaseUrl = "http://15.207.107.71/admin/api/"
+//    case developmentBaseUrl = "http://15.207.107.71/admin/api/"
 //    case imageURL = "http://15.207.107.71/admin/"
 //    case galleryURL = "http://15.207.107.71/admin/assets/images/products/"
     
