@@ -142,13 +142,13 @@ class FacebookViewController: UIViewController {
             }
             
             guard let resultData = result as? [String : Any] else { return }
-            let resultdict = resultData["friends"] as! [String : Any]
-            print("Result Dict: \(resultdict)")
+            let resultdict = resultData["friends"] as? [String : Any]
+//            print("Result Dict: \(resultdict)")
             
-            let friendsArray = resultdict["data"] as! NSArray
+            let friendsArray = resultdict?["data"] as? NSArray
             
-            for friend in friendsArray {
-                let value = FacebookFriend(fromDictionary: friend as! [String : Any])
+            for friend in friendsArray ?? [] {
+                let value = FacebookFriend(fromDictionary: friend as? [String : Any] ?? [:])
                 self.getFBfriendsArray.append(value)
             }
             
@@ -158,7 +158,7 @@ class FacebookViewController: UIViewController {
             
             self.btnFacebook.isHidden = true
             
-            if let paging = resultdict["paging"] as? NSDictionary {
+            if let paging = resultdict?["paging"] as? NSDictionary {
 //                print("Paging : \(paging)")
                 if let nextURL = paging["next"] as? String {
                     if let url = URL(string: nextURL) {
