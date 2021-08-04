@@ -245,6 +245,14 @@
 		81C9393A246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C9392F246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift */; };
 		81C9393B246EABB7005D3CF8 /* Gateway3DSecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93930246EABB7005D3CF8 /* Gateway3DSecureViewController.swift */; };
 		81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C93931246EABB7005D3CF8 /* GatewayMap.swift */; };
+		881EA6B4269EAAF5005089F5 /* NewStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881EA6B3269EAAF5005089F5 /* NewStoreViewController.swift */; };
+		881EA6B8269EB766005089F5 /* StatusCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881EA6B6269EB766005089F5 /* StatusCollectionViewCell.swift */; };
+		881EA6B9269EB766005089F5 /* StatusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881EA6B7269EB766005089F5 /* StatusCollectionViewCell.xib */; };
+		881EA6BB269EC3FB005089F5 /* NewStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881EA6BA269EC3FB005089F5 /* NewStoreTableViewCell.swift */; };
+		886B8BC4269FF9B00010CB3D /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886B8BC3269FF9B00010CB3D /* LeaderboardViewController.swift */; };
+		887382B926A006A600CBF5CB /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887382B726A006A600CBF5CB /* LeaderboardCell.swift */; };
+		887382BA26A006A600CBF5CB /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887382B826A006A600CBF5CB /* LeaderboardCell.xib */; };
+		887382BC26A0180500CBF5CB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887382BB26A0180500CBF5CB /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -507,6 +515,14 @@
 		81C9392F246EABB7005D3CF8 /* Gateway+URLSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gateway+URLSessionDelegate.swift"; sourceTree = "<group>"; };
 		81C93930246EABB7005D3CF8 /* Gateway3DSecureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gateway3DSecureViewController.swift; sourceTree = "<group>"; };
 		81C93931246EABB7005D3CF8 /* GatewayMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayMap.swift; sourceTree = "<group>"; };
+		881EA6B3269EAAF5005089F5 /* NewStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoreViewController.swift; sourceTree = "<group>"; };
+		881EA6B6269EB766005089F5 /* StatusCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCollectionViewCell.swift; sourceTree = "<group>"; };
+		881EA6B7269EB766005089F5 /* StatusCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusCollectionViewCell.xib; sourceTree = "<group>"; };
+		881EA6BA269EC3FB005089F5 /* NewStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStoreTableViewCell.swift; sourceTree = "<group>"; };
+		886B8BC3269FF9B00010CB3D /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		887382B726A006A600CBF5CB /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		887382B826A006A600CBF5CB /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
+		887382BB26A0180500CBF5CB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D31205FDDC085471252E49B4 /* Pods_Movecoins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movecoins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB270C4AD13709CBCFBF4ED /* Pods_Movecoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movecoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -621,6 +637,7 @@
 				465ECE5E2330BF2A004FE65E /* Home Screens */,
 				46A7403423559171009C9D81 /* Map Screens */,
 				46DF729323504AEE005005B1 /* Invite Screen */,
+				881EA6B2269EAAD3005089F5 /* NewStoreViewController */,
 				46A65AB62342319E008506E5 /* Store Screens */,
 				46BE9FDC23462D88009EC217 /* Wallet Screens */,
 				4670146B23487ED800556CBB /* Statistics Screens */,
@@ -669,6 +686,7 @@
 				463CD0C623E95B560010676D /* Localization.swift */,
 				462A9FD123ED685B004DD6F2 /* LocalizLabel.swift */,
 				462A9FD323ED6A18004DD6F2 /* LocalizButton.swift */,
+				887382BB26A0180500CBF5CB /* CardView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1267,6 +1285,44 @@
 			path = MPGSDK;
 			sourceTree = "<group>";
 		};
+		881EA6B2269EAAD3005089F5 /* NewStoreViewController */ = {
+			isa = PBXGroup;
+			children = (
+				887382B526A0068100CBF5CB /* LeaderBoard */,
+				881EA6B5269EB74F005089F5 /* Cell */,
+				881EA6B3269EAAF5005089F5 /* NewStoreViewController.swift */,
+			);
+			path = NewStoreViewController;
+			sourceTree = "<group>";
+		};
+		881EA6B5269EB74F005089F5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				881EA6B6269EB766005089F5 /* StatusCollectionViewCell.swift */,
+				881EA6B7269EB766005089F5 /* StatusCollectionViewCell.xib */,
+				881EA6BA269EC3FB005089F5 /* NewStoreTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		887382B526A0068100CBF5CB /* LeaderBoard */ = {
+			isa = PBXGroup;
+			children = (
+				887382B626A0068E00CBF5CB /* Cell */,
+				886B8BC3269FF9B00010CB3D /* LeaderboardViewController.swift */,
+			);
+			path = LeaderBoard;
+			sourceTree = "<group>";
+		};
+		887382B626A0068E00CBF5CB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				887382B726A006A600CBF5CB /* LeaderboardCell.swift */,
+				887382B826A006A600CBF5CB /* LeaderboardCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DF2F98B8453FADEA93BD8687 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1346,6 +1402,7 @@
 				4600A71E23278D38004A7A9E /* LaunchScreen.storyboard in Resources */,
 				4600A71B23278D38004A7A9E /* Assets.xcassets in Resources */,
 				4638ECE72369CB0200B1F967 /* Cairo-SemiBold.ttf in Resources */,
+				887382BA26A006A600CBF5CB /* LeaderboardCell.xib in Resources */,
 				4638ECE82369CB0200B1F967 /* Cairo-Bold.ttf in Resources */,
 				1857E5D025AEE88000646749 /* Location.gpx in Resources */,
 				4638ECEC2369CB0200B1F967 /* Cairo-ExtraLight.ttf in Resources */,
@@ -1357,6 +1414,7 @@
 				464D896523E062C700715F08 /* Localizable.strings in Resources */,
 				4666FA992355DA2500E8758C /* ChatStoryboard.storyboard in Resources */,
 				467A1ED823F55F350084F1C5 /* MoveCoin Logo Animation.mp4 in Resources */,
+				881EA6B9269EB766005089F5 /* StatusCollectionViewCell.xib in Resources */,
 				4638ECEA2369CB0200B1F967 /* Cairo-Black.ttf in Resources */,
 				4638ECE92369CB0200B1F967 /* Cairo-Regular.ttf in Resources */,
 				46C7C9A72360795C00A80976 /* happy-birthday.json in Resources */,
@@ -1506,7 +1564,9 @@
 				464AE07D23B4BF4500826BA7 /* Nearbyuser.swift in Sources */,
 				4628D8FD23A7810C0061D77D /* ZoomingScrollView.swift in Sources */,
 				462D24DD23B32F310050C3F0 /* CALayerExtension.swift in Sources */,
+				881EA6BB269EC3FB005089F5 /* NewStoreTableViewCell.swift in Sources */,
 				462D24E623B32F310050C3F0 /* BeautifulBarChartPresenter.swift in Sources */,
+				881EA6B4269EAAF5005089F5 /* NewStoreViewController.swift in Sources */,
 				46230A9823797EEA0012D9A1 /* SingletonClass.swift in Sources */,
 				64063F07252DB65600B11730 /* BlockListResponseModel.swift in Sources */,
 				46C9132D2330EA110068C788 /* LKAWaveCircleProgressBar.m in Sources */,
@@ -1515,6 +1575,7 @@
 				464F49372398EF3200D803D6 /* StepsHistoryResponseModel.swift in Sources */,
 				4600A71623278D37004A7A9E /* HomeViewController.swift in Sources */,
 				46FA2C8423A1278B000A3B9B /* CardListResponseModel.swift in Sources */,
+				886B8BC4269FF9B00010CB3D /* LeaderboardViewController.swift in Sources */,
 				460C04A3239A295600D674D7 /* WalletData.swift in Sources */,
 				64063F06252DB65600B11730 /* List.swift in Sources */,
 				46AB0D7B23B5C9B90085AC4C /* NearByUserDetailResponseModel.swift in Sources */,
@@ -1651,6 +1712,7 @@
 				4661BB472351995000DC41E0 /* SettingsTableViewCell.swift in Sources */,
 				46515526236AA2970079627A /* EnumCollection.swift in Sources */,
 				465ECE612330DB1B004FE65E /* SplashViewController.swift in Sources */,
+				881EA6B8269EB766005089F5 /* StatusCollectionViewCell.swift in Sources */,
 				648FAB5324E6668100FF516D /* User.swift in Sources */,
 				464F49362398EF3200D803D6 /* StepsData.swift in Sources */,
 				46DF72972350601F005005B1 /* InviteFriendsViewController.swift in Sources */,
@@ -1683,6 +1745,8 @@
 				46DF729523504B2F005005B1 /* InviteViewController.swift in Sources */,
 				46E69BF3238FC5E500685EB8 /* NotRegistered.swift in Sources */,
 				46BC1B4723C471A500AAABE1 /* YearlyStepsCount.swift in Sources */,
+				887382B926A006A600CBF5CB /* LeaderboardCell.swift in Sources */,
+				887382BC26A0180500CBF5CB /* CardView.swift in Sources */,
 				466853DB2391393F00019DF1 /* UserPermissionClass.swift in Sources */,
 				46D2569D23DEBF7300C50B77 /* ChatClearModel.swift in Sources */,
 				46D96067238B9BB10026B96D /* ProductsResponseModel.swift in Sources */,

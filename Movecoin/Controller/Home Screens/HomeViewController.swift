@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblTitleFriends: LocalizLabel!
     
     @IBOutlet weak var lblTitleTodays: LocalizLabel!
-    @IBOutlet weak var lblTitleTotalStep: LocalizLabel!
+//    @IBOutlet weak var lblTitleTotalStep: LocalizLabel!
     
     @IBOutlet weak var lblTotalSteps: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
@@ -43,6 +43,15 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var lblTodaysStepCount: UILabel!
     @IBOutlet weak var circularProgress: KDCircularProgress!
+    
+    @IBOutlet weak var vWkM: UIView!
+    @IBOutlet weak var lblKm: UILabel!
+    @IBOutlet weak var lblTitleKm: LocalizLabel!
+    
+    @IBOutlet weak var vWcal: UIView!
+    @IBOutlet weak var lblCal: UILabel!
+    @IBOutlet weak var lblTitleCal: LocalizLabel!
+    
     
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
@@ -81,6 +90,7 @@ class HomeViewController: UIViewController {
         }
         
         self.setupFont()
+        self.PrepareView()
         healthKitData()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -89,9 +99,7 @@ class HomeViewController: UIViewController {
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(getTodaysSteps), name: NotificationSetTodaysSteps, object: nil)
-        
-        
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +128,14 @@ class HomeViewController: UIViewController {
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
+    func PrepareView(){
+        self.vWkM.layer.cornerRadius = self.vWkM.frame.size.width/2
+        self.vWkM.clipsToBounds = true
+        self.vWcal.layer.cornerRadius = self.vWcal.frame.size.width/2
+        self.vWcal.clipsToBounds = true
+        
+    }
+    
     func setupFont(){
         
         lblTitleCoins.font = UIFont.regular(ofSize: 17)
@@ -136,6 +152,12 @@ class HomeViewController: UIViewController {
         
         lblDescription.font = UIFont.semiBold(ofSize: 25)
         lblMember.font = UIFont.light(ofSize: 13)
+        
+        lblKm.font = UIFont.semiBold(ofSize: 21)
+        lblTitleKm.font = UIFont.regular(ofSize: 17)
+        
+        lblCal.font = UIFont.semiBold(ofSize: 21)
+        lblTitleCal.font = UIFont.regular(ofSize: 17)
         
         self.viewParent.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
     }
@@ -200,6 +222,7 @@ class HomeViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Steps Count Methods ---------
     // ----------------------------------------------------
+    
     
     func healthKitData(){
         

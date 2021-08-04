@@ -35,13 +35,13 @@ class TabViewController: UIViewController {
     @IBOutlet weak var lblProfile: LocalizLabel!
     
     // ----------------------------------------------------
-    // MARK: - --------- Variables ---------
+    // MARK: ---------- Variables ---------
     // ----------------------------------------------------
     
     var arrayTabColors = [StoreColor, WalletColor, HomeColor, StatisticsColor, ProfileColor]
    
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    lazy var storeVC = mainStoryboard.instantiateViewController(withIdentifier: StoreViewController.className) as! StoreViewController
+    lazy var storeVC = mainStoryboard.instantiateViewController(withIdentifier: NewStoreViewController.className) as! NewStoreViewController
     lazy var walletVC = mainStoryboard.instantiateViewController(withIdentifier: WalletViewController.className) as! WalletViewController
     lazy var homeVC = mainStoryboard.instantiateViewController(withIdentifier: HomeViewController.className) as! HomeViewController
     lazy var statisticsVC = mainStoryboard.instantiateViewController(withIdentifier: StatisticsViewController.className) as! StatisticsViewController
@@ -96,7 +96,7 @@ class TabViewController: UIViewController {
         homeVC.lblTitleTotalSteps.text = "Total Steps".localized
         homeVC.lblTitleInviteFriends.text = "Invite a Friend".localized
         homeVC.lblTitleTodays.text = "Today's".localized
-        homeVC.lblTitleTotalStep.text = "Total Steps".localized
+        //homeVC.lblTitleTotalStep.text = "Total Steps".localized
         
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
     }

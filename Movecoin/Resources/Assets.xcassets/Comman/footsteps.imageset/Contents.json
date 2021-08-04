@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "footsteps-silhouette-variant-2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "footsteps-silhouette-variant-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "footsteps-silhouette-variant.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

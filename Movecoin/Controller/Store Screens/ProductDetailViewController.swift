@@ -36,6 +36,10 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var btnBuy: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     
+    @IBOutlet weak var vWGoToStore: UIView!
+    @IBOutlet weak var btnGoToStore: UIButton!
+    
+    
     var strOrderStatus = String()
 
     // ----------------------------------------------------
@@ -98,6 +102,10 @@ class ProductDetailViewController: UIViewController {
         default:
             break
         }
+        
+        self.vWGoToStore.layer.masksToBounds = true
+        self.vWGoToStore.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
+        self.vWGoToStore.layer.cornerRadius = 25.0
     }
     
     func setupFont(){

@@ -60,6 +60,7 @@ class StoreViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        //self.viewFooter.isHidden = true
         sizeFooterToFit()
         setButtonLayout()
     }
@@ -110,7 +111,7 @@ class StoreViewController: UIViewController {
         if let footerView = tblStoreOffers.tableFooterView {
             let height = footerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
             var frame = viewFooter.frame
-            frame.size.height = height
+            frame.size.height = height //0
             footerView.frame = frame
             tblStoreOffers.tableFooterView = footerView
         }
@@ -137,9 +138,12 @@ extension StoreViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
-        let product = productArray[indexPath.row]
-        controller.productID = product.iD
+//        let controller = self.storyboard?.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
+//        let product = productArray[indexPath.row]
+//        controller.productID = product.iD
+//        self.parent?.navigationController?.pushViewController(controller, animated: true)
+        
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: NewStoreViewController.className) as! NewStoreViewController
         self.parent?.navigationController?.pushViewController(controller, animated: true)
     }
 }

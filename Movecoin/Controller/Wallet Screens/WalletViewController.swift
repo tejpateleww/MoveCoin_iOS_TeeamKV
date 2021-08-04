@@ -133,7 +133,7 @@ class WalletViewController: UIViewController {
     
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
-    // ----------------------------------------------------
+    // ----------------------------------------------------`
     
     @objc func btnBackTapped() {
         let parentVC = self.parent as! TabViewController

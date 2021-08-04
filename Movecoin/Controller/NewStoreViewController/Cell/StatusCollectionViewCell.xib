@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StatusCollectionViewCell" customModule="Movecoins" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="246" height="114"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="246" height="114"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPb-Tw-qp5">
+                        <rect key="frame" x="5" y="5" width="236" height="104"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M55-do-DIj">
+                                <rect key="frame" x="5" y="5" width="226" height="94"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="M55-do-DIj" secondAttribute="trailing" constant="5" id="5uo-YY-kdZ"/>
+                            <constraint firstItem="M55-do-DIj" firstAttribute="leading" secondItem="FPb-Tw-qp5" secondAttribute="leading" constant="5" id="BnG-S5-W8k"/>
+                            <constraint firstAttribute="bottom" secondItem="M55-do-DIj" secondAttribute="bottom" constant="5" id="InY-s7-yTi"/>
+                            <constraint firstItem="M55-do-DIj" firstAttribute="top" secondItem="FPb-Tw-qp5" secondAttribute="top" constant="5" id="XfN-ZH-lTh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="FPb-Tw-qp5" secondAttribute="trailing" constant="5" id="H8w-MN-abZ"/>
+                <constraint firstItem="FPb-Tw-qp5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Xlr-k2-vaa"/>
+                <constraint firstAttribute="bottom" secondItem="FPb-Tw-qp5" secondAttribute="bottom" constant="5" id="qNY-uj-Gfz"/>
+                <constraint firstItem="FPb-Tw-qp5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="rqH-Gh-2dD"/>
+            </constraints>
+            <size key="customSize" width="246" height="114"/>
+            <connections>
+                <outlet property="lblCategory" destination="M55-do-DIj" id="kYk-mr-If5"/>
+                <outlet property="vWcell" destination="FPb-Tw-qp5" id="ODV-c1-AyI"/>
+            </connections>
+            <point key="canvasLocation" x="273.91304347826087" y="152.00892857142856"/>
+        </collectionViewCell>
+    </objects>
+</document>
