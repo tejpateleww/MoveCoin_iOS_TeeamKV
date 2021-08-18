@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class NewStoreViewController: UIViewController {
     
     @IBOutlet weak var VwTopMain: UIView!
@@ -19,16 +19,33 @@ class NewStoreViewController: UIViewController {
     @IBOutlet weak var clnCategory: UICollectionView!
     @IBOutlet weak var tblStoreOffers: UITableView!
     @IBOutlet weak var tblStoreOffersHeight: NSLayoutConstraint!
-    
+    @IBOutlet weak var imgBanner: UIImageView!
+
     @IBOutlet weak var topViewHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var arrStatus = ["Everything","Health","Beauty","Clothes","Electronics"]
-    var productArray : [ProductDetails] = []
+    var dictChallenge : Challenge?
+    var responseModel : ChallengeMain?
+    var arrOffers : [Offer]?
+    {
+        didSet
+        {
+            self.tblStoreOffers.reloadData()
+        }
+    }
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(webserviceForChallenge), for: .valueChanged)
+        refreshControl.tintColor = .blue
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tblStoreOffers.delegate = self
+        self.tblStoreOffers.dataSource = self
         self.PrepareView()
         
     }
@@ -87,12 +104,24 @@ class NewStoreViewController: UIViewController {
         lblMainVwBottomTitle.font = UIFont.bold(ofSize: 20)
         lblCatTitle.font = UIFont.bold(ofSize: 26)
         
+        scrollView.addSubview(refreshControl)
+
+        
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
         //tblStoreOffers.addSubview(refreshControl)
         
         self.RegisterNIB()
-        self.webserviceForProductList()
+        self.webserviceForChallenge()
+    }
+    
+    func setData()
+    {
+        let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.prizeImage ?? "")
+        if let url = URL(string: productsURL) {
+            self.imgBanner.kf.indicatorType = .activity
+            self.imgBanner.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+        }
     }
     
     
@@ -101,8 +130,23 @@ class NewStoreViewController: UIViewController {
     }
     
     @IBAction func btnVwHeaderAction(_ sender: Any) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
-        self.navigationController?.pushViewController(controller, animated: true)
+        
+        
+        if(responseModel?.isParticipant == true)
+        {
+            self.navigateToNextScreen()
+        }
+        else
+        {
+            UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "message_joinChallenge", ButtonTitle1: "OK".localized, ButtonTitle2: "Cancel".localized) { index in
+                if(index == 0)
+                {
+                    
+                    self.webserviceForJoinChallenge()
+                    
+                }
+            }
+        }
     }
     
 
@@ -114,13 +158,13 @@ class NewStoreViewController: UIViewController {
 extension NewStoreViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productArray.count
+        return arrOffers?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewStoreTableViewCell.className) as! NewStoreTableViewCell
         cell.selectionStyle = .none
-        cell.product = productArray[indexPath.row]
+        cell.product = arrOffers?[indexPath.row]
 
         return cell
     }
@@ -128,8 +172,8 @@ extension NewStoreViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
-        let product = productArray[indexPath.row]
-        controller.productID = product.iD
+        let product = arrOffers?[indexPath.row]
+        controller.productID = product?.id
         self.parent?.navigationController?.pushViewController(controller, animated: true)
         
 //        let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
@@ -165,21 +209,55 @@ extension NewStoreViewController : UICollectionViewDelegate , UICollectionViewDa
 
 extension NewStoreViewController {
     
-    @objc func webserviceForProductList(){
+    @objc func webserviceForChallenge(){
         
-        let productsURL = NetworkEnvironment.baseURL + ApiKey.productsList.rawValue
-        ProductWebserviceSubclass.productsList(strURL: productsURL){ (json, status, res) in
-            //self.refreshControl.endRefreshing()
-            
+        let productsURL = NetworkEnvironment.baseURL + ApiKey.getChallenge.rawValue + "/" + (SingletonClass.SharedInstance.userData?.iD ?? "0")
+        ChallengWebserviceSubclass.getChallenge(strURL: productsURL){ (json, status, res) in
+            self.refreshControl.endRefreshing()
+            self.webserviceForOfferList()
             if status {
-                let responseModel = ProductsResponseModel(fromJson: json)
-//                if responseModel.productsList.count > 0  {
-                    self.productArray = responseModel.productsList
-                    self.tblStoreOffers.reloadData()
-//                }
+                self.responseModel = ChallengeMain(fromJson: json)
+                self.dictChallenge = self.responseModel?.challenge
+                self.setData()
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
+    
+    func webserviceForJoinChallenge(){
+        let requestModel = JoinChallenge()
+        requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
+        requestModel.challenge_id = self.dictChallenge?.id ?? ""
+        ChallengWebserviceSubclass.joinChallenge(dictJoinChallenge: requestModel) { (json, status, res) in
+            self.refreshControl.endRefreshing()
+            
+            if status {
+                self.responseModel = ChallengeMain(fromJson: json)
+                self.dictChallenge = self.responseModel?.challenge
+                self.webserviceForChallenge()
+             } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceForOfferList()
+    {
+        OffersWebserviceSubclass.offerList { json, status, res in
+            if status {
+                let response = OfferList(fromJson: json)
+                self.arrOffers = response.offers
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func navigateToNextScreen()
+    {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
 }

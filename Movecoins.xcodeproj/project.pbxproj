@@ -88,12 +88,6 @@
 		46374652239E4E91008A3EE7 /* Platinum-package.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46374650239E4E90008A3EE7 /* Platinum-package.gif */; };
 		46374657239E6939008A3EE7 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46374656239E6938008A3EE7 /* Request.swift */; };
 		46374659239E7443008A3EE7 /* FriendsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46374658239E7443008A3EE7 /* FriendsClass.swift */; };
-		4638ECE72369CB0200B1F967 /* Cairo-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE12369CB0100B1F967 /* Cairo-SemiBold.ttf */; };
-		4638ECE82369CB0200B1F967 /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE22369CB0100B1F967 /* Cairo-Bold.ttf */; };
-		4638ECE92369CB0200B1F967 /* Cairo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE32369CB0100B1F967 /* Cairo-Regular.ttf */; };
-		4638ECEA2369CB0200B1F967 /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE42369CB0100B1F967 /* Cairo-Black.ttf */; };
-		4638ECEB2369CB0200B1F967 /* Cairo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE52369CB0200B1F967 /* Cairo-Light.ttf */; };
-		4638ECEC2369CB0200B1F967 /* Cairo-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4638ECE62369CB0200B1F967 /* Cairo-ExtraLight.ttf */; };
 		46395D0F23C6FAD100E89598 /* CoinsDiscountRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46395D0E23C6FAD000E89598 /* CoinsDiscountRelation.swift */; };
 		463BF57E234F018A0022C465 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF57D234F018A0022C465 /* ProductDetailCollectionViewCell.swift */; };
 		463BF580234F0FA50022C465 /* ConfirmPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BF57F234F0FA50022C465 /* ConfirmPurchaseViewController.swift */; };
@@ -215,6 +209,18 @@
 		46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51D8232F9D1600182B86 /* WalletViewController.swift */; };
 		46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DA232F9D3000182B86 /* StatisticsViewController.swift */; };
 		46FD51DD232F9D3D00182B86 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */; };
+		540D9A7726CA5FED00B46B7A /* JoinChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D9A7626CA5FED00B46B7A /* JoinChallenge.swift */; };
+		5461F6B326CD06B4003CF004 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5461F6B126CD06B4003CF004 /* Offer.swift */; };
+		5461F6B426CD06B4003CF004 /* OfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5461F6B226CD06B4003CF004 /* OfferList.swift */; };
+		5461F6B826CD2FA9003CF004 /* ChallengeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5461F6B626CD2FA9003CF004 /* ChallengeDetails.swift */; };
+		5461F6B926CD2FA9003CF004 /* ChallengeTopFiveParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5461F6B726CD2FA9003CF004 /* ChallengeTopFiveParticipant.swift */; };
+		54C4003926C16696000BA2D4 /* din-next-lt-w23-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C4003426C16695000BA2D4 /* din-next-lt-w23-regular.ttf */; };
+		54C4003A26C16696000BA2D4 /* din-next-lt-w23-ultra-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C4003526C16695000BA2D4 /* din-next-lt-w23-ultra-light.ttf */; };
+		54C4003B26C16696000BA2D4 /* din-next-lt-w23-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C4003626C16696000BA2D4 /* din-next-lt-w23-light.ttf */; };
+		54C4003C26C16696000BA2D4 /* din-next-lt-arabic-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C4003726C16696000BA2D4 /* din-next-lt-arabic-light.ttf */; };
+		54C4003D26C16696000BA2D4 /* din-next-lt-w23-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54C4003826C16696000BA2D4 /* din-next-lt-w23-black.ttf */; };
+		54D7F58626C534BB005D1B79 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D7F58426C534BB005D1B79 /* Challenge.swift */; };
+		54D7F58726C534BB005D1B79 /* ChallengeMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D7F58526C534BB005D1B79 /* ChallengeMain.swift */; };
 		64063F02252DAE3E00B11730 /* BlockedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64063F01252DAE3E00B11730 /* BlockedListViewController.swift */; };
 		64063F06252DB65600B11730 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64063F04252DB65500B11730 /* List.swift */; };
 		64063F07252DB65600B11730 /* BlockListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64063F05252DB65600B11730 /* BlockListResponseModel.swift */; };
@@ -339,12 +345,6 @@
 		46374650239E4E90008A3EE7 /* Platinum-package.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Platinum-package.gif"; sourceTree = "<group>"; };
 		46374656239E6938008A3EE7 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		46374658239E7443008A3EE7 /* FriendsClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsClass.swift; sourceTree = "<group>"; };
-		4638ECE12369CB0100B1F967 /* Cairo-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-SemiBold.ttf"; sourceTree = "<group>"; };
-		4638ECE22369CB0100B1F967 /* Cairo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Bold.ttf"; sourceTree = "<group>"; };
-		4638ECE32369CB0100B1F967 /* Cairo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Regular.ttf"; sourceTree = "<group>"; };
-		4638ECE42369CB0100B1F967 /* Cairo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Black.ttf"; sourceTree = "<group>"; };
-		4638ECE52369CB0200B1F967 /* Cairo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-Light.ttf"; sourceTree = "<group>"; };
-		4638ECE62369CB0200B1F967 /* Cairo-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cairo-ExtraLight.ttf"; sourceTree = "<group>"; };
 		46395D0E23C6FAD000E89598 /* CoinsDiscountRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinsDiscountRelation.swift; sourceTree = "<group>"; };
 		463BF57D234F018A0022C465 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		463BF57F234F0FA50022C465 /* ConfirmPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPurchaseViewController.swift; sourceTree = "<group>"; };
@@ -484,6 +484,18 @@
 		46FD51DC232F9D3D00182B86 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		477FF479109FF521DF9958AC /* Pods-Movecoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.debug.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4D633531C407587B2596F3 /* Pods-Movecoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movecoin.release.xcconfig"; path = "Target Support Files/Pods-Movecoin/Pods-Movecoin.release.xcconfig"; sourceTree = "<group>"; };
+		540D9A7626CA5FED00B46B7A /* JoinChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinChallenge.swift; sourceTree = "<group>"; };
+		5461F6B126CD06B4003CF004 /* Offer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		5461F6B226CD06B4003CF004 /* OfferList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferList.swift; sourceTree = "<group>"; };
+		5461F6B626CD2FA9003CF004 /* ChallengeDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeDetails.swift; sourceTree = "<group>"; };
+		5461F6B726CD2FA9003CF004 /* ChallengeTopFiveParticipant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeTopFiveParticipant.swift; sourceTree = "<group>"; };
+		54C4003426C16695000BA2D4 /* din-next-lt-w23-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-lt-w23-regular.ttf"; sourceTree = "<group>"; };
+		54C4003526C16695000BA2D4 /* din-next-lt-w23-ultra-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-lt-w23-ultra-light.ttf"; sourceTree = "<group>"; };
+		54C4003626C16696000BA2D4 /* din-next-lt-w23-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-lt-w23-light.ttf"; sourceTree = "<group>"; };
+		54C4003726C16696000BA2D4 /* din-next-lt-arabic-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-lt-arabic-light.ttf"; sourceTree = "<group>"; };
+		54C4003826C16696000BA2D4 /* din-next-lt-w23-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "din-next-lt-w23-black.ttf"; sourceTree = "<group>"; };
+		54D7F58426C534BB005D1B79 /* Challenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		54D7F58526C534BB005D1B79 /* ChallengeMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeMain.swift; sourceTree = "<group>"; };
 		64063F01252DAE3E00B11730 /* BlockedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedListViewController.swift; sourceTree = "<group>"; };
 		64063F04252DB65500B11730 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		64063F05252DB65600B11730 /* BlockListResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockListResponseModel.swift; sourceTree = "<group>"; };
@@ -842,6 +854,7 @@
 				469057B223967CBB000D192E /* BecomeSeller.swift */,
 				463CAC4223A365120040493E /* PlaceOrder.swift */,
 				463CAC4423A371610040493E /* PurchaseHistory.swift */,
+				540D9A7626CA5FED00B46B7A /* JoinChallenge.swift */,
 				46C9C4EE23A116380042341B /* AddCardModel.swift */,
 				46F5461F23AA546800251A20 /* ChatListModel.swift */,
 				46DDCA0123AB486000FFAF91 /* ChatHistoryModel.swift */,
@@ -860,6 +873,9 @@
 		461DC253237930BB0092AC82 /* Response Models */ = {
 			isa = PBXGroup;
 			children = (
+				5461F6B526CD2FA9003CF004 /* ChallengeDetails */,
+				5461F6B026CD06B4003CF004 /* OfferList */,
+				54F778AE26C4EA1400A00725 /* Challenge */,
 				64CD3A6F24E500E900D8809B /* SocialUser */,
 				64EE613624E401EF0036F42B /* FriendRequest */,
 				64EE613124E3F3B10036F42B /* SearchFriend */,
@@ -925,12 +941,11 @@
 		4638ECE02369CADC00B1F967 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				4638ECE42369CB0100B1F967 /* Cairo-Black.ttf */,
-				4638ECE22369CB0100B1F967 /* Cairo-Bold.ttf */,
-				4638ECE62369CB0200B1F967 /* Cairo-ExtraLight.ttf */,
-				4638ECE52369CB0200B1F967 /* Cairo-Light.ttf */,
-				4638ECE32369CB0100B1F967 /* Cairo-Regular.ttf */,
-				4638ECE12369CB0100B1F967 /* Cairo-SemiBold.ttf */,
+				54C4003726C16696000BA2D4 /* din-next-lt-arabic-light.ttf */,
+				54C4003826C16696000BA2D4 /* din-next-lt-w23-black.ttf */,
+				54C4003626C16696000BA2D4 /* din-next-lt-w23-light.ttf */,
+				54C4003426C16695000BA2D4 /* din-next-lt-w23-regular.ttf */,
+				54C4003526C16695000BA2D4 /* din-next-lt-w23-ultra-light.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -1221,6 +1236,33 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		5461F6B026CD06B4003CF004 /* OfferList */ = {
+			isa = PBXGroup;
+			children = (
+				5461F6B126CD06B4003CF004 /* Offer.swift */,
+				5461F6B226CD06B4003CF004 /* OfferList.swift */,
+			);
+			path = OfferList;
+			sourceTree = "<group>";
+		};
+		5461F6B526CD2FA9003CF004 /* ChallengeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				5461F6B626CD2FA9003CF004 /* ChallengeDetails.swift */,
+				5461F6B726CD2FA9003CF004 /* ChallengeTopFiveParticipant.swift */,
+			);
+			path = ChallengeDetails;
+			sourceTree = "<group>";
+		};
+		54F778AE26C4EA1400A00725 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				54D7F58426C534BB005D1B79 /* Challenge.swift */,
+				54D7F58526C534BB005D1B79 /* ChallengeMain.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
 		64063F03252DB62700B11730 /* Block List */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,23 +1442,22 @@
 				46374652239E4E91008A3EE7 /* Platinum-package.gif in Resources */,
 				464D896923E062F100715F08 /* Login.storyboard in Resources */,
 				4600A71E23278D38004A7A9E /* LaunchScreen.storyboard in Resources */,
+				54C4003926C16696000BA2D4 /* din-next-lt-w23-regular.ttf in Resources */,
+				54C4003C26C16696000BA2D4 /* din-next-lt-arabic-light.ttf in Resources */,
 				4600A71B23278D38004A7A9E /* Assets.xcassets in Resources */,
-				4638ECE72369CB0200B1F967 /* Cairo-SemiBold.ttf in Resources */,
 				887382BA26A006A600CBF5CB /* LeaderboardCell.xib in Resources */,
-				4638ECE82369CB0200B1F967 /* Cairo-Bold.ttf in Resources */,
 				1857E5D025AEE88000646749 /* Location.gpx in Resources */,
-				4638ECEC2369CB0200B1F967 /* Cairo-ExtraLight.ttf in Resources */,
 				465CF18D23696B620069D4DE /* Gold-package.gif in Resources */,
 				46CD13A62400FF23007F38A9 /* Silver-package.gif in Resources */,
-				4638ECEB2369CB0200B1F967 /* Cairo-Light.ttf in Resources */,
 				4600A71923278D37004A7A9E /* Main.storyboard in Resources */,
+				54C4003A26C16696000BA2D4 /* din-next-lt-w23-ultra-light.ttf in Resources */,
+				54C4003D26C16696000BA2D4 /* din-next-lt-w23-black.ttf in Resources */,
+				54C4003B26C16696000BA2D4 /* din-next-lt-w23-light.ttf in Resources */,
 				181B3B5025664B6000940519 /* GoogleService-Info.plist in Resources */,
 				464D896523E062C700715F08 /* Localizable.strings in Resources */,
 				4666FA992355DA2500E8758C /* ChatStoryboard.storyboard in Resources */,
 				467A1ED823F55F350084F1C5 /* MoveCoin Logo Animation.mp4 in Resources */,
 				881EA6B9269EB766005089F5 /* StatusCollectionViewCell.xib in Resources */,
-				4638ECEA2369CB0200B1F967 /* Cairo-Black.ttf in Resources */,
-				4638ECE92369CB0200B1F967 /* Cairo-Regular.ttf in Resources */,
 				46C7C9A72360795C00A80976 /* happy-birthday.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1552,6 +1593,7 @@
 				465E350D237BDCB20023366C /* LoginResponseModel.swift in Sources */,
 				461D5B5A232B57CF007CB670 /* ProductDetailViewController.swift in Sources */,
 				462D24DC23B32F310050C3F0 /* CustomSegments.swift in Sources */,
+				5461F6B426CD06B4003CF004 /* OfferList.swift in Sources */,
 				466762B5238BE06E003136BC /* ProductDetailResponseModel.swift in Sources */,
 				461DC26523793AB90092AC82 /* Logout.swift in Sources */,
 				46FD51DB232F9D3000182B86 /* StatisticsViewController.swift in Sources */,
@@ -1593,6 +1635,7 @@
 				81C9393B246EABB7005D3CF8 /* Gateway3DSecureViewController.swift in Sources */,
 				1893729925810AAB009BF5EE /* RedeemInfo.swift in Sources */,
 				468F86D22350C2E4006DC7D1 /* ChatListTableViewCell.swift in Sources */,
+				54D7F58626C534BB005D1B79 /* Challenge.swift in Sources */,
 				81C93935246EABB7005D3CF8 /* GatewayError.swift in Sources */,
 				46F88CA72356F855003E24CC /* UIButton + Extension.swift in Sources */,
 				18937293258106B8009BF5EE /* RedeemHistory.swift in Sources */,
@@ -1637,8 +1680,10 @@
 				462D24DE23B32F310050C3F0 /* BasicBarChartPresenter.swift in Sources */,
 				6864A0D2256E1E7F008EECAF /* TotalRedeemVC.swift in Sources */,
 				184F82CB25814A20007B5EC5 /* RedeemLog.swift in Sources */,
+				54D7F58726C534BB005D1B79 /* ChallengeMain.swift in Sources */,
 				64EE613524E3F3CB0036F42B /* SearchFriendResponseModel.swift in Sources */,
 				462D24E023B32F310050C3F0 /* BasicBarChart.swift in Sources */,
+				540D9A7726CA5FED00B46B7A /* JoinChallenge.swift in Sources */,
 				46FD51D9232F9D1600182B86 /* WalletViewController.swift in Sources */,
 				463CAC4523A371610040493E /* PurchaseHistory.swift in Sources */,
 				4613804823292E52007C3FA4 /* UIVIewController + Extension.swift in Sources */,
@@ -1653,11 +1698,14 @@
 				461CBAA323DABB4700292CD2 /* CreditCardValidator.swift in Sources */,
 				46DF729F23506A10005005B1 /* String + Extension.swift in Sources */,
 				46FA2C8023A122DD000A3B9B /* Card.swift in Sources */,
+				5461F6B926CD2FA9003CF004 /* ChallengeTopFiveParticipant.swift in Sources */,
 				46138044232906C7007C3FA4 /* SignupViewController.swift in Sources */,
 				462D24E123B32F310050C3F0 /* ArrayExtension.swift in Sources */,
+				5461F6B326CD06B4003CF004 /* Offer.swift in Sources */,
 				462D24E423B32F310050C3F0 /* BeautifulBarChart.swift in Sources */,
 				64EE613A24E402040036F42B /* FriendRequestResponseModel.swift in Sources */,
 				81C9393C246EABB7005D3CF8 /* GatewayMap.swift in Sources */,
+				5461F6B826CD2FA9003CF004 /* ChallengeDetails.swift in Sources */,
 				461DC25B237936F60092AC82 /* WebServices.swift in Sources */,
 				46DDCA0223AB486000FFAF91 /* ChatHistoryModel.swift in Sources */,
 				463CD0C723E95B560010676D /* Localization.swift in Sources */,
@@ -1939,7 +1987,7 @@
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1.7;
+				CURRENT_PROJECT_VERSION = 2.1.8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1964,7 +2012,7 @@
 				CODE_SIGN_ENTITLEMENTS = Movecoins.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1.7;
+				CURRENT_PROJECT_VERSION = 2.1.8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZC7D423ZU8;
 				INFOPLIST_FILE = Movecoin/Info.plist;

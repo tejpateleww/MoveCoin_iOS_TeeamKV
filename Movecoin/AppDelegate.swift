@@ -37,7 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             window?.overrideUserInterfaceStyle = .light
         }
         
-        
+        UIFont.familyNames.forEach({ familyName in
+            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+            print(familyName, fontNames)
+        })
         
 //        #if DEBUG
 //        //                return .developmentBaseUrl
@@ -910,7 +913,7 @@ extension AppDelegate {
                 
 //                completionHandler([.alert, .sound])
             }
-            completionHandler([.alert, .sound])
+//            completionHandler([.alert, .sound])
         }
     }
     

@@ -66,8 +66,8 @@
 "Invite a Friend" = "Invite a Friend";
 "Friends" = "Friends";
 "Friend" = "Friend";
-"Today's" = "Today's";
-
+"Today's Steps" = "Today's Steps";
+"Leaderboard" = "Leaderboard";
 
 // Map Screen
 "My Steps" = "My Steps";
@@ -353,3 +353,4 @@
 "If you don't give access then Steps Count feature will not work" = "If you don't give access then Steps Count feature will not work";
 "App would like to use photo library" = "App would like to use photo library";
 "Total: Total (VAT included)" = "Total: Total (VAT included)";
+"message_joinChallenge" = "Join to the challenge";

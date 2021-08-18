@@ -11,14 +11,19 @@ import UIKit
 class LeaderboardCell: UITableViewCell {
     
     @IBOutlet weak var viewRank: UIView!
-    @IBOutlet weak var lblRank: UILabel!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblStep: UILabel!
+    @IBOutlet weak var lblRank: LocalizLabel!
+    @IBOutlet weak var lblName: LocalizLabel!
+    @IBOutlet weak var lblStep: LocalizLabel!
 
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         self.viewRank.makeCircular()
     }
 
@@ -30,9 +35,9 @@ class LeaderboardCell: UITableViewCell {
     
     func setupFont() {
         
-        self.lblRank.font = UIFont.bold(ofSize: 20)
-        self.lblName.font = UIFont.bold(ofSize: 20)
-        self.lblStep.font = UIFont.bold(ofSize: 20)
+        self.lblRank.font = UIFont.regular(ofSize: 20)
+        self.lblName.font = UIFont.regular(ofSize: 20)
+        self.lblStep.font = UIFont.regular(ofSize: 20)
         
     }
     

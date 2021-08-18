@@ -78,8 +78,8 @@ class StoreViewController: UIViewController {
     
     func setUpView(){
         // Tableview setup
-        tblStoreOffers.delegate = self
-        tblStoreOffers.dataSource = self
+//        tblStoreOffers.delegate = self
+//        tblStoreOffers.dataSource = self
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
         tblStoreOffers.addSubview(refreshControl)

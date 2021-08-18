@@ -100,7 +100,7 @@
 "Invite a Friend" = "أرسل دعوة لصديق";
 "Friends" = "الأصدقاء";
 "Friend" = "صديق";
-"Today's" = "خطواتك اليوم";
+"Today's Steps" = "خطواتك اليوم";
 
 
 // Map Screen
@@ -394,3 +394,11 @@
 "(VAT included)" = "الإجمالي (شامل ضريبة القيمة المضافة)";
 "Total" = "الإجمالي";
 "(VAT included)" = "(شامل ضريبة القيمة المضافة)";
+
+
+// Leaderboard Screen
+
+"Leaderboard" = "Leaderboard";
+"message_joinChallenge" = "إنضم الى التحدي";
+"Yes" = "نعم";
+"No" = "لا";

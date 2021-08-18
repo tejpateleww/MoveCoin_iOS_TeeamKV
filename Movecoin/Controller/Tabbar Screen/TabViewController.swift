@@ -84,18 +84,18 @@ class TabViewController: UIViewController {
     @objc func changeLanguage(){
 
         // Change Tabbar Text
-        lblStore.text = "STORE".localized
-        lblWallet.text = "WALLET".localized
-        lblHome.text = "HOME".localized
-        lblStatistics.text = "STATISTICS".localized
-        lblProfile.text = "PROFILE".localized
+//        lblStore.text = "STORE".localized
+//        lblWallet.text = "WALLET".localized
+//        lblHome.text = "HOME".localized
+//        lblStatistics.text = "STATISTICS".localized
+//        lblProfile.text = "PROFILE".localized
         
         // Change Home Text
         homeVC.lblTitleCoins.text = "Coins".localized
         homeVC.lblTitleFriends.text = "Friends".localized
         homeVC.lblTitleTotalSteps.text = "Total Steps".localized
         homeVC.lblTitleInviteFriends.text = "Invite a Friend".localized
-        homeVC.lblTitleTodays.text = "Today's".localized
+        homeVC.lblTitleTodays.text = "Today's Steps".localized
         //homeVC.lblTitleTotalStep.text = "Total Steps".localized
         
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized

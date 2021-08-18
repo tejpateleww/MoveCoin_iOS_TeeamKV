@@ -24,7 +24,7 @@ class CardView: UIView {
     override func layoutSubviews() {
         layer.cornerRadius = cornerradius
         let shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerradius)
-    
+        self.backgroundColor = .white
         layer.masksToBounds = false
         layer.shadowColor = shadowcolor?.cgColor
         layer.borderColor = bordercolor?.cgColor

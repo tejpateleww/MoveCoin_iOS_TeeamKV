@@ -142,21 +142,21 @@ class HomeViewController: UIViewController {
         lblTitleFriends.font = UIFont.regular(ofSize: 17)
         lblTitleTotalSteps.font = UIFont.regular(ofSize: 17)
         lblTitleInviteFriends.font = UIFont.regular(ofSize: 17)
-        lblTitleTodays.font = UIFont.regular(ofSize: 23)
-        lblTitleTotalSteps.font = UIFont.regular(ofSize: 16)
+        lblTitleTodays.font = UIFont.regular(ofSize: 20)
+        lblTitleTotalSteps.font = UIFont.regular(ofSize: 20)
+        lblTodaysStepCount.font = UIFont.regular(ofSize: 27)
+        lblCoins.font = UIFont.regular(ofSize: 24)
+        lblFriends.font = UIFont.regular(ofSize: 24)
+        lblTotalSteps.font = UIFont.regular(ofSize: 24)
+        lblInviteFriends.font = UIFont.regular(ofSize: 24)
         
-        lblCoins.font = UIFont.semiBold(ofSize: 24)
-        lblFriends.font = UIFont.semiBold(ofSize: 24)
-        lblTotalSteps.font = UIFont.semiBold(ofSize: 24)
-        lblInviteFriends.font = UIFont.semiBold(ofSize: 24)
-        
-        lblDescription.font = UIFont.semiBold(ofSize: 25)
+        lblDescription.font = UIFont.regular(ofSize: 25)
         lblMember.font = UIFont.light(ofSize: 13)
         
-        lblKm.font = UIFont.semiBold(ofSize: 21)
+        lblKm.font = UIFont.regular(ofSize: 21)
         lblTitleKm.font = UIFont.regular(ofSize: 17)
         
-        lblCal.font = UIFont.semiBold(ofSize: 21)
+        lblCal.font = UIFont.regular(ofSize: 21)
         lblTitleCal.font = UIFont.regular(ofSize: 17)
         
         self.viewParent.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight

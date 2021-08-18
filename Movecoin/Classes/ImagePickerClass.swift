@@ -11,7 +11,7 @@ import AVFoundation
 import Photos
 
 
-public protocol ImagePickerDelegate: class {
+public protocol ImagePickerDelegate: AnyObject {
     func didSelect(image: UIImage?, SelectedTag:Int)
 }
 

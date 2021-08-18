@@ -19,3 +19,4 @@ class LocalizLabel : UILabel {
         self.text = self.text?.localized
     }
 }
+

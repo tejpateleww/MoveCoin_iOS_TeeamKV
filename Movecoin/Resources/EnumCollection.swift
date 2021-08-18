@@ -115,12 +115,12 @@ enum DocumentType : String {
 
 enum FontBook: String {
     
-    case Light = "Cairo-Light"
-    case Regular = "Cairo-Regular"
-    case SemiBold = "Cairo-SemiBold"
-    case Bold = "Cairo-Bold"
-    case Black = "Cairo-Black"
-    case ExtraLight = "Cairo-ExtraLight"
+    case Light = "DINNextLTW23-Light"
+    case Regular = "DINNextLTW23-Regular"
+    case SemiBold = "DINNextLTW23-Black"
+    case Bold = "DINAlternate-Bold"
+//    case Black = "Cairo-Black"
+//    case ExtraLight = "Cairo-ExtraLight"
     
     func of(size: CGFloat) -> UIFont {
         return UIFont(name:self.rawValue, size:size)!

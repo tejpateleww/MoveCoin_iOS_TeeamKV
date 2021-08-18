@@ -12,14 +12,14 @@ typealias NetworkRouterCompletion = ((Data?,[String:Any]?, Bool) -> ())
 
 enum NetworkEnvironment: String {
     
-    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
-    case imageURL = "https://www.movecoins.net/admin/"
-    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
+//    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
+//    case imageURL = "https://www.movecoins.net/admin/"
+//    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
     
     
-//    case developmentBaseUrl = "http://15.207.107.71/admin/api/"
-//    case imageURL = "http://15.207.107.71/admin/"
-//    case galleryURL = "http://15.207.107.71/admin/assets/images/products/"
+    case developmentBaseUrl = "http://movecoins.net/dev/api/"
+    case imageURL = "http://movecoins.net/dev/"
+    case galleryURL = "http://movecoins.net/dev/assets/images/products/"
     
     static var baseURL : String{
         return NetworkEnvironment.environment.rawValue
@@ -56,9 +56,9 @@ enum NetworkEnvironment: String {
         //Set environment Here
         
 //        #if DEBUG
-//        return .developmentBaseUrl
+        return .developmentBaseUrl
 //        #else
-        return .liveBaseUrl //.liveBaseUrl //
+//        return .liveBaseUrl //.liveBaseUrl //
 //        #endif
     }
     
@@ -118,7 +118,6 @@ enum ApiKey: String{
     case productsList = "Products/product_list"
     case productDetails = "Products/product_detail"
     case categoryList = "Products/category_list"
-    
     case nearByUsers = "friends/nearbyuser"
     case nearByUsersDetail = "friends/nearbyuser_details"
     case inviteFriends = "Friends/friends_invite"
@@ -142,5 +141,10 @@ enum ApiKey: String{
     case purchaseHistory = "Order/purchase_history"
     case transactionApplePay = "Order/apple_pay"
     
+    case getChallenge = "Challenge/get_challenge"
+    case joinChallenge = "Challenge/join_participant"
     
+    
+    case OfferList = "Offers/get_all_offers"
+
 }

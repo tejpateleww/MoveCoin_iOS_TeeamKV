@@ -11,19 +11,20 @@ import UIKit
 class LeaderboardViewController: UIViewController {
     
     @IBOutlet weak var VwTopMain: UIView!
+    @IBOutlet weak var VwTopTimer: UIStackView!
     @IBOutlet weak var topViewHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var viewRank: UIView!
-    @IBOutlet weak var imgRank: UIImageView!
+//    @IBOutlet weak var imgRank: UIImageView!
     @IBOutlet weak var lblRank: UILabel!
     
     @IBOutlet weak var viewTotalSteps: UIView!
-    @IBOutlet weak var imgTotalSteps: UIImageView!
-    @IBOutlet weak var lblTotalSteps: UILabel!
+//    @IBOutlet weak var imgTotalSteps: UIImageView!
+    @IBOutlet weak var lblNumberOfParticipants: UILabel!
     
     @IBOutlet weak var viewSteps: UIView!
-    @IBOutlet weak var imgSteps: UIImageView!
+//    @IBOutlet weak var imgSteps: UIImageView!
     @IBOutlet weak var lblSteps: UILabel!
     
     @IBOutlet weak var tblLeaderboard: UITableView!
@@ -39,6 +40,7 @@ class LeaderboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.PrepareView()
+        self.webServiceCallForChallengeDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +53,7 @@ class LeaderboardViewController: UIViewController {
         
         // Navigation & Status bar setup
         self.navigationController?.navigationBar.isHidden = false
-        self.navigationBarSetUp(title: "LeaderBoard", backroundColor: ThemeBlueColor, hidesBackButton: false)
+        self.navigationBarSetUp(title: "Leaderboard".localized, backroundColor: ThemeBlueColor, hidesBackButton: false)
         self.statusBarSetUp(backColor: ThemeBlueColor)
 
     }
@@ -86,8 +88,9 @@ class LeaderboardViewController: UIViewController {
         self.VwTopMain.layer.masksToBounds = true
         self.VwTopMain.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
         self.VwTopMain.layer.cornerRadius = 30.0
-        
-        
+        self.VwTopMain.semanticContentAttribute = .forceLeftToRight
+        self.VwTopTimer.semanticContentAttribute = .forceLeftToRight
+
         self.topViewHeight.constant = (UIScreen.main.bounds.size.height / 3.5)
         self.tblLeaderboard.separatorStyle = .none
         self.tblLeaderboard.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
@@ -96,12 +99,12 @@ class LeaderboardViewController: UIViewController {
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.showsHorizontalScrollIndicator = false
         
-        self.imgRank.image = self.imgRank.image?.withRenderingMode(.alwaysTemplate)
-        self.imgRank.tintColor = UIColor.white
-        self.imgTotalSteps.image = self.imgTotalSteps.image?.withRenderingMode(.alwaysTemplate)
-        self.imgTotalSteps.tintColor = UIColor.white
-        self.imgSteps.image = self.imgSteps.image?.withRenderingMode(.alwaysTemplate)
-        self.imgSteps.tintColor = UIColor.white
+//        self.imgRank.image = self.imgRank.image?.withRenderingMode(.alwaysTemplate)
+//        self.imgRank.tintColor = UIColor.white
+//        self.imgTotalSteps.image = self.imgTotalSteps.image?.withRenderingMode(.alwaysTemplate)
+//        self.imgTotalSteps.tintColor = UIColor.white
+//        self.imgSteps.image = self.imgSteps.image?.withRenderingMode(.alwaysTemplate)
+//        self.imgSteps.tintColor = UIColor.white
         
     }
     
@@ -109,9 +112,17 @@ class LeaderboardViewController: UIViewController {
         
         self.lblTime.font = UIFont.bold(ofSize: 15)
         self.lblRank.font = UIFont.bold(ofSize: 18)
-        self.lblTotalSteps.font = UIFont.bold(ofSize: 18)
+        self.lblNumberOfParticipants.font = UIFont.bold(ofSize: 18)
         self.lblSteps.font = UIFont.bold(ofSize: 18)
         
+    }
+    
+    func setData()
+    {
+//        self.lblTime.text = self.cha
+//        self.lblRank.text = self.cha
+//        self.lblNumberOfParticipants.text = self.cha
+//        self.lblSteps.text = self.cha
     }
     
     func RegisterNIB(){
@@ -149,7 +160,7 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LeaderboardCell.className) as! LeaderboardCell
         cell.selectionStyle = .none
-        
+        cell.backgroundColor = .clear
         cell.lblRank.text = "\(indexPath.row + 1)"
         cell.lblName.text = self.arrName[indexPath.row]
         cell.lblStep.text = self.arrStep[indexPath.row]
@@ -163,5 +174,20 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension LeaderboardViewController
+{
+    func webServiceCallForChallengeDetails()
+    {
+        ChallengWebserviceSubclass.getChallengeDetails(strURL: SingletonClass.SharedInstance.userData?.iD ?? "0") { json, status, res in
+            if status {
+                
+                
+            } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
     }
 }

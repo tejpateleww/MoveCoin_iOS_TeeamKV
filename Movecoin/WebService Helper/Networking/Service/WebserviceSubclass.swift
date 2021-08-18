@@ -253,3 +253,31 @@ class OrderWebserviceSubclass
     }
 
 }
+
+
+
+class ChallengWebserviceSubclass
+{
+    class func joinChallenge( dictJoinChallenge : JoinChallenge  ,completion: @escaping CompletionResponse ) {
+        let  params = dictJoinChallenge.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .joinChallenge, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func getChallenge( strURL : String  ,completion: @escaping CompletionResponse ){
+        WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
+    }
+    
+    class func getChallengeDetails( strURL : String  ,completion: @escaping CompletionResponse ){
+        WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
+    }
+}
+    
+
+
+class OffersWebserviceSubclass
+{
+    class func offerList(completion: @escaping CompletionResponse ) {
+        WebService.shared.requestMethod(api: .OfferList, httpMethod: .get, parameters: [:], completion: completion)
+    }
+}
+    

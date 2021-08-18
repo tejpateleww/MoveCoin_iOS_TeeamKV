@@ -9,24 +9,24 @@
 import Foundation
 
 
-struct AppFontName {
-    static let regular = "Cairo-Regular"
-    static let bold = "Cairo-Bold"
-    static let light = "Cairo-Light"
-}
+//struct AppFontName {
+//    static let regular = "Cairo-Regular"
+//    static let bold = "Cairo-Bold"
+//    static let light = "Cairo-Light"
+//}
 
 extension UIFont {
     class func regular(ofSize size: CGFloat) -> UIFont {
         return UIFont(name:  FontBook.Regular.rawValue, size: size)!
     }
     class func bold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: FontBook.Bold.rawValue, size: size)!
+        return UIFont(name: FontBook.Regular.rawValue, size: size)!
     }
     class func light(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: FontBook.Light.rawValue , size: size)!
     }
     class func semiBold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: FontBook.SemiBold.rawValue , size: size)!
+        return UIFont(name: FontBook.Regular.rawValue , size: size)!
     }
     
     /*
