@@ -143,7 +143,7 @@ enum ApiKey: String{
     
     case getChallenge = "Challenge/get_challenge"
     case joinChallenge = "Challenge/join_participant"
-    
+    case challengeDetails = "Challenge/challenge_details"
     
     case OfferList = "Offers/get_all_offers"
 

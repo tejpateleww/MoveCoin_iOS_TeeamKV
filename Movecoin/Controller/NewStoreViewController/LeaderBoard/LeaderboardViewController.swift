@@ -16,15 +16,12 @@ class LeaderboardViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var viewRank: UIView!
-//    @IBOutlet weak var imgRank: UIImageView!
     @IBOutlet weak var lblRank: UILabel!
     
     @IBOutlet weak var viewTotalSteps: UIView!
-//    @IBOutlet weak var imgTotalSteps: UIImageView!
     @IBOutlet weak var lblNumberOfParticipants: UILabel!
     
     @IBOutlet weak var viewSteps: UIView!
-//    @IBOutlet weak var imgSteps: UIImageView!
     @IBOutlet weak var lblSteps: UILabel!
     
     @IBOutlet weak var tblLeaderboard: UITableView!
@@ -32,6 +29,8 @@ class LeaderboardViewController: UIViewController {
     
     @IBOutlet weak var viewtableview: UIView!
     @IBOutlet weak var lblTime: UILabel!
+    
+    var dictChallengeDetails : ChallengeDetails?
     
     var arrViews : [UIView] = []
     var arrName : [String] = []
@@ -117,12 +116,12 @@ class LeaderboardViewController: UIViewController {
         
     }
     
-    func setData()
+    fileprivate func setData()
     {
-//        self.lblTime.text = self.cha
-//        self.lblRank.text = self.cha
-//        self.lblNumberOfParticipants.text = self.cha
-//        self.lblSteps.text = self.cha
+//        self.lblTime.text = dictChallengeDetails
+        self.lblRank.text = "\(dictChallengeDetails?.yourRank ?? 0)"
+        self.lblNumberOfParticipants.text = "\(dictChallengeDetails?.totalParticipant ?? 0)"
+        self.lblSteps.text = "\(dictChallengeDetails?.yourSteps ?? 0)"
     }
     
     func RegisterNIB(){
@@ -181,10 +180,11 @@ extension LeaderboardViewController
 {
     func webServiceCallForChallengeDetails()
     {
-        ChallengWebserviceSubclass.getChallengeDetails(strURL: SingletonClass.SharedInstance.userData?.iD ?? "0") { json, status, res in
+        let offerURL = NetworkEnvironment.baseURL + ApiKey.challengeDetails.rawValue + "/" + (SingletonClass.SharedInstance.userData?.iD ?? "0")
+        ChallengWebserviceSubclass.getChallengeDetails(strURL: offerURL) { json, status, res in
             if status {
-                
-                
+                self.dictChallengeDetails = ChallengeDetails(fromJson: json)
+                self.setData()
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
