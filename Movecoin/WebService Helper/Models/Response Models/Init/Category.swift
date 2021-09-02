@@ -1,22 +1,20 @@
 //
 //  Category.swift
 //  Model Generated using http://www.jsoncafe.com/ 
-//  Created on December 3, 2019
+//  Created on September 1, 2021
 
 import Foundation
 import SwiftyJSON
 
 
-class Category : Codable {
+class Category : NSObject, NSCoding{
 
+    var addedBy : String!
     var categoryName : String!
     var createdDate : String!
     var iD : String!
+    var tax : String!
     var updatedDate : String!
-    
-    init(){
-        
-    }
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -25,9 +23,11 @@ class Category : Codable {
 		if json.isEmpty{
 			return
 		}
+        addedBy = json["added_by"].stringValue
         categoryName = json["CategoryName"].stringValue
         createdDate = json["CreatedDate"].stringValue
         iD = json["ID"].stringValue
+        tax = json["tax"].stringValue
         updatedDate = json["UpdatedDate"].stringValue
 	}
 
@@ -37,6 +37,9 @@ class Category : Codable {
 	func toDictionary() -> [String:Any]
 	{
 		var dictionary = [String:Any]()
+        if addedBy != nil{
+        	dictionary["added_by"] = addedBy
+        }
         if categoryName != nil{
         	dictionary["CategoryName"] = categoryName
         }
@@ -45,6 +48,9 @@ class Category : Codable {
         }
         if iD != nil{
         	dictionary["ID"] = iD
+        }
+        if tax != nil{
+        	dictionary["tax"] = tax
         }
         if updatedDate != nil{
         	dictionary["UpdatedDate"] = updatedDate
@@ -58,9 +64,11 @@ class Category : Codable {
     */
     @objc required init(coder aDecoder: NSCoder)
 	{
+		addedBy = aDecoder.decodeObject(forKey: "added_by") as? String
 		categoryName = aDecoder.decodeObject(forKey: "CategoryName") as? String
 		createdDate = aDecoder.decodeObject(forKey: "CreatedDate") as? String
 		iD = aDecoder.decodeObject(forKey: "ID") as? String
+		tax = aDecoder.decodeObject(forKey: "tax") as? String
 		updatedDate = aDecoder.decodeObject(forKey: "UpdatedDate") as? String
 	}
 
@@ -70,6 +78,9 @@ class Category : Codable {
     */
     func encode(with aCoder: NSCoder)
 	{
+		if addedBy != nil{
+			aCoder.encode(addedBy, forKey: "added_by")
+		}
 		if categoryName != nil{
 			aCoder.encode(categoryName, forKey: "CategoryName")
 		}
@@ -78,6 +89,9 @@ class Category : Codable {
 		}
 		if iD != nil{
 			aCoder.encode(iD, forKey: "ID")
+		}
+		if tax != nil{
+			aCoder.encode(tax, forKey: "tax")
 		}
 		if updatedDate != nil{
 			aCoder.encode(updatedDate, forKey: "UpdatedDate")

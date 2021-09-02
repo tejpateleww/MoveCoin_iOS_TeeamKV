@@ -270,6 +270,12 @@ class ChallengWebserviceSubclass
     class func getChallengeDetails( strURL : String  ,completion: @escaping CompletionResponse ){
         WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
     }
+    
+    class func updateStepsForChallenge(strURL : String  ,completion: @escaping CompletionResponse ){
+        let strURLFinal = NetworkEnvironment.baseURL + ApiKey.updateStepsForChallenge.rawValue + strURL
+        WebService.shared.getMethod(url: URL.init(string: strURLFinal)!, httpMethod: .get, completion: completion)
+    }
+    
 }
     
 
@@ -278,6 +284,12 @@ class OffersWebserviceSubclass
 {
     class func offerList(completion: @escaping CompletionResponse ) {
         WebService.shared.requestMethod(api: .OfferList, httpMethod: .get, parameters: [:], completion: completion)
+    }
+
+    class func getOfferDetails( strURL : String  ,completion: @escaping CompletionResponse ) {
+        WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
+
+        
     }
 }
     

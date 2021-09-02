@@ -400,5 +400,10 @@
 
 "Leaderboard" = "Leaderboard";
 "message_joinChallenge" = "إنضم الى التحدي";
+"message_no_challenge_Active" = "No challenge is active";
 "Yes" = "نعم";
 "No" = "لا";
+
+"title_how_to_claim" = "HOW TO CLAIM :";
+
+"Offers" = "Offers";

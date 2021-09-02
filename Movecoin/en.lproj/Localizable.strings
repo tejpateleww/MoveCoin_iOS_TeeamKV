@@ -353,4 +353,14 @@
 "If you don't give access then Steps Count feature will not work" = "If you don't give access then Steps Count feature will not work";
 "App would like to use photo library" = "App would like to use photo library";
 "Total: Total (VAT included)" = "Total: Total (VAT included)";
+
+
+
+
+// Challenge
+"message_no_challenge_Active" = "No challenge is active";
 "message_joinChallenge" = "Join to the challenge";
+"title_how_to_claim" = "HOW TO CLAIM:";
+"title_offer_details" = "OFFER DETAILS:";
+"title_more_details" = "For more details:";
+"Offers" = "Offers";

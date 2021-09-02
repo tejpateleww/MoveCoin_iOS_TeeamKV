@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             window?.overrideUserInterfaceStyle = .light
         }
         
-        UIFont.familyNames.forEach({ familyName in
-            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-            print(familyName, fontNames)
-        })
+//        UIFont.familyNames.forEach({ familyName in
+//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+//            print(familyName, fontNames)
+//        })
         
 //        #if DEBUG
 //        //                return .developmentBaseUrl
@@ -225,9 +225,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         ] as! [HKObjectType]
         
         // 2. Set the types you want to write to HK Store
-        let healthKitTypesToWrite = [
-            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount),
-        ] as! [HKSampleType]
+//        _ = [
+//            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount),
+//        ] as! [HKSampleType]
         
         
         
@@ -510,7 +510,8 @@ extension AppDelegate {
     {
         if let topViewController = UIApplication.topViewController() as? ProductDetailViewController
         {
-            topViewController.webserviceForProductDetails()
+            //topViewController.webserviceForProductDetails()
+            topViewController.webserviceForOfferDetails()
         }
     }
     
@@ -720,7 +721,8 @@ extension AppDelegate {
                             if let productID = dic["product_id"] as? String
                             {
                                 productDetailVC.strOrderStatus = ((dic["order_status"] as? String ?? "").capitalizingFirstLetter())
-                                productDetailVC.webserviceForProductDetails(productId: productID)
+                                //productDetailVC.webserviceForProductDetails(productId: productID)
+                                productDetailVC.webserviceForOfferDetails(productId: productID)
                             }
                         }
                         else
@@ -861,7 +863,8 @@ extension AppDelegate {
                                             }
                                         }
                                         topViewController.strOrderStatus = ((dic["order_status"] as? String ?? "").capitalizingFirstLetter())
-                                        topViewController.webserviceForProductDetails(productId: productID)
+                                        //topViewController.webserviceForProductDetails(productId: productID)
+                                        topViewController.webserviceForOfferDetails(productId: productID)
                                     }
                                 }
                                 

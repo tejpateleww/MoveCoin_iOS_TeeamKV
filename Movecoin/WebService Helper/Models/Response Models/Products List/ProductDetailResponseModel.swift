@@ -72,7 +72,6 @@ class ProductDetailResponseModel : NSObject, NSCoding{
 		if status != nil{
 			aCoder.encode(status, forKey: "status")
 		}
-
 	}
 
 }

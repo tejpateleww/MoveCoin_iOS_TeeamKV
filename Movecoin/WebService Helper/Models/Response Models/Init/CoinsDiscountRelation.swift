@@ -1,20 +1,16 @@
 //
 //  CoinsDiscountRelation.swift
 //  Model Generated using http://www.jsoncafe.com/ 
-//  Created on January 9, 2020
+//  Created on September 1, 2021
 
 import Foundation
 import SwiftyJSON
 
 
-class CoinsDiscountRelation : Codable {
+class CoinsDiscountRelation : NSObject, NSCoding{
 
     var coins : String!
     var percentageDiscount : String!
-    
-    init(){
-        
-    }
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values

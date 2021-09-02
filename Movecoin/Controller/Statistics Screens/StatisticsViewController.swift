@@ -48,6 +48,7 @@ class StatisticsViewController: UIViewController {
         lblTitle.text = "Updates".localized
         lblNoDataFound.text = "You didn't have any updates yet".localized
         Analytics.logEvent("StatisticsScreen", parameters: nil)
+        self.statusBarSetUp(backColor: .clear)
 
     }
     

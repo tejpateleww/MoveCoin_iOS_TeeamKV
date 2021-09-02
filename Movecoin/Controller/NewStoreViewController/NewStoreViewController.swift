@@ -12,15 +12,18 @@ class NewStoreViewController: UIViewController {
     
     @IBOutlet weak var VwTopMain: UIView!
     @IBOutlet weak var lblMainVwTitle: LocalizLabel!
+    @IBOutlet weak var viewMainTitle: UIView?
     @IBOutlet weak var lblMainVwTitleDesc: LocalizLabel!
+    @IBOutlet weak var viewMainTitleDesc: UIView?
     @IBOutlet weak var lblMainVwBottomTitle: LocalizLabel!
+    @IBOutlet weak var viewMainBottomTitle: UIView?
     @IBOutlet weak var lblCatTitle: LocalizLabel!
     
     @IBOutlet weak var clnCategory: UICollectionView!
     @IBOutlet weak var tblStoreOffers: UITableView!
     @IBOutlet weak var tblStoreOffersHeight: NSLayoutConstraint!
     @IBOutlet weak var imgBanner: UIImageView!
-
+    
     @IBOutlet weak var topViewHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -34,7 +37,7 @@ class NewStoreViewController: UIViewController {
             self.tblStoreOffers.reloadData()
         }
     }
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(webserviceForChallenge), for: .valueChanged)
@@ -52,23 +55,35 @@ class NewStoreViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-       
+        self.navigationController?.navigationBar.isHidden = true
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         // Navigation & Status bar setup
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationBarSetUp(title: "Offers For Today", backroundColor: ThemeBlueColor, hidesBackButton: false)
-        self.statusBarSetUp(backColor: ThemeBlueColor)
-
+        self.navigationBarSetUp(title: "", backroundColor: .clear, hidesBackButton: false)
+        self.statusBarSetUp(backColor: .clear)
+        
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.viewMainTitle?.layer.cornerRadius = (viewMainTitle?.frame.height ?? 0)/2
+        self.viewMainTitle?.layer.masksToBounds = true
+        self.viewMainTitleDesc?.layer.cornerRadius = (viewMainTitleDesc?.frame.height ?? 0)/2
+        self.viewMainTitleDesc?.layer.masksToBounds = true
+        self.viewMainBottomTitle?.layer.cornerRadius = (viewMainBottomTitle?.frame.height ?? 0)/2
+        self.viewMainBottomTitle?.layer.masksToBounds = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationBarSetUp()
-        self.statusBarSetUp(backColor: .clear)
-        self.title = ""
+        super.viewWillDisappear(animated)
+//        navigationBarSetUp()
+//        self.statusBarSetUp(backColor: .clear)
+//        self.title = ""
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
@@ -105,8 +120,8 @@ class NewStoreViewController: UIViewController {
         lblCatTitle.font = UIFont.bold(ofSize: 26)
         
         scrollView.addSubview(refreshControl)
-
         
+//        self.lblMainVwTitle.text = "  Share the challenge  "
         tblStoreOffers.rowHeight = UITableView.automaticDimension
         tblStoreOffers.estimatedRowHeight = 215
         //tblStoreOffers.addSubview(refreshControl)
@@ -117,7 +132,8 @@ class NewStoreViewController: UIViewController {
     
     func setData()
     {
-        let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.prizeImage ?? "")
+        let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.sponserImage ?? "")
+        self.imgBanner.contentMode = .scaleAspectFill
         if let url = URL(string: productsURL) {
             self.imgBanner.kf.indicatorType = .activity
             self.imgBanner.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
@@ -129,27 +145,28 @@ class NewStoreViewController: UIViewController {
         self.clnCategory.register(UINib(nibName: StatusCollectionViewCell.className, bundle:nil), forCellWithReuseIdentifier: StatusCollectionViewCell.className)
     }
     
-    @IBAction func btnVwHeaderAction(_ sender: Any) {
-        
-        
-        if(responseModel?.isParticipant == true)
+    @IBAction func btnVwHeaderAction(_ sender: Any?) {
+        if(responseModel?.isParticipant == 1)
         {
             self.navigateToNextScreen()
         }
         else
         {
-            UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "message_joinChallenge", ButtonTitle1: "OK".localized, ButtonTitle2: "Cancel".localized) { index in
-                if(index == 0)
-                {
-                    
-                    self.webserviceForJoinChallenge()
-                    
+            if(self.dictChallenge?.id != "")
+            {
+                UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "message_joinChallenge", ButtonTitle1: "OK".localized, ButtonTitle2: "Cancel".localized) { index in
+                    if(index == 0)
+                    {
+                        self.webserviceForJoinChallenge()
+                    }
                 }
+            }
+            else
+            {
+                UtilityClass.showAlert(Message: "message_no_challenge_Active".localized)
             }
         }
     }
-    
-
 }
 
 // ----------------------------------------------------
@@ -165,7 +182,7 @@ extension NewStoreViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: NewStoreTableViewCell.className) as! NewStoreTableViewCell
         cell.selectionStyle = .none
         cell.product = arrOffers?[indexPath.row]
-
+        
         return cell
     }
     
@@ -176,8 +193,8 @@ extension NewStoreViewController : UITableViewDelegate, UITableViewDataSource{
         controller.productID = product?.id
         self.parent?.navigationController?.pushViewController(controller, animated: true)
         
-//        let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
-//        self.navigationController?.pushViewController(controller, animated: true)
+        //        let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
+        //        self.navigationController?.pushViewController(controller, animated: true)
         
     }
     
@@ -235,8 +252,9 @@ extension NewStoreViewController {
             if status {
                 self.responseModel = ChallengeMain(fromJson: json)
                 self.dictChallenge = self.responseModel?.challenge
+//                self.btnVwHeaderAction(nil)
                 self.webserviceForChallenge()
-             } else {
+            } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
@@ -257,7 +275,10 @@ extension NewStoreViewController {
     func navigateToNextScreen()
     {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
+        controller.challengeID = dictChallenge?.id
+        controller.dictChallenge = self.dictChallenge
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
 }
+

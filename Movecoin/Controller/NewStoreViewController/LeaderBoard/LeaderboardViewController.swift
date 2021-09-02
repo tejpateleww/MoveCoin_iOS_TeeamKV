@@ -19,6 +19,7 @@ class LeaderboardViewController: UIViewController {
     @IBOutlet weak var lblRank: UILabel!
     
     @IBOutlet weak var viewTotalSteps: UIView!
+    @IBOutlet weak var imgBanner: UIImageView?
     @IBOutlet weak var lblNumberOfParticipants: UILabel!
     
     @IBOutlet weak var viewSteps: UIView!
@@ -29,16 +30,22 @@ class LeaderboardViewController: UIViewController {
     
     @IBOutlet weak var viewtableview: UIView!
     @IBOutlet weak var lblTime: UILabel!
-    
+    @IBOutlet weak var viewMainContainer: UIView?
+
     var dictChallengeDetails : ChallengeDetails?
-    
+    var dictChallenge : Challenge?
+    var challengeID: String?
+    var releaseDate: Date?
+    var countdownTimer : Timer?
+
     var arrViews : [UIView] = []
-    var arrName : [String] = []
-    var arrStep : [String] = []
-    
+//    var arrName : [String] = []
+//    var arrStep : [String] = []
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.PrepareView()
+        self.lblTime.text = ""
         self.webServiceCallForChallengeDetails()
     }
     
@@ -58,9 +65,10 @@ class LeaderboardViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationBarSetUp()
-        self.statusBarSetUp(backColor: .clear)
-        self.title = ""
+        super.viewWillDisappear(animated)
+//        navigationBarSetUp()
+//        self.statusBarSetUp(backColor: .clear)
+//        self.title = ""
     }
     
     func PrepareView(){
@@ -70,9 +78,6 @@ class LeaderboardViewController: UIViewController {
     }
     
     func setupUI(){
-        
-        self.arrName = ["Test 1","Test 2","Test 3","Test 4","Test 5","Test 6","Test 7"]
-        self.arrStep = ["1000","2000","3000","4000","5000","6000","7000"]
         self.arrViews = [self.viewRank , self.viewSteps , self.viewTotalSteps]
         for TempView in self.arrViews {
             TempView.layer.masksToBounds = true
@@ -87,8 +92,11 @@ class LeaderboardViewController: UIViewController {
         self.VwTopMain.layer.masksToBounds = true
         self.VwTopMain.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
         self.VwTopMain.layer.cornerRadius = 30.0
-        self.VwTopMain.semanticContentAttribute = .forceLeftToRight
-        self.VwTopTimer.semanticContentAttribute = .forceLeftToRight
+//        self.VwTopMain.semanticContentAttribute = .forceLeftToRight
+//        self.tblLeaderboard.semanticContentAttribute = .forceLeftToRight
+
+//        self.VwTopTimer.semanticContentAttribute = .forceLeftToRight
+//        self.viewMainContainer?.semanticContentAttribute = .forceRightToLeft
 
         self.topViewHeight.constant = (UIScreen.main.bounds.size.height / 3.5)
         self.tblLeaderboard.separatorStyle = .none
@@ -98,31 +106,59 @@ class LeaderboardViewController: UIViewController {
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.showsHorizontalScrollIndicator = false
         
-//        self.imgRank.image = self.imgRank.image?.withRenderingMode(.alwaysTemplate)
-//        self.imgRank.tintColor = UIColor.white
-//        self.imgTotalSteps.image = self.imgTotalSteps.image?.withRenderingMode(.alwaysTemplate)
-//        self.imgTotalSteps.tintColor = UIColor.white
-//        self.imgSteps.image = self.imgSteps.image?.withRenderingMode(.alwaysTemplate)
-//        self.imgSteps.tintColor = UIColor.white
+        //self.imgRank.image = self.imgRank.image?.withRenderingMode(.alwaysTemplate)
+        //self.imgRank.tintColor = UIColor.white
+        //self.imgTotalSteps.image = self.imgTotalSteps.image?.withRenderingMode(.alwaysTemplate)
+        //self.imgTotalSteps.tintColor = UIColor.white
+        //self.imgSteps.image = self.imgSteps.image?.withRenderingMode(.alwaysTemplate)
+        //self.imgSteps.tintColor = UIColor.white
         
     }
     
     func setupFont (){
-        
         self.lblTime.font = UIFont.bold(ofSize: 15)
         self.lblRank.font = UIFont.bold(ofSize: 18)
         self.lblNumberOfParticipants.font = UIFont.bold(ofSize: 18)
         self.lblSteps.font = UIFont.bold(ofSize: 18)
-        
     }
     
     fileprivate func setData()
     {
-//        self.lblTime.text = dictChallengeDetails
         self.lblRank.text = "\(dictChallengeDetails?.yourRank ?? 0)"
         self.lblNumberOfParticipants.text = "\(dictChallengeDetails?.totalParticipant ?? 0)"
         self.lblSteps.text = "\(dictChallengeDetails?.yourSteps ?? 0)"
+//        self.lblTime.text = dictChallenge?.remainingTime
+        releaseDate = Date(timeIntervalSince1970: Double(dictChallenge?.remainingTimetamp ?? 0))
+        let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.prizeImage ?? "")
+        if let url = URL(string: productsURL) {
+            self.imgBanner?.kf.indicatorType = .activity
+            self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+        }
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+
+        
+        tblLeaderboard.reloadData()
     }
+    
+    @objc func updateTime() {
+
+        let currentDate = Date()
+        let calendar = Calendar.current
+
+        let diffDateComponents = calendar.dateComponents([.day, .hour, .minute, .second], from: currentDate, to: releaseDate! as Date)
+
+        let hours = ((diffDateComponents.day ?? 0) * 24) + (diffDateComponents.hour ?? 0)
+        let countdown = "\(hours) H : \(diffDateComponents.minute ?? 0) M : \(diffDateComponents.second ?? 0) S"
+//        print(Double(dictChallenge?.remainingTimeStamp ?? 0).asString(style: .full))        // 2 hours, 46 minutes, 40 seconds
+
+        
+//        print(countdown)
+        
+        self.lblTime.text = "\(countdown)"
+
+    }
+    
+    
     
     func RegisterNIB(){
         self.tblLeaderboard.register(UINib(nibName: LeaderboardCell.className, bundle: nil), forCellReuseIdentifier: LeaderboardCell.className)
@@ -143,8 +179,6 @@ class LeaderboardViewController: UIViewController {
             }
         }
     }
-
-
 }
 
 // ----------------------------------------------------
@@ -153,7 +187,7 @@ class LeaderboardViewController: UIViewController {
 extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrName.count
+        return dictChallengeDetails?.topFiveParticipant.count ?? 0 //self.arrName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -161,8 +195,10 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.lblRank.text = "\(indexPath.row + 1)"
-        cell.lblName.text = self.arrName[indexPath.row]
-        cell.lblStep.text = self.arrStep[indexPath.row]
+        
+        let obj = dictChallengeDetails?.topFiveParticipant[indexPath.row]
+        cell.lblName.text = obj?.nickName
+        cell.lblStep.text = obj?.steps
     
         return cell
     }
@@ -180,9 +216,12 @@ extension LeaderboardViewController
 {
     func webServiceCallForChallengeDetails()
     {
-        let offerURL = NetworkEnvironment.baseURL + ApiKey.challengeDetails.rawValue + "/" + (SingletonClass.SharedInstance.userData?.iD ?? "0")
+        viewtableview.alpha = 0
+        
+        let offerURL = NetworkEnvironment.baseURL + ApiKey.challengeDetails.rawValue + "/" + (SingletonClass.SharedInstance.userData?.iD ?? "0") + "/" + (challengeID ?? "0")
         ChallengWebserviceSubclass.getChallengeDetails(strURL: offerURL) { json, status, res in
             if status {
+                self.viewtableview.alpha = 1
                 self.dictChallengeDetails = ChallengeDetails(fromJson: json)
                 self.setData()
             } else {
@@ -190,4 +229,14 @@ extension LeaderboardViewController
             }
         }
     }
+}
+
+
+extension Double {
+  func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.hour, .minute, .second, .nanosecond]
+    formatter.unitsStyle = style
+    return formatter.string(from: self) ?? ""
+  }
 }

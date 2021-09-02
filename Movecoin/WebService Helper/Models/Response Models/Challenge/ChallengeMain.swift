@@ -1,7 +1,7 @@
 //
-//  ChallengeMain.swift
+//  ChallengeDetails.swift
 //  Model Generated using http://www.jsoncafe.com/ 
-//  Created on August 12, 2021
+//  Created on September 1, 2021
 
 import Foundation
 import SwiftyJSON
@@ -10,9 +10,10 @@ import SwiftyJSON
 class ChallengeMain : NSObject, NSCoding{
 
     var challenge : Challenge!
+    var isParticipant : Int!
     var status : Bool!
     var time : String!
-    var isParticipant : Bool!
+
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
@@ -24,9 +25,9 @@ class ChallengeMain : NSObject, NSCoding{
         if !challengeJson.isEmpty{
             challenge = Challenge(fromJson: challengeJson)
         }
+        isParticipant = json["is_participant"].intValue
         status = json["status"].boolValue
         time = json["time"].stringValue
-        isParticipant = json["is_participant"].boolValue
 	}
 
 	/**
@@ -38,14 +39,14 @@ class ChallengeMain : NSObject, NSCoding{
         if challenge != nil{
         	dictionary["challenge"] = challenge.toDictionary()
         }
+        if isParticipant != nil{
+        	dictionary["is_participant"] = isParticipant
+        }
         if status != nil{
         	dictionary["status"] = status
         }
         if time != nil{
         	dictionary["time"] = time
-        }
-        if isParticipant != nil{
-            dictionary["is_participant"] = isParticipant
         }
 		return dictionary
 	}
@@ -57,9 +58,9 @@ class ChallengeMain : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
 	{
 		challenge = aDecoder.decodeObject(forKey: "challenge") as? Challenge
+		isParticipant = aDecoder.decodeObject(forKey: "is_participant") as? Int
 		status = aDecoder.decodeObject(forKey: "status") as? Bool
 		time = aDecoder.decodeObject(forKey: "time") as? String
-        isParticipant = aDecoder.decodeObject(forKey: "is_participant") as? Bool
 	}
 
     /**
@@ -71,15 +72,16 @@ class ChallengeMain : NSObject, NSCoding{
 		if challenge != nil{
 			aCoder.encode(challenge, forKey: "challenge")
 		}
+		if isParticipant != nil{
+			aCoder.encode(isParticipant, forKey: "is_participant")
+		}
 		if status != nil{
 			aCoder.encode(status, forKey: "status")
 		}
 		if time != nil{
 			aCoder.encode(time, forKey: "time")
 		}
-        if isParticipant != nil{
-            aCoder.encode(isParticipant, forKey: "is_participant")
-        }
+
 	}
 
 }

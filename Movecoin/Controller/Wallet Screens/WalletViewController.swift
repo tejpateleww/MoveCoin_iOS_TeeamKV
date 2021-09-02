@@ -48,7 +48,8 @@ class WalletViewController: UIViewController {
         super.viewWillAppear(true)
         navigationBarSetUp(hidesBackButton: true)
         webserviceforWalletHistory(refresh: true)
-        
+        self.navigationController?.navigationBar.isHidden = false
+
         switch walletType {
         case .Coins:
 //            btnBack.isHidden = false
@@ -68,7 +69,8 @@ class WalletViewController: UIViewController {
         lblTitle.text = "My Balance".localized
         btnSpendCoins.setTitle("Spend Coins".localized, for: .normal)
         btnTransfer.setTitle("Transfer".localized, for: .normal)
-        
+        self.statusBarSetUp(backColor: .clear)
+
         if Localize.currentLanguage() == Languages.Arabic.rawValue {
            
             self.btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)

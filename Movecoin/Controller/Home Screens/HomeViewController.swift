@@ -15,6 +15,7 @@ import FirebaseAnalytics
 protocol FlipToMapDelegate {
     func flipToMap()
 }
+typealias AppHealthKitValueCompletion = ((Double?, Error?)->Void)
 
 class HomeViewController: UIViewController {
     
@@ -108,7 +109,12 @@ class HomeViewController: UIViewController {
         navigationBarSetUp(hidesBackButton: true)
         setUpNavigationItems()
         self.updateMylocation()
+        self.statusBarSetUp(backColor: .clear)
+
     }
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -268,6 +274,31 @@ class HomeViewController: UIViewController {
         }
     }
     
+    fileprivate func getDistanceAndCalories() {
+        self.getTodaysWalkedRunningFromHealthKit { distance in
+            print("The distance run is \(distance)")
+            
+            //            let distanceMeters = Measurement(value: distance, unit: UnitLength.meters)
+            let km = distance/1000.0
+            DispatchQueue.main.async {
+                self.lblKm.text = String(format: "%.2f", km)
+            }
+            
+        }
+        
+        self.loadCalory { calories, error in
+            if (error == nil)
+            {
+                print("The calories are \(calories ?? 0.00)")
+                self.lblCal.text = String(format: "%.2f", calories ?? 0.00)
+            }
+            else
+            {
+                print("The error is \(error?.localizedDescription ?? "-------------")")
+            }
+        }
+    }
+    
     @objc func getTodaysSteps() {
         
         self.getTodaysStepsFromHealthKit { (steps) in
@@ -291,6 +322,8 @@ class HomeViewController: UIViewController {
                 }
             }
         }
+        
+        getDistanceAndCalories()
     }
     
     func checkAuthorization() -> Bool {
@@ -331,7 +364,7 @@ class HomeViewController: UIViewController {
                     let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
                     let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
                     let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
-                    
+                    self.getDistanceAndCalories()
                     if lastUpdatedDate == currentDate {
                         if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
                             let total = counts + activityData.numberOfSteps.intValue
@@ -381,6 +414,7 @@ class HomeViewController: UIViewController {
                 self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
                 self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0", dateStr: self.queryDate)
                 
+                
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
@@ -390,7 +424,7 @@ class HomeViewController: UIViewController {
     func getTodaysStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         
-        let now = UtilityClass.getTodayFromServer()
+        let now = Date()//UtilityClass.getTodayFromServer()
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
@@ -410,6 +444,56 @@ class HomeViewController: UIViewController {
         }
         healthStore.execute(query)
     }
+    
+    func getTodaysWalkedRunningFromHealthKit(completion: @escaping (Double) -> Void) {
+        guard let type = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning) else {
+            print("Something went wrong retriebing quantity type distanceWalkingRunning")
+            return
+        }
+        let now = UtilityClass.getTodayFromServer()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
+        
+        print("-------------------------------------")
+        print("-- EndDate in Local : \(now.getFormattedDate(dateFormate: DateFomateKeys.api) )")
+        print("-- StartDate in LocalToUTC : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
+        print("-------------------------------------")
+        
+        let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(0.0)
+                print(error?.localizedDescription ?? "-")
+                return
+            }
+            completion(sum.doubleValue(for: HKUnit.meter()))
+        }
+        healthStore.execute(query)
+    }
+    
+    
+    func loadCalory(since start: Date = Date().startOfDay, to end: Date = Date(), completion: @escaping AppHealthKitValueCompletion) {
+            guard let type = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) else {
+                return
+            }
+
+            let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+            let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
+                var resultCount = 0.0
+                guard let result = result else {
+                    completion(nil, error)
+                    return
+                }
+                
+                if let quantity = result.sumQuantity() {
+                    resultCount = quantity.doubleValue(for: HKUnit.kilocalorie())
+                }
+                DispatchQueue.main.async {
+                    completion(resultCount, nil)
+                }
+            }
+            healthStore.execute(query)
+        }
     
     func getRemainingStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         guard let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return  completion(0.0) }
@@ -566,9 +650,42 @@ extension HomeViewController {
         UserWebserviceSubclass.getAPI(strURL: urlString) { (json, status, res) in
             print(status)
             
+            
+            
+            if((SingletonClass.SharedInstance.initResponse?.challenge.count ?? 0) > 0)
+            {
+                self.webserviceforUpdateStepsForChallenge(stepsCount: SingletonClass.SharedInstance.todaysStepCount ?? "0", challengeID: SingletonClass.SharedInstance.initResponse?.challenge.first?.challengeId ?? "0")
+            }
+            
             if status{
                 DispatchQueue.main.async {
                     self.lblTotalSteps.text = json["steps"].stringValue
+                    //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
+                }
+            }else{
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    
+    func webserviceforUpdateStepsForChallenge(stepsCount : String, challengeID : String){
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        var strParam = String()
+   
+        strParam = id + "/\(stepsCount)/\(challengeID)"
+        
+        guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
+        
+        ChallengWebserviceSubclass.updateStepsForChallenge(strURL: urlString) { (json, status, res) in
+            print(status)
+            
+            if status{
+                DispatchQueue.main.async {
+//                    self.lblTotalSteps.text = json["steps"].stringValue
                     //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
                 }
             }else{

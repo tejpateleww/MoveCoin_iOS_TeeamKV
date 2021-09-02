@@ -23,12 +23,20 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var viewShadow: UIView!
     
     @IBOutlet weak var txtvwDescription: UITextView!
+    @IBOutlet weak var txtvwOfferDetails: UITextView!
+    @IBOutlet weak var txtvwHowToClaim: UITextView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblStore: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblDiscountedPrice: UILabel!
     @IBOutlet weak var lblPriceDiscount: UILabel!
+    @IBOutlet weak var lblTitleHowToClaim: UILabel!
+    @IBOutlet weak var lblTitleOfferDetails: UILabel!
     
+    @IBOutlet weak var lblDescription: UILabel?
+    @IBOutlet weak var lblOfferDetails: UILabel?
+    @IBOutlet weak var lblHowToClaim: UILabel?
+
     @IBOutlet weak var lblDeliveryCharge: UILabel!
     @IBOutlet weak var lblBuy: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
@@ -36,8 +44,8 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var btnBuy: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     
-    @IBOutlet weak var vWGoToStore: UIView!
-    @IBOutlet weak var btnGoToStore: UIButton!
+    @IBOutlet weak var vWGoToStore: UIView?
+    @IBOutlet weak var btnGoToStore: UIButton?
     
     
     var strOrderStatus = String()
@@ -54,17 +62,23 @@ class ProductDetailViewController: UIViewController {
     var product : ProductDetails!
     var orderDetail : Order!
     
+    var offerDetail : OfferDetailsModel!
+    
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        webserviceForProductDetails()
+        //webserviceForProductDetails()
+        webserviceForOfferDetails(productId: productID ?? "0")
+        //webserviceForProductDetails(productId: productID ?? "0")
 
-        navigationBarSetUp()
+//        navigationBarSetUp()
         self.setUpView()
         self.setupFont()
+//        self.navigationBarSetUp(title: "Offer Details".localized, backroundColor: ThemeBlueColor, hidesBackButton: false)
+    
 //        print("The order id is \(orderDetail.orderID ?? "-")")
 
         guard productID != nil else { return }
@@ -75,8 +89,16 @@ class ProductDetailViewController: UIViewController {
     }
    
     override func viewDidLayoutSubviews() {
-        super.viewDidAppear(true)
+        super.viewDidLayoutSubviews()
          setGradientColorOfView(view: viewShadow, startColor: UIColor.black.withAlphaComponent(0.15), endColor: UIColor.clear.withAlphaComponent(0))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationBarSetUp(title: "Offer Details".localized, backroundColor: ThemeBlueColor, hidesBackButton: false)
+        self.statusBarSetUp(backColor: ThemeBlueColor)
+
     }
     
     
@@ -93,6 +115,8 @@ class ProductDetailViewController: UIViewController {
         pageControl.isUserInteractionEnabled = false
         
         viewShadow.isUserInteractionEnabled = false
+        lblTitleHowToClaim.text = "title_how_to_claim".localized
+        lblTitleOfferDetails.text = "title_offer_details".localized
         
         switch viewType {
         case .History:
@@ -103,9 +127,9 @@ class ProductDetailViewController: UIViewController {
             break
         }
         
-        self.vWGoToStore.layer.masksToBounds = true
-        self.vWGoToStore.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
-        self.vWGoToStore.layer.cornerRadius = 25.0
+        self.vWGoToStore?.layer.masksToBounds = true
+        self.vWGoToStore?.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
+        self.vWGoToStore?.layer.cornerRadius = 25.0
     }
     
     func setupFont(){
@@ -115,14 +139,18 @@ class ProductDetailViewController: UIViewController {
         lblPrice.font = UIFont.regular(ofSize: 16)
         lblPriceDiscount.font = UIFont.regular(ofSize: 14)
         lblTitle.font = UIFont.bold(ofSize: 20)
-//        lblDescription.font = UIFont.bold(ofSize: 16)
-        txtvwDescription.font = UIFont.bold(ofSize: 16)
+        //lblDescription.font = UIFont.bold(ofSize: 16)
+        lblDescription?.font = UIFont.bold(ofSize: 16)
         lblStore.font = UIFont.regular(ofSize: 14)
+        lblTitleHowToClaim.font = UIFont.regular(ofSize: 22)
+        lblTitleOfferDetails.font = UIFont.regular(ofSize: 22)
+        lblOfferDetails?.font = UIFont.regular(ofSize: 16)
+        lblHowToClaim?.font = UIFont.regular(ofSize: 16)
     }
     
+    /*
     func setupProductData(){
         // For Images
-//        imgArray = self.product.gallery.components(separatedBy: ",")
         imgArray = self.product.gallaries
         pageControl.numberOfPages = imgArray.count
         collectionView.reloadData()
@@ -221,6 +249,92 @@ class ProductDetailViewController: UIViewController {
         lblOrderStatus.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
 
     }
+    */
+    
+    func setupOfferData(){
+        // For Images
+        imgArray.append(NetworkEnvironment.baseImageURL + offerDetail.offerDetails.image)
+        pageControl.numberOfPages = imgArray.count
+        collectionView.reloadData()
+        
+        lblDescription?.text = offerDetail.offerDetails.descriptionField
+        lblDescription?.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        
+        lblOfferDetails?.text = offerDetail.offerDetails.offerDetails
+//        txtvwOfferDetails.translatesAutoresizingMaskIntoConstraints = true
+//        txtvwOfferDetails.sizeToFit()
+//        txtvwOfferDetails.isScrollEnabled = false
+        lblOfferDetails?.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        
+        lblHowToClaim?.text = offerDetail.offerDetails.howToClaim
+//        txtvwHowToClaim.translatesAutoresizingMaskIntoConstraints = true
+//        txtvwHowToClaim.sizeToFit()
+//        txtvwHowToClaim.isScrollEnabled = false
+        lblHowToClaim?.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+         
+        // For the textview proper width and height according to content
+        var fixedWidth = txtvwDescription.frame.size.width - 20
+        var newSize = txtvwDescription.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        txtvwDescription.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        
+        fixedWidth = txtvwHowToClaim.frame.size.width - 20
+        newSize = txtvwHowToClaim.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        txtvwHowToClaim.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        
+        fixedWidth = txtvwOfferDetails.frame.size.width - 20
+        newSize = txtvwOfferDetails.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        txtvwOfferDetails.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        
+        lblTitle.text = offerDetail.offerDetails.name
+        //lblStore.text = "Store : ".localized + product.store
+        
+        lblCoins.text = offerDetail.offerDetails.coins
+        
+        
+        /*
+        if product.discount == "0" {
+            self.lblDiscountedPrice.text = ""
+            self.lblDiscountedPrice.isHidden = true
+            self.lblPrice.text = currency.localized + " \(product.price ?? "")"
+            self.lblPriceDiscount.text = ""
+            self.lblPriceDiscount.isHidden = true
+        } else {
+            self.lblDiscountedPrice.text = currency.localized + " \(product.discountedPrice ?? "")"
+            self.lblDiscountedPrice.isHidden = false
+            
+            let priceText = currency.localized + " \(product.price ?? "")"
+            self.lblPrice.text = currency.localized + " \(product.price ?? "")"
+            let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: priceText)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+            self.lblPrice.attributedText = attributeString
+            
+            self.lblPriceDiscount.text = " \(product.discount ?? "")%   "
+            self.lblPriceDiscount.isHidden = false
+        }
+   
+        if(viewType == .History)
+        {
+            lblOrderStatus.isHidden = false
+            lblOrderStatus.text = "Order Status : ".localized + strOrderStatus.capitalizingFirstLetter()
+        }
+        
+        if product.status == "Out Stock" {
+            stackView.isHidden = true
+            btnBuy.isEnabled = false
+            btnBuy.backgroundColor = .lightText
+            btnBuy.setTitle("Out of Stock".localized, for: .normal)
+        }else{
+             lblCoins.text = product.coins
+        }
+        
+        self.lblTitle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.lblOrderStatus.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        lblTitle.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        lblOrderStatus.setContentCompressionResistancePriority(UILayoutPriority.defaultHigh, for: .horizontal)
+        */
+
+    }
     
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
@@ -234,10 +348,15 @@ class ProductDetailViewController: UIViewController {
             controller.product = product
             controller.closure = { str in
                     print(str)
-                self.webserviceForProductDetails()
+                //self.webserviceForProductDetails()
+                self.webserviceForOfferDetails()
             }
             self.navigationController?.pushViewController(controller, animated: true)
         }
+    }
+    
+    @IBAction func btnGoToStoreTapped(_ sender: Any) {
+        UIApplication.shared.open((URL(string:offerDetail.offerDetails.link) ?? URL(fileURLWithPath: "")) as URL)
     }
 }
 
@@ -284,42 +403,63 @@ extension ProductDetailViewController : UICollectionViewDelegate, UICollectionVi
 
 extension ProductDetailViewController {
     
-    func webserviceForProductDetails(productId : String = ""){
+    func webserviceForOfferDetails(productId : String = ""){
         
         UtilityClass.showHUD()
         
-        let requestModel = ProductDetailModel()
-        if(productId == "")
-        {
-            requestModel.ProductID = productID ?? ""
-        }
-        else
-        {
-            requestModel.ProductID = productId
-        }
-        ProductWebserviceSubclass.productDetails(productDetailModel: requestModel){ (json, status, res) in
-          
+        let productsURL = NetworkEnvironment.baseURL + ApiKey.offerDetails.rawValue + "/" + productId
+        OffersWebserviceSubclass.getOfferDetails(strURL: productsURL){ (json, status, res) in
             UtilityClass.hideHUD()
             
             if status {
-                let responseModel = ProductDetailResponseModel(fromJson: json)
-                if let data = responseModel.data {
-                    self.product = data
-                    self.setupProductData()
-                    var dictData = [String:Any]()
-                    dictData["catID"] = self.product.catID
-                    dictData["iD"] = self.product.iD
-                    dictData["name"] = self.product.name
-                    dictData["price"] = self.product.price
-                    dictData["sellerID"] = self.product.sellerID
-                    dictData["store"] = self.product.store
-                    dictData["totalPrice"] = self.product.totalPrice
-                    Analytics.logEvent("ProductDetailScreen", parameters: dictData)
-
-                }
+                self.offerDetail = OfferDetailsModel(fromJson: json)
+                self.setupOfferData()
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
+    
+    /*
+     func webserviceForProductDetails(productId : String = ""){
+     
+     UtilityClass.showHUD()
+     
+     let requestModel = ProductDetailModel()
+     if(productId == "")
+     {
+     requestModel.ProductID = productID ?? ""
+     }
+     else
+     {
+     requestModel.ProductID = productId
+     }
+     ProductWebserviceSubclass.productDetails(productDetailModel: requestModel){ (json, status, res) in
+     
+     UtilityClass.hideHUD()
+     
+     if status {
+     let responseModel = ProductDetailResponseModel(fromJson: json)
+     if let data = responseModel.data {
+     self.product = data
+     self.setupProductData()
+     var dictData = [String:Any]()
+     dictData["catID"] = self.product.catID
+     dictData["iD"] = self.product.iD
+     dictData["name"] = self.product.name
+     dictData["price"] = self.product.price
+     dictData["sellerID"] = self.product.sellerID
+     dictData["store"] = self.product.store
+     dictData["totalPrice"] = self.product.totalPrice
+     Analytics.logEvent("ProductDetailScreen", parameters: dictData)
+     
+     }
+     } else {
+     UtilityClass.showAlertOfAPIResponse(param: res)
+     }
+     }
+     }
+    */
 }
+
+

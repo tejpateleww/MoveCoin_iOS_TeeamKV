@@ -44,7 +44,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="NAIF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi7-hz-xVJ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                <rect key="frame" x="60" y="23" width="392.5" height="18"/>
+                                <rect key="frame" x="60" y="23" width="33.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                 <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -68,12 +68,12 @@
                         <constraints>
                             <constraint firstItem="gi7-hz-xVJ" firstAttribute="centerY" secondItem="Kfu-J0-Vai" secondAttribute="centerY" id="10x-JM-Utf"/>
                             <constraint firstItem="yQf-m2-rl0" firstAttribute="centerY" secondItem="5oK-Q0-3D6" secondAttribute="centerY" id="3HV-JZ-73D"/>
-                            <constraint firstItem="5oK-Q0-3D6" firstAttribute="leading" secondItem="gi7-hz-xVJ" secondAttribute="trailing" constant="10" id="Okg-Cd-FXd"/>
                             <constraint firstItem="joG-4q-ndy" firstAttribute="centerY" secondItem="q2g-oK-hSl" secondAttribute="centerY" id="Oom-gt-aoD"/>
                             <constraint firstItem="joG-4q-ndy" firstAttribute="leading" secondItem="q2g-oK-hSl" secondAttribute="leading" constant="10" id="W5M-Qp-qiM"/>
                             <constraint firstItem="5oK-Q0-3D6" firstAttribute="leading" secondItem="yQf-m2-rl0" secondAttribute="trailing" constant="8" id="c16-VK-jK0"/>
                             <constraint firstItem="gi7-hz-xVJ" firstAttribute="leading" secondItem="joG-4q-ndy" secondAttribute="trailing" constant="10" id="i5O-P0-bnV"/>
                             <constraint firstAttribute="trailing" secondItem="5oK-Q0-3D6" secondAttribute="trailing" constant="25" id="olh-If-wvc"/>
+                            <constraint firstItem="yQf-m2-rl0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gi7-hz-xVJ" secondAttribute="trailing" constant="15" id="tNb-uI-6Xr"/>
                             <constraint firstAttribute="height" constant="70" id="uWi-ax-IV3"/>
                             <constraint firstItem="5oK-Q0-3D6" firstAttribute="centerY" secondItem="gi7-hz-xVJ" secondAttribute="centerY" id="vfr-ST-cIB"/>
                         </constraints>

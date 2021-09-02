@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 import CoreMotion
-
+import AVFoundation
 class SplashViewController: UIViewController {
     
     // ----------------------------------------------------
@@ -26,14 +26,15 @@ class SplashViewController: UIViewController {
     var initStatus = false
     var isAvailable = false
     
-    
+    lazy var userPermission = UserPermission()
+
     // ----------------------------------------------------
     //MARK:- --------- Lifecycle Methods ---------
     // ----------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.initialSetup()
         if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
             if loggedIn as! Bool {
                 getUserData()
@@ -113,4 +114,22 @@ class SplashViewController: UIViewController {
             }
         }
     }
+    
+    
+    
+    func initialSetup(){
+//        let imageview = UIImageView(frame: self.view.frame)
+//        imageview.image = UIImage(named: image)
+//        imageview.contentMode = .scaleAspectFill
+//        self.view.addSubview(imageview)
+        
+        // For Request Permission
+//        let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
+//        if image == img {
+            userPermission.permissions = [.camera, .motion, .healthKit]
+            for type in userPermission.permissions {
+                userPermission.requestForPermission(type: type)
+            }
+        }
+//    }
 }

@@ -22,7 +22,7 @@ class IntroPageVC: UIViewController {
     
     var image : String!
     
-    lazy var userPermission = UserPermission()
+//    lazy var userPermission = UserPermission()
     
     // ----------------------------------------------------
     // MARK: - --------- ViewController Lifecycle Methods ---------
@@ -54,10 +54,10 @@ class IntroPageVC: UIViewController {
         // For Request Permission
         let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
         if image == img {
-            userPermission.permissions = [.camera, .motion, .healthKit]
-            for type in userPermission.permissions {
-                userPermission.requestForPermission(type: type)
-            }
+//            userPermission.permissions = [.camera, .motion, .healthKit]
+//            for type in userPermission.permissions {
+//                userPermission.requestForPermission(type: type)
+//            }
         }
     }
 }

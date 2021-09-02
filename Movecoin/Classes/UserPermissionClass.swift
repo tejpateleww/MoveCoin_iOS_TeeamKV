@@ -143,7 +143,9 @@ open class UserPermission : NSObject {
         let healthStore = HKHealthStore()
         if HKHealthStore.isHealthDataAvailable() {
             let steps : HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!
-            healthStore.requestAuthorization(toShare: [], read: [steps]) { (success, error) -> Void in
+            let distanceType : HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!
+            let activeEnergy : HKQuantityType   = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.activeEnergyBurned)!
+            healthStore.requestAuthorization(toShare: [], read: [steps,distanceType,activeEnergy]) { (success, error) -> Void in
                 if success {
                     print("success")
                 } else {

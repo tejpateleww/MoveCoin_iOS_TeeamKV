@@ -40,6 +40,8 @@ class SettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.navigationBarSetUp(title: "Settings")
+        self.statusBarSetUp(backColor: .clear)
+
     }
     
     // ----------------------------------------------------

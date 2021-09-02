@@ -1,7 +1,7 @@
 //
 //  Challenge.swift
 //  Model Generated using http://www.jsoncafe.com/ 
-//  Created on August 12, 2021
+//  Created on September 1, 2021
 
 import Foundation
 import SwiftyJSON
@@ -15,10 +15,12 @@ class Challenge : NSObject, NSCoding{
     var endTime : String!
     var id : String!
     var name : String!
-    var noOfParticipants : String!
+    var noOfParticipants : Int!
     var prize : String!
     var prizeImage : String!
     var remainingTime : String!
+    var remainingTimetamp : Int!
+    var sponserImage : String!
     var sponserName : String!
     var startTime : String!
     var status : String!
@@ -38,10 +40,12 @@ class Challenge : NSObject, NSCoding{
         endTime = json["end_time"].stringValue
         id = json["id"].stringValue
         name = json["name"].stringValue
-        noOfParticipants = json["no_of_participants"].stringValue
+        noOfParticipants = json["no_of_participants"].intValue
         prize = json["prize"].stringValue
         prizeImage = json["prize_image"].stringValue
         remainingTime = json["remaining_time"].stringValue
+        remainingTimetamp = json["remaining_timetamp"].intValue
+        sponserImage = json["sponser_image"].stringValue
         sponserName = json["sponser_name"].stringValue
         startTime = json["start_time"].stringValue
         status = json["status"].stringValue
@@ -85,6 +89,12 @@ class Challenge : NSObject, NSCoding{
         if remainingTime != nil{
         	dictionary["remaining_time"] = remainingTime
         }
+        if remainingTimetamp != nil{
+        	dictionary["remaining_timetamp"] = remainingTimetamp
+        }
+        if sponserImage != nil{
+        	dictionary["sponser_image"] = sponserImage
+        }
         if sponserName != nil{
         	dictionary["sponser_name"] = sponserName
         }
@@ -115,10 +125,12 @@ class Challenge : NSObject, NSCoding{
 		endTime = aDecoder.decodeObject(forKey: "end_time") as? String
 		id = aDecoder.decodeObject(forKey: "id") as? String
 		name = aDecoder.decodeObject(forKey: "name") as? String
-		noOfParticipants = aDecoder.decodeObject(forKey: "no_of_participants") as? String
+		noOfParticipants = aDecoder.decodeObject(forKey: "no_of_participants") as? Int
 		prize = aDecoder.decodeObject(forKey: "prize") as? String
 		prizeImage = aDecoder.decodeObject(forKey: "prize_image") as? String
 		remainingTime = aDecoder.decodeObject(forKey: "remaining_time") as? String
+		remainingTimetamp = aDecoder.decodeObject(forKey: "remaining_timetamp") as? Int
+		sponserImage = aDecoder.decodeObject(forKey: "sponser_image") as? String
 		sponserName = aDecoder.decodeObject(forKey: "sponser_name") as? String
 		startTime = aDecoder.decodeObject(forKey: "start_time") as? String
 		status = aDecoder.decodeObject(forKey: "status") as? String
@@ -161,6 +173,12 @@ class Challenge : NSObject, NSCoding{
 		}
 		if remainingTime != nil{
 			aCoder.encode(remainingTime, forKey: "remaining_time")
+		}
+		if remainingTimetamp != nil{
+			aCoder.encode(remainingTimetamp, forKey: "remaining_timetamp")
+		}
+		if sponserImage != nil{
+			aCoder.encode(sponserImage, forKey: "sponser_image")
 		}
 		if sponserName != nil{
 			aCoder.encode(sponserName, forKey: "sponser_name")

@@ -14,6 +14,7 @@ class Offer : NSObject, NSCoding{
     var couponCode : String!
     var createdAt : String!
     var howToClaim : String!
+    var offerDetails : String!
     var id : String!
     var image : String!
     var link : String!
@@ -21,7 +22,7 @@ class Offer : NSObject, NSCoding{
     var noOfRedeemUser : String!
     var offerType : String!
     var status : String!
-    var termsAndCondition : String!
+    var descriptionField : String!
     var trash : String!
     var updatedAt : String!
 
@@ -37,6 +38,7 @@ class Offer : NSObject, NSCoding{
         couponCode = json["coupon_code"].stringValue
         createdAt = json["created_at"].stringValue
         howToClaim = json["how_to_claim"].stringValue
+        offerDetails = json["offer_details"].stringValue
         id = json["id"].stringValue
         image = json["image"].stringValue
         link = json["link"].stringValue
@@ -44,7 +46,7 @@ class Offer : NSObject, NSCoding{
         noOfRedeemUser = json["no_of_redeem_user"].stringValue
         offerType = json["offer_type"].stringValue
         status = json["status"].stringValue
-        termsAndCondition = json["terms_and_condition"].stringValue
+        descriptionField = json["description"].stringValue
         trash = json["trash"].stringValue
         updatedAt = json["updated_at"].stringValue
 	}
@@ -91,8 +93,8 @@ class Offer : NSObject, NSCoding{
         if status != nil{
         	dictionary["status"] = status
         }
-        if termsAndCondition != nil{
-        	dictionary["terms_and_condition"] = termsAndCondition
+        if descriptionField != nil{
+        	dictionary["description"] = descriptionField
         }
         if trash != nil{
         	dictionary["trash"] = trash
@@ -121,7 +123,7 @@ class Offer : NSObject, NSCoding{
 		noOfRedeemUser = aDecoder.decodeObject(forKey: "no_of_redeem_user") as? String
 		offerType = aDecoder.decodeObject(forKey: "offer_type") as? String
 		status = aDecoder.decodeObject(forKey: "status") as? String
-		termsAndCondition = aDecoder.decodeObject(forKey: "terms_and_condition") as? String
+        descriptionField = aDecoder.decodeObject(forKey: "description") as? String
 		trash = aDecoder.decodeObject(forKey: "trash") as? String
 		updatedAt = aDecoder.decodeObject(forKey: "updated_at") as? String
 	}
@@ -168,8 +170,8 @@ class Offer : NSObject, NSCoding{
 		if status != nil{
 			aCoder.encode(status, forKey: "status")
 		}
-		if termsAndCondition != nil{
-			aCoder.encode(termsAndCondition, forKey: "terms_and_condition")
+		if descriptionField != nil{
+			aCoder.encode(descriptionField, forKey: "description")
 		}
 		if trash != nil{
 			aCoder.encode(trash, forKey: "trash")

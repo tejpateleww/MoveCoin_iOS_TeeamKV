@@ -144,7 +144,7 @@ enum ApiKey: String{
     case getChallenge = "Challenge/get_challenge"
     case joinChallenge = "Challenge/join_participant"
     case challengeDetails = "Challenge/challenge_details"
-    
+    case updateStepsForChallenge = "Challenge/update_steps/"
     case OfferList = "Offers/get_all_offers"
-
+    case offerDetails = "Offers/offer_details"
 }
