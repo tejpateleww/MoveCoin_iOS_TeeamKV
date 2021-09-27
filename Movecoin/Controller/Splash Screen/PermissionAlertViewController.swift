@@ -43,7 +43,7 @@ class PermissionAlertViewController: UIViewController {
     // ----------------------------------------------------
     
     func initialSetup() {
-        lblTitle.font = UIFont.bold(ofSize: 22)
+        lblTitle.font = UIFont.regular(ofSize: 22)
         lblDescription.font = UIFont.regular(ofSize: 18)
         
         switch stepsPermissionType {

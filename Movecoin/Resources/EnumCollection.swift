@@ -23,6 +23,7 @@ enum PaymentStatus : String {
 
 enum TabBarOptions : Int {
     case Store = 0
+    case Challenge
     case Wallet
     case Home
     case Statistics
@@ -85,6 +86,7 @@ enum CoinsTransferType : String {
     case Send 
     case Receive
     case Redeem
+    case RedeemOffer
 }
 
 enum PurchaseDetailViewType  {
@@ -148,7 +150,8 @@ enum DateFomateKeys : CaseIterable {
     static let displayFullDate = "dd-MMM-yyyy HH:mm"
     static let apiDOB = "yyyy-MM-dd"
     static let api = "yyyy-MM-dd HH:mm:ss"
-    
+    static let challengDateFormat = "MMMM dd,yyyy"
+    static let offerPurchased = "MMMM dd,yyyy hh:mm a"
     
 //    let dateFormateToDisplay = "dd-MM-yyyy"
 //    let dateFormateOfApi = "yyyy-MM-dd"

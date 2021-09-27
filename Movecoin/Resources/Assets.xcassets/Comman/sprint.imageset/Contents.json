@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "sprint.png",
+      "filename" : "Layer 4.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "sprint@2x.png",
+      "filename" : "Layer 4@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "sprint@3x.png",
+      "filename" : "Layer 4@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -157,31 +157,31 @@ class ConfirmPurchaseViewController: UIViewController {
     
     func setupFont(){
         for lbl in lblPrice {
-            lbl.font = UIFont.semiBold(ofSize: 19)
+            lbl.font = UIFont.regular(ofSize: 19)
         }
         switch UIDevice.current.screenType {
         case .iPhones_5_5s_5c_SE:
-            lblProductName.font = UIFont.semiBold(ofSize: 20)
+            lblProductName.font = UIFont.regular(ofSize: 20)
         default:
-            lblProductName.font = UIFont.semiBold(ofSize: 24)
+            lblProductName.font = UIFont.regular(ofSize: 24)
         }
         
-        //        lblTotal.font = UIFont.semiBold(ofSize: 19)
-        lblAddress.font = UIFont.semiBold(ofSize: 23)
-        lblPurchase.font = UIFont.semiBold(ofSize: 23)
-        lblAvailableBalance.font = UIFont.bold(ofSize: 18)
-        lblTitleAvailableBalance.font = UIFont.semiBold(ofSize: 17)
-        lblTitleProductPrice.font = UIFont.semiBold(ofSize: 17)
-        lblProductPrice.font = UIFont.semiBold(ofSize: 17)
-        lblTitleDiscount.font = UIFont.semiBold(ofSize: 17)
-        lblDiscount.font = UIFont.semiBold(ofSize: 17)
-        lblTitleDelivery.font = UIFont.semiBold(ofSize: 17)
-        lblDelivery.font = UIFont.semiBold(ofSize: 17)
-        lblTitleTotal.font = UIFont.semiBold(ofSize: 17)
-        lblTotal.font = UIFont.semiBold(ofSize: 17)
-        lblTax.font = UIFont.semiBold(ofSize: 17)
-        lblTaxTitle.font = UIFont.semiBold(ofSize: 17)
-        lblVATIncludedTitle.font = UIFont.semiBold(ofSize: 13)
+        //        lblTotal.font = UIFont.regular(ofSize: 19)
+        lblAddress.font = UIFont.regular(ofSize: 23)
+        lblPurchase.font = UIFont.regular(ofSize: 23)
+        lblAvailableBalance.font = UIFont.regular(ofSize: 18)
+        lblTitleAvailableBalance.font = UIFont.regular(ofSize: 17)
+        lblTitleProductPrice.font = UIFont.regular(ofSize: 17)
+        lblProductPrice.font = UIFont.regular(ofSize: 17)
+        lblTitleDiscount.font = UIFont.regular(ofSize: 17)
+        lblDiscount.font = UIFont.regular(ofSize: 17)
+        lblTitleDelivery.font = UIFont.regular(ofSize: 17)
+        lblDelivery.font = UIFont.regular(ofSize: 17)
+        lblTitleTotal.font = UIFont.regular(ofSize: 17)
+        lblTotal.font = UIFont.regular(ofSize: 17)
+        lblTax.font = UIFont.regular(ofSize: 17)
+        lblTaxTitle.font = UIFont.regular(ofSize: 17)
+        lblVATIncludedTitle.font = UIFont.regular(ofSize: 13)
 
     }
     

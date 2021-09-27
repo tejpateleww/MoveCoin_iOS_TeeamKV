@@ -16,6 +16,7 @@ class TransferMoveCoinsViewController: UIViewController {
     
     @IBOutlet var viewParent: UIView!
     @IBOutlet weak var txtAmount: UITextField!
+    @IBOutlet weak var btnTransferMoney: ThemeButton!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var lbl1: UILabel!
     @IBOutlet weak var lblName: UILabel!
@@ -57,10 +58,11 @@ class TransferMoveCoinsViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-        lbl1.font = UIFont.semiBold(ofSize: 24)
-        lblName.font = UIFont.semiBold(ofSize: 24)
-        txtAmount.font = UIFont.bold(ofSize: 40)
+        lbl1.font = UIFont.regular(ofSize: 24)
+        lblName.font = UIFont.regular(ofSize: 24)
+        txtAmount.font = UIFont.regular(ofSize: 40)
         txtMessage.font = UIFont.regular(ofSize: 19)
+        btnTransferMoney.titleLabel?.font = UIFont.regular(ofSize: 24)
         
         // For Localization
         txtAmount.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left

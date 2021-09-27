@@ -94,7 +94,7 @@ class StoreViewController: UIViewController {
     }
     
     func setupFont(){
-        lblSeller.font = UIFont.bold(ofSize: 26)
+        lblSeller.font = UIFont.regular(ofSize: 26)
         lblDescription.font = UIFont.regular(ofSize: 17)
     }
     
@@ -143,7 +143,7 @@ extension StoreViewController : UITableViewDelegate, UITableViewDataSource{
 //        controller.productID = product.iD
 //        self.parent?.navigationController?.pushViewController(controller, animated: true)
         
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: NewStoreViewController.className) as! NewStoreViewController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: OfferListViewController.className) as! OfferListViewController
         self.parent?.navigationController?.pushViewController(controller, animated: true)
     }
 }

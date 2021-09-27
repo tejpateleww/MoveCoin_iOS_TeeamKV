@@ -17,7 +17,7 @@ class WalletData : Codable {
     var type : String!
     var userID : String!
     var message : String!
-    
+    var offerID : String!
     init(){
         
     }
@@ -38,6 +38,7 @@ class WalletData : Codable {
         userID = json["UserID"].stringValue
 //        let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
         message = json["message"].stringValue
+        offerID = json["Offer_id"].stringValue
 	}
 
 	/**

@@ -221,7 +221,7 @@ class FindFriendTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        lblName.font = UIFont.semiBold(ofSize: 18)
+        lblName.font = UIFont.regular(ofSize: 18)
         lblNickName.font = UIFont.regular(ofSize: 12)
         lblNumber.font = UIFont.regular(ofSize: 13)
         lblFirstCharacter.font = UIFont.light(ofSize: 24)
@@ -231,7 +231,7 @@ class FindFriendTableViewCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-//        lblName.font = UIFont.semiBold(ofSize: 18)
+//        lblName.font = UIFont.regular(ofSize: 18)
 //        lblNickName.font = UIFont.regular(ofSize: 12)
 //        lblNumber.font = UIFont.regular(ofSize: 13)
 //        lblFirstCharacter.font = UIFont.light(ofSize: 24)

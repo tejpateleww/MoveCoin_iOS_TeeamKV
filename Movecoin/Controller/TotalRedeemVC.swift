@@ -90,7 +90,7 @@ extension TotalRedeemVC : UITableViewDelegate , UITableViewDataSource{
             cell.backgroundColor = .clear
             cell.textLabel?.text = "No data found".localized
             cell.textLabel?.textColor = .white
-            cell.textLabel?.font = UIFont.bold(ofSize: 30)
+            cell.textLabel?.font = UIFont.regular(ofSize: 30)
             cell.textLabel?.lineBreakMode = .byWordWrapping
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center

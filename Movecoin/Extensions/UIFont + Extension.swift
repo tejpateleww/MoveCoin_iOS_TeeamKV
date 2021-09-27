@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 //struct AppFontName {
@@ -20,14 +21,16 @@ extension UIFont {
         return UIFont(name:  FontBook.Regular.rawValue, size: size)!
     }
     class func bold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: FontBook.Regular.rawValue, size: size)!
+        return UIFont(name: FontBook.SemiBold.rawValue, size: size)!
     }
     class func light(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: FontBook.Light.rawValue , size: size)!
     }
-    class func semiBold(ofSize size: CGFloat) -> UIFont {
-        return UIFont(name: FontBook.Regular.rawValue , size: size)!
-    }
+//    class func semiBold(ofSize size: CGFloat) -> UIFont {
+//        return UIFont(name: FontBook.Regular.rawValue , size: size)!
+//    }
+    
+    
     
     /*
      private class func manageFont(font : CGFloat) -> CGFloat {

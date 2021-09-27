@@ -20,7 +20,14 @@ class StatusCollectionViewCell: UICollectionViewCell {
         self.vWcell.layer.masksToBounds = true
         self.vWcell.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
         self.vWcell.layer.cornerRadius = 10.0
-        
     }
-
+    
+    func toggleSelected ()
+      {
+          if (isSelected){
+            self.vWcell.backgroundColor = UIColor.red
+          }else {
+            self.vWcell.backgroundColor = ThemeBlueColor
+          }
+      }
 }

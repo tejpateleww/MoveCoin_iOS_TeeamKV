@@ -69,8 +69,8 @@ enum NetworkEnvironment: String {
 
 struct SocketApiKeys {
     
-    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
-    //    static let kSocketBaseURL = "http://15.207.107.71:8080/"
+    static let kSocketBaseURL = "https://www.movecoins.net:8080/"
+    //    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
     static let kConnectUser = "connect_user"
     static let kUpdateUserLocation = "update_user_location" 
     
@@ -145,6 +145,16 @@ enum ApiKey: String{
     case joinChallenge = "Challenge/join_participant"
     case challengeDetails = "Challenge/challenge_details"
     case updateStepsForChallenge = "Challenge/update_steps/"
+    case getAllCompletedChallenges = "Challenge/get_all_completed_challenges"
+    case getAllCategories = "Challenge/get_all_categories"
+    
+
+
+
+    
     case OfferList = "Offers/get_all_offers"
     case offerDetails = "Offers/offer_details"
+    case redeemOffers = "Offers/join_user_redeem_offers"
+    case getOfferHistory = "Offers/get_user_offer_history/"
+
 }

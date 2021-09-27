@@ -240,8 +240,6 @@ class OrderWebserviceSubclass
          WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
      }
     
- 
-    
     class func placeOrder( orderModel : PlaceOrder  ,completion: @escaping CompletionResponse ) {
         let  params : [String:String] = orderModel.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .placeOrder, httpMethod: .post, parameters: params, completion: completion)
@@ -276,6 +274,15 @@ class ChallengWebserviceSubclass
         WebService.shared.getMethod(url: URL.init(string: strURLFinal)!, httpMethod: .get, completion: completion)
     }
     
+    class func getCompleteChallengeList( strURL : String  ,completion: @escaping CompletionResponse ){
+        let strURLFinal = NetworkEnvironment.baseURL + ApiKey.getAllCompletedChallenges.rawValue + strURL
+        WebService.shared.getMethod(url: URL.init(string: strURLFinal)!, httpMethod: .get, completion: completion)
+    }
+    
+    class func getCategoryList(completion: @escaping CompletionResponse ){
+           let strURLFinal = NetworkEnvironment.baseURL + ApiKey.getAllCategories.rawValue
+           WebService.shared.getMethod(url: URL.init(string: strURLFinal)!, httpMethod: .get, completion: completion)
+       }
 }
     
 
@@ -288,8 +295,17 @@ class OffersWebserviceSubclass
 
     class func getOfferDetails( strURL : String  ,completion: @escaping CompletionResponse ) {
         WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
-
-        
+    }
+    
+    class func redeemOffer( dictRedeemOffer : RedeemOffers  ,completion: @escaping CompletionResponse )
+    {
+        let  params = dictRedeemOffer.generatPostParams() as! [String : String]
+        WebService.shared.requestMethod(api: .redeemOffers, httpMethod: .post, parameters: params, completion: completion)
+    }
+    
+    class func getOfferPurchasedHistoryList( strURL : String  ,completion: @escaping CompletionResponse ){
+        let strURLFinal = NetworkEnvironment.baseURL + ApiKey.getOfferHistory.rawValue + strURL
+        WebService.shared.getMethod(url: URL.init(string: strURLFinal)!, httpMethod: .get, completion: completion)
     }
 }
     

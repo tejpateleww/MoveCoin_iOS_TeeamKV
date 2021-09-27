@@ -25,14 +25,14 @@ extension UIViewController : CLLocationManagerDelegate {
     // -------------------------------------------------------------
     
     
-    func navigationBarSetUp(title: String = "", backroundColor: UIColor = .clear, hidesBackButton: Bool = false) {
+    func navigationBarSetUp(title: String = "", backroundColor: UIColor = .clear, foregroundColor : UIColor = .white, hidesBackButton: Bool = false) {
 
         // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
         
         // Title
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
-                                                 NSAttributedString.Key.font: UIFont.bold(ofSize: 25)]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: foregroundColor,
+                                                 NSAttributedString.Key.font: UIFont.regular(ofSize: 25)]
                            self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.topItem?.title = title.localized
         

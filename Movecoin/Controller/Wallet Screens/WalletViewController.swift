@@ -48,7 +48,7 @@ class WalletViewController: UIViewController {
         super.viewWillAppear(true)
         navigationBarSetUp(hidesBackButton: true)
         webserviceforWalletHistory(refresh: true)
-        self.navigationController?.navigationBar.isHidden = false
+//        self.navigationController?.navigationBar.isHidden = false
 
         switch walletType {
         case .Coins:
@@ -75,7 +75,7 @@ class WalletViewController: UIViewController {
            
             self.btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
             self.btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-            self.btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+            self.btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 25)
                 
             self.btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
             self.btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -83,12 +83,13 @@ class WalletViewController: UIViewController {
         else {
             btnSpendCoins.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
             btnTransfer.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -6)
+            btnAmount.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: -6)
             
             btnSpendCoins.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
             btnTransfer.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
         }
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -114,10 +115,10 @@ class WalletViewController: UIViewController {
     }
    
     func setupFont(){
-        lblTitle.font = UIFont.semiBold(ofSize: 28)
-        btnAmount.titleLabel?.font = UIFont.semiBold(ofSize: 33)
-        btnTransfer.titleLabel?.font = UIFont.bold(ofSize: 17)
-        btnSpendCoins.titleLabel?.font = UIFont.bold(ofSize: 17)
+        lblTitle.font = UIFont.regular(ofSize: 28)
+        btnAmount.titleLabel?.font = UIFont.regular(ofSize: 33)
+        btnTransfer.titleLabel?.font = UIFont.regular(ofSize: 17)
+        btnSpendCoins.titleLabel?.font = UIFont.regular(ofSize: 17)
     }
     
     func fetchNextPage() {
@@ -153,6 +154,15 @@ class WalletViewController: UIViewController {
         destination.isFromTransferCoins = true
         self.parent?.navigationController?.pushViewController(destination, animated: true)
     }
+    
+    func navigateOfferDetails(indexPath : IndexPath)
+    {
+        let loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let offerDetailsController = loginStoryboard.instantiateViewController(withIdentifier: OfferDetailsViewController.className) as? OfferDetailsViewController ?? OfferDetailsViewController()
+        let walletDetail = walletHistory[indexPath.row]
+        offerDetailsController.productID = walletDetail.offerID
+        self.navigationController?.pushViewController(offerDetailsController, animated: true)
+    }
 }
 
 // ----------------------------------------------------
@@ -176,6 +186,17 @@ extension WalletViewController : UITableViewDelegate, UITableViewDataSource {
         reloadLocalizationEffect(cell: cell)
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let walletDetail = walletHistory[indexPath.row]
+        let type = CoinsTransferType.init(rawValue: walletDetail.type)
+        switch type {
+        case .RedeemOffer:
+            self.navigateOfferDetails(indexPath : indexPath)
+        default:
+            return
+        }
     }
 }
 

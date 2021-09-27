@@ -331,7 +331,7 @@
 "Please enter card details" = "Please enter card details";
 "Your current balance is too low to purchase " = "Your current balance is too low to purchase ";
 "% off " = "% off ";
-". Don't want to wait? invite Friends and Family to earn faster!" = ". Don't want to wait? invite Friends and Family to earn faster!";
+". Don't want to wait? Invite Friends and Family to earn faster!" = ". Don't want to wait? Invite Friends and Family to earn faster!";
 "Insufficient Balance" = "Insufficient Balance";
 "You need to spend atleast " = "You need to spend atleast ";
 "You can not spend more than " = "You can not spend more than ";
@@ -358,9 +358,31 @@
 
 
 // Challenge
+"Leaderboard" = "Leaderboard";
 "message_no_challenge_Active" = "No challenge is active";
-"message_joinChallenge" = "Join to the challenge";
-"title_how_to_claim" = "HOW TO CLAIM:";
-"title_offer_details" = "OFFER DETAILS:";
-"title_more_details" = "For more details:";
+"title_how_to_claim" = "HOW TO CLAIM :";
 "Offers" = "Offers";
+"Title_offer_details" = "Offer Details";
+"Title_redeemed_on" = "Redeem on";
+"message_confirmation_buy_offer" = "Are you sure to buy the offer?";
+"message_Share_The_Challenge" = "Share the challenge!";
+"message_Go_Ahead" = "Go Ahead";
+"message_claim_it_now" = "CLAIM IT NOW";
+"message_offer_details" = "OFFER DETAILS";
+"title_copy_code"= "Copy Coupon";
+"message_go_to_store" = "Go to the store and Use the Coupon";
+"title_go_to_store" = "Go To The Store";
+"title_Continue" = "Continue";
+"title_bought_product" = "Bought Product";
+"title_copied" = "Copied";
+"message_joinChallenge" = "Join the challenge";
+"title_your_rank" = "Your Rank";
+"title_participants" = "Participants";
+"title_Your_Steps" = "Your Steps";
+"title_ended_on" = "Ended on ";
+"title_finished_Challenges" = "Finished Challenges";
+"title_new_challenge" = "New Challenge";
+"title_agree_1" = "I agree to the";
+"All" = "All";
+"title_stay_tuned" = "Stay tuned for new challenge..!";
+"title_be_ready" = "Be ready";

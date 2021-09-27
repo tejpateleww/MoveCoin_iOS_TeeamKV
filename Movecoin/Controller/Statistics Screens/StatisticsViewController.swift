@@ -71,7 +71,7 @@ class StatisticsViewController: UIViewController {
         tblStatistics.rowHeight = UITableView.automaticDimension
         tblStatistics.tableFooterView = UIView.init(frame: CGRect.zero)
         lblNoDataFound.isHidden = true
-        lblTitle.font = UIFont.semiBold(ofSize: 21)
+        lblTitle.font = UIFont.regular(ofSize: 21)
         
     }
     

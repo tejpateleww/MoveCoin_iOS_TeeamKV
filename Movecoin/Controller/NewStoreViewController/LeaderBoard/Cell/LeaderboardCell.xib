@@ -97,12 +97,13 @@
                 <outlet property="lblName" destination="gi7-hz-xVJ" id="omU-aI-4eI"/>
                 <outlet property="lblRank" destination="Kfu-J0-Vai" id="I2t-4F-Lfn"/>
                 <outlet property="lblStep" destination="5oK-Q0-3D6" id="EYt-NZ-2KT"/>
+                <outlet property="viewContainer" destination="q2g-oK-hSl" id="y6E-Cw-c7N"/>
                 <outlet property="viewRank" destination="joG-4q-ndy" id="bKj-Sh-GAu"/>
             </connections>
             <point key="canvasLocation" x="284.78260869565219" y="141.96428571428569"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="footstepsBlack" width="170" height="170"/>
+        <image name="footstepsBlack" width="370" height="512"/>
     </resources>
 </document>

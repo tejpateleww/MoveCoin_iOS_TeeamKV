@@ -25,7 +25,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp()
-        lblTitle.font = UIFont.bold(ofSize: 21)
+        lblTitle.font = UIFont.regular(ofSize: 21)
     }
     
     override func viewDidAppear(_ animated: Bool) {

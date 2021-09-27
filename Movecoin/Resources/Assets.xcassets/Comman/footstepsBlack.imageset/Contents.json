@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "footsteps-silhouette-variant.png",
+      "filename" : "Layer 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "footsteps-silhouette-variant@2x.png",
+      "filename" : "Layer 3@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "footsteps-silhouette-variant@3x.png",
+      "filename" : "Layer 3@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -12,8 +12,9 @@ class LeaderboardViewController: UIViewController {
     
     @IBOutlet weak var VwTopMain: UIView!
     @IBOutlet weak var VwTopTimer: UIStackView!
+    @IBOutlet weak var stackViewConatiner: UIStackView?
     @IBOutlet weak var topViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView?
     
     @IBOutlet weak var viewRank: UIView!
     @IBOutlet weak var lblRank: UILabel!
@@ -26,7 +27,7 @@ class LeaderboardViewController: UIViewController {
     @IBOutlet weak var lblSteps: UILabel!
     
     @IBOutlet weak var tblLeaderboard: UITableView!
-    @IBOutlet weak var tblLeaderboardHeight: NSLayoutConstraint!
+    @IBOutlet weak var tblLeaderboardHeight: NSLayoutConstraint?
     
     @IBOutlet weak var viewtableview: UIView!
     @IBOutlet weak var lblTime: UILabel!
@@ -51,24 +52,31 @@ class LeaderboardViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        DispatchQueue.main.async {
+            self.stackViewConatiner?.semanticContentAttribute = .forceLeftToRight
+            self.VwTopMain.semanticContentAttribute = .forceLeftToRight
+            self.navigationController?.navigationBar.isHidden = false
+            self.navigationController?.navigationBar.tintColor = .white
+                self.navigationBarSetUp(title: "Leaderboard".localized, backroundColor: .clear,foregroundColor: .white, hidesBackButton: false)
+            self.statusBarSetUp(backColor: .clear)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
         // Navigation & Status bar setup
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationBarSetUp(title: "Leaderboard".localized, backroundColor: ThemeBlueColor, hidesBackButton: false)
-        self.statusBarSetUp(backColor: ThemeBlueColor)
-
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        navigationBarSetUp()
-//        self.statusBarSetUp(backColor: .clear)
-//        self.title = ""
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.tintColor = .white
+
     }
     
     func PrepareView(){
@@ -103,8 +111,8 @@ class LeaderboardViewController: UIViewController {
         self.tblLeaderboard.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
         self.tblLeaderboard.reloadData()
         
-        self.scrollView.showsVerticalScrollIndicator = false
-        self.scrollView.showsHorizontalScrollIndicator = false
+        self.scrollView?.showsVerticalScrollIndicator = false
+        self.scrollView?.showsHorizontalScrollIndicator = false
         
         //self.imgRank.image = self.imgRank.image?.withRenderingMode(.alwaysTemplate)
         //self.imgRank.tintColor = UIColor.white
@@ -116,10 +124,10 @@ class LeaderboardViewController: UIViewController {
     }
     
     func setupFont (){
-        self.lblTime.font = UIFont.bold(ofSize: 15)
-        self.lblRank.font = UIFont.bold(ofSize: 18)
-        self.lblNumberOfParticipants.font = UIFont.bold(ofSize: 18)
-        self.lblSteps.font = UIFont.bold(ofSize: 18)
+        self.lblTime.font = UIFont.regular(ofSize: 15)
+        self.lblRank.font = UIFont.regular(ofSize: 25)
+        self.lblNumberOfParticipants.font = UIFont.regular(ofSize: 25)
+        self.lblSteps.font = UIFont.regular(ofSize: 25)
     }
     
     fileprivate func setData()
@@ -168,12 +176,12 @@ class LeaderboardViewController: UIViewController {
         if(keyPath == "contentSize"){
             if let info = object, let tblObj = info as? UITableView{
                 if tblObj == self.tblLeaderboard{
-                    self.tblLeaderboardHeight.constant = self.tblLeaderboard.contentSize.height
-                    print(self.tblLeaderboardHeight.constant)
+                    self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
+//                    print(self.tblLeaderboardHeight?.constant)
                     if self.tblLeaderboard.contentSize.height >= 100 {
-                        self.tblLeaderboardHeight.constant = self.tblLeaderboard.contentSize.height
+                        self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
                     } else {
-                        self.tblLeaderboardHeight.constant = 100
+                        self.tblLeaderboardHeight?.constant = 100
                     }
                 }
             }
@@ -195,11 +203,11 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
         cell.lblRank.text = "\(indexPath.row + 1)"
-        
+        cell.viewContainer.semanticContentAttribute = .forceLeftToRight
         let obj = dictChallengeDetails?.topFiveParticipant[indexPath.row]
         cell.lblName.text = obj?.nickName
         cell.lblStep.text = obj?.steps
-    
+
         return cell
     }
     

@@ -51,7 +51,7 @@ class SplashViewController: UIViewController {
     
     
     func playLogoAnimation() {
-        guard let path = Bundle.main.path(forResource: "MoveCoin Logo Animation", ofType:"mp4") else {
+        guard let path = Bundle.main.path(forResource: "INTRO", ofType:"mp4") else {
             //        guard let path = Bundle.main.path(forResource: "White Conv", ofType:"mp4") else {
             debugPrint("video.m4v not found")
             return
@@ -60,21 +60,23 @@ class SplashViewController: UIViewController {
         let player = AVPlayer(playerItem: playerItem)
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.view.bounds
-        
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         playerLayer.backgroundColor = UIColor.clear.cgColor
         viewContainer.backgroundColor = UIColor.clear
         
         viewContainer.layer.addSublayer(playerLayer)
         player.play()
         player.rate = 1.5
-        Timer.scheduledTimer(withTimeInterval: 4.5, repeats: false) { (timer) in
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToViewController), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+
+//        Timer.scheduledTimer(withTimeInterval: 4.5, repeats: false) { (timer) in
             //            if self.initStatus {
-            self.moveToViewController()
+//            self.moveToViewController()
             //            }
-        }
+//        }
     }
     
-    func moveToViewController() {
+    @objc func moveToViewController() {
         
         if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
             

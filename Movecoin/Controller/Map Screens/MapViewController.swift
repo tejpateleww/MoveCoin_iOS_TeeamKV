@@ -114,8 +114,8 @@ class MapViewController: UIViewController {
     
     
     func setupFont(){
-        lblSteps.font = UIFont.semiBold(ofSize: 18)
-        lblTitle.font = UIFont.semiBold(ofSize: 17)
+        lblSteps.font = UIFont.regular(ofSize: 18)
+        lblTitle.font = UIFont.regular(ofSize: 17)
     }
     
     func setupView(){
@@ -270,8 +270,8 @@ extension MapViewController {
         requestModel.longitude = "\(String(describing: myLocation.coordinate.longitude))"
         #if targetEnvironment(simulator)
         // 23.0732727,72.5181843
-        requestModel.latitude = "21.4296875"
-        requestModel.longitude = "40.4801856"
+//        requestModel.latitude = "21.4296875"
+//        requestModel.longitude = "40.4801856"
         #endif
         
         FriendsWebserviceSubclass.nearByUsers(nearByUsersModel: requestModel){ (json, status, res) in

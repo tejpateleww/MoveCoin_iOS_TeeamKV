@@ -100,14 +100,14 @@ class ProfileViewController: UIViewController {
     
     func setupFont(){
         
-        lblTitleTotalSteps.font = UIFont.bold(ofSize: 13)
-        lblTitleTotalMoveCoins.font = UIFont.bold(ofSize: 13)
+        lblTitleTotalSteps.font = UIFont.regular(ofSize: 13)
+        lblTitleTotalMoveCoins.font = UIFont.regular(ofSize: 13)
         
-        btnMyFriends.titleLabel?.font = UIFont.bold(ofSize: 18)
-        lblTotalSteps.font = UIFont.bold(ofSize: 13)
-        lblAverageSteps.font = UIFont.bold(ofSize: 13)
-        lblTotalMoveCoins.font = UIFont.bold(ofSize: 13)
-        lblAverage.font = UIFont.semiBold(ofSize: 13)
+        btnMyFriends.titleLabel?.font = UIFont.regular(ofSize: 18)
+        lblTotalSteps.font = UIFont.regular(ofSize: 13)
+        lblAverageSteps.font = UIFont.regular(ofSize: 13)
+        lblTotalMoveCoins.font = UIFont.regular(ofSize: 13)
+        lblAverage.font = UIFont.regular(ofSize: 13)
         lblMemberSince.font = UIFont.regular(ofSize: 12)
         lblUpperTitle.sizeToFit()
     }
@@ -212,8 +212,8 @@ class ProfileViewController: UIViewController {
         
         segmentCntrl.allowChangeThumbWidth = false
         segmentCntrl.itemTitles = ["Weekly".localized, "Monthly".localized ,"Yearly".localized]
-        segmentCntrl.selectedTextFont = FontBook.Bold.of(size: 16)
-        segmentCntrl.defaultTextFont =  FontBook.Bold.of(size: 16)
+        segmentCntrl.selectedTextFont = FontBook.Regular.of(size: 16)
+        segmentCntrl.defaultTextFont =  FontBook.Regular.of(size: 16)
         
         segmentCntrl.didSelectItemWith = { (index, title) -> () in
             self.setUpBarChat(index: index)

@@ -121,6 +121,8 @@ class HomeViewController: UIViewController {
         Analytics.logEvent("HomeScreen", parameters: nil)
         
         webserviceForUserDetails()
+        navigationController?.navigationBar.barStyle = .default
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -179,9 +181,9 @@ class HomeViewController: UIViewController {
     func animateCircle(){
         circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 5) { completed in
             if completed {
-                print("Completed")
+//                print("Completed")
             } else {
-                print("Interrupted")
+//                print("Interrupted")
             }
         }
     }
@@ -247,36 +249,36 @@ class HomeViewController: UIViewController {
             //            dateFormatter.locale = .current
             
             let statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)// as? Date else {return}//dateFormatter.date(from: lastUpdatedStepsAt) else { return  }
-            print("Start Date : \(statDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//            print("Start Date : \(statDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
             
             let now = UtilityClass.getTodayFromServer()
             
-            print("Now Date : \(now.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//            print("Now Date : \(now.getFormattedDate(dateFormate: DateFomateKeys.api))")
             
             let days = now.days(from: statDate)//interval(ofComponent: .day, fromDate: statDate)//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate )
             if days >= 1 {
                 getRemainingStepsFromHealthKit { (steps) in
-                    print("Previous Steps : ",steps)
+//                    print("Previous Steps : ",steps)
                     
                     if Int(steps) > 0 {
                         self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
-                        print("IF")
+//                        print("IF")
                         
                     }
                 }
             }
             else{
                 self.getTodaysSteps()
-                print("ELSE")
+//                print("ELSE")
             }
         } else {
-            print("Health Kit Data is Not Available")
+//            print("Health Kit Data is Not Available")
         }
     }
     
     fileprivate func getDistanceAndCalories() {
         self.getTodaysWalkedRunningFromHealthKit { distance in
-            print("The distance run is \(distance)")
+//            print("The distance run is \(distance)")
             
             //            let distanceMeters = Measurement(value: distance, unit: UnitLength.meters)
             let km = distance/1000.0
@@ -289,7 +291,7 @@ class HomeViewController: UIViewController {
         self.loadCalory { calories, error in
             if (error == nil)
             {
-                print("The calories are \(calories ?? 0.00)")
+//                print("The calories are \(calories ?? 0.00)")
                 self.lblCal.text = String(format: "%.2f", calories ?? 0.00)
             }
             else
@@ -305,7 +307,7 @@ class HomeViewController: UIViewController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 var tempSteps = steps
-                print("Today's Steps : ",steps)
+//                print("Today's Steps : ",steps)
                 if((SingletonClass.SharedInstance.todaysStepCount ?? "0.00") < String(Int(steps)))
                 {
                     self.lblTodaysStepCount.text = String(Int(steps))
@@ -345,7 +347,7 @@ class HomeViewController: UIViewController {
         {
             isEnabled = false
         }
-        print("Health Kit Data is Available : \(isEnabled)")
+//        print("Health Kit Data is Available : \(isEnabled)")
         return isEnabled
     }
     
@@ -354,7 +356,7 @@ class HomeViewController: UIViewController {
             
             //            pedoMeter.startUpdates(from: Date()) { (data, error) in
             pedoMeter.startUpdates(from: UtilityClass.getTodayFromServer()) { (data, error) in
-                print(data ?? 0)
+//                print(data ?? 0)
                 guard let activityData = data else {
                     return
                 }
@@ -370,14 +372,14 @@ class HomeViewController: UIViewController {
                             let total = counts + activityData.numberOfSteps.intValue
                             self.lblTodaysStepCount.text = "\(total)"
                             SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
-                            print("Today's total steps :\(total)")
+//                            print("Today's total steps :\(total)")
                         }else {
-                            print("Today's previous steps are not there  : \(activityData.numberOfSteps.stringValue)")
+//                            print("Today's previous steps are not there  : \(activityData.numberOfSteps.stringValue)")
                             self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                             SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                         }
                     } else {
-                        print("date is different : \(activityData.numberOfSteps.stringValue)")
+//                        print("date is different : \(activityData.numberOfSteps.stringValue)")
                         self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
                         SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
                     }
@@ -405,7 +407,7 @@ class HomeViewController: UIViewController {
         strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
         
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
-            print(status)
+//            print(status)
             if status{
                 let initResponseModel = InitResponse(fromJson: json)
                 SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
@@ -424,20 +426,20 @@ class HomeViewController: UIViewController {
     func getTodaysStepsFromHealthKit(completion: @escaping (Double) -> Void) {
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         
-        let now = Date()//UtilityClass.getTodayFromServer()
+        let now = UtilityClass.getTodayFromServer()
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
-        print("-------------------------------------")
-        print("-- EndDate in Local : \(now.getFormattedDate(dateFormate: DateFomateKeys.api) )")
-        print("-- StartDate in LocalToUTC : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("-------------------------------------")
+//        print("-------------------------------------")
+//        print("-- EndDate in Local : \(now.getFormattedDate(dateFormate: DateFomateKeys.api) )")
+//        print("-- StartDate in LocalToUTC : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//        print("-------------------------------------")
         
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 completion(0.0)
-                print(error?.localizedDescription ?? "-")
+//                print(error?.localizedDescription ?? "-")
                 return
             }
             completion(sum.doubleValue(for: HKUnit.count()))
@@ -455,15 +457,15 @@ class HomeViewController: UIViewController {
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
         
-        print("-------------------------------------")
-        print("-- EndDate in Local : \(now.getFormattedDate(dateFormate: DateFomateKeys.api) )")
-        print("-- StartDate in LocalToUTC : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("-------------------------------------")
+//        print("-------------------------------------")
+//        print("-- EndDate in Local : \(now.getFormattedDate(dateFormate: DateFomateKeys.api) )")
+//        print("-- StartDate in LocalToUTC : \(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//        print("-------------------------------------")
         
         let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
                 completion(0.0)
-                print(error?.localizedDescription ?? "-")
+//                print(error?.localizedDescription ?? "-")
                 return
             }
             completion(sum.doubleValue(for: HKUnit.meter()))
@@ -521,16 +523,16 @@ class HomeViewController: UIViewController {
         }
         lastUpdatedDate = lastUpdatedDate.startOfDay - 1
         
-        print("-------------------------------------")
-        print("-- EndDate in Local : \(statDate?.getFormattedDate(dateFormate: DateFomateKeys.api) ?? "-")")
-        print("-- StartDate in LocalToUTC : \(lastUpdatedDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
-        print("-------------------------------------")
+//        print("-------------------------------------")
+//        print("-- EndDate in Local : \(statDate?.getFormattedDate(dateFormate: DateFomateKeys.api) ?? "-")")
+//        print("-- StartDate in LocalToUTC : \(lastUpdatedDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
+//        print("-------------------------------------")
         
         let predicate = HKQuery.predicateForSamples(withStart: statDate, end: lastUpdatedDate, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
-                print(error?.localizedDescription ?? "error while fetching steps")
+//                print(error?.localizedDescription ?? "error while fetching steps")
                 completion(0.0)
                 return
             }
@@ -621,7 +623,7 @@ extension HomeViewController {
             print(status)
             
             if status{
-                print("convert steps to coins api successfully run")
+//                print("convert steps to coins api successfully run")
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

@@ -26,7 +26,7 @@ class ChangePasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.font = UIFont.semiBold(ofSize: 21)
+        lblTitle.font = UIFont.regular(ofSize: 21)
     }
     
     override func viewDidAppear(_ animated: Bool) {

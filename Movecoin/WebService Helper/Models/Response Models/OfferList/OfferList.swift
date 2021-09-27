@@ -8,6 +8,11 @@ import SwiftyJSON
 
 
 class OfferList : NSObject, NSCoding{
+    internal init(offers: [Offer]? = nil, status: Bool? = nil) {
+        self.offers = offers
+        self.status = status
+    }
+    
 
     var offers : [Offer]!
     var status : Bool!

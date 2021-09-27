@@ -23,7 +23,7 @@ class PurchaseHistoryViewController: UIViewController {
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
     
-    var purchaseHistory : [Order]?
+    var purchaseHistory : [History]?
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -81,11 +81,11 @@ extension PurchaseHistoryViewController : UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: ProductDetailViewController.className) as! ProductDetailViewController
         controller.viewType = .History
-        let status = purchaseHistory?[indexPath.row].orderStatus//PaymentStatus(rawValue: purchaseHistory?[indexPath.row].orderStatus.capitalizingFirstLetter() ?? "")
-        controller.strOrderStatus = status ?? "-"
-        controller.productID = purchaseHistory?[indexPath.row].productId
-        controller.orderDetail = purchaseHistory?[indexPath.row]
-        self.navigationController?.pushViewController(controller, animated: true)
+//        let status = purchaseHistory?[indexPath.row].orderStatus//PaymentStatus(rawValue: purchaseHistory?[indexPath.row].orderStatus.capitalizingFirstLetter() ?? "")
+//        controller.strOrderStatus = status ?? "-"
+//        controller.productID = purchaseHistory?[indexPath.row].productId
+//        controller.orderDetail = purchaseHistory?[indexPath.row]
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -98,18 +98,12 @@ extension PurchaseHistoryViewController {
     func webserviceForPurchasehistory(){
         
         UtilityClass.showHUD()
-           
-        let requestModel = PurchaseHistory()
-        requestModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
-    
-        OrderWebserviceSubclass.purchaseHistory(purchaseHistoryModel: requestModel){ (json, status, res) in
-            
-            
+        OffersWebserviceSubclass.getOfferPurchasedHistoryList(strURL: SingletonClass.SharedInstance.userData?.iD ?? ""){ (json, status, res) in
             UtilityClass.hideHUD()
             if status {
-                let responseModel = PurchaseHistoryResponseModel(fromJson: json)
-                if responseModel.data.count > 0  {
-                    self.purchaseHistory = responseModel.data
+                let responseModel = PurchaseHistoryList(fromJson: json)
+                if responseModel.history.count > 0  {
+                    self.purchaseHistory = responseModel.history
                     self.tblPurchaseHistory.reloadData()
                 }
             }

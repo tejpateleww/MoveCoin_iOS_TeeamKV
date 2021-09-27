@@ -16,10 +16,10 @@ class InviteFriendsViewController: UIViewController {
     // ----------------------------------------------------
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     @IBOutlet weak var constraintMiddle: NSLayoutConstraint!
-    
+    @IBOutlet weak var btnInviteFrnds: ThemeButton!
     @IBOutlet weak var btnClaimNow: ThemeButton!{
         didSet{
-            btnClaimNow.titleLabel?.font =  FontBook.SemiBold.of(size: 18)
+            btnClaimNow.titleLabel?.font =  FontBook.Regular.of(size: 18)
             btnClaimNow.cornerRadius = btnClaimNow.frame.height / 2
             btnClaimNow.setTitle("Claim Now".localized, for: .normal)
         }
@@ -180,10 +180,11 @@ class InviteFriendsViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-        lblTitle.font = UIFont.semiBold(ofSize: 25)
+        lblTitle.font = UIFont.regular(ofSize: 25)
         lblDescription.font = UIFont.regular(ofSize: 15)
         lblCode.font = UIFont.regular(ofSize: 20)
-        lblReferral.font = UIFont.semiBold(ofSize: 18)
+        lblReferral.font = UIFont.regular(ofSize: 18)
+        btnInviteFrnds.titleLabel?.font = UIFont.regular(ofSize: 25)
     }
     
     func animate() {

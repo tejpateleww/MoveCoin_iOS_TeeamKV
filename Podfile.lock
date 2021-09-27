@@ -126,6 +126,12 @@ PODS:
   - Starscream (3.1.1)
   - SwiftyJSON (5.0.0)
   - TTSegmentedControl (0.4.10)
+  - ZSWTaggedString (4.2):
+    - ZSWTaggedString/Core (= 4.2)
+  - ZSWTaggedString/Core (4.2)
+  - ZSWTaggedString/Swift (4.2):
+    - ZSWTaggedString/Core
+  - ZSWTappableLabel (3.3.2)
 
 DEPENDENCIES:
   - Alamofire (= 4.8.2)
@@ -147,6 +153,9 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift
   - SwiftyJSON
   - TTSegmentedControl
+  - ZSWTaggedString
+  - ZSWTaggedString/Swift
+  - ZSWTappableLabel
 
 SPEC REPOS:
   trunk:
@@ -181,6 +190,8 @@ SPEC REPOS:
     - Starscream
     - SwiftyJSON
     - TTSegmentedControl
+    - ZSWTaggedString
+    - ZSWTappableLabel
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -214,7 +225,9 @@ SPEC CHECKSUMS:
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TTSegmentedControl: d8005c0cdca2549ade0aee8e09240723e2478a6a
+  ZSWTaggedString: 1a6aab3143188634c1e5dfe9383ce754c1fb5fe2
+  ZSWTappableLabel: 92f11d677bb395a8294df48482316c4981783ca0
 
-PODFILE CHECKSUM: 4f3dbceebc87873117e1460b716e7785c9c121a8
+PODFILE CHECKSUM: ef1f986eb095ef93f5fdfdb6e41b7596be1c0acd
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

@@ -38,15 +38,16 @@ class TabViewController: UIViewController {
     // MARK: ---------- Variables ---------
     // ----------------------------------------------------
     
-    var arrayTabColors = [StoreColor, WalletColor, HomeColor, StatisticsColor, ProfileColor]
+    var arrayTabColors = [StoreColor, StoreColor, WalletColor, HomeColor, StatisticsColor, ProfileColor]
    
     let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-    lazy var storeVC = mainStoryboard.instantiateViewController(withIdentifier: NewStoreViewController.className) as! NewStoreViewController
+ 
+    lazy var storeVC = mainStoryboard.instantiateViewController(withIdentifier: OfferListViewController.className) as! OfferListViewController
+    lazy var ChallengeListVC = mainStoryboard.instantiateViewController(withIdentifier: ChallengeListViewController.className) as! ChallengeListViewController
     lazy var walletVC = mainStoryboard.instantiateViewController(withIdentifier: WalletViewController.className) as! WalletViewController
     lazy var homeVC = mainStoryboard.instantiateViewController(withIdentifier: HomeViewController.className) as! HomeViewController
     lazy var statisticsVC = mainStoryboard.instantiateViewController(withIdentifier: StatisticsViewController.className) as! StatisticsViewController
     lazy var profileVC = mainStoryboard.instantiateViewController(withIdentifier: ProfileViewController.className) as! ProfileViewController
-    
     lazy var mapVC = mainStoryboard.instantiateViewController(withIdentifier: MapViewController.className) as! MapViewController
     
     var viewControllers = [UIViewController]()
@@ -116,7 +117,7 @@ class TabViewController: UIViewController {
             self.setColorOfView(index: index)
             index += 1
         }
-        viewControllers = [storeVC, walletVC, homeVC, statisticsVC, profileVC]
+        viewControllers = [storeVC,ChallengeListVC, walletVC, homeVC, statisticsVC, profileVC]
         self.btnTabTapped(btnTabs![selectedIndex])
         
         // Notification observer for Language Change
@@ -176,12 +177,16 @@ class TabViewController: UIViewController {
         
         let previousIndex = selectedIndex
         selectedIndex = button.tag
-        
+        self.navigationController?.navigationBar.isHidden = false
+
+        if(selectedIndex == 0 || selectedIndex == 1)
+        {
+            self.navigationController?.navigationBar.isHidden = true
+        }
         // Set button background color
         button.isSelected = !button.isSelected
         viewGradients[previousIndex].backgroundColor = .clear
         viewGradients[selectedIndex].backgroundColor = arrayTabColors[selectedIndex]
-        
         if self.viewControllers.count > 0 {
             //Remove previous VC from tab
             let previousVC: UIViewController = self.viewControllers[previousIndex]

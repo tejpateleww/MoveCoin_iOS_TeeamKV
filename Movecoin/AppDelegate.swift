@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             window?.overrideUserInterfaceStyle = .light
         }
         
-//        UIFont.familyNames.forEach({ familyName in
-//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-//            print(familyName, fontNames)
-//        })
+        UIFont.familyNames.forEach({ familyName in
+            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+            print(familyName, fontNames)
+        })
         
 //        #if DEBUG
 //        //                return .developmentBaseUrl
@@ -841,7 +841,7 @@ extension AppDelegate {
                 }
                 completionHandler([.alert, .sound])
             }
-            else if key == "order_update" {
+          /*  else if key == "order_update" {
                 if let response = userInfo["gcm.notification.response_arr"] as? String {
                     let jsonData = response.data(using: .utf8)!
                     let dictionary = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves)
@@ -877,7 +877,7 @@ extension AppDelegate {
               
                 completionHandler([.alert, .sound])
 
-            }
+            }*/
             else if key == "Logout" {
                 self.GoToLogout()
                 if let aps = ((userInfo["aps"] as? [String:Any])?["alert"] as? [String:Any])?["title"] as? String

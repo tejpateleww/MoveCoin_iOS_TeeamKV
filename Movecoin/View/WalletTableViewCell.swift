@@ -14,7 +14,8 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet weak var lblMessage: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
-    
+    @IBOutlet weak var imgIcon: UIImageView!
+
     var walletDetail: WalletData? {
         didSet{
             if let detail = walletDetail {
@@ -30,8 +31,13 @@ class WalletTableViewCell: UITableViewCell {
                 switch type {
                 case .Send, .Redeem:
                     self.lblAmount.text = "-" + detail.coins
+                    self.imgIcon.image = UIImage(named: "logo-green-small")
                 case .Receive:
                     self.lblAmount.text = "+" + detail.coins
+                    self.imgIcon.image = UIImage(named: "logo-green-small")
+                case .RedeemOffer:
+                    self.lblAmount.text = "-" + detail.coins
+                    self.imgIcon.image = UIImage(named: "iconBasket")
                 case .none:
                     return
                 }

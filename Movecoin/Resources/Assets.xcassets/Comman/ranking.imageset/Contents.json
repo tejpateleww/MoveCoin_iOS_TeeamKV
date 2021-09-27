@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "podium.png",
+      "filename" : "Layer 6.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "podium@2x.png",
+      "filename" : "Layer 6@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "podium@3x.png",
+      "filename" : "Layer 6@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

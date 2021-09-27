@@ -108,10 +108,10 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
         cell.listType = friendListType
         cell.cellDelegate = self
         cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
-        if(isFromTransferCoins)
-        {
+//        if(isFromTransferCoins)
+//        {
             cell.btnBlockUnBlock?.isHidden = true
-        }
+//        }
         return cell
     }
     

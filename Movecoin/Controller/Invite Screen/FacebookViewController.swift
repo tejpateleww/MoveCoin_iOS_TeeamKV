@@ -289,7 +289,7 @@ extension FacebookViewController : UITableViewDelegate, UITableViewDataSource, I
             cell.backgroundColor = .clear
             cell.textLabel?.text = "No friends from facebook to add".localized
             cell.textLabel?.textColor = .white
-            cell.textLabel?.font = UIFont.bold(ofSize: 30)
+            cell.textLabel?.font = UIFont.regular(ofSize: 30)
             cell.textLabel?.lineBreakMode = .byWordWrapping
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.textAlignment = .center

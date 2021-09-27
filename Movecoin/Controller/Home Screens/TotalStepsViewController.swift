@@ -64,7 +64,7 @@ class TotalStepsViewController: UIViewController {
 //        tblTotalSteps.addSubview(refreshControl)
         tblTotalSteps.tableFooterView = UIView.init(frame: CGRect.zero)
         
-        lblTotalSteps.font = UIFont.semiBold(ofSize: 24)
+        lblTotalSteps.font = UIFont.regular(ofSize: 24)
     }
     
     @objc func refreshSteps(){

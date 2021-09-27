@@ -364,7 +364,7 @@
 "Please enter card details" = "الرجاء إدخال معلومات البطاقة";
 "Your current balance is too low to purchase " = " رصيدك الحالي لا يكفي للشراء";
 " % off " = " نسبة الخصم ";
-". Don't want to wait? invite Friends and Family to earn faster!" = " لا تريد الانتظار؟ قم بدعوة الأصدقاء والعائلة للحصول على العملات ";
+". Don't want to wait? Invite Friends and Family to earn faster!" = " لا تريد الانتظار؟ قم بدعوة الأصدقاء والعائلة للحصول على العملات ";
 "Insufficient Balance" = "رصيد غير كافٍ";
 "You need to spend atleast " = "يجب أن تصرف على الأقل ";
 "You can not spend more than " = "نلا يمكنك صرف أكثر من ";
@@ -398,12 +398,40 @@
 
 // Leaderboard Screen
 
-"Leaderboard" = "Leaderboard";
 "message_joinChallenge" = "إنضم الى التحدي";
-"message_no_challenge_Active" = "No challenge is active";
 "Yes" = "نعم";
 "No" = "لا";
 
-"title_how_to_claim" = "HOW TO CLAIM :";
 
-"Offers" = "Offers";
+"Leaderboard" = " المتصدرين ";
+"message_no_challenge_Active" = "لا يوجد تحدي نشط حالياً";
+"title_how_to_claim" = "طريقة المطالبة :";
+"Offers" = "العروض";
+"Title_offer_details" = "تفاصيل العرض";
+"Title_redeemed_on" = "مشتريات";
+"message_confirmation_buy_offer"="هل أنت متأكد من شراء هذا العرض ؟";
+"message_Share_The_Challenge" = "شاركنا التحدي";
+"message_Go_Ahead" = "إنطلق";
+"message_claim_it_now" = "المطالبة الآن";
+"message_offer_details" = "تفاصيل العرض";
+"title_copy_code"= "إنسخ الكود";
+"message_go_to_store" = "الذهاب الى المتجر واستخدام الكود";
+"title_Continue" = "إستمر";
+"title_bought_product" = "منتج مُشترى";
+"title_copied" = "تم النسخ";
+"title_your_rank" = "ترتيبك";
+"title_participants" = "المشاركين";
+"title_Your_Steps" = "خطواتك";
+
+
+"title_Sponsored_by" = "برعاية";
+
+"title_ended_on" = "إنتهى في";
+"title_finished_Challenges" = "التحديات المنتهية";
+"title_new_challenge" = "تحدي جديد";
+"title_agree_1" = "موافق على";
+"and" =  "و";
+"All" = "الكل";
+"title_go_to_store" = "إذهب إلى المتجر";
+"title_stay_tuned" = "انتظرونا في تحدي جديد ..!";
+"title_be_ready" = "خليكم جاهزين";

@@ -8,8 +8,12 @@
 
 import UIKit
 import FirebaseAnalytics
-class SignupViewController: UIViewController {
+import ZSWTappableLabel
+import ZSWTaggedString
+import SafariServices
 
+class SignupViewController: UIViewController,ZSWTappableLabelTapDelegate {
+   
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
     // ----------------------------------------------------
@@ -28,8 +32,9 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var txtReferral: TextFieldFont!
     
     @IBOutlet weak var lblAccount: LocalizLabel!
+    @IBOutlet weak var lblTermsAndConditions: ZSWTappableLabel!
     @IBOutlet weak var btnSignIn: LocalizButton!
-    
+    @IBOutlet weak var btnIAgree: UIButton!
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
@@ -45,15 +50,64 @@ class SignupViewController: UIViewController {
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
+    
+    static let URLAttributeName = NSAttributedString.Key(rawValue: "URL")
+    
+    enum LinkType: String {
+        case Privacy = "privacy"
+        case TermsOfService = "tos"
+        
+        var URL: Foundation.URL {
+            switch self {
+            case .Privacy:
+                return Foundation.URL(string: "https://www.movecoins.net/en/privacy-policy-en/")!
+            case .TermsOfService:
+                return Foundation.URL(string: "https://www.movecoins.net/terms-conditions/")!
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBarSetUp(hidesBackButton: true)
         self.setupView()
         self.setupFont()
-
+        self.setupLabel()
         #if targetEnvironment(simulator)
         setDummy()
         #endif
+    }
+    
+    func setupLabel()
+    {
+        lblTermsAndConditions.tapDelegate = self
+        let options = ZSWTaggedStringOptions(baseAttributes: [
+            .font : UIFont.regular(ofSize: 13),
+        ])
+        options["link"] = .dynamic({ tagName, tagAttributes, stringAttributes in
+            guard let typeString = tagAttributes["type"] as? String,
+                let type = LinkType(rawValue: typeString) else {
+                return [NSAttributedString.Key: AnyObject]()
+            }
+            
+            return [
+                .tappableRegion: true,
+                .font : UIFont.regular(ofSize: 13),
+                .foregroundColor: UIColor.blue,
+                SignupViewController.URLAttributeName: type.URL
+            ]
+        })
+        
+        let iagreetext = "title_agree_1".localized
+        let terms = "Terms and Conditions".localized
+        let privacyPolicy = "Privacy Policy".localized
+        let and = "and".localized
+        let string = NSLocalizedString("\(iagreetext) <link type='tos'>\(terms)</link> \(and) <link type='privacy'>\(privacyPolicy)</link>", comment: "")
+        lblTermsAndConditions.attributedText = try? ZSWTaggedString(string: string).attributedString(with: options)
+        
+        lblTermsAndConditions.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +160,7 @@ class SignupViewController: UIViewController {
     
     func setupFont(){
         lblAccount.font = UIFont.regular(ofSize: 15)
-        btnSignIn.titleLabel?.font = UIFont.semiBold(ofSize: 15)
+        btnSignIn.titleLabel?.font = UIFont.regular(ofSize: 15)
     }
     
     func setDummy(){
@@ -136,6 +190,12 @@ class SignupViewController: UIViewController {
 
             if txtPassword.text != txtConfirmPassword.text {
                 UtilityClass.showAlert(Message: "Confirm password does not match with password".localized)
+                return
+            }
+            
+            if (!btnIAgree.isSelected)
+            {
+                UtilityClass.showAlert(Message: "Please accept Terms and Conditions and Privacy Policy".localized)
                 return
             }
 //            else if txtGender.text!.isBlank {
@@ -192,13 +252,22 @@ class SignupViewController: UIViewController {
     }
     
     @IBAction func btnVerifyTapped(_ sender: Any) {
-//        if UpdateLocationClass.sharedLocationInstance.checkLocationPermission() {
-            self.validate()
-//        } else {
-//            UtilityClass.alertForLocation(currentVC: self)
-//            UtilityClass.showAlert(Message: "\(kAppName) would like to access your location, please enable location permission to move forward")
-//        }
+        self.validate()
     }
+    
+    
+    @IBAction func btnIAgreeTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    func tappableLabel(_ tappableLabel: ZSWTappableLabel, tappedAt idx: Int, withAttributes attributes: [NSAttributedString.Key : Any] = [:]) {
+        guard let URL = attributes[SignupViewController.URLAttributeName] as? URL else {
+            return
+        }
+        UIApplication.shared.open(URL)
+    }
+    
+
 }
 
 // ----------------------------------------------------

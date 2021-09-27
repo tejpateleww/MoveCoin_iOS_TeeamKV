@@ -75,7 +75,7 @@ class CardListViewController: UIViewController {
     }
     
     func setupFont(){
-        lblAddPayment.font = UIFont.bold(ofSize: 20)
+        lblAddPayment.font = UIFont.regular(ofSize: 20)
         txtExpDate.font = UIFont.regular(ofSize: 17)
         txtCardNumber.font = UIFont.regular(ofSize: 17)
         txtCardHolder.font = UIFont.regular(ofSize: 17)

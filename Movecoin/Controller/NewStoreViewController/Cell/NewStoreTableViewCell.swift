@@ -41,7 +41,7 @@ class NewStoreTableViewCell: UITableViewCell {
         self.vwCell.layer.masksToBounds = true
         self.vwCell.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
         self.vwCell.layer.cornerRadius = 30.0
-        
+        self.vwCell.semanticContentAttribute = .forceLeftToRight
         self.vwCell.layer.borderColor = UIColor.lightGray.cgColor
         self.vwCell.layer.borderWidth = 1
     }

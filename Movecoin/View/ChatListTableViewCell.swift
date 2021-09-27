@@ -41,7 +41,7 @@ class ChatListTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        lblName.font = UIFont.semiBold(ofSize: 15)
+        lblName.font = UIFont.regular(ofSize: 15)
         lblId.font = UIFont.regular(ofSize: 12)
         btnBadge.titleLabel?.font = UIFont.regular(ofSize: 10)
         btnBadge.cornerRadius = btnBadge.frame.height / 2

@@ -60,8 +60,8 @@ class WelcomeViewController: UIViewController {
     }
     
     func setupFont(){
-        lblTitle.font = UIFont.bold(ofSize: 34.0)
-        lblOr.font = UIFont.bold(ofSize: 17.0)
+        lblTitle.font = UIFont.regular(ofSize: 34.0)
+        lblOr.font = UIFont.regular(ofSize: 17.0)
     }
     
     func setDataForLocalisation(){

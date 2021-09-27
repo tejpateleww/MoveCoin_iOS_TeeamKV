@@ -28,7 +28,7 @@ class CardTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        lblName.font = UIFont.semiBold(ofSize: 17)
+        lblName.font = UIFont.regular(ofSize: 17)
         lblnumber.font = UIFont.regular(ofSize: 18)
     }
 

@@ -38,7 +38,7 @@ extension String {
 
             let range = (attribute.string as NSString).range(of: attribute.string)
             attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white ,range: range)
-//            attribute.addAttribute(NSAttributedString.Key.font, value: UIFont.bold(ofSize: 16) ,range: range)
+//            attribute.addAttribute(NSAttributedString.Key.font, value: UIFont.regular(ofSize: 16) ,range: range)
             return attribute
         } catch {
             print("error: ", error.localizedDescription)

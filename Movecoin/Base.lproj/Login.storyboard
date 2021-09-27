@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jwo-NY-7e3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jwo-NY-7e3">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -109,7 +109,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi…Your Step Remarkable In MoveCoins" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Md8-f0-8uW" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="25" y="204" width="275" height="146"/>
+                                        <rect key="frame" x="25" y="204" width="275" height="119"/>
                                         <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -506,21 +506,44 @@
                                                             <constraint firstAttribute="height" constant="31" id="LfA-H0-fws"/>
                                                         </constraints>
                                                     </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCY-Qp-Q2i" customClass="ZSWTappableLabel">
+                                                        <rect key="frame" x="55" y="725" width="250" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wom-Sm-Goa">
+                                                        <rect key="frame" x="20" y="725.5" width="20" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="Aon-td-2cN"/>
+                                                            <constraint firstAttribute="width" secondItem="Wom-Sm-Goa" secondAttribute="height" multiplier="1:1" id="lTh-7V-pVe"/>
+                                                        </constraints>
+                                                        <state key="normal" image="iconUncheck"/>
+                                                        <state key="selected" image="iconCheck"/>
+                                                        <connections>
+                                                            <action selector="btnIAgreeTapped:" destination="Ne7-sU-0Bo" eventType="touchUpInside" id="auq-GA-g5N"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="6Nu-Vh-Mrp" firstAttribute="top" secondItem="NCY-Qp-Q2i" secondAttribute="bottom" constant="24.5" id="Afa-fu-EGt"/>
                                                     <constraint firstItem="xsb-3i-rkO" firstAttribute="top" secondItem="Nza-cL-D3l" secondAttribute="top" constant="80" id="CUz-S5-JfO"/>
+                                                    <constraint firstItem="Wom-Sm-Goa" firstAttribute="centerY" secondItem="NCY-Qp-Q2i" secondAttribute="centerY" id="H8O-Qm-Fci"/>
                                                     <constraint firstItem="33d-lT-puP" firstAttribute="leading" secondItem="Nza-cL-D3l" secondAttribute="leading" id="Hr5-ch-Yjm"/>
                                                     <constraint firstAttribute="trailing" secondItem="hET-WD-U5f" secondAttribute="trailing" constant="15" id="JZ2-tj-7a8"/>
+                                                    <constraint firstItem="NCY-Qp-Q2i" firstAttribute="top" secondItem="hET-WD-U5f" secondAttribute="bottom" constant="10" id="Lu5-CB-f1w"/>
                                                     <constraint firstItem="6Nu-Vh-Mrp" firstAttribute="centerX" secondItem="Nza-cL-D3l" secondAttribute="centerX" id="WU2-Mk-JYK"/>
                                                     <constraint firstItem="tq7-Je-iBv" firstAttribute="centerX" secondItem="Nza-cL-D3l" secondAttribute="centerX" id="XED-Ck-MYp"/>
+                                                    <constraint firstItem="NCY-Qp-Q2i" firstAttribute="leading" secondItem="Wey-wb-jAn" secondAttribute="leading" constant="40" id="Ytx-Qa-VcG"/>
                                                     <constraint firstItem="hET-WD-U5f" firstAttribute="leading" secondItem="Nza-cL-D3l" secondAttribute="leading" constant="15" id="aIU-E3-YWc"/>
                                                     <constraint firstItem="xsb-3i-rkO" firstAttribute="centerX" secondItem="Nza-cL-D3l" secondAttribute="centerX" id="anQ-MH-Sce"/>
+                                                    <constraint firstItem="Wom-Sm-Goa" firstAttribute="leading" secondItem="Wey-wb-jAn" secondAttribute="leading" constant="5" id="c9S-vW-km0"/>
                                                     <constraint firstItem="tq7-Je-iBv" firstAttribute="top" secondItem="6Nu-Vh-Mrp" secondAttribute="bottom" constant="20" id="cmJ-GH-Hbs"/>
-                                                    <constraint firstItem="6Nu-Vh-Mrp" firstAttribute="top" secondItem="hET-WD-U5f" secondAttribute="bottom" constant="55" id="hdG-7X-ZRz"/>
                                                     <constraint firstAttribute="bottom" secondItem="tq7-Je-iBv" secondAttribute="bottom" constant="86" id="hoe-cZ-NT9"/>
                                                     <constraint firstAttribute="trailing" secondItem="33d-lT-puP" secondAttribute="trailing" id="jJP-xD-Kfs"/>
                                                     <constraint firstItem="33d-lT-puP" firstAttribute="top" secondItem="Nza-cL-D3l" secondAttribute="top" id="kb7-CU-crH"/>
+                                                    <constraint firstItem="NCY-Qp-Q2i" firstAttribute="trailing" secondItem="Wey-wb-jAn" secondAttribute="trailing" id="p3F-Tg-cjv"/>
                                                     <constraint firstItem="hET-WD-U5f" firstAttribute="top" secondItem="xsb-3i-rkO" secondAttribute="bottom" constant="20" id="sBM-Kz-mSE"/>
                                                 </constraints>
                                             </view>
@@ -556,9 +579,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnIAgree" destination="Wom-Sm-Goa" id="oqv-9Z-d7a"/>
                         <outlet property="btnSignIn" destination="2wO-Ic-PoO" id="Q6U-ZB-25Y"/>
                         <outlet property="imgProfile" destination="LOB-39-1fv" id="Ev9-xt-Odz"/>
                         <outlet property="lblAccount" destination="0J0-Vx-42f" id="RVU-zf-bRb"/>
+                        <outlet property="lblTermsAndConditions" destination="NCY-Qp-Q2i" id="aJ4-My-BMX"/>
                         <outlet property="txtConfirmPassword" destination="Hjv-Ja-K1Y" id="jS1-xm-Y0F"/>
                         <outlet property="txtEmail" destination="Hrb-AG-fDj" id="HyA-Fy-3qH"/>
                         <outlet property="txtFullName" destination="blU-as-vZM" id="Ruk-rG-nbV"/>
@@ -1151,6 +1176,8 @@
         <image name="TopBG" width="375" height="266"/>
         <image name="Twitter icon" width="42" height="42"/>
         <image name="bg-register" width="375" height="146"/>
+        <image name="iconCheck" width="170" height="170"/>
+        <image name="iconUncheck" width="170" height="170"/>
         <image name="m-logo" width="137" height="137"/>
         <image name="photo-frame" width="116" height="116"/>
         <image name="plus-2" width="52" height="52"/>

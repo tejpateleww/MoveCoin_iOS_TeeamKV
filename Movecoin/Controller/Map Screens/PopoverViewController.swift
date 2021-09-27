@@ -72,10 +72,10 @@ class PopoverViewController: UIViewController {
     // ----------------------------------------------------
     
     func setupFont(){
-        lblChat.font = UIFont.semiBold(ofSize: 16)
-        lblTransfer.font = UIFont.semiBold(ofSize: 16)
-        lblBlock.font = UIFont.semiBold(ofSize: 16)
-        lblName.font = UIFont.semiBold(ofSize: 16)
+        lblChat.font = UIFont.regular(ofSize: 16)
+        lblTransfer.font = UIFont.regular(ofSize: 16)
+        lblBlock.font = UIFont.regular(ofSize: 16)
+        lblName.font = UIFont.regular(ofSize: 16)
         lblLastSeen.font = UIFont.regular(ofSize: 12)
         lblMemberSince.font = UIFont.regular(ofSize: 12)
         lblTime.font = UIFont.regular(ofSize: 12)
@@ -87,13 +87,13 @@ class PopoverViewController: UIViewController {
         btnSendFriendRequest.setTitleColor(.white, for: .normal)
         btnSendFriendRequest.layer.cornerRadius = btnSendFriendRequest.frame.size.height / 2
         btnSendFriendRequest.layer.masksToBounds = true
-        btnSendFriendRequest.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
+        btnSendFriendRequest.titleLabel?.font = UIFont(name: FontBook.Regular.rawValue, size: 20.0)
         
         btnBlock.backgroundColor = .init(white: 1.0, alpha: 0.23)
         btnBlock.setTitleColor(.white, for: .normal)
         btnBlock.layer.cornerRadius = btnBlock.frame.size.height / 2
         btnBlock.layer.masksToBounds = true
-        btnBlock.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
+        btnBlock.titleLabel?.font = UIFont(name: FontBook.Regular.rawValue, size: 20.0)
         
         //lblBlock.font = btnBlock.titleLabel?.font
     }

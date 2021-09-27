@@ -11,6 +11,7 @@ import UIKit
 class LeaderboardCell: UITableViewCell {
     
     @IBOutlet weak var viewRank: UIView!
+    @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var lblRank: LocalizLabel!
     @IBOutlet weak var lblName: LocalizLabel!
     @IBOutlet weak var lblStep: LocalizLabel!

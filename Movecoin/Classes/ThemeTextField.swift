@@ -80,6 +80,13 @@ class TextFieldFont : UITextField {
         self.placeholder = self.placeholder?.localized
         self.text = self.text?.localized
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        self.placeholder = self.placeholder?.localized
+
+    }
 }
 
 class DropDownTextField : UITextField {

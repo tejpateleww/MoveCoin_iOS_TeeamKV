@@ -85,8 +85,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         lblTitle.font = UIFont.regular(ofSize: 20)
         lblAccount.font = UIFont.regular(ofSize: 18)
         lblOr.font = UIFont.regular(ofSize: 15)
-        btnSignUp.titleLabel?.font = UIFont.semiBold(ofSize: 20)
-        btnForgotPassword.titleLabel?.font = UIFont.bold(ofSize: 15)
+        btnSignUp.titleLabel?.font = UIFont.regular(ofSize: 20)
+        btnForgotPassword.titleLabel?.font = UIFont.regular(ofSize: 15)
         
         // As per client requirement Forcefully LTR
 //        btnForgotPassword.semanticContentAttribute = .forceLeftToRight

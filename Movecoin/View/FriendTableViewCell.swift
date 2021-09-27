@@ -62,7 +62,7 @@ class FriendTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        lblName.font = UIFont.semiBold(ofSize: 15)
+        lblName.font = UIFont.regular(ofSize: 15)
         lblNumber.font = UIFont.regular(ofSize: 10)
         btnFriendUnFriend.titleLabel?.font = UIFont.regular(ofSize: 11)
         btnBlockUnBlock?.titleLabel?.font = UIFont.regular(ofSize: 11)

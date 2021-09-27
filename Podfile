@@ -30,6 +30,11 @@ pod 'lottie-ios'
 pod 'KDCircularProgress'
 
 pod 'FBSDKLoginKit'
+
+pod "ZSWTappableLabel"
+pod 'ZSWTaggedString'
+pod 'ZSWTaggedString/Swift'
+
 #pod 'TwitterKit5'
 
   # Pods for Movecoin

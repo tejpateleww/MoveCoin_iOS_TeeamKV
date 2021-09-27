@@ -119,7 +119,7 @@ extension AccountPrivacyViewController : UITableViewDelegate, UITableViewDataSou
         cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
         cell.switchToggle.backgroundColor = .gray
         cell.txtPrivacy.text = privacyType?.description.localized
-        print("Privacy : ",cell.txtPrivacy.text)
+//        print("Privacy : ",cell.txtPrivacy.text)
         
         if let privacyStatus = SingletonClass.SharedInstance.userData?.accountPrivacy{
             cell.switchToggle.isOn = privacyStatus == "0" ? false : true

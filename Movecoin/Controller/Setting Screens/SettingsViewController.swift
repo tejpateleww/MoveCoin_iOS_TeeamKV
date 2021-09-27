@@ -41,6 +41,8 @@ class SettingsViewController: UIViewController {
         super.viewDidAppear(true)
         self.navigationBarSetUp(title: "Settings")
         self.statusBarSetUp(backColor: .clear)
+//        self.navigationController?.navigationBar.isHidden = false
+
 
     }
     

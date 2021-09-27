@@ -116,6 +116,6 @@ class ThemeButton: UIButton {
         self.layer.cornerRadius = self.frame.size.height / 2
 //        self.clipsToBounds = true
         self.layer.masksToBounds = true
-        self.titleLabel?.font = UIFont(name: FontBook.SemiBold.rawValue, size: 20.0)
+        self.titleLabel?.font = UIFont(name: FontBook.Regular.rawValue, size: 20.0)
     }
 }
