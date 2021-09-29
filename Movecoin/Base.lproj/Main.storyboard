@@ -9820,59 +9820,11 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="3FV-L3-WyI">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="760-84-4KP">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="8LJ-Rh-fpN">
-            <size key="intrinsicContentSize" width="140" height="39.220703125"/>
-        </designable>
         <designable name="8q8-fB-Rts">
             <size key="intrinsicContentSize" width="108" height="20"/>
         </designable>
-        <designable name="9N6-Ql-K2O">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="B1h-5c-AYQ">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="Lc7-5L-AVC">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="RuJ-Nx-Bhr">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="TwW-BC-6yE">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="Ux5-QD-2GA">
-            <size key="intrinsicContentSize" width="290" height="39.220703125"/>
-        </designable>
-        <designable name="ZZG-nc-vAT">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="fXi-I4-7zb">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="ikk-Gb-DLa">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="qpS-uv-sWP">
-            <size key="intrinsicContentSize" width="140" height="39.220703125"/>
-        </designable>
-        <designable name="sWx-0C-Gke">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
         <designable name="sbt-ss-ICD">
             <size key="intrinsicContentSize" width="108" height="20"/>
-        </designable>
-        <designable name="sih-tI-mbD">
-            <size key="intrinsicContentSize" width="290" height="39.220703125"/>
-        </designable>
-        <designable name="v4D-gb-7Zh">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
