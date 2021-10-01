@@ -246,17 +246,11 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let sectionData = tableData[section]
-//        return sectionData.Rows.count
         let sectionData = isSearchData ? searchArray[section] : tableData[section]
-        print("numberOfRowsInSection for search : \(isSearchData)")
-        print("numberOfRows : \(sectionData.Rows.count) InSection : \(section) \(sectionData.SectionTitle)")
         return sectionData.Rows.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let sectionData = tableData[section]
-//        return sectionData.SectionTitle
         let sectionData = isSearchData ? searchArray[section] : tableData[section]
         return sectionData.SectionTitle.localized
     }
@@ -264,6 +258,12 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+//        headerView.backgroundColor = UIColor.white
+//        return headerView
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendTableViewCell.className) as! FindFriendTableViewCell

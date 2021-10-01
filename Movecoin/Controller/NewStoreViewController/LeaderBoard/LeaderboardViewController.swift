@@ -34,6 +34,14 @@ class LeaderboardViewController: UIViewController {
     @IBOutlet weak var viewMainContainer: UIView?
 
     var dictChallengeDetails : ChallengeDetails?
+    {
+        didSet
+        {
+            UIView.performWithoutAnimation {
+                   self.tblLeaderboard.reloadData()
+            }
+        }
+    }
     var dictChallenge : Challenge?
     var challengeID: String?
     var releaseDate: Date?
@@ -108,8 +116,8 @@ class LeaderboardViewController: UIViewController {
 
         self.topViewHeight.constant = (UIScreen.main.bounds.size.height / 3.5)
         self.tblLeaderboard.separatorStyle = .none
-        self.tblLeaderboard.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-        self.tblLeaderboard.reloadData()
+//        self.tblLeaderboard.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+//        self.tblLeaderboard.reloadData()
         
         self.scrollView?.showsVerticalScrollIndicator = false
         self.scrollView?.showsHorizontalScrollIndicator = false
@@ -145,7 +153,7 @@ class LeaderboardViewController: UIViewController {
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 
         
-        tblLeaderboard.reloadData()
+//        tblLeaderboard.reloadData()
     }
     
     @objc func updateTime() {
@@ -161,7 +169,12 @@ class LeaderboardViewController: UIViewController {
 
         
 //        print(countdown)
-        
+        if((diffDateComponents.second ?? 0) < 0)
+        {
+            countdownTimer?.invalidate()
+            countdownTimer = nil
+            return
+        }
         self.lblTime.text = "\(countdown)"
 
     }
@@ -171,22 +184,22 @@ class LeaderboardViewController: UIViewController {
     func RegisterNIB(){
         self.tblLeaderboard.register(UINib(nibName: LeaderboardCell.className, bundle: nil), forCellReuseIdentifier: LeaderboardCell.className)
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
-        if(keyPath == "contentSize"){
-            if let info = object, let tblObj = info as? UITableView{
-                if tblObj == self.tblLeaderboard{
-                    self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
-//                    print(self.tblLeaderboardHeight?.constant)
-                    if self.tblLeaderboard.contentSize.height >= 100 {
-                        self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
-                    } else {
-                        self.tblLeaderboardHeight?.constant = 100
-                    }
-                }
-            }
-        }
-    }
+//
+//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
+//        if(keyPath == "contentSize"){
+//            if let info = object, let tblObj = info as? UITableView{
+//                if tblObj == self.tblLeaderboard{
+//                    self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
+////                    print(self.tblLeaderboardHeight?.constant)
+//                    if self.tblLeaderboard.contentSize.height >= 100 {
+//                        self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
+//                    } else {
+//                        self.tblLeaderboardHeight?.constant = 100
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 // ----------------------------------------------------
@@ -202,11 +215,11 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: LeaderboardCell.className) as! LeaderboardCell
         cell.selectionStyle = .none
         cell.backgroundColor = .clear
-        cell.lblRank.text = "\(indexPath.row + 1)"
         cell.viewContainer.semanticContentAttribute = .forceLeftToRight
         let obj = dictChallengeDetails?.topFiveParticipant[indexPath.row]
         cell.lblName.text = obj?.nickName
         cell.lblStep.text = obj?.steps
+        cell.lblRank.text = obj?.rank//"\(indexPath.row + 1)"
 
         return cell
     }

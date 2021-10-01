@@ -241,38 +241,26 @@ class HomeViewController: UIViewController {
             if lastUpdatedStepsAt.isBlank {
                 lastUpdatedStepsAt = Date().ToLocalStringWithFormat(dateFormat: DateFomateKeys.apiDOB)
             }
-            
-            //            let dateFormatter = DateFormatter()
-            //            dateFormatter.dateFormat = "yyyy-MM-dd"//"h:mm a"
-            //            dateFormatter.calendar = NSCalendar.current
-            //            dateFormatter.timeZone = TimeZone(identifier: timeZone)
-            //            dateFormatter.locale = .current
-            
-            let statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)// as? Date else {return}//dateFormatter.date(from: lastUpdatedStepsAt) else { return  }
-//            print("Start Date : \(statDate.getFormattedDate(dateFormate: DateFomateKeys.api))")
+
+            let statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)
             
             let now = UtilityClass.getTodayFromServer()
+                        
+            let days = now.days(from: statDate)
             
-//            print("Now Date : \(now.getFormattedDate(dateFormate: DateFomateKeys.api))")
-            
-            let days = now.days(from: statDate)//interval(ofComponent: .day, fromDate: statDate)//now.startOfDay.yesterday.interval(ofComponent: .day, fromDate: statDate )
             if days >= 1 {
                 getRemainingStepsFromHealthKit { (steps) in
-//                    print("Previous Steps : ",steps)
                     
                     if Int(steps) > 0 {
                         self.webserviceforConvertStepToCoin(stepsCount: String(Int(steps)))
-//                        print("IF")
                         
                     }
                 }
             }
             else{
                 self.getTodaysSteps()
-//                print("ELSE")
             }
         } else {
-//            print("Health Kit Data is Not Available")
         }
     }
     
@@ -488,7 +476,7 @@ class HomeViewController: UIViewController {
                 }
                 
                 if let quantity = result.sumQuantity() {
-                    resultCount = quantity.doubleValue(for: HKUnit.kilocalorie())
+                    resultCount = quantity.doubleValue(for: HKUnit.kilocalorie())   
                 }
                 DispatchQueue.main.async {
                     completion(resultCount, nil)
@@ -687,6 +675,10 @@ extension HomeViewController {
             
             if status{
                 DispatchQueue.main.async {
+                    if let leaderboardVC = UIApplication.topViewController() as? LeaderboardViewController
+                    {
+                        leaderboardVC.webServiceCallForChallengeDetails()
+                    }
 //                    self.lblTotalSteps.text = json["steps"].stringValue
                     //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
                 }

@@ -435,3 +435,5 @@
 "title_go_to_store" = "إذهب إلى المتجر";
 "title_stay_tuned" = "انتظرونا في تحدي جديد ..!";
 "title_be_ready" = "خليكم جاهزين";
+"title_no_active_offer" = "لايوجد عروض نشطة حالياً";
+"message_accept_terms_conditions" = "الرجاء قبول الشروط والأحكام وسياسية الخصوصية";

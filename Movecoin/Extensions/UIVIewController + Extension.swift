@@ -104,7 +104,7 @@ extension UIViewController : CLLocationManagerDelegate {
             UtilityClass.showAlert(Message: error.localizedDescription)
             return
         }
-        print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
+//        print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
     }
     
     // ----------------------------------------------------

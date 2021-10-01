@@ -8990,16 +8990,26 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title_no_active_offer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niF-vR-Qnh" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="249" width="260" height="70"/>
+                                        <fontDescription key="fontDescription" name="Cairo-Bold" family="Cairo" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Fdc-Eh-4iz" firstAttribute="leading" secondItem="ESD-X5-VW2" secondAttribute="leading" constant="20" id="0z4-pt-BZf"/>
+                                    <constraint firstItem="niF-vR-Qnh" firstAttribute="leading" secondItem="ESD-X5-VW2" secondAttribute="leading" constant="30" id="7ch-J0-hEa"/>
                                     <constraint firstItem="xlP-JC-pzN" firstAttribute="top" secondItem="Ozm-j5-qMI" secondAttribute="bottom" constant="10" id="DI7-NJ-dbI"/>
                                     <constraint firstItem="RBc-fy-3gL" firstAttribute="leading" secondItem="ESD-X5-VW2" secondAttribute="leading" constant="2" id="H6m-ec-3jq"/>
                                     <constraint firstItem="xlP-JC-pzN" firstAttribute="leading" secondItem="ESD-X5-VW2" secondAttribute="leading" id="NZZ-7l-ppv"/>
                                     <constraint firstAttribute="trailing" secondItem="Ozm-j5-qMI" secondAttribute="trailing" id="SbI-UO-Kg8"/>
+                                    <constraint firstItem="niF-vR-Qnh" firstAttribute="centerX" secondItem="ESD-X5-VW2" secondAttribute="centerX" id="WCp-eb-DWT"/>
                                     <constraint firstAttribute="trailing" secondItem="Fdc-Eh-4iz" secondAttribute="trailing" constant="20" id="Z0S-SS-qSw"/>
                                     <constraint firstAttribute="bottom" secondItem="xlP-JC-pzN" secondAttribute="bottom" constant="10" id="ap4-L2-ZDK"/>
+                                    <constraint firstItem="niF-vR-Qnh" firstAttribute="centerY" secondItem="ESD-X5-VW2" secondAttribute="centerY" id="atA-gT-8WY"/>
+                                    <constraint firstAttribute="trailing" secondItem="niF-vR-Qnh" secondAttribute="trailing" constant="30" id="dq3-qO-9NL"/>
                                     <constraint firstItem="Ozm-j5-qMI" firstAttribute="leading" secondItem="ESD-X5-VW2" secondAttribute="leading" id="eXk-RN-7am"/>
                                     <constraint firstAttribute="trailing" secondItem="xlP-JC-pzN" secondAttribute="trailing" id="iSK-vM-cgj"/>
                                     <constraint firstItem="xlP-JC-pzN" firstAttribute="top" secondItem="RBc-fy-3gL" secondAttribute="bottom" constant="15" id="ovM-4u-8sD"/>
@@ -9030,6 +9040,7 @@
                     </view>
                     <connections>
                         <outlet property="lblCatTitle" destination="Fdc-Eh-4iz" id="Ufk-xp-bOH"/>
+                        <outlet property="lblEmptyData" destination="niF-vR-Qnh" id="Swd-e7-YOn"/>
                         <outlet property="tblStoreOffers" destination="xlP-JC-pzN" id="CPV-4D-pbl"/>
                         <outlet property="txtSearch" destination="2JS-1f-kJS" id="kDs-Kc-cAG"/>
                         <outlet property="viewCollection" destination="RBc-fy-3gL" id="L9G-MG-vck"/>
@@ -9820,59 +9831,11 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="3FV-L3-WyI">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="760-84-4KP">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="8LJ-Rh-fpN">
-            <size key="intrinsicContentSize" width="140" height="39.220703125"/>
-        </designable>
         <designable name="8q8-fB-Rts">
             <size key="intrinsicContentSize" width="108" height="20"/>
         </designable>
-        <designable name="9N6-Ql-K2O">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="B1h-5c-AYQ">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="Lc7-5L-AVC">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="RuJ-Nx-Bhr">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="TwW-BC-6yE">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
-        </designable>
-        <designable name="Ux5-QD-2GA">
-            <size key="intrinsicContentSize" width="290" height="39.220703125"/>
-        </designable>
-        <designable name="ZZG-nc-vAT">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="fXi-I4-7zb">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="ikk-Gb-DLa">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
-        <designable name="qpS-uv-sWP">
-            <size key="intrinsicContentSize" width="140" height="39.220703125"/>
-        </designable>
-        <designable name="sWx-0C-Gke">
-            <size key="intrinsicContentSize" width="135" height="39.220703125"/>
-        </designable>
         <designable name="sbt-ss-ICD">
             <size key="intrinsicContentSize" width="108" height="20"/>
-        </designable>
-        <designable name="sih-tI-mbD">
-            <size key="intrinsicContentSize" width="290" height="39.220703125"/>
-        </designable>
-        <designable name="v4D-gb-7Zh">
-            <size key="intrinsicContentSize" width="280" height="39.220703125"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>

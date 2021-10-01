@@ -195,7 +195,7 @@ class SignupViewController: UIViewController,ZSWTappableLabelTapDelegate {
             
             if (!btnIAgree.isSelected)
             {
-                UtilityClass.showAlert(Message: "Please accept Terms and Conditions and Privacy Policy".localized)
+                UtilityClass.showAlert(Message: "message_accept_terms_conditions".localized)
                 return
             }
 //            else if txtGender.text!.isBlank {

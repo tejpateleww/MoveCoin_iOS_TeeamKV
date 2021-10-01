@@ -13,7 +13,7 @@ class ChallengeTopFiveParticipant : NSObject, NSCoding{
     var nickName : String!
     var steps : String!
     var userId : String!
-
+    var rank : String!
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
@@ -25,6 +25,7 @@ class ChallengeTopFiveParticipant : NSObject, NSCoding{
         nickName = json["NickName"].stringValue
         steps = json["steps"].stringValue
         userId = json["user_id"].stringValue
+        rank = json["rank"].stringValue
 	}
 
 	/**

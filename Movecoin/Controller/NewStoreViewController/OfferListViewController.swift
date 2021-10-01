@@ -12,7 +12,8 @@ import SwiftyJSON
 class OfferListViewController: UIViewController {
     
     @IBOutlet weak var lblCatTitle: LocalizLabel!
- 
+    @IBOutlet weak var lblEmptyData: LocalizLabel!
+
     @IBOutlet weak var txtSearch: UITextField!
     lazy var search : String = ""
     lazy var isTyping: Bool = false
@@ -109,7 +110,7 @@ class OfferListViewController: UIViewController {
         
         
         lblCatTitle.font = UIFont.regular(ofSize: 26)
-        
+        lblEmptyData.font = UIFont.regular(ofSize: 26)
         tblStoreOffers.addSubview(refreshControl)
         
 //        self.lblMainVwTitle.text = "  Share the challenge  "
@@ -217,13 +218,26 @@ extension OfferListViewController {
         OffersWebserviceSubclass.offerList { json, status, res in
             self.refreshControl.endRefreshing()
 //            self.webserviceForCategoryList()
-            if status {
-                let response = OfferList(fromJson: json)
-                self.arrOffers = response.offers
-                self.filteredArray = self.arrOffers
-            } else {
-                UtilityClass.showAlertOfAPIResponse(param: res)
+            let response = OfferList(fromJson: json)
+            self.arrOffers = response.offers
+            self.filteredArray = self.arrOffers
+            self.lblEmptyData.isHidden = true
+            if(self.filteredArray?.count == 0)
+            {
+                self.lblEmptyData.isHidden = false
             }
+//            if status {
+//                let response = OfferList(fromJson: json)
+//                self.arrOffers = response.offers
+//                self.filteredArray = self.arrOffers
+//            } else {
+////                UtilityClass.showAlertOfAPIResponse(param: res)
+//                let response = OfferList(fromJson: json)
+//                self.arrOffers = response.offers
+//                self.filteredArray = self.arrOffers
+//
+//
+//            }
         }
     }
     

@@ -202,7 +202,7 @@ class MapViewController: UIViewController {
     }
     
     // ----------------------------------------------------
-    //MARK:- --------- IBAction Methods ---------
+    //MARK: - --------- IBAction Methods ---------
     // ----------------------------------------------------
     
     @IBAction func btnNavigateToUser(_ sender: Any) {
@@ -213,7 +213,7 @@ class MapViewController: UIViewController {
 }
 
 // ----------------------------------------------------
-//MARK:- --------- MapView Delegate Methods ---------
+//MARK: - --------- MapView Delegate Methods ---------
 // ----------------------------------------------------
 
 extension MapViewController : MKMapViewDelegate {
@@ -253,7 +253,7 @@ extension MapViewController : MKMapViewDelegate {
 }
 
 // ----------------------------------------------------
-//MARK:- --------- Webservice Methods ---------
+//MARK: - --------- Webservice Methods ---------
 // ----------------------------------------------------
 
 extension MapViewController {

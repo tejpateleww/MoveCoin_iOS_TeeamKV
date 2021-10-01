@@ -136,7 +136,7 @@ class ChallengeListViewController: UIViewController {
         
         self.bannerImage = ((Localize.currentLanguage() == Languages.Arabic.rawValue) ? UIImage(named: "imgBannerEmptyArabic") : UIImage(named: "imgBannerEmptyEnglish")) ?? UIImage()
 
-        self.imgBanner.image = self.bannerImage
+//        self.imgBanner.image = self.bannerImage
         self.imgBanner.contentMode = .scaleAspectFill
 
     }
@@ -148,7 +148,6 @@ class ChallengeListViewController: UIViewController {
             self.imgBanner.kf.indicatorType = .activity
             self.imgBanner.kf.setImage(with: url, placeholder: self.bannerImage)
         }
-//        self.lblMainVwTitleDesc?.text = dictChallenge?.sponserName ?? ""
     }
     func setEmptyData()
     {

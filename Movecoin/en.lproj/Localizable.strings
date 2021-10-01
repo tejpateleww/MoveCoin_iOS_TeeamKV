@@ -386,3 +386,5 @@
 "All" = "All";
 "title_stay_tuned" = "Stay tuned for new challenge..!";
 "title_be_ready" = "Be ready";
+"title_no_active_offer" = "No active offer";
+"message_accept_terms_conditions" = "Please accept Terms and Conditions and Privacy Policy";

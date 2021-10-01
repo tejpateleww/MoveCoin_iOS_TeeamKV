@@ -107,6 +107,10 @@ class VerificationViewController: UIViewController {
         btnSendAgian.setTitleColor(.gray, for: .normal)
         
         totalTime = 120
+        
+        
+        timer?.invalidate()
+        timer = nil
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
 
