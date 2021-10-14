@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var lblAverage: UILabel!
     @IBOutlet weak var lblAverageSteps: UILabel!
     @IBOutlet weak var viewBarDetails: BasicBarChart!
-    
+    var hideTotalRedeem = false
     
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
@@ -183,6 +183,12 @@ class ProfileViewController: UIViewController {
         
         lblTotalMoveCoins.text = profileModel?.data.totalCoins ?? "0"
         lblTotalSteps.text = profileModel?.data.totalStepsConverted ?? "0"
+        
+        hideTotalRedeem = true
+        if (profileModel?.totalReedem == "1")
+        {
+            hideTotalRedeem = false
+        }
     }
     
     @objc func btnChatTapped(){
@@ -192,6 +198,7 @@ class ProfileViewController: UIViewController {
     
     @objc func btnSettingTapped(){
         let destination = self.storyboard?.instantiateViewController(withIdentifier: SettingsViewController.className) as! SettingsViewController
+        destination.hideTotalRedeem = self.hideTotalRedeem
         self.parent?.navigationController?.pushViewController(destination, animated: true)
     }
     

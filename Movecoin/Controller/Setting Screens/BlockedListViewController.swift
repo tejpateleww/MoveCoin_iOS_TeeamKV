@@ -35,6 +35,8 @@ class BlockedListViewController: UIViewController {
         self.setUpView()
         webserviceForBlockedList()
         Analytics.logEvent("BlockedUsersScreen", parameters: nil)
+        
+        self.title = "Block List".localized
 
     }
     

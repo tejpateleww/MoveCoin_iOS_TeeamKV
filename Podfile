@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '12.0'
+ platform :ios, '13.0'
 
 target 'Movecoins' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -17,7 +17,8 @@ pod 'Alamofire', '4.8.2'
 pod 'Kingfisher'
 pod 'Socket.IO-Client-Swift'
 
-pod 'NVActivityIndicatorView', '4.8.0'
+#pod 'NVActivityIndicatorView', '4.8.0'
+pod 'ProgressHUD'
 pod 'IQKeyboardManagerSwift'
 pod 'SkyFloatingLabelTextField'
 

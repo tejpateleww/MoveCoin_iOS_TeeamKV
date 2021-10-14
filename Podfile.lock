@@ -110,15 +110,13 @@ PODS:
   - Kingfisher (5.14.1):
     - Kingfisher/Core (= 5.14.1)
   - Kingfisher/Core (5.14.1)
-  - lottie-ios (3.1.8)
+  - lottie-ios (3.2.2)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
     - nanopb/encode (= 2.30906.0)
   - nanopb/decode (2.30906.0)
   - nanopb/encode (2.30906.0)
-  - NVActivityIndicatorView (4.8.0):
-    - NVActivityIndicatorView/Presenter (= 4.8.0)
-  - NVActivityIndicatorView/Presenter (4.8.0)
+  - ProgressHUD (13.6)
   - PromisesObjC (1.2.12)
   - SkyFloatingLabelTextField (3.8.0)
   - Socket.IO-Client-Swift (15.2.0):
@@ -148,7 +146,7 @@ DEPENDENCIES:
   - KDCircularProgress
   - Kingfisher
   - lottie-ios
-  - NVActivityIndicatorView (= 4.8.0)
+  - ProgressHUD
   - SkyFloatingLabelTextField
   - Socket.IO-Client-Swift
   - SwiftyJSON
@@ -183,7 +181,7 @@ SPEC REPOS:
     - Kingfisher
     - lottie-ios
     - nanopb
-    - NVActivityIndicatorView
+    - ProgressHUD
     - PromisesObjC
     - SkyFloatingLabelTextField
     - Socket.IO-Client-Swift
@@ -216,9 +214,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
   Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
-  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  lottie-ios: a033bb989eea77d9f99cc4e2bbdd3788229761ad
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
-  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  ProgressHUD: 4bdaa0d2ddf676b23324b199f9facffb5c3a1620
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
@@ -228,6 +226,6 @@ SPEC CHECKSUMS:
   ZSWTaggedString: 1a6aab3143188634c1e5dfe9383ce754c1fb5fe2
   ZSWTappableLabel: 92f11d677bb395a8294df48482316c4981783ca0
 
-PODFILE CHECKSUM: ef1f986eb095ef93f5fdfdb6e41b7596be1c0acd
+PODFILE CHECKSUM: d1c51b6cfe10d5fec5c98b780d97ed03b2807e76
 
 COCOAPODS: 1.10.1

@@ -58,6 +58,7 @@ class AccountPrivacyViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         Analytics.logEvent("AccountPrivacyScreen", parameters: nil)
+        self.title = "Account Privacy".localized
 
     }
     

@@ -297,8 +297,7 @@ class OffersWebserviceSubclass
         WebService.shared.getMethod(url: URL.init(string: strURL)!, httpMethod: .get, completion: completion)
     }
     
-    class func redeemOffer( dictRedeemOffer : RedeemOffers  ,completion: @escaping CompletionResponse )
-    {
+    class func redeemOffer( dictRedeemOffer : RedeemOffers  ,completion: @escaping CompletionResponse ) {
         let  params = dictRedeemOffer.generatPostParams() as! [String : String]
         WebService.shared.requestMethod(api: .redeemOffers, httpMethod: .post, parameters: params, completion: completion)
     }

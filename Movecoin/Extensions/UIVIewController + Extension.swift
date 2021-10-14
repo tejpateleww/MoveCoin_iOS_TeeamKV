@@ -19,21 +19,21 @@ extension UIViewController : CLLocationManagerDelegate {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
     
-   
+    
     // ------------------------------------------------------------
     //MARK:- --------- NavigationBar & StatusBar Methods ---------
     // -------------------------------------------------------------
     
     
     func navigationBarSetUp(title: String = "", backroundColor: UIColor = .clear, foregroundColor : UIColor = .white, hidesBackButton: Bool = false) {
-
+        
         // For Hide/Show Back Button
         self.navigationItem.hidesBackButton = hidesBackButton
         
         // Title
         let textAttributes = [NSAttributedString.Key.foregroundColor: foregroundColor,
-                                                 NSAttributedString.Key.font: UIFont.regular(ofSize: 25)]
-                           self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+                              NSAttributedString.Key.font: UIFont.regular(ofSize: 25)]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
         self.navigationController?.navigationBar.topItem?.title = title.localized
         
         // Background
@@ -43,12 +43,12 @@ extension UIViewController : CLLocationManagerDelegate {
         self.navigationController?.navigationBar.backgroundColor = backroundColor
         
         self.navigationController?.navigationBar.semanticContentAttribute = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .forceRightToLeft : .forceLeftToRight
-
-//        statusBarSetUp(backColor: .clear)
+        
+        //        statusBarSetUp(backColor: .clear)
     }
     
     func statusBarSetUp(backColor: UIColor) {
-       if let view = UIApplication.shared.statusBarUIView {
+        if let view = UIApplication.shared.statusBarUIView {
             view.backgroundColor = backColor
         }
     }
@@ -91,7 +91,7 @@ extension UIViewController : CLLocationManagerDelegate {
             UpdateLocationClass.sharedLocationInstance.GeneralLocationManager.stopUpdatingLocation()
         }
     }
-  
+    
     
     // ----------------------------------------------------
     //MARK:- --------- Get UserData Method ---------
@@ -104,7 +104,7 @@ extension UIViewController : CLLocationManagerDelegate {
             UtilityClass.showAlert(Message: error.localizedDescription)
             return
         }
-//        print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
+        //        print("User Data :", SingletonClass.SharedInstance.userData?.toDictionary())
     }
     
     // ----------------------------------------------------
@@ -115,10 +115,20 @@ extension UIViewController : CLLocationManagerDelegate {
         view.layoutIfNeeded()
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
-//        let startColor = startColor.withAlphaComponent(0.15)
-//        let endColor = endColor.withAlphaComponent(0)
+        //        let startColor = startColor.withAlphaComponent(0.15)
+        //        let endColor = endColor.withAlphaComponent(0)
         gradient.colors = [startColor.cgColor, endColor.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
         view.layoutIfNeeded()
+    }
+    
+    
+    var isModal: Bool {
+        
+        let presentingIsModal = presentingViewController != nil
+        let presentingIsNavigation = navigationController?.presentingViewController?.presentedViewController == navigationController
+        let presentingIsTabBar = tabBarController?.presentingViewController is UITabBarController
+        
+        return presentingIsModal || presentingIsNavigation || presentingIsTabBar
     }
 }

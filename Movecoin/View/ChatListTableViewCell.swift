@@ -45,6 +45,7 @@ class ChatListTableViewCell: UITableViewCell {
         lblId.font = UIFont.regular(ofSize: 12)
         btnBadge.titleLabel?.font = UIFont.regular(ofSize: 10)
         btnBadge.cornerRadius = btnBadge.frame.height / 2
+        btnBadge.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 3, right: 0)
         let sendImg = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? (UIImage(named: "arrow-right")?.imageFlippedForRightToLeftLayoutDirection()) : (UIImage(named: "arrow-right"))
         btnArrow.setImage(sendImg, for: .normal)
     }

@@ -215,8 +215,8 @@
 /* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "X13-jz-S8v"; */
 "X13-jz-S8v.placeholder" = "Confirm Password";
 
-/* Class = "UILabel"; text = "Today's"; ObjectID = "X1Z-UN-1s3"; */
-"X1Z-UN-1s3.text" = "Today's";
+/* Class = "UILabel"; text = "Today's Steps"; ObjectID = "X1Z-UN-1s3"; */
+"X1Z-UN-1s3.text" = "Today's Steps";
 
 /* Class = "UIButton"; normalTitle = "0"; ObjectID = "XI1-dR-fct"; */
 "XI1-dR-fct.normalTitle" = "0";

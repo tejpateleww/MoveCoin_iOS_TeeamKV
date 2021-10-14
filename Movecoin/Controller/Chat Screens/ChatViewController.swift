@@ -44,7 +44,7 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
         self.bottomView.isHidden = true
         
         txtView.delegate = self
-        txtView.minHeight = 35.0
+        txtView.minHeight = 42.0
         txtView.maxHeight = 120.0
         txtView.placeholder = "Message".localized
         txtView.undoManager?.removeAllActions()
@@ -57,6 +57,9 @@ class ChatViewController: UIViewController ,UINavigationControllerDelegate, Grow
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
         webserviceForChatHistory(isLoading: true)
+        
+        txtView.textContainerInset.top = 10
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

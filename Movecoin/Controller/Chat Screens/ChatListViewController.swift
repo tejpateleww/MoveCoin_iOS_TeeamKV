@@ -71,6 +71,7 @@ class ChatListViewController: UIViewController {
     @objc func btnNewChatTapped(){
         let destination = self.storyboard?.instantiateViewController(withIdentifier: FriendsViewController.className) as! FriendsViewController
         destination.friendListType = FriendsList.NewChat
+        destination.isFromTransferCoins = true
         self.navigationController?.pushViewController(destination, animated: true)
     }
 }

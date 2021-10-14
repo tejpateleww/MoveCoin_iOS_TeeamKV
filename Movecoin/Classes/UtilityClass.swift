@@ -8,7 +8,8 @@
 
 import Foundation
 import CoreImage
-import NVActivityIndicatorView
+//import NVActivityIndicatorView
+import ProgressHUD
 
 // ----------------------------------------------------
 //MARK:- --------- Get Class Name Method ---------
@@ -138,6 +139,23 @@ class UtilityClass : NSObject {
         AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
+    class func showAlertWithCompletion(title:String?,viewController : UIViewController?, Message:String, ButtonTitle:String, Completion:@escaping (() -> ())) {
+        
+        let alertController = UIAlertController(title: title?.localized , message:Message.localized, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title: ButtonTitle.localized, style: .default) { (UIAlertAction) in
+            Completion()
+        }
+        alertController.addAction(OKAction)
+        if(viewController != nil)
+        {
+            viewController?.present(alertController, animated: true, completion: nil)
+        }
+        else
+        {
+            AppDelegateShared.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     class func showAlertWithTwoButtonCompletion(title:String, Message:String, ButtonTitle1:String, ButtonTitle2:String, Completion:@escaping ((Int) -> ())) {
         
         let alertController = UIAlertController(title: title.localized , message:Message.localized, preferredStyle: .alert)
@@ -190,17 +208,26 @@ class UtilityClass : NSObject {
         }
     }
     
+    class func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+      return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
     // ----------------------------------------------------
     //MARK:- --------- ActivityIndicator Methods ---------
     // ----------------------------------------------------
     
     class func showHUD() {
-        let activityData = ActivityData()
-        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+//        let activityData = ActivityData()
+//        NVActivityIndicatorPresenter.sharedInstance.startAnimating(activityData)
+//        ProgressHUD.show()
+        ProgressHUD.animationType = .circleStrokeSpin
+//        SVProgressHUD.setDefaultMaskType(defaultMaskType)
+        ProgressHUD.show("", interaction: false)
     }
     
     class func hideHUD() {
-        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+//        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+        ProgressHUD.dismiss()
     }
     
     // ----------------------------------------------------

@@ -2563,11 +2563,11 @@ SOFTWARE.
 
 
 
-## NVActivityIndicatorView
+## ProgressHUD
 
-The MIT License (MIT)
+MIT License
 
-Copyright (c) 2016 Vinh Nguyen
+Copyright (c) 2021 Related Code
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -15,6 +15,7 @@ class WalletTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var darkOverlayView: UIView?
 
     var walletDetail: WalletData? {
         didSet{
@@ -27,14 +28,22 @@ class WalletTableViewCell: UITableViewCell {
                     self.lblDate.text = dateStr
                 }
                 
+                self.darkOverlayView?.isHidden = true
+                if(detail.isRead == "1")
+                {
+                    self.darkOverlayView?.isHidden = false
+                }
+                
                 let type = CoinsTransferType.init(rawValue: detail.type)
                 switch type {
                 case .Send, .Redeem:
                     self.lblAmount.text = "-" + detail.coins
                     self.imgIcon.image = UIImage(named: "logo-green-small")
+                    self.darkOverlayView?.isHidden = false
                 case .Receive:
                     self.lblAmount.text = "+" + detail.coins
                     self.imgIcon.image = UIImage(named: "logo-green-small")
+                    self.darkOverlayView?.isHidden = false
                 case .RedeemOffer:
                     self.lblAmount.text = "-" + detail.coins
                     self.imgIcon.image = UIImage(named: "iconBasket")

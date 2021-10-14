@@ -181,7 +181,7 @@ class TabViewController: UIViewController {
 
         if(selectedIndex == 0 || selectedIndex == 1)
         {
-            self.navigationController?.navigationBar.isHidden = true
+//            self.navigationController?.navigationBar.isHidden = true
         }
         // Set button background color
         button.isSelected = !button.isSelected

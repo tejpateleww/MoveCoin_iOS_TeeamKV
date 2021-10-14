@@ -46,6 +46,7 @@ class FriendsViewController: UIViewController {
         webserviceForFriendsList(isLoading: true)
         lblNoDataFound.isHidden = true
         Analytics.logEvent("CurrentFriendsScreen", parameters: nil)
+        self.title = "Friends".localized
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,10 +109,10 @@ extension FriendsViewController : UITableViewDelegate, UITableViewDataSource, Fr
         cell.listType = friendListType
         cell.cellDelegate = self
         cell.friendDetail = isTyping ? searchArray[indexPath.row] : friendsArray[indexPath.row]
-//        if(isFromTransferCoins)
-//        {
+        if(isFromTransferCoins)
+        {
             cell.btnBlockUnBlock?.isHidden = true
-//        }
+        }
         return cell
     }
     

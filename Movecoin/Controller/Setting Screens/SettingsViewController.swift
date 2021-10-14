@@ -19,11 +19,11 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tblSettings: UITableView!
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lblVersion: UILabel!
-    
+    var hideTotalRedeem = false
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var settingsArray = ["Notification","Account Privacy","Edit Profile","Purchase History" ,"Total Redeem","Block List","Help/Support","Terms and Conditions","Privacy Policy","Language","Rate this app"]
+    var settingsArray = [SettingsOptions.Notification,SettingsOptions.AccountPrivacy,SettingsOptions.EditProfile,SettingsOptions.AccountPrivacy ,SettingsOptions.TotalRedeem,SettingsOptions.BlockList,SettingsOptions.Help,SettingsOptions.TermsAndConditions,SettingsOptions.PrivacyPolicy,SettingsOptions.Language,SettingsOptions.RateApp]
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
@@ -34,16 +34,19 @@ class SettingsViewController: UIViewController {
         self.setUpView()
         self.setupFont()
         Analytics.logEvent("SettingsScreen", parameters: nil)
-
+        self.title = "Settings".localized
+        
+        if(hideTotalRedeem)
+        {
+            settingsArray = settingsArray.filter{$0.rawValue != "Total Redeem"}
+            self.tblSettings.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(title: "Settings")
+        self.navigationBarSetUp(title: "Settings".localized)
         self.statusBarSetUp(backColor: .clear)
-//        self.navigationController?.navigationBar.isHidden = false
-
-
     }
     
     // ----------------------------------------------------
@@ -183,51 +186,36 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className) as! SettingsTableViewCell
         cell.selectionStyle = .none
-        cell.lblTitle.text = settingsArray[indexPath.row].localized
+        cell.lblTitle.text = (settingsArray[indexPath.row]).rawValue.localized
         reloadLocalizationEffect(cell: cell)
-
-        if let option = SettingsOptions(rawValue: indexPath.row) {
-            switch option {
-                
-            case .Notification :
-                cell.switchToggle.isHidden = false
-                cell.btnArrow.isHidden = true
-                cell.segmentControl.isHidden = true
-                
-                cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
-                cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
-                cell.switchToggle.backgroundColor = .gray
-                if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
-                    cell.switchToggle.isOn = notificationStatus == "0" ? false : true
-                }
-            case .Language:
-                cell.switchToggle.isHidden = true
-                cell.btnArrow.isHidden = true
-                cell.segmentControl.isHidden = false
-                
-                cell.segmentControl.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
-                cell.segmentControl.addTarget(self, action: #selector(languageChanged), for: UIControl.Event.valueChanged)
-            default :
-                cell.switchToggle.isHidden = true
-                cell.btnArrow.isHidden = false
-                cell.segmentControl.isHidden = true
+        
+        let option = settingsArray[indexPath.row]
+        switch option {
+        case .Notification :
+            cell.switchToggle.isHidden = false
+            cell.btnArrow.isHidden = true
+            cell.segmentControl.isHidden = true
+            
+            cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
+            cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
+            cell.switchToggle.backgroundColor = .gray
+            if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
+                cell.switchToggle.isOn = notificationStatus == "0" ? false : true
             }
+        case .Language:
+            cell.switchToggle.isHidden = true
+            cell.btnArrow.isHidden = true
+            cell.segmentControl.isHidden = false
+            
+            cell.segmentControl.selectedSegmentIndex = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? 0 : 1
+            cell.segmentControl.addTarget(self, action: #selector(languageChanged), for: UIControl.Event.valueChanged)
+        default :
+            cell.switchToggle.isHidden = true
+            cell.btnArrow.isHidden = false
+            cell.segmentControl.isHidden = true
         }
-        /*        if indexPath.row > 0 {
-         cell.switchToggle.isHidden = true
-         cell.btnArrow.isHidden = false
-         cell.segmentControl.isHidden = true
-         } else{
-         cell.switchToggle.addTarget(self, action: #selector(switchChanged), for: UIControl.Event.valueChanged)
-         cell.switchToggle.layer.cornerRadius = cell.switchToggle.frame.height / 2
-         cell.switchToggle.backgroundColor = .gray
-         cell.switchToggle.isHidden = false
-         cell.btnArrow.isHidden = true
-         cell.segmentControl.isHidden = true
-         if let notificationStatus = SingletonClass.SharedInstance.userData?.notification{
-         cell.switchToggle.isOn = notificationStatus == "0" ? false : true
-         }
-         } */
+        
+        
         
         return cell
     }
@@ -235,56 +223,45 @@ extension SettingsViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        if let option = SettingsOptions(rawValue: indexPath.row) {
-            switch option {
-                
-            case .AccountPrivacy:
-                let controller = storyboard.instantiateViewController(withIdentifier: AccountPrivacyViewController.className) as! AccountPrivacyViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .EditProfile:
-                let controller = storyboard.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-                //            case .ChangePassword:
-                //                let controller = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.className) as! ChangePasswordViewController
-                //                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .PurchaseHistory:
-                let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .TotalRedeem:
-                let controller = storyboard.instantiateViewController(withIdentifier: TotalRedeemVC.className) as! TotalRedeemVC
-                self.navigationController?.pushViewController(controller, animated: true)
-            case .BlockList:
-                let controller = storyboard.instantiateViewController(withIdentifier: BlockedListViewController.className) as! BlockedListViewController
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .Help:
-                let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
-                controller.documentType = DocumentType(rawValue: "Help/Support")
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .TermsAndConditions:
-                let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
-                controller.documentType = DocumentType(rawValue: "Terms and Conditions")
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .PrivacyPolicy:
-                let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
-                controller.documentType = DocumentType(rawValue: "Privacy Policy")
-                self.navigationController?.pushViewController(controller, animated: true)
-                
-            case .RateApp:
-                self.rateApp()
-//                SKStoreReviewController.requestReview()
-                
-            default :
-                break
-                
-            }
+        let option = settingsArray[indexPath.row] as? SettingsOptions
+//        print(option)
+        switch option {
+        case .AccountPrivacy:
+            let controller = storyboard.instantiateViewController(withIdentifier: AccountPrivacyViewController.className) as! AccountPrivacyViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .EditProfile:
+            let controller = storyboard.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .PurchaseHistory:
+            let controller = storyboard.instantiateViewController(withIdentifier: PurchaseHistoryViewController.className) as! PurchaseHistoryViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .TotalRedeem:
+            let controller = storyboard.instantiateViewController(withIdentifier: TotalRedeemVC.className) as! TotalRedeemVC
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .BlockList:
+            let controller = storyboard.instantiateViewController(withIdentifier: BlockedListViewController.className) as! BlockedListViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .Help:
+            let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
+            controller.documentType = DocumentType(rawValue: "Help/Support")
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .TermsAndConditions:
+            let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
+            controller.documentType = DocumentType(rawValue: "Terms and Conditions")
+            self.navigationController?.pushViewController(controller, animated: true)
+        case .PrivacyPolicy:
+            let controller = storyboard.instantiateViewController(withIdentifier: WebViewController.className) as! WebViewController
+            controller.documentType = DocumentType(rawValue: "Privacy Policy")
+            self.navigationController?.pushViewController(controller, animated: true)
+            
+        case .RateApp:
+            self.rateApp()
+            
+        default :
+            break
+            
         }
+        
     }
 }
 

@@ -259,11 +259,12 @@ extension FindFriendsViewController : UITableViewDelegate, UITableViewDataSource
         return 40
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
-//        headerView.backgroundColor = UIColor.white
-//        return headerView
-//    }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+       if let headerView = view as? UITableViewHeaderFooterView {
+           headerView.contentView.backgroundColor = .white
+           headerView.textLabel?.textColor = ThemeBlueColor
+       }
+   }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FindFriendTableViewCell.className) as! FindFriendTableViewCell

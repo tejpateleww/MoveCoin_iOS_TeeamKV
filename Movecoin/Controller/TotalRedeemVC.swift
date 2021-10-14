@@ -32,6 +32,8 @@ class TotalRedeemVC: UIViewController {
         super.viewDidLoad()
         setupRefresh()
         webserviceCallForRedeemList()
+        
+        self.title = "Total Redeem".localized
     }
     
     override func viewDidAppear(_ animated: Bool) {

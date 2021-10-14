@@ -367,8 +367,8 @@
 "message_confirmation_buy_offer" = "Are you sure to buy the offer?";
 "message_Share_The_Challenge" = "Share the challenge!";
 "message_Go_Ahead" = "Go Ahead";
-"message_claim_it_now" = "CLAIM IT NOW";
-"message_offer_details" = "OFFER DETAILS";
+"message_claim_it_now" = "CLAIM IT NOW :";
+"message_offer_details" = "OFFER DETAILS :";
 "title_copy_code"= "Copy Coupon";
 "message_go_to_store" = "Go to the store and Use the Coupon";
 "title_go_to_store" = "Go To The Store";

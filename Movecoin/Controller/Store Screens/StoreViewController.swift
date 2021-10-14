@@ -43,6 +43,7 @@ class StoreViewController: UIViewController {
 
         self.setUpView()
         self.setupFont()
+        self.title = "Offers For Today".localized
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -18,11 +18,11 @@ public class BadgeBarButtonItem: UIBarButtonItem
         }
     }
 
-    private var label: UILabel
+    private var label: InsetLabel
 
     required public init?(coder aDecoder: NSCoder)
     {
-        let label = UILabel()
+        let label = InsetLabel()
         label.backgroundColor = .darkGray
         label.alpha = 0.9
         label.layer.cornerRadius = 9
@@ -42,7 +42,7 @@ public class BadgeBarButtonItem: UIBarButtonItem
     
     override init(){
 //        super.init()
-        let label = UILabel()
+        let label = InsetLabel()
         label.backgroundColor = ThemeBlueColor
         label.alpha = 0.9
         label.layer.cornerRadius = 9
@@ -87,5 +87,10 @@ public class BadgeBarButtonItem: UIBarButtonItem
 
     deinit {
         self.removeObserver(self, forKeyPath: "view")
+    }
+}
+class InsetLabel: UILabel {
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 3, right: 0)))
     }
 }

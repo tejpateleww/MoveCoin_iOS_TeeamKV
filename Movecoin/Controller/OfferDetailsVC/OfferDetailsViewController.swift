@@ -11,41 +11,36 @@ import UIKit
 class OfferDetailsViewController: UIViewController {
 
     @IBOutlet var imgProduct: UIImageView?
-    
     @IBOutlet var lblClaimNowTitle: LocalizLabel?
     @IBOutlet var lblClaimDetails: UILabel?
-    
     @IBOutlet var lblOfferDetailsTitle: UILabel?
     @IBOutlet var lblOfferDetails: UILabel?
-    
     @IBOutlet var btnCouponTitle: ThemeButton?
     @IBOutlet var btnCouponCopy: UIButton?
-    
     @IBOutlet var txtViewLink: UITextView?
     @IBOutlet var lblTitleGoToStore: UILabel?
-    
     @IBOutlet var lblTitleOfProduct: UILabel?
-    
     @IBOutlet var btnContinueTitle: UIButton?
-    
     @IBOutlet var viewOfferDetail: UIView?
-    
     @IBOutlet var stackViewOfferDetail: UIStackView?
     @IBOutlet var viewClaimDetails: UIView?
-    
     @IBOutlet var stackViewClaimDetails: UIStackView?
-    
+    @IBOutlet var scrollview: UIScrollView?
+
+    var walletDetail : WalletData!
     var offerDetail : OfferDetailsModel!
     var imgArray : [String] = []
-    var productID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.webserviceForOfferDetails(productId:  productID ?? "0")//self.productID ??
+        scrollview?.isHidden = true
+        self.webserviceForOfferDetails(productId: walletDetail.offerID ?? "0", id: walletDetail.iD ?? "0")
         setText()
-    
+        self.setupFont()
+
+        self.title = "title_bought_product".localized
     }
     
     
@@ -68,11 +63,11 @@ class OfferDetailsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.setupFont()
-        self.navigationBarSetUp(title: "title_bought_product".localized, backroundColor: .clear, hidesBackButton: false)
         self.statusBarSetUp(backColor: .clear)
         self.lblOfferDetails?.isHidden = false
         self.lblClaimDetails?.isHidden = false
+        self.navigationBarSetUp(title: "title_bought_product".localized, backroundColor: .clear, hidesBackButton: false)
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -157,18 +152,21 @@ class OfferDetailsViewController: UIViewController {
 
 extension OfferDetailsViewController {
     
-    func webserviceForOfferDetails(productId : String = ""){
+    func webserviceForOfferDetails(productId : String = "", id : String = ""){
         
         UtilityClass.showHUD()
         
-        let productsURL = NetworkEnvironment.baseURL + ApiKey.offerDetails.rawValue + "/" + productId
+        let productsURL = NetworkEnvironment.baseURL + ApiKey.offerDetails.rawValue + "/" + productId + "/" + id
         OffersWebserviceSubclass.getOfferDetails(strURL: productsURL){ (json, status, res) in
-            UtilityClass.hideHUD()
-            
             if status {
                 self.offerDetail = OfferDetailsModel(fromJson: json)
                 self.setupOfferData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.scrollview?.isHidden = false
+                    UtilityClass.hideHUD()
+                }
             } else {
+                UtilityClass.hideHUD()
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }

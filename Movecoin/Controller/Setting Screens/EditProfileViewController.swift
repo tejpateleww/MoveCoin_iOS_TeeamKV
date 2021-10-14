@@ -28,6 +28,9 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var txtHeight: ThemeTextfield!
     @IBOutlet weak var txtWeight: ThemeTextfield!
     
+    var profileUpdated : (() -> ()) = {  }
+
+    
     // ----------------------------------------------------
     //MARK:- --------- Variables ---------
     // ----------------------------------------------------
@@ -56,12 +59,19 @@ class EditProfileViewController: UIViewController {
         self.updateMylocation()
         setupProfileData()
         Analytics.logEvent("EditProfileScreen", parameters: nil)
+        self.title = "Edit Profile".localized
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(title: "Edit Profile")
+        self.navigationBarSetUp(title: "Edit Profile".localized)
+
     }
     
     // ----------------------------------------------------
@@ -146,7 +156,10 @@ class EditProfileViewController: UIViewController {
             let fullName = try txtFullName.validatedText(validationType: ValidatorType.fullname)
             let email = try txtEmail.validatedText(validationType: ValidatorType.email)
             let mobileNumber = try txtMobile.validatedText(validationType: ValidatorType.mobileNumber)
-        
+            let height = try txtHeight.validatedText(validationType: ValidatorType.requiredField(field: txtHeight.placeholder!))
+            let weight = try txtWeight.validatedText(validationType: ValidatorType.requiredField(field: txtWeight.placeholder!))
+
+
             let editModel = EditProfileModel()
             editModel.UserID = SingletonClass.SharedInstance.userData?.iD ?? ""
             editModel.NickName = nickname
@@ -156,8 +169,8 @@ class EditProfileViewController: UIViewController {
             if let gender = selectedGender, !gender.isEmpty {
                 editModel.Gender = (selectedGender == "Male") ? "0" : "1"
             }
-            editModel.Height = txtHeight.text?.replacingOccurrences(of: " cm".localized, with: "") ?? ""
-            editModel.Weight = txtWeight.text?.replacingOccurrences(of: " kg".localized, with: "") ?? ""
+            editModel.Height = height.replacingOccurrences(of: " cm".localized, with: "")
+            editModel.Weight = weight.replacingOccurrences(of: " kg".localized, with: "")
             if isRemovePhoto {
                 editModel.remove_photo = 1
             }
@@ -181,7 +194,9 @@ class EditProfileViewController: UIViewController {
             
             webserviceCallForEditProfile(editProfileDic: editModel)
         } catch(let error) {
-            UtilityClass.showAlert(Message: (error as! ValidationError).message)
+            UtilityClass.showAlertWithCompletion(title: "", viewController: self, Message: (error as! ValidationError).message, ButtonTitle: "OK".localized) {
+                
+            }//(Message: (error as! ValidationError).message)
         }
     }
     
@@ -378,8 +393,16 @@ extension EditProfileViewController {
                 }
                 self.getUserData()
                 let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
-                UtilityClass.showAlertWithCompletion(title: "", Message: msg, ButtonTitle: "OK".localized, Completion: {
-                    self.navigationController?.popViewController(animated: true)
+                UtilityClass.showAlertWithCompletion(title: "",viewController: self ,Message: msg, ButtonTitle: "OK".localized, Completion: {
+                    self.profileUpdated()
+                    if(self.isModal)
+                    {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                    else
+                    {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 })
             }
             else{

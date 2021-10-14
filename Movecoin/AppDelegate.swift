@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        FirebaseApp.configure()
+
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }
@@ -75,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         setupApplication()
         setUpNavigationBar()
-        locationPermission()
+//        locationPermission()
         
         configureNotification()
         //        Fabric.with([Crashlytics.self])
@@ -128,15 +129,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func heightChangedHandler(query: HKObserverQuery!, completionHandler: HKObserverQueryCompletionHandler!, error: NSError!) {
         
-      
         let healthStore = HKHealthStore()
 
-        let now = Date()//UtilityClass.getTodayFromServer()
+        let now = UtilityClass.getTodayFromServer()
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         
         let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-
 
         let sample = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
@@ -191,10 +190,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             return
         }
         var strParam = String()
-//        let deviceName = UIDevice.current.name
         var uid = "uuid"
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-//            print(uuid)
             uid = uuid
         }
         
@@ -205,14 +202,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UserWebserviceSubclass.getAPI(strURL: urlString) { (json, status, res) in
             print(status)
             
-            if status{
-//                DispatchQueue.main.async {
-//                    self.lblTotalSteps.text = json["steps"].stringValue
-                    //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
-//                }
-            }else{
-//                UtilityClass.showAlertOfAPIResponse(param: res)
-            }
         }
     }
     
@@ -225,30 +214,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         ] as! [HKObjectType]
         
         // 2. Set the types you want to write to HK Store
-//        _ = [
-//            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount),
-//        ] as! [HKSampleType]
-        
-        
+
         
         // 3. If the store is not available (for instance, iPad) return an error and don't go on.
         if !HKHealthStore.isHealthDataAvailable() {
             let error = NSError(domain: "any.domain.com", code: 2, userInfo: [NSLocalizedDescriptionKey:"HealthKit is not available in this Device"])
             
-            if( completion != nil ) {
+            if(completion != nil) {
                 completion(false, error)
             }
             return;
         }
         
         // 4.  Request HealthKit authorization
-        
         healthKitStore.requestAuthorization(toShare: nil, read: Set(healthKitTypesToRead)) { (success, error) in
             if( completion != nil ) {
                 
-                
                 DispatchQueue.main.async {
-//                    self.startObservingHeightChanges()
+
                 }
                 completion(success,error as NSError?)
                 
@@ -264,7 +247,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         print("App is in Background mode")
         SocketIOManager.shared.establishConnection()
         SocketIOManager.shared.socket.on(clientEvent: .connect) { (data, ack) in
-            
             print ("socket connected")
         }
         print(SocketIOManager.shared.isSocketOn)
@@ -577,42 +559,21 @@ extension AppDelegate {
     
     func configureNotification() {
         
-        FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
-        InstanceID.instanceID().instanceID { (result, error) in
+        Messaging.messaging().token { token, error in
             if let error = error {
                 print("Error fetching remote instance ID: \(error)")
-            } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
-                SingletonClass.SharedInstance.DeviceToken = result.token
+            } else if let result = token {
+                print("Remote instance ID token: \(result )")
+                SingletonClass.SharedInstance.DeviceToken = result
                 UserDefaults.standard.set(SingletonClass.SharedInstance.DeviceToken, forKey: UserDefaultKeys.kDeviceToken)
             }
         }
         notificationCenter.delegate = self
-        notificationCenter.requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+//        notificationCenter.requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+//        UIApplication.shared.registerForRemoteNotifications()
         
-        // Push Notification
-        UIApplication.shared.registerForRemoteNotifications()
-        
-        //Local Notification for everyday at 9 am
-        // TODO: Uncomment for Local Notification
-        
-        /*        let content = UNMutableNotificationContent()
-         content.title = kAppName.localized
-         content.body = "Don't forget to walk everyday and earn ".localized + kAppName.localized
-         
-         var dateComponents = DateComponents()
-         dateComponents.hour = 9
-         dateComponents.minute = 00
-         //        let triggerInputForEverydayRepeat = Calendar.current.dateComponents([.day], from: Date())
-         let trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponents, repeats: true)
-         let request = UNNotificationRequest(identifier: kLocalNotificationIdentifier, content: content, trigger: trigger)
-         let unc = UNUserNotificationCenter.current()
-         unc.add(request, withCompletionHandler: { (error) in
-         print(error?.localizedDescription ?? "")
-         })
-         */
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -913,7 +874,9 @@ extension AppDelegate {
                         }
                     }
                 }
-                
+                else if key.lowercased() == "challange_ended".lowercased() {
+                    completionHandler([.alert, .sound])
+                }
 //                completionHandler([.alert, .sound])
             }
 //            completionHandler([.alert, .sound])

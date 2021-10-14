@@ -12,7 +12,7 @@ class profileDataResponseModel : NSObject, NSCoding{
     var data : profileDataDataModel!
     var message : String!
     var status : Bool!
-
+    var totalReedem : String!
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
@@ -27,6 +27,7 @@ class profileDataResponseModel : NSObject, NSCoding{
         let msg = (Localize.currentLanguage() == Languages.English.rawValue) ? json["message"].stringValue : json["arabic_message"].stringValue
         message = msg
         status = json["status"].boolValue
+        totalReedem = json["total_reedem"].stringValue
 	}
 
 	/**

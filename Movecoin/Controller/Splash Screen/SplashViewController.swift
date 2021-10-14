@@ -34,7 +34,7 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialSetup()
+//        self.initialSetup()
         if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
             if loggedIn as! Bool {
                 getUserData()
@@ -77,7 +77,8 @@ class SplashViewController: UIViewController {
     }
     
     @objc func moveToViewController() {
-        
+        self.initialSetup()
+
         if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
             
             if loggedIn as! Bool {
@@ -128,7 +129,7 @@ class SplashViewController: UIViewController {
         // For Request Permission
 //        let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
 //        if image == img {
-            userPermission.permissions = [.camera, .motion, .healthKit]
+        userPermission.permissions = [.camera, .motion, .healthKit, .locationPermission,.notification]
             for type in userPermission.permissions {
                 userPermission.requestForPermission(type: type)
             }

@@ -34,6 +34,7 @@ class CompletedChallengeListTableViewCell: UITableViewCell {
                 if let url = URL(string: productsURL) {
                     self.imgProduct.kf.indicatorType = .activity
                     self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+                    self.imgProduct.contentMode = .scaleAspectFill
                 }
                 self.lblNumberOfParticipants.text = "\(data.totalParticipant ?? 0) " + "title_participants".localized
                 self.lblWinner.text = data.nickName
@@ -54,6 +55,10 @@ class CompletedChallengeListTableViewCell: UITableViewCell {
         self.lblNumberOfParticipants.font = UIFont.regular(ofSize: 13)
         self.lblWinner.font = UIFont.regular(ofSize: 16)
         
+        self.lblChallengeEndsOn.textColor = UIColor.white.withAlphaComponent(0.5)
+        self.lblNameOfChallenge.textColor = UIColor.white.withAlphaComponent(0.5)
+        self.lblNumberOfParticipants.textColor = UIColor.white.withAlphaComponent(0.5)
+        self.lblWinner.textColor = UIColor.white.withAlphaComponent(0.5)
         
         self.lblChallengeEndsOn.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         self.lblNameOfChallenge.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left

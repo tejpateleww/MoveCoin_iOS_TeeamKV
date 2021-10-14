@@ -71,36 +71,40 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        webserviceForOfferDetails(productId: productID ?? "0")
+//        DispatchQueue.main.async {
+            self.webserviceForOfferDetails(productId: self.productID ?? "0")
+//        }
         self.setUpView()
         self.setupFont()
         collectionView.semanticContentAttribute = .unspecified
-
-        
+        setGradientColorOfView(view: viewShadow, startColor: UIColor.black.withAlphaComponent(0.15), endColor: UIColor.clear.withAlphaComponent(0))
+        vwContainerButton?.layer.cornerRadius = (vwContainerButton?.frame.height ?? 0)/2
+        vwContainerButton?.layer.masksToBounds = true
+        vwContainerButton?.backgroundColor = .white
+        self.statusBarSetUp(backColor: .clear)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.title = "Title_offer_details".localized
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
 
     }
     
-    override func viewDidLayoutSubviews() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationBarSetUp(title: "Title_offer_details".localized, backroundColor: .clear,foregroundColor: .white, hidesBackButton: false)
+
+    }
+    
+ /*   override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setGradientColorOfView(view: viewShadow, startColor: UIColor.black.withAlphaComponent(0.15), endColor: UIColor.clear.withAlphaComponent(0))
         vwContainerButton?.layer.cornerRadius = (vwContainerButton?.frame.height ?? 0)/2
         vwContainerButton?.layer.masksToBounds = true
         vwContainerButton?.backgroundColor = .white
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationBarSetUp(title: "message_offer_details".localized, backroundColor: .clear,foregroundColor: .white, hidesBackButton: false)
-        self.statusBarSetUp(backColor: .clear)
-        
-    }
+    }*/
     
     
     // ----------------------------------------------------
@@ -118,6 +122,10 @@ class ProductDetailViewController: UIViewController {
         viewShadow.isUserInteractionEnabled = false
         lblTitleHowToClaim.text = "title_how_to_claim".localized
         lblTitleOfferDetails.text = "message_offer_details".localized
+        
+        lblTitleHowToClaim.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+        lblTitleOfferDetails.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
+
         btnGoToStore?.setTitle("title_go_to_store".localized, for: .normal)
         switch viewType     {
         case .History:
@@ -210,15 +218,15 @@ class ProductDetailViewController: UIViewController {
     func validateCoins() -> Bool
     {
         
-        var availableCoins = 0
-        var productCoins = 0
+        var availableCoins = 0.0
+        var productCoins = 0.0
         
         if let coins = userData?.coins {
-            availableCoins = Int(coins) ?? 0
+            availableCoins = Double(coins) ?? 0.0
         }
         
         if let coins = self.offerDetail.offerDetails.coins {
-            productCoins = Int(coins) ?? 0
+            productCoins = Double(coins) ?? 0.0
         }
         
         if availableCoins < productCoins {
@@ -261,7 +269,9 @@ class ProductDetailViewController: UIViewController {
         let redeemOffers = RedeemOffers()
         redeemOffers.too_id = productID ?? ""
         redeemOffers.user_id = id
+        UtilityClass.showHUD()
         OffersWebserviceSubclass.redeemOffer(dictRedeemOffer: redeemOffers) { json, status, res in
+            UtilityClass.hideHUD()
             if(status)
             {
                 self.navigateToBalanceScreen()

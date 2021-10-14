@@ -34,7 +34,7 @@ class ChallengeListViewController: UIViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(webserviceForChallenge), for: .valueChanged)
-        refreshControl.tintColor = .blue
+        refreshControl.tintColor = .white
         return refreshControl
     }()
     let cellIdentifier = "CompletedChallengeListTableViewCell"
@@ -84,7 +84,7 @@ class ChallengeListViewController: UIViewController {
     
     @IBAction func btnVwHeaderAction(_ sender: Any?) {
         
-        
+    
         let releaseDate = Date(timeIntervalSince1970: Double(dictChallenge?.remainingTimetamp ?? 0))
         if releaseDate < Date()
         {
@@ -106,10 +106,13 @@ class ChallengeListViewController: UIViewController {
             }
             if(self.dictChallenge?.id != "")
             {
-                UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "message_joinChallenge", ButtonTitle1: "OK".localized, ButtonTitle2: "Cancel".localized) { index in
-                    if(index == 0)
-                    {
-                        self.webserviceForJoinChallenge()
+                if(validation())
+                {
+                    UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "message_joinChallenge", ButtonTitle1: "OK".localized, ButtonTitle2: "Cancel".localized) { index in
+                        if(index == 0)
+                        {
+                            self.webserviceForJoinChallenge()
+                        }
                     }
                 }
             }
@@ -118,6 +121,25 @@ class ChallengeListViewController: UIViewController {
                 UtilityClass.showAlert(Message: "message_no_challenge_Active".localized)
             }
         }
+    }
+    
+    func validation() -> Bool
+    {
+        if let phoneNumber = SingletonClass.SharedInstance.userData?.phone, let nickname = SingletonClass.SharedInstance.userData?.nickName {
+            if phoneNumber.isEmpty || nickname.isBlank{
+                UtilityClass.showAlertWithTwoButtonCompletion(title: kAppName, Message: "For better performance please complete your profile", ButtonTitle1: "OK", ButtonTitle2: "Not now") { index in
+                    if index == 0 {
+                        let destination = self.storyboard?.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
+                        self.parent?.navigationController?.pushViewController(destination, animated: true)
+                        
+                    } else if index == 1 {
+                        print("")
+                    }
+                }
+                return false
+            }
+        }
+        return true
     }
     
     func PrepareView(){
@@ -216,6 +238,9 @@ extension ChallengeListViewController {
             }
         }
     }
+    
+    
+    
         
     func webserviceForCompletedChallengeList(){
         
@@ -238,11 +263,33 @@ extension ChallengeListViewController {
         ChallengWebserviceSubclass.joinChallenge(dictJoinChallenge: requestModel) { (json, status, res) in
             self.refreshControl.endRefreshing()
             if status {
-//                self.responseModel = ChallengeMain(fromJson: json)
-//                self.dictChallenge = self.responseModel?.challenge
                 self.webserviceForChallenge()
-                self.navigateToNextScreen()
+                
+                self.webserviceforUpdateStepsForChallenge(stepsCount: SingletonClass.SharedInstance.todaysStepCount ?? "0", challengeID:  self.dictChallenge?.id ?? "")
             } else {
+                UtilityClass.showAlertOfAPIResponse(param: res)
+            }
+        }
+    }
+    
+    func webserviceforUpdateStepsForChallenge(stepsCount : String, challengeID : String){
+        
+        guard let id = SingletonClass.SharedInstance.userData?.iD else {
+            return
+        }
+        var strParam = String()
+   
+        strParam = id + "/\(stepsCount)/\(challengeID)"
+        
+        guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
+        
+        ChallengWebserviceSubclass.updateStepsForChallenge(strURL: urlString) { (json, status, res) in
+            print(status)
+            
+            if status{
+                self.navigateToNextScreen()
+
+            }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
@@ -253,6 +300,7 @@ extension ChallengeListViewController {
         let controller = self.storyboard?.instantiateViewController(withIdentifier: LeaderboardViewController.className) as! LeaderboardViewController
         controller.challengeID = dictChallenge?.id
         controller.dictChallenge = self.dictChallenge
+        
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

@@ -93,20 +93,21 @@ enum PurchaseDetailViewType  {
     case Purchase
     case History
 }
-enum SettingsOptions : Int {
-    case Notification = 0
-    case AccountPrivacy
-    case EditProfile
+
+enum SettingsOptions : String {
+    case Notification = "Notification"
+    case AccountPrivacy = "Account Privacy"
+    case EditProfile = "Edit Profile"
 //    case ChangePassword
-    case PurchaseHistory
-    case TotalRedeem
-    case BlockList
+    case PurchaseHistory = "Purchase History"
+    case TotalRedeem = "Total Redeem"
+    case BlockList = "Block List"
 //    case AddCard
-    case Help
-    case TermsAndConditions
-    case PrivacyPolicy
-    case Language
-    case RateApp
+    case Help = "Help/Support"
+    case TermsAndConditions = "Terms and Conditions"
+    case PrivacyPolicy = "Privacy Policy"
+    case Language = "Language"
+    case RateApp = "Rate this app"
 }
 
 enum DocumentType : String {

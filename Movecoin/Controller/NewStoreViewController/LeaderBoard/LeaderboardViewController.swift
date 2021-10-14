@@ -25,7 +25,8 @@ class LeaderboardViewController: UIViewController {
     
     @IBOutlet weak var viewSteps: UIView!
     @IBOutlet weak var lblSteps: UILabel!
-    
+    @IBOutlet weak var viewTime: UIView?
+
     @IBOutlet weak var tblLeaderboard: UITableView!
     @IBOutlet weak var tblLeaderboardHeight: NSLayoutConstraint?
     
@@ -62,10 +63,13 @@ class LeaderboardViewController: UIViewController {
         super.viewWillAppear(true)
         DispatchQueue.main.async {
             self.stackViewConatiner?.semanticContentAttribute = .forceLeftToRight
+            self.viewTime?.semanticContentAttribute = .forceLeftToRight
             self.VwTopMain.semanticContentAttribute = .forceLeftToRight
             self.navigationController?.navigationBar.isHidden = false
             self.navigationController?.navigationBar.tintColor = .white
-                self.navigationBarSetUp(title: "Leaderboard".localized, backroundColor: .clear,foregroundColor: .white, hidesBackButton: false)
+            self.navigationBarSetUp(title: "Leaderboard".localized, backroundColor: .clear,foregroundColor: .white, hidesBackButton: false)
+            let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.webServiceCallForChallengeDetails))
+            self.navigationItem.rightBarButtonItems = [refresh]
             self.statusBarSetUp(backColor: .clear)
         }
     }
@@ -114,7 +118,8 @@ class LeaderboardViewController: UIViewController {
 //        self.VwTopTimer.semanticContentAttribute = .forceLeftToRight
 //        self.viewMainContainer?.semanticContentAttribute = .forceRightToLeft
 
-        self.topViewHeight.constant = (UIScreen.main.bounds.size.height / 3.5)
+        self.topViewHeight.constant = 210//(UIScreen.main.bounds.size.height / 3.25)
+        self.imgBanner?.contentMode = .scaleAspectFill
         self.tblLeaderboard.separatorStyle = .none
 //        self.tblLeaderboard.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
 //        self.tblLeaderboard.reloadData()
@@ -133,9 +138,9 @@ class LeaderboardViewController: UIViewController {
     
     func setupFont (){
         self.lblTime.font = UIFont.regular(ofSize: 15)
-        self.lblRank.font = UIFont.regular(ofSize: 25)
-        self.lblNumberOfParticipants.font = UIFont.regular(ofSize: 25)
-        self.lblSteps.font = UIFont.regular(ofSize: 25)
+        self.lblRank.font = UIFont.regular(ofSize: 23)
+        self.lblNumberOfParticipants.font = UIFont.regular(ofSize: 23)
+        self.lblSteps.font = UIFont.regular(ofSize: 23)
     }
     
     fileprivate func setData()
@@ -143,7 +148,6 @@ class LeaderboardViewController: UIViewController {
         self.lblRank.text = "\(dictChallengeDetails?.yourRank ?? 0)"
         self.lblNumberOfParticipants.text = "\(dictChallengeDetails?.totalParticipant ?? 0)"
         self.lblSteps.text = "\(dictChallengeDetails?.yourSteps ?? 0)"
-//        self.lblTime.text = dictChallenge?.remainingTime
         releaseDate = Date(timeIntervalSince1970: Double(dictChallenge?.remainingTimetamp ?? 0))
         let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.prizeImage ?? "")
         if let url = URL(string: productsURL) {
@@ -151,9 +155,6 @@ class LeaderboardViewController: UIViewController {
             self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
         }
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-
-        
-//        tblLeaderboard.reloadData()
     }
     
     @objc func updateTime() {
@@ -235,10 +236,9 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
 
 extension LeaderboardViewController
 {
-    func webServiceCallForChallengeDetails()
+    @objc func webServiceCallForChallengeDetails()
     {
         viewtableview.alpha = 0
-        
         let offerURL = NetworkEnvironment.baseURL + ApiKey.challengeDetails.rawValue + "/" + (SingletonClass.SharedInstance.userData?.iD ?? "0") + "/" + (challengeID ?? "0")
         ChallengWebserviceSubclass.getChallengeDetails(strURL: offerURL) { json, status, res in
             if status {

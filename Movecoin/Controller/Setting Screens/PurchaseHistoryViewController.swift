@@ -34,12 +34,12 @@ class PurchaseHistoryViewController: UIViewController {
         self.setUpView()
         webserviceForPurchasehistory()
         Analytics.logEvent("PurchaseHistoryScreen", parameters: nil)
-
+        self.title = "Purchase History".localized
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationBarSetUp(title: "Purchase History")
+        self.navigationBarSetUp(title: "Purchase History".localized)
     }
     
     // ----------------------------------------------------

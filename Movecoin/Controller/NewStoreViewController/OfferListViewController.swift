@@ -11,7 +11,7 @@ import Kingfisher
 import SwiftyJSON
 class OfferListViewController: UIViewController {
     
-    @IBOutlet weak var lblCatTitle: LocalizLabel!
+    @IBOutlet weak var lblCatTitle: LocalizLabel?
     @IBOutlet weak var lblEmptyData: LocalizLabel!
 
     @IBOutlet weak var txtSearch: UITextField!
@@ -51,7 +51,7 @@ class OfferListViewController: UIViewController {
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(webserviceForOfferList), for: .valueChanged)
-        refreshControl.tintColor = .blue
+        refreshControl.tintColor = .white
         return refreshControl
     }()
     
@@ -62,28 +62,28 @@ class OfferListViewController: UIViewController {
 //        self.clnCategory.allowsMultipleSelection = true
 
         self.PrepareView()
-        
+
+        self.title = "Offers".localized
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.isHidden = true
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         txtSearch.placeholder = "Search".localized
-        // Navigation & Status bar setup
-        self.navigationBarSetUp(title: "", backroundColor: .clear, hidesBackButton: false)
         self.statusBarSetUp(backColor: .clear)
-//        self.lblCatTitle.textAlignment = .left
-//        self.tblStoreOffers.semanticContentAttribute = .forceLeftToRight
-//        self.clnCategory?.scrollToItem(at: IndexPath(row: 0, section: 0),at: .left,animated: false)
         self.viewCollection?.semanticContentAttribute = .forceLeftToRight
         self.webserviceForOfferList()
-        self.lblCatTitle.text = "Offers".localized
+        self.lblCatTitle?.text = "Offers".localized
         self.view.layoutIfNeeded()
+        self.navigationBarSetUp(title: "Offers".localized, backroundColor: .clear,foregroundColor: .white, hidesBackButton: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
@@ -109,7 +109,7 @@ class OfferListViewController: UIViewController {
 //        self.scrollView.showsHorizontalScrollIndicator = false
         
         
-        lblCatTitle.font = UIFont.regular(ofSize: 26)
+        lblCatTitle?.font = UIFont.regular(ofSize: 26)
         lblEmptyData.font = UIFont.regular(ofSize: 26)
         tblStoreOffers.addSubview(refreshControl)
         
@@ -226,18 +226,6 @@ extension OfferListViewController {
             {
                 self.lblEmptyData.isHidden = false
             }
-//            if status {
-//                let response = OfferList(fromJson: json)
-//                self.arrOffers = response.offers
-//                self.filteredArray = self.arrOffers
-//            } else {
-////                UtilityClass.showAlertOfAPIResponse(param: res)
-//                let response = OfferList(fromJson: json)
-//                self.arrOffers = response.offers
-//                self.filteredArray = self.arrOffers
-//
-//
-//            }
         }
     }
     

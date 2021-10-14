@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreGraphics
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || targetEnvironment(macCatalyst)
 import UIKit
 
 /**
@@ -67,6 +67,13 @@ public class BundleImageProvider: AnimationImageProvider {
         /// First search for the image in bundle.
         imagePath = bundle.path(forResource: asset.name, ofType: nil)
       }
+    }
+    
+    if imagePath == nil {
+        guard let image = UIImage(named: asset.name, in: bundle, compatibleWith: nil) else {
+            return nil
+        }
+        return image.cgImage
     }
     
     guard let foundPath = imagePath, let image = UIImage(contentsOfFile: foundPath) else {

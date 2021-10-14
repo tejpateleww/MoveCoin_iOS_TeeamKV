@@ -160,7 +160,7 @@ class WalletViewController: UIViewController {
         let loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let offerDetailsController = loginStoryboard.instantiateViewController(withIdentifier: OfferDetailsViewController.className) as? OfferDetailsViewController ?? OfferDetailsViewController()
         let walletDetail = walletHistory[indexPath.row]
-        offerDetailsController.productID = walletDetail.offerID
+        offerDetailsController.walletDetail = walletDetail
         self.navigationController?.pushViewController(offerDetailsController, animated: true)
     }
 }

@@ -43,6 +43,7 @@ class TotalStepsViewController: UIViewController {
         Analytics.logEvent("TotalStepsScreen", parameters: nil)
         self.setUpView()
         webserviceforStepsHistory(refresh: true)
+        self.title = "Total Steps".localized
         
     }
     

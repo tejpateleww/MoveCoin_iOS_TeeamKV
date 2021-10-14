@@ -412,8 +412,8 @@
 "message_confirmation_buy_offer"="هل أنت متأكد من شراء هذا العرض ؟";
 "message_Share_The_Challenge" = "شاركنا التحدي";
 "message_Go_Ahead" = "إنطلق";
-"message_claim_it_now" = "المطالبة الآن";
-"message_offer_details" = "تفاصيل العرض";
+"message_claim_it_now" = "المطالبة الآن :";
+"message_offer_details" = "تفاصيل العرض :";
 "title_copy_code"= "إنسخ الكود";
 "message_go_to_store" = "الذهاب الى المتجر واستخدام الكود";
 "title_Continue" = "إستمر";

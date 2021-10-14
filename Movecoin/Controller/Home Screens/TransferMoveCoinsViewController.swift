@@ -45,7 +45,7 @@ class TransferMoveCoinsViewController: UIViewController {
         }
         
         Analytics.logEvent("TransferMoveCoinsScreen", parameters: nil)
-
+        self.title = "Sending Coins".localized
     }
     
     override func viewDidAppear(_ animated: Bool) {
