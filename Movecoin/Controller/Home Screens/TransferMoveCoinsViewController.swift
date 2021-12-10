@@ -78,15 +78,15 @@ class TransferMoveCoinsViewController: UIViewController {
     // ----------------------------------------------------
     
     @IBAction func btnSendTapped(_ sender: Any) {
-        let amount = Int(txtAmount.text ?? "0") ?? 0
-        if txtAmount.text!.isBlank {
+        let amount = Int(txtAmount.text?.replacingOccurrences(of: ",", with: "") ?? "0") ?? 0
+        if amount == 0 {
             UtilityClass.showAlert(Message: "Please enter amount".localized)
            
         } else if (amount > 0){
             let requestModel = TransferCoinsModel()
             requestModel.SenderID = SingletonClass.SharedInstance.userData?.iD ?? ""
             requestModel.ReceiverID = receiverID ?? ""
-            requestModel.Coins = txtAmount.text ?? ""
+            requestModel.Coins = "\(amount)"
             requestModel.Message = txtMessage.text ?? ""
             webserviceForTransferCoins(dic: requestModel)
            
@@ -103,6 +103,41 @@ class TransferMoveCoinsViewController: UIViewController {
 extension TransferMoveCoinsViewController : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         txtAmount.placeholder = ""
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+         // Uses the number format corresponding to your Locale
+         let formatter = NumberFormatter()
+         formatter.numberStyle = .decimal
+        formatter.locale = Locale(identifier: "en_US")
+
+         formatter.maximumFractionDigits = 0
+
+
+        // Uses the grouping separator corresponding to your Locale
+        // e.g. "," in the US, a space in France, and so on
+        if let groupingSeparator = formatter.groupingSeparator {
+
+            if string == groupingSeparator {
+                return true
+            }
+
+
+            if let textWithoutGroupingSeparator = textField.text?.replacingOccurrences(of: groupingSeparator, with: "") {
+                var totalTextWithoutGroupingSeparators = textWithoutGroupingSeparator + string
+                if string.isEmpty { // pressed Backspace key
+                    totalTextWithoutGroupingSeparators.removeLast()
+                }
+                if let numberWithoutGroupingSeparator = formatter.number(from: totalTextWithoutGroupingSeparators),
+                    let formattedText = formatter.string(from: numberWithoutGroupingSeparator) {
+
+                    textField.text = formattedText
+                    return false
+                }
+            }
+        }
+        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

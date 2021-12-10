@@ -38,10 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             window?.overrideUserInterfaceStyle = .light
         }
         
-        UIFont.familyNames.forEach({ familyName in
-            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-            print(familyName, fontNames)
-        })
+//        UIFont.familyNames.forEach({ familyName in
+//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+//            print(familyName, fontNames)
+//        })
         
 //        #if DEBUG
 //        //                return .developmentBaseUrl
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         setUpNavigationBar()
 //        locationPermission()
         
-        configureNotification()
+//        configureNotification()
         //        Fabric.with([Crashlytics.self])
         
         _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default, options: .mixWithOthers)
@@ -762,15 +762,15 @@ extension AppDelegate {
                     completionHandler([.alert, .sound])
                 }
             } else if key == "friend_request" {
-                loadFriendsRequest()
+//                loadFriendsRequest()
                 completionHandler([.alert, .sound])
                 
             } else if key == "coins_transfer" {
-                loadWallet()
+//                loadWallet()
                 completionHandler([.alert, .sound])
                 
             } else if key == "friend_request_accept" {
-                acceptFriedRequestNotificationHandle()
+//                acceptFriedRequestNotificationHandle()
                 completionHandler([.alert, .sound])
                 
             } else if key == "friend_request_reject" {

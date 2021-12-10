@@ -12,14 +12,14 @@ typealias NetworkRouterCompletion = ((Data?,[String:Any]?, Bool) -> ())
 
 enum NetworkEnvironment: String {
     
-//    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
-//    case imageURL = "https://www.movecoins.net/admin/"
-//    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
+    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
+    case imageURL = "https://www.movecoins.net/admin/"
+    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
     
     
-    case developmentBaseUrl = "http://movecoins.net/dev/api/"
-    case imageURL = "http://movecoins.net/dev/"
-    case galleryURL = "http://movecoins.net/dev/assets/images/products/"
+//    case developmentBaseUrl = "http://movecoins.net/dev/api/"
+//    case imageURL = "http://movecoins.net/dev/"
+//    case galleryURL = "http://movecoins.net/dev/assets/images/products/"
     
     static var baseURL : String{
         return NetworkEnvironment.environment.rawValue
@@ -56,9 +56,9 @@ enum NetworkEnvironment: String {
         //Set environment Here
         
 //        #if DEBUG
-        return .developmentBaseUrl
+//        return .developmentBaseUrl
 //        #else
-//        return .liveBaseUrl //.liveBaseUrl //
+        return .liveBaseUrl //.liveBaseUrl //
 //        #endif
     }
     
@@ -69,7 +69,7 @@ enum NetworkEnvironment: String {
 
 struct SocketApiKeys {
     
-    static let kSocketBaseURL = "https://www.movecoins.net:8080/"
+    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
     //    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
     static let kConnectUser = "connect_user"
     static let kUpdateUserLocation = "update_user_location" 

@@ -100,9 +100,9 @@ class SignupViewController: UIViewController,ZSWTappableLabelTapDelegate {
         
         let iagreetext = "title_agree_1".localized
         let terms = "Terms and Conditions".localized
-        let privacyPolicy = "Privacy Policy".localized
-        let and = "and".localized
-        let string = NSLocalizedString("\(iagreetext) <link type='tos'>\(terms)</link> \(and) <link type='privacy'>\(privacyPolicy)</link>", comment: "")
+//        let privacyPolicy = "Privacy Policy".localized
+//        let and = "and".localized
+        let string = NSLocalizedString("\(iagreetext) <link type='tos'>\(terms)</link>", comment: "")
         lblTermsAndConditions.attributedText = try? ZSWTaggedString(string: string).attributedString(with: options)
         
         lblTermsAndConditions.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left

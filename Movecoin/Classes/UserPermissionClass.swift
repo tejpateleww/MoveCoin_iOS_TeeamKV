@@ -102,6 +102,7 @@ open class UserPermission : NSObject {
             center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
                 DispatchQueue.main.async {
                     print("Notification Permsssion : ",granted, error?.localizedDescription ?? "error")
+                    AppDelegateShared.configureNotification()
                 }
             }
         } else {

@@ -12,7 +12,7 @@ class RewardViaInviteVC: UIViewController {
 
     @IBOutlet weak var lblMsg: LocalizLabel!{
         didSet{
-            self.lblMsg.font = FontBook.Bold.of(size: 21)
+            self.lblMsg.font = FontBook.SemiBold.of(size: 21)
             self.lblMsg.text = "Your reward is in process".localized
         }
     }

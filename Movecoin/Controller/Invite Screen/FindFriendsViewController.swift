@@ -430,14 +430,14 @@ extension FindFriendsViewController {
                 // For displaying star image
                 let friendCount = UserDefaults.standard.integer(forKey: UserDefaultKeys.kFriendRequestCount)
                 if friendCount < self.responseModel?.friendRequest ?? 0 {
-                    let parent = self.parent as! InviteViewController
-                    if !parent.btnFriends.isSpringLoaded {
-                         parent.imgStar.isHidden = false
-                         parent.imgStar.tintColor = .white
+                    let parent = self.parent as? InviteViewController
+                    if !(parent?.btnFriends.isSpringLoaded ?? false) {
+                         parent?.imgStar.isHidden = false
+                         parent?.imgStar.tintColor = .white
                     }
                 } else {
-                    let parent = self.parent as! InviteViewController
-                    parent.imgStar.isHidden = true
+                    let parent = self.parent as? InviteViewController
+                    parent?.imgStar.isHidden = true
                 }
                 UserDefaults.standard.set(self.responseModel?.friendRequest, forKey: UserDefaultKeys.kFriendRequestCount)
                 

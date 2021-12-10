@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
-    var settingsArray = [SettingsOptions.Notification,SettingsOptions.AccountPrivacy,SettingsOptions.EditProfile,SettingsOptions.AccountPrivacy ,SettingsOptions.TotalRedeem,SettingsOptions.BlockList,SettingsOptions.Help,SettingsOptions.TermsAndConditions,SettingsOptions.PrivacyPolicy,SettingsOptions.Language,SettingsOptions.RateApp]
+    var settingsArray = [SettingsOptions.Notification,SettingsOptions.AccountPrivacy,SettingsOptions.EditProfile,SettingsOptions.TotalRedeem,SettingsOptions.PurchaseHistory,SettingsOptions.BlockList,SettingsOptions.Help,SettingsOptions.TermsAndConditions,SettingsOptions.Language,SettingsOptions.RateApp]
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------

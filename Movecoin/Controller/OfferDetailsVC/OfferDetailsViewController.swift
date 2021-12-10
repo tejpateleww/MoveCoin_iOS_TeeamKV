@@ -40,7 +40,7 @@ class OfferDetailsViewController: UIViewController {
         setText()
         self.setupFont()
 
-        self.title = "title_bought_product".localized
+        self.title = "".localized
     }
     
     
@@ -58,7 +58,6 @@ class OfferDetailsViewController: UIViewController {
         self.lblOfferDetailsTitle?.text = "message_offer_details".localized
         self.btnCouponCopy?.setTitle("title_copy_code".localized, for: .normal)
         self.lblTitleGoToStore?.text = "message_go_to_store".localized
-        self.btnContinueTitle?.setTitle("title_Continue".localized, for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,7 +65,7 @@ class OfferDetailsViewController: UIViewController {
         self.statusBarSetUp(backColor: .clear)
         self.lblOfferDetails?.isHidden = false
         self.lblClaimDetails?.isHidden = false
-        self.navigationBarSetUp(title: "title_bought_product".localized, backroundColor: .clear, hidesBackButton: false)
+        self.navigationBarSetUp(title: "".localized, backroundColor: .clear, hidesBackButton: false)
 
     }
     
@@ -130,6 +129,8 @@ class OfferDetailsViewController: UIViewController {
         self.txtViewLink?.text = offerDetail.offerDetails.link
         
         self.btnCouponTitle?.setTitle(offerDetail.offerDetails.couponCode, for: .normal)
+        self.btnContinueTitle?.setTitle("message_go_to_store".localized, for: .normal)
+
     }
 
     

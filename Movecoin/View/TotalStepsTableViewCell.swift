@@ -20,7 +20,7 @@ class TotalStepsTableViewCell: UITableViewCell {
                 if let data = stepModel {
                     
                     self.lblDate1.isHidden = true
-                    self.lblSteps.text = data.steps
+                    self.lblSteps.text = Int(data.steps)?.setNumberFormat()
                     
                     if let previousStr = data.previousDate, !previousStr.isEmpty {
                         let previousDateStr = UtilityClass.changeDateFormateFrom(dateString: data.previousDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate)

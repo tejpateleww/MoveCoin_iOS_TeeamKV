@@ -36,7 +36,7 @@ class CompletedChallengeListTableViewCell: UITableViewCell {
                     self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
                     self.imgProduct.contentMode = .scaleAspectFill
                 }
-                self.lblNumberOfParticipants.text = "\(data.totalParticipant ?? 0) " + "title_participants".localized
+                self.lblNumberOfParticipants.text = "\((data.totalParticipant ?? 0).setNumberFormat()) " + "title_participants".localized
                 self.lblWinner.text = data.nickName
             }
         }

@@ -20,7 +20,7 @@ class PurchaseHistoryTableViewCell: UITableViewCell {
     var orderDetail: History? {
         didSet{
             if let detail = orderDetail {
-                self.lblPrice.text = detail.coins
+                self.lblPrice.text = Float(detail.coins)?.setNumberFormat()
                 self.lblTitle.text = detail.name.capitalizingFirstLetter()
                 self.lblPaymentStatus.textColor = .white
                 if let dateStr = UtilityClass.changeDateFormateFrom(dateString: detail.createdAt, fromFormat: DateFomateKeys.offerPurchased, withFormat: DateFomateKeys.displayDate) {

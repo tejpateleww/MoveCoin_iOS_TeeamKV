@@ -37,15 +37,15 @@ class WalletTableViewCell: UITableViewCell {
                 let type = CoinsTransferType.init(rawValue: detail.type)
                 switch type {
                 case .Send, .Redeem:
-                    self.lblAmount.text = "-" + detail.coins
+                    self.lblAmount.text = "-" + (Float(detail.coins ?? "0.0")?.setNumberFormat() ?? "")
                     self.imgIcon.image = UIImage(named: "logo-green-small")
                     self.darkOverlayView?.isHidden = false
                 case .Receive:
-                    self.lblAmount.text = "+" + detail.coins
+                    self.lblAmount.text = "+" + (Float(detail.coins ?? "0.0")?.setNumberFormat() ?? "")
                     self.imgIcon.image = UIImage(named: "logo-green-small")
                     self.darkOverlayView?.isHidden = false
                 case .RedeemOffer:
-                    self.lblAmount.text = "-" + detail.coins
+                    self.lblAmount.text = "-" + (Float(detail.coins ?? "0.0")?.setNumberFormat() ?? "")
                     self.imgIcon.image = UIImage(named: "iconBasket")
                 case .none:
                     return

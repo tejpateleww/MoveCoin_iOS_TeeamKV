@@ -123,7 +123,7 @@ extension TotalRedeemVC : UITableViewDelegate , UITableViewDataSource{
 class RedeemCell : UITableViewCell{
     
     @IBOutlet weak var lblDate: LocalizLabel!{didSet{ lblDate.font = FontBook.Regular.of(size: 18.0) }  }
-    @IBOutlet weak var lblAmount: UILabel!{didSet{ lblAmount.font = FontBook.Bold.of(size: 16.0) }  }
+    @IBOutlet weak var lblAmount: UILabel!{didSet{ lblAmount.font = FontBook.SemiBold.of(size: 16.0) }  }
     
     override class func awakeFromNib() {
         super.awakeFromNib()

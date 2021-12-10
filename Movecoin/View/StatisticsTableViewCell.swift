@@ -21,7 +21,7 @@ class StatisticsTableViewCell: UITableViewCell {
                 
                 if let dateStr = UtilityClass.changeDateFormateFrom(dateString: data.createdDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate){
                     
-                    self.lblSteps.text = data.steps + " steps. ".localized + dateStr
+                    self.lblSteps.text = (Int(data.steps)?.setNumberFormat() ?? "0.0")  + " steps. ".localized + dateStr
                     
                     if let previousDate = UtilityClass.changeDateFormateFrom(dateString: data.previousDate, fromFormat: DateFomateKeys.api, withFormat: DateFomateKeys.displayDate) {
                         
@@ -39,10 +39,10 @@ class StatisticsTableViewCell: UITableViewCell {
                                 dateFormatter.dateFormat = DateFomateKeys.displayDate
                                 let lastweek = dateFormatter.string(from: lastWeekDate)
                                
-                                self.lblSteps.text = data.steps + " steps. ".localized + lastweek + " to ".localized + dateStr
+                                self.lblSteps.text = (Int(data.steps)?.setNumberFormat() ?? "0.0") + " steps. ".localized + lastweek + " to ".localized + dateStr
         
                             } else {
-                                self.lblSteps.text = data.steps + " steps. ".localized + previousDate + " to ".localized + dateStr
+                                self.lblSteps.text = (Int(data.steps)?.setNumberFormat() ?? "0.0") + " steps. ".localized + previousDate + " to ".localized + dateStr
                             }
                         }
                     }

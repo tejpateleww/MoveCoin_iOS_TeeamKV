@@ -33,6 +33,11 @@ class LeaderboardViewController: UIViewController {
     @IBOutlet weak var viewtableview: UIView!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var viewMainContainer: UIView?
+    
+    @IBOutlet weak var lblRankTitle: UILabel!
+    @IBOutlet weak var lblStepsTitle: UILabel!
+    @IBOutlet weak var lblNumberOfParticipantsTitle: UILabel!
+
 
     var dictChallengeDetails : ChallengeDetails?
     {
@@ -74,23 +79,12 @@ class LeaderboardViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        // Navigation & Status bar setup
-    
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.navigationBar.tintColor = .white
 
     }
-    
+
     func PrepareView(){
         self.setupUI()
         self.setupFont()
@@ -112,95 +106,68 @@ class LeaderboardViewController: UIViewController {
         self.VwTopMain.layer.masksToBounds = true
         self.VwTopMain.layer.maskedCorners = [.layerMinXMinYCorner , .layerMinXMaxYCorner , .layerMaxXMaxYCorner , .layerMaxXMinYCorner]
         self.VwTopMain.layer.cornerRadius = 30.0
-//        self.VwTopMain.semanticContentAttribute = .forceLeftToRight
-//        self.tblLeaderboard.semanticContentAttribute = .forceLeftToRight
-
-//        self.VwTopTimer.semanticContentAttribute = .forceLeftToRight
-//        self.viewMainContainer?.semanticContentAttribute = .forceRightToLeft
-
         self.topViewHeight.constant = 210//(UIScreen.main.bounds.size.height / 3.25)
         self.imgBanner?.contentMode = .scaleAspectFill
         self.tblLeaderboard.separatorStyle = .none
-//        self.tblLeaderboard.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-//        self.tblLeaderboard.reloadData()
-        
         self.scrollView?.showsVerticalScrollIndicator = false
         self.scrollView?.showsHorizontalScrollIndicator = false
-        
-        //self.imgRank.image = self.imgRank.image?.withRenderingMode(.alwaysTemplate)
-        //self.imgRank.tintColor = UIColor.white
-        //self.imgTotalSteps.image = self.imgTotalSteps.image?.withRenderingMode(.alwaysTemplate)
-        //self.imgTotalSteps.tintColor = UIColor.white
-        //self.imgSteps.image = self.imgSteps.image?.withRenderingMode(.alwaysTemplate)
-        //self.imgSteps.tintColor = UIColor.white
-        
     }
     
     func setupFont (){
         self.lblTime.font = UIFont.regular(ofSize: 15)
-        self.lblRank.font = UIFont.regular(ofSize: 23)
-        self.lblNumberOfParticipants.font = UIFont.regular(ofSize: 23)
-        self.lblSteps.font = UIFont.regular(ofSize: 23)
+        self.lblRank.font = UIFont.regular(ofSize: 20)
+        self.lblNumberOfParticipants.font = UIFont.regular(ofSize: 20)
+        self.lblSteps.font = UIFont.regular(ofSize: 20)
+        
+        self.lblRankTitle.font = UIFont.regular(ofSize: 15)
+        self.lblStepsTitle.font = UIFont.regular(ofSize: 15)
+        self.lblNumberOfParticipantsTitle.font = UIFont.regular(ofSize: 15)
     }
     
     fileprivate func setData()
     {
-        self.lblRank.text = "\(dictChallengeDetails?.yourRank ?? 0)"
-        self.lblNumberOfParticipants.text = "\(dictChallengeDetails?.totalParticipant ?? 0)"
-        self.lblSteps.text = "\(dictChallengeDetails?.yourSteps ?? 0)"
+        self.lblRank.text = (dictChallengeDetails?.yourRank ?? 0).setNumberFormat()
+        self.lblNumberOfParticipants.text = (dictChallengeDetails?.totalParticipant ?? 0).setNumberFormat()
+        self.lblSteps.text = (dictChallengeDetails?.yourSteps ?? 0).setNumberFormat()
         releaseDate = Date(timeIntervalSince1970: Double(dictChallenge?.remainingTimetamp ?? 0))
         let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.prizeImage ?? "")
         if let url = URL(string: productsURL) {
             self.imgBanner?.kf.indicatorType = .activity
-            self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+//            self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+            self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"), options: [
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ], progressBlock: { receivedSize, totalSize in
+                print("The total size is \(totalSize)")
+            }, completionHandler: { result in
+                switch result {
+                   case .success(let value):
+                       print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                   case .failure(let error):
+                       print("Job failed: \(error.localizedDescription)")
+                   }
+            })
         }
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
     
     @objc func updateTime() {
-
         let currentDate = Date()
         let calendar = Calendar.current
-
         let diffDateComponents = calendar.dateComponents([.day, .hour, .minute, .second], from: currentDate, to: releaseDate! as Date)
-
         let hours = ((diffDateComponents.day ?? 0) * 24) + (diffDateComponents.hour ?? 0)
         let countdown = "\(hours) H : \(diffDateComponents.minute ?? 0) M : \(diffDateComponents.second ?? 0) S"
-//        print(Double(dictChallenge?.remainingTimeStamp ?? 0).asString(style: .full))        // 2 hours, 46 minutes, 40 seconds
-
-        
-//        print(countdown)
-        if((diffDateComponents.second ?? 0) < 0)
-        {
+        if((diffDateComponents.second ?? 0) < 0){
             countdownTimer?.invalidate()
             countdownTimer = nil
             return
         }
         self.lblTime.text = "\(countdown)"
-
     }
-    
-    
-    
+
     func RegisterNIB(){
         self.tblLeaderboard.register(UINib(nibName: LeaderboardCell.className, bundle: nil), forCellReuseIdentifier: LeaderboardCell.className)
     }
-//
-//    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?){
-//        if(keyPath == "contentSize"){
-//            if let info = object, let tblObj = info as? UITableView{
-//                if tblObj == self.tblLeaderboard{
-//                    self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
-////                    print(self.tblLeaderboardHeight?.constant)
-//                    if self.tblLeaderboard.contentSize.height >= 100 {
-//                        self.tblLeaderboardHeight?.constant = self.tblLeaderboard.contentSize.height
-//                    } else {
-//                        self.tblLeaderboardHeight?.constant = 100
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
 
 // ----------------------------------------------------
@@ -219,8 +186,8 @@ extension LeaderboardViewController : UITableViewDelegate, UITableViewDataSource
         cell.viewContainer.semanticContentAttribute = .forceLeftToRight
         let obj = dictChallengeDetails?.topFiveParticipant[indexPath.row]
         cell.lblName.text = obj?.nickName
-        cell.lblStep.text = obj?.steps
-        cell.lblRank.text = obj?.rank//"\(indexPath.row + 1)"
+        cell.lblStep.text = Int(obj?.steps ?? "0")?.setNumberFormat()
+        cell.lblRank.text = obj?.rank//"\(indexPath.row + 1)"r
 
         return cell
     }
@@ -261,3 +228,31 @@ extension Double {
     return formatter.string(from: self) ?? ""
   }
 }
+
+
+extension Int
+{
+    func setNumberFormat() -> (String)
+    {
+        let numberFormatterRank = NumberFormatter()
+        numberFormatterRank.numberStyle = .decimal
+        numberFormatterRank.locale = Locale(identifier: "en_US")
+        let strRank = numberFormatterRank.string(from: NSNumber(value:self)) ?? "0.0"
+        return(strRank)
+    }
+}
+
+
+
+extension Float
+{
+    func setNumberFormat() -> (String)
+    {
+        let numberFormatterRank = NumberFormatter()
+        numberFormatterRank.numberStyle = .decimal
+        numberFormatterRank.locale = Locale(identifier: "en_US")
+        let strRank = numberFormatterRank.string(from: NSNumber(value:self)) ?? "0.0"
+        return(strRank)
+    }
+}
+

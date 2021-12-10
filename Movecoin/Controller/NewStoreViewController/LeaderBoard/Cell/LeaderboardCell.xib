@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,10 +26,10 @@
                         <rect key="frame" x="5" y="5" width="521" height="70"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="joG-4q-ndy">
-                                <rect key="frame" x="10" y="15" width="40" height="40"/>
+                                <rect key="frame" x="10" y="17.5" width="35" height="35"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-J0-Vai" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="8.5" width="8.5" height="17.5"/>
+                                        <rect key="frame" x="13.5" y="8" width="8.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -38,19 +38,19 @@
                                 <color key="backgroundColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="joG-4q-ndy" secondAttribute="height" id="0a9-Ef-ALY"/>
-                                    <constraint firstItem="Kfu-J0-Vai" firstAttribute="centerY" secondItem="joG-4q-ndy" secondAttribute="centerY" constant="-3" id="GDI-2x-hEE"/>
+                                    <constraint firstItem="Kfu-J0-Vai" firstAttribute="centerY" secondItem="joG-4q-ndy" secondAttribute="centerY" constant="-1" id="GDI-2x-hEE"/>
                                     <constraint firstItem="Kfu-J0-Vai" firstAttribute="centerX" secondItem="joG-4q-ndy" secondAttribute="centerX" id="fsN-Ce-XCA"/>
-                                    <constraint firstAttribute="width" constant="40" id="uql-QX-wTR"/>
+                                    <constraint firstAttribute="width" constant="35" id="uql-QX-wTR"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="NAIF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi7-hz-xVJ" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                <rect key="frame" x="60" y="23" width="33.5" height="18"/>
+                                <rect key="frame" x="55" y="24" width="33.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                 <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footstepsBlack" translatesAutoresizingMaskIntoConstraints="NO" id="yQf-m2-rl0">
-                                <rect key="frame" x="434.5" y="22" width="20" height="20"/>
+                                <rect key="frame" x="434.5" y="23" width="20" height="20"/>
                                 <color key="tintColor" red="0.112401031" green="0.116929926" blue="0.35297846789999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="4PQ-5S-cpL"/>
@@ -58,7 +58,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8320" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oK-Q0-3D6" customClass="LocalizLabel" customModule="Movecoins" customModuleProvider="target">
-                                <rect key="frame" x="462.5" y="23.5" width="33.5" height="17.5"/>
+                                <rect key="frame" x="462.5" y="24.5" width="33.5" height="17.5"/>
                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="15"/>
                                 <color key="textColor" red="0.1137254902" green="0.12549019610000001" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -66,7 +66,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gi7-hz-xVJ" firstAttribute="centerY" secondItem="Kfu-J0-Vai" secondAttribute="centerY" id="10x-JM-Utf"/>
+                            <constraint firstItem="gi7-hz-xVJ" firstAttribute="centerY" secondItem="Kfu-J0-Vai" secondAttribute="centerY" constant="-1" id="10x-JM-Utf"/>
                             <constraint firstItem="yQf-m2-rl0" firstAttribute="centerY" secondItem="5oK-Q0-3D6" secondAttribute="centerY" id="3HV-JZ-73D"/>
                             <constraint firstItem="joG-4q-ndy" firstAttribute="centerY" secondItem="q2g-oK-hSl" secondAttribute="centerY" id="Oom-gt-aoD"/>
                             <constraint firstItem="joG-4q-ndy" firstAttribute="leading" secondItem="q2g-oK-hSl" secondAttribute="leading" constant="10" id="W5M-Qp-qiM"/>
@@ -104,6 +104,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="footstepsBlack" width="370" height="512"/>
+        <image name="footstepsBlack" width="40" height="55"/>
     </resources>
 </document>

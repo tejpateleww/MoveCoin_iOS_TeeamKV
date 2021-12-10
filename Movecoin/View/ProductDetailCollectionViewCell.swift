@@ -20,6 +20,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
                 if let url = URL(string: data) {
                     self.imgProduct.kf.indicatorType = .activity
                     self.imgProduct.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+                    self.imgProduct.contentMode = .scaleAspectFill
                 }
             }
         }

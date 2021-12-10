@@ -136,7 +136,7 @@ extension TotalStepsViewController {
             if status{
                 let stepsResponseModel = StepsHistoryResponseModel(fromJson: json)
                 DispatchQueue.main.async {
-                    self.lblTotalSteps.text = stepsResponseModel.totalStepsCount
+                    self.lblTotalSteps.text = Int(stepsResponseModel.totalStepsCount ?? "0")?.setNumberFormat()
                     if refresh {
                         //                            self.refreshControl.endRefreshing()
                         self.stepsHistoryList = stepsResponseModel.stepsDataList

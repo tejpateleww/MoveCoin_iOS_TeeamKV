@@ -118,8 +118,8 @@ class HomeViewController: UIViewController {
     
     fileprivate func checkIfUserDetailsAreComplete() {
         
-        if let weight = userData?.weight, let height = userData?.height{
-            if weight.isBlank || height.isBlank
+        if let weight = userData?.weight, let height = userData?.height, let nickname = userData?.nickName{
+            if weight.isBlank || height.isBlank || nickname.isBlank
             {
                 let destination = self.storyboard?.instantiateViewController(withIdentifier: EditProfileViewController.className) as! EditProfileViewController
                 let navController = UINavigationController(rootViewController: destination)
@@ -211,10 +211,10 @@ class HomeViewController: UIViewController {
     
     func setupHomeData(){
         if let user = userData {
-            lblCoins.text = user.coins
-            lblFriends.text = user.friends
-            lblInviteFriends.text = user.inviteFriends
-            lblTotalSteps.text = user.steps
+            lblCoins.text = Float(user.coins)?.setNumberFormat()
+            lblFriends.text = Int(user.friends)?.setNumberFormat()
+            lblInviteFriends.text = Int(user.inviteFriends)?.setNumberFormat()
+            lblTotalSteps.text = Int(user.steps)?.setNumberFormat()
             
             // Client Remove this
             
@@ -314,9 +314,9 @@ class HomeViewController: UIViewController {
 //                print("Today's Steps : ",steps)
                 if((SingletonClass.SharedInstance.todaysStepCount ?? "0.00") < String(Int(steps)))
                 {
-                    self.lblTodaysStepCount.text = String(Int(steps))
+                    self.lblTodaysStepCount.text = String(Int(steps).setNumberFormat())
                     SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
-                    SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                    SingletonClass.SharedInstance.todaysStepCount = String(Int(steps))//self.lblTodaysStepCount.text
                     #if targetEnvironment(simulator)
                     tempSteps = 5000
                     #endif
@@ -365,15 +365,15 @@ class HomeViewController: UIViewController {
                     if lastUpdatedDate == currentDate {
                         if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
                             let total = counts + activityData.numberOfSteps.intValue
-                            self.lblTodaysStepCount.text = "\(total)"
-                            SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                            self.lblTodaysStepCount.text = "\(total.setNumberFormat())"
+                            SingletonClass.SharedInstance.todaysStepCount = "\(total)"//self.lblTodaysStepCount.text
                         }else {
-                            self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
-                            SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                            self.lblTodaysStepCount.text = Int(activityData.numberOfSteps.stringValue)?.setNumberFormat()
+                            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.stringValue//self.lblTodaysStepCount.text
                         }
                     } else {
-                        self.lblTodaysStepCount.text = activityData.numberOfSteps.stringValue
-                        SingletonClass.SharedInstance.todaysStepCount = self.lblTodaysStepCount.text
+                        self.lblTodaysStepCount.text = Int(activityData.numberOfSteps.stringValue)?.setNumberFormat()
+                        SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.stringValue//self.lblTodaysStepCount.text
                     }
                     self.getDistanceAndCalories()
                     self.webserviceforAPPInit()
@@ -643,7 +643,7 @@ extension HomeViewController {
             
             if status{
                 DispatchQueue.main.async {
-                    self.lblTotalSteps.text = json["steps"].stringValue
+                    self.lblTotalSteps.text = Int(json["steps"].stringValue)?.setNumberFormat()
                     //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
                 }
             }else{
@@ -696,7 +696,7 @@ extension HomeViewController {
                 let now = UtilityClass.getTodayFromServer()
                 let startOfDay = Calendar.current.startOfDay(for: now)
                 self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
-                self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text ?? "0", dateStr: self.queryDate)
+                self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text?.replacingOccurrences(of: ",", with: "") ?? "0", dateStr: self.queryDate)
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }

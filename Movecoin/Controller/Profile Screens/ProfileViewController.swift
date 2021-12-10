@@ -152,7 +152,7 @@ class ProfileViewController: UIViewController {
         
         // Multiline Title
         
-        let upperTitle = NSMutableAttributedString(string: SingletonClass.SharedInstance.userData?.nickName ?? "", attributes: [NSAttributedString.Key.font: FontBook.Bold.of(size: 22.0), NSAttributedString.Key.foregroundColor: UIColor.white])
+        let upperTitle = NSMutableAttributedString(string: SingletonClass.SharedInstance.userData?.nickName ?? "", attributes: [NSAttributedString.Key.font: FontBook.Regular.of(size: 22.0), NSAttributedString.Key.foregroundColor: UIColor.white])
         self.lblUpperTitle.attributedText = upperTitle
         //        let lowerTitle = NSMutableAttributedString(string: "\nMember since Augest 5,2019", attributes: [NSAttributedString.Key.font: FontBook.Regular.of(size: 12.0) , NSAttributedString.Key.foregroundColor: UIColor.white])
         //        upperTitle.append(lowerTitle)
@@ -181,8 +181,8 @@ class ProfileViewController: UIViewController {
         
         leftBarButton.numberOfBages = Int(profileModel?.data.unreadMsgCount ?? "0") ?? 0
         
-        lblTotalMoveCoins.text = profileModel?.data.totalCoins ?? "0"
-        lblTotalSteps.text = profileModel?.data.totalStepsConverted ?? "0"
+        lblTotalMoveCoins.text = Int(profileModel?.data.totalCoins ?? "0")?.setNumberFormat()
+        lblTotalSteps.text = Int(profileModel?.data.totalStepsConverted ?? "0")?.setNumberFormat()
         
         hideTotalRedeem = true
         if (profileModel?.totalReedem == "1")
@@ -234,7 +234,7 @@ class ProfileViewController: UIViewController {
             
         case .Weekly:
             self.lblAverage.text = "Average per week".localized
-            self.lblAverageSteps.text = self.profileModel?.data.avarageWeekStepsCount
+            self.lblAverageSteps.text = Int(self.profileModel?.data.avarageWeekStepsCount ?? "0")?.setNumberFormat()
             self.dataEntries.removeAll()
             
             let maxValue = self.profileModel?.data.weekStepsCount.map{Int($0.totalSteps!) ?? 0}.max() ?? 0
@@ -288,7 +288,7 @@ class ProfileViewController: UIViewController {
             
         case .Monthly:
             self.lblAverage.text = "Average per month".localized
-            self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
+            self.lblAverageSteps.text = Int(self.profileModel?.data.avarageMonthStepsCount ?? "0")?.setNumberFormat()
             self.dataEntries.removeAll()
             
             let maxValue = self.profileModel?.data.monthStepsCount.map{Int($0.totalSteps!) ?? 0}.max() ?? 0
@@ -368,13 +368,13 @@ class ProfileViewController: UIViewController {
         case .Yearly:
             
             self.lblAverage.text = "Average per year".localized
-            self.lblAverageSteps.text = self.profileModel?.data.avarageYearlyStepsCount
+            self.lblAverageSteps.text = Int(self.profileModel?.data.avarageYearlyStepsCount ?? "0")?.setNumberFormat()
             self.dataEntries.removeAll()
             
             let maxValue = self.profileModel?.data.yearlyStepsCount.map{Int($0.totalSteps!) ?? 0}.max() ?? 0
             
-            var year = String()
-            var isYearChange = Bool()
+//            var year = String()
+//            var isYearChange = Bool()
             
             let formatter2 = DateFormatter()
             formatter2.locale = Locale(identifier: "en_US_POSIX")
@@ -492,7 +492,7 @@ class ProfileViewController: UIViewController {
     func healthKitDataWeekSetup() {
         
         self.lblAverage.text = "Average per week".localized
-        self.lblAverageSteps.text = self.profileModel?.data.avarageWeekStepsCount
+        self.lblAverageSteps.text = Int(self.profileModel?.data.avarageWeekStepsCount ?? "0")?.setNumberFormat()
         self.dataEntries.removeAll()
         
         let maxValue = stepsDataEntry.map{Float($0.stepsCount)}.max() ?? 0
@@ -523,7 +523,7 @@ class ProfileViewController: UIViewController {
     func healthKitDataMonthSetup() {
         
         self.lblAverage.text = "Average per month".localized
-        self.lblAverageSteps.text = self.profileModel?.data.avarageMonthStepsCount
+        self.lblAverageSteps.text = Int(self.profileModel?.data.avarageMonthStepsCount ?? "0")?.setNumberFormat()
         self.dataEntries.removeAll()
         
         let maxValue = stepsDataEntry.map{Float($0.stepsCount)}.max() ?? 0 //  .map{$0.first?.totalSteps}.max() ?? 0
@@ -570,7 +570,7 @@ class ProfileViewController: UIViewController {
     func healthKitDataYearSetup() {
         
         self.lblAverage.text = "Average per year".localized
-        self.lblAverageSteps.text = self.profileModel?.data.avarageYearlyStepsCount
+        self.lblAverageSteps.text = Int(self.profileModel?.data.avarageYearlyStepsCount ?? "0")?.setNumberFormat()
         self.dataEntries.removeAll()
         
         let maxValue = stepsDataEntry.map{Float($0.stepsCount)}.max() ?? 0 //  .map{$0.first?.totalSteps}.max() ?? 0

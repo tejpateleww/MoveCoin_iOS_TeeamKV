@@ -185,7 +185,7 @@ struct RequiredFieldValidator: ValidatorConvertible {
     }
     
     func validated(_ value: String, _ txtFieldName: String) throws -> String {
-        guard !value.isEmpty else {
+        guard !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             if txtFieldName.contains("enter"){
                 throw ValidationError("Please".localized + " \(txtFieldName)")
             }else{

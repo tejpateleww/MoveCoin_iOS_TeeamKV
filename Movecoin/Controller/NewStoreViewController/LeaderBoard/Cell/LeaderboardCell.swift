@@ -36,7 +36,7 @@ class LeaderboardCell: UITableViewCell {
     
     func setupFont() {
         
-        self.lblRank.font = UIFont.regular(ofSize: 20)
+        self.lblRank.font = UIFont.regular(ofSize: 16)
         self.lblName.font = UIFont.regular(ofSize: 20)
         self.lblStep.font = UIFont.regular(ofSize: 20)
         

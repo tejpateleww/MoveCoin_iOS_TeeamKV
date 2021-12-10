@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class ChallengeListViewController: UIViewController {
     @IBOutlet weak var VwTopMain: UIView!
     @IBOutlet weak var imgBanner: UIImageView!
@@ -47,7 +47,7 @@ class ChallengeListViewController: UIViewController {
         self.tblPastChallenges.dataSource = self
         self.tblPastChallenges.addSubview(refreshControl)
         tblPastChallenges.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-
+        self.imgBanner.isHidden = true
         self.PrepareView()
 
     }
@@ -166,10 +166,30 @@ class ChallengeListViewController: UIViewController {
     {
         let productsURL = NetworkEnvironment.baseImageURL + (dictChallenge?.sponserImage ?? "")
         self.imgBanner.contentMode = .scaleAspectFill
-        if let url = URL(string: productsURL) {
-            self.imgBanner.kf.indicatorType = .activity
-            self.imgBanner.kf.setImage(with: url, placeholder: self.bannerImage)
-        }
+//        if let url = URL(string: productsURL) {
+//            self.imgBanner.kf.indicatorType = .activity
+//            self.imgBanner.kf.setImage(with: url)
+//            self.imgBanner.isHidden = false
+            
+            if let url = URL(string: productsURL) {
+                self.imgBanner?.kf.indicatorType = .activity
+    //            self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
+                self.imgBanner?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"), options: [
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ], progressBlock: { receivedSize, totalSize in
+                    print("The total size is \(totalSize)")
+                }, completionHandler: { result in
+                    self.imgBanner.isHidden = false
+                    switch result {
+                       case .success(let value):
+                           print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                       case .failure(let error):
+                           print("Job failed: \(error.localizedDescription)")
+                       }
+                })
+            }
+//        }
     }
     func setEmptyData()
     {
@@ -221,7 +241,7 @@ extension ChallengeListViewController : UITableViewDelegate, UITableViewDataSour
 extension ChallengeListViewController {
     
     @objc func webserviceForChallenge(){
-        
+//        self.imgBanner.isHidden = true
         let productsURL = NetworkEnvironment.baseURL + ApiKey.getChallenge.rawValue + "/" + (SingletonClass.SharedInstance.userData?.iD ?? "0")
         ChallengWebserviceSubclass.getChallenge(strURL: productsURL){ (json, status, res) in
             self.refreshControl.endRefreshing()
@@ -234,7 +254,7 @@ extension ChallengeListViewController {
                 self.setData()
             } else {
                 self.setEmptyData()
-
+                self.imgBanner.isHidden = false
             }
         }
     }

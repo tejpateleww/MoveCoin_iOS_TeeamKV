@@ -67,7 +67,7 @@ class SplashViewController: UIViewController {
         viewContainer.layer.addSublayer(playerLayer)
         player.play()
         player.rate = 1.5
-        NotificationCenter.default.addObserver(self, selector: #selector(moveToViewController), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(moveToViewController), name: .AVPlayerItemDidPlayToEndTime, object: nil)
 
 //        Timer.scheduledTimer(withTimeInterval: 4.5, repeats: false) { (timer) in
             //            if self.initStatus {
@@ -112,13 +112,96 @@ class SplashViewController: UIViewController {
                 SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
                 SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
                 SingletonClass.SharedInstance.initResponse = initResponseModel
+                NotificationCenter.default.addObserver(self, selector: #selector(self.moveToViewController), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+
+                if let isUpdateAvailble = json["update"].bool {
+
+                    if !isUpdateAvailble {
+                        // Show an alert, Optional update is available :
+                        if let msg = json["message"].string {
+                            let alert = UIAlertController(title: kAppName.localized,
+                                                          message: msg,
+                                                          preferredStyle: UIAlertController.Style.alert)
+                            
+                            let okAction = UIAlertAction(title: "Update", style: .default, handler: { (action) in
+                                if let url = URL(string: appURL) {
+                                    UIApplication.shared.open(url)
+                                    UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+                                }
+                            })
+                            let LaterAction = UIAlertAction(title: "Later", style: .default, handler: { (action) in
+//                                self.setupNavigationToLogin()
+                            })
+                            
+                            alert.addAction(okAction)
+                            alert.addAction(LaterAction)
+                            UIApplication.topViewController()?.present(alert, animated: true, completion: nil) // Display a two Action alert.  if yes then redirect to APP store :
+                        }
+                    }
+                }
             }else{
-                UtilityClass.showAlertOfAPIResponse(param: res)
+                // Maintainance Flow :
+                //  let update = json["update"].string
+                
+                if let update = json["update"].bool, update == false {
+                    if let maintenance = json["maintenance"].bool, maintenance == true {
+                        let msg = json["message"].stringValue
+                        // stop user here :
+                        let alert = UIAlertController(title: kAppName,
+                                                      message: msg,
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+                        //  Utilities.displayAlertForMainantance(msg)
+                    }else{
+                        if let msg = json["message"].string {
+                            let alert = UIAlertController(title: kAppName,
+                                                          message: msg,
+                                                          preferredStyle: UIAlertController.Style.alert)
+                                                        
+                            let okAction = UIAlertAction(title: "Update".localized, style: .default, handler: { (action) in
+                                if let url = URL(string: appURL) {
+                                    UIApplication.shared.open(url)
+                                    UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+                                }
+                            })
+                            let LaterAction = UIAlertAction(title: "Later".localized, style: .default, handler: {
+                                (action) in
+//                                self.setupNavigationToLogin()
+                                AppDelegateShared.GoToHome()
+                            })
+                            alert.addAction(okAction)
+                            alert.addAction(LaterAction)
+                            UIApplication.topViewController()?.present(alert, animated: true, completion: nil) // Display a two Action alert.  if yes then redirect to APP store :
+                        }
+                    }
+                } else if let update = json["update"].bool, update == true {
+                    // Force update :
+                    if let msg = json["message"].string {
+                        let alert = UIAlertController(title: kAppName,
+                                                      message: msg,
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction(title: "Update".localized, style: .default, handler: { (action) in
+                            if let url = URL(string: appURL) {
+                                UIApplication.shared.open(url)
+                                UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+                            }
+                        })
+                        alert.addAction(okAction)
+                        UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
+                if let strMessage = json["message"].string {
+                    UtilityClass.showAlertOfAPIResponse(param: strMessage)
+                } else {
+                    UtilityClass.showAlertOfAPIResponse(param: "Please check your internet".localized)
+                }
             }
         }
     }
     
-    
+//    UtilityClass.showAlertOfAPIResponse(param: res)
+
     
     func initialSetup(){
 //        let imageview = UIImageView(frame: self.view.frame)

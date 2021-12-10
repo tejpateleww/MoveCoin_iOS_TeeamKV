@@ -173,10 +173,10 @@ extension SearchViewController {
         }
         
         UtilityClass.showHUD()
-        self.txtSearch.endEditing(true)
-        
+//        self.txtSearch.endEditing(true)
+        self.tblFriends.isHidden = true
         let requestModel = SearchRequestModel()
-        requestModel.search_str = searchText
+        requestModel.search_str = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         requestModel.user_id = SingletonClass.SharedInstance.userData?.iD ?? ""
 
         FriendsWebserviceSubclass.searchFriend(searchRequestModel: requestModel){ (json, status, res) in
@@ -187,6 +187,7 @@ extension SearchViewController {
                 self.searchArray = response.result
                 DispatchQueue.main.async {
                     self.tblFriends.reloadData()
+                    self.tblFriends.isHidden = false
                 }
             } else {
                 UtilityClass.showAlertOfAPIResponse(param: res)

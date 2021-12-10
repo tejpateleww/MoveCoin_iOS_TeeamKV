@@ -121,7 +121,7 @@ enum FontBook: String {
     case Light = "DINNextLTW23-Light"
     case Regular = "DINNextLTW23-Regular"
     case SemiBold = "DINNextLTW23-Black"
-    case Bold = "DINAlternate-Bold"
+//    case Bold = "DINAlternate-Bold"
 //    case Black = "Cairo-Black"
 //    case ExtraLight = "Cairo-ExtraLight"
     
