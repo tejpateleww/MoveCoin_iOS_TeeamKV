@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypb-rl-8x4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ypb-rl-8x4">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -3049,7 +3049,7 @@
                                                 </constraints>
                                             </view>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="GN8-v5-y5T">
-                                                <rect key="frame" x="146.5" y="272" width="82.5" height="25"/>
+                                                <rect key="frame" x="166.5" y="272" width="42.5" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="MbI-sd-ah1"/>
                                                 </constraints>
@@ -3427,7 +3427,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jRe-BG-BKO">
-                                        <rect key="frame" x="118.5" y="540" width="83" height="25"/>
+                                        <rect key="frame" x="139" y="540" width="42.5" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="ZNE-La-QGT"/>
                                         </constraints>
@@ -3482,10 +3482,10 @@
             </objects>
             <point key="canvasLocation" x="1486" y="1069"/>
         </scene>
-        <!--Confirm Purchase View Controller-->
+        <!--View Controller-->
         <scene sceneID="dXY-mm-Fjx">
             <objects>
-                <viewController storyboardIdentifier="ConfirmPurchaseViewController" id="Onz-SK-ZMP" customClass="ConfirmPurchaseViewController" customModule="Movecoins" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Onz-SK-ZMP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="daT-jN-ZIq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -9865,7 +9865,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="R1p-X2-06E"/>
+        <segue reference="hLV-gm-Eo4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="3logo-icon" width="33" height="36"/>

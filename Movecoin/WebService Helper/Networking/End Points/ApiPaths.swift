@@ -12,14 +12,22 @@ typealias NetworkRouterCompletion = ((Data?,[String:Any]?, Bool) -> ())
 
 enum NetworkEnvironment: String {
     
-    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
+    //    case liveBaseUrl = "https://www.movecoins.net/admin/api/"
+//    case imageURL = "https://www.movecoins.net/admin/"
+//    case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
+    //    case developmentBaseUrl = "http://movecoins.net/dev/api/"
+    
+#if Development
+    case baseUrl = "http://movecoins.net/dev/api/"
+    case imageURL = "https://www.movecoins.net/dev/"
+    case galleryURL = "https://www.movecoins.net/dev/assets/images/products/"
+
+#else
+    case baseUrl = "https://www.movecoins.net/admin/api/"
     case imageURL = "https://www.movecoins.net/admin/"
     case galleryURL = "https://www.movecoins.net/admin/assets/images/products/"
+#endif
     
-    
-//    case developmentBaseUrl = "http://movecoins.net/dev/api/"
-//    case imageURL = "http://movecoins.net/dev/"
-//    case galleryURL = "http://movecoins.net/dev/assets/images/products/"
     
     static var baseURL : String{
         return NetworkEnvironment.environment.rawValue
@@ -53,13 +61,7 @@ enum NetworkEnvironment: String {
     }
     
     static var environment: NetworkEnvironment{
-        //Set environment Here
-        
-//        #if DEBUG
-//        return .developmentBaseUrl
-//        #else
-        return .liveBaseUrl //.liveBaseUrl //
-//        #endif
+        return .baseUrl
     }
     
     static var token: String{
@@ -69,7 +71,13 @@ enum NetworkEnvironment: String {
 
 struct SocketApiKeys {
     
+#if Development
     static let kSocketBaseURL = "https://www.movecoins.net:8081/"
+#else
+    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
+#endif
+    
+//    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
     //    static let kSocketBaseURL = "https://www.movecoins.net:8081/"
     static let kConnectUser = "connect_user"
     static let kUpdateUserLocation = "update_user_location" 

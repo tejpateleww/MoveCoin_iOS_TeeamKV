@@ -81,6 +81,12 @@ class UserWebserviceSubclass
             WebService.shared.requestMethod(api: .profileUpdate, httpMethod: .post, parameters: params, completion: completion)
         }
     }
+    
+    
+    class func updateSteps(strURL : String  ,completion: @escaping CompletionResponse ){
+        let strURLFinal = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + strURL
+        WebService.shared.getMethod(url: URL.init(string: strURLFinal)!, httpMethod: .get, completion: completion)
+    }
 
     class func Logout( strURL : String  ,completion: @escaping CompletionResponse ){
         let strURLFinal = NetworkEnvironment.baseURL + ApiKey.logout.rawValue + strURL

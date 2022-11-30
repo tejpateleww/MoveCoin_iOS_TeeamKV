@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseAnalytics
 class OfferDetailsViewController: UIViewController {
 
     @IBOutlet var imgProduct: UIImageView?
@@ -39,6 +39,8 @@ class OfferDetailsViewController: UIViewController {
         self.webserviceForOfferDetails(productId: walletDetail.offerID ?? "0", id: walletDetail.iD ?? "0")
         setText()
         self.setupFont()
+
+        Analytics.logEvent("OfferDetailsScreen", parameters: nil)
 
         self.title = "".localized
     }
@@ -117,18 +119,20 @@ class OfferDetailsViewController: UIViewController {
 //            self.btnCouponCopy?.isHidden = true
 //            self.btnCouponTitle?.isHidden = true
 //        }
-        lblOfferDetails?.text = offerDetail.offerDetails.offerDetails
+        
+        guard let offerDetals = offerDetail.offerDetails else { return  }
+        lblOfferDetails?.text = offerDetals.offerDetails
         lblOfferDetails?.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         
-        lblClaimDetails?.text = offerDetail.offerDetails.howToClaim
+        lblClaimDetails?.text = offerDetals.howToClaim
         lblClaimDetails?.textAlignment = (Localize.currentLanguage() == Languages.Arabic.rawValue) ? .right : .left
         
         // For the textview proper width and height according to content
-        lblTitleOfProduct?.text = offerDetail.offerDetails.name
+        lblTitleOfProduct?.text = offerDetals.name
         
-        self.txtViewLink?.text = offerDetail.offerDetails.link
+        self.txtViewLink?.text = offerDetals.link
         
-        self.btnCouponTitle?.setTitle(offerDetail.offerDetails.couponCode, for: .normal)
+        self.btnCouponTitle?.setTitle(offerDetals.couponCode, for: .normal)
         self.btnContinueTitle?.setTitle("message_go_to_store".localized, for: .normal)
 
     }

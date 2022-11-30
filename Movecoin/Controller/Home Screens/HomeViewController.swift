@@ -15,9 +15,17 @@ import FirebaseAnalytics
 protocol FlipToMapDelegate {
     func flipToMap()
 }
+
+protocol Throttable {
+    func perform(with delay: TimeInterval,
+                 in queue: DispatchQueue,
+                 block completion: @escaping () -> Void) -> () -> Void
+}
+
+
 typealias AppHealthKitValueCompletion = ((Double?, Error?)->Void)
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController,Throttable {
     
     // ----------------------------------------------------
     // MARK: - --------- IBOutlets ---------
@@ -32,7 +40,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblTitleFriends: LocalizLabel!
     
     @IBOutlet weak var lblTitleTodays: LocalizLabel!
-//    @IBOutlet weak var lblTitleTotalStep: LocalizLabel!
+    //    @IBOutlet weak var lblTitleTotalStep: LocalizLabel!
     
     @IBOutlet weak var lblTotalSteps: UILabel!
     @IBOutlet weak var lblCoins: UILabel!
@@ -53,9 +61,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lblCal: UILabel!
     @IBOutlet weak var lblTitleCal: LocalizLabel!
     
-    let k = 0.156
-    let w = 71.0 //kg
-
+    //    let k = 0.156
+    //    let w = 71.0 //kg
+    
     // ----------------------------------------------------
     // MARK: - --------- Variables ---------
     // ----------------------------------------------------
@@ -65,28 +73,49 @@ class HomeViewController: UIViewController {
     let healthStore = HKHealthStore()
     
     var userData = SingletonClass.SharedInstance.userData
-    
+    var activityData : CMPedometerData?
     lazy var queryDate = String()
+    var onlyOnce = false
+    
+    lazy var triggerAPI = perform(with: 10.0) { [weak self] in
+        self?.webserviceforAPPInit(completion: {
+            self?.sendPedoMeterStepsToServer()
+        })
+    }
+    
+    lazy var sendStepsWhenAppInBackground = perform(with: 10.0) { [weak self] in
+        self?.webserviceforAPPInit {
+            self?.startCountingSteps()
+        }
+    }
     
     // ----------------------------------------------------
     // MARK: - --------- Life-cycle Methods ---------
     // ----------------------------------------------------
     
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         self.setupFont()
         self.PrepareView()
         healthKitData()
-        
+        self.startCountingSteps()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 3, completion: nil)
             self.checkIfUserDetailsAreComplete()
         }
-        
+        self.sendPedoMeterStepsToServer()
+        NotificationCenter.default.removeObserver(self, name: NotificationSetTodaysSteps, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTodaysSteps), name: NotificationSetTodaysSteps, object: nil)
+        
+        
+//        NotificationCenter.default.removeObserver(self, name: NotificationStepsForPedometer, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(startCountingSteps), name: NotificationStepsForPedometer, object: nil)
+
+        //        self.startCountingSteps()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +131,7 @@ class HomeViewController: UIViewController {
         Analytics.logEvent("HomeScreen", parameters: nil)
         webserviceForUserDetails()
         navigationController?.navigationBar.barStyle = .default
-
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,6 +144,15 @@ class HomeViewController: UIViewController {
     // MARK: - --------- Custom Methods ---------
     // ----------------------------------------------------
     
+    
+    fileprivate func sendPedoMeterStepsToServer()
+    {
+        let now = UtilityClass.getTodayFromServer()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+//        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
+        self.webserviceforUpdateStepsCount(stepsCount: (SingletonClass.SharedInstance.todaysStepCount ?? "0"), dateStr: (self.queryDate),fromFunction: #function)
+    }
     
     fileprivate func checkIfUserDetailsAreComplete() {
         
@@ -194,9 +232,9 @@ class HomeViewController: UIViewController {
     func animateCircle(){
         circularProgress.animate(fromAngle: 0, toAngle: 279, duration: 5) { completed in
             if completed {
-//                print("Completed")
+                //                print("Completed")
             } else {
-//                print("Interrupted")
+                //                print("Interrupted")
             }
         }
     }
@@ -255,7 +293,7 @@ class HomeViewController: UIViewController {
             let statDate = UtilityClass.getDate(dateString: lastUpdatedStepsAt, dateFormate: DateFomateKeys.apiDOB,currentDateFormat: DateFomateKeys.apiDOB)
             
             let now = UtilityClass.getTodayFromServer()
-                        
+            
             let days = now.days(from: statDate)
             
             if days >= 1 {
@@ -268,8 +306,6 @@ class HomeViewController: UIViewController {
             else{
                 self.getTodaysSteps()
             }
-        } else {
-            
         }
     }
     
@@ -292,16 +328,16 @@ class HomeViewController: UIViewController {
     }
     
     func getAgeFromDOF(date: String) -> (Int,Int,Int) {
-
+        
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "YYYY-MM-dd"
         let dateOfBirth = dateFormater.date(from: date)
-
+        
         let calender = Calendar.current
-
+        
         let dateComponent = calender.dateComponents([.year, .month, .day], from:
-        dateOfBirth!, to: Date())
-
+                                                        dateOfBirth!, to: Date())
+        
         return (dateComponent.year!, dateComponent.month!, dateComponent.day!)
     }
     
@@ -309,23 +345,26 @@ class HomeViewController: UIViewController {
         
         self.getTodaysStepsFromHealthKit { (steps) in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            //            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            DispatchQueue.main.async {
+                
                 var tempSteps = steps
-//                print("Today's Steps : ",steps)
+                print("Today Steps are \(steps)")
+                print("Singletonclass Steps are \(SingletonClass.SharedInstance.todaysStepCount ?? "------")")
+                //                print("Today's Steps : ",steps)
                 if((SingletonClass.SharedInstance.todaysStepCount ?? "0.00") < String(Int(steps)))
                 {
                     self.lblTodaysStepCount.text = String(Int(steps).setNumberFormat())
                     SingletonClass.SharedInstance.todaysStepCountInitial = Int(steps)
                     SingletonClass.SharedInstance.todaysStepCount = String(Int(steps))//self.lblTodaysStepCount.text
-                    #if targetEnvironment(simulator)
+#if targetEnvironment(simulator)
                     tempSteps = 5000
-                    #endif
+#endif
                     if Int(tempSteps) > 0 {
-                        self.webserviceforUpdateStepsCount(stepsCount: String(Int(tempSteps)), dateStr: self.queryDate)
+                        self.webserviceforUpdateStepsCount(stepsCount: String(Int(tempSteps)), dateStr: self.queryDate,fromFunction: #function)
                     }
-                    self.startCountingSteps()
                     self.getDistanceAndCalories()
-
+                    
                 }
             }
         }
@@ -350,37 +389,7 @@ class HomeViewController: UIViewController {
         return isEnabled
     }
     
-    func startCountingSteps(){
-        if CMPedometer.isStepCountingAvailable(){
-            pedoMeter.startUpdates(from: UtilityClass.getTodayFromServer()) { (data, error) in
-                guard let activityData = data else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    // if last updated date and current date is same when open from background
-                    
-                    let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
-                    let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
-                    let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
-                    if lastUpdatedDate == currentDate {
-                        if let counts = SingletonClass.SharedInstance.todaysStepCountInitial {
-                            let total = counts + activityData.numberOfSteps.intValue
-                            self.lblTodaysStepCount.text = "\(total.setNumberFormat())"
-                            SingletonClass.SharedInstance.todaysStepCount = "\(total)"//self.lblTodaysStepCount.text
-                        }else {
-                            self.lblTodaysStepCount.text = Int(activityData.numberOfSteps.stringValue)?.setNumberFormat()
-                            SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.stringValue//self.lblTodaysStepCount.text
-                        }
-                    } else {
-                        self.lblTodaysStepCount.text = Int(activityData.numberOfSteps.stringValue)?.setNumberFormat()
-                        SingletonClass.SharedInstance.todaysStepCount = activityData.numberOfSteps.stringValue//self.lblTodaysStepCount.text
-                    }
-                    self.getDistanceAndCalories()
-                    self.webserviceforAPPInit()
-                }
-            }
-        }
-    }
+    
     
     // ----------------------------------------------------
     // MARK: - --------- IBAction Methods ---------
@@ -426,12 +435,12 @@ extension HomeViewController
             statDate = lastWeekDate?.startOfDay ?? Date()
         }
         lastUpdatedDate = lastUpdatedDate.startOfDay - 1
-
+        
         let predicate = HKQuery.predicateForSamples(withStart: statDate, end: lastUpdatedDate, options: .strictStartDate)
         
         let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in
             guard let result = result, let sum = result.sumQuantity() else {
-//                print(error?.localizedDescription ?? "error while fetching steps")
+                //                print(error?.localizedDescription ?? "error while fetching steps")
                 completion(0.0)
                 return
             }
@@ -442,50 +451,32 @@ extension HomeViewController
     
     
     func loadCalory(since start: Date = Date().startOfDay, to end: Date = Date(), completion: @escaping AppHealthKitValueCompletion) {
-            guard let type = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) else {
-                return
-            }
-
-            let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
-            let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
-                var resultCount = 0.0
-                guard let result = result else {
-                    completion(nil, error)
-                    return
-                }
-                
-                if let quantity = result.sumQuantity() {
-                    resultCount = quantity.doubleValue(for: HKUnit.kilocalorie())
-                }
-                DispatchQueue.main.async {
-                    completion(resultCount, nil)
-                }
-            }
-            healthStore.execute(query)
+        guard let type = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) else {
+            return
         }
-    
-    
-    func getTodaysStepsFromHealthKit(completion: @escaping (Double) -> Void) {
-        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         
-        let now = UtilityClass.getTodayFromServer()
-        let startOfDay = Calendar.current.startOfDay(for: now)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
-    
-        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
-            guard let result = result, let sum = result.sumQuantity() else {
-                completion(0.0)
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
+            var resultCount = 0.0
+            guard let result = result else {
+                completion(nil, error)
                 return
             }
-            completion(sum.doubleValue(for: HKUnit.count()))
+            
+            if let quantity = result.sumQuantity() {
+                resultCount = quantity.doubleValue(for: HKUnit.kilocalorie())
+            }
+            DispatchQueue.main.async {
+                completion(resultCount, nil)
+            }
         }
         healthStore.execute(query)
     }
     
+    
     func getTodaysWalkedRunningFromHealthKit(completion: @escaping (Double,Double) -> Void) {
         guard let type = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning) else {
-            print("Something went wrong retriebing quantity type distanceWalkingRunning")
+            print("Something went wrong retrieving quantity type distanceWalkingRunning")
             return
         }
         let now = UtilityClass.getTodayFromServer()
@@ -505,7 +496,7 @@ extension HomeViewController
     func getTodaysHeightFromHealthKit(completion: @escaping (Double) -> Void) {
         guard let heightType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height) else
         {
-            print("Something went wrong retriebing quantity type height")
+            print("Something went wrong retrieving quantity type height")
             return
         }
         
@@ -551,7 +542,7 @@ extension HomeViewController
 extension HomeViewController {
     
     func webserviceForUserDetails(){
-                
+        
         let requestModel = UserDetailModel()
         guard let id = SingletonClass.SharedInstance.userData?.iD else {
             return
@@ -560,7 +551,7 @@ extension HomeViewController {
         
         
         UserWebserviceSubclass.userDetails(userDetailModel: requestModel){ (json, status, res) in
-                    
+            
             if status {
                 let responseModel = LoginResponseModel(fromJson: json)
                 do{
@@ -606,18 +597,22 @@ extension HomeViewController {
         UserWebserviceSubclass.convertStepsToCoin(StepToCoinModel: model) { (json, status, res) in
             print(status)
             
-            if status{
-//                print("convert steps to coins api successfully run")
-            }else{
+            if !status{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
-            
             self.getTodaysSteps()
         }
     }
     
-    func webserviceforUpdateStepsCount(stepsCount : String, dateStr : String){
+    func webserviceforUpdateStepsCount(stepsCount : String, dateStr : String, isFromAppDelegate : Bool = false, fromFunction : String){
         
+        
+        if(self.lblTotalSteps.text == stepsCount)
+        {
+            print("Steps are same, so skipping api call")
+            return
+        }
+        print("The function name is \(fromFunction)")
         guard let id = SingletonClass.SharedInstance.userData?.iD else {
             return
         }
@@ -627,24 +622,31 @@ extension HomeViewController {
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             print(uuid)
             uid = uuid
-        }
+        }       
         
-        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)/\(uid)/\(dateStr)"
+        strParam = id + "/\(stepsCount)/\(uid)/\(dateStr)"
         
         guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
         
-        UserWebserviceSubclass.getAPI(strURL: urlString) { (json, status, res) in
+        UserWebserviceSubclass.updateSteps(strURL: urlString) { (json, status, res) in
             print(status)
             
             if((SingletonClass.SharedInstance.initResponse?.challenge.count ?? 0) > 0)
             {
                 self.webserviceforUpdateStepsForChallenge(stepsCount: SingletonClass.SharedInstance.todaysStepCount ?? "0", challengeID: SingletonClass.SharedInstance.initResponse?.challenge.first?.challengeId ?? "0")
             }
-            
+//            self.startCountingSteps()
+
             if status{
                 DispatchQueue.main.async {
                     self.lblTotalSteps.text = Int(json["steps"].stringValue)?.setNumberFormat()
-                    //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
+                    print("The steps from API are \(json)")
+
+                    if(isFromAppDelegate)
+                    {
+                        self.startCountingSteps()
+                    }
+
                 }
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
@@ -659,7 +661,7 @@ extension HomeViewController {
             return
         }
         var strParam = String()
-   
+        
         strParam = id + "/\(stepsCount)/\(challengeID)"
         
         guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
@@ -668,61 +670,148 @@ extension HomeViewController {
             print(status)
             
             if status{
-//                DispatchQueue.main.async {
-//                    if let leaderboardVC = UIApplication.topViewController() as? LeaderboardViewController
-//                    {
-//                        leaderboardVC.webServiceCallForChallengeDetails()
-//                    }
-//                    self.lblTotalSteps.text = json["steps"].stringValue
-                    //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
-//                }
+                //                DispatchQueue.main.async {
+                //                    if let leaderboardVC = UIApplication.topViewController() as? LeaderboardViewController
+                //                    {
+                //                        leaderboardVC.webServiceCallForChallengeDetails()
+                //                    }
+                //                    self.lblTotalSteps.text = json["steps"].stringValue
+                //                SingletonClass.SharedInstance.todaysStepCount =  NSNumber(value: json["steps"].intValue)
+                //                }
             }else{
-                UtilityClass.showAlertOfAPIResponse(param: res)
+                //                UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
     
-    @objc func webserviceforAPPInit(){
+    
+}
+
+//MARK: - For steps calculation
+extension HomeViewController
+
+{
+    func webserviceforAPPInit(completion: (() -> Void)? = nil){
         
         var strParam = String()
         
         strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
         
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
-//            print(status)
+            //            print(status)
             if status{
                 let initResponseModel = InitResponse(fromJson: json)
+                SingletonClass.SharedInstance.lastUpdatedStepsAt = initResponseModel.lastUpdateStepAt
+                SingletonClass.SharedInstance.productType = initResponseModel.category
+                SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
                 SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
-                let now = UtilityClass.getTodayFromServer()
-                let startOfDay = Calendar.current.startOfDay(for: now)
-                self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
-                self.webserviceforUpdateStepsCount(stepsCount: self.lblTodaysStepCount.text?.replacingOccurrences(of: ",", with: "") ?? "0", dateStr: self.queryDate)
+                SingletonClass.SharedInstance.initResponse = initResponseModel
+                completion?()
+                //                let now = UtilityClass.getTodayFromServer()
+                //                let startOfDay = Calendar.current.startOfDay(for: now)
+                //                self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
+                //                self.webserviceforUpdateStepsCount(stepsCount: (SingletonClass.SharedInstance.todaysStepCount ?? "0"), dateStr: self.queryDate)// self.lblTodaysStepCount.text?.replacingOccurrences(of: ",", with: "") ?? "0"
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
         }
     }
-}
+    
+    
+    func getTodaysStepsFromHealthKit(completion: @escaping (Double) -> Void) {
+        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        
+        let now = UtilityClass.getTodayFromServer()
+        let startOfDay = Calendar.current.startOfDay(for: now)
+        let predicate1 = NSPredicate(format: "metadata.%K != YES", HKMetadataKeyWasUserEntered)
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+        let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [predicate,predicate1])
+        self.queryDate = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
+        print("The query is \(self.queryDate)")
+        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: compoundPredicate, options: .cumulativeSum) { _, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+                completion(0.0)
+                return
+            }
+            print("The query is 2 \(self.queryDate)")
 
-
-extension HomeViewController
-{
-    func calculateCalories(distance : Double?, time : Double?)
-    {
-        let speed = (distance ?? 0.00)/(time ?? 0.00) //meter per minute
-        let vo2 = (k * speed) + 0 + 3.5
-        let calories1 = ((vo2 * w)/1000) * 5 //kcal/min
-        let totalCalories = calories1 * (time ?? 0.0) //kcal
+            completion(sum.doubleValue(for: HKUnit.count()))
+        }
+        healthStore.execute(query)
+    }
+    
+    fileprivate func calculateStepsAndSendToApi(_ activityData: CMPedometerData) {
+        self.activityData = activityData
+        //                self.triggerAPI()
+        //                self.webserviceforAPPInit {
+        
         DispatchQueue.main.async {
-            self.lblCal.text = String(format: "%.2f", totalCalories )
+            
+            print("The steps are " + "\(self.activityData?.numberOfSteps.intValue ?? 0)")
+            
+            let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
+            let now = UtilityClass.getTodayFromServer()
+            let currentDateString = now.ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
+            let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
+            if lastUpdatedDate == currentDate {
+                let total = self.activityData?.numberOfSteps.intValue
+                self.lblTodaysStepCount.text = "\(total?.setNumberFormat() ?? "0")"
+                SingletonClass.SharedInstance.todaysStepCount = "\(total ?? 0)"
+            } else {
+                self.lblTodaysStepCount.text = Int(self.activityData?.numberOfSteps.stringValue ?? "0")?.setNumberFormat()
+                SingletonClass.SharedInstance.todaysStepCount = self.activityData?.numberOfSteps.stringValue//self.lblTodaysStepCount.text
+            }
+            self.getDistanceAndCalories()
+            
+            //                        self.webserviceforUpdateStepsCount(stepsCount: (SingletonClass.SharedInstance.todaysStepCount ?? "0"), dateStr: self.queryDate,fromFunction: #function)
+            self.triggerAPI()
         }
     }
     
-    func calculateCaloriesUsingHeight(height : Double, stepsWalked : Int, weightInPounds : Double)
-    {
+    @objc func startCountingSteps(){
+        if CMPedometer.isStepCountingAvailable(){
+            //            webserviceforAPPInit {
+            let now = UtilityClass.getTodayFromServer()
+            print("Now is \(SingletonClass.SharedInstance.serverTime ?? "----")")
+            let startOfDay = Calendar.current.startOfDay(for: now)
+            self.pedoMeter.startUpdates(from: startOfDay) { [weak self] (data, error) in
+                guard let activityData = data else {
+                    return
+                }
+                print("The data from Activity is \(activityData.numberOfSteps)")
+                if(AppDelegateShared.appDidEnterBackground){
+                    self?.sendStepsWhenAppInBackground()
+                }
+                else{
+                    self?.calculateStepsAndSendToApi(activityData)
+                }
+            }
+        }
+        //        }
+    }
+}
+
+extension HomeViewController{
+    func calculateCaloriesUsingHeight(height : Double, stepsWalked : Int, weightInPounds : Double){
         let x = 0.65 * weightInPounds
         let userWalkedInMiles = (Double(stepsWalked) * (height * 0.413))/160934.4
         let calories = userWalkedInMiles * x
         self.lblCal.text = String(format: "%.2f", calories)
+    }
+}
+
+
+extension Throttable {
+    func perform(with delay: TimeInterval,
+                 in queue: DispatchQueue = DispatchQueue.main,
+                 block completion: @escaping () -> Void) -> () -> Void {
+        
+        var workItem: DispatchWorkItem?
+        
+        return {
+            workItem?.cancel()
+            workItem = DispatchWorkItem(block: completion)
+            queue.asyncAfter(deadline: .now() + delay, execute: workItem!)
+        }
     }
 }

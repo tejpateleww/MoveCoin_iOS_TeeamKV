@@ -17,7 +17,7 @@ let windowHeight: CGFloat = CGFloat(UIScreen.main.bounds.size.height)
 let screenHeightDeveloper : Double = 812
 let screenWidthDeveloper : Double = 375
 
-let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+let kAPPVesion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
 let AppDelegateShared = UIApplication.shared.delegate as! AppDelegate
 
@@ -46,5 +46,7 @@ let currency = "SAR"
 let kLocalNotificationIdentifier = "MoveCoinsEverydayLocalNotification"
 let NotificationSetHomeVC = NSNotification.Name(rawValue:"NotificationSetHomeVC")
 let NotificationSetTodaysSteps = NSNotification.Name(rawValue:"NotificationSetTodaysSteps")
+let NotificationStepsForPedometer = NSNotification.Name(rawValue:"NotificationStepsForPedometer")
 let timeZone = TimeZone.current.abbreviation() ?? "Asia/Riyadh"
+
 

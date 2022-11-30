@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     let locationManager = CLLocationManager()
     let notificationCenter = UNUserNotificationCenter.current()
     let healthKitStore:HKHealthStore = HKHealthStore()
+    var appDidEnterBackground = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -37,30 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if #available(iOS 13.0, *) {
             window?.overrideUserInterfaceStyle = .light
         }
-        
-//        UIFont.familyNames.forEach({ familyName in
-//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-//            print(familyName, fontNames)
-//        })
-        
-//        #if DEBUG
-//        //                return .developmentBaseUrl
-//        self.authorizeHealthKit { (authorized,  error) -> Void in
-//            if authorized {
-//                print("HealthKit authorization received.")
-//            }
-//            else {
-//                print("HealthKit authorization denied!")
-//                if error != nil {
-//                    print("\(error ?? NSError())")
-//                }
-//            }
-//        }
-//
-//        #else
-//        //                return .liveBaseUrl
-//        #endif
-        
+        NotificationCenter.default.addObserver(self, selector:#selector(self.calendarDayDidChange(_:)), name:NSNotification.Name.NSCalendarDayChanged, object:nil)
+
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         // Client MoveCoins Key and Secret
         //        TWTRTwitter.sharedInstance().start(withConsumerKey: "MOCMQEYul9oCmCmYDXk8Q7nVN", consumerSecret: "Nv7qw5isiL2TrRQgQafRkJieHSbJyPnNTttaHVPKu4zEQBeXzX")
@@ -86,163 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         return true
     }
     
-    
-    
-    func startObservingHeightChanges() {
-        
-        let sampleType =  HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)! as HKQuantityType
-        
-        let query: HKObserverQuery = HKObserverQuery(sampleType: sampleType, predicate: nil) { (query, completionHandler, error) in
-            if error != nil {
-
-                // Perform Proper Error Handling Here...
-                print("*** An error occured while setting up the stepCount observer. \(error?.localizedDescription ?? "") ***")
-//                abort()
-            }
-            else
-            {
-                self.heightChangedHandler(query: query, completionHandler: completionHandler, error: error as NSError?)
-            }
-
-            // Take whatever steps are necessary to update your app's data and UI
-            // This may involve executing other queries
-//            self.updateDailyStepCount()
-
-            // If you have subscribed for background updates you must call the completion handler here.
-            // completionHandler()
-        }//HKObserverQuery(sampleType: sampleType, predicate: nil, updateHandler: self.heightChanged)
-        
-        healthKitStore.execute(query)
-        
-        healthKitStore.enableBackgroundDelivery(for: sampleType, frequency: .hourly) { (success, error) in
-            if success{
-                print("Enabled background delivery of weight changes")
-            } else {
-                if let theError = error{
-                    print("Failed to enable background delivery of weight changes. ")
-                    print("Error = \(theError)")
-                }
-            }
-        }
-    }
-    
-    
-    func heightChangedHandler(query: HKObserverQuery!, completionHandler: HKObserverQueryCompletionHandler!, error: NSError!) {
-        
-        let healthStore = HKHealthStore()
-
-        let now = UtilityClass.getTodayFromServer()
-        let startOfDay = Calendar.current.startOfDay(for: now)
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-        
-        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-
-        let sample = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, error in
-            guard let result = result, let sum = result.sumQuantity() else {
-//                completion(0.0)
-                print(error?.localizedDescription ?? "-")
-                return
-            }
-            self.localNotification(value: "\(sum.doubleValue(for: HKUnit.count()))")
-        }
-        healthStore.execute(sample)
-
-       
-        completionHandler()
-    }
-    
-    func localNotification(value : String)
-    {
-        //get the notification center
-        let center =  UNUserNotificationCenter.current()
-
-        //create the content for the notification
-        let content = UNMutableNotificationContent()
-        
-        content.title = "Today's Steps \(value)"
-        content.subtitle = "Keep it up"
-//        content.body = "Its lunch time at the park, please join us for a dinosaur feeding"
-        content.sound = UNNotificationSound.default
-        //notification trigger can be based on time, calendar or location
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:2.0, repeats: false)
-
-        //create request to display
-        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
-
-        //add request to notification center
-        center.add(request) { (error) in
-            if error != nil {
-                print("error \(String(describing: error))")
-            }
-        }
-        
-        webserviceforUpdateStepsCount(stepsCount: value)
-    }
-    
-    
-    func webserviceforUpdateStepsCount(stepsCount : String){
-        
-        let now = Date()
-        let startOfDay = Calendar.current.startOfDay(for: now)
-        let dateStr = "\(startOfDay.getFormattedDate(dateFormate: DateFomateKeys.api)) \(now.getFormattedDate(dateFormate: DateFomateKeys.api))"
-        
-        guard let id = SingletonClass.SharedInstance.userData?.iD else {
-            return
-        }
-        var strParam = String()
-        var uid = "uuid"
-        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            uid = uuid
-        }
-        
-        strParam = NetworkEnvironment.baseURL + ApiKey.updateSteps.rawValue + id + "/\(stepsCount)/\(uid)/\(dateStr)"
-        
-        guard let urlString = strParam.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return }
-        
-        UserWebserviceSubclass.getAPI(strURL: urlString) { (json, status, res) in
-            print(status)
-            
-        }
-    }
-    
-    
-    func authorizeHealthKit(completion: ((_ success:Bool, _ error:NSError?) -> Void)!) {
-   
-        // 1. Set the types you want to read from HK Store
-        let healthKitTypesToRead = [
-            HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount),
-        ] as! [HKObjectType]
-        
-        // 2. Set the types you want to write to HK Store
-
-        
-        // 3. If the store is not available (for instance, iPad) return an error and don't go on.
-        if !HKHealthStore.isHealthDataAvailable() {
-            let error = NSError(domain: "any.domain.com", code: 2, userInfo: [NSLocalizedDescriptionKey:"HealthKit is not available in this Device"])
-            
-            if(completion != nil) {
-                completion(false, error)
-            }
-            return;
-        }
-        
-        // 4.  Request HealthKit authorization
-        healthKitStore.requestAuthorization(toShare: nil, read: Set(healthKitTypesToRead)) { (success, error) in
-            if( completion != nil ) {
-                
-                DispatchQueue.main.async {
-
-                }
-                completion(success,error as NSError?)
-                
-            }
-        }
- 
-    }
-    func applicationWillResignActive(_ application: UIApplication) {
-        
-    }
-    
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("App is in Background mode")
         SocketIOManager.shared.establishConnection()
@@ -250,6 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             print ("socket connected")
         }
         print(SocketIOManager.shared.isSocketOn)
+        
+        
+        appDidEnterBackground = true
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -259,26 +84,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             vc.webserviceForChatHistory(isLoading: false)
         }
         
+        appDidEnterBackground = false
         // If LastUpdatedDate and Current Date is same then Main Today's steps should be 0 if it opens from background 
 //        if let topViewController = UIApplication.topViewController()?.children.first as? HomeViewController {
             DispatchQueue.main.async {
-                
-                let lastUpdatedDate = UtilityClass.getDateFromDateString(dateString: SingletonClass.SharedInstance.lastUpdatedStepsAt ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))
-                let currentDateString = Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd")
-                let currentDate = UtilityClass.getDateFromDateString(dateString: currentDateString)
-                
-                if lastUpdatedDate != currentDate {
-//                    topViewController.getTodaysSteps()
-                    SingletonClass.SharedInstance.todaysStepCount = "" // This is done because when coming from background and day is changed then this is affecting in getTodaysStepsFromHealthKit
-                    self.webserviceforAPPInit()
+                self.webserviceforAPPInit()
 
-                }
+               
             }
 //        }
     }
     
     
-    func webserviceforAPPInit(){
+    func webserviceforAPPInit(isFromLogin:Bool = false,completion: (() -> Void)? = nil){
         
         var strParam = String()
         
@@ -288,16 +106,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             print(status)
             if status{
                 let initResponseModel = InitResponse(fromJson: json)
+                
+              let diffOfDays = self.getDayDifference(fromDate: initResponseModel.serverTime, toDate: SingletonClass.SharedInstance.serverTime ?? "")
+                
                 SingletonClass.SharedInstance.lastUpdatedStepsAt = initResponseModel.lastUpdateStepAt
                 SingletonClass.SharedInstance.productType = initResponseModel.category
                 SingletonClass.SharedInstance.coinsDiscountRelation = initResponseModel.coinsDiscountRelation
                 SingletonClass.SharedInstance.serverTime = initResponseModel.serverTime
-//                topViewcontroller.getTodaysSteps()
-                NotificationCenter.default.post(name: NotificationSetTodaysSteps, object: nil)
-
+                SingletonClass.SharedInstance.initResponse = initResponseModel
+                
+                if(diffOfDays > 0)
+                {
+                    let theNotification: NSNotification =
+                    NSNotification(name: NSNotification.Name(rawValue: ""), object: nil, userInfo: [:])
+                    self.calendarDayDidChange(theNotification)
+                }
+                completion?()
+                
             }else{
                 UtilityClass.showAlertOfAPIResponse(param: res)
             }
+        }
+    }
+    
+    func getDayDifference(fromDate : String, toDate : String) -> Int
+    {
+        let now = UtilityClass.getDate(dateString: fromDate, dateFormate: DateFomateKeys.api, currentDateFormat: DateFomateKeys.api)//getDateFromDateString(dateString: fromDate)
+        
+        let lastUpdatedStepsAt = toDate//UtilityClass.getDateFromDateString(dateString: toDate)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFomateKeys.api//"h:mm a"
+        dateFormatter.calendar = NSCalendar.current
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)
+        dateFormatter.locale = .current
+        
+        let statDate = dateFormatter.date(from: lastUpdatedStepsAt)
+        return now.days(from: statDate ?? Date())
+    }
+    
+    @objc private func calendarDayDidChange(_ notification : NSNotification) {
+        webserviceforAPPInit {
+            let navigationController = self.window?.rootViewController as! UINavigationController
+            let homVC = (navigationController.children.first as? TabViewController)?.homeVC as? HomeViewController
+            
+            SingletonClass.SharedInstance.todaysStepCount = "1"
+            //        homVC?.startCountingSteps()
+            homVC?.lblTodaysStepCount.text = "0"
+            homVC?.webserviceforUpdateStepsCount(stepsCount: SingletonClass.SharedInstance.todaysStepCount ?? "1", dateStr: homVC?.queryDate ?? "---", isFromAppDelegate: true, fromFunction: #function)
         }
     }
     
@@ -776,32 +632,32 @@ extension AppDelegate {
             } else if key == "friend_request_reject" {
                 completionHandler([.alert, .sound])
             }
-            else if key == "WebviewS" {
-                if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
-                {
-                    topViewController.dismiss(animated: true) {
-                        
-                        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                        UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull".localized, ButtonTitle: "OK".localized) {
-                            UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                }
-                completionHandler([.alert, .sound])
-            }
-            else if key == "WebviewF" {
-                if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
-                {
-                    topViewController.dismiss(animated: true) {
-                        
-                        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
-                        UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
-                            //                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                }
-                completionHandler([.alert, .sound])
-            }
+//            else if key == "WebviewS" {
+//                if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+//                {
+//                    topViewController.dismiss(animated: true) {
+//
+//                        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
+//                        UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Successfull".localized, ButtonTitle: "OK".localized) {
+//                            UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+//                        }
+//                    }
+//                }
+//                completionHandler([.alert, .sound])
+//            }
+//            else if key == "WebviewF" {
+//                if let topViewController = UIApplication.topViewController() as? Gateway3DSecureViewController
+//                {
+//                    topViewController.dismiss(animated: true) {
+//
+//                        //                    UtilityClass.showAlert(Message: "Purchase Successfull")
+//                        UtilityClass.showAlertWithCompletion(title: "", Message: "Purchase Unsuccessfull".localized, ButtonTitle: "OK".localized) {
+//                            //                                UIApplication.topViewController()?.navigationController?.popViewController(animated: true)
+//                        }
+//                    }
+//                }
+//                completionHandler([.alert, .sound])
+//            }
           /*  else if key == "order_update" {
                 if let response = userInfo["gcm.notification.response_arr"] as? String {
                     let jsonData = response.data(using: .utf8)!

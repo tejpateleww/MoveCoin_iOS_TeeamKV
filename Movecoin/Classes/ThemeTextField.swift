@@ -102,7 +102,7 @@ class DropDownTextField : UITextField {
     }
     
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        UIMenuController.shared.isMenuVisible = false
+        UIMenuController.shared.hideMenu()
         
         if action == #selector(UIResponderStandardEditActions.paste(_:)) {
             return false

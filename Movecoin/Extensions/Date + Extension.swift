@@ -92,10 +92,13 @@ extension Date {
         let formateDate = dateFormatter.date(from:str)!
         dateFormatter.dateFormat = dateFormate // Output Formated
         
-        print ("getFormattedDate() :\(dateFormatter.string(from: formateDate))")
+//        print ("getFormattedDate() :\(dateFormatter.string(from: formateDate))")
         return dateFormatter.string(from: formateDate)
     }
     
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+           return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+       }
     
     // ----------------------------------------------------
     // MARK: - --------- CLICK LUNCH EXTENSION Methods ---------

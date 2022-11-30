@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import SwiftyJSON
+import FirebaseAnalytics
 class OfferListViewController: UIViewController {
     
     @IBOutlet weak var lblCatTitle: LocalizLabel?
@@ -62,6 +63,7 @@ class OfferListViewController: UIViewController {
 //        self.clnCategory.allowsMultipleSelection = true
 
         self.PrepareView()
+        Analytics.logEvent("OfferListScreen", parameters: nil)
 
         self.title = "Offers".localized
     }

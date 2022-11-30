@@ -45,8 +45,10 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
     //MARK:- --------- Variables ---------
     // ----------------------------------------------------
     
-     var userSocialData: UserSocialData?
-    
+    var userSocialData: UserSocialData?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var userPermission = UserPermission()
+
     var provider = OAuthProvider(providerID: "twitter.com")
     
     // ----------------------------------------------------
@@ -58,7 +60,8 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         navigationBarSetUp(hidesBackButton: true)
         self.setupFont()
         setupSOAppleSignIn()
-        
+         self.initialSetup()
+
         IQKeyboardManager.shared.toolbarDoneBarButtonItemText = "Done".localized
         
         
@@ -93,6 +96,16 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         btnForgotPassword.setTitle(btnForgotPassword.titleLabel?.text?.localized, for: .normal)
         btnForgotPassword.titleLabel?.textAlignment = .right
     }
+
+    
+    
+    func initialSetup(){
+        userPermission.permissions = [.locationPermission,.camera, .motion, .healthKit,.notification]
+            for type in userPermission.permissions {
+                userPermission.requestForPermission(type: type)
+            }
+        }
+    
     
     func validate() {
         do {
@@ -170,6 +183,7 @@ class LoginViewController: UIViewController, CAAnimationDelegate//, TWTRComposer
         }
         let login = LoginManager()
         login.logOut()
+        
         login.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) in
             
             if error != nil {
@@ -411,7 +425,6 @@ extension LoginViewController {
             UtilityClass.hideHUD()
            
             if status{
-                
                 let loginResponseModel = LoginResponseModel(fromJson: json)
                 UserDefaults.standard.set(loginResponseModel.xApiKey, forKey: UserDefaultKeys.kX_API_KEY)
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.kIsLogedIn)
@@ -421,11 +434,12 @@ extension LoginViewController {
                 do{
                     try UserDefaults.standard.set(object: loginResponseModel.data, forKey: UserDefaultKeys.kUserProfile)
                     SingletonClass.SharedInstance.userData = loginResponseModel.data
-//                    AppDelegateShared.notificationEnableDisable(notification: SingletonClass.SharedInstance.userData?.notification ?? "0")
                 }catch{
                     UtilityClass.showAlert(Message: error.localizedDescription)
                 }
                 AppDelegateShared.GoToHome()
+                self.appDelegate.webserviceforAPPInit(isFromLogin: true)
+
             }
             else{
                 UtilityClass.showAlertOfAPIResponse(param: res)

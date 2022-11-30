@@ -33,7 +33,8 @@ open class UserPermission : NSObject {
     
     lazy var permissionType : Permission = Permission.locationPermission
     lazy var permissions : [Permission] = []
-    
+    let locationManager = CLLocationManager()
+
     public override init() {
         super.init()
     }
@@ -85,7 +86,6 @@ open class UserPermission : NSObject {
     }
     
     func requestLocationPermission(){
-        let locationManager = CLLocationManager()
 //        let status = CLLocationManager.authorizationStatus()
         if (CLLocationManager.authorizationStatus() == .denied) || CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .notDetermined {
             // Ask for Authorisation from the User.

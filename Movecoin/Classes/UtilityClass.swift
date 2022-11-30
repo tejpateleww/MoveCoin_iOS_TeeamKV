@@ -98,21 +98,21 @@ class UtilityClass : NSObject {
     class func getDate(dateString: String, dateFormate: String, currentDateFormat : String = "yyyy-MM-dd HH:mm:ss") -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(abbreviation: timeZone)
+        dateFormatter.timeZone = TimeZone(abbreviation: "Asia/Riyadh")
         dateFormatter.dateFormat = currentDateFormat // This formate is input formated .
         guard let str = dateFormatter.date(from: dateString) else { return Date() }
         
         dateFormatter.dateFormat = dateFormate // Output Formated
         let formateDate = dateFormatter.string(from:str)
         
-        print ("Print \(#function):\(dateFormatter.date(from: formateDate) ?? Date())")
+//        print ("Print \(#function):\(dateFormatter.date(from: formateDate) ?? Date())")
         return dateFormatter.date(from: formateDate)!
     }
     
     
     class func getTodayFromServer() -> Date
     {
-        return self.getDate(dateString: SingletonClass.SharedInstance.serverTime ?? Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"), dateFormate: DateFomateKeys.api)
+        return self.getDate(dateString: (SingletonClass.SharedInstance.serverTime ?? (Date().ToLocalStringWithFormat(dateFormat: "yyyy-MM-dd"))), dateFormate: DateFomateKeys.api)
     }
     
     class func getDateFromDateString(dateString : String) -> Date

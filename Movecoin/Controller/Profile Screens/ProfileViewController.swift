@@ -181,7 +181,7 @@ class ProfileViewController: UIViewController {
         
         leftBarButton.numberOfBages = Int(profileModel?.data.unreadMsgCount ?? "0") ?? 0
         
-        lblTotalMoveCoins.text = Int(profileModel?.data.totalCoins ?? "0")?.setNumberFormat()
+        lblTotalMoveCoins.text = Float(profileModel?.data.totalCoins ?? "0")?.setNumberFormat()
         lblTotalSteps.text = Int(profileModel?.data.totalStepsConverted ?? "0")?.setNumberFormat()
         
         hideTotalRedeem = true

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class LeaderboardViewController: UIViewController {
     
@@ -62,6 +63,8 @@ class LeaderboardViewController: UIViewController {
         self.PrepareView()
         self.lblTime.text = ""
         self.webServiceCallForChallengeDetails()
+        Analytics.logEvent("LeaderboardViewController", parameters: nil)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

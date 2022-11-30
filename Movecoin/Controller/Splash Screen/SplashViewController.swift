@@ -77,31 +77,37 @@ class SplashViewController: UIViewController {
     }
     
     @objc func moveToViewController() {
-        self.initialSetup()
-
-        if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
+        
+        if(moveToVewController)
+        {
+            self.initialSetup()
             
-            if loggedIn as! Bool {
-                AppDelegateShared.GoToHome()
-                //                getUserData()
-            }else {
+            if let loggedIn = UserDefaults.standard.value(forKey: UserDefaultKeys.kIsLogedIn) {
+                
+                if loggedIn as! Bool {
+                    AppDelegateShared.GoToHome()
+                    //                getUserData()
+                }else {
+                    AppDelegateShared.GoToLogin()
+                }
+            } else if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsOnBoardLaunched) == nil {
+                //                if (isOnBoardLaunched as! Bool) == false {
+                AppDelegateShared.GoToOnBoard()
+                //                }
+            } else {
                 AppDelegateShared.GoToLogin()
             }
-        } else if UserDefaults.standard.value(forKey: UserDefaultKeys.kIsOnBoardLaunched) == nil {
-            //                if (isOnBoardLaunched as! Bool) == false {
-            AppDelegateShared.GoToOnBoard()
-            //                }
-        } else {
-            AppDelegateShared.GoToLogin()
         }
     }
     
+    
+    var moveToVewController = true
     func webserviceforAPPInit(){
         
         var strParam = String()
         
         strParam = NetworkEnvironment.baseURL + ApiKey.Init.rawValue + kAPPVesion + "/Ios/\(SingletonClass.SharedInstance.userData?.iD ?? "")"
-        
+                
         UserWebserviceSubclass.getAPI(strURL: strParam) { (json, status, res) in
             print(status)
             self.initStatus = status
@@ -115,7 +121,7 @@ class SplashViewController: UIViewController {
                 NotificationCenter.default.addObserver(self, selector: #selector(self.moveToViewController), name: .AVPlayerItemDidPlayToEndTime, object: nil)
 
                 if let isUpdateAvailble = json["update"].bool {
-
+                    self.moveToVewController = false
                     if !isUpdateAvailble {
                         // Show an alert, Optional update is available :
                         if let msg = json["message"].string {
@@ -131,6 +137,9 @@ class SplashViewController: UIViewController {
                             })
                             let LaterAction = UIAlertAction(title: "Later", style: .default, handler: { (action) in
 //                                self.setupNavigationToLogin()
+                                self.moveToVewController = true
+                                self.moveToViewController()
+
                             })
                             
                             alert.addAction(okAction)
@@ -204,18 +213,9 @@ class SplashViewController: UIViewController {
 
     
     func initialSetup(){
-//        let imageview = UIImageView(frame: self.view.frame)
-//        imageview.image = UIImage(named: image)
-//        imageview.contentMode = .scaleAspectFill
-//        self.view.addSubview(imageview)
-        
-        // For Request Permission
-//        let img = NSLocale.current.languageCode == "ar" ? "Intro 1 Arabic" : "intro-1"
-//        if image == img {
-        userPermission.permissions = [.camera, .motion, .healthKit, .locationPermission,.notification]
+        userPermission.permissions = [.locationPermission,.camera, .motion, .healthKit,.notification]
             for type in userPermission.permissions {
                 userPermission.requestForPermission(type: type)
             }
         }
-//    }
 }

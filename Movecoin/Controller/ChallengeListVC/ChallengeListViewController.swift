@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import FirebaseAnalytics
 class ChallengeListViewController: UIViewController {
     @IBOutlet weak var VwTopMain: UIView!
     @IBOutlet weak var imgBanner: UIImageView!
@@ -49,6 +50,8 @@ class ChallengeListViewController: UIViewController {
         tblPastChallenges.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         self.imgBanner.isHidden = true
         self.PrepareView()
+
+        Analytics.logEvent("ChallengeListScreen", parameters: nil)
 
     }
     
